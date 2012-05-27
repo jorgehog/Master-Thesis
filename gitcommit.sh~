@@ -1,0 +1,28 @@
+COMMIT="FALSE"
+
+if [ "$1" = "-A" ]
+then
+    echo git add . -A
+    COMMIT="TRUE"
+
+elif [ "$1" = "" ]
+then
+    git add ./main/jorgenh_thesis.tex
+    git add ./main/jorgenh_thesis.pdf
+    git add ./chapters/01QM/ch01QM.tex
+    COMMIT="TRUE"
+
+else
+    echo Unrecognized option $1.
+fi
+
+
+if [ $COMMIT = "TRUE" ]
+then
+    echo ""
+    echo -n "Commit message: "
+    read -e $MESSAGE
+    echo $MESSAGE
+#    git commit -m $MESSAGE
+#    git push -u origin master
+fi
