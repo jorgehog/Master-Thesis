@@ -1,0 +1,5 @@
+\select@language {english}
+\contentsline {section}{\numberline {0.1}Introduction}{1}
+\contentsline {part}{I\hspace {1em}Theory}{3}
+\contentsline {chapter}{\numberline {1}Quantum Mechanics}{5}
+\contentsline {subsection}{\numberline {1.0.1}The road to Quantum Mechanics}{5}
