@@ -4,6 +4,8 @@ if [ "$1" = "" ]
 then
     git add gitcommit.sh -A
     git add gitupdate.py -A
+    
+    git add ./bibtex/bibtex.bib -A
 
     git add ./main/jorgenh_thesis.tex -A
     git add ./main/jorgenh_thesis.pdf -A
