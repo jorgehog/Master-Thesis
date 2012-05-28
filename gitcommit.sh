@@ -9,7 +9,7 @@ then
     git add ./main/jorgenh_thesis.pdf -A
 
     git add ./chapters/01QM/ch01QM.tex
-    git add ./chapters/02TEST/ch02TEST.tex
+    
     
 
     COMMIT="TRUE"
