@@ -1,10 +1,27 @@
 \chapter{Quantum Mechanics}
 
-blah blah
+Although classical mechanics succeeds at describing the visual objects of the world to great presicion, it does not function as a general framework for the entire universe. The universe consist, physically, of objects of all scales: From galaxies and black holes, stars and planets, to people and everyday objects, all the way down to electrons and light. Whenever we make a change in the scale of our system, there is a chance that our current set of mechanics will not produce a satisfying result. The complexity of a given mechanics is usually reflected in the complexity of the systems it can describe; a statement which should prove true in the case of quantum mechanics, when it early in the 20th century came to scientists attention that the building blocks of nature was, and still is, incomprehensibly complex.
 
 \section{Fundamentals}
 
-blah blah
+A quantum mechanical system is described by a statistical ensamble of possible states. Unlike other ensambles in statistical mechanics, an object described by quantum mechanics has the possibility to occupy several physical states simultaneously. Each of these states (i.e. the energy levels of hydrogen) is described by a \textit{wavefunction}. The full state of a system is constructed by a weighted superposition of all the possible physical states, exactly like a basis expansion in linear algebra. Performing a measurement on a system will, obviously\footnote{Measuring the energy of hydrogen is practically measuring the (averaged) location of it's electron. The electron, when observed, cannot be in several places at once.}, give only one value corresponding to the value of one of the constituent states. The probability of measuring a spesific value equals the absolute square of it's weight in the superposition \cite{griffiths}. 
+
+This mathematical model is rigid, and works in the sence that it gives accurate results. How to interpret it physically, however, is a completely different question. We will come back to this topic in more detail in section \ref{sec:QMinterpret}.
+
+\subsection{Wavefunctions}
+
+\[
+\psi 
+\]
+
+
+
+
+
+
+
+
+
 
 \subsection{The road to Quantum Mechanics}
 
@@ -37,4 +54,4 @@ The $\psi(r, t)$ is called the \textit{wavefunction}. It's the goal of the compu
 
 $$P(r, t) = \left|\psi(r, t)\right|^2.$$
 
-This basically means that the outcome of a measurement is not given in forehand. All you can calculate is the probability of measuring a certain value (remember that values, like i.e. energy, is quantized), not what one measurement will yield. This, however, is a mathematical formulation. What makes up the physics is how we interpret it. Either, the measurement is indeed given in forehand, we just do not have the rights to know, or, on the other hand, we follow Niels Bohr's interpretation, and say that the wavefunction is a superposition of all possible states with different weights, and a measurement will simply collapse it into one of them.
+This basically means that the outcome of a measurement is not given in forehand. All you can calculate is the probability of measuring a certain value (remember that values, like i.e. energy, is quantized), not what one measurement will yield. This, however, is a mathematical formulation. What makes up the physics is how we interpret it. Either, the measurement is indeed given in forehand, we just do not have the rights to know, or, on the other hand, we follow Niels Bohr's interpretation, and say that the wavefunction is a superposition of all possible states with different weights, and a measurement will simply collapse it into one of them.\cite{griffiths}
