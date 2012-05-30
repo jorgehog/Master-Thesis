@@ -4,7 +4,7 @@ if [ "$1" = "" ]
 then
     git add gitcommit.sh -A
     git add gitupdate.py -A
-    
+
     git add ./bibtex/bibtex.bib -A
 
     git add ./main/jorgenh_thesis.tex -A
@@ -14,6 +14,7 @@ then
     git add ./chapters/02preface/ch02preface.tex
     git add ./chapters/03intro/ch03intro.tex
     git add ./chapters/04QM/ch04QM.tex
+    git add ./chapters/05Manybody/ch05Manybody.tex
     
     
 
