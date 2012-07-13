@@ -15,6 +15,7 @@ then
     git add ./chapters/03intro/ch03intro.tex
     git add ./chapters/04QM/ch04QM.tex
     git add ./chapters/05Manybody/ch05Manybody.tex
+    git add ./chapters/08Results/ch08Results.tex
     
     
 

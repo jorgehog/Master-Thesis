@@ -1,20 +1,161 @@
 \chapter{Quantum Mechanics}
 
-Although classical mechanics succeeds at describing the visual objects of the world to great presicion, it does not function as a general framework for the entire universe. The universe consist, physically, of objects of all scales: From galaxies and black holes, stars and planets, to people and everyday objects, all the way down to electrons and light. Whenever we make a change in the scale of our system, there is a chance that our current set of mechanics will not produce a satisfying result. The complexity of a given mechanics is usually reflected in the complexity of the systems it can describe; a statement which should prove true in the case of quantum mechanics, when it early in the 20th century came to scientists attention that the building blocks of nature was, and still is, incomprehensibly complex.
+Although classical mechanics succeeds at describing the visual objects of the world to great presicion, it does not function as a general framework for the entire universe. The universe consist, physically, of objects of all scales: From galaxies and black holes, stars and planets, to people and everyday objects, all the way down to electrons and light. Whenever we make a change in the scale of our system, there is a chance that our current set of mechanics will not produce a satisfying result. 
+
+The complexity of a given mechanics is usually reflected in the complexity of the systems it can describe; a statement which should prove true in the case of quantum mechanics, when it early in the 20th century came to scientists attention that the building blocks of nature was, and still is, incomprehensibly complex.
 
 \section{Fundamentals}
 
-A quantum mechanical system is described by a statistical ensamble of possible states. Unlike other ensambles in statistical mechanics, an object described by quantum mechanics has the possibility to occupy several physical states simultaneously. Each of these states (i.e. the energy levels of hydrogen) is described by a \textit{wavefunction}. The full state of a system is constructed by a weighted superposition of all the possible physical states, exactly like a basis expansion in linear algebra. Performing a measurement on a system will, obviously\footnote{Measuring the energy of hydrogen is practically measuring the (averaged) location of it's electron. The electron, when observed, cannot be in several places at once.}, give only one value corresponding to the value of one of the constituent states. The probability of measuring a spesific value equals the absolute square of it's weight in the superposition \cite{griffiths}. 
+A quantum mechanical system is described by a statistical ensamble of possible states. Unlike other ensambles in statistical mechanics, an object described by quantum mechanics has the possibility to occupy several physical states simultaneously. Each of these states (i.e. the energy levels of hydrogen) is described by a \textit{wave function}. 
+
+The nature of quantum mechanics demands a statistical approach in order to retrieve information about the system. To extract this information, we need the full state of the system, and an \textit{operator} corresponding to the quantity of interest. More on this in section~\ref{sec:OpExp}.
+
+Performing a measurement on a system will naturally yield only one value corresponding to the value of one of the constituent physical states. The probability of measuring a spesific value equals the absolute square of it's weight in the superposition \cite{griffiths}.
 
 This mathematical model is rigid, and works in the sence that it gives accurate results. How to interpret it physically, however, is a completely different question. We will come back to this topic in more detail in section \ref{sec:QMinterpret}.
 
-\subsection{Wavefunctions}
+\subsection{Connection to Classical Mechanics}
+
+On one part we have the beautiful framework of classical mechanics, deeply rooted in intuition and logic. One the other part we have quantum mechanics, an abstract nest of concepts like uncertainty and mixed states, resembeling chaos theory more than anything. Simular to chaos theory, quantum mechanics is not a theory about chaos itself. It is a theory about revealing the patterns, the order, in all the chaos. 
+
+The vital link which reveals the order in this chaos is \textit{Ehrenfest's theorem}. It ensures that in the \textit{classical limit}, results from Quantum Mechanics will be in agreement with classical mechanics. 
+
+Looking mathematically at it, we do not need the classical limit to get an agreement. The expectation value of any observable quantities, \textit{observables}\footnote{Observables in quantum mechanics is not necessarily easily observable (because of the scale). A better definition would perhaps be that observables are quantities whose characteristics is able to manifest in nature.}, will follow classical paths, or more precisely:
+
+\vspace{0.5cm}
+\textit{The classical dynamic equations is valid in quantum mechanics if we replace the classical variables with their corresponding quantum expectation values.} \cite{leinaas}
+\vspace{0.5cm}
+
+This explains perfectly how Quantum Mechanics was able to remain hidden for so long.
+
+
+
+% Expectation is the key word here. An everyday football consists of trillions of atoms. The behaviour of each individual atom can be described by quantum mechanics. If we then measure all the atoms at once, it does not matter if some of them behave oddly. We will not notice, because most of them will behave in agreement with the expectation value of their statistical distribution. The expectation values of the clustered atoms' observable quantities, \textit{observables}\footnote{Observables in quantum mechanics is not necessarily easily observable (because of the scale). A better definition would perhaps be that observables are quantities whose characteristics is able to manifest in nature.}, has converged to the classical values at the size of a football. This way, we can serve a flawless explairnation to how quantum mechanics was able to remain hidden for so long.
+% 
+% \textit{Ehrenfest's theorem} states that , and is in many ways the bridge between classical - and quantum mechanics. This in a way implies that i.e. Newton's equations is the expectation value of a more profound statistical equation. Newton's equation written non-relatevistically under the assuption that the force fields are conservative yields
+% 
+% \begin{equation}
+%  \langle -\vec\nabla V \rangle =  \langle \frac{d\vec p}{dt} \rangle. \label{eq:N2Lexp}
+% \end{equation}
+% 
+% We can show that by the use of \textit{the Schrödinger equation}, 
+
+\subsection{Wave Functions}
+\label{sec:Wf}
+
+When describing the properties of a one-dimensional free particle, we are used to refering to a point in phase space. However, the statisctical nature of Quantum Mechanics renders this description useless. If we insisted upon representing the particle in phase space, we would have to i.e. color code the points with an intensity proportianal to the probability of the state. If we did this, we would get something resembeling a smoothed out topographical map. 
+
+By projecting this surface on the $x$-axis, we would get a plot resembling that of a wave streching through space. Hence it is called a \textit{Wave Function}. It has to go to zero at the infinite borders\footnote{It is highly improbable that a particle will appear on the other side of the universe.}, and it has to be \textit{square integrable}\footnote{If it is not, the distribution is not normalizable and the system is not physical.}.
+
+In other words, the wave function, $\psi(x,t)$, describes the probability of the particle to be in a position $x$ at a time $t$, and it is equal $|\psi(x,t)|^2$, or more precisly
 
 \[
-\psi 
+ P_{a,b} = \int_a^b |\psi(x,t)|^2dx 
+\]
+
+\noindent
+describes the probability of measuring the particle between $a$ and $b$ \cite{griffiths}. This implies that $P_{\-infty, \infty} = 1$. If this was not the case, the particle can be measured to not exist. This requirement is called a \textit{normalization} of the wave function.
+
+If we have several states from the same physical system, i.e. the hydrogen atom, they should not only be normalized, but also \textit{orthogonal} with respect to the inner product
+
+\[
+ \langle \psi_i(\vec r,t), \psi_j(\vec r, t) \rangle = \int \psi_i(\vec r, t)^\ast\psi_j(\vec r, t) d\vec r \,\overset{!}{=}\, \delta_{i,j},
+\label{eq:InnerProdFull}
+\]
+
+\noindent
+where the last function is the Kroneker Delta, describing both the normalization criteria and the orhogonality, often abbreviated to \textit{orthonormality}. These criteria imply that a complete set of states from a system form a basis for the space in which they act, which means that we can expand \textit{any} state in these states, or more precisely
+
+\[
+ \Psi(\vec r, t) = \displaystyle\sum_\mathrm{all\,\,states} c_{i} \psi_i(x,t). 
+\]
+
+\subsection{Dirac Notation}
+
+The nature of an inner product of superposed wave functions, is the fact that alot of the terms will vanish because of orthonormality. This leaves us in a situation where we seldom have to explisitly calculate the integrals. It is therefore common to use a different notation for states, called the \textit{Dirac} or \textit{Bra-Ket} notation.
+
+The notation is designed to be simple. Starting with the inner product in Eq.~\ref{eq:InnerProdFull}, we split it into two parts
+
+\begin{equation*}
+ \langle \psi_i(\vec r,t), \psi_j(\vec r, t) \rangle \equiv \braket{\psi_i}{\psi_j} = \bra{\psi_j}\times\ket{\psi_j}. 
+\end{equation*}
+
+\noindent The object on the right side of the inner product is called a \textit{Ket}, where as the left one is called a \textit{Bra}\footnote{Together they make a bracket!}. In this formalism, we can treat all of the wave function formalism using the ket as a replacement. What we have actually done is to abstract the case from the spesific coordinate representation of $\vec r$.
+
+These kets live in an (infinite dimentional) complete \textit{Hilbert Space}\cite{griffiths}, which is an inner product space with the different states as unit vectors along the different axes. It is complete in the sence that for every ket, there is a corresponding bra equal to the \textit{Hermitian conjugate} of the ket
+
+\begin{equation}
+\bra{\psi} = \ket{\psi}^\dagger = \left(\ket{\psi}^\ast\right)^T,
+\end{equation}
+
+\noindent
+which is a complex conjucation in addition to a transpose\footnote{We often represent states as vectors, however, you can define properties such as transposed, eigenvalues, determinants, trace, etc. without using this spesific representation.}.
+
+The states are equal up to a complex phase\footnote{Any complex phase vanishes when the inner product is calculated.}, and the wave function discussed earlier is nothing but the projection of a key on a position basis
+
+\[
+ \psi(\vec r) = \braket{\vec r}{\psi}. 
 \]
 
 
+With this powerful notation at hand, we can easily show properties such as the \textit{completeness relation} of a set. We start by expanding one state $\ket{\phi}$ in a complete set of different states $\ket{\psi_i}$:
+
+\begin{eqnarray*}
+ \ket{\phi} &=& \displaystyle\sum_i c_i\ket{\psi_i}\qquad\qquad| \bra{\psi_k}\\
+ c_k        &=& \braket{\psi_k}{\phi} \qquad\qquad\quad\,\,\in \mathds{C}\\
+\\
+\ket{\phi} &=& \displaystyle\sum_i \ket{\psi_i}\braket{\psi_i}{\phi}\\
+           &=& \left[\displaystyle\sum_i \ket{\psi_i}\bra{\psi_i}\right]\ket{\phi},
+\end{eqnarray*}
+
+\noindent 
+which yields that
+
+\begin{equation}
+ \displaystyle\sum_i \ket{\psi_i}\bra{\psi_i} = \I
+ \label{eq:Completeness}
+\end{equation}
+
+\noindent
+for any complete set of states $\ket{\psi_i}$.
+
+
+
+
+
+
+
+\subsection{Operators and Expectation Values}
+\label{sec:OpExp}
+
+We can generalize the intergral above to any expectation value by using the standard definitions from statistics. However, we cannot give a value to an operator alone. It needs to act on something. Hence we use \textit{local values} of operators. It is defined as
+
+\[
+ O_\mathrm{local} = \frac{1}{\psi(x,t)}\hat O \psi(x,t).
+\label{eq:localOperatorValue}
+\]
+
+\noindent
+If the wavefunction is an eigenstate of the operator, i.e. that $\hat O\psi(x,t) = O_\psi\psi(x,t)$, the local value is simply the eigenvalue. If it is not, the local value is proportional to the overlap between the wavefunction and the eigenstates of $\hat O$.
+
+Inserting this formalism into the expectation value integral yields
+
+\begin{eqnarray}
+ \langle O \rangle &=& \int |\psi(x,t)|^2 O_\mathrm{local} dx \nonumber\\
+                   &=& \int \psi(x,t)^\ast \psi(x,t) \frac{1}{\psi(x,t)}\hat O \psi(x,t) dx\nonumber \\
+	 	   &=& \int \psi(x,t)^\ast \hat O \psi(x,t) dx \label{eq:expValInt}
+\end{eqnarray}
+
+
+ 
+
+
+
+
+
+\subsection{The Schrödinger Equation}
+
+\ref{eq:expValInt}
 
 
 
@@ -23,35 +164,37 @@ This mathematical model is rigid, and works in the sence that it gives accurate 
 
 
 
-\subsection{The road to Quantum Mechanics}
-
-Ever since mankind first started asking questions about the mechanisms behind the events of the earth, physics has been in development. The revolution of physics however, came in the language of mathematics. As important as the question ``why does the apple fall'', was the question ``at what speed'' and ``at what time''. The framework containing not only explairnations to general phenomenon, but also the tools needed to calculate properties of special events, are often named some type of mechanics. 
-
-For instance, we have the classical mechanics, explaining conservation of evergy, momentum, etc. It's fortresses are Newton's Equations, Lagrange's equations and so on. Written in the language of mathematics, it is extremely effective at describing the motion of systems like i.e. the pendulum. The behaviour calculated lives up to \textit{our expectations} of the system from the ``real-world''.
-
-However, as time passed and classical physics became a well known topic, it's flauds arose. The perhaps most famous of these are the \textit{ultraviolet catastrophe}: The energy in high frequency radioation was simply counter intuitive. If this radiation followed classical electrodynamics, we would all be fried centuries ago. Something was off. Max Planch served the solution: Energy is \textit{quantized}. You do not have a continous energy spectre in a system. Some energies are high, some are low, but they are not continiously connected as in classical physics. This time classical physics did not do well, but it couldn't be all wrong! It serves perfect solutions to systems like the pendulum mentioned above; it lives up to our expectations at some level.
-
-So what does expectations have to do with anything? And what's this level where we cannot trust it anymore? Let us assume that Newton's second law only holds for expectation values of quantities:
 
 
-$$ \vec F = m\vec a \Longrightarrow \langle F \rangle =  \langle ma \rangle $$
-$$\vec F = -\vec\nabla V\,\,\,\,\,\,\,\,\,\,\,\,\, m\vec a = \frac{d\vec p}{dt}$$
-$$\langle -\vec\nabla V \rangle =  \langle \frac{d\vec p}{dt} \rangle. $$
-
-So, whatever more complex mathematical framework lies behind our classical physics, it should obey this relation. It must produce what we expect from the real world. ``Changing'' the fundamental theory should not make the pendulum swing any different. As stated by Ehrenfest in his theorem:
-
-\vspace{0.5cm}
-\textit{Expectation values of variables follows classical paths.}
-\vspace{0.5cm}
-
-Thinking of it, if only some of the gazillions of particles making up the pendulum behaves non-classical, it doesn't make a difference. It's neglectable in the bigger picture, since most of them will behave classicly. In other words: When you throw an apple, you don't throw one object, you throw trillions of atoms.
-
-So, what's the underlying equation which, when taken the expectationvalue of, becomes the equation derived from Newton's second law above? It's the fortress of Quantum Mechanics; \textit{the Schrödinger Equation}:
-
-$$i\hbar\frac{\partial\psi(r, t)}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2\psi(r, t) + V(r)\psi(r, t)$$
-
-The $\psi(r, t)$ is called the \textit{wavefunction}. It's the goal of the computation. Once you have the wavefunction, you have everything. It acts as the probability amplitude of the system. The probability distribution function is the square of the amplitude:
-
-$$P(r, t) = \left|\psi(r, t)\right|^2.$$
-
-This basically means that the outcome of a measurement is not given in forehand. All you can calculate is the probability of measuring a certain value (remember that values, like i.e. energy, is quantized), not what one measurement will yield. This, however, is a mathematical formulation. What makes up the physics is how we interpret it. Either, the measurement is indeed given in forehand, we just do not have the rights to know, or, on the other hand, we follow Niels Bohr's interpretation, and say that the wavefunction is a superposition of all possible states with different weights, and a measurement will simply collapse it into one of them.\cite{griffiths}
+% \subsection{The road to Quantum Mechanics}
+% 
+% Ever since mankind first started asking questions about the mechanisms behind the events of the earth, physics has been in development. The revolution of physics however, came in the language of mathematics. As important as the question ``why does the apple fall'', was the question ``at what speed'' and ``at what time''. The framework containing not only explairnations to general phenomenon, but also the tools needed to calculate properties of special events, are often named some type of mechanics. 
+% 
+% For instance, we have the classical mechanics, explaining conservation of evergy, momentum, etc. It's fortresses are Newton's Equations, Lagrange's equations and so on. Written in the language of mathematics, it is extremely effective at describing the motion of systems like i.e. the pendulum. The behaviour calculated lives up to \textit{our expectations} of the system from the ``real-world''.
+% 
+% However, as time passed and classical physics became a well known topic, it's flauds arose. The perhaps most famous of these are the \textit{ultraviolet catastrophe}: The energy in high frequency radioation was simply counter intuitive. If this radiation followed classical electrodynamics, we would all be fried centuries ago. Something was off. Max Planch served the solution: Energy is \textit{quantized}. You do not have a continous energy spectre in a system. Some energies are high, some are low, but they are not continiously connected as in classical physics. This time classical physics did not do well, but it couldn't be all wrong! It serves perfect solutions to systems like the pendulum mentioned above; it lives up to our expectations at some level.
+% 
+% So what does expectations have to do with anything? And what's this level where we cannot trust it anymore? Let us assume that Newton's second law only holds for expectation values of quantities:
+% 
+% 
+% $$ \vec F = m\vec a \Longrightarrow \langle F \rangle =  \langle ma \rangle $$
+% $$\vec F = -\vec\nabla V\,\,\,\,\,\,\,\,\,\,\,\,\, m\vec a = \frac{d\vec p}{dt}$$
+% $$\langle -\vec\nabla V \rangle =  \langle \frac{d\vec p}{dt} \rangle. $$
+% 
+% So, whatever more complex mathematical framework lies behind our classical physics, it should obey this relation. It must produce what we expect from the real world. ``Changing'' the fundamental theory should not make the pendulum swing any different. As stated by Ehrenfest in his theorem:
+% 
+% \vspace{0.5cm}
+% \textit{Expectation values of variables follows classical paths.}
+% \vspace{0.5cm}
+% 
+% Thinking of it, if only some of the gazillions of particles making up the pendulum behaves non-classical, it doesn't make a difference. It's neglectable in the bigger picture, since most of them will behave classicly. In other words: When you throw an apple, you don't throw one object, you throw trillions of atoms.
+% 
+% So, what's the underlying equation which, when taken the expectationvalue of, becomes the equation derived from Newton's second law above? It's the fortress of Quantum Mechanics; \textit{the Schrödinger Equation}:
+% 
+% $$i\hbar\frac{\partial\psi(r, t)}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2\psi(r, t) + V(r)\psi(r, t)$$
+% 
+% The $\psi(r, t)$ is called the \textit{wavefunction}. It's the goal of the computation. Once you have the wavefunction, you have everything. It acts as the probability amplitude of the system. The probability distribution function is the square of the amplitude:
+% 
+% $$P(r, t) = \left|\psi(r, t)\right|^2.$$
+% 
+% This basically means that the outcome of a measurement is not given in forehand. All you can calculate is the probability of measuring a certain value (remember that values, like i.e. energy, is quantized), not what one measurement will yield. This, however, is a mathematical formulation. What makes up the physics is how we interpret it. Either, the measurement is indeed given in forehand, we just do not have the rights to know, or, on the other hand, we follow Niels Bohr's interpretation, and say that the wavefunction is a superposition of all possible states with different weights, and a measurement will simply collapse it into one of them.\cite{griffiths}

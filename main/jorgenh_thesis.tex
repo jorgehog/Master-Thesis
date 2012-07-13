@@ -4,7 +4,14 @@
 \usepackage[vscale=0.8,left=3cm,right=2cm,footskip=2.5cm, headsep=1cm]{geometry}
 \usepackage{amsmath, amsfonts, amssymb, graphicx}
 \usepackage[pdfborder={0 0 0 }]{hyperref}
-\usepackage{enumerate, color, rotating, subfigure, placeins}
+\usepackage{enumerate, color, rotating, subfigure, placeins, dsfont} 
+
+\newcommand{\OP}[1]{{\bf\widehat{#1}}}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\braket}[2]{\left\langle #1 | #2\right\rangle}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\x}{\otimes}
 
 
 \begin{document}
@@ -16,7 +23,7 @@
 \input{../chapters/04QM/ch04QM.tex}
 
 \part{Results}
-
+\input{../chapters/08Results/ch08Results.tex}
 
 \clearpage
 \phantomsection
