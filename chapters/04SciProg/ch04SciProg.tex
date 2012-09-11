@@ -65,7 +65,7 @@ Even though this is an extremely simply example, it illustrates the difference i
 
 \section{Object orientation}
 
-Object orientated programming was introduced in the language \textit{Simula}, developed by the Norwegian scientists Dale and Sverdrup\textbf{Need specifics and citations}. It quickly became the state-of-the-art in programming, and is today used throughout the world. It is brilliant in the way that it ties our everyday intuition into the programming language. To illustrate this, let us look at a simple example.
+Object orientated programming was introduced in the language \textit{Simula}, developed by the Norwegian scientists Ole-Johan Dahl and Kristen Nygaard\textbf{Need specifics and citations}. It quickly became the state-of-the-art in programming, and is today used throughout the world in all branches of programming. It is brilliant in the way that it ties our everyday intuition into the programming language - our brain is object oriented. It is focused around the concept of \textit{classes}, an extension to standard \textit{structs}. A class is nothing but a collection of variables and functions under a sensible name, however, they provide a great deal of functionality like \textit{inheritance} and accessibility control. To better illustrate the concept of classes and inheritance, let us first look at an example.
 
 \subsection{Inheritance}
 
@@ -245,5 +245,62 @@ void Distribution::dump() {
 Without going into details, we can see that \verb+Distribution+ has full access to protected members of \verb+QMC* qmc+. Friend classes is a savior in those very specific cases when you really need full access to protected members of another class, but setting full public access would ruin the code. It is true that you could code your entire code without \verb+const+ and with solely public members, but in that case, it is very easy to put together a very disorganized code, with pointers flying everywhere and functions being called in all sorts of contexts. Clever use of accessibility levels will make your code easier to develop in an organized, intuitive way - you will be forced to implement things in an organized fashion.
 
 
+\subsection{Example: PotionGame}
+
+To end the section I would like to demonstrate the versatile power of object orientation. Consider the following codes (libraries)
+
+\vspace{0.5 cm}
+\lstinputlisting[language=Python]{../CodeInputs/potionClass.py}
+\lstinputlisting[language=Python]{../CodeInputs/playerClass.py}
+
+We have a \verb+Player+ class keeping track of a players energy and health level, and which potions the player is carrying. The \verb+Potion+ class described all potions, that is, an object of type \verb+Potion+ with the ability to affect a player in some way. The subclasses define specifically which effect is to be applied, e.g. \verb+HealthPotion+ changes the health level of the player by a certain amount. This code does nothing by itself, but let us use it in an example where two players fight each other:
+
+\vspace{0.5 cm}
+\lstinputlisting[language=Python]{../CodeInputs/potionGameMain.py}
+
+\begin{verbatim}
+~$ python potionGameMain.py 
+
+Round start: 
+john (hp/e=100/100):
+Health Potion (10)
+Energy Potion (30)
+
+james (hp/e=100/100):
+Energy Potion (20)
+Energy Potion (20)
 
 
+Player2 hit Player1 for 50 using 100 energy
+Players used all potions
+Player1 hit Player2 for 40 using 90 energy
+
+
+Round 1: 
+john (hp/e=60/10):
+No potions aviable
+
+james (hp/e=60/40):
+No potions aviable
+
+\end{verbatim}
+
+
+The readability of this code is pretty good. Imagine if we had no objects, but just a lot of parameters per player juggled around in variables such as \verb+Player1health+ etc. Increasing the number of players then requires a total rewriting of the entire program, where as in this object oriented style, it is just a matter of adding another player object. Object orientation is truly brilliant when it comes to developing codes. 
+
+In this section I have not focused too much on scientific computing, but rather on the use of object orientation in general. When the physical methods are discussed in section \textbf{Insert physics section}, I will get back to a more specific description of scientific programming.
+
+As an introduction to the next section, take a look at the way the classes and the main file are separated in this section's example. In a small code like this there's really no point of doing so, but when the class structures span thousands of lines, having a good structure and the right editor is crucial to the development process and the code's readability.
+
+
+\section{Structuring the code}
+
+blah blah messy=bad, organized = good
+
+\subsection{File structures}
+
+blah blah src folder good yes
+
+\subsection{IDEs}
+
+Netbeans good yes, spider good yes
