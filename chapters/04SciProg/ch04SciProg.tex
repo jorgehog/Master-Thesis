@@ -18,7 +18,7 @@ For simple jobs as these, taking only seconds to run on modern computers, we do 
 \subsubsection{Python}
 \label{sec:Python}
 
-Python is an open source programming language with a focus on simplicity over complexity. To mention a few of the entries in the \textit{Zen of Python}\footnote{Retrieved by typing ``import this'' in your Python shell.}, ``Beautiful is better than ugly. Simple is better than complex. Readability counts. If the implementation is hard to explain, it's a bad idea.''
+Python is an open source programming language with focus on simplicity over complexity. To mention a few of the entries in the \textit{Zen of Python}\footnote{Retrieved by typing ``import this'' in your Python shell.}, ``Beautiful is better than ugly. Simple is better than complex. Readability counts. If the implementation is hard to explain, it's a bad idea.''
 
 To demonstrate the simplicity of Python, let us have a look at a simple implementation and execution of the following expression
 
@@ -82,7 +82,7 @@ As we can see, the only thing differentiating the two keyboard types are how the
 
 It a virtual function is overridden, the latest implementation will be called. \verb+setupKeys+ and \verb+pressKey+ are examples of this, however, they are in a sense more than virtual, since they are not even implemented. They have to be overridden in order to work. These functions are referred to as \textit{pure virtual} functions. In python, all class functions, or member functions, are virtual. In C++ however, we have to specify whether or not a function is virtual in the declaration. 
 
-Higher level languages like Python handles all the pointers by itself. In low-level languages like C++, however, you need to control these yourself. A pointer is a hexadecimal number representing a memory address. If you pass a pointer to an object, e.g. \verb+Someclass* someobject+, as an argument to a function, whenever that function changes a class variable, the value is changed globally, since the memory address is directly accessed. If you instead choose to send the object without a pointer declaration, e.g. \verb+Someclass someobject+, changing the value will not change the object globally. What happens instead is that you change a local copy of the object. It is a misconception that pointers are your enemies, they are, quite frankly, making your codes much easier.
+Higher level languages like Python handles all the pointers by itself. In low-level languages like C++, however, you need to control these yourself. A pointer is a hexadecimal number representing a memory address. If you pass a pointer to an object, e.g. \verb+Someclass* someobject+, as an argument to a function, whenever that function changes a class variable, the value is changed globally, since the memory address is accessed directly. If you instead choose to send the object without a pointer declaration, e.g. \verb+Someclass someobject+, changing the value will not change the object globally. What instead happens is that you change a local copy of the object. It is a misconception that pointers are your enemies, they are, quite frankly, making it much easier to code.
 
 A pointer holds a type, that is, \verb+int+, \verb+double+, or any class that you have access to. In the following example we will study the interplay between virtual functions, pointers and types:
 
@@ -108,7 +108,7 @@ In the first call, the pointer is declared as a \verb+VirtualTest*+ type, howeve
 
 In the second call, the same thing happens, even though it is set as a \verb+subclass*+ type. This is because the function is instructed to receive a superclass object. If it receives anything else, it simply attempts to convert it, or \textit{cast} it to a different type; \textit{typecasting}\footnote{The standard example of typecasting is converting a double to an integer, resulting in the stripping of all the decimal bits (flooring).}. In this case it works just fine. The third call, outside the function, demonstrates that if we declare it as a subclass type, both functions are overridden, since we do not have to go through the superclass at all.
 
-The strength of using virtual functions in a class hierarchy is that you can easily expand or implement new functionality without completely rewriting the code. As an example, in the \verb+QMC+ code, changing potentials, or switching between closed form and numerical expressions for the dell and laplacian, is just a matter of which object's functions are called by the energy function.
+The strength of using virtual functions in a class hierarchy is that you can easily expand or implement new functionality without completely rewriting the code. As an example, in the \verb+QMC+ code, changing potentials, or switching between closed form and numerical expressions for the del and Laplacian, is just a matter of which object's functions are called by the energy function.
 
 \vspace{0.5 cm}
 \begin{lstlisting}
@@ -189,7 +189,7 @@ In other words: \verb+const+ works as a safeguard for changing values which shou
 
 \subsection{Accessibility levels and Friend classes}
 
-\verb+const+ is a direct way to avoid any change what so ever. However, sometimes we want to keep the ability to alter variables, but only in certain situations, as e.g. internally in the class. As an example, from the main file, you should not have access to \verb+QMC+ member functions such as \verb+dump_output+, since it does not make sense to do out of a context. However, you obviously want access to the \verb+run_method+ function.
+\verb+const+ is a direct way to avoid any change whatsoever. However, sometimes we want to keep the ability to alter variables, but only in certain situations, as e.g. internally in the class. As an example, from the main file, you should not have access to \verb+QMC+ member functions such as \verb+dump_output+, since it does not make sense to do out of a context. However, you obviously want access to the \verb+run_method+ function.
 
 The solution to this problem is to set accessibility levels. Declaring a variable under the \verb+public+ part of a class sets its accessibility level to \textit{public}, meaning that anything, anywhere can access it as long as it has access to the object. All public variables are inherited to subclasses when inherited as in the virtual function example\footnote{You could inherit with protected option as well, but it is rarely used and messes up the functionality.}. Declarations beneath the \verb+private+ part stops all other classes than instances of it self from reaching it, even subclass instances. If you want private variables inherited, the \verb+protected+ accessibility level should be used.
 
