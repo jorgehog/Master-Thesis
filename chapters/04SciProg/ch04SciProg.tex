@@ -112,6 +112,10 @@ The strength of using virtual functions in a class hierarchy is that you can eas
 
 \vspace{0.5 cm}
 \begin{lstlisting}
+#include <banana.h>
+
+...
+
 double QMC::calculate_local_energy(Walker* walker) const {
     return kinetics->get_KE(walker) + system->get_potential_energy(walker);
 }
