@@ -1,6 +1,7 @@
-\documentclass[10	pt,a4paper,twoside]{book}
+\documentclass[10pt,a4paper,twoside]{book}
 \usepackage[latin1]{inputenc}
 \usepackage[english]{babel}
+\usepackage[titletoc]{appendix}
 \usepackage[vscale=0.8,left=3cm,right=2cm,footskip=2.5cm, headsep=1cm]{geometry}
 \usepackage{amsmath, amsfonts, amssymb, graphicx}
 \usepackage[pdfborder={0 0 0 }]{hyperref}
@@ -12,6 +13,8 @@
 \newcommand{\braket}[2]{\left\langle #1 | #2\right\rangle}
 \newcommand{\I}{\mathds{1}}
 \newcommand{\x}{\otimes}
+\newcommand{\su}{\uparrow}
+\newcommand{\sd}{\downarrow}	
 
 \input{../includes/lst.tex}
 
@@ -26,6 +29,14 @@
 
 \part{Results}
 \input{../chapters/08Results/ch08Results.tex}
+
+\clearpage
+\appendix
+%\noappendixpagetoc
+%\noappendixheadtotoc
+%\appendixpage
+\input{../chapters/appendix/appendixDirac.tex}
+\input{../chapters/appendix/appendixMatrix.tex}
 
 \clearpage
 \phantomsection

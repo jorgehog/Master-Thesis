@@ -10,12 +10,8 @@ then
     git add ./main/jorgenh_thesis.tex -A
     git add ./main/jorgenh_thesis.pdf -A
 
-    git add ./chapters/01frontpage/ch01frontpage.tex
-    git add ./chapters/02preface/ch02preface.tex
-    git add ./chapters/03intro/ch03intro.tex
-    git add ./chapters/04SciProg/ch04SciProg.tex
-    git add ./chapters/05Manybody/ch05Manybody.tex
-    git add ./chapters/08Results/ch08Results.tex
+    git add ./chapters/*/*.tex
+   
     
     
 
