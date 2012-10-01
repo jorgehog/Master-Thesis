@@ -1,0 +1,452 @@
+\chapter{Implementation and Validation}
+
+For a detailed description of specific functions etc., see the comments in the actual code. The general idea of the implementation is to use the power of object orientation (for details, see Section~\ref{sec:OO}) to compile the different building blocks of QMC-methods in a natural coherent way. The first step to accomplishing this is to extract the different (more or less) independent parts of the machinery.
+
+\section{Structuring the Code}
+
+In QMC, and Quantum Mechanics in general, there are several natural ways of decoupling the code. Gathering data into objects are in some cases done to increase the readability and the overall structure, which dramatically decreases the time it takes to implement or debug new methods. Another reason is to generalize the code for several different cases, without having to rewrite or mess up anything (see the PotionGame example in Section~\ref{sec:PotionGame}).
+
+\subsection{Methods used for Increasing Readability and Overall Structure}
+
+As an example, take a look at the contents of the Walker class in Table ~\ref{tab:walkerClassMembers}. The power of this way of structuring the code, is that whenever we need a new walker in e.g. DMC, all we need to do is to create a new instance of \verb+Walker+. A function which requires access to several elements from Table~\ref{tab:walkerClassMembers} now only requires one argument, namely the walker of interest. Let us look at an example
+
+\begin{table}
+\label{tab:walkerClassMembers}
+\begin{center}
+
+\caption{Description of the members in an instance of the Walker class. All matrices holds information on all particles.}
+
+ \begin{tabular}{|l| c l|}
+ \hline
+ \verb+arma::mat r+           &  & The position.\\
+ \verb+arma::mat r_rel+       &  & The relative positions.\\
+ \verb+arma::rowvec r2+       &  & The squared positions. \\
+ \verb+arma::mat qforce+      &  & The quantum force.\\
+ \verb+arma::mat spatial_grad+&  & The gradient of the uncorrelated wave function.\\
+ \verb+arma::mat jast_grad+   &  & The gradient of the Jastrow factor.\\
+ \verb+arma::mat inv+         &  & The inverse of the slater matrix.\\
+ \verb+double spatial_ratio+  &  & The current ratio between this walker and another walker.\\
+ \verb+double value+          &  & The value of the wave function.\\
+ \verb+double lapl_sum+       &  & The full Laplacian of the wave function.\\
+ \verb+double E+              &  & The energy of the walker. \\
+ \verb+bool is_murdered+      &  & False if active, true if not. \\
+ \hline 
+ \end{tabular}
+ 
+ 
+\end{center}
+\end{table}
+
+
+\vspace{0.5 cm}
+\begin{lstlisting}
+DMC::DMC(...) {
+
+    ...
+ 
+    int max_walkers = K * n_w;
+    original_walkers = new Walker*[max_walkers];
+    
+    ...
+
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}
+void DMC::initialize() {
+
+    jastrow->initialize();
+
+    //Initializing active walkers
+    for (int k = 0; k < n_w; k++){
+        original_walkers[k] = new Walker(n_p, dim);
+    }
+    
+    //Seting trial position of active walkers
+    ...
+
+    //Calculating and storing energies of active walkers
+    for (int k = 0; k < n_w; k++) {
+        calculate_energy_necessities(original_walkers[k]);
+        original_walkers[k]->set_E(calculate_local_energy(original_walkers[k]));
+    }
+
+    //Creating unactive walker objects (note: Not initialized to conserve RAM) 
+    for (int k = n_w; k < K * n_w; k++) {
+        original_walkers[k] = new Walker(n_p, dim, false);
+    }
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+Walker::Walker(int n_p, int dim, bool do_init) {
+    
+    ...
+    
+    if (do_init) {
+        r = zeros<mat > (n_p, dim);
+        r_rel = zeros<mat > (n_p, n_p);
+        qforce = zeros<mat > (n_p, dim);
+        inv = zeros<mat > (n2, n_p);
+        jast_grad = zeros<mat > (n_p, dim);
+        spatial_grad = zeros<mat > (n_p, dim);
+
+        r2 = zeros(1, n_p);
+
+        value = 0;
+        lapl_sum = 0;
+        spatial_ratio = 0;
+
+        is_murdered = false;
+    } else {
+        is_murdered = true;
+    }
+}
+\end{lstlisting}
+
+As we can see from the code above, initializing new walkers is unproblematic. When e.g. looping over walkers in DMC, the amount of juggling is reduced to nothing; all you need to do is to loop over an array of walkers. This walker can then be sent to any function, resulting in code like e.g.
+
+\vspace{0.5cm}
+\begin{lstlisting}
+double Coulomb::get_pot_E(const Walker* walker) const {
+    
+    double e_coulomb = 0;
+
+    for (int i = 0; i < n_p - 1; i++) {
+        for (int j = i + 1; j < n_p; j++) {
+            e_coulomb += 1 / walker->r_rel(i, j);
+        }
+    }
+
+    return e_coulomb;
+}
+\end{lstlisting}
+
+The alternative to the code above is to juggle one relative position matrix per walker, ruining both the readability and the overall structure of the code. Another upside to this way of structuring, is that we can tie the source code and the method description closer together. Look at VMC as an example. Stating e.g. that at cycle zero, the original and trial walker should be equal, is now implemented in the following way:
+
+\vspace{0.5cm}
+\begin{lstlisting}
+void VMC::initialize() {
+    
+    ...
+
+    sampling->set_trial_pos(original_walker);
+    copy_walker(original_walker, trial_walker);
+}
+
+\end{lstlisting}
+
+Another example where object orientation dramatically increases the readability of the code is the interplay between the Sampling- and Diffusion-class. From \textbf{REF TO THEORY} we know that if we use importance sampling, the diffusion follows the Fokker-Planck equation (Eq.~\textbf{CITE EQ FOKKERPLANCK}). The implementation is as follows:
+
+\vspace{0.5cm}
+\begin{lstlisting}
+Importance::Importance(int n_p, int dim, double timestep, long random_seed, double D)
+: Sampling(n_p, dim) {
+    diffusion = new Fokker_Planck(n_p, dim, timestep, random_seed, D);
+}
+\end{lstlisting}
+
+
+\subsection{Methods for Generalizing the Code}
+
+The importance sampling constructor serves as a good example in this case as well. A \verb+Sampling+ object type might be an instance of \verb+Importance+ or \verb+Brute_Force+, however, we do not need to know this in order to diffuse a walker. We do not even need to know whether we are doing VMC or DMC. All we need to know is that the \verb+Diffusion+ object within the sampling will give us the values we need once the correct objects are in place. This is reflected in the following code:
+
+\vspace{0.5cm}
+\begin{lstlisting}
+void QMC::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
+
+    for (int j = 0; j < dim; j++) {
+        walker_post->r(particle, j) = walker_pre->r(particle, j)
+                + sampling->get_new_pos(walker_pre, particle, j);
+    }
+    
+    ...
+    
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+double Sampling::get_new_pos(const Walker* walker_pre, int particle, int j) const {
+    return diffusion->get_new_pos(walker_pre, particle, j);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+double Diffusion::get_new_pos(const Walker* walker, int i, int j) {
+    return gaussian_deviate(&random_seed) * std;
+}
+
+...
+
+double Simple::get_new_pos(const Walker* walker, int i, int j) {
+    return Diffusion::get_new_pos(walker, i, j);
+}
+
+...
+
+double Fokker_Planck::get_new_pos(const Walker* walker, int i, int j) {
+    return D * timestep * walker->qforce(i, j) + Diffusion::get_new_pos(walker, i, j);
+}
+\end{lstlisting}
+
+This use of virtual functions to generalize the code is used throughout the entire code. The goals of this thesis was to produce a code with the following generalizations:
+
+\begin{itemize}
+ \item As many as possible functions should be written generally for DMC and VMC (see Section~\textbf{REF} for a complete list of the common parts.)
+ \item Objects should not assume the type of any sub-classed object except its own, unless the type is directly implied (importance sampling implies Fokker-Planck diffusion).
+\end{itemize}
+
+This puts a series of constraints on the code; it should be general for:
+
+\begin{enumerate}[label=(\roman{*}), ref=(\roman{*})]
+\item Importance- and Brute Force-sampling.
+\item Numerical or closed form expressions for the kinetic energy and quantum force.
+\item Fermions and Bosons.
+\item Any choice of single particle basis.
+\item Functionality to add any potential.
+\end{enumerate}
+
+It is also implemented a general Jastrow factor, a Walker class which is easily extendable, and an output function which performs any form of output (or nothing), without having to flag / comment the code (it works in a similar way to how QMC extracts potential energies, which will be discussed later). 
+
+\subsubsection{Constraints (i) - (iii)}
+
+As discussed in the beginning of this chapter, \verb+QMC+ holds an object of type \verb+Sampling+, which holds all the functions for moving particles, and ensures that the walker has access to the correct necessities prior to e.g. the energy calculations (which again is different for \verb+Numerical+ or \verb+Closed_Form+). Below follows a part of the code illustrating this; the code for copying walkers, calculating energy necessities etc. follows the same idea.
+
+\vspace{0.5cm}
+\begin{lstlisting}
+void QMC::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
+
+    //position updated
+    ...
+      
+    sampling->update_necessities(walker_pre, walker_post, particle);
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+void Brute_Force::update_necessities(const Walker* walker_pre, Walker* walker_post, int particle) {
+    qmc->get_wf_value(walker_post);
+}
+
+...
+
+void Importance::update_necessities(const Walker* walker_pre, Walker* walker_post, int particle) {
+    qmc->get_kinetics_ptr()->update_necessities_IS(walker_pre, walker_post, particle);
+    qmc->get_kinetics_ptr()->get_QF(walker_post);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+void Numerical::update_necessities_IS(const Walker* walker_pre, Walker* walker_post, int particle) const {
+    qmc->get_wf_value(walker_post);
+}
+
+...
+
+void Closed_form::update_necessities_IS(const Walker* walker_pre, Walker* walker_post, int particle) const {
+    walker_post->spatial_ratio = qmc->get_system_ptr()->get_spatial_ratio(walker_pre, walker_post, particle);
+    qmc->get_system_ptr()->calc_for_newpos(walker_pre, walker_post, particle);
+    qmc->get_gradients(walker_post, particle);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+double Fermions::get_spatial_ratio(const Walker* walker_pre, const Walker* walker_post, int particle) const {
+    int q_num;
+    double s_ratio;
+
+    s_ratio = 0;
+    for (q_num = 0; q_num < n2; q_num++) {
+        s_ratio += orbital->phi(walker_post, particle, q_num) * walker_pre->inv(q_num, particle);
+    }
+
+    return s_ratio;
+}
+
+...
+
+void Fermions::calc_for_newpos(const Walker* walker_old, Walker* walker_new, int particle) const {
+    update_inverse(walker_old, walker_new, particle);
+}
+
+
+
+BOSONS NOT IMPLEMENTED
+\end{lstlisting}
+
+
+We can see that the branching goes as follows (corresponding if-test hierarchy pseudo-code):
+
+\begin{lstlisting}[language=Matlab]
+if BF:
+    Calculate new wavefunction (fermion = slater, boson = bosonic)
+else if IS:
+    if Numerical Kinetics:
+	Calculate new wavefunction
+	
+    else if Closed Form Kinetics:
+	Get new gradients 
+	
+	if fermions:
+	    Calculate slater determinant ratio
+	    Update the inverse matrix
+	else if bosons:
+	    Calculate bosonic wavefunction ratio
+	
+\end{lstlisting}
+
+Creating this sort of general code without the use of virtual functions is a complete mess of if-tests, whereas object orientation cleans up most of the mess, abstracting the implementation to easily read statements. On top of this, everything itself depends on the choice of single particle basis, which leads us to the next constraint.
+
+\subsubsection{Constraint (iv)}
+
+Not only do we want a given single particle basis, but the constituents of this basis should themselves be allowed to have any form (i.e. be a superposition of another basis). The way this is handled in the code is to have the single particle basis listed as an array or \verb+function+ objects. The purpose of this object is nothing but being initialized and evaluated. An example is the ground state of the harmonic oscillator:
+
+\vspace{0.5cm}
+\begin{lstlisting}
+Orbitals::Orbitals(int n_p, int dim) {
+    this->n_p = n_p;
+    this->dim = dim;
+
+    int max_implemented = 15; //for 30 particles
+    basis_functions = new function*[max_implemented];
+}
+
+...
+
+
+oscillator_basis::oscillator_basis(int n_p, int dim, double alpha, double w)
+: Orbitals(n_p, dim) {
+
+    ...
+
+    basis_functions[0] = new HO_1(this->alpha, w);
+    basis_functions[1] = new HO_2(this->alpha, w);
+    basis_functions[2] = new HO_3(this->alpha, w);
+    ...
+}
+
+...
+
+double oscillator_basis::phi(const Walker* walker, int particle, int q_num) const {
+    return basis_functions[q_num]->eval(walker, particle);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+class function {
+public:
+    function();
+    
+    virtual double eval(const Walker* walker, int i) const = 0;
+};
+
+...
+
+class HO_1 : public function {
+protected:
+    double* alpha;
+    double w;
+
+public:
+
+    HO_1(double* alpha, double w);
+
+    virtual double eval(const Walker* walker, int i) const;
+};
+
+...
+
+double HO_1::eval(const Walker* walker, int i) const {
+    double r2 = walker->get_r_i2(i);
+
+    double x = walker->r(i, 0);
+    double y = walker->r(i, 1);
+
+    double H = 1;
+    
+    return H * exp(-0.5 * (*alpha) * w * r2);
+}
+\end{lstlisting}
+
+All orbital files are generated automatically by a Python-script. The reason why, in this case, \verb+alpha+ is a pointer, is so that the value can be changed within orbitals, and then consequently be changed within the function class (a must during minimization). 
+
+However, we can abstract it even more. Implementing a single particle basis expanded in e.g. harmonic oscillator basis functions is more or less trivial in this framework. Following is a pseudo code to illustrate this claim:
+
+\vspace{0.5cm}
+\begin{lstlisting}[language=C++]
+class Expanded_Functions : public functions{
+public:
+    Expanded_Functions(int m, file_spesifics);
+    virtual double eval(const Walker* walker, int i) const;
+
+protected:
+    int m;                     
+  
+    double* coeffs;            
+    function** expanded_basis;
+  
+};
+
+Expanded_Functions::Expanded_Functions(int m, file_spesifics){
+    this->m = m;
+    coeffs = new double[m];
+    expanded_basis = new function*[m];
+  
+    expanded_basis[0] = new HO_1(alpha=1, w);
+  ...
+  
+  
+    //Load coeffs from file e.g. from Hartree Fock runs
+}
+
+double Expanded_Functions::eval(const Walker* walker, int i) const {
+    
+    double value = 0;
+    for (int i = 0; i < m; i++){
+	value += coeffs[i]*expanded_basis[i]->eval(walker, i);
+    }
+
+    return value;
+
+}
+\end{lstlisting}
+
+
+\subsubsection{Constraint (v)}
+
+When we are loading a set of single particle states, we are loading those who best match the given Hamiltonian of our system. For quantum dots, we load harmonic oscillator states, for atoms we load hydrogen states and so on. Having great flexibility in both the Hamiltonian and the basis functions means the code is easily adaptable to other systems. 
+
+The flexibility in the kinetic term has already been described. The way the code loads potential terms is through a \verb+System+ function 
+
+\vspace{0.5cm}
+\begin{lstlisting}
+void System::add_potential(Potential* pot) {
+    potentials.push_back(pot);
+}
+\end{lstlisting}
+
+where \verb+potentials+ is a vector of potential pointers. When we extract the potential energy term, we simply iterate over the pointers in the array and call a member function
+
+\vspace{0.5cm}
+\begin{lstlisting}
+double System::get_potential_energy(const Walker* walker) {
+    double potE = 0;
+
+    for (std::vector<Potential*>::iterator pot = potentials.begin(); pot != potentials.end(); ++pot) {
+        potE += (*pot)->get_pot_E(walker);
+    }
+
+    return potE;
+}
+\end{lstlisting}
+
+Implementing new potentials is also extremely simple; just have the constructor take reasonable parameters, and implement the expression. All in all the code servers great flexibility on all parts without suffering from if-tests or constituting of several unlinked parts. It takes way longer to develop such a code, but it all pays off when it comes to later implementations or extensions of the library.
+
+\section{Validation}
+
+things should not be wrong. It is bad.
+
+
