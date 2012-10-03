@@ -2,7 +2,7 @@
 
 For a detailed description of specific functions etc., see the comments in the actual code. The general idea of the implementation is to use the power of object orientation (for details, see Section~\ref{sec:OO}) to compile the different building blocks of QMC-methods in a natural coherent way. The first step to accomplishing this is to extract the different (more or less) independent parts of the machinery.
 
-\section{Structuring the Code}
+\section{Structure and Implementation}
 
 In QMC, and Quantum Mechanics in general, there are several natural ways of decoupling the code. Gathering data into objects are in some cases done to increase the readability and the overall structure, which dramatically decreases the time it takes to implement or debug new methods. Another reason is to generalize the code for several different cases, without having to rewrite or mess up anything (see the PotionGame example in Section~\ref{sec:PotionGame}).
 
@@ -72,7 +72,7 @@ void DMC::initialize() {
         original_walkers[k]->set_E(calculate_local_energy(original_walkers[k]));
     }
 
-    //Creating unactive walker objects (note: Not initialized to conserve RAM) 
+    //Creating unactive walker objects (note: 3. arg=false implies dead) 
     for (int k = n_w; k < K * n_w; k++) {
         original_walkers[k] = new Walker(n_p, dim, false);
     }
@@ -81,28 +81,31 @@ void DMC::initialize() {
 \end{lstlisting}
 
 \begin{lstlisting}
-Walker::Walker(int n_p, int dim, bool do_init) {
-    
-    ...
-    
-    if (do_init) {
-        r = zeros<mat > (n_p, dim);
-        r_rel = zeros<mat > (n_p, n_p);
-        qforce = zeros<mat > (n_p, dim);
-        inv = zeros<mat > (n2, n_p);
-        jast_grad = zeros<mat > (n_p, dim);
-        spatial_grad = zeros<mat > (n_p, dim);
+Walker::Walker(int n_p, int dim, bool alive) {
+    this->dim = dim;
+    this->n_p = n_p;
+    this->n2 = n_p / 2;
 
-        r2 = zeros(1, n_p);
 
-        value = 0;
-        lapl_sum = 0;
-        spatial_ratio = 0;
-
+    if (alive) {
         is_murdered = false;
     } else {
         is_murdered = true;
     }
+    
+    r = zeros<mat > (n_p, dim);
+    r_rel = zeros<mat > (n_p, n_p);
+    qforce = zeros<mat > (n_p, dim);
+    jast_grad = zeros<mat > (n_p, dim);
+    spatial_grad = zeros<mat > (n_p, dim);
+
+    r2 = zeros(1, n_p);
+
+    value = 0;
+    lapl_sum = 0;
+    spatial_ratio = 0;
+    inv = zeros<mat > (n2, n_p);
+
 }
 \end{lstlisting}
 
@@ -444,6 +447,133 @@ double System::get_potential_energy(const Walker* walker) {
 \end{lstlisting}
 
 Implementing new potentials is also extremely simple; just have the constructor take reasonable parameters, and implement the expression. All in all the code servers great flexibility on all parts without suffering from if-tests or constituting of several unlinked parts. It takes way longer to develop such a code, but it all pays off when it comes to later implementations or extensions of the library.
+
+\subsection{RAM optimizations}
+
+VMC uses close to zero memory (RAM); we only have two walkers with each their set of matrices. However, DMC has the potential to use a lot of RAM, as thousands of walkers are allocated. The walkers account for close to all of the RAM used by the methods, as the rest of the framework consist only of a small amount of doubles (8 byte) and integers (4 byte). A short analysis of the RAM spent per \verb+Walker+ object yields
+
+\begin{listliketab}
+\storestyleof{itemize}
+ \begin{tabular}{l l}
+  \textbullet 1 boolean                                        & 1 byte                                \\
+  \textbullet 3 integers                                       & 12 bytes                              \\
+  \textbullet 3 doubles                                        & 24 bytes                              \\
+  \textbullet 4 \verb+n_p+ $\times$ \verb+dim+ matrices        & 32 \verb+n_p+ $\cdot$ \verb+dim+ bytes\\
+  \textbullet 1 \verb+n_p+ $\times$ \verb+n_p+ matrices        & 8 \verb+n_p+ $\cdot$ \verb+n_p+ bytes \\
+  \textbullet 1 \verb+n_p+ $\times$ \verb+n_p/2+ matrix        & 4 \verb+n_p+ $\cdot$ \verb+n_p+ bytes \\
+  \textbullet 1 array of length \verb+n_p+                     & 8 \verb+n_p+ bytes                    \\
+  Total:                                                       & 37 + 32 \verb+n_p+ $\cdot$ \verb+dim+ + 12 \verb+n_p+ $\cdot$ \verb+n_p+ + 8 \verb+n_p+ bytes \\
+ \end{tabular}
+\end{listliketab}
+
+For VMC with 30 particles and quantum dots in 2 dimensions this gives a walker RAM usage of 25 kB, which is practically nothing. For DMC however, we have e.g. 1000 active walkers and 4000 inactive. The inactive ones can be left uninitialized, saving the RAM of all matrix initializations (37 RAM per walker). 
+
+In Figure~\ref{FIG:RAMusagePrWalker} we see how the RAM usage per walker scales with the number of particles. For 30 particles, we have approximately 60 MB of RAM spent on walkers. This is still practically nothing compared to the available RAM on modern computers (minimum 2 GB).
+
+\begin{figure}
+\label{FIG:RAMusagePrWalker}
+ \begin{center}
+  \includegraphics[scale=0.75]{../Graphics/RAMusagePrWalker.pdf}
+  \caption{Number of particles vs. the theoretical RAM usage per walker for the optimized and unoptimized case. Calculated for two dimensions, 1000 active walkers and 5000 inactive.}
+ \end{center}
+\end{figure}
+
+The conclusion is therefore that as long as there are no memory leaks, time spent optimizing the memory use, is time wasted. Memory optimizations might damage the readability, so the code was left more or less unoptimized in this part.
+
+\subsection{CPU-time Optimization}
+
+During a Quantum Monte Carlo sampling process, certain values, such as the relative distances, are used to calculate quantities such as the energy. The most brute force way of handling situations like this is to calculate everything at the time it is needed. However, once a diffusion step is made,we use the same relative distances both in the Jastrow factor and its gradient. Calculating them twice is a waste of time. We can instead store them in a matrix, and access this matrix in both functions:
+
+\[
+r_{rel} = r_{rel}^T = \left( \begin{array}{ccccc}
+0 & r_{12} & r_{13} & \cdots & r_{1N} \\
+ & 0 & r_{23} & \cdots & r_{2N}  \\
+ &  & \ddots & \ddots & \vdots \\
+ & \cdots &  & 0 & r_{(N-1)N} \\
+ &  &  &  & 0\end{array} \right).
+\]
+
+Another upside with this way of storing the relative distances, is that moving particle $i$ in our code, only changes the $i$'th row in the matrix, and therefore we need only to recalculate \textit{N} elements (\textit{N} being the number of particles in our system). For the same reason, storing the gradients, Laplacian sums and the squared radii is matrices also optimize the code. 
+
+Having closed form expressions for the gradients and Laplacians for the different parts of the wave function is another source of dramatic speed-up. The local kinetic energy ($(E_k)_L$) and the Quantum Force ($\mathbf{F}_i$) can be expressed in terms of the separate parts of the wave function:
+
+\begin{eqnarray}
+(E_k)_L &=& -\frac{1}{2}\frac{1}{\psi_T}\nabla_i^2 \psi_T \\
+&=& -\frac{1}{2}\frac{1}{|S|\psi_C}\nabla_i^2(|S|\psi_C) \nonumber\\
+&=& -\frac{1}{2}\frac{1}{|S|\psi_C} \nabla_i \left(\psi_C\nabla_i |S| + |S|\nabla_i \psi_C\right)\nonumber  \\
+&=& -\frac{1}{2}\Big[\frac{1}{\psi_C}\nabla_i^2 \psi_C + \frac{2}{|S|\psi_C}\nabla_i|S|\cdot\nabla_i\psi_C \nonumber\\
+&& \qquad\qquad\qquad\,\,+\frac{1}{|S|}\nabla_i^2 |S|\Big].\nonumber 
+\label{eq:kinetic_analytic}
+\end{eqnarray}
+
+\begin{eqnarray}
+ \mathbf{F}_i &=& \frac{2}{|S|\psi_C}\nabla_i( |S|\psi_C) \\
+&=& 2\left(\frac{1}{\psi_C}\nabla_i \psi_C + \frac{1}{|S|}\nabla_i |S|\right),\nonumber
+\label{eq:QF}
+\end{eqnarray}
+where $i$ denotes particle number, and $|S|$ and $\psi_C$ are respectively the spatial wave function and the Jastrow factor.
+
+For Fermions, it can be shown that we have the following relations for the Slater determinant\cite{larseivind}:
+
+\begin{eqnarray}
+ \frac{1}{|S|}\nabla_i |S| &=& \displaystyle\sum_{j=1}^n \nabla_i \phi_j(\vec r_i)S^{-1}_{ji} \\ 
+\frac{1}{|S|}\nabla^2_i |S| &=& \displaystyle\sum_{j=1}^n \nabla^2_i \phi_j(\vec r_i)S^{-1}_{ji},\nonumber
+\label{eq:grad_lapl_S}
+\end{eqnarray}
+where $S^{-1}$ is the inverse of the Slater matrix, and $n$ is the dimensionality of the Slater matrix, in our case $n=N/2$, where $N$ is the number of electrons. $\phi_j(\vec r_i)$ are the single-particle basis functions, where $j$ denotes the quantum numbers. For example $j=0$ is the ground state, $j=1$ first excited state and so on. 
+
+These values of the gradient and Laplacian of the single-particle wave functions needs to be tabulated. Most of the single particle bases used are expressed using simple mathematics, such as Hermite polynomials for the case of harmonic oscillator, and the derivatives can therefore be calculated pretty easily. 
+
+Calculating an inverse does not seem to optimize much. However, we can run an updating algorithm for the inverse, which ends up saving a lot of time. The ratio of the spatial determinants can also be expressed using this inverse\cite{larslarseivind}. This means that no explicit wave function calculation is needed (we can calculate the ratio between two Jastrow factors without problem). The expression for the ratio in terms of the inverse is
+\begin{equation}
+ R_S = \displaystyle\sum_{j=1}^n \phi_j({\vec r}_{i,\mathrm{new}})S^{-1}_{ji}(\vec r_\mathrm{old}),
+\label{eq:Ratio}
+\end{equation}
+where $i$ is the particle being moved.
+
+In the case of $s=\frac{1}{2}$-Fermions, the code holds two slater determinants (spin up and down); we need two inverse matrices. All if-tests on whether or not to access spin up or down is however avoided by merging the two inverse matrices into one augmented matrix
+
+\[
+ S^{-1} = \left[S^{-1}_\uparrow S^{-1}_\downarrow\right].
+\]
+
+\noindent
+This way of storing the data completely removes the need of if-tests on spin.
+
+Updating the inverse matrix can be done once we got the new position and the ratio
+
+\begin{eqnarray}
+ S^{-1}_{kj}(\vec r_\mathrm{new})  = \left\{ 
+\begin{array}{l l}
+  S^{-1}_{kj}(\vec r_\mathrm{old}) - \frac{1}{R_S}S^{-1}_{ki}(\vec r_\mathrm{old})\displaystyle\sum_{l=1}^{n} \phi_{l}(\vec r_{i,\,\mathrm{new}})  S^{-1}_{lj}(\vec r_\mathrm{old}) &\qquad \mbox{$j \neq i$} \\
+ \frac{1}{R_S}S^{-1}_{ki}(\vec r_\mathrm{old})  &\qquad \mbox{$j=i$}
+\end{array} \right.
+\label{eq:Update_inv}
+\end{eqnarray}
+
+
+Equal expressions like the the ones listed in Eq.~(\ref{eq:grad_lapl_S}) can be found for the case of the Pade-Jastrow factor as well:
+
+\begin{eqnarray}
+ \frac{1}{\psi_C^{PJ}}\nabla_i \psi_C^{PJ} &=& \displaystyle\sum_{j\ne i} \frac{\vec r_{ij}}{r_{ij}}\frac{a_{ij}}{(1+\beta r_{ij})^2} \\
+\label{eq:grad_jast}
+ \frac{1}{\psi_C^{PJ}}\nabla_i^2 \psi_C^{PJ} &=& \left|\frac{1}{\psi_C^{PJ}}\nabla_i \psi_C^{PJ}\right|^2 + 2\displaystyle\sum_{i < j} \frac{a_{ij}(1 - \beta r_{ij})}{r_{ij}(1 + \beta r_{ij})^3}. \nonumber
+\label{eq:lapl_jastrow}
+\end{eqnarray}
+
+Notice that $a_{ij}$ is written as a matrix element. If we were to calculate $a$ for every single run in the loop, the double if-tests would drain a lot of CPU time. Prior to the sampling, in the \verb+Jastrow::initialize+ function, the values of $a$ are generated once and for all and stored in a matrix. This matrix remains unchanged throughout the entire sampling, and no if-tests are necessary.
+
+For the simplest case of single particle harmonic oscillator basis functions (Eq.~(\textbf{REF OSC BASIS}), the expressions for the derivatives of the wave function with respect to the variational parameters is
+\begin{eqnarray}
+\frac{1}{\psi_T}\frac{\partial\psi_T}{\partial\alpha} &=& -\frac{1}{2}\omega\displaystyle\sum_{i=1}^N r_i^2, \\
+\frac{1}{\psi_T}\frac{\partial\psi_T}{\partial\beta} &=& -\displaystyle\sum_{i<j}\frac{a_{ij}r_{ij}^2}{(1+\beta r_{ij})^2}.
+\label{eq:CGM_derivatives}
+\end{eqnarray}
+
+which can be used to speed up the process of minimizing.
+
+
+Optimization (without approximations) is all about not calculating more than you have to. Calculating gradients is the part of the code which require the most CPU time. The most time consuming functions is the gradients. Looking at Eq.~(\ref{eq:grad_lapl_S}) this comes as no surprise; the single particle wave functions contain a call to the exponential function, which is terribly slow and needs to be deadly accurate. The time consumption in the Jastrow gradient arise from the fact that once a particle is moved, the entire gradient changes. 
 
 \section{Validation}
 

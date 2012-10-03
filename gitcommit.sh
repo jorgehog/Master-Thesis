@@ -5,6 +5,8 @@ then
     git add gitcommit.sh -A
     git add gitupdate.py -A
 
+    git add ./Graphics/*
+
     git add ./bibtex/bibtex.bib -A
 
     git add ./main/jorgenh_thesis.tex -A
