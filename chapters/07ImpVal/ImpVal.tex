@@ -3,6 +3,7 @@
 For a detailed description of specific functions etc., see the comments in the actual code. The general idea of the implementation is to use the power of object orientation (for details, see Section~\ref{sec:OO}) to compile the different building blocks of QMC-methods in a natural coherent way. The first step to accomplishing this is to extract the different (more or less) independent parts of the machinery.
 
 \section{Structure and Implementation}
+\label{sec:StructureandImplementation}
 
 In QMC, and Quantum Mechanics in general, there are several natural ways of decoupling the code. Gathering data into objects are in some cases done to increase the readability and the overall structure, which dramatically decreases the time it takes to implement or debug new methods. Another reason is to generalize the code for several different cases, without having to rewrite or mess up anything (see the PotionGame example in Section~\ref{sec:PotionGame}).
 
@@ -448,7 +449,9 @@ double System::get_potential_energy(const Walker* walker) {
 
 Implementing new potentials is also extremely simple; just have the constructor take reasonable parameters, and implement the expression. All in all the code servers great flexibility on all parts without suffering from if-tests or constituting of several unlinked parts. It takes way longer to develop such a code, but it all pays off when it comes to later implementations or extensions of the library.
 
-\subsection{RAM optimizations}
+\section{Performance Optimizations}
+
+\subsection{RAM use}
 
 VMC uses close to zero memory (RAM); we only have two walkers with each their set of matrices. However, DMC has the potential to use a lot of RAM, as thousands of walkers are allocated. The walkers account for close to all of the RAM used by the methods, as the rest of the framework consist only of a small amount of doubles (8 byte) and integers (4 byte). A short analysis of the RAM spent per \verb+Walker+ object yields
 
@@ -468,19 +471,19 @@ VMC uses close to zero memory (RAM); we only have two walkers with each their se
 
 For VMC with 30 particles and quantum dots in 2 dimensions this gives a walker RAM usage of 25 kB, which is practically nothing. For DMC however, we have e.g. 1000 active walkers and 4000 inactive. The inactive ones can be left uninitialized, saving the RAM of all matrix initializations (37 RAM per walker). 
 
-In Figure~\ref{FIG:RAMusagePrWalker} we see how the RAM usage per walker scales with the number of particles. For 30 particles, we have approximately 60 MB of RAM spent on walkers. This is still practically nothing compared to the available RAM on modern computers (minimum 2 GB).
+In Figure~\ref{FIG:RAMusageDMC} we see how the RAM usage in a typical DMC calculation scales with the number of particles. For 30 particles, we have approximately 60 MB of RAM spent on walkers. This is still practically nothing compared to the available RAM on modern computers (minimum 2 GB).
 
 \begin{figure}
-\label{FIG:RAMusagePrWalker}
+\label{FIG:RAMusageDMC}
  \begin{center}
   \includegraphics[scale=0.75]{../Graphics/RAMusagePrWalker.pdf}
-  \caption{Number of particles vs. the theoretical RAM usage per walker for the optimized and unoptimized case. Calculated for two dimensions, 1000 active walkers and 5000 inactive.}
+  \caption{Number of particles vs. the theoretical RAM usage in a typical DMC run for the optimized and unoptimized case. Calculated for two dimensions, 1000 active walkers and 5000 inactive.}
  \end{center}
 \end{figure}
 
-The conclusion is therefore that as long as there are no memory leaks, time spent optimizing the memory use, is time wasted. Memory optimizations might damage the readability, so the code was left more or less unoptimized in this part.
+The conclusion stands that as long as there are no memory leaks, time spent optimizing the memory use is time wasted. Memory optimizations might damage the readability, so the code was left more or less unoptimized in this part.
 
-\subsection{CPU-time Optimization}
+\subsection{CPU-time}
 
 During a Quantum Monte Carlo sampling process, certain values, such as the relative distances, are used to calculate quantities such as the energy. The most brute force way of handling situations like this is to calculate everything at the time it is needed. However, once a diffusion step is made,we use the same relative distances both in the Jastrow factor and its gradient. Calculating them twice is a waste of time. We can instead store them in a matrix, and access this matrix in both functions:
 
@@ -524,7 +527,7 @@ where $S^{-1}$ is the inverse of the Slater matrix, and $n$ is the dimensionalit
 
 These values of the gradient and Laplacian of the single-particle wave functions needs to be tabulated. Most of the single particle bases used are expressed using simple mathematics, such as Hermite polynomials for the case of harmonic oscillator, and the derivatives can therefore be calculated pretty easily. 
 
-Calculating an inverse does not seem to optimize much. However, we can run an updating algorithm for the inverse, which ends up saving a lot of time. The ratio of the spatial determinants can also be expressed using this inverse\cite{larslarseivind}. This means that no explicit wave function calculation is needed (we can calculate the ratio between two Jastrow factors without problem). The expression for the ratio in terms of the inverse is
+Calculating an inverse does not seem to optimize much. However, we can run an updating algorithm for the inverse, which ends up saving a lot of time. The ratio of the spatial determinants can also be expressed using this inverse\cite{larseivind}. This means that no explicit wave function calculation is needed (we can calculate the ratio between two Jastrow factors without problem). The expression for the ratio in terms of the inverse is
 \begin{equation}
  R_S = \displaystyle\sum_{j=1}^n \phi_j({\vec r}_{i,\mathrm{new}})S^{-1}_{ji}(\vec r_\mathrm{old}),
 \label{eq:Ratio}

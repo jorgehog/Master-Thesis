@@ -297,11 +297,26 @@ As an introduction to the next section, take a look at the way the classes and t
 
 \section{Structuring the code}
 
-blah blah messy=bad, organized = good
+Structuring a code is another source of compromises. If the code is short, and has a direct purpose, e.g. to calculate the sum from Eq.~(\ref{eq:sum100}), structure is not an issue at all, given that reasonable variable names are provided. However, if the code is more complex, and the methods used are specific implementations of a more general case, e.g. integration, code structuring becomes very important. For details about the structuring of the code used in this thesis, see Section~\ref{sec:StructureandImplementation}.
+
+The case of using object orientation with focus on code structure is covered in Section~\ref{sec:OO}.
 
 \subsection{File structures}
 
-blah blah src folder good yes
+If a code consists of several independent class structures, it is common to gather the data from the different classes in separate files (see Section~\ref{sec:PotionGame} for an example). The alternative would be a single file consisting of thousands of lines; navigating through it is a mess. This would not be so bad if the process of writing the code was linear, however, empirical evidence suggests otherwise; at least half the time is spent debugging functions.
+
+All source code files should be gathered in a \textit{src} folder, with one folder per new class. Subclasses should appear as folders inside the superclass folders. 
+
+\begin{figure}
+ \label{FIG:SRCdirTree}
+ \begin{center}
+  \includegraphics[scale=0.6]{../Graphics/SRCfolderStruct.pdf} 
+ \end{center}
+ \caption{An illustration of a standard way to organize source code. The file endings represent C++ code.}
+\end{figure}
+
+
+\subsection{Optimization and Profiling}
 
 \subsection{IDEs}
 
