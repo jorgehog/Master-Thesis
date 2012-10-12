@@ -583,3 +583,66 @@ Optimization (without approximations) is all about not calculating more than you
 things should not be wrong. It is bad.
 
 
+test:
+\newpage
+\begin{table}
+\begin{center}
+\label{tab:DMCRes}
+\begin{tabular}{cc|cccc}
+    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $\beta$  \\
+\hline
+    2     &   0.28   & 1.02197  &  1.0216  & 0.970202 & 0.254158 \\
+          &   0.5    & 1.66023  & 1.65994  & 0.981901 & 0.312174 \\
+          &   1.0    & 3.00054  & 3.00002  & 0.988761 & 0.398956 \\
+    6     &   0.28   & 7.62259  & 7.59967  & 0.87322  & 0.322838 \\
+          &   0.5    & 11.8092  & 11.7845  & 0.896501 & 0.411444 \\
+          &   1.0    & 20.1896  & 20.1606  & 0.920368 & 0.55734  \\
+    12    &   0.28   & 25.7088  & 25.63814 & 0.797355 & 0.365122 \\
+          &   0.5    & 39.2395  & 39.15974 & 0.859145 & 0.481956 \\
+          &   1.0    & 65.7958  & 65.70032 & 0.873605 & 0.656703 \\
+\end{tabular}
+\caption{J. Hogberget}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\label{tab:LohneRes}
+\begin{tabular}{cc|cccc}
+    N     & $\omega$ & $\mathrm{E_{DMC}}$  \\
+\hline
+    2     &   0.28   &  N/A     \\
+          &   0.5    & 1.65975(2)  \\
+          &   1.0    &  3.00000(3) \\
+    6     &   0.28   &   7.6001(1) \\
+          &   0.5    &  11.7888(2) \\
+          &   1.0    &  20.1597(2) \\
+    12    &   0.28   &  25.6356(1) \\
+          &   0.5    &  39.159(1)  \\
+          &   1.0    &  65.700(1)  \\
+\end{tabular}
+\caption{M. Pedersen Lohne et al.}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\label{tab:noColValid}
+\begin{tabular}{cc|ccc}
+    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ \\
+\hline
+    2     &   0.5    &   1.0    &   1.0    &   1.0    \\
+          &   1.0    &   2.0    &   2.0    &   1.0    \\
+    6     &   0.5    &   5.0    &   5.0    &   1.0    \\
+          &   1.0    &   10.0   &   10.0   &   1.0    \\
+    12    &   0.5    &   14.0   &   14.0   &   1.0    \\
+          &   1.0    &   28.0   &   28.0   &   1.0    \\
+    20    &   0.5    &   30.0   &   30.0   &   1.0    \\
+          &   1.0    &   60.0   &   60.0   &   1.0    \\
+    30    &   0.5    &   55.0   &   55.0   &   1.0    \\
+          &   1.0    &  110.0   &  110.0   &   1.0    \\
+\end{tabular}
+\caption{}
+\end{center}
+\end{table}
+
