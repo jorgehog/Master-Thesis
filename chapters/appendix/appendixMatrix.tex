@@ -60,3 +60,87 @@ A = \left(
 
 The matrix elements are calculated as integrals, e.g. the expectation value of the energy in an interacting quantum dot using single particle harmonic oscillator wave functions.
 
+
+\newpage
+\begin{lstlisting}[language=c++, basicstyle=\scriptsize]
+void DMC::node_comm() {
+#ifdef MPI_ON
+    if (parallel) {
+        MPI_Allreduce(MPI_IN_PLACE, &E, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+        MPI_Allreduce(MPI_IN_PLACE, &samples, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+
+        MPI_Allgather(&n_w, 1, MPI_INT, n_w_list.memptr(), 1, MPI_INT, MPI_COMM_WORLD);
+
+        n_w_tot = arma::accu(n_w_list);
+
+    }
+#else
+    n_w_tot = n_w;
+#endif
+
+}
+
+void DMC::switch_souls(int root, int root_id, int dest, int dest_id) {
+    if (node == root) {
+        original_walkers[root_id]->send_soul(dest);
+        n_w--;
+    } else if (node == dest) {
+        original_walkers[dest_id]->recv_soul(root);
+        n_w++;
+    }
+}
+
+void DMC::normalize_population() {
+#ifdef MPI_ON
+    using namespace arma;
+
+    if (!(cycle % (n_c / check_thresh) == 0) || cycle > (int) n_c * 0.9) return;
+
+    
+    int avg = n_w_tot / n_nodes;
+    umat swap_map = zeros<umat > (n_nodes, n_nodes);
+    uvec snw = sort_index(n_w_list, 1);
+
+    
+    int root = 0;
+    int dest = n_nodes - 1;
+    while (root < dest) {
+        if (n_w_list(snw(root)) > avg) {
+            if (n_w_list(snw(dest)) < avg) {
+                swap_map(snw(root), snw(dest))++;
+                n_w_list(snw(root))--;
+                n_w_list(snw(dest))++;
+            } else {
+                dest--;
+            }
+        } else {
+            root++;
+        }
+    }
+
+    
+    uvec test = sum(swap_map, 1);
+    if (test.max() < sendcount_thresh) {
+        test.clear();
+        swap_map.clear();
+        return;
+    }
+
+
+    for (int root = 0; root < n_nodes; root++) {
+        for (int dest = 0; dest < n_nodes; dest++) {
+            if (swap_map(root, dest) != 0) {
+                for (int sendcount = 0; sendcount < swap_map(root, dest); sendcount++) {
+                    switch_souls(root, n_w - 1, dest, n_w);
+                }
+            }
+        }
+    }
+    
+    swap_map.clear();
+    test.clear();
+    MPI_Barrier(MPI_COMM_WORLD);
+
+#endif
+}
+\end{lstlisting}
