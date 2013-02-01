@@ -111,6 +111,7 @@ subclass non virtual
 \end{verbatim}
 
 \subsection*{Typecasting and Polymorphism}
+\label{sec:typeCastPoly}
 
 In order to understand these concepts, consider the previous example. In the first call, the object is declared as a \verb+superClass*+ type, however, it is still initialized to be a \verb+subClass+ pointer, which results in the subclass' functions overriding the corresponding ones of the superclass, given they are virtual. In programming terms we say that \textit{any subclass is type-compatible with a pointer to it's superclass}.%[cite http://www.cplusplus.com/doc/tutorial/polymorphism/]. 
 
@@ -352,16 +353,20 @@ The case of using object orientation with focus on code structure is covered in 
 
 \subsection{File structures}
 
-If a code consists of several independent class structures, it is common to gather the data from the different classes in separate files (see Section~\ref{sec:PotionGame} for an example). The alternative would be a single file consisting of thousands of lines; navigating through it is a mess. This would not be so bad if the process of writing the code was linear, however, empirical evidence suggests otherwise; at least half the time is spent debugging functions.
+Developing codes in scientific scenarios often involves enormous frameworks. For instance, when doing Molecular Dynamics, several collision models, force models etc. is perhaps implemented alongside the main solver. In the case of Markow Chain Monte Carlo methods, different diffusion models (sampling rules) may be selectable. Even though these models are implemented object oriented using polymorphism, the code still gets messy when the amount of subclasses etc. gets large. 
 
-All source code files should be gathered in a \textit{src} folder, with one folder per new class. Subclasses should appear as folders inside the superclass folders. 
+When codes consists of several independent class structures (sampling rules, potentials, etc.), it is common to gather the implementations of the different classes in separate files (see Section~\ref{sec:PotionGame} for an example). The alternative, as mentioned, is a single file consisting of thousands of lines; navigating through it is a mess. This would be purely a cosmetic issue if the process of writing the code was linear, however, empirical evidence suggests otherwise; at least half the time is spent debugging functions, going back and forth through files. If you are using tools such as Makefile, you will also avoid recompiling unchanged parts of the code.
+
+A standard way to organize code is to have all the source code gathered in a \textit{src} folder, with one folder per distinct class. Subclasses should appear as folders inside the superclass folder. Figure \ref{FIG:SRCdirTree} shows an example setup for the framework of an object oriented code.
 
 \begin{figure}
- \label{FIG:SRCdirTree}
+ 
  \begin{center}
   \includegraphics[scale=0.6]{../Graphics/SRCfolderStruct.pdf} 
  \end{center}
+
  \caption{An illustration of a standard way to organize source code. The file endings represent C++ code.}
+ \label{FIG:SRCdirTree}
 \end{figure}
 
 
@@ -372,3 +377,7 @@ KEEP TO ONE STANDARD!
 \subsection{Version Control}
 
 USE E.G. GIT!
+
+\subsection{Using GUI Tools}
+
+stand-alone openfile dialoges are awesome!

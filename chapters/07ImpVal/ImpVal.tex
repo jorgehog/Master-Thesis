@@ -1,42 +1,16 @@
 \chapter{Implementation and Validation}
 
-For a detailed description of specific functions etc., see the comments in the actual code. The general idea of the implementation is to use the power of object orientation (for details, see Section~\ref{sec:OO}) to compile the different building blocks of QMC-methods in a natural coherent way. The first step to accomplishing this is to extract the different (more or less) independent parts of the machinery.
+I will not discuss the specific implementations in this thesis. For a detailed description of specific functions etc., see the the actual code for comments. The concept of this chapter is to give insight about the ideas behind the implementation.  Long story short, alot of hard work has been put into deep object orientation (for details, see Section~\ref{sec:OO}) in order to combine the different building blocks of QMC-methods in a natural and coherent way. As with all big coding projects, a major part of development went into planning and structuring.
 
 \section{Structure and Implementation}
 \label{sec:StructureandImplementation}
 
-In QMC, and Quantum Mechanics in general, there are several natural ways of decoupling the code. Gathering data into objects are in some cases done to increase the readability and the overall structure, which dramatically decreases the time it takes to implement or debug new methods. Another reason is to generalize the code for several different cases, without having to rewrite or mess up anything (see the PotionGame example in Section~\ref{sec:PotionGame}).
+In QMC, Quantum Mechanics, and even physics in general, there are natural ways of decoupling the code in order to create a bridge between physics and code. Gathering data into objects representing physical concept to which a reader can relate increases the overall readability of the code. It also dramatically decreases the time it takes to implement or debug new methods, since mathematical intuition can be used in order to trace certain behaviours back to the source \footnote{For instance, if something is wrong with the sampling rule, a random walker might behave weird. The natural starting point of debugging is then the object in which the sampling rules are set. In the case of this thesis, this is the Sampling class containing a Diffusion object.}. Another reason is to generalize the code for several different cases, without having to rewrite or mess up anything (see the PotionGame example in Section~\ref{sec:PotionGame}).
 
 \subsection{Methods used for Increasing Readability and Overall Structure}
 
-As an example, take a look at the contents of the Walker class in Table ~\ref{tab:walkerClassMembers}. The power of this way of structuring the code, is that whenever we need a new walker in e.g. DMC, all we need to do is to create a new instance of \verb+Walker+. A function which requires access to several elements from Table~\ref{tab:walkerClassMembers} now only requires one argument, namely the walker of interest. Let us look at an example
 
-\begin{table}
-\label{tab:walkerClassMembers}
-\begin{center}
-
-\caption{Description of the members in an instance of the Walker class. All matrices holds information on all particles.}
-
- \begin{tabular}{|l| c l|}
- \hline
- \verb+arma::mat r+           &  & The position.\\
- \verb+arma::mat r_rel+       &  & The relative positions.\\
- \verb+arma::rowvec r2+       &  & The squared positions. \\
- \verb+arma::mat qforce+      &  & The quantum force.\\
- \verb+arma::mat spatial_grad+&  & The gradient of the uncorrelated wave function.\\
- \verb+arma::mat jast_grad+   &  & The gradient of the Jastrow factor.\\
- \verb+arma::mat inv+         &  & The inverse of the slater matrix.\\
- \verb+double spatial_ratio+  &  & The current ratio between this walker and another walker.\\
- \verb+double value+          &  & The value of the wave function.\\
- \verb+double lapl_sum+       &  & The full Laplacian of the wave function.\\
- \verb+double E+              &  & The energy of the walker. \\
- \verb+bool is_murdered+      &  & False if active, true if not. \\
- \hline 
- \end{tabular}
- 
- 
-\end{center}
-\end{table}
+As an example, the contents of the \verb+Walker+ class in Table ~\ref{tab:walkerClassMembers}. The idea behind this structure is that whenever we need a new walker in e.g. DMC, all we need to do is to create a new instance of \verb+Walker+. Deleting a walker is just as clean. A function which requires access to several elements from Table~\ref{tab:walkerClassMembers} now only requires one argument, namely the walker of interest. Let us look at an example
 
 
 \vspace{0.5 cm}
@@ -45,8 +19,7 @@ DMC::DMC(...) {
 
     ...
  
-    int max_walkers = K * n_w;
-    original_walkers = new Walker*[max_walkers];
+    original_walkers = new Walker*[spesify a number of walkers];
     
     ...
 
@@ -57,7 +30,7 @@ DMC::DMC(...) {
 \begin{lstlisting}
 void DMC::initialize() {
 
-    jastrow->initialize();
+    ...
 
     //Initializing active walkers
     for (int k = 0; k < n_w; k++){
@@ -73,44 +46,56 @@ void DMC::initialize() {
         original_walkers[k]->set_E(calculate_local_energy(original_walkers[k]));
     }
 
-    //Creating unactive walker objects (note: 3. arg=false implies dead) 
-    for (int k = n_w; k < K * n_w; k++) {
-        original_walkers[k] = new Walker(n_p, dim, false);
-    }
+    ...
 
 }
 \end{lstlisting}
 
-\begin{lstlisting}
-Walker::Walker(int n_p, int dim, bool alive) {
-    this->dim = dim;
-    this->n_p = n_p;
-    this->n2 = n_p / 2;
+\begin{table}
 
+ \begin{center}
 
-    if (alive) {
-        is_murdered = false;
-    } else {
-        is_murdered = true;
-    }
-    
-    r = zeros<mat > (n_p, dim);
-    r_rel = zeros<mat > (n_p, n_p);
-    qforce = zeros<mat > (n_p, dim);
-    jast_grad = zeros<mat > (n_p, dim);
-    spatial_grad = zeros<mat > (n_p, dim);
+ \begin{tabular}{|c l l|}
+ \hline
+ Type & Name & Description \\
+ 
+ \hline
+ \hline
+ 
+ \verb+mat+         & \verb+r+             & The position.\\
 
-    r2 = zeros(1, n_p);
+ \hline
+ \hline
+ 
+ \verb+mat+         & \verb+r_rel+         & The relative positions.\\
+ \verb+rowvec+      & \verb+ r2+           & The squared positions. \\
+ \verb+mat+         & \verb+phi+           & The last evaluated single particle orbitals. \\
+ \verb+field<mat>+  & \verb+dell_phi+      & The last evaluated gradients of the single particle orbitals. \\
+ \verb+cube+        & \verb+dJ+            & The last evaluated terms of the jastrow factor derivatives. \\
+ \verb+mat+         & \verb+spatial_grad+  & The gradient of the uncorrelated wave function.\\
+ \verb+mat+         & \verb+jast_grad+     & The gradient of the Jastrow factor.\\
+ \verb+mat+         & \verb+inv+           & The inverse of the slater matrix.\\
+ \verb+mat+         & \verb+qforce+        & The quantum force.\\
+ 
+ \hline 
+ \hline
+ 
+ \verb+double+      & \verb+spatial_ratio+ & The current ratio between this walker and another walker.\\
+ \verb+double+      & \verb+value+         & The value of the wave function.\\
+ \verb+double+      & \verb+lapl_sum+      & The full Laplacian of the wave function.\\
+ \verb+double+      & \verb+E+             & The energy of the walker. \\
+ \verb+bool+        & \verb+is_murdered+   & A flag for the DMC brancing algorithm. \\
+ \hline 
+ \end{tabular}
+ 
+ \caption{Description of the members of the Walker class. All matrices holds information on all particles.
+The second block corresponds to vectors kept in memory to avoid expensive recalulation. The third block corresponds to  scalar values calculated and kept in memory for later use or control.}
+ \label{tab:walkerClassMembers}
+ 
+ \end{center}
+\end{table}
 
-    value = 0;
-    lapl_sum = 0;
-    spatial_ratio = 0;
-    inv = zeros<mat > (n2, n_p);
-
-}
-\end{lstlisting}
-
-As we can see from the code above, initializing new walkers is unproblematic. When e.g. looping over walkers in DMC, the amount of juggling is reduced to nothing; all you need to do is to loop over an array of walkers. This walker can then be sent to any function, resulting in code like e.g.
+Initializing new walkers is, as seen above, unproblematic. Calculating values in the machinery now always involves a corresponding walker. For instance, when looping over walkers in DMC, the amount of juggling is reduced to nothing; all you need to do is to loop over a vector of walkers. This walker can then be sent to any function, resulting in code like e.g.
 
 \vspace{0.5cm}
 \begin{lstlisting}
@@ -128,7 +113,7 @@ double Coulomb::get_pot_E(const Walker* walker) const {
 }
 \end{lstlisting}
 
-The alternative to the code above is to juggle one relative position matrix per walker, ruining both the readability and the overall structure of the code. Another upside to this way of structuring, is that we can tie the source code and the method description closer together. Look at VMC as an example. Stating e.g. that at cycle zero, the original and trial walker should be equal, is now implemented in the following way:
+The alternative to the code above is to juggle one relative position matrix per walker, ruining both the readability and the overall structure of the code. Another upside to this way of structuring, is that we can tie the source code and the method description closer together. Look at VMC as an example. VMC uses a walker and a trial walker. 
 
 \vspace{0.5cm}
 \begin{lstlisting}
@@ -138,6 +123,9 @@ void VMC::initialize() {
 
     sampling->set_trial_pos(original_walker);
     copy_walker(original_walker, trial_walker);
+    
+    ...
+    
 }
 
 \end{lstlisting}
@@ -146,34 +134,31 @@ Another example where object orientation dramatically increases the readability 
 
 \vspace{0.5cm}
 \begin{lstlisting}
-Importance::Importance(int n_p, int dim, double timestep, long random_seed, double D)
-: Sampling(n_p, dim) {
-    diffusion = new Fokker_Planck(n_p, dim, timestep, random_seed, D);
+Importance::Importance(GeneralParams & gP)
+: Sampling(gP.n_p, gP.dim) {
+
+    diffusion = new Fokker_Planck(n_p, dim, gP.random_seed);
+
 }
 \end{lstlisting}
 
 
 \subsection{Methods for Generalizing the Code}
 
-The importance sampling constructor serves as a good example in this case as well. A \verb+Sampling+ object type might be an instance of \verb+Importance+ or \verb+Brute_Force+, however, we do not need to know this in order to diffuse a walker. We do not even need to know whether we are doing VMC or DMC. All we need to know is that the \verb+Diffusion+ object within the sampling will give us the values we need once the correct objects are in place. This is reflected in the following code:
+The importance sampling constructor serves as a good example in this case as well. A \verb+Sampling+ object type might be an instance of \verb+Importance+ or \verb+Brute_Force+, however, we do not need to know this in order to abstractly describe how to diffuse a walker. We do not even need to know whether we are doing VMC or DMC. All we need to know is that the \verb+Diffusion+ object within the sampling holds the rules we need once the correct objects are in place. This is reflected in the following code:
 
 \vspace{0.5cm}
 \begin{lstlisting}
-void QMC::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
+void Sampling::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
 
     for (int j = 0; j < dim; j++) {
         walker_post->r(particle, j) = walker_pre->r(particle, j)
-                + sampling->get_new_pos(walker_pre, particle, j);
+                + diffusion->get_new_pos(walker_pre, particle, j);
     }
-    
-    ...
-    
-}
-\end{lstlisting}
 
-\begin{lstlisting}
-double Sampling::get_new_pos(const Walker* walker_pre, int particle, int j) const {
-    return diffusion->get_new_pos(walker_pre, particle, j);
+    //more updates through jastrow pointers etc.
+    ...
+
 }
 \end{lstlisting}
 
@@ -182,37 +167,33 @@ double Diffusion::get_new_pos(const Walker* walker, int i, int j) {
     return gaussian_deviate(&random_seed) * std;
 }
 
-...
-
 double Simple::get_new_pos(const Walker* walker, int i, int j) {
     return Diffusion::get_new_pos(walker, i, j);
 }
-
-...
 
 double Fokker_Planck::get_new_pos(const Walker* walker, int i, int j) {
     return D * timestep * walker->qforce(i, j) + Diffusion::get_new_pos(walker, i, j);
 }
 \end{lstlisting}
 
-This use of virtual functions to generalize the code is used throughout the entire code. The goals of this thesis was to produce a code with the following generalizations:
+This use of polymorphism (as described in Section \ref{sec:typeCastPoly}) is widely used throughout the code to generalize it. As a goal, the idea was to produce a code with the following generalizations:
 
 \begin{itemize}
- \item As many as possible functions should be written generally for DMC and VMC (see Section~\textbf{REF} for a complete list of the common parts.)
- \item Objects should not assume the type of any sub-classed object except its own, unless the type is directly implied (importance sampling implies Fokker-Planck diffusion).
+ \item As many as possible functions should be written generally for DMC and VMC.
+ \item Objects should not assume the type of any sub-classed object except its own, unless the type is directly implied (importance sampling implies Fokker-Planck diffusion), i.e., deep polymorphism.
 \end{itemize}
 
-This puts a series of constraints on the code; it should be general for:
+This puts a series of constraints on the code; it should be general for (in any combination):
 
 \begin{enumerate}[label=(\roman{*}), ref=(\roman{*})]
 \item Importance- and Brute Force-sampling.
 \item Numerical or closed form expressions for the kinetic energy and quantum force.
 \item Fermions and Bosons.
-\item Any choice of single particle basis.
-\item Functionality to add any potential.
+\item Any choice of single particle basis, included expanded bases.
+\item Functionality to add any combination of any potential
+\item No trailing if tests or flags handling switching cases. A single test in the main file decides everything once and for all. 
 \end{enumerate}
 
-It is also implemented a general Jastrow factor, a Walker class which is easily extendable, and an output function which performs any form of output (or nothing), without having to flag / comment the code (it works in a similar way to how QMC extracts potential energies, which will be discussed later). 
 
 \subsubsection{Constraints (i) - (iii)}
 
