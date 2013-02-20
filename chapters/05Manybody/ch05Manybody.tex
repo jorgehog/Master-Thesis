@@ -10,9 +10,9 @@ The purpose of this section is to motivate the use of diffusion theory in Quantu
 
 \subsection{The Diffusion Equation}
 
-\subsubsection{The simple case}
+\subsubsection{Isotropic Diffusion}
 
-Eq.~(\ref{Eq:diffusionSimple}) is the simplest form of a diffusion equation, that is, the case with a linear \textit{diffusion constant}, $D$, and no drift terms.
+Isotropic diffusion is a process in which diffusing particles sees all possible directions as an equally probable path. Eq.~(\ref{Eq:diffusionSimple}) is an example of this. This is the simplest form of a diffusion equation, the case with a linear \textit{diffusion constant}, $D$, and no drift terms.
 
 \begin{equation}
  \frac{\partial P(\vec r, t)}{\partial t} = D\nabla^2 P(\vec r, t) 
@@ -45,7 +45,69 @@ You can argue that the last equality should be a definition, since the equation 
 
 where the value of the diffusion constant, $D=\frac{1}{2}$, can be extracted from the Scr\"odinger equation \cite{abInitioMC}.
 
-Given that we model the diffusion of walkers by the process described above, the equations themselves serves no practical use. In order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the probability distribution and the time-dependence of the configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}
+Given that we model the diffusion of walkers by the process described above, the equations themselves serves no practical use. In order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the probability distribution and the time-dependence of the walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
+
+\subsubsection{The Langevin Equation for Isotropic Diffusion}
+
+The Langevin Equation is a stochastic differential equation used in physics to relate the time dependence of a distribution to the time-dependence of the degrees of freedom in the system. Given e.g. the simple isotropic diffusion described previously, solving the Langevin equation using a Forward Euler approximation for the time derivative results in the following relation:
+
+\begin{eqnarray}
+ x_{i+1} = x_i + \xi, \qquad\qquad \sigma(\xi) &=& \sqrt{2D\delta t}, \\
+			     \langle\xi\rangle &=& x_i, \nonumber
+\end{eqnarray}
+
+where $\xi$ is a normal distributed number. This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
+
+
+\subsubsection{Anisotropic Diffusion}
+
+Anisotropic diffusion, in contrast to isotropic diffusion, does not count all directions as equally probable. An example of this is diffusion according to the \textit{Fokker-Planck Equation}, that is, diffusion with a drift term, $\vec F(\vec r, t)$, responsible for pushing the walkers in the direction of configurations with higher probabilities.
+
+\begin{equation}
+ \frac{\partial P(\vec r, t)}{\partial t} = D\nabla\cdot\Big[\Big(\nabla - \vec F(\vec r, t)\Big) P(\vec r, t)\Big] 
+ \label{Eq:fokkerPlanck}
+\end{equation}
+
+The remarkable thing is that simple isotropic diffusion processes obey this relation \cite{abInitioMC}. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations. This method of \textit{Importance Sampling} will be discussed in Section~(ref imp). 
+
+In Quantum Monte Carlo we want convergence to a stationary state. We can use this criteria to deduce expression for the drift term given our Quantum Mechanical distribution. A stationary state is obtained when the left hand side of Eq.~(\ref{Eq:fokkerPlanck}) is zero:
+
+\begin{equation*}
+ \nabla^2 P(\vec r, t) = P(\vec r, t)\nabla\cdot\vec F(\vec r, t) + \vec F(\vec r, t) \cdot \nabla P(\vec r, t)
+\end{equation*}
+
+The next thing we want to achieve is cancellation in the rest of the terms. In order to obtain a Laplacian term on the right hand side to potentially cancel out the one on the left, the drift term needs to be on the form $F(\vec r, t) = g(\vec r, t)\nabla P(\vec r, t)$. Inserting this yields
+
+\begin{equation*}
+  \nabla^2 P(\vec r, t) = P(\vec r, t)\frac{\partial g(\vec r, t)}{\partial P(\vec r, t)}\Big|\nabla P(\vec r, t)\Big|^2
+  + P(\vec r, t)g(\vec r, t)\nabla^2 P(\vec r, t) + g(\vec r, t) \Big|\nabla P(\vec r, t)\Big|^2.
+\end{equation*}
+
+Looking at the factors in front of the Laplacian suggests using $g(\vec r, t) = 1/P(\vec r, t)$. A quick check reveals that this also cancels out the gradient terms, and the resulting expression for the drift term becomes
+
+\begin{eqnarray}
+ \vec F(\vec r, t) &=& \frac{1}{P(\vec r, t)}\nabla P(\vec r, t) \nonumber \\
+                   &=& \frac{2}{|\psi(\vec r, t)|}\nabla |\psi(\vec r, t)|
+\end{eqnarray}
+
+In Quantum Monte Carlo, the drift term is called \textit{The Quantum Force}, since it is responsible for pushing the walkers into regions of higher probabilities, analogous to a force in Newtonian mechanics.
+
+\subsubsection{The Langevin Equation for the Fokker-Planck Equation}
+
+The Langevin equation in the case of a Fokker-Planck Equation has the following form
+
+\begin{equation}
+ \frac{\partial x_i}{\partial t} = D F(\vec r, t)_i + \eta,
+\end{equation}
+
+where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solving this using the same method as for the isotropic case yields the following sampling rules
+
+\begin{equation}
+ x_{i+1} = DF(\vec r, t)_i\delta t + \xi,
+\end{equation}
+
+where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
+
 
 
 
