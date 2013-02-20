@@ -8,6 +8,76 @@ Such random movement is referred to as a \textit{Brownian motion}, named after t
 
 The purpose of this section is to motivate the use of diffusion theory in Quantum Mechanics, and to derive the sampling rules needed in order to model Quantum Mechanical distributions by diffusion of random walkers correctly. I will be using natural units, that is $\hbar$, $m_e$, etc. are all set to unity, in order to simplify the expressions.
 
+\subsection{Solving the \schrodinger as a Diffusion Problem}
+
+Consider the time-dependent \schrodinger for an abstract state $\phi(x, t)$ with an arbitrary energy shift $E'$
+
+\begin{equation}
+ -\frac{\partial \phi(x, t)}{i\partial t} = (\OP{H} - E')\phi(x, t).
+\end{equation}
+
+Expanding $\phi(\vec r, t)$ in the eigenstates of $\OP{H}$ yield the following solution (given a time-independent Hamiltonian):
+
+\begin{eqnarray}
+ \phi(x, t) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-i(E_k - E')t} \\
+ C_k &=& \braket{\Phi_k(x)}{\phi(x, t=0)}
+\label{eq:realSchrod}
+ \end{eqnarray}
+
+
+The real form of this equation is obtained through a Wick rotation in time ($it \rightarrow \tau$), which basically means that the time-evolution operation is substituted by a \textit{projection operation}. To illustrate this, look at the solution of the real equation with $E'$ chosen to be the ground state energy of $\OP{H}$
+
+\begin{eqnarray}
+ \phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_0)\tau} \\
+                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau},
+\end{eqnarray}
+
+where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger.
+
+% The solution to this equation comes in term of a \textit{Green's Function}, a transition probability. 
+
+Considering two sequential time steps $\tau$, $\tau + \delta\tau$, we can write the solution of Eq.~(\ref{eq:realSchrod}) as following
+
+\begin{equation*}
+ \ket{\phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\phi(\tau)}.
+\end{equation*}
+
+Taking the inner product with $\bra{x}$ on both sides and inserting a complete set of states $\ket{y}$ on the left hand side yields
+
+\begin{eqnarray*}
+ \phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\phi(y, \tau)dy \\
+			     &\equiv& \int G(x, y; \delta\tau)\phi(y, \tau)dy
+\end{eqnarray*}
+
+where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in \cite{leinaas}. A more detailed derivation of the Green's Function are given in \cite{abInitioMC}.
+
+This is still not a practical way of solving the equations. In finding the Green's function we might as well find the solution directly. However, what we can do, is make the time steps very small and split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$:
+
+\begin{eqnarray}
+ \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_0)\delta\tau}\ket{y} \nonumber \\
+                                             &\approx& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_0)\delta\tau}\ket{y}
+\end{eqnarray}
+
+This is known as the \textit{short time approximation}. The gain by doing this is that we split the Green's Function into two well known processes. The first which represents a diffusion process
+
+\begin{equation}
+ G_{diff} = e^{\frac{1}{2}\nabla^2\delta\tau}
+\label{eq:GDiff}
+\end{equation}
+
+and the second which represents a branching process
+
+\begin{equation}
+ G_{B} = e^{-(\OP{V} - E_0)\delta\tau}
+ \label{eq:GB}
+\end{equation}
+
+What this tells us, is that we can loop over time steps with a given ensemble of walkers, incorporating the effect of the Green's Functions along the way, and the final distributions of walkers will correspond to that of the direct solution of the \schrodinger. 
+
+Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in section REF REF. In either of these methods, diffusion plays an important role. Further simplicity can be achieved by choosing a diffusion model for which closed form expressions for the Green's Functions can be calculated. Two examples of this will be presented in the following sections.
+
+
+
 \subsection{The Diffusion Equation}
 
 \subsubsection{Isotropic Diffusion}
@@ -19,37 +89,13 @@ Isotropic diffusion is a process in which diffusing particles sees all possible 
  \label{Eq:diffusionSimple}
 \end{equation}
 
-From experiment there is a strong indication that the \textit{probability flux}, $j(\vec r, t)$, is proportional to the gradient of the distribution \cite{morten}, that is
+In the Quantum Monte Carlo case, the value of the diffusion constant is given by Eq.(\ref{eq:GDiff}), $D=\frac{1}{2}$. 
 
-\begin{equation}
- j(\vec r, t) = -D\nabla|\p|^2.
- \label{eq:experimentalJ}
-\end{equation}
-
-If we on the other hand look at the time derivative of the Wave function squared, and insert expressions for the Schr\"odinger equation (and its complex conjugate), we can relate it to $j(\vec r, t)$  
-
-\begin{eqnarray*}
- \frac{\partial |\p|^2}{\partial t} &=& \p\frac{\partial \p^\ast}{\partial t} + \p^\ast\frac{\partial \p}{\partial t} \\
-  &=& i\left(\frac{1}{2}\p^\ast\nabla^2\p - V(\vec r)|\p|^2 - \frac{1}{2}\p\nabla^2\p^\ast+ V(\vec r)|\p|^2 \right) \\
-  &=& \frac{1}{2}i\Big(\p^\ast\nabla^2\p-\p\nabla^2\p^\ast\Big) \\
-  &=& -\nabla\cdot\left(\frac{1}{2i}\left(\p^\ast\nabla\p-\p\nabla\p^\ast\right)\right) \\
-  &=& -\nabla\cdot j(\vec r, t)
-\end{eqnarray*}
-
-You can argue that the last equality should be a definition, since the equation derived above obviously is the Quantum Mechanical analogue to the continuity equation in classical mechanics\footnote{It should be mentioned that the continuity equation holds as long as the number of particles in the system is conserved \cite{morten}. Chemists often break this condition, e.g. when modeling chemical reactions.}. However, this does not change the fact that inserting the result from Eq.~(\ref{eq:experimentalJ}) yields a diffusion equation
-
-\begin{eqnarray}
- \frac{\partial |\p|^2}{\partial t} &=& -\nabla\cdot j(\vec r, t) \nonumber \\
-                                    &\approx& D\nabla^2|\p|^2,
-\end{eqnarray}
-
-where the value of the diffusion constant, $D=\frac{1}{2}$, can be extracted from the Scr\"odinger equation \cite{abInitioMC}.
-
-Given that we model the diffusion of walkers by the process described above, the equations themselves serves no practical use. In order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the probability distribution and the time-dependence of the walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
+Say now that we model the diffusion of walkers isotropically, Eq.(\ref{Eq:diffusionSimple}) serves no practical use. In order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the distribution (in our case the Wave function in complex time) and the time-dependence of the walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
 
 \subsubsection{The Langevin Equation for Isotropic Diffusion}
 
-The Langevin Equation is a stochastic differential equation used in physics to relate the time dependence of a distribution to the time-dependence of the degrees of freedom in the system. Given e.g. the simple isotropic diffusion described previously, solving the Langevin equation using a Forward Euler approximation for the time derivative results in the following relation:
+The Langevin Equation is a stochastic differential equation used in physics to relate the time dependence of a distribution to the time-dependence of the degrees of freedom in the system. For the simple isotropic diffusion described previously, solving the Langevin equation using a Forward Euler approximation for the time derivative results in the following relation:
 
 \begin{eqnarray}
  x_{i+1} = x_i + \xi, \qquad\qquad \sigma(\xi) &=& \sqrt{2D\delta t}, \\
