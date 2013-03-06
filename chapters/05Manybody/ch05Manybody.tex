@@ -16,27 +16,25 @@ Consider the time-dependent \schrodinger for an abstract state $\phi(x, t)$ with
  -\frac{\partial \phi(x, t)}{i\partial t} = (\OP{H} - E')\phi(x, t).
 \end{equation}
 
-Expanding $\phi(\vec r, t)$ in the eigenstates of $\OP{H}$ yield the following solution (given a time-independent Hamiltonian):
+The formal solution given a time-independent Hamiltonian is given by separation of variables in $\phi(x, t)$ (see \cite{griffiths} for more details regarding assumptions etc.). This corresponds to using the standard time-evolution operator. Further expanding $\phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Phi_k(x)$, yields the following solution
 
 \begin{eqnarray}
- \phi(x, t) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-i(E_k - E')t} \\
- C_k &=& \braket{\Phi_k(x)}{\phi(x, t=0)}
-\label{eq:realSchrod}
+ \phi(x, t) &=& e^{-i(\OP{H} - E')(t-t_0)}\phi(x, t=t_0) \label{eq:schrodGeneralSolution} \\
+            &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-i(E_k - E')(t-t_0)} \label{eq:realSchrod} \\
+ C_k &=& \braket{\Phi_k(x)}{\phi(x, t=0)} \nonumber
  \end{eqnarray}
 
 
-The real form of this equation is obtained through a Wick rotation in time ($it \rightarrow \tau$), which basically means that the time-evolution operation is substituted by a \textit{projection operation}. To illustrate this, look at the solution of the real equation with $E'$ chosen to be the ground state energy of $\OP{H}$
+The real form of this equation is obtained through a Wick rotation in time ($it \rightarrow \tau$), which basically means that the time-evolution operation is substituted by a \textit{projection operation}. To illustrate this, look at the solution of the real equation with $E'$ chosen to be the ground state energy of $\OP{H}$, and $t_0$ chosen to be zero
 
 \begin{eqnarray}
  \phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_0)\tau} \\
-                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau},
+                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau}, \nonumber
 \end{eqnarray}
 
-where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger.
+where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger. 
 
-% The solution to this equation comes in term of a \textit{Green's Function}, a transition probability. 
-
-Considering two sequential time steps $\tau$, $\tau + \delta\tau$, we can write the solution of Eq.~(\ref{eq:realSchrod}) as following
+Considering two sequential time steps $\tau$ and $\tau + \delta\tau$, we can write the Wick rotated form of Eq.~(\ref{eq:schrodGeneralSolution}) as following (using Dirac notation, see Appendix \ref{app:Dirac})
 
 \begin{equation*}
  \ket{\phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\phi(\tau)}.
@@ -61,15 +59,15 @@ This is still not a practical way of solving the equations. In finding the Green
 This is known as the \textit{short time approximation}. The gain by doing this is that we split the Green's Function into two well known processes. The first which represents a diffusion process
 
 \begin{equation}
- G_{diff} = e^{\frac{1}{2}\nabla^2\delta\tau}
 \label{eq:GDiff}
+ G_\mathrm{Diff} = e^{\frac{1}{2}\nabla^2\delta\tau}
 \end{equation}
 
 and the second which represents a branching process
 
 \begin{equation}
- G_{B} = e^{-(\OP{V} - E_0)\delta\tau}
  \label{eq:GB}
+ G_\mathrm{B} = e^{-(\OP{V} - E_0)\delta\tau}
 \end{equation}
 
 What this tells us, is that we can loop over time steps with a given ensemble of walkers, incorporating the effect of the Green's Functions along the way, and the final distributions of walkers will correspond to that of the direct solution of the \schrodinger. 
@@ -83,8 +81,8 @@ Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called 
 Isotropic diffusion is a process in which diffusing particles sees all possible directions as an equally probable path. Eq.~(\ref{Eq:diffusionSimple}) is an example of this. This is the simplest form of a diffusion equation, the case with a linear \textit{diffusion constant}, $D$, and no drift terms.
 
 \begin{equation}
- \frac{\partial P(\vec r, t)}{\partial t} = D\nabla^2 P(\vec r, t) 
  \label{Eq:diffusionSimple}
+ \frac{\partial P(\vec r, t)}{\partial t} = D\nabla^2 P(\vec r, t) 
 \end{equation}
 
 In the Quantum Monte Carlo case, the value of the diffusion constant is given by Eq.(\ref{eq:GDiff}), $D=\frac{1}{2}$. 
@@ -96,21 +94,21 @@ Say now that we model the diffusion of walkers isotropically, Eq.(\ref{Eq:diffus
 The Langevin Equation is a stochastic differential equation used in physics to relate the time dependence of a distribution to the time-dependence of the degrees of freedom in the system. For the simple isotropic diffusion described previously, solving the Langevin equation using a Forward Euler approximation for the time derivative results in the following relation:
 
 \begin{eqnarray}
+\label{eq:langevinSolSimple}
  x_{i+1} = x_i + \xi, \qquad\qquad \sigma(\xi) &=& \sqrt{2D\delta t}, \\
 			     \langle\xi\rangle &=& x_i, \nonumber 
-\label{eq:langevinSolSimple}
 \end{eqnarray}
 
 where $\xi$ is a normal distributed number. This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
 
 
-\subsection{Anisotropic Diffusion}
+\subsection{Anisotropic Diffusion: Fokker-Planck}
 
 Anisotropic diffusion, in contrast to isotropic diffusion, does not count all directions as equally probable. An example of this is diffusion according to the \textit{Fokker-Planck Equation}, that is, diffusion with a drift term, $\vec F(\vec r, t)$, responsible for pushing the walkers in the direction of configurations with higher probabilities.
 
 \begin{equation}
- \frac{\partial P(\vec r, t)}{\partial t} = D\nabla\cdot\Big[\Big(\nabla - \vec F(\vec r, t)\Big) P(\vec r, t)\Big] 
  \label{Eq:fokkerPlanck}
+ \frac{\partial P(\vec r, t)}{\partial t} = D\nabla\cdot\Big[\Big(\nabla - \vec F(\vec r, t)\Big) P(\vec r, t)\Big] 
 \end{equation}
 
 The remarkable thing is that simple isotropic diffusion processes obey this relation \cite{abInitioMC}. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations. This method of \textit{Importance Sampling} will be discussed in Section~(ref imp). 
@@ -148,8 +146,8 @@ The Langevin equation in the case of a Fokker-Planck Equation has the following 
 where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solving this using the same method as for the isotropic case yields the following sampling rules
 
 \begin{equation}
- x_{i+1} = x_i + DF(\vec r, t)_i\delta t + \xi,
  \label{eq:langevinSolFP}
+ x_{i+1} = x_i + DF(\vec r, t)_i\delta t + \xi,
 \end{equation}
 
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
@@ -166,8 +164,8 @@ Once thermalization is reached, average values may be sampled. However, simply s
 For Markov processes, detailed balance is achieved by demanding a \textit{Reversible} Markov process. This boils down to a statistical requirement stating that 
 
 \begin{equation}
- P_iW(i\,\rightarrow\,j) = P_jW(j\,\rightarrow\,i),
  \label{eq:DetailedBalance}
+ P_iW(i\,\rightarrow\,j) = P_jW(j\,\rightarrow\,i),
 \end{equation}
 
 where $P_i$ is the probability density in configuration $i$, and $W(i\,\rightarrow\,j)$ is the transition probability between states $i$ and $j$. 
@@ -181,34 +179,61 @@ Another requirement is that the sampling must be ergodic, that is, the Markov ch
 The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more effective. I will not go into details about transport theory in this section, but rather start the derivation from the criteria of detailed balance, Eq.~(\ref{eq:DetailedBalance}), modeling the transition probability as two-part: $g(i\,\rightarrow\,j)$, the probability of selecting configuration $j$ given configuration $i$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$:
 
 \begin{eqnarray}
+ \label{eq:metro1}
  P_iW(i\,\rightarrow\,j) &=& P_jW(j\,\rightarrow\,i) \nonumber \\
  P_ig(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& P_jg(j\,\rightarrow\,i)A(j\,\rightarrow\,i)
- \label{eq:metro1}
 \end{eqnarray}
 
-The idea now is to model $g(i\,\rightarrow\,j)$ as a symmetric function, thus the $g$-terms in Eq.~(\ref{eq:metro1}) cancel. Inserting the probability distribution as the Wave function squared then gives us a simple expression:
+Inserting the probability distribution as the Wave function squared, and the selection probability as our Green's function, then gives us a simple expression:
 
 \begin{eqnarray}
-  |\psi_i|^2A(i\,\rightarrow\,j) &=& |\psi_j|^2A(j\,\rightarrow\,i) \nonumber \\
-  \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{|\psi_i|^2}{|\psi_j|^2}
   \label{eq:metro2}
+  |\psi_i|^2G(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& |\psi_j|^2G(j\,\rightarrow\,i)A(j\,\rightarrow\,i) \nonumber \\
+  \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2}
 \end{eqnarray}
 
 Assume now that configuration $i$ has a higher overall probability than configuration $j$. A more effective termalization is obtained by accepting all these moves, that is $A(i\,\rightarrow\,j) = 1$. What saves us from breaking the criteria of ergodicity is the fact that we do not reject the move otherwise. Instead, we insert $A(i\,\rightarrow\,j) = 1$ into Eq.~(\ref{eq:metro2}), and thus ensuring detailed balance as well as ergodicity.
 
 \begin{equation*}
- A(j\,\rightarrow\,i) = \frac{|\psi_i|^2}{|\psi_j|^2} \qquad\qquad  |\psi_i|^2 < |\psi_j|^2
+ A(j\,\rightarrow\,i) = \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2} \qquad\qquad  |\psi_i|^2 < |\psi_j|^2
 \end{equation*}
 
 
-Concatenating both scenarios yields the following acceptance/rejection rules, namely the Metropolis Algorithm:
+Concatenating both scenarios yields the following acceptance/rejection rules:
 
 \begin{equation}
+\label{eq:MetroGeneralGreen}
+ A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
+ G(j\,\rightarrow i)|\psi_j|^2/G(i\,\rightarrow j)|\psi_i|^2& & G(j\,\rightarrow i)|\psi_j|^2 < G(i\,\rightarrow j)|\psi_i|^2\\
+1  & & \mathrm{else}  \end{array}\right.
+\end{equation}
+
+\subsubsection{Isotropic Diffusion}
+
+In the case of isotropic diffusion, the Green's function is symmetric in $i$ and $j$ \cite{abInitioMC}
+
+\begin{equation}
+ G_{\mathrm{Diff}}^{\mathrm{ISO}}(i\,\rightarrow j) \propto e^{-(x_i-x_j)^2/4D\delta\tau}  .
+\end{equation}
+
+Inserting this into Eq.~(\ref{eq:MetroGeneralGreen}) will result in a cancellation of the Greens function, leaving us with the standard Metropolis algorithm:
+
+\begin{equation}
+\label{eq:Metropolis_standard}
  A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
  |\psi_j|^2/|\psi_i|^2& & |\psi_j|^2 < |\psi_i|^2\\
 1  & & \mathrm{else}  \end{array}\right.
-\label{eq:Metropolis_standard}
 \end{equation}
+
+\subsubsection{Anisotropic Diffusion: Fokker-Planck}
+
+If we on the other hand use the Fokker-Planch equation, we will not get a cancellation. The strenght of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function has an alaytic solution. This means that we can evaluate it efficiently. If this was not the case, the practical value would be reduced dramatically.
+
+\begin{equation}
+ G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \propto e^{-(x_i-x_j - D\delta\tau\vec F(x_i))^2/4D\delta\tau}.
+\end{equation}
+
+Inserting this relation into Eq.~(\ref{eq:MetroGeneralGreen}) results in the Mertopolis Hastings algorithm. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials.
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, we have methods such as the \textit{Ising Model} which greatly benefit from these rules \cite{morten}.
 
