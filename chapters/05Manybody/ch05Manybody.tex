@@ -28,13 +28,25 @@ The formal solution given a time-independent Hamiltonian is given by separation 
 The real form of this equation is obtained through a Wick rotation in time ($it \rightarrow \tau$), which basically means that the time-evolution operation is substituted by a \textit{projection operation}. To illustrate this, look at the solution of the real equation with $E'$ chosen to be the ground state energy of $\OP{H}$, and $t_0$ chosen to be zero
 
 \begin{eqnarray}
- \phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_0)\tau} \\
-                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau}, \nonumber
+ \phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_0)\tau} \label{eq:schrodGeneralSolution3}\\
+                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau}, \label{eq:schrodGeneralSolution2}
 \end{eqnarray}
 
 where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger. 
 
-Considering two sequential time steps $\tau$ and $\tau + \delta\tau$, we can write the Wick rotated form of Eq.~(\ref{eq:schrodGeneralSolution}) as following (using Dirac notation, see Appendix \ref{app:Dirac})
+The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
+
+\begin{equation}
+  \phi(x, n\delta\tau) = \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeSteps},
+\end{equation}
+
+which remains exact for an infinite amount of infinitely small time steps. In practice, a balance is sought between the \textit{number of cycles}, $n$, and the time step. This restatement might seem redundant, however, it is the key which opens up the possibility to model the solution by discretized diffusion of particles in Quantum Mechanical potentials. 
+
+\subsection{Solving the Diffusion Problem}
+
+In this chapter \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction.
+
+Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\phi(\tau)}$ like previously, we are left with an expression on the form
 
 \begin{equation*}
  \ket{\phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\phi(\tau)}.
@@ -52,27 +64,28 @@ where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transitio
 This is still not a practical way of solving the equations. In finding the Green's function we might as well find the solution directly. However, what we can do, is make the time steps very small and split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$:
 
 \begin{eqnarray}
- \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_0)\delta\tau}\ket{y} \nonumber \\
-                                             &\approx& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_0)\delta\tau}\ket{y}
+ \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_T)\delta\tau}\ket{y} \nonumber \\
+                                             &=& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} + \frac{1}{2}[\OP{V}, \OP{T}]\delta\tau^2 + \mathcal{O}(\delta\tau^3) \nonumber \\
+                                             &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} 
 \end{eqnarray}
 
-This is known as the \textit{short time approximation}. The gain by doing this is that we split the Green's Function into two well known processes. The first which represents a diffusion process
+The last step is known as the \textit{short time approximation}, that is, we split the Green's Function into two processes which are well known. The first which represents a diffusion process
 
 \begin{equation}
 \label{eq:GDiff}
- G_\mathrm{Diff} = e^{\frac{1}{2}\nabla^2\delta\tau}
+ G_\mathrm{Diff} = e^{-\OP{T}\delta\tau}
 \end{equation}
 
 and the second which represents a branching process
 
 \begin{equation}
  \label{eq:GB}
- G_\mathrm{B} = e^{-(\OP{V} - E_0)\delta\tau}
+ G_\mathrm{B} = e^{-(\OP{V} - E_T)\delta\tau}
 \end{equation}
 
-What this tells us, is that we can loop over time steps with a given ensemble of walkers, incorporating the effect of the Green's Functions along the way, and the final distributions of walkers will correspond to that of the direct solution of the \schrodinger. 
+Once a diffusion model is selected, for each cycle, the Green's functions are used to propagate the ensemble of walkers making up our distribution into the next time step. The final distributions of walkers will correspond to that of the direct solution of the \schrodinger, given that the time step is sufficiently small, and we simulate long enough. These constraints will be covered in more detail later. 
 
-Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in section REF REF. In either of these methods, diffusion plays an important role. Further simplicity can be achieved by choosing a diffusion model for which closed form expressions for the Green's Functions can be calculated. Two examples of this will be presented in the following sections.
+Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is the key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following sections.
 
 
 
@@ -85,9 +98,14 @@ Isotropic diffusion is a process in which diffusing particles sees all possible 
  \frac{\partial P(\vec r, t)}{\partial t} = D\nabla^2 P(\vec r, t) 
 \end{equation}
 
-In the Quantum Monte Carlo case, the value of the diffusion constant is given by Eq.(\ref{eq:GDiff}), $D=\frac{1}{2}$. 
+In the Quantum Monte Carlo case, the value of the diffusion constant is $D=\frac{1}{2}$, that is, the term scaling the Laplacian in the \schrodinger. The closed form expression for the Green's function is a Gaussian distribution with variance $2D\delta t$ \cite{abInitioMC}
 
-Say now that we model the diffusion of walkers isotropically, Eq.(\ref{Eq:diffusionSimple}) serves no practical use. In order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the distribution (in our case the Wave function in complex time) and the time-dependence of the walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
+\begin{equation}
+\label{eq:GF_iso}
+ G_{\mathrm{Diff}}^{\mathrm{ISO}}(i\,\rightarrow j) \propto e^{-(x_i-x_j)^2/4D\delta\tau}  .
+\end{equation}
+
+These equations describe the diffusion process theoretically, however, in order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the total distribution and the time-dependence of an individual walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
 
 \subsubsection{The Langevin Equation for Isotropic Diffusion}
 
@@ -95,11 +113,11 @@ The Langevin Equation is a stochastic differential equation used in physics to r
 
 \begin{eqnarray}
 \label{eq:langevinSolSimple}
- x_{i+1} = x_i + \xi, \qquad\qquad \sigma(\xi) &=& \sqrt{2D\delta t}, \\
+ x_{i+1} = x_i + \xi, \qquad\qquad \mathrm{Var}(\xi) &=& 2D\delta t, \\
 			     \langle\xi\rangle &=& x_i, \nonumber 
 \end{eqnarray}
 
-where $\xi$ is a normal distributed number. This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
+where $\xi$ is a normal distributed number whose variance match that of the Green's function in Eq.~(\ref{eq:GF_iso}). This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
 
 
 \subsection{Anisotropic Diffusion: Fokker-Planck}
@@ -135,31 +153,39 @@ Looking at the factors in front of the Laplacian suggests using $g(\vec r, t) = 
 
 In Quantum Monte Carlo, the drift term is called \textit{The Quantum Force}, since it is responsible for pushing the walkers into regions of higher probabilities, analogous to a force in Newtonian mechanics.
 
+Another strength of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function still has a closed form solution. This means that we can evaluate it efficiently. If this was not the case, the practical value would be reduced dramatically. The reason for this will become clear in Section \ref{sec:MetroMain}. As expected, it is no longer symmetric 
+
+\begin{equation}
+\label{eq:GF_FP}
+ G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \propto e^{-(x_i-x_j - D\delta\tau F(x_i))^2/4D\delta\tau}.
+\end{equation}
+
+
 \subsubsection{The Langevin Equation for the Fokker-Planck Equation}
 
 The Langevin equation in the case of a Fokker-Planck Equation has the following form
 
 \begin{equation}
- \frac{\partial x_i}{\partial t} = D F(\vec r, t)_i + \eta,
+ \frac{\partial x_i}{\partial t} = D F(x_i) + \eta,
 \end{equation}
 
 where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solving this using the same method as for the isotropic case yields the following sampling rules
 
 \begin{equation}
  \label{eq:langevinSolFP}
- x_{i+1} = x_i + DF(\vec r, t)_i\delta t + \xi,
+ x_{i+1} = x_i + \xi + DF(x_i)\delta t,
 \end{equation}
 
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
 
-\subsection{Diffusive Equilibrium Constraints}
+\section{Diffusive Equilibrium Constraints}
 
 Upon convergence of a Markov process, the system at hand will reach its most likely state. This is exactly the behaviour of a real system of diffusing particles described by statistical mechanics: It will \textit{thermalize}, that is, be in its most likely state given a surrounding temperature. Markov processes are hence beloved by physicists; they are simple, yet realistic. 
 
 Once thermalization is reached, average values may be sampled. However, simply spawning a Markov process and waiting for thermalization is an inefficient and unpractical scenario. This may take forever, and it may not; either way its not optimal. We can introduce rules of acceptance and rejection of transitions purposed by following the solutions of the Langevin Equation (Eq.~(\ref{eq:langevinSolSimple}) and Eq.~(\ref{eq:langevinSolFP})), but not without constraints. If any of the following conditions break, we have no guarantee that the system will thermalize properly:
 
-\subsubsection{Detailed Balance} 
+\subsection{Detailed Balance} 
 
 For Markov processes, detailed balance is achieved by demanding a \textit{Reversible} Markov process. This boils down to a statistical requirement stating that 
 
@@ -170,11 +196,12 @@ For Markov processes, detailed balance is achieved by demanding a \textit{Revers
 
 where $P_i$ is the probability density in configuration $i$, and $W(i\,\rightarrow\,j)$ is the transition probability between states $i$ and $j$. 
 
-\subsubsection{Ergodicity}
+\subsection{Ergodicity}
 
 Another requirement is that the sampling must be ergodic, that is, the Markov chain (or simpler: The walker) needs to be able to be able to reach any configuration state in the space spanned by the distribution function. It is tempting to define a brute force acceptance rule where only steps resulting in a higher overall probability is accepted, however, this limits the path of the walker, and hence breaks the ergodicity requirement.
 
-\subsection{The Metropolis Algorithm}
+\section{The Metropolis Algorithm}
+\label{sec:MetroMain}
 
 The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more effective. I will not go into details about transport theory in this section, but rather start the derivation from the criteria of detailed balance, Eq.~(\ref{eq:DetailedBalance}), modeling the transition probability as two-part: $g(i\,\rightarrow\,j)$, the probability of selecting configuration $j$ given configuration $i$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$:
 
@@ -189,13 +216,13 @@ Inserting the probability distribution as the Wave function squared, and the sel
 \begin{eqnarray}
   \label{eq:metro2}
   |\psi_i|^2G(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& |\psi_j|^2G(j\,\rightarrow\,i)A(j\,\rightarrow\,i) \nonumber \\
-  \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2}
+  \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2} \equiv R_G(j\,\rightarrow\,i)R_\psi(j\,\rightarrow\,i)^2
 \end{eqnarray}
 
-Assume now that configuration $i$ has a higher overall probability than configuration $j$. A more effective termalization is obtained by accepting all these moves, that is $A(i\,\rightarrow\,j) = 1$. What saves us from breaking the criteria of ergodicity is the fact that we do not reject the move otherwise. Instead, we insert $A(i\,\rightarrow\,j) = 1$ into Eq.~(\ref{eq:metro2}), and thus ensuring detailed balance as well as ergodicity.
+Assume now that configuration $i$ has a higher overall probability than configuration $j$, that is, $A(i\,\rightarrow\,j) = 1$. A more effective thermalization is obtained by accepting all these moves. What saves us from breaking the criteria of ergodicity is the fact that we do not reject the move otherwise. Instead, we insert $A(i\,\rightarrow\,j) = 1$ into Eq.~(\ref{eq:metro2}), and thus ensuring detailed balance as well as ergodicity. This yields
 
 \begin{equation*}
- A(j\,\rightarrow\,i) = \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2} \qquad\qquad  |\psi_i|^2 < |\psi_j|^2
+ A(j\,\rightarrow\,i) = R_G(j\,\rightarrow\,i)R_\psi(j\,\rightarrow\,i)^2
 \end{equation*}
 
 
@@ -204,43 +231,68 @@ Concatenating both scenarios yields the following acceptance/rejection rules:
 \begin{equation}
 \label{eq:MetroGeneralGreen}
  A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
- G(j\,\rightarrow i)|\psi_j|^2/G(i\,\rightarrow j)|\psi_i|^2& & G(j\,\rightarrow i)|\psi_j|^2 < G(i\,\rightarrow j)|\psi_i|^2\\
-1  & & \mathrm{else}  \end{array}\right.
+R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 & & R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 < 1\\
+1  & & \mathrm{else}  \end{array}\right. 
 \end{equation}
 
-\subsubsection{Isotropic Diffusion}
-
-In the case of isotropic diffusion, the Green's function is symmetric in $i$ and $j$ \cite{abInitioMC}
+Or more simplistic:
 
 \begin{equation}
- G_{\mathrm{Diff}}^{\mathrm{ISO}}(i\,\rightarrow j) \propto e^{-(x_i-x_j)^2/4D\delta\tau}  .
+  A(i\,\rightarrow\,j) = \min\{R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}
 \end{equation}
 
-Inserting this into Eq.~(\ref{eq:MetroGeneralGreen}) will result in a cancellation of the Greens function, leaving us with the standard Metropolis algorithm:
+
+For the isotropic case, we have a cancellation of the Greens function due to symmetry, $R_G(i\,\rightarrow\,j) = 1$, leaving us with the standard Metropolis algorithm:
 
 \begin{equation}
 \label{eq:Metropolis_standard}
- A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
- |\psi_j|^2/|\psi_i|^2& & |\psi_j|^2 < |\psi_i|^2\\
-1  & & \mathrm{else}  \end{array}\right.
+ A(i\,\rightarrow\,j) = \min\{R_\psi(i\,\rightarrow\,j)^2, \,1\}
 \end{equation}
 
-\subsubsection{Anisotropic Diffusion: Fokker-Planck}
-
-If we on the other hand use the Fokker-Planch equation, we will not get a cancellation. The strenght of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function has an alaytic solution. This means that we can evaluate it efficiently. If this was not the case, the practical value would be reduced dramatically.
+If we on the other hand use the Fokker-Planck equation, we will not get a cancellation. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials
 
 \begin{equation}
- G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \propto e^{-(x_i-x_j - D\delta\tau\vec F(x_i))^2/4D\delta\tau}.
+ R_G^\mathrm{FP}(i\,\rightarrow\,j) = G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) = e^{\frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big)}
 \end{equation}
 
-Inserting this relation into Eq.~(\ref{eq:MetroGeneralGreen}) results in the Mertopolis Hastings algorithm. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials.
+\begin{equation}
+\label{eq:MetropolisHastings}
+ A(i\,\rightarrow\,j) = \min\{R_G^\mathrm{FP}(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}
+\end{equation}
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, we have methods such as the \textit{Ising Model} which greatly benefit from these rules \cite{morten}.
 
-\section{Solvers}
+\section{The Trial Wave Function}
+
+Recall Eq.~(\ref{eq:schrodGeneralSolution})-(\ref{eq:schrodGeneralSolution2}). Before we start propagating the distribution  in time, we need the boundary condition $\phi(\vec r, t=0)$, from here on referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact wave function, $\Phi(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:schrodGeneralSolution2}), the entire diffusion formalism breaks down, and no final state of convergence can be reached. The opposite is also the case; the closer $C_0$ is to unity, the more rapidly it will become the dominant contribution to our distribution. A clever choice of Trial Wave function will greatly improve the rate of convergence.
+
+\subsection{Choice of Trial Wave function}
+
+Picture having a superposition of states making up the trial wave function, tweaked and tuned so that the overlap is extremely close to unity. At this point, a lot of computational time may have been spent already in preparation of the   which converges within a given criteria in $N$ cycles. On the other hand, with a simplistic wave function consisting of a single state, the same criteria is reached in $5N$ cycles, however, each cycle taking only a fraction of the original CPU-time; it's a balance. 
+
+% It should be mentioned this is all depending on the system at hand. For interacting electrons in a harmonic oscillator (Quantum Dots), a single Slater determinant consisting of standard harmonic oscillator eigenstates is sufficient. The same works for Atoms and hydrogen-like wave functions. However, if we were to model a nucleus, no choice of basis is more obvious than another. In this case one has to introduce superpositions of slater determinants constructed from e.g. a free particle basis in order to obtain reasonable convergence.
+
+The simplistic wave function is an ideal choice when:
+
+\begin{itemize}
+ \item The system closely resembles that of another analytically solvable problem, e.g. Harmonic Oscillator or Hydrogen.
+ \item The number of degrees of freedom is large. Simplistic wave functions can be optimized to scale extremely well with system size.
+\end{itemize}
+
+If we on the other hand are outside these criteria, a more complicated trial wave function should be considered.
+
+SKRIVESPERREEEE
 
 
 
+
+\section{Variational Monte-Carlo}
+\label{sec:VMC}
+
+
+
+\section{Diffusion Monte-Carlo}
+\label{sec:DMC}
 
 
 
