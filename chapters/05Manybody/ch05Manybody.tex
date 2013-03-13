@@ -10,26 +10,26 @@ The purpose of this section is to motivate the use of diffusion theory in Quantu
 
 \subsection{Stating the \schrodinger as a Diffusion Problem}
 
-Consider the time-dependent \schrodinger for an abstract state $\phi(x, t)$ with an arbitrary energy shift $E'$
+Consider the time-dependent \schrodinger for an abstract state $\Phi(x, t)$ with an arbitrary energy shift $E'$
 
 \begin{equation}
- -\frac{\partial \phi(x, t)}{i\partial t} = (\OP{H} - E')\phi(x, t).
+ -\frac{\partial \Phi(x, t)}{i\partial t} = (\OP{H} - E')\Phi(x, t).
 \end{equation}
 
-The formal solution given a time-independent Hamiltonian is given by separation of variables in $\phi(x, t)$ (see \cite{griffiths} for more details regarding assumptions etc.). This corresponds to using the standard time-evolution operator. Further expanding $\phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Phi_k(x)$, yields the following solution
+The formal solution given a time-independent Hamiltonian is given by separation of variables in $\Phi(x, t)$ (see \cite{griffiths} for more details regarding assumptions etc.). This corresponds to using the standard time-evolution operator. Further expanding $\Phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Psi_k(x)$, yields the following solution
 
 \begin{eqnarray}
- \phi(x, t) &=& e^{-i(\OP{H} - E')(t-t_0)}\phi(x, t=t_0) \label{eq:schrodGeneralSolution} \\
-            &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-i(E_k - E')(t-t_0)} \label{eq:realSchrod} \\
- C_k &=& \braket{\Phi_k(x)}{\phi(x, t=0)} \nonumber
+ \Phi(x, t) &=& e^{-i(\OP{H} - E')(t-t_0)}\Phi(x, t=t_0) \label{eq:schrodGeneralSolution} \\
+            &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-i(E_k - E')(t-t_0)} \label{eq:realSchrod} \\
+ C_k &=& \braket{\Psi_k(x)}{\Phi(x, t=0)} \nonumber
  \end{eqnarray}
 
 
 The real form of this equation is obtained through a Wick rotation in time ($it \rightarrow \tau$), which basically means that the time-evolution operation is substituted by a \textit{projection operation}. To illustrate this, look at the solution of the real equation with $E'$ chosen to be the ground state energy of $\OP{H}$, and $t_0$ chosen to be zero
 
 \begin{eqnarray}
- \phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_0)\tau} \label{eq:schrodGeneralSolution3}\\
-                    &=& C_0\Phi_0(x) + \sum_{k=1}^{\infty} C_k\Phi_k(x)e^{-\delta E_k\tau}, \label{eq:schrodGeneralSolution2}
+ \Phi(x, \tau) &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_0)\tau} \label{eq:schrodGeneralSolution3}\\
+                    &=& C_0\Psi_0(x) + \sum_{k=1}^{\infty} C_k\Psi_k(x)e^{-\delta E_k\tau}, \label{eq:schrodGeneralSolution2}
 \end{eqnarray}
 
 where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger. 
@@ -37,7 +37,7 @@ where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increas
 The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
 
 \begin{equation}
-  \phi(x, n\delta\tau) = \sum_{k=0}^{\infty} C_k\Phi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeSteps},
+  \Phi(x, n\delta\tau) = \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeSteps},
 \end{equation}
 
 which remains exact for an infinite amount of infinitely small time steps. In practice, a balance is sought between the \textit{number of cycles}, $n$, and the time step. This restatement might seem redundant, however, it is the key which opens up the possibility to model the solution by discretized diffusion of particles in Quantum Mechanical potentials. 
@@ -46,17 +46,17 @@ which remains exact for an infinite amount of infinitely small time steps. In pr
 
 In this chapter \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction.
 
-Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\phi(\tau)}$ like previously, we are left with an expression on the form
+Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\Phi(\tau)}$ like previously, we are left with an expression on the form
 
 \begin{equation*}
- \ket{\phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\phi(\tau)}.
+ \ket{\Phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\Phi(\tau)}.
 \end{equation*}
 
 Taking the inner product with $\bra{x}$ on both sides and inserting a complete set of states $\ket{y}$ on the left hand side yields
 
 \begin{eqnarray*}
- \phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\phi(y, \tau)dy \\
-			     &\equiv& \int G(x, y; \delta\tau)\phi(y, \tau)dy
+ \Phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\Phi(y, \tau)dy \\
+			     &\equiv& \int G(x, y; \delta\tau)\Phi(y, \tau)dy
 \end{eqnarray*}
 
 where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in \cite{leinaas}. A more detailed derivation of the Green's Function are given in \cite{abInitioMC}.
@@ -251,9 +251,10 @@ For the isotropic case, we have a cancellation of the Greens function due to sym
 
 If we on the other hand use the Fokker-Planck equation, we will not get a cancellation. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials
 
-\begin{equation}
- R_G^\mathrm{FP}(i\,\rightarrow\,j) = G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) = e^{\frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big)}
-\end{equation}
+\begin{eqnarray}
+ R_G^\mathrm{FP}(i\,\rightarrow\,j) &=&G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \nonumber \\
+                                    &=& \exp{\Big[\frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big)\Big]}
+\end{eqnarray}
 
 \begin{equation}
 \label{eq:MetropolisHastings}
@@ -264,26 +265,72 @@ Derived from detailed balance, the Metroplis Algorithm is as a must-have when it
 
 \section{The Trial Wave Function}
 
-Recall Eq.~(\ref{eq:schrodGeneralSolution})-(\ref{eq:schrodGeneralSolution2}). Before we start propagating the distribution  in time, we need the boundary condition $\phi(\vec r, t=0)$, from here on referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact wave function, $\Phi(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:schrodGeneralSolution2}), the entire diffusion formalism breaks down, and no final state of convergence can be reached. The opposite is also the case; the closer $C_0$ is to unity, the more rapidly it will become the dominant contribution to our distribution. A clever choice of Trial Wave function will greatly improve the rate of convergence.
+Recall Eq.~(\ref{eq:schrodGeneralSolution})-(\ref{eq:schrodGeneralSolution2}). The initial condition, $\Phi(\vec r, t=0)$,
+is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:schrodGeneralSolution2}), the entire diffusion formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
+
+Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, I suggest reading \cite{griffiths}. For mathematically rigid derivations of concepts, see \cite{Sakurai:94}. More details regarding many-body theory can be found in \cite{Shavitt}. 
+
+\subsection{Many-body wave functions}
+
+Just as for single particle states, a general $N$-particle many-body wave function, e.g. $\Psi_0(x)=\Psi_0(x_1, x_2, ..., x_N)$, can be expanded in terms of a well-known basis of many-body wave functions $\Phi(x)$
+
+\begin{equation}
+\label{eq:manyBodyExp}
+ \Psi_0(x) = \sum_{k=0}^\infty C_k'\Phi_k(x),
+\end{equation}
+
+where every $\Phi_k(x)$ is constructed using $N$ elements from a basis of single particle wave functions (or \textit{orbital} for short), $\phi_n(x_i)$. 
+
+The easiest way of picturing the many-body wave functions is to think of electrons in an atom. A single electron occupying state $n$ at a position $x_i$ is described by the orbital $\phi_n(x_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons will give rise to one unique $\Phi_k(x)$. In other words, the complete basis of $\Phi_k(x)$ is described by the collection of all possible excited states. $\Phi_0(x)$ is the ground state of the atom, $\Phi_1(x)$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on.
+
+In the case of \textit{Fermions}, that is, half-integer spin particles like electrons, protons, etc., the many-body wave function $\Phi_k(x)$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} consisting of elements from a single-particle basis, set up in a determinant: The \textit{Slater determinant}. The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. Bosons on the other hand, have symmetric wave functions, which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract, from here on, the focus will be on systems of fermions.
+
+\subsection{Dealing with correlations}
+
+The contributions to the sum on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are often referred to as \textit{correlation} terms. The reason  is that in many cases $\phi_n(x_i)$ are chosen to be the eigenfunctions of the non-interacting version of the system at hand, e.g. hydrogen orbitals in the case of atoms. As a result, the existence of the correlation terms, i.e. $C_k' \ne 0$ for $k>0$, follows as a direct consequence of the Coulomb interaction.
+
+As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. If we perform the calculation using the exact wave function, the diverging terms will cancel out. In other words, incorporating the correct correlated wave function will result in a cancellation in the diverging term as we approach singularities. These criteria are called \textit{Cusp Conditions}, and serve as a powerful guide when it comes to selecting a trial wave function. 
 
 \subsection{Choice of Trial Wave function}
 
-Picture having a superposition of states making up the trial wave function, tweaked and tuned so that the overlap is extremely close to unity. At this point, a lot of computational time may have been spent already in preparation of the   which converges within a given criteria in $N$ cycles. On the other hand, with a simplistic wave function consisting of a single state, the same criteria is reached in $5N$ cycles, however, each cycle taking only a fraction of the original CPU-time; it's a balance. 
+Choosing the trial wave function boils down to optimizing the overlap described in the introduction using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single particle basis is eigenfunctions of the non-interacting case (given that they exist). In addition, we have to truncate the sum of Eq.~(\ref{eq:manyBodyExp}) at some point, and, in case of Coulomb interaction, make sure the cusp condition is obeyed (see the previous section).
 
-% It should be mentioned this is all depending on the system at hand. For interacting electrons in a harmonic oscillator (Quantum Dots), a single Slater determinant consisting of standard harmonic oscillator eigenstates is sufficient. The same works for Atoms and hydrogen-like wave functions. However, if we were to model a nucleus, no choice of basis is more obvious than another. In this case one has to introduce superpositions of slater determinants constructed from e.g. a free particle basis in order to obtain reasonable convergence.
+\subsubsection{The general shape}
 
-The simplistic wave function is an ideal choice when:
+The strategy is now to split the trial wave function into two parts, one \textit{spatial} wave function, $S(x_1, x_2, ..., x_N)$, i.e. the truncated sum of Eq.~(\ref{eq:manyBodyExp}), and another part, the product of correlation functions $f(r_{ij})$, where $i < j \le N$ and $r_{ij}$ is the relative distance between particle $i$ and $j$. The idea is that the correlating term, as described in the previous section, makes up for some of the errors introduced upon truncation in the spatial part. The general \textit{anzats} for the trial wave function becomes
 
-\begin{itemize}
- \item The system closely resembles that of another analytically solvable problem, e.g. Harmonic Oscillator or Hydrogen.
- \item The number of degrees of freedom is large. Simplistic wave functions can be optimized to scale extremely well with system size.
-\end{itemize}
+\begin{equation}
+\label{eq:firstAnzatsTWF}
+ \Psi_T(x_1, ..., x_N) = \Big[\sum_{k=0}^K C_k\Phi_k(x_1, ..., x_N)\Big]\prod_{i<j}^Nf(r_{ij})
+\end{equation}
 
-If we on the other hand are outside these criteria, a more complicated trial wave function should be considered.
+Optimal coefficients $C_k$ can be calculated through methods such as \textit{Hartree Fock}\footnote{Hartree-Fock is roughly a basis change from the non-interacting case into a basis which is orthogonal to one-particle excitations. The exact ground state wave function should be orthogonal to all excited states, so it's a fair approximation depending on the dominance of one-particle excitations in the given system.}, genetic algorithms, brute force minimization of the energy by varying the coefficients, etc.
 
-SKRIVESPERREEEE
+\subsubsection{Explicit shapes and limitations}
 
+Several models for the correlation function exist, however, some are less practical than others. An example given in \cite{morten} demonstrates this nicely: Hylleraas presented the following correlation function 
 
+\begin{equation}
+ f(r_{ij}) = \exp(\epsilon (r_i + r_j))\sum_k c_k(r_{ij})^{l_k} (r_i + r_j)^{m_k}(r_i - r_j)^{n_k},
+\end{equation}
+
+where all parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including almost 1100 terms. For the purpose of Quantum Monte-Carlo this is extremely overkill. 
+
+Depending on the complication of the system at hand, we need more complicated trial wave functions. However, it is important to distinguish between simply integrating a trial wave function, and performing the full diffusion calculation. As a reminder: Simple integration will not be able to tweak the distribution; what you have is what you get. Solving the diffusion problem, on the other hand, will alter the distribution from that of the trial wave function ($t = 0$) into the exact wave function by Eq.~(\ref{eq:schrodGeneralSolution2}). 
+
+With this in mind, our limitation due to the trial wave function is far less than for those who calculate simple expectation values. 
+Because of this fact, we have to balance two factors: CPU-time per cycle per walker, and total CPU-time needed to converge within acceptable results. 
+To illustrate this, imagine using a complicated trial wave function, with $K=5$ and just as many terms in $f(r_{ij})$. 
+Convergence to acceptable results is achieved after $N$ cycles using $T$ seconds to complete. 
+On the other hand, using a simple trial wave function with only one spatial term and one correlation term results in convergence after $5N$ cycles, 
+taking $T/10$ seconds to complete. It's a balance. 
+The main idea is to choose a trial wave function which overlaps enough with the exact wave function, so that convergence is reached before non-exact trial energies ruin the propagation (recall that we use an approximation to the ground state energy in Eq.~(\ref{eq:genSolTimeSteps}).
+
+A more well suited correlation function is the \textit{Padé Jastrow} function
+
+\begin{equation}
+lol 
+\end{equation}
 
 
 \section{Variational Monte-Carlo}
