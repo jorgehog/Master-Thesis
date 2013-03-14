@@ -8,15 +8,15 @@ Such random movement is referred to as a \textit{Brownian motion}, named after t
 
 The purpose of this section is to motivate the use of diffusion theory in Quantum Mechanics, and to derive the sampling rules needed in order to model Quantum Mechanical distributions by diffusion of random walkers correctly. I will be using natural units, that is $\hbar$, $m_e$, etc. are all set to unity, in order to simplify the expressions.
 
-\subsection{Stating the \schrodinger as a Diffusion Problem}
+\subsection{Stating the Schrödinger Equation as a Diffusion Problem}
 
-Consider the time-dependent \schrodinger for an abstract state $\Phi(x, t)$ with an arbitrary energy shift $E'$
+Consider the time-dependent Schrödinger Equation for an abstract state $\Phi(x, t)$ with an arbitrary energy shift $E'$
 
 \begin{equation}
  -\frac{\partial \Phi(x, t)}{i\partial t} = (\OP{H} - E')\Phi(x, t).
 \end{equation}
 
-The formal solution given a time-independent Hamiltonian is given by separation of variables in $\Phi(x, t)$ (see \cite{griffiths} for more details regarding assumptions etc.). This corresponds to using the standard time-evolution operator. Further expanding $\Phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Psi_k(x)$, yields the following solution
+The formal solution given a time-independent Hamiltonian is given by separation of variables in $\Phi(x, t)$ (see ref. \cite{griffiths} for more details regarding assumptions etc.). This corresponds to using the standard time-evolution operator. Further expanding $\Phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Psi_k(x)$, yields the following solution
 
 \begin{eqnarray}
  \Phi(x, t) &=& e^{-i(\OP{H} - E')(t-t_0)}\Phi(x, t=t_0) \label{eq:schrodGeneralSolution} \\
@@ -32,7 +32,7 @@ The real form of this equation is obtained through a Wick rotation in time ($it 
                     &=& C_0\Psi_0(x) + \sum_{k=1}^{\infty} C_k\Psi_k(x)e^{-\delta E_k\tau}, \label{eq:schrodGeneralSolution2}
 \end{eqnarray}
 
-where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the \schrodinger. 
+where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the Schrödinger Equation. 
 
 The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
 
@@ -59,7 +59,7 @@ Taking the inner product with $\bra{x}$ on both sides and inserting a complete s
 			     &\equiv& \int G(x, y; \delta\tau)\Phi(y, \tau)dy
 \end{eqnarray*}
 
-where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in \cite{leinaas}. A more detailed derivation of the Green's Function are given in \cite{abInitioMC}.
+where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in ref. \cite{leinaas}. A more detailed derivation of the Green's Function are given in ref. \cite{abInitioMC}.
 
 This is still not a practical way of solving the equations. In finding the Green's function we might as well find the solution directly. However, what we can do, is make the time steps very small and split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$:
 
@@ -83,7 +83,7 @@ and the second which represents a branching process
  G_\mathrm{B} = e^{-(\OP{V} - E_T)\delta\tau}
 \end{equation}
 
-Once a diffusion model is selected, for each cycle, the Green's functions are used to propagate the ensemble of walkers making up our distribution into the next time step. The final distributions of walkers will correspond to that of the direct solution of the \schrodinger, given that the time step is sufficiently small, and we simulate long enough. These constraints will be covered in more detail later. 
+Once a diffusion model is selected, for each cycle, the Green's functions are used to propagate the ensemble of walkers making up our distribution into the next time step. The final distributions of walkers will correspond to that of the direct solution of the Schrödinger Equation, given that the time step is sufficiently small, and we simulate long enough. These constraints will be covered in more detail later. 
 
 Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is the key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following sections.
 
@@ -98,7 +98,7 @@ Isotropic diffusion is a process in which diffusing particles sees all possible 
  \frac{\partial P(\vec r, t)}{\partial t} = D\nabla^2 P(\vec r, t) 
 \end{equation}
 
-In the Quantum Monte Carlo case, the value of the diffusion constant is $D=\frac{1}{2}$, that is, the term scaling the Laplacian in the \schrodinger. The closed form expression for the Green's function is a Gaussian distribution with variance $2D\delta t$ \cite{abInitioMC}
+In the Quantum Monte Carlo case, the value of the diffusion constant is $D=\frac{1}{2}$, that is, the term scaling the Laplacian in the Schrödinger Equation. The closed form expression for the Green's function is a Gaussian distribution with variance $2D\delta t$ \cite{abInitioMC}
 
 \begin{equation}
 \label{eq:GF_iso}
@@ -176,7 +176,7 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
  x_{i+1} = x_i + \xi + DF(x_i)\delta t,
 \end{equation}
 
-where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
+where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
 
 \section{Diffusive Equilibrium Constraints}
@@ -268,7 +268,7 @@ Derived from detailed balance, the Metroplis Algorithm is as a must-have when it
 Recall Eq.~(\ref{eq:schrodGeneralSolution})-(\ref{eq:schrodGeneralSolution2}). The initial condition, $\Phi(\vec r, t=0)$,
 is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:schrodGeneralSolution2}), the entire diffusion formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
 
-Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, I suggest reading \cite{griffiths}. For mathematically rigid derivations of concepts, see \cite{Sakurai:94}. More details regarding many-body theory can be found in \cite{Shavitt}. 
+Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, I suggest reading ref. \cite{griffiths}. For mathematically rigid derivations of concepts, see ref. \cite{Sakurai:94}. More details regarding many-body theory can be found in ref. \cite{Shavitt}. 
 
 \subsection{Many-body wave functions}
 
@@ -286,6 +286,7 @@ The easiest way of picturing the many-body wave functions is to think of electro
 In the case of \textit{Fermions}, that is, half-integer spin particles like electrons, protons, etc., the many-body wave function $\Phi_k(x)$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} consisting of elements from a single-particle basis, set up in a determinant: The \textit{Slater determinant}. The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. Bosons on the other hand, have symmetric wave functions, which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract, from here on, the focus will be on systems of fermions.
 
 \subsection{Dealing with correlations}
+\label{sec:correlations}
 
 The contributions to the sum on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are often referred to as \textit{correlation} terms. The reason  is that in many cases $\phi_n(x_i)$ are chosen to be the eigenfunctions of the non-interacting version of the system at hand, e.g. hydrogen orbitals in the case of atoms. As a result, the existence of the correlation terms, i.e. $C_k' \ne 0$ for $k>0$, follows as a direct consequence of the Coulomb interaction.
 
@@ -306,32 +307,154 @@ The strategy is now to split the trial wave function into two parts, one \textit
 
 Optimal coefficients $C_k$ can be calculated through methods such as \textit{Hartree Fock}\footnote{Hartree-Fock is roughly a basis change from the non-interacting case into a basis which is orthogonal to one-particle excitations. The exact ground state wave function should be orthogonal to all excited states, so it's a fair approximation depending on the dominance of one-particle excitations in the given system.}, genetic algorithms, brute force minimization of the energy by varying the coefficients, etc.
 
-\subsubsection{Explicit shapes and limitations}
+\subsubsection{Explicit shapes}
 
-Several models for the correlation function exist, however, some are less practical than others. An example given in \cite{morten} demonstrates this nicely: Hylleraas presented the following correlation function 
-
-\begin{equation}
- f(r_{ij}) = \exp(\epsilon (r_i + r_j))\sum_k c_k(r_{ij})^{l_k} (r_i + r_j)^{m_k}(r_i - r_j)^{n_k},
-\end{equation}
-
-where all parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including almost 1100 terms. For the purpose of Quantum Monte-Carlo this is extremely overkill. 
-
-Depending on the complication of the system at hand, we need more complicated trial wave functions. However, it is important to distinguish between simply integrating a trial wave function, and performing the full diffusion calculation. As a reminder: Simple integration will not be able to tweak the distribution; what you have is what you get. Solving the diffusion problem, on the other hand, will alter the distribution from that of the trial wave function ($t = 0$) into the exact wave function by Eq.~(\ref{eq:schrodGeneralSolution2}). 
-
-With this in mind, our limitation due to the trial wave function is far less than for those who calculate simple expectation values. 
-Because of this fact, we have to balance two factors: CPU-time per cycle per walker, and total CPU-time needed to converge within acceptable results. 
-To illustrate this, imagine using a complicated trial wave function, with $K=5$ and just as many terms in $f(r_{ij})$. 
-Convergence to acceptable results is achieved after $N$ cycles using $T$ seconds to complete. 
-On the other hand, using a simple trial wave function with only one spatial term and one correlation term results in convergence after $5N$ cycles, 
-taking $T/10$ seconds to complete. It's a balance. 
-The main idea is to choose a trial wave function which overlaps enough with the exact wave function, so that convergence is reached before non-exact trial energies ruin the propagation (recall that we use an approximation to the ground state energy in Eq.~(\ref{eq:genSolTimeSteps}).
-
-A more well suited correlation function is the \textit{Padé Jastrow} function
+Several models for the correlation function exist, however, some are less practical than others. An example given in ref. \cite{abInitioMC} demonstrates this nicely: Hylleraas presented the following correlation function 
 
 \begin{equation}
-lol 
+ f(r_{ij})_\mathrm{Hylleraas} = e^{-\frac{1}{2} (r_i + r_j)}\sum_k d_k(r_{ij})^{a_k} (r_i + r_j)^{b_k}(r_i - r_j)^{e_k},
 \end{equation}
 
+where all $k$-subscripted parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including almost 1078 terms. For the purpose of Quantum Monte-Carlo this is beyond overkill. 
+
+A more well suited correlation function is the \textit{Padé Jastrow} function (skipping some redundant indices) 
+
+\begin{eqnarray*}
+ \prod_{i<j}^Nf(r_{ij}) &=& \exp(U) \\
+         U &=&  \sum_{i<j}^N\left(\frac{\sum_k a_kr_{ij}^k}{1 + \sum_k \beta_kr_{ij}^k}\right) + \sum_i^N\left(\frac{\sum_k a'_kr_i^k}{1 + \sum_k \alpha_kr_i^k}\right).
+\end{eqnarray*}
+
+For systems where the correlations are well behaving, it is custom to drop the second term, and keep only the $k=1$ term, i.e.
+
+\begin{equation}
+ \label{eq:jastrow}
+ f(r_{ij}; \beta) = \exp\left(\frac{a_{ij} r_{ij}}{1 + \beta r_{ij}}\right),
+\end{equation}
+
+where $\beta$ is a variational parameter, and $a_{ij}$ is a spin-dependent constant tuned to obey the cusp condition from Section \ref{sec:correlations}.
+
+Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant is holding back the effectiveness of many-particle simulations. However, assuming we have a spin-independent Hamiltonian, we can split the spatial wave function is two; one part for each spin eigenvalue. A detailed derivation of this is given in the appendix of ref. \cite{QMCPHD2008}. Assuming spin-half particles we get
+
+\begin{equation}
+ \Psi_T(x_1, ..., x_N; \beta) = \Big[\sum_{k=0}^K C_k\tilde\Phi_k(x_1, ..., x_{\frac{N}{2}})\tilde\Phi_k(x_{\frac{N}{2}-1}, ..., x_{N})\Big]\prod_{i<j}^Nf(r_{ij}; \beta).
+\end{equation}
+
+Since the particles are identical, we are free to say that the first half are spin up, and the second spin down, hence the splitting as above. For simplicity, the spin up determinant will from here on be labeled $D^\uparrow$, and the spin down one $D^\downarrow$. Stitching everything together yields the following explicit shape for a spin-independent Hamiltonian using a one-parameter Padé Jastrow function
+
+\begin{equation}
+\label{eq:MultiDeterminantTWF}
+ \Psi_T(x_1, ..., x_N; \beta) = \sum_{k=0}^K C_kD^\uparrow_kD^\downarrow_k\prod_{i<j}^Nf(r_{ij}; \beta).
+\end{equation}
+
+This shape is referred to as a \textit{Multi-determinant} trial wave function. 
+
+\subsubsection{Limitations}
+
+Depending on the complexity of the system at hand, we need more complicated trial wave functions. However, it is important to distinguish between simply integrating a trial wave function, and performing the full diffusion calculation. As a reminder: Simple integration will not be able to tweak the distribution; what you have is what you get. Solving the diffusion problem, on the other hand, will alter the distribution from that of the trial wave function ($t = 0$) into a distribution closer to the exact wave function by Eq.~(\ref{eq:schrodGeneralSolution2}). 
+
+Because of this fact, our limitations due to the trial wave function is far less than what is the case of standard Monte-Carlo integration. A heavier trial wave function might convergence faster, but at the expense of being more CPU-intensive. This means that we are in a position to trade CPU-time per walker for convergence time. For systems of many particles, CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time, i.e., the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
+
+In the case of well-behaving systems, a single determinant converges rapidly enough. This simplicity opens up the possibility of simulating large systems efficiently.
+
+\subsection{Calculating Expectation Values}
+
+
+
+The expectation value of an operator $\OP{O}$ is sampled through \textit{local} values, $O_L(x)$
+
+\begin{eqnarray}
+ \bra{\Psi_T}\OP{O}\ket{\Psi_T} &=& \int \Psi_T(x)^\ast \OP{O} \Psi_T(x)\mathrm{d}x \nonumber\\
+                                &=& \int |\Psi_T|^2\left(\frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)\right)\mathrm{d}x \nonumber\\
+                                &=& \int |\Psi_T|^2 O_L(x)\mathrm{d}x \\
+                         O_L(x) &=& \frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)           
+\end{eqnarray}
+
+Discretizing the integral yields
+
+\begin{equation}
+ \bra{\Psi_T}\OP{O}\ket{\Psi_T} = \frac{1}{n}\sum_{i=1}^n O_L(x_i),
+\end{equation}
+
+where $x_i$ is a random variable following the distribution of the trial wave function.
+
+In the case of the energy estimation, this means that once our walkers hit equilibrium, we can start sampling local values based on their configurations $x_i$. In the case of energies, we get
+
+\begin{equation}
+ \langle E \rangle = \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
+\end{equation}
+
+\subsection{Estimating the Error}
+
+variance blah blah, blocking blah blah
+
+\subsection{Normalization}
+
+Every explicit calculation using the trial wave function in Quantum Monte-Carlo involves taking ratios. Ratios implies cancellation of the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the Quantum Force in the Fokker-Planck equation, and the sampling of local values describes in the previous section demonstrates exactly this; everything involves ratios.
+
+Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions. Each of these single particle normalization factors serve as a constant multiplying a row in the Slater determinant. From mathematics we know that multiplying a row in a determinant with a constant is the same as multiplying the determinant by the constant, hence we can skip all normalization constants in all the basis expressions as well.
+
+
+\subsection{The Variational Principle}
+
+The $K=1$ single-determinant wave function is a very simple approximation. In order to optimize the overlap with the exact wave function, variational parameters are introduced in the trial wave function. 
+Looking at Eq.~(\ref{eq:jastrow}), we already have $\beta$. Another variational parameter, $\alpha$, is introduced in the spatial part: 
+
+\begin{equation}
+\label{eq:singleDeterminantTWF}
+ \Psi_T(x_1, ..., x_N; \alpha, \beta) = D^\uparrow(\alpha)D^\downarrow(\alpha)\prod_{i<j}^Nf(r_{ij}; \beta).
+\end{equation}
+
+All practical ways of determining the optimal values of the variational parameters originate from the same powerful principle: The Variational Principle. The easiest way of demonstrating the principle is to evaluate the expectation value of the energy, using an approach similar to what used in Eq.~(\ref{eq:schrodGeneralSolution2})
+
+\begin{eqnarray*}
+ E_0 &=& \bra{\Psi_0}\OP{H}\ket{\Psi_0}  \\
+ E   &=& \bra{\Psi_T(\alpha, \beta)}\OP{H}\ket{\Psi_T(\alpha, \beta)}\\
+     &=& \sum_{kl} C_k^\ast C_l \underbrace{\bra{\Psi_k}\OP{H}\ket{\Psi_l}}_{E_k\delta_{kl}} \\
+     &=& \sum_k |C_k|^2E_k% = \sum_k |C_k^2| (E_0 + \delta E_k)
+\end{eqnarray*}
+
+Using further that $E_0$ is the lowest energy eigenvalue, we can, just as done with the time propagator, introduce $E_k = E_0 + \delta E_k$ to simplify the arguments
+
+\begin{eqnarray*}
+ E   &=& \sum_k |C_k^2| (E_0 + \delta E_k) \\
+     &=& E_0 \underbrace{\sum_k |C_k^2|}_{1} + \underbrace{\sum_k |C_k|^2\delta E_k}_{\ge 0} \\
+     &\ge& E_0
+\end{eqnarray*}
+
+The conclusion is stunning: No matter how we choose our trial wave function, we will never undershoot the exact ground state energy. This basically means that the problem of choosing variational parameters boils down to a minimization problem in the parameters space (we assume no maximum exist for finite parameter values)
+
+\begin{equation}
+\label{eq:varMin}
+\frac{\partial \langle E\rangle}{\partial \alpha_i} = \frac{\partial}{\partial \alpha_i}\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)} = 0
+\end{equation}
+
+\subsection{FINNE OPTINMALE PARAMMETERS LOL}
+
+In order to work with Eq.~(\ref{eq:varMin}) in practice, we need to rewrite it in terms of known values. Since our wave function is dependent on the variational parameter, we need to include the expression for the normalization factor before we can expand the expression
+
+\newcommand{\Norm}{\braket{\Psi_T(\alpha_i)}{\Psi_T(\alpha_i)}}
+
+\begin{eqnarray*}
+ \frac{\partial \langle E\rangle}{\partial \alpha_i}  &=& \frac{\partial}{\partial \alpha_i} \frac{\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}}{\Norm} \\
+ &=& \frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\OP{H}\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2}\Norm \\
+ &-& \bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}\frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\right)\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\left(\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2},\\
+\end{eqnarray*}
+
+where the product and division rules for derivatives have been applied. The Hamiltonian does not depend on the variational parameters, and hence both terms in the first expansion is equal. Cleaning up the expression yields
+
+\begin{eqnarray}
+ \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
+  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right)
+\end{eqnarray}
+
+Using this expression for the \textit{variational gradient} means we can calculate the derivatives exactly the same way we calculate the energy, and use these derivatives to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
+
+This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
+The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. 
+
+\subsubsection{Adaptive Stochastic Gradient Descent}
+
+Oh the horror..
 
 \section{Variational Monte-Carlo}
 \label{sec:VMC}
