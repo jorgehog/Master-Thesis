@@ -459,28 +459,33 @@ The expectation value of an operator $\OP{O}$ is sampled through \textit{local} 
                          O_L(x) &=& \frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)           
 \end{eqnarray}
 
-Discretizing the integral yields
+Discretizing the integral (and thus introducing an error) yields 
 
 \begin{equation}
- \bra{\Psi_T}\OP{O}\ket{\Psi_T} = \frac{1}{n}\sum_{i=1}^n O_L(x_i),
+ \bra{\Psi_T}\OP{O}\ket{\Psi_T} \equiv \Exp{O} \simeq \frac{1}{n}\sum_{i=1}^n O_L(x_i) \equiv \overline{O},
 \end{equation}
 
-where $x_i$ is a random variable following the distribution of the trial wave function.
+where $x_i$ is a random variable following the distribution of the trial wave function. The \textit{ensemble average},  $\Exp{O}$ will, given ergodicity, equal the estimated average $\overline{O}$ in the limit $n\rightarrow\infty$, i.e.
+
+\begin{equation}
+ \label{eq:MeanVStrueExp}
+ \Exp{O} = \lim_{n\to\infty} \overline{O} = \lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^n O_L(x_i)
+\end{equation}
+
 
 In the case of the energy estimation, this means that once our walkers hit equilibrium, we can start sampling local values based on their configurations $x_i$. In the case of energies, we get
 
 \begin{equation}
- \langle E \rangle = \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
+ \langle E \rangle \simeq \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
 \end{equation}
 
 \subsection{Estimating the Statistical Error}
 
-As with any statistical result, appropriate statistical errors needs to be included for it to be taken seriously. Systematic errors, that is, errors introduced due to limitations in the model, will be discussed in each method's respective section.
+As with any statistical result, appropriate statistical errors needs to be included for it to be taken seriously. Systematic errors, that is, errors introduced due to limitations in the model, will be discussed in each method's respective section. Statistical errors, that is, the  deviation from the true ensemble average due to the fact that we can never fulfill the equality in Eq.~(\ref{eq:MeanVStrueExp}), can be estimated using several methods, some of which are \textit{naive} in the sense that they assume the dataset to be completely \textit{uncorrelated}. 
 
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Exp}[1]{\left< #1 \right>}
 
-\subsubsection{The variance}
+
+\subsubsection{The Variance and Standard Deviates}
 
 Given a set of samplings, e.g. local energies, the variance is a measure of their spread from the true mean value
 
@@ -488,7 +493,8 @@ Given a set of samplings, e.g. local energies, the variance is a measure of thei
 \label{eq:variance}
 \Var(E) &=& \Exp{(E-\Exp{E})^2} \nonumber\\
         &=& \Exp{E^2} - 2\underbrace{\Exp{E\Exp{E}}}_{\Exp{E}\Exp{E}} + \Exp{E}^2 \nonumber\\
-        &=& \Exp{E^2} - \Exp{E}^2
+        &=& \Exp{E^2} - \Exp{E}^2 \\
+        &\simeq& \overline{E^2} - \overline{E}^2
 \end{eqnarray}
 
 In the case of having the exact wave function, i.e $\ket{\Psi_T} = \ket{\Psi_0}$, the variance becomes zero:
@@ -500,31 +506,87 @@ In the case of having the exact wave function, i.e $\ket{\Psi_T} = \ket{\Psi_0}$
 		        &=& 0
 \end{eqnarray*}
 
-The variance is in other words an excellent measure of how good a fit different trial wave functions are to the system. Note however, a common misconception is to use the numerical value of the variance to compare \textit{different} systems; for instance, if system $A$ has a variance equal to half the one of system $B$, one would easily conclude that system $A$ has the best fit. This is not true. The variance has units (in the case of local energies) energy squared, and will thus scale accordingly. One can only safely use the variance as a direct measure locally in each specific system, e.g. Beryllium simulations.
+The variance is in other words an excellent measure of how good a fit different trial wave functions are to the system. Note however, a common misconception is to use the numerical value of the variance to compare \textit{different} systems; for instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fit. This is not true. The variance has units (in the case of local energies) energy squared, and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g. Beryllium simulations.
 
-Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. 
+Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. The \textit{standard deviation}, $\sigma$, is the square root of the variance,
 
-\subsubsection{The standard deviation}
+\begin{equation}
+\label{eq:stdNaive}
+ \sigma^2(x) = \Var(x),
+\end{equation}
 
-The standard deviation is the square root of the variance, and has hence a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean.
 
-Using the simple variance from Eq.~(\ref{eq:variance}) does not bring everything to the table. Correlations between samplings due to the fact that numerical experiments are never truly statistically independent are missing. A measure of exactly this is the \textit{covariance}
+and has hence a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean $\Exp{E}$.
 
-\newcommand{\Cov}{\mathrm{Cov}}
+\subsubsection{The Covariance and correlated samples}
+
+It was briefly mentioned in the introduction that certain error estimation techniques was too naive in case of correlated samples. Two samples, $x$, $y$, are said to be correlated if their \textit{covariance}, $\Cov(x, y)$, is non-zero
 
 \begin{eqnarray}
 \label{eq:covariance}
- \Cov(x, y) &=& \Exp{(x - \Exp{x})(y - \Exp{y})} \nonumber\\
+ \Cov(x, y) &\equiv& \Exp{(x - \Exp{x})(y - \Exp{y})} \nonumber\\
             &=& \Exp{xy - x\Exp{y} - \Exp{x}y + \Exp{x}\Exp{y}} \nonumber\\
             &=& \Exp{xy} - \Exp{x\Exp{y}} \underbrace{-\Exp{y\Exp{x}} + \Exp{\Exp{x}\Exp{y}}}_{0} \nonumber\\
-            &=& \Exp{xy} - \Exp{x}\Exp{y}
+            &=& \Exp{xy} - \Exp{x}\Exp{y}.
 \end{eqnarray}
 
-For statistically independent samples, $\Exp{xy} = \Exp{x}\Exp{y}$, which results in a zero covariance by Eq.~(\ref{eq:covariance}).
+Notice that $\Cov(x,x) = \Var(x)$. Using this definition, whether of not we have correlated samples boils down to whether or not $\Exp{xy} = \Exp{x}\Exp{y}$. 
+
+The consequence of ignoring correlations is an error estimate which is generally less than the true error; correlated samplings are more clustered, i.e. less spread, due to previous samplings' influence on the value of the current sample. Denoting the true standard deviation as $\sigma_c$, the above discussion can be distilled to
+
+\begin{equation}
+ \label{eq:trueVsNaiveSTD}
+ \sigma_c(x) \ge \sigma(x),
+\end{equation}
+
+where $\sigma$ is the deviation from Eq.~(\ref{eq:stdNaive}). 
 
 
+\subsubsection{The Deviate from the Exact Mean}
 
+There is an important difference between the deviate from the exact mean, and the deviate of a single sample from it's combined mean, i.e.
 
+\begin{equation}
+ \sigma(\overline{x}) \ne \sigma(x).
+\end{equation}
+
+Imagine doing a number of simulations, each resulting in a unique $\overline{x}$, the quantity of interest is not the deviation within a single simulation, but the deviation between all the simulations.
+
+\begin{eqnarray}
+ m &\equiv& \overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \\
+ \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2
+\end{eqnarray}
+
+Combining the above equations yields
+
+\begin{eqnarray}
+\label{eq:realErrorCovariance1}
+  \sigma^2(m) &=& \Exp{\frac{1}{n^2}\left[\sum_{i=1}^nx_i\right]^2} - \Exp{\frac{1}{n}\sum_{i=1}^n x_i}^2 \nonumber\\
+              &=& \frac{1}{n^2}\left( \Exp{\sum_{i=1}^n x_i\sum_{j=1}^n x_j} - \Exp{\sum_{i=1}^n x_i}\Exp{\sum_{j=1}^n x_j}  \right) \nonumber\\
+              &=& \frac{1}{n^2}\sum_{i,j=1}^n \Exp{x_ix_j} - \Exp{x_i}\Exp{x_j} \nonumber\\
+              &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j)
+\end{eqnarray}
+
+This result is important; the true error is given in terms of the covariance, and is, as discussed previously, only equal to the sample variance if our samples are uncorrelated. Going back to the definition of covariance in Eq.~(\ref{eq:covariance}), we see that in order to calculate the covariance as in Eq.~(\ref{eq:realErrorCovariance1}), we need to know the true mean $\Exp{x_i}$. Using $m=\overline{x}$ as an approximation to the true mean yields   
+
+\begin{eqnarray}
+ \Cov(x_i, x_j) &\equiv& \Exp{(x_i - \Exp{x_i})(x_j - \Exp{x_j})} \nonumber\\
+                &\simeq& \Exp{(x_i - m)(x_j - m)} \nonumber\\
+                &\simeq& \frac{1}{n^2}\sum_{k,l=1}^n (x_k-m)(x_l-m) \\
+                &\equiv& \frac{1}{n}\Cov(x)
+\end{eqnarray}
+
+Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
+
+\begin{eqnarray}
+\label{eq:realErrorCovariance2}
+   \sigma^2(m) &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j) \nonumber\\
+               &=& \frac{1}{n^2}\sum_{i,j=1}^n \frac{1}{n}\Cov(x) \nonumber\\
+               &=& \frac{1}{n^3}\Cov(x)\underbrace{\sum_{i,j=1}^n}_{n^2}  \nonumber\\
+               &=& \frac{1}{n} \Cov(x),
+\end{eqnarray}
+
+which serves as a practical way to calculate the total error, however, estimating the covariance is numerically expensive. One can counter the correlations by introducing a \textit{auto-correlation time} $\tau$, as a measure of the separation in samples necessary in order to achieve truly uncorrelated samples, e.g. only sample $x_i$ every $100$'th iteration.  
 
 \subsubsection{Blocking}
 
