@@ -179,6 +179,35 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
 
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
+\section{The Process of Branching}
+
+The process of branching of Quantum Monte-Carlo is simulated by the creation or destruction of walkers with probability equal to that of the Green's function in Eq.~(\ref{eq:GB}) \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is
+
+\begin{eqnarray}
+ G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau} \\
+ G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau},
+\end{eqnarray}
+
+where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). 
+
+As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. If the value is less than one, we have ``deaths'', i.e. the walker is removed from the ensemble. ``Births'' occur when the Green's function is greater than one; the walker is replicated.
+
+The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
+
+\begin{equation}
+ \overline{G}_B = \mathrm{floor}\left(G_B + a\right),
+\end{equation}
+
+where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overline{G}_B = G_B + 1$ is then equal to $\left[G_B - \mathrm{floor}(G_B)\right]$ as required. The three different scenarios which arise is
+
+\begin{itemize}
+ \item $\overline{G}_B = 1$ : No branching, proceed main loop.
+ \item $\overline{G}_B = 0$ : The current walker is to be removed from the current ensemble.
+ \item $\overline{G}_B > 1$ : Make $\overline{G}_B - 1$ replicas of the current walker.
+\end{itemize}
+
+There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up dead walkers and stabilizing the population across different nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}.
+
 
 \section{Diffusive Equilibrium Constraints}
 
@@ -446,9 +475,10 @@ In the case of well-behaving systems, a single determinant converges rapidly eno
  \Psi_T(x_1, ..., x_N; \alpha, \beta) = D^\uparrow(\alpha)D^\downarrow(\alpha)\prod_{i<j}^Nf(r_{ij}; \beta).
 \end{equation}
 
-Determining optimal values for the variational parameters will be discussed in Sections \ref{sec:VarPrince} and \ref{sec:selectingOptVarPar}.
+Determining optimal values for the variational parameters will be discussed in Section \ref{sec:selectingOptVarPar}.
 
 \subsection{Calculating Expectation Values}
+\label{sec:calcExpVals}
 
 The expectation value of an operator $\OP{O}$ is sampled through \textit{local} values, $O_L(x)$
 
@@ -479,13 +509,85 @@ In the case of the energy estimation, this means that once our walkers hit equil
  \langle E \rangle \simeq \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
 \end{equation}
 
-\subsection{Estimating the Statistical Error}
+\subsection{Normalization}
+
+Every explicit calculation using the trial wave function in Quantum Monte-Carlo involves taking ratios. Ratios implies cancellation of the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the Quantum Force in the Fokker-Planck equation, and the sampling of local values describes in the previous section demonstrates exactly this; everything involves ratios.
+
+Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}), can be taken outside the sum over permutations, and will hence cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed (note: Single determinant only).
+
+
+\subsection{Selecting Optimal Variational Parameters}
+\label{sec:selectingOptVarPar}
+
+All practical ways of determining the optimal values of the variational parameters originate from the same powerful principle: \textit{The Variational Principle}. The easiest way of demonstrating the principle is to evaluate the expectation value of the energy, using an approach similar to what used in Eq.~(\ref{eq:schrodGeneralSolution2})
+
+\begin{eqnarray*}
+ E_0 &=& \bra{\Psi_0}\OP{H}\ket{\Psi_0}  \\
+ E   &=& \bra{\Psi_T(\alpha, \beta)}\OP{H}\ket{\Psi_T(\alpha, \beta)}\\
+     &=& \sum_{kl} C_k^\ast C_l \underbrace{\bra{\Psi_k}\OP{H}\ket{\Psi_l}}_{E_k\delta_{kl}} \\
+     &=& \sum_k |C_k|^2E_k
+\end{eqnarray*}
+
+Using further that $E_0$ is the lowest energy eigenvalue, we can, just as done with the time propagator, introduce $E_k = E_0 + \delta E_k$ to simplify the arguments
+
+\begin{eqnarray*}
+ E   &=& \sum_k |C_k^2| (E_0 + \delta E_k) \\
+     &=& E_0 \underbrace{\sum_k |C_k^2|}_{1} + \underbrace{\sum_k |C_k|^2\delta E_k}_{\ge 0} \\
+     &\ge& E_0
+\end{eqnarray*}
+
+The conclusion is stunning: No matter how we choose our trial wave function, we will never undershoot the exact ground state energy. This basically means that the problem of choosing variational parameters boils down to a minimization problem in the parameters space (we assume no maximum exist for finite parameter values)
+
+\begin{equation}
+\label{eq:varMin}
+\frac{\partial \langle E\rangle}{\partial \alpha_i} = \frac{\partial}{\partial \alpha_i}\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)} = 0
+\end{equation}
+
+In order to work with Eq.~(\ref{eq:varMin}) in practice, we need to rewrite it in terms of known values. Since our wave function is dependent on the variational parameter, we need to include the expression for the normalization factor before we can expand the expression
+
+\newcommand{\Norm}{\braket{\Psi_T(\alpha_i)}{\Psi_T(\alpha_i)}}
+
+\begin{eqnarray*}
+ \frac{\partial \langle E\rangle}{\partial \alpha_i}  &=& \frac{\partial}{\partial \alpha_i} \frac{\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}}{\Norm} \\
+ &=& \frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\OP{H}\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2}\Norm \\
+ &-& \bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}\frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\right)\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\left(\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2},\\
+\end{eqnarray*}
+
+where the product and division rules for derivatives have been applied. The Hamiltonian does not depend on the variational parameters, and hence both terms in the first expansion is equal. Cleaning up the expression yields
+
+\begin{eqnarray}
+ \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
+  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right)
+\end{eqnarray}
+
+Using this expression for the \textit{variational gradient} means we can calculate the derivatives exactly the same way we calculate the energy, and use these derivatives to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
+
+This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
+The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. 
+
+\section{Adaptive Stochastic Gradient Descent}
+
+Oh the horror..
+
+
+
+
+
+
+\section{Variational Monte-Carlo}
+\label{sec:VMC}
+
+Once a given 
+
+\section{Diffusion Monte-Carlo}
+\label{sec:DMC}
+
+
+\section{Estimating the Statistical Error}
 
 As with any statistical result, appropriate statistical errors needs to be included for it to be taken seriously. Systematic errors, that is, errors introduced due to limitations in the model, will be discussed in each method's respective section. Statistical errors, that is, the  deviation from the true ensemble average due to the fact that we can never fulfill the equality in Eq.~(\ref{eq:MeanVStrueExp}), can be estimated using several methods, some of which are \textit{naive} in the sense that they assume the dataset to be completely \textit{uncorrelated}. 
 
-
-
-\subsubsection{The Variance and Standard Deviates}
+\subsection{The Variance and Standard Deviates}
 
 Given a set of samplings, e.g. local energies, the variance is a measure of their spread from the true mean value
 
@@ -518,7 +620,7 @@ Another misconception is that the variance is a direct numerical measure of the 
 
 and has hence a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean $\Exp{E}$.
 
-\subsubsection{The Covariance and correlated samples}
+\subsection{The Covariance and correlated samples}
 
 It was briefly mentioned in the introduction that certain error estimation techniques was too naive in case of correlated samples. Two samples, $x$, $y$, are said to be correlated if their \textit{covariance}, $\Cov(x, y)$, is non-zero
 
@@ -542,7 +644,7 @@ The consequence of ignoring correlations is an error estimate which is generally
 where $\sigma$ is the deviation from Eq.~(\ref{eq:stdNaive}). 
 
 
-\subsubsection{The Deviate from the Exact Mean}
+\subsection{The Deviate from the Exact Mean}
 
 There is an important difference between the deviate from the exact mean, and the deviate of a single sample from it's combined mean, i.e.
 
@@ -553,8 +655,8 @@ There is an important difference between the deviate from the exact mean, and th
 Imagine doing a number of simulations, each resulting in a unique $\overline{x}$, the quantity of interest is not the deviation within a single simulation, but the deviation between all the simulations.
 
 \begin{eqnarray}
- m &\equiv& \overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \\
- \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2
+ m &\equiv& \overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \label{eq:meanx}\\
+ \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2 \label{eq:sigma_m}
 \end{eqnarray}
 
 Combining the above equations yields
@@ -581,89 +683,69 @@ Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
 \begin{eqnarray}
 \label{eq:realErrorCovariance2}
    \sigma^2(m) &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j) \nonumber\\
-               &=& \frac{1}{n^2}\sum_{i,j=1}^n \frac{1}{n}\Cov(x) \nonumber\\
+               &\simeq& \frac{1}{n^2}\sum_{i,j=1}^n \frac{1}{n}\Cov(x) \nonumber\\
                &=& \frac{1}{n^3}\Cov(x)\underbrace{\sum_{i,j=1}^n}_{n^2}  \nonumber\\
                &=& \frac{1}{n} \Cov(x),
 \end{eqnarray}
 
-which serves as a practical way to calculate the total error, however, estimating the covariance is numerically expensive. One can counter the correlations by introducing a \textit{auto-correlation time} $\tau$, as a measure of the separation in samples necessary in order to achieve truly uncorrelated samples, e.g. only sample $x_i$ every $100$'th iteration.  
+which serves as a practical way of calculating the full error (including correlations). 
 
-\subsubsection{Blocking}
-
-\subsubsection{Sampling Variance vs. ...}
-n-1 not n?
-
-\subsection{Normalization}
-
-Every explicit calculation using the trial wave function in Quantum Monte-Carlo involves taking ratios. Ratios implies cancellation of the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the Quantum Force in the Fokker-Planck equation, and the sampling of local values describes in the previous section demonstrates exactly this; everything involves ratios.
-
-Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}), can be taken outside the sum over permutations, and will hence cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed.
-
-
-\subsection{The Variational Principle}
-\label{sec:VarPrince}
-
-All practical ways of determining the optimal values of the variational parameters originate from the same powerful principle: The Variational Principle. The easiest way of demonstrating the principle is to evaluate the expectation value of the energy, using an approach similar to what used in Eq.~(\ref{eq:schrodGeneralSolution2})
-
-\begin{eqnarray*}
- E_0 &=& \bra{\Psi_0}\OP{H}\ket{\Psi_0}  \\
- E   &=& \bra{\Psi_T(\alpha, \beta)}\OP{H}\ket{\Psi_T(\alpha, \beta)}\\
-     &=& \sum_{kl} C_k^\ast C_l \underbrace{\bra{\Psi_k}\OP{H}\ket{\Psi_l}}_{E_k\delta_{kl}} \\
-     &=& \sum_k |C_k|^2E_k
-\end{eqnarray*}
-
-Using further that $E_0$ is the lowest energy eigenvalue, we can, just as done with the time propagator, introduce $E_k = E_0 + \delta E_k$ to simplify the arguments
-
-\begin{eqnarray*}
- E   &=& \sum_k |C_k^2| (E_0 + \delta E_k) \\
-     &=& E_0 \underbrace{\sum_k |C_k^2|}_{1} + \underbrace{\sum_k |C_k|^2\delta E_k}_{\ge 0} \\
-     &\ge& E_0
-\end{eqnarray*}
-
-The conclusion is stunning: No matter how we choose our trial wave function, we will never undershoot the exact ground state energy. This basically means that the problem of choosing variational parameters boils down to a minimization problem in the parameters space (we assume no maximum exist for finite parameter values)
+Explicitly computing the covariance is rarely done in Monte-Carlo simulations; if the sample size is large, it is extremely expensive. A variety of alternative methods to counter the correlations are available, the simplest of which is to define a \textit{correlation length}, $\tau$\footnote{This parameter is often referred to as the \textit{auto-correlation time} in the literature.}, which defines an interval at which points from the sampling sets are used for actual averaging. In other words, only the points $x_0, x_{\tau}, ..., x_{n\tau}$ are used in the calculation of $\overline{x}$
 
 \begin{equation}
-\label{eq:varMin}
-\frac{\partial \langle E\rangle}{\partial \alpha_i} = \frac{\partial}{\partial \alpha_i}\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)} = 0
+ \overline{x} = \frac{1}{n}\sum_{k=0}^n x_{k\cdot\tau}
 \end{equation}
 
-\subsection{Selecting Optimal Variational Parameters}
-\label{sec:selectingOptVarPar}
+This basically means that we need $n\tau$ samples in order to get the same magnitude of samples to our average as in Eq.~(\ref{eq:meanx}); the \textit{effective sample size} becomes $n_\mathrm{eff} = n_\mathrm{tot}/\tau$. $\tau = 1$ defines the uncorrelated case. For details regarding the derivations of $\tau$ based on the covariance, see ref. \cite{flyvbjerg:461} and ref. \cite{morten}.
 
-In order to work with Eq.~(\ref{eq:varMin}) in practice, we need to rewrite it in terms of known values. Since our wave function is dependent on the variational parameter, we need to include the expression for the normalization factor before we can expand the expression
+\subsection{Blocking}
 
-\newcommand{\Norm}{\braket{\Psi_T(\alpha_i)}{\Psi_T(\alpha_i)}}
+Introducing correlation lengths in the system solver is not an efficient option. Neither is calculating the covariance of billions of data points. However, the error is not a value vital to the simulation process, i.e. you do not need to know the error at any stage during the sampling. This means that we can post process the error calculation (given that we store the data sets).
 
-\begin{eqnarray*}
- \frac{\partial \langle E\rangle}{\partial \alpha_i}  &=& \frac{\partial}{\partial \alpha_i} \frac{\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}}{\Norm} \\
- &=& \frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\OP{H}\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2}\Norm \\
- &-& \bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}\frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\right)\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\left(\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2},\\
-\end{eqnarray*}
+An efficient algorithm for calculating the error of correlated data is \textit{blocking}. This method is described in high detail in ref. \cite{flyvbjerg:461}, however, details aside, the idea itself is quite intuitive: Given a data set of $N$ samples from a single Monte-Carlo simulation, imagine dividing the dataset into \textit{blocks} of $n$ samples, that is, blocks of size  $n_b=N/n$. The error $\sigma_n$ in each block will increase as $n$ decrease, (see Eq.~(\ref{eq:realErrorCovariance2}))
 
-where the product and division rules for derivatives have been applied. The Hamiltonian does not depend on the variational parameters, and hence both terms in the first expansion is equal. Cleaning up the expression yields
+\begin{equation}
+ \sigma_n \propto \frac{1}{\sqrt{n}}
+\end{equation}
+
+
+However, treating each block as an individual simulation, we have $n_b$ averages $m_n$ that we can use to calculate the total error in Eq.~(\ref{eq:sigma_m}), that is, estimate the covariance
 
 \begin{eqnarray}
- \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
-  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right)
+  \overline{m_n^r} &\equiv& \frac{1}{n_b}\sum_{k=1}^{n_b} m_n^r \\
+\nonumber\\
+  \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2 \nonumber\\
+              &\simeq& \overline{m_n^2} - (\overline{m_n})^2 \label{eq:blockingError}
 \end{eqnarray}
 
-Using this expression for the \textit{variational gradient} means we can calculate the derivatives exactly the same way we calculate the energy, and use these derivatives to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
+The approximation should hold for a range of different block sizes, however, just as there is no a priori way of telling the correlation length, there is no a priori way of telling how many blocks is needed. What we do know however, is that if the system is correlated, there should be a range of different block sizes which fulfill Eq.~(\ref{eq:blockingError}) to reasonable precision. The result of a blocking analysis is therefore a series of ($n$, $\sigma(m)$) pairs. Plotting these pairs should in light of previous arguments result in a increasing curve which stabilizes over a certain span of block sizes. This plateau will then serve as a reasonable approximation to the covariance. See Fig. \ref{FIG:BlockingExamples} for a demonstration of the blocking technique.
 
-This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
-The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. 
-
-\subsubsection{Adaptive Stochastic Gradient Descent}
-
-Oh the horror..
-
-\section{Variational Monte-Carlo}
-\label{sec:VMC}
-
+\begin{figure}
+\label{FIG:BlockingExamples}
+ \begin{center}
+  \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleUncorr.png}}
+  \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleCorr.png}} 
+  \caption{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm{d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. On the right we have the \textit{VMC} result (see Section \ref{sec:VMC}) of a 12-particle Quantum Dot system. We clearly see the plateau discussed in the blocking section, resulting in a total error of $\sim 6\cdot 10^{-4}$.}
+ \end{center}
+\end{figure}
 
 
-\section{Diffusion Monte-Carlo}
-\label{sec:DMC}
+\subsection{Variance Estimators}
 
+The standard intuitive variance estimator given by
 
+\begin{equation}
+\label{eq:varBias}
+ \sigma^2(x) \simeq \frac{1}{n}\sum_{i=1}^n (x_i - \overline{x})^2 = \left(\frac{1}{n}\sum_{i=1}^n x_i^2\right) - \overline{x}^2
+\end{equation}
+
+is just an example of a variance estimator. A more precise estimator is 
+
+\begin{equation}
+\label{eq:varUnbias}
+ \sigma^2(x) \simeq \frac{1}{n-1}\sum_{i=1}^n (x_i - \overline{x})^2 = \left(\frac{1}{n-1}\sum_{i=1}^n x_i^2\right) - \frac{n}{n-1}\overline{x}^2
+\end{equation}
+
+which is only noticeably different from Eq.~(\ref{eq:varBias}) when the sample size gets small, as in blocking analysis. It is therefore standard to use Eq.~(\ref{eq:varUnbias}) for blocking errors.
 
 
