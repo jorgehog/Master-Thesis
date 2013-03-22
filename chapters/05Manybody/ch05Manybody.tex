@@ -179,35 +179,6 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
 
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
-\section{The Process of Branching}
-
-The process of branching of Quantum Monte-Carlo is simulated by the creation or destruction of walkers with probability equal to that of the Green's function in Eq.~(\ref{eq:GB}) \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is
-
-\begin{eqnarray}
- G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau} \\
- G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau},
-\end{eqnarray}
-
-where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). 
-
-As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. If the value is less than one, we have ``deaths'', i.e. the walker is removed from the ensemble. ``Births'' occur when the Green's function is greater than one; the walker is replicated.
-
-The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
-
-\begin{equation}
- \overline{G}_B = \mathrm{floor}\left(G_B + a\right),
-\end{equation}
-
-where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overline{G}_B = G_B + 1$ is then equal to $\left[G_B - \mathrm{floor}(G_B)\right]$ as required. The three different scenarios which arise is
-
-\begin{itemize}
- \item $\overline{G}_B = 1$ : No branching, proceed main loop.
- \item $\overline{G}_B = 0$ : The current walker is to be removed from the current ensemble.
- \item $\overline{G}_B > 1$ : Make $\overline{G}_B - 1$ replicas of the current walker.
-\end{itemize}
-
-There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up dead walkers and stabilizing the population across different nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}.
-
 
 \section{Diffusive Equilibrium Constraints}
 
@@ -292,6 +263,59 @@ If we on the other hand use the Fokker-Planck equation, we will not get a cancel
 \end{equation}
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, we have methods such as the \textit{Ising Model} which greatly benefit from these rules \cite{morten}.
+
+A chart flow describing the implementation of the Metropolis algorithm and the diffusion process in general is given in Fig. \ref{fig:diffFlowChart}.
+
+\begin{figure}
+\label{fig:diffFlowChart}
+ \begin{center}
+  \includegraphics[scale=0.65]{../Graphics/DiffusionUML.pdf}
+  \caption{Flow chart for iterating a walker through a single time step, i.e. simulation the application of the Green's function from Eq.~(\ref{eq:GDiff}) using the Metropolis algorithm. New positions are suggested according to the chosen diffusion model.}
+ \end{center}
+\end{figure}
+\clearpage
+
+\section{The Process of Branching}
+\label{sec:branching}
+
+The process of branching of Quantum Monte-Carlo is simulated by the creation or destruction of walkers with probability equal to that of the Green's function in Eq.~(\ref{eq:GB}) \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is
+
+\begin{eqnarray}
+ G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau} \\
+ G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau},
+\end{eqnarray}
+
+where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). 
+
+As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. If the value is less than one, we have ``deaths'', i.e. the walker is removed from the ensemble. ``Births'' occur when the Green's function is greater than one; the walker is replicated.
+
+The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
+
+\begin{equation}
+\label{eq:gbMean}
+ \overline{G}_B = \mathrm{floor}\left(G_B + a\right),
+\end{equation}
+
+where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overline{G}_B = G_B + 1$ is then equal to $\left[G_B - \mathrm{floor}(G_B)\right]$ as required. The three different scenarios which arise is
+
+\begin{itemize}
+ \item $\overline{G}_B = 1$ : No branching, proceed main loop.
+ \item $\overline{G}_B = 0$ : The current walker is to be removed from the current ensemble.
+ \item $\overline{G}_B > 1$ : Make $\overline{G}_B - 1$ replicas of the current walker.
+\end{itemize}
+
+This process is demonstrated in Fig. \ref{fig:branching}.
+
+There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up dead walkers and stabilizing the population across different nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}.
+
+\begin{figure}
+\label{fig:branching}
+ \begin{center}
+  \includegraphics[scale=0.5]{../Graphics/branching.pdf}
+  \caption{Branching illustrated. The initial walker $W_i(R, \tau)$ is branched according to the rules of Section \ref{sec:branching}. The numerical value inside the nodes represents $\overline{G}_B$ from Eq.~(\ref{eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e. a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal (given that not all of the steps was rejected).}
+ \end{center}
+\end{figure}
+\clearpage
 
 \section{The Trial Wave Function}
 
@@ -578,6 +602,15 @@ Oh the horror..
 \label{sec:VMC}
 
 Once a given 
+
+\begin{figure}
+\label{fig:VMCchart}
+ \begin{center}
+  \includegraphics[scale=0.65]{../Graphics/VMCUML.pdf}
+  \caption{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit{Diffuse Walker}, is the process described in Fig. \ref{fig:diffFlowChart}. Energies are sampled as described in Section \ref{sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. }
+ \end{center}
+\end{figure}
+\clearpage
 
 \section{Diffusion Monte-Carlo}
 \label{sec:DMC}
