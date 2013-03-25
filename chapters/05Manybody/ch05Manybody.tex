@@ -122,6 +122,7 @@ where $\xi$ is a normal distributed number whose variance match that of the Gree
 
 
 \subsection{Anisotropic Diffusion: Fokker-Planck}
+\label{sec:anisFokker}
 
 Anisotropic diffusion, in contrast to isotropic diffusion, does not count all directions as equally probable. An example of this is diffusion according to the \textit{Fokker-Planck Equation}, that is, diffusion with a drift term, $\vec F(\vec r, t)$, responsible for pushing the walkers in the direction of configurations with higher probabilities.
 
@@ -130,7 +131,7 @@ Anisotropic diffusion, in contrast to isotropic diffusion, does not count all di
  \frac{\partial P(\vec r, t)}{\partial t} = D\nabla\cdot\Big[\Big(\nabla - \vec F(\vec r, t)\Big) P(\vec r, t)\Big] 
 \end{equation}
 
-The remarkable thing is that simple isotropic diffusion processes obey this relation \cite{abInitioMC}. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations. This method of \textit{Importance Sampling} will be discussed in Section~(ref imp). 
+The remarkable thing is that simple isotropic diffusion processes obey this relation \cite{abInitioMC}. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations. 
 
 In Quantum Monte Carlo we want convergence to a stationary state. We can use this criteria to deduce expression for the drift term given our Quantum Mechanical distribution. A stationary state is obtained when the left hand side of Eq.~(\ref{Eq:fokkerPlanck}) is zero:
 
@@ -178,6 +179,20 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
 \end{equation}
 
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
+
+
+\subsubsection{Importance sampling}
+
+It can be shown, see e.g. Ref. \cite{abInitioMC}, that the relationship between the isotropic and anisotropic diffusion model of the complex time Schrödinger Equation is simply that we have multiplied the Schrödinger equation by a known function $\Psi_T(x)$, i.e.
+
+\begin{eqnarray}
+ \frac{\partial }{\partial \tau}\Phi(x, \tau) &\quad\Longrightarrow\quad& \frac{\partial }{\partial \tau}\left(\Phi_T(x)\Phi(x, \tau)\right) \\
+ G_\mathrm{Diff}^\mathrm{ISO}  &\quad\Longrightarrow\quad&  G_\mathrm{Diff}^\mathrm{FP}
+\end{eqnarray}
+
+Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained by switching distributions into one which exploits known information about the problem at hand. In case of standard Monte-Carlo integration, we switch sampling distribution to one which are similar to the original integrand, i.e. smoothing out the sampled function, where as for Quantum Monte-Carlo, we use a function which is constructed with the sole purpose of imitating the exact ground state to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{Importance sampled Quantum Monte-Carlo}.
+
+This new function, $\Psi_T(x)$, is referred to as a \textit{trial wave function}, and will be discussed in more detail in Section \ref{sec:trialWF}.
 
 
 \section{Diffusive Equilibrium Constraints}
@@ -275,6 +290,9 @@ A chart flow describing the implementation of the Metropolis algorithm and the d
 \end{figure}
 \clearpage
 
+
+
+
 \section{The Process of Branching}
 \label{sec:branching}
 
@@ -318,6 +336,7 @@ There are some programming challenges due to the fact that the number of walkers
 \clearpage
 
 \section{The Trial Wave Function}
+\label{sec:trialWF}
 
 Recall Eq.~(\ref{eq:schrodGeneralSolution})-(\ref{eq:schrodGeneralSolution2}). The initial condition, $\Phi(\vec r, t=0)$,
 is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:schrodGeneralSolution2}), the entire diffusion formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
@@ -351,13 +370,13 @@ Different many-body methods, e.g. \textit{Hartree Fock}\footnote{Hartree-Fock is
 
 The many-body basis elements $\Phi_k(x)$ are constructed using $N$ elements from a basis of single particle wave functions (or \textit{orbitals} for short), $\phi_n(x_i)$, combined in different ways. The process of calculating basis elements often boils down to a combinatoric exercise involving combinations of orbitals.
 
-Imagine electrons surrounding a nucleus, i.e an atom; a single electron occupying state $n$ at a position $x_i$ is then described by the orbital $\phi_n(x_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons will give rise to one unique $\Phi_k(x)$. In other words, the complete basis of $\Phi_k(x)$ is described by the collection of all possible excited states. $\Phi_0(x)$ is the ground state of the atom, $\Phi_1(x)$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Fig.~\ref{FIG:AtomicOrbitals} for a demonstration of this.
+Imagine electrons surrounding a nucleus, i.e an atom; a single electron occupying state $n$ at a position $x_i$ is then described by the orbital $\phi_n(x_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons will give rise to one unique $\Phi_k(x)$. In other words, the complete basis of $\Phi_k(x)$ is described by the collection of all possible excited states. $\Phi_0(x)$ is the ground state of the atom, $\Phi_1(x)$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Fig.~\ref{fig:AtomicOrbitals} for a demonstration of this.
 
 \begin{figure}
-\label{FIG:AtomicOrbitals}
+\label{fig:AtomicOrbitals}
  \begin{center}
-  \includegraphics[scale=0.75]{../Graphics/atomicConfigurations.png}
-  \caption{Three different electron configurations in an atomic shell structure making up three different $\Phi_k(x)$, i.e. constituents of the many-body basis described in Eq.~(\ref{eq:manyBodyExpTrunc}). An electron is represented by e.g. the orbital $\phi_{1s}(x_1)$.}
+  \includegraphics[scale=0.5]{../Graphics/shellStructure.pdf}
+  \caption{Three different electron configurations in an shell structure making up three different $\Phi_k(x)$, i.e. constituents of the many-body basis described in Eq.~(\ref{eq:manyBodyExpTrunc}). An electron (solid dot) is represented by e.g. the orbital $\phi_{1s}(x_1)$.}
  \end{center}
 \end{figure}
 
@@ -615,6 +634,51 @@ Once a given
 \section{Diffusion Monte-Carlo}
 \label{sec:DMC}
 
+\begin{figure}
+\label{fig:DMCchart}
+ \begin{center}
+  \includegraphics[scale=0.65]{../Graphics/DMCUML.pdf}
+  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Fig. \ref{fig:diffFlowChart} in combination with the branching from Fig. \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles. }
+ \end{center}
+\end{figure}
+\clearpage
+
+\section{Fixed node approximation}
+
+Looking at Eq.~(\ref{eq:BosonicWFExplicit}), we notice that by choosing positive phases for our single particle wave functions, the bosonic many body wave function is exclusively positive. For fermions however, the sign change upon permuting a particle pair introduces the possibility that the wave function will have both negative and positive regions, independent of our choice of phases in the single particle wave functions.
+
+As we simulate importance sampled DMC in time, the density of walkers at a given time, $P(x, \tau)$, is given by Eq.~(\ref{eq:schrodGeneralSolution2}) multiplied by the trial wave function (see the end of Section \ref{sec:anisFokker} for details)
+
+\begin{equation}
+ P(x, \tau) = \Phi(x, \tau)\Psi_T(x),
+\end{equation}
+
+where
+
+\begin{equation}
+  \lim_{\tau\to\infty} P(x, \tau) = \Phi_0(x)\Psi_T(x),
+\end{equation}
+
+which, if interpreted as a density, should always be greater than zero. In the case of Fermions, this is not guaranteed, as
+the node structure, i.e. the roots, of the exact ground state and the trial wave function will generally be different.  
+
+To avoid this anomaly in the density, $\Phi(x, \tau)$ and $\Psi_T(x)$ have to change sign together\footnote{It should be mentioned that more sophisticated methods exist for dealing with the sign problem, some of which splits the distribution of walkers into a negative and a positive region.}. The brute force way of solving this problem is to \textit{fix} the nodes by rejecting a walker's step if the trial wave function changes sign:
+
+\begin{equation}
+\frac{\Psi_T(x_i)}{\Psi_T(x_j)} < 0 \quad\Longrightarrow\quad A(i\,\rightarrow\,j) = 0
+\end{equation}
+
+where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as described in Section \ref{sec:MetroMain}. An illustrative example is attempted in Fig. \ref{fig:fixxednode}.
+
+\begin{figure}
+\label{fig:fixxednode}
+ \begin{center}
+  \includegraphics[scale=0.3]{../Graphics/fixxednode.pdf}
+  \caption{An illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi_0(x)$. The distribution of walkers at cycle $n$, $\Phi(x, n\delta\tau)$, similar in shape with $\Psi_0(x)$, however, sharing nodes with the trial wave function $\Psi_T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.}
+ \end{center}
+\end{figure}
+
+
 
 \section{Estimating the Statistical Error}
 
@@ -758,7 +822,7 @@ The approximation should hold for a range of different block sizes, however, jus
  \begin{center}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleUncorr.png}}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleCorr.png}} 
-  \caption{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm{d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. On the right we have the \textit{VMC} result (see Section \ref{sec:VMC}) of a 12-particle Quantum Dot system. We clearly see the plateau discussed in the blocking section, resulting in a total error of $\sim 6\cdot 10^{-4}$.}
+  \caption{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm{d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. On the right hand side we have the blocking result (DMC) for 6-particle $\omega=0.1$ Quantum Dot, used in Table \ref{tab:QDotsResultsAll}. We clearly see the plateau discussed in the blocking section, resulting in a total error in the range of $4.5\cdot 10^{-5}$ to $5\cdot 10^{-5}$.}
  \end{center}
 \end{figure}
 
