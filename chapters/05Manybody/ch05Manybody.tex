@@ -556,7 +556,9 @@ In the case of the energy estimation, this means that once our walkers hit equil
 
 Every explicit calculation using the trial wave function in Quantum Monte-Carlo involves taking ratios. Ratios implies cancellation of the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the Quantum Force in the Fokker-Planck equation, and the sampling of local values describes in the previous section demonstrates exactly this; everything involves ratios.
 
-Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}), can be taken outside the sum over permutations, and will hence cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed (note: Single determinant only).
+Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}), can be taken outside the sum over permutations, and will hence cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed (note: Single determinant only). 
+
+In the case of multi-determinants trial wave functions, the normalization factors from the single particle basis elements  will be absorbed by the respective determinant's coefficient $C_k$, and is hence obsolete in this case as well.
 
 
 \subsection{Selecting Optimal Variational Parameters}
@@ -600,7 +602,7 @@ where the product and division rules for derivatives have been applied. The Hami
 
 \begin{eqnarray}
  \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
-  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right)
+  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right) \label{eq:varParGrad}
 \end{eqnarray}
 
 Using this expression for the \textit{variational gradient} means we can calculate the derivatives exactly the same way we calculate the energy, and use these derivatives to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
@@ -608,13 +610,157 @@ Using this expression for the \textit{variational gradient} means we can calcula
 This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
 The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. 
 
-\section{Adaptive Stochastic Gradient Descent}
+\section{Gradient Descent}
 
-Oh the horror..
+The direction of a gradient serves as a guide to extremal values. In the case of the Quantum Force, it leads the walker to regions of high probability, and in the case of \textit{Gradient Descent} methods, it reveals function minima. The Adaptive Stochastic Gradient Descent (ASGD) algorithm is best understood from it's basic predecessor
+
+\subsection{General Gradient Descent}
+
+Seeking maxima or minima is simply a question of whether the positive or negative direction of the gradient is followed.
+Imagine a function, $f(x)$, with a minimum residing at $x=x_m$. The information at hand is then
+
+\begin{eqnarray}
+ \nabla f(x_m) &=& 0 \\
+ \nabla f(x_m - \mathrm{d}x) &<& 0 \\
+  \nabla f(x_m + \mathrm{d}x) &>& 0
+\end{eqnarray}
+
+where $\mathrm{d}x$ is a infinite decimal displacement. 
+
+\begin{figure}
+\label{fig:SGD}
+ \begin{center}
+  \includegraphics[scale=0.3]{../Graphics/SGD.pdf}
+  \caption{Two steps of a one dimensional Gradient Descent process. Steps are taken in the direction of the negative gradient (indicated by dotted lines).}
+ \end{center}
+\end{figure}
+
+Assume now that we start from an initial position $x_0$, and measure the direction of the gradient before we take a step in that direction. From Fig. \ref{fig:SGD} and the previous equations, we see that once we cross the minimum, the gradient changes sign. The brute force way of minimizing is to stop once the gradient changes sign, however, this would require extremely many extremely small steps in order to achieve good precision. The difference equation for the brute force case would be
+
+\begin{equation}
+ x_{i+1} = x_i - \delta\frac{\nabla f(x_i)}{|\nabla f(x_i)|}
+\end{equation}
 
 
+A better algorithm is to continue iterating even though the minimum is crossed. The brute force scheme breaks down in this case, oscillating between two points, e.g. $x_1$ and $x_2$ in Fig. \ref{fig:SGD}, because of the constant step length $\delta$. To counter this, a changing step length $\delta_i$ is introduced
+
+\begin{equation}
+\label{eq:SGD}
+  x_{i+1} = x_i - \delta_i\nabla f(x_i)
+\end{equation}
+
+All Gradient/Steepest Descent methods is in principle described by Eq.~(\ref{eq:SGD}). Some examples are
+
+\begin{listliketab}
+\storestyleof{itemize}
+ \begin{tabular}{l l}
+  \textbullet  \,Brute Force I   &  $\delta_i = \delta \frac{1}{|\nabla f(x_i)|}$ \\
+  \textbullet  \,Brute Force II  &  $\delta_i = \delta $ \\
+  \textbullet  \,Brute Force III &  $\delta_i = \delta / i^{2}$ \\
+  \textbullet  \,Newton's Method &  $\delta_i = \frac{1}{\nabla^2 f(x_i)}$\\
+ \end{tabular}
+\end{listliketab}
+
+Iterative gradient methods will only reveal one local extrema, depending on the choice of $x_0$ and $\delta$. In order to find several extrema, multiple unique processes can be run. Calculating the local gradient is simply a finite difference calculation (assuming the analytic expression is not known).
+
+\subsection{Stochastic Gradient Descent}
+
+Minimizing stochastic quantities, such as the variance or expectation values, adds another layer of complications on top of the methods described in the previous section. Assuming a closed form expression for the stochastic quantity is unobtainable, the gradient needs to be calculated by using e.g. Monte-Carlo sampling. Eq.~(\ref{eq:varParGrad}) is an example of such a process.
+
+A full precise sampling of the stochastic quantities are expensive and unpractical. Stochastic Gradient methods use different techniques in order to make the sampling more effective, such as multiple walkers, thermalization, and more. Using a finite difference scheme with stochastic quantities are dangerous, as uncertainties in the values will cause the gradient to become unstable when the variations are low (close to the minimum). This is illustrated in Fig. \ref{fig:sSGD}.
+
+\begin{figure}
+\label{fig:sSGD}
+ \begin{center}
+  \includegraphics[scale=0.3]{../Graphics/SSGD.pdf}
+  \caption{A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).}
+ \end{center}
+\end{figure}
 
 
+\subsection{Adaptive Stochastic Gradient Descent}
+
+Adaptive Stochastic Gradient Descent (ASGD) has it's roots in the mathematics of automated control theory \cite{ASGD_MB}. The automated process, is that of choosing an optimal step length $\delta_i$ for the current transition $x_{i}\to x_{i+1}$. This process is based on the inner product of the old and the new gradient though a variable 
+
+\begin{equation}
+\label{eq:ASGD_X_i}
+ X_i \equiv -\nabla_i\cdot \nabla_{i-1}
+\end{equation}
+
+The step length from Eq.~(\ref{eq:SGD}) is in ASGD modeled in the following manner
+
+\begin{eqnarray}
+ \delta_i   &=& \gamma(t_i) \\
+ \gamma(t)  &=& a/(t + A) \label{eq:ASGD_delta_i}\\
+ t_{i+1}    &=& \max(t_i + f(X_i), 0) \label{eq:ASGD_t_i}\\
+ f(x)       &=& f_\mathrm{min} + \frac{f_\mathrm{max} - f_\mathrm{min}}{1 - (f_\mathrm{max}/f_\mathrm{min})e^{-x/\omega}}\label{eq:ASGD_f_i}
+\end{eqnarray}
+
+with $f_\mathrm{max} > 0$, $f_\mathrm{min} < 0$, and $\omega > 0$. Free parameters are $a$, $A$, $t_0$, however, Ref. \cite{ASGD} suggests $A=20$ and $t_0=t_1=A$ for universal usage.
+
+Notice that the step length increase if $t_i$ decrease and vice-versa. A smaller step length is sought for regions close to the minimum. The function of $f(x)$ is to alter the step length by changing the trend of $t$. If we are close to the minimum, a smaller step length is sought, and hence $t$ must increase. We know from previous discussion, that if the sign of the gradient change, we have crossed the minimum. Crossing the minimum with ASGD has the following consequence
+
+\begin{itemize}
+ \item Eq.~(\ref{eq:ASGD_X_i}): The value of $X_i$ will be positive.
+ \item Eq.~(\ref{eq:ASGD_f_i}): $f(X_i)$ will return a value in $[0, f_\mathrm{max}]$ depending on the magnitude of $X_i$ .
+ \item Eq.~(\ref{eq:ASGD_t_i}): The value of $t$ will increase, i.e. $t_{i+1} > t_i$ .
+ \item Eq.~(\ref{eq:ASGD_delta_i}): The step length will decrease .
+\end{itemize}
+
+The second step regarding $f(X_i)$ can be visualized in Fig. \ref{fig:f_ASGD}.
+
+\begin{figure}
+\label{fig:f_ASGD}
+ \begin{center}
+  \includegraphics[scale=0.75]{../Graphics/ASGD_f.pdf}
+  \caption{Examples of $f(X_i)$ as published in ref. \cite{ASGD}. As $\omega\to0$, $f(x)$ approaches a step function.}
+ \end{center}
+\end{figure}
+
+\subsubsection{Assumptions}
+\begin{itemize}
+ \item The statistical error in the sampled gradients are distributed with zero mean.
+\end{itemize}
+
+This is shown in ref. \cite{ASGD} to be true; they are normally distributed. The implication is that upon combining gradient estimates for $N$ different processes, the accumulative error will tend to zero quickly.
+
+\begin{itemize}
+ \item The step length $\gamma(t)$ is a positive monotone decreasing function defined on $[0,\infty)$ with maximum at $t=0$.
+\end{itemize}
+
+With $\gamma(t)$ being as in Eq~(\ref{eq:ASGD_delta_i}), this is easily shown.
+
+\begin{itemize}
+ \item The function $f(x)$ is continuous and monotone increasing with $f_\mathrm{min} = \displaystyle\lim_{x\to\infty} f(x)$ and $f_\mathrm{max} =  \displaystyle\lim_{x\to-\infty} f(x)$.
+\end{itemize}
+
+This is exactly the behavior displayed in Fig. \ref{fig:f_ASGD}.
+
+
+These assumptions and several more are described in more detail in ref. \cite{ASGD}. They underline that the shape and flow of the algorithm is in no way random; ASGD is optimizing minimization of stochastic quantities. 
+
+\subsubsection{Implementation}
+
+A flow chart of the implementation is given in Fig. \ref{fig:ASGD_flow}. For specific details regarding the implementation, i refer to the code \cite{libBorealisCode}. An example of minimization using ASGD is given in Fig. \ref{fig:ASGD_Ex}. 
+
+\begin{figure}
+\label{fig:ASGD_Ex}
+ \begin{center}
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_paramGrad_ex.png}}
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_step_ex.png}} 
+  \caption{Results of Adaptive Stochastic Gradient Descent used on a two-particle Quantum Dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time step. The left figure shows the evolution of the variational parameters $\alpha$ and $\beta$ introduced in Section \ref{sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are cycle averaged to reveal the pattern underlying the noise. We clearly see that they tend to zero, $\beta$ somewhat before $\alpha$. The step rushes to zero; we get a small rebound in the step after forcing it zero as it attempts to cross to negative values.}
+ \end{center}
+\end{figure}
+
+
+\begin{figure}
+\label{fig:ASGD_flow}
+ \begin{center}
+  \includegraphics[scale=0.65]{../Graphics/ASGD_UML.pdf}
+  \caption{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Fig. \ref{fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref{eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref{eq:varParGrad}).}
+ \end{center}
+\end{figure}
+\clearpage
 
 
 \section{Variational Monte-Carlo}
