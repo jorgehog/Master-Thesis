@@ -1,4 +1,8 @@
-\chapter{Quantum Monte Carlo}
+\chapter{Quantum Monte-Carlo}
+
+Quantum Monte-Carlo is the method of solving Schrödinger's equation using statistical simulations, i.e. Monte-Carlo simulations. The statistical nature of Quantum Mechanics makes Monte-Carlo methods the perfect tool for accurate simulations. As we will see, the Schrödinger equation resembles a \textit{diffusion equation} in complex time. It is therefore from a mix of diffusion theory and Quantum Mechanics that the Quantum Monte-Carlo methods originate.
+
+In this chapter \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction.
 
 \section{Modeling Diffusion}
 
@@ -37,15 +41,15 @@ where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increas
 
 The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
 
+
+\cfbox{}{
 \begin{equation}
   \Phi(x, n\delta\tau) = \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeSteps},
 \end{equation}
+}
+
 
 which remains exact for an infinite amount of infinitely small time steps. In practice, a balance is sought between the \textit{number of cycles}, $n$, and the time step. This restatement might seem redundant, however, it is the key which opens up the possibility to model the solution by discretized diffusion of particles in Quantum Mechanical potentials. 
-
-\subsection{Solving the Diffusion Problem}
-
-In this chapter \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction.
 
 Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\Phi(\tau)}$ like previously, we are left with an expression on the form
 
@@ -70,25 +74,21 @@ This is still not a practical way of solving the equations. In finding the Green
                                              &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} \label{eq:shortTimeApprox}
 \end{eqnarray}
 
-The last step is known as the \textit{short time approximation}, that is, we split the Green's Function into two processes which are well known. The first which represents a diffusion process
+The last step is known as the \textit{short time approximation}, that is, we split the Green's Function into two processes which are well known, respectively diffusion and branching
 
-\begin{equation}
-\label{eq:GDiff}
- G_\mathrm{Diff} = e^{-\OP{T}\delta\tau}
-\end{equation}
+\begin{eqnarray}
+ G_\mathrm{Diff} &=& e^{-\OP{T}\delta\tau}\label{eq:GDiff} \\
+ G_\mathrm{B} &=& e^{-(\OP{V} - E_T)\delta\tau} \label{eq:GB}
+\end{eqnarray}
 
-and the second which represents a branching process
-
-\begin{equation}
- \label{eq:GB}
- G_\mathrm{B} = e^{-(\OP{V} - E_T)\delta\tau}
-\end{equation}
 
 Once a diffusion model is selected, for each cycle, the Green's functions are used to propagate the ensemble of walkers making up our distribution into the next time step. The final distributions of walkers will correspond to that of the direct solution of the Schrödinger Equation, given that the time step is sufficiently small, and we simulate long enough. These constraints will be covered in more detail later. 
 
-Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is the key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following sections.
+Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is the key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following section.
 
+\subsection{Solving the Diffusion Problem}
 
+Different diffusion models may be applied to the problem introduced in the previous section. All models should in theory be able to produce the same result, however, systematic errors of specific implementations may vary depending on the choice of diffusion model. Two of the most common choices in Quantum Monte-Carlo is \textit{Isotropic diffusion} and \textit{Fokker-Planck Anisotropic Diffusion}.
 
 \subsection{Isotropic Diffusion}
 
@@ -101,10 +101,13 @@ Isotropic diffusion is a process in which diffusing particles sees all possible 
 
 In the Quantum Monte Carlo case, the value of the diffusion constant is $D=\frac{1}{2}$, that is, the term scaling the Laplacian in the Schrödinger Equation. The closed form expression for the Green's function is a Gaussian distribution with variance $2D\delta t$ \cite{abInitioMC}
 
+\cfbox{}{
 \begin{equation}
 \label{eq:GF_iso}
  G_{\mathrm{Diff}}^{\mathrm{ISO}}(i\,\rightarrow j) \propto e^{-(x_i-x_j)^2/4D\delta\tau}  .
 \end{equation}
+}
+
 
 These equations describe the diffusion process theoretically, however, in order to achieve specific sampling rules for our walkers, we need a connection between the time-dependence of the total distribution and the time-dependence of an individual walker's components in configuration space. This connection is given in terms of a stochastic differential equation called \textit{The Langevin Equation}.
 
@@ -148,20 +151,24 @@ The next thing we want to achieve is cancellation in the rest of the terms. In o
 
 Looking at the factors in front of the Laplacian suggests using $g(\vec r, t) = 1/P(\vec r, t)$. A quick check reveals that this also cancels out the gradient terms, and the resulting expression for the drift term becomes
 
+\cfbox{3mm}{
 \begin{eqnarray}
  \vec F(\vec r, t) &=& \frac{1}{P(\vec r, t)}\nabla P(\vec r, t) \nonumber \\
                    &=& \frac{2}{|\psi(\vec r, t)|}\nabla |\psi(\vec r, t)|
 \end{eqnarray}
+}
+
 
 In Quantum Monte Carlo, the drift term is called \textit{The Quantum Force}, since it is responsible for pushing the walkers into regions of higher probabilities, analogous to a force in Newtonian mechanics.
 
 Another strength of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function still has a closed form solution. This means that we can evaluate it efficiently. If this was not the case, the practical value would be reduced dramatically. The reason for this will become clear in Section \ref{sec:MetroMain}. As expected, it is no longer symmetric 
 
+\cfbox{5mm}{
 \begin{equation}
 \label{eq:GF_FP}
  G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \propto e^{-(x_i-x_j - D\delta\tau F(x_i))^2/4D\delta\tau}.
 \end{equation}
-
+}
 
 \subsubsection{The Langevin Equation for the Fokker-Planck Equation}
 
@@ -244,12 +251,14 @@ Assume now that configuration $i$ has a higher overall probability than configur
 
 Concatenating both scenarios yields the following acceptance/rejection rules:
 
+\cfbox{10mm}{
 \begin{equation}
 \label{eq:MetroGeneralGreen}
  A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
 R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 & & R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 < 1\\
 1  & & \mathrm{else}  \end{array}\right. 
 \end{equation}
+}
 
 Or more simplistic:
 
@@ -309,10 +318,12 @@ As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. If
 
 The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
 
+\cfbox{1.1cm}{
 \begin{equation}
-\label{eq:gbMean}
- \overline{G}_B = \mathrm{floor}\left(G_B + a\right),
+ \overline{G}_B = \mathrm{floor}\left(G_B + a\right),\label{eq:gbMean}
 \end{equation}
+}
+
 
 where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overline{G}_B = G_B + 1$ is then equal to $\left[G_B - \mathrm{floor}(G_B)\right]$ as required. The three different scenarios which arise is
 
@@ -425,6 +436,7 @@ In the case of \textit{Fermions}, i.e. half-integer spin particles like electron
 
 Bosons on the other hand, have symmetric wave functions (see Eq.~(\ref{eq:BosonicWFExplicit})), which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract and confusing, from here on, the focus will be on systems of fermions.
 
+\cfbox{1.2cm}{
 \begin{eqnarray}
 \label{eq:SlaterDeterminantExplicit}
 \Phi_0^\mathrm{AS}(x_1, x_2, ..., x_N) &\propto& \sum_\mathrm{P} (-)^\mathrm{P} \OP{P}\phi_1(x_1)\phi_2(x_2)\,...\,\phi_N(x_N) \nonumber\\
@@ -440,6 +452,8 @@ Bosons on the other hand, have symmetric wave functions (see Eq.~(\ref{eq:Bosoni
  \label{eq:BosonicWFExplicit}
  \Phi_0^\mathrm{S}(x_1, x_2, ..., x_N) &\propto& \sum_\mathrm{P} \OP{P}\phi_1(x_1)\phi_2(x_2)\,...\,\phi_N(x_N)
 \end{eqnarray}
+}
+
 
 Comment to Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}): The permutation operator $\OP{P}$ is simply a way of writing \textit{in any combination of particles and states}, hence the combinatoric exercise mentioned previously.
 
@@ -499,10 +513,13 @@ Shifting the focus back to the spatial wave function, in the case of a fermionic
 
 Since the particles are identical, we are free to say that the first half are spin up, and the second spin down, hence the splitting as above. For simplicity, the spin up determinant will from here on be labeled $D^\uparrow$, and the spin down one $D^\downarrow$. Stitching everything together yields the following explicit shape for a spin-independent Hamiltonian using a one-parameter Padé Jastrow function
 
+\cfbox{1.5cm}{
 \begin{equation}
 \label{eq:MultiDeterminantTWF}
  \Psi_T(x_1, ..., x_N; \beta) = \sum_{k=0}^K C_kD^\uparrow_kD^\downarrow_k\prod_{i<j}^Nf(r_{ij}; \beta).
 \end{equation}
+}
+
 
 This shape is referred to as a \textit{Multi-determinant} trial wave function. 
 
@@ -512,12 +529,16 @@ Depending on the complexity of the system at hand, we need more complicated tria
 
 Because of this fact, our limitations due to the trial wave function is far less than what is the case of standard Monte-Carlo integration. A heavier trial wave function might convergence faster, but at the expense of being more CPU-intensive. This means that we are in a position to trade CPU-time per walker for convergence time. For systems of many particles, CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time, i.e., the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
 
+\subsubsection{Single Determinant Trial Wave function}
+
 In the case of well-behaving systems, a single determinant converges rapidly enough. This simplicity opens up the possibility of simulating large systems efficiently. This will be referred to as a \textit{single determinant} trial wave function, and serve as a  very simple approximation. In order to optimize the overlap with the exact wave function, a variational parameter $\alpha$ is introduced in the spatial part (from  Eq.~(\ref{eq:jastrow}), we already have $\beta$)
 
+\cfbox{8mm}{
 \begin{equation}
 \label{eq:singleDeterminantTWF}
  \Psi_T(x_1, ..., x_N; \alpha, \beta) = D^\uparrow(\alpha)D^\downarrow(\alpha)\prod_{i<j}^Nf(r_{ij}; \beta).
 \end{equation}
+}
 
 Determining optimal values for the variational parameters will be discussed in Section \ref{sec:selectingOptVarPar}.
 
@@ -601,10 +622,13 @@ In order to work with Eq.~(\ref{eq:varMin}) in practice, we need to rewrite it i
 
 where the product and division rules for derivatives have been applied. The Hamiltonian does not depend on the variational parameters, and hence both terms in the first expansion is equal. Cleaning up the expression yields
 
+\cfbox{2cm}{
 \begin{eqnarray}
  \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
-  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right) \label{eq:varParGrad}
+  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right) \label{eq:varParGrad} \\
+  \nonumber
 \end{eqnarray}
+}
 
 Using this expression for the \textit{variational gradient} means we can calculate the derivatives exactly the same way we calculate the energy, and use these derivatives to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
 
@@ -645,10 +669,13 @@ Assume now that we start from an initial position $x_0$, and measure the directi
 
 A better algorithm is to continue iterating even though the minimum is crossed. The brute force scheme breaks down in this case, oscillating between two points, e.g. $x_1$ and $x_2$ in Fig. \ref{fig:SGD}, because of the constant step length $\delta$. To counter this, a changing step length $\delta_i$ is introduced
 
+\cfbox{2.2cm}{
 \begin{equation}
 \label{eq:SGD}
   x_{i+1} = x_i - \delta_i\nabla f(x_i)
 \end{equation}
+}
+
 
 All Gradient/Steepest Descent methods is in principle described by Eq.~(\ref{eq:SGD}). Some examples are
 
@@ -780,7 +807,7 @@ The question becomes: Why bother with all the diffusion theory if the result is 
 The reason is simple, yet not obvious. The quantity of interest, the local energy, is \textit{dependent on a wave function} $\psi(x)$. It is not necessarily smooth, and even though the wave functions tend to zero at infinities, the local energy is \textit{undefined}; a ``$0/0$'' expression (see Eq.~(\ref{eq:VMCrandomDistE}). This is the case for all the roots of $\psi(x)$. Given an arbitrary distribution $P(x)$, we get
 
 \begin{eqnarray}
- \langle E \rangle &=& \int P(x) \frac{1}{\psi(x)}\OP{H}\psi(x)\mathrm{d}x \nonumber\\
+ E_\mathrm{VMC} &=& \int P(x) \frac{1}{\psi(x)}\OP{H}\psi(x)\mathrm{d}x \nonumber\\
                    &\simeq& \frac{1}{n}\sum_{i=1}^n \frac{1}{\psi(x_i)}\OP{H}\psi(x_i), \label{eq:VMCrandomDistE}
 \end{eqnarray}
 
@@ -861,10 +888,11 @@ The new trial energy (remember Eq.~(\ref{eq:genSolTimeSteps})) is set to be
 
 The DMC energy is updated each cycle to be the trailing average of the trial energies
 
+\cfbox{2.5cm}{
 \begin{equation}
- E_\mathrm{DMC} = \overline{E_T} 
+ E_\mathrm{DMC} = \overline{E_T} = \frac{1}{n}\sum_{k=1}^n E_k
 \end{equation}
-
+}
 
 \begin{figure}
  \begin{center}
@@ -1033,15 +1061,18 @@ This result is important; the true error is given in terms of the covariance, an
 
 Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
 
+\cfbox{2.7cm}{
 \begin{eqnarray}
 \label{eq:realErrorCovariance2}
    \sigma^2(m) &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j) \nonumber\\
                &\simeq& \frac{1}{n^2}\sum_{i,j=1}^n \frac{1}{n}\Cov(x) \nonumber\\
                &=& \frac{1}{n^3}\Cov(x)\underbrace{\sum_{i,j=1}^n}_{n^2}  \nonumber\\
-               &=& \frac{1}{n} \Cov(x),
+               &=& \frac{1}{n} \Cov(x), \\
+               \nonumber
 \end{eqnarray}
+}
 
-which serves as a practical way of calculating the full error (including correlations). 
+which serves as an estimate of the full error including correlations. 
 
 Explicitly computing the covariance is rarely done in Monte-Carlo simulations; if the sample size is large, it is extremely expensive. A variety of alternative methods to counter the correlations are available, the simplest of which is to define a \textit{correlation length}, $\tau$\footnote{This parameter is often referred to as the \textit{auto-correlation time} in the literature.}, which defines an interval at which points from the sampling sets are used for actual averaging. In other words, only the points $x_0, x_{\tau}, ..., x_{n\tau}$ are used in the calculation of $\overline{x}$
 

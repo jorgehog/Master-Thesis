@@ -6,7 +6,7 @@
 \usepackage{amsmath, amsfonts, amssymb, graphicx}
 \usepackage[pdfborder={0 0 0 }]{hyperref}
 \usepackage{enumerate, enumitem, color, rotating, subfigure, placeins, dsfont, listliketab, dirtree} 
-
+\usepackage{titlesec}
 
 \newcommand{\OP}[1]{{\bf\widehat{#1}}}
 \newcommand{\ket}[1]{\left| #1 \right>}
@@ -23,6 +23,33 @@
 \newcommand{\Cov}{\mathrm{Cov}}
 
 \input{../includes/lst.tex}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries}
+{\color{green}\thesection}{1em}{\underline}
+
+\titleformat{\subsection}
+{\normalfont\large\bfseries}
+{\color{green}\thesubsection}{1em}{}
+
+\titleformat{\chapter}[frame]
+{\normalfont\Huge\bfseries}
+{\color{black}\hspace{0.5cm}\thechapter\hspace{0.5cm}}{1em}{\hspace{0.5cm}\color{green}}
+
+% \setlength{\fboxrule}{0.5mm}
+\newcommand{\cfbox}[2]{%
+    \color{green}%
+    \addtolength{\linewidth}{-2\fboxsep}%
+    \addtolength{\linewidth}{-2\fboxrule}%
+
+    \fbox{%
+      \color{black}%
+        \begin{minipage}{#1 + \linewidth}
+	  #2
+	\end{minipage}
+    }
+    \color{black}
+}
 
 \begin{document}
 \input{../chapters/01frontpage/ch01frontpage.tex}
