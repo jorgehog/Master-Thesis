@@ -67,7 +67,7 @@ This is still not a practical way of solving the equations. In finding the Green
 \begin{eqnarray}
  \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_T)\delta\tau}\ket{y} \nonumber \\
                                              &=& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} + \frac{1}{2}[\OP{V}, \OP{T}]\delta\tau^2 + \mathcal{O}(\delta\tau^3) \nonumber \\
-                                             &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} 
+                                             &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} \label{eq:shortTimeApprox}
 \end{eqnarray}
 
 The last step is known as the \textit{short time approximation}, that is, we split the Green's Function into two processes which are well known. The first which represents a diffusion process
@@ -833,22 +833,72 @@ The only limitation in VMC is the choice of trial wave function. This makes VMC 
 \section{Diffusion Monte-Carlo}
 \label{sec:DMC}
 
-Applying the full framework introduced in the previous sections results in a method known as Diffusion Monte-Carlo (DMC)\footnote{In literature, DMC is also known as \textit{Projection Monte-Carlo}, for reasons described in Section \ref{sec:statingDiff}.}. Diffusion Monte-Carlo results are often referred to as \textit{exact}, in the sense that it is overall one of the most precise many-body methods. Where other many-body methods run into the \textit{curse of dimensionality} (CPU-time exponentially increasing with number of particles, precision, etc.), DMC with it's position basis Quantum Monte-Carlo formalism does not; it is simply a matter of evaluating a more complicated trial wave function, or simulating for a longer period of cycles, in order to reach convergence to the ``exact'' ground state.
+Applying the full diffusion framework introduced in the previous sections results in a method known as Diffusion Monte-Carlo (DMC)\footnote{In literature, DMC is also known as \textit{Projection Monte-Carlo}, for reasons described in Section \ref{sec:statingDiff}.}. Diffusion Monte-Carlo results are often referred to as \textit{exact}, in the sense that it is overall one of the most precise many-body methods. Where other many-body methods run into the \textit{curse of dimensionality} (CPU-time exponentially increasing with number of particles, precision, etc.), DMC with it's position basis Quantum Monte-Carlo formalism does not. With DMC, it is simply a matter of evaluating a more complicated trial wave function, or simulating for a longer period, in order to reach convergence to the ``exact'' ground state in a satisfactory way.
 
 \subsection{Implementation}
 
+DMC is a precise method; more statistics is like water in a desert - you can not get enough of it. In addition, branching is a major part of the algorithm. In other words: DMC uses a large ensemble of walkers to generate enormous amounts of statistics. These walkers are initialized using a VMC calculation, i.e. the walkers are distributed according to the trial wave function at $\tau=0$. 
+
+There are three layers of loops in the DMC method implemented in this thesis. Normally one would only use two: The time-step and walker loops, however, introducing a third \textit{block loop} within the walker loop will boost convergence dramatically. This loop continues until the current walker is either dead, or diffused $n_b$ times. Using this method, ``good'' walkers will have multiple offspring pr cycle, while ``bad'' walkers will rarely survive the block loop. Perfect walkers will supply a ton of statistics as they surf through all the loops without branching ($G_B \sim 1$).
+
+A flow chart of the DMC algorithm is given in Fig. \ref{fig:DMCchart}. 
+
+\subsection{Sampling the Energy}
+
+Unlike VMC, DMC does not weigh all walkers equally. It is therefore necessary to weigh each walker's contribution to a cumulative energy sampling accordingly, that is, with the branching Green's function. Let $E_k$ denote the cumulative energy for time-step $k$, $n_w$ be the number of walkers in our system at time-step $k$, $\tilde n_{b,i}$ be the number of blocks walker $i$ survives, and let $W_i(\vec r, \tau)$ represent walker $i$. Then we have
+
+\begin{equation}
+ E_k = \frac{1}{n_w}\sum_{i=1}^{n_w} \frac{1}{\tilde n_{b,i}}\sum_{l=1}^{\tilde n_{b,i}} G_\mathrm{B}\Big(W_i(\vec r, \tau_k + l\delta\tau)\Big)E_L\Big(W_i(\vec r, \tau_k + l\delta\tau)\Big)
+\end{equation}
+
+As the formalism required, setting $G_B = n_w = n_b = 1$ reproduce the VMC algorithm. 
+
+The new trial energy (remember Eq.~(\ref{eq:genSolTimeSteps})) is set to be 
+
+\begin{equation}
+ E_T = E_k
+\end{equation}
+
+The DMC energy is updated each cycle to be the trailing average of the trial energies
+
+\begin{equation}
+ E_\mathrm{DMC} = \overline{E_T} 
+\end{equation}
 
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/DMCUML.pdf}
-  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Fig. \ref{fig:diffFlowChart} in combination with the branching from Fig. \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles. }
+  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Fig. \ref{fig:diffFlowChart} in combination with the branching from Fig. \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.}
   \label{fig:DMCchart}
  \end{center}
 \end{figure}
 \clearpage
 
-\section{Fixed node approximation}
+
+\subsection{Limitations}
+
+By introducing the branching term, DMC is a far less robust method compared to VMC. Action must be taken in order to stabilize the iterations through tuning of parameters such as population size, time-step, block size, etc. This is the disadvantage of DMC compared to other many-body methods such as Coupled Cluster, which is far more \textit{Plug and Play}.
+
+\subsubsection{Time Step Errors}
+
+The error introduced by the short time approximation goes as $\mathcal{O}(\delta\tau^2)$ (see Eq.~(\ref{eq:shortTimeApprox})). There is a second error related to the time-step, arising from the fact that not all steps are accepted by the Metropolis algorithm. This introduces a effective reduction in the time step, and is countered by scaling the time step with the acceptance ratio upon calculating $G_B$. However, DMC is rarely used without importance sampling (Fokker-Planck), which, due to the Quantum Force, has an acceptance ratio $\sim 1$. It is therefore common to ignore this problem, and use a sufficiently low time step.
+
+\subsubsection{Selecting the Time-step}
+
+Studying the branching Green's function in more detail reveals that it's magnitude increase exponentially with the spread of the energies
+
+\begin{equation}
+G_B \propto \exp{\left(\Delta E\delta\tau\right)} 
+\end{equation}
+
+As will be shown in Section \ref{sec:varAndSTD}, the spread in energy samples are higher the worse of an approximation to the ground state our trial wave function becomes. In addition, the magnitude of the spread scales with the magnitude of the energy. Due to finite computer memory, we have $N$ slots dedicated for storing walkers on every node. Too large branching factors may cause the system to max out the memory on one node before the walkers can be redistributed across all the nodes.
+
+The solution is to balance out the increase in $\Delta E$ by lowering the time-step accordingly. However, too low a time-step will hinder DMC to evolve walkers. Every time we perform a time-step without having the trial energy close to the exact energy, we introduce an error to the Quantum Monte-Carlo equations (remember the transition from Eq.~(\ref{eq:schrodGeneralSolution2}) to Eq.~(\ref{eq:genSolTimeSteps})). It is therefore necessary to have rapid convergence down to a sufficiently low energy level, where the magnitude of the exact energy error matches those of the other systematic errors.
+
+Another source of error is due to the \textit{fixed node approximation}. This approximation will be covered in the next section.
+
+\subsection{Fixed node approximation}
 
 Looking at Eq.~(\ref{eq:BosonicWFExplicit}), we notice that by choosing positive phases for our single particle wave functions, the bosonic many body wave function is exclusively positive. For fermions however, the sign change upon permuting a particle pair introduces the possibility that the wave function will have both negative and positive regions, independent of our choice of phases in the single particle wave functions.
 
@@ -890,6 +940,7 @@ where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as descri
 As with any statistical result, appropriate statistical errors needs to be included for it to be taken seriously. Systematic errors, that is, errors introduced due to limitations in the model, will be discussed in each method's respective section. Statistical errors, that is, the  deviation from the true ensemble average due to the fact that we can never fulfill the equality in Eq.~(\ref{eq:MeanVStrueExp}), can be estimated using several methods, some of which are \textit{naive} in the sense that they assume the dataset to be completely \textit{uncorrelated}. 
 
 \subsection{The Variance and Standard Deviates}
+\label{sec:varAndSTD}
 
 Given a set of samplings, e.g. local energies, the variance is a measure of their spread from the true mean value
 
