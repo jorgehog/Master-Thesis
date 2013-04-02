@@ -43,30 +43,61 @@ The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into sma
 
 
 \cfbox{}{
-\begin{equation}
-  \Phi(x, n\delta\tau) = \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeSteps},
-\end{equation}
+\begin{eqnarray}
+  \Phi(x, n\delta\tau) &=& \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right]\Phi(x, t=0) \label{eq:genSolTimeStepsProj} \\
+                       &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeStepsExp} \\
+                       \nonumber\\
+                       \nonumber
+\end{eqnarray}
 }
 
 
 which remains exact for an infinite amount of infinitely small time steps. In practice, a balance is sought between the \textit{number of cycles}, $n$, and the time step. This restatement might seem redundant, however, it is the key which opens up the possibility to model the solution by discretized diffusion of particles in Quantum Mechanical potentials. 
 
-Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\Phi(\tau)}$ like previously, we are left with an expression on the form
+In order to simulate the effect of the exponential operator in Eq.~(\ref{eq:genSolTimeStepsProj}) on our initial state,
+consider the following rewriting
 
-\begin{equation*}
- \ket{\Phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\Phi(\tau)}.
-\end{equation*}
+\begin{eqnarray}
+ \OP{P}(n, \delta\tau) &\equiv& \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right] \\
+  &=& e^{-(\OP{H} - E_T)\delta\tau}e^{-(\OP{H} - E_T)\delta\tau}\cdots e^{-(\OP{H} - E_T)\delta\tau} \\
+     &=& \int_{x_1}\int_{x_2}\cdots\int_{x_n} \ket{x_n}\bra{x_n} e^{-(\OP{H} - E_T)\delta\tau} \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
+     &\qquad\qquad\times& \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\bra{x_1}\mathrm{d}x_{1}\cdots\mathrm{d}x_{n} 
+\end{eqnarray}
 
-Taking the inner product with $\bra{x}$ on both sides and inserting a complete set of states $\ket{y}$ on the left hand side yields
+where complete sets of position basis states are introduced (see appendix \ref{app:Dirac}). The state from Eq.~(\ref{eq:genSolTimeStepsProj}) are then given by
 
-\begin{eqnarray*}
- \Phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\Phi(y, \tau)dy \\
-			     &\equiv& \int G(x, y; \delta\tau)\Phi(y, \tau)dy
-\end{eqnarray*}
+\begin{eqnarray}
+ \Phi(x, n\delta\tau) &=& \bra{x}\OP{P}(n, \delta\tau)\ket{\Phi(t=0)} \\
+                 &=& \int_{x_1}\int_{x_2}\cdots\int_{x_{n-1}}\bra{x} e^{-(\OP{H} - E_T)\delta\tau}
+                 \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
+                  &\qquad\qquad\times& \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\Phi(x_1, t=0)\mathrm{d}x_{1}\cdots\mathrm{d}x_{n-1} 
+\end{eqnarray}
 
-where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in ref. \cite{leinaas}. A more detailed derivation of the Green's Function are given in ref. \cite{abInitioMC}.
+The final state $x_n$ are replaced by $x$ due to the fact that $\braket{x}{x_n} = \delta(x=x_n)$, which makes the $x_n$ integral vanish. The final state is achieved by summing through all possible \textit{paths} represented by integrals over the position variables $x_i$. This is the path integral formalism of Quantum Mechanics. More information about this formalism can be found in ref. \cite{leinaas}. Integrating out a degree of freedom, that is, \textit{evolving} from $x_i$ to $x_{i+1}$ is given by
 
-This is still not a practical way of solving the equations. In finding the Green's function we might as well find the solution directly. However, what we can do, is make the time steps very small and split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$:
+\begin{eqnarray}
+\Phi(x_{i+1}, i\delta\tau + \delta\tau) &=& \int_{x_i}\bra{x_{i+1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{i}}\Phi(x_i, i\delta\tau)\mathrm{d}x_{i} \\
+&\equiv& \int G(x_{i+1}, x_i; \delta\tau)\Phi(x_i, i\delta\tau)\mathrm{d}x_i
+\end{eqnarray}
+
+where the \textit{Green's Function}, $G(x_{i+1}, x_i; \delta\tau)$ serves as the transition probability. 
+
+% Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\Phi(\tau)}$ like previously, we are left with an expression on the form
+% 
+% \begin{equation*}
+%  \ket{\Phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\Phi(\tau)}.
+% \end{equation*}
+% 
+% Taking the inner product with $\bra{x}$ on both sides and inserting a complete set of states $\ket{y}$ on the left hand side yields
+% 
+% \begin{eqnarray*}
+%  \Phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\Phi(y, \tau)dy \\
+% 			     &\equiv& \int G(x, y; \delta\tau)\Phi(y, \tau)dy
+% \end{eqnarray*}
+% 
+% where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in ref. \cite{leinaas}. A more detailed derivation of the Green's Function are given in ref. \cite{abInitioMC}.
+
+This is still not a practical way of solving the equations. By finding the Green's function we might as well find the solution directly. However, if we split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$, we can split the Green's function into two well known processes. This splitting is known as the \textit{short time approximation}.
 
 \begin{eqnarray}
  \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_T)\delta\tau}\ket{y} \nonumber \\
@@ -74,7 +105,7 @@ This is still not a practical way of solving the equations. In finding the Green
                                              &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} \label{eq:shortTimeApprox}
 \end{eqnarray}
 
-The last step is known as the \textit{short time approximation}, that is, we split the Green's Function into two processes which are well known, respectively diffusion and branching
+, that is, we split the Green's Function into two processes which are well known, respectively diffusion and branching
 
 \begin{eqnarray}
  G_\mathrm{Diff} &=& e^{-\OP{T}\delta\tau}\label{eq:GDiff} \\
@@ -84,7 +115,7 @@ The last step is known as the \textit{short time approximation}, that is, we spl
 
 Once a diffusion model is selected, for each cycle, the Green's functions are used to propagate the ensemble of walkers making up our distribution into the next time step. The final distributions of walkers will correspond to that of the direct solution of the Schrödinger Equation, given that the time step is sufficiently small, and we simulate long enough. These constraints will be covered in more detail later. 
 
-Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is the key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following section.
+Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo}. Including the branching term as well results in \textit{Diffusion Monte Carlo}. These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is a key process. In practice, we choose a diffusion model where closed form expressions for the Green's Functions exists. Two examples of this will be presented in the following section.
 
 \subsection{Solving the Diffusion Problem}
 
@@ -154,7 +185,8 @@ Looking at the factors in front of the Laplacian suggests using $g(\vec r, t) = 
 \cfbox{3mm}{
 \begin{eqnarray}
  \vec F(\vec r, t) &=& \frac{1}{P(\vec r, t)}\nabla P(\vec r, t) \nonumber \\
-                   &=& \frac{2}{|\psi(\vec r, t)|}\nabla |\psi(\vec r, t)|
+                   &=& \frac{2}{|\psi(\vec r, t)|}\nabla |\psi(\vec r, t)| \\
+                   \nonumber
 \end{eqnarray}
 }
 
@@ -226,7 +258,7 @@ Another requirement is that the sampling must be ergodic, that is, the Markov ch
 \section{The Metropolis Algorithm}
 \label{sec:MetroMain}
 
-The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more effective. I will not go into details about transport theory in this section, but rather start the derivation from the criteria of detailed balance, Eq.~(\ref{eq:DetailedBalance}), modeling the transition probability as two-part: $g(i\,\rightarrow\,j)$, the probability of selecting configuration $j$ given configuration $i$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$:
+The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more effective. For a given probability distribution function, $P$, the metropolis algorithm will force sampled points to follow this distribution. I will not go into details about transport theory in this section, but rather start the derivation from the criteria of detailed balance, Eq.~(\ref{eq:DetailedBalance}), modeling the transition probability as two-part: $g(i\,\rightarrow\,j)$, the probability of selecting configuration $j$ given configuration $i$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$:
 
 \begin{eqnarray}
  \label{eq:metro1}
@@ -288,7 +320,7 @@ If we on the other hand use the Fokker-Planck equation, we will not get a cancel
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, we have methods such as the \textit{Ising Model} which greatly benefit from these rules \cite{morten}.
 
-A chart flow describing the implementation of the Metropolis algorithm and the diffusion process in general is given in Fig. \ref{fig:diffFlowChart}.
+In practice, without the Metropolis sampling, our ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time step used in simulations are finite, and the trial position of the walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process in general is given in Fig. \ref{fig:diffFlowChart}.
 
 \begin{figure}
  \begin{center}
@@ -308,13 +340,13 @@ A chart flow describing the implementation of the Metropolis algorithm and the d
 The process of branching of Quantum Monte-Carlo is simulated by the creation or destruction of walkers with probability equal to that of the Green's function in Eq.~(\ref{eq:GB}) \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is
 
 \begin{eqnarray}
- G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau} \\
+ G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau}\label{eq:branchISO} \\
  G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau},
 \end{eqnarray}
 
 where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). 
 
-As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. If the value is less than one, we have ``deaths'', i.e. the walker is removed from the ensemble. ``Births'' occur when the Green's function is greater than one; the walker is replicated.
+The Green's function represents a weight of the walker in a current position. When the final estimates are calculated, this weight is factored in to the distribution function. This however, is not a practical way of doing calculations; we cannot calculate a factor for every possible transition. What is done instead is to introduce a birth/death process. If the value is less than one, we have ``deaths'', i.e. the walker is removed from the ensemble. ``Births'' occur when the Green's function is greater than one; the walker is replicated. As for all Green's functions, $G_B(i\,\rightarrow\,j) = 1$ implies no change. 
 
 The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
 
@@ -335,7 +367,7 @@ where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overli
 
 This process is demonstrated in Fig. \ref{fig:branching}.
 
-There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up dead walkers and stabilizing the population across different nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}.
+There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up dead walkers and stabilizing the population across different nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}. Isotropic diffusion is in practice never used with branching. From Eq.~(\ref{eq:branchISO}) we see that in case of the Coulomb interaction, the branching Green's function would have singularities, leading to large fluctuations in the walker population. This is exactly opposite of the optimal behaviour of the system.
 
 \begin{figure}
  \begin{center}
@@ -880,7 +912,7 @@ Unlike VMC, DMC does not weigh all walkers equally. It is therefore necessary to
 
 As the formalism required, setting $G_B = n_w = n_b = 1$ reproduce the VMC algorithm. 
 
-The new trial energy (remember Eq.~(\ref{eq:genSolTimeSteps})) is set to be 
+The new trial energy (remember Eq.~(\ref{eq:genSolTimeStepsExp})) is set to be 
 
 \begin{equation}
  E_T = E_k
@@ -922,7 +954,7 @@ G_B \propto \exp{\left(\Delta E\delta\tau\right)}
 
 As will be shown in Section \ref{sec:varAndSTD}, the spread in energy samples are higher the worse of an approximation to the ground state our trial wave function becomes. In addition, the magnitude of the spread scales with the magnitude of the energy. Due to finite computer memory, we have $N$ slots dedicated for storing walkers on every node. Too large branching factors may cause the system to max out the memory on one node before the walkers can be redistributed across all the nodes.
 
-The solution is to balance out the increase in $\Delta E$ by lowering the time-step accordingly. However, too low a time-step will hinder DMC to evolve walkers. Every time we perform a time-step without having the trial energy close to the exact energy, we introduce an error to the Quantum Monte-Carlo equations (remember the transition from Eq.~(\ref{eq:schrodGeneralSolution2}) to Eq.~(\ref{eq:genSolTimeSteps})). It is therefore necessary to have rapid convergence down to a sufficiently low energy level, where the magnitude of the exact energy error matches those of the other systematic errors.
+The solution is to balance out the increase in $\Delta E$ by lowering the time-step accordingly. However, too low a time-step will hinder DMC to evolve walkers. Every time we perform a time-step without having the trial energy close to the exact energy, we introduce an error to the Quantum Monte-Carlo equations (remember the transition from Eq.~(\ref{eq:schrodGeneralSolution2}) to Eq.~(\ref{eq:genSolTimeStepsExp})). It is therefore necessary to have rapid convergence down to a sufficiently low energy level, where the magnitude of the exact energy error matches those of the other systematic errors.
 
 Another source of error is due to the \textit{fixed node approximation}. This approximation will be covered in the next section.
 
