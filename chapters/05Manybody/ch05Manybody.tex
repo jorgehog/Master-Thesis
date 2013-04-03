@@ -220,18 +220,73 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
 
-\subsubsection{Importance sampling}
+\subsubsection{Notes on importance sampling}
 
-It can be shown, see e.g. Ref. \cite{abInitioMC}, that the relationship between the isotropic and anisotropic diffusion model of the complex time Schrödinger Equation is simply that we have multiplied the Schrödinger equation by a known function $\Psi_T(x)$, i.e.
+To this point, it might seem far-fetched that switching diffusion model to a Fokker-Planck distribution does not violate the original equation, i.e. the Schrödinger equation. Introducing the distribution function $f(x, t) = \Phi(x, t)\Phi(x, t=0) = \Phi(x, t)\Psi_T(x)$, we can restate the (imaginary time) Schrödinger equation as
 
 \begin{eqnarray}
- \frac{\partial }{\partial \tau}\Phi(x, \tau) &\quad\Longrightarrow\quad& \frac{\partial }{\partial \tau}\left(\Phi_T(x)\Phi(x, \tau)\right) \\
- G_\mathrm{Diff}^\mathrm{ISO}  &\quad\Longrightarrow\quad&  G_\mathrm{Diff}^\mathrm{FP}
+-\frac{\partial}{\partial t}f(x, t)\,\, = \,\,\Psi_T(x)\Big[-\frac{\partial}{\partial t}\Phi(x, t)\Big] &=& \Psi_T(x)\left(\OP{H} - E_T\right)\Phi(x, t) \nonumber\\
+         &=& \Psi_T(x)\left(\OP{H} - E_T\right)\Psi_T(x)^{-1}f(x, t) \label{eq:impSamplRaw}\\
+         &=& -\frac{1}{2}\Psi_T(x)\nabla^2 \left(\Psi_T(x)^{-1}f(x, t)\right) + \OP{V}f(x, t) - E_Tf(x,t)\nonumber
 \end{eqnarray}
+
+Expanding the Laplacian term further reveals
+
+\begin{eqnarray}
+K(x, t) &\equiv& -\frac{1}{2}\Psi_T(x)\nabla^2 \left(\Psi_T(x)^{-1}f(x, t)\right) \nonumber\\
+ &=& -\frac{1}{2}\Psi_T(x)\nabla\cdot (\nabla\left[\Psi_T(x)^{-1}f(x, t)\right]) \\
+\nabla\left[\Psi_T(x)^{-1}f(x, t)\right] &=& -\Psi_T(x)^{-2}\nabla \Psi_T(x) f(x, t) + \Psi_T(x)^{-1}\nabla f(x, t)
+\end{eqnarray}
+
+combining these two equations and using the product rule numerous time yields
+
+\begin{eqnarray*}
+K(x, t) &=& -\frac{1}{2}\Psi_T(x)\Big[\big(2\Psi_T(x)^{-3}\left|\nabla\Psi_T(x)\right|^2f(x, t) \\
+        & & - \Psi_T(x)^{-2}\nabla^2\Psi_T(x)f(x, t) \\
+        & & - \Psi_T(x)^{-2}\nabla\Psi_T(x)\cdot\nabla f(x, t)\big) \\
+        & & + \Psi_T(x)^{-1}\nabla^2 f(x, t) \\
+        & & - \Psi_T(x)^{-2}\nabla\Psi_T(x)\cdot\nabla f(x, t)\Big] \\
+        &=& - \left|\Psi_T(x)^{-1}\nabla\Psi_T(x)\right|^2f(x, t) \\
+        & & + \frac{1}{2}\Psi_T(x)^{-1}\nabla^2\Psi_T(x)f(x, t) \\
+        & & + \Psi_T(x)^{-1}\nabla\Psi_T(x)\cdot\nabla f(x, t) \\
+        & & - \frac{1}{2}\nabla^2 f(x, t) \\
+\end{eqnarray*}
+
+In order to clean up the messy calculations, we introduce the following identity
+
+\begin{eqnarray*}
+ \nabla\cdot\left(\Psi_T(x)^{-1}\nabla\Psi_T(x)\right) &=& -\Psi_T(x)^{-2}\left|\nabla\Psi_T(x)\right|^2 + \Psi_T(x)^{-1}\nabla^2\Psi_T(x) \\
+ \left|\Psi_T(x)^{-1}\nabla\Psi_T(x)\right|^2 &=& -\nabla\cdot\left(\Psi_T(x)^{-1}\nabla\Psi_T(x)\right) + \Psi_T(x)^{-1}\nabla^2\Psi_T(x)
+\end{eqnarray*}
+
+which inserted into the expression for $K(x, t)$ reveals
+
+\begin{eqnarray*}
+K(x, t) &=&  \nabla\cdot\left(\Psi_T(x)^{-1}\nabla\Psi_T(x)\right)f(x, t) \\
+        & & + \left(\frac{1}{2} - 1\right)\Psi_T(x)^{-1}\nabla^2\Psi_T(x)f(x, t) \\
+        & & + \Psi_T(x)^{-1}\nabla\Psi_T(x)\cdot\nabla f(x, t) \\
+        & & - \frac{1}{2}\nabla^2 f(x, t) \\
+\end{eqnarray*}
+
+Inserting the expression for the Quantum Force $\vec F(x) = 2\Psi_T(x)^{-1}\nabla\Psi_T(x)$ and the local kinetic energy $K_L(x) = -\frac{1}{2}\Psi_T(x)^{-1}\nabla^2\Psi_T(x)$ simplifies the expression dramatically
+
+\begin{eqnarray*}
+ K(x, t) &=& - \frac{1}{2}\nabla^2 f(x, t) + \frac{1}{2}\underbrace{\left[\vec F(x)\cdot \nabla f(x, t) + f(x, t)\nabla\cdot \vec F(x)\right]}_{\nabla\cdot\left[\vec F f(x, t)\right]} + K_L(x)f(x, t)\\
+         &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(x)\right)f(x, t)\right] + K_L(x)f(x, t)
+\end{eqnarray*}
+
+Inserting everything back into Eq.~(\ref{eq:impSamplRaw}) yields
+
+\begin{eqnarray}
+ -\frac{\partial}{\partial t}f(x, t) &=& -\frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(x)\right)f(x, t)\right] + K_L(x)f(x, t) + \OP{V}f(x, t) - E_Tf(x,t) \nonumber\\
+  \frac{\partial}{\partial t}f(x, t)  &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(x)\right)f(x, t)\right] - \left(E_L(x) - E_T\right)f(x, t), 
+\end{eqnarray}
+
+which is a Fokker-Planck diffusion equation (Eq.~(\ref{Eq:fokkerPlanck})) with constant shift representing the shape of the branching in the case Fokker-Planck QMC (see Eq.~(\ref{eq:branchFP}).
 
 Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained by switching distributions into one which exploits known information about the problem at hand. In case of standard Monte-Carlo integration, we switch sampling distribution to one which are similar to the original integrand, i.e. smoothing out the sampled function, where as for Quantum Monte-Carlo, we use a function which is constructed with the sole purpose of imitating the exact ground state to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{Importance sampled Quantum Monte-Carlo}.
 
-This new function, $\Psi_T(x)$, is referred to as a \textit{trial wave function}, and will be discussed in more detail in Section \ref{sec:trialWF}.
+Introducing diffusion by the Fokker-Planck equation does not violate the Schrödinger equation, it simply alters the physical interpretation of the distribution of walkers. This new function, $\Psi_T(x)$, is referred to as a \textit{trial wave function}, and will be discussed in more detail in Section \ref{sec:trialWF}.
 
 
 \section{Diffusive Equilibrium Constraints}
@@ -341,7 +396,7 @@ The process of branching of Quantum Monte-Carlo is simulated by the creation or 
 
 \begin{eqnarray}
  G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau}\label{eq:branchISO} \\
- G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau},
+ G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau}, \label{eq:branchFP}
 \end{eqnarray}
 
 where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). 
