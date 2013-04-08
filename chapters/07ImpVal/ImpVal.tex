@@ -315,7 +315,7 @@ double ExpandedBasis::phi(const Walker* walker, int particle, int q_num) {
 
     double value = 0;
     for (int m = 0; m < basis_size; m++) {
-        value += coeffs(q_num, m) * basis->phi(walker, particle, m);
+        value += coeffs(particle, m) * basis->phi(walker, particle, m);
     }
 
     return value;

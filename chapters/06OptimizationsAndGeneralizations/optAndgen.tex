@@ -16,10 +16,10 @@ The optimizations scheme was laid down based on the following assumptions
 
 \cfbox{3cm-3pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
- \item The constituents of the simulated systems are either pure fermionic or pure bosinic.
- \item A fermionic system is a two-level system\footnote{The actual code is developed to easily add support for $n$-level systems.}.
- \item The trial wave function of a fermionic system is a single determinant.
- \item A bosonic system is modeled by all particles being in the same assumed single particle ground state.
+ \item The constituents of the simulated systems are either pure fermionic or pure bosinic. \label{it::ass::pureFermBos}
+ \item A fermionic system is a two-level system\footnote{The actual code is developed to easily add support for $n$-level systems.}. \label{it::ass::2level}
+ \item The trial wave function of a fermionic system is a single determinant. \label{it::ass::fermiSingleDet}
+ \item A bosonic system is modeled by all particles being in the same assumed single particle ground state. \label{it::ass::bosCondensate}
  \vspace{0.3cm}
 \end{enumerate}
 }
@@ -33,21 +33,23 @@ The level of generalization is set to be at any combination of the following
 
 \cfbox{3.17cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
- \item Fermions and Bosons.
- \item Anisotropic- and isotropic diffusion, i.e. Brute Force - or Importance sampling.
- \item Any choice of single particle basis, including expanded single particle bases.
- \item Any combination of any potentials.
+ \item Fermions and Bosons. \label{it::gen::FermiAndBoson}
+ \item Anisotropic- and isotropic diffusion, i.e. Brute Force - or Importance sampling. \label{it::gen::BF_IS}
+ \item Minimization techniques. 
+ \item Jastrow factor.
+ \item Error estimator.
+ \item Single particle bases, including expanded single particle bases. \label{it::gen::SP_basis}
+ \item Any combination of any potentials. \label{it::gen::pot}
  \vspace{0.2cm}
 \end{enumerate}
 }
  
-In addition, the following generalizations are made in the solver
+In addition, the following requirement is made to the solver in order to generalize to expressions which does not have a closed-form solution
 
 \cfbox{3.42cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
-\setcounter{enumi}{4}
- \item Full numerical support for all values involving derivatives.
- \item Error estimation techniques implemented independent of solvers.
+\setcounter{enumi}{7}
+ \item Full numerical support for all values involving derivatives.\label{it::gen::numSupp}
  \vspace{0.2cm}
 \end{enumerate}
 }
@@ -62,9 +64,9 @@ Designed for the CPU, runtime optimizations are favored over memory optimization
 
 \cfbox{3.6cm}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
- \item Identical values should never be re-calculated.
- \item Generalization should not be achieved through if-tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}).
- \item Linear scaling of runtime and number of CPUs for large simulations.
+ \item Identical values should never be re-calculated. \label{it::opt::reCalc}
+ \item Generalization should not be achieved through if-tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}). \label{it::opt::noIF}
+ \item Linear scaling of runtime and number of CPUs for large simulations. \label{it::opt::parScale}
  \vspace{0.2cm}
 \end{enumerate}
 }
@@ -76,15 +78,11 @@ The implementation of methods are done using the concepts introduced in Chapter 
 
 For details regarding the implementation of methods, see the code in \cite{libBorealisCode}.
 
-\cfbox{3.8cm}{
-\begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
- \setcounter{enumi}{0}
- \item Fermions and Bosons.
-\end{enumerate}
-}
+\subsection{Generalization Goals \ref{it::gen::FermiAndBoson}-\ref{it::gen::pot}}
 
 As discussed in Section \ref{sec:manyBodyWFs}, the only thing separating fermions and bosons is how the many-body wave function is constructed from the single-particle orbitals. In the case of fermions, the expression is given in terms of two determinants, while for bosons, it is simply the product of all states.
 
+\vspace{0.2cm}
 \begin{lstlisting}
 double Fermions::get_spatial_wf(const Walker* walker) {
     using namespace arma;
@@ -96,9 +94,107 @@ double Fermions::get_spatial_wf(const Walker* walker) {
 
 \begin{lstlisting}
 double Bosons::get_spatial_wf(const Walker* walker) {
-    using namespace arma;
+ 
+    double wf = 1;
+ 
+    //Using the phi matrix as a vector in the case of bosons.
+    //Assuming all particles to occupy the same single particle state (neglecting permutations).
+    for (int i = 0; i < n_p; i++){
+      wf *= walker->phi(i);
+    }
     
-    //arma::diagmat flags the determiant to only multiply diagonal elements
-    return det(diagmat(walker->phi));
+    return wf;
 }
 \end{lstlisting}
+
+Fermion/Boson overloaded pure virtual methods exist for e.g. the spatial ratio and the Laplacian sum. When the \verb+QMC+ solver asks the system, declared as the superclass of fermions and bosons, for a spatial ratio, it automatically returns the loaded systems value. 
+
+This way of splitting the system class also takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of if-tests in order to generalize the code. 
+
+Similar splitting is introduced in the following classes:
+
+\begin{listliketab}
+\storestyleof{itemize}
+ \begin{tabular}{l l}
+ \textbullet \,\verb+Orbitals+       & Hydrogen orbitals, harmonic oscillator, etc. \\
+ \textbullet \,\verb+BasisFunctions+ & Stand-alone single particle wave functions. Initialized by \verb+Orbitals+. \\
+ \textbullet \,\verb+Sampling+       & Brute force - or importance sampling. \\
+ \textbullet \,\verb+Diffusion+      & Isotropic or Fokker-Planck. Automatically selected by \verb+Sampling+. \\
+ \textbullet \,\verb+ErrorEstimator+ & Simple or Blocking. \\
+ \textbullet \,\verb+Jastrow+        & Padé Jastrow - or no Jastrow factor. \\
+ \textbullet \,\verb+QMC+            & VMC or DMC. \\
+ \textbullet \,\verb+Minimizer+      & ASGD. Support for adding additional minimizers. \\
+ \end{tabular}
+\end{listliketab}
+
+Keep in mind that e.g. implementing a new Jastrow Factor is done by creating a new subclass of \verb+Jastrow+. This is a very organized way of structuring the code. For more details, see Section \ref{sec:OO}. The splitting done in \verb+QMC+ is to avoid rewriting a lot of general QMC code.
+
+A detailed description of the generalization of potentials (point \ref{it::gen::pot}) is given in Section \ref{sec:typeCastPoly}.
+
+\subsection{Generalization Goal \ref{it::gen::SP_basis} and Expanded bases}
+
+
+
+An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass, holding a set of basis functions in which to expand the single particle orbitals, and a set of expansion coefficients.
+
+\vspace{0.5cm}
+\begin{lstlisting}[language=C++]
+class ExpandedBasis : public Orbitals {
+
+...
+
+protected:
+
+    int basis_size;
+    arma::mat coeffs;
+    Orbitals* basis;
+    
+    //Hartree-Fock
+    void calculate_coefficients();
+
+};
+
+\end{lstlisting}
+
+In order to obtain these coefficients, a \textit{Hartree-Fock} solver has been implemented. For a given set of orbitals, e.g. harmonic oscillator, everything that is needed in order to obtain an expanded basis, is to implement expressions for the one-body - and two-body interaction elements.
+
+Although \verb+ExpandedBasis+ is implemented as a subclass to the original orbital class, it is designed to work along side it. The reason why \verb+Orbitals::phi+ is a virtual function, is so that the \verb+ExpandedBasis+ class can override it. Implementing the new single particle functions is simply done by virtual function overriding as below: 
+
+\vspace{0.5cm}
+\begin{lstlisting}
+double ExpandedBasis::phi(const Walker* walker, int particle, int q_num) {
+
+    double value = 0;
+    
+    //Dividing basis_size by half assuming a two-level system.
+    //In case of Bosons, expanding s.p. w.f. does not make sence.
+    for (int m = 0; m < basis_size/2; m++) {
+        value += coeffs(q_num, m) * basis->phi(walker, particle, m);
+    }
+
+    return value;
+
+}
+\end{lstlisting}
+
+See Section \textbf{REF HF} for details regarding Hartree-Fock theory.
+
+\subsection{Generalization Goal \ref{it::gen::numSupp}}
+
+Functionality for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivative can be obtained\footnote{In most cases they can, however, in some cases the expressions are so heavy that they are not practical to use.}.
+
+The way this is implemented into the solvers are through virtual function overloading. The function in \verb+Orbitals+ which returns a single particle derivative, is virtual, and can be overloaded to call the numerical derivative implementation of gradients and Laplacians. The same goes for the Jastrow factor and the variational derivatives in the minimizers.
+
+One could perform the derivatives on the total wave function, and not on the single particle orbitals, however, this would add another layer of complexity by having to differentiate between whether or not the actual single particle expressions are needed etc. It results in a more refined implementation to simply let the numerical differentiation substitute the closed form expressions at the lowest level.
+
+The numerical implementations are finite difference schemes with error proportional to the squared step length.
+
+\section{Optimizing the Single-determinant Expressions}
+
+Assumption \ref{it::ass::fermiSingleDet} unlocks the possibility to optimize the expressions involving the Slater-determinant dramatically. Similar expressions for bosons due to assumption \ref{it::ass::bosCondensate} are considered trivial and will not be covered. See the code in \cite{libBorealisCode} for details regarding bosons.
+
+The reason optimizations are possible is that only one particle is moved at the time (see the diffusion algorithm in Fig. \ref{fig:diffFlowChart}). Altering one particle only changes a single row in the Slater-determinant, which means that almost every \textit{co-factor} remains unchanged. Moreover, the expressions used in Metropolis, the Quantum force, and the local energy all involve ratios, implying that parts of the expressions will cancel. If we can tell a priori that parts of an expression will cancel, we should avoid calculating these in the first place, and hard code them equal to zero or one.
+
+\subsection{Introducing the inverse of the Slater-matrix}
+
+
