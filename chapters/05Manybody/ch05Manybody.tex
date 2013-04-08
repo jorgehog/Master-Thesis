@@ -1,4 +1,5 @@
 \chapter{Quantum Monte-Carlo}
+\label{ch:QMC}
 
 Quantum Monte-Carlo is the method of solving Schrödinger's equation using statistical simulations, i.e. Monte-Carlo simulations. The statistical nature of Quantum Mechanics makes Monte-Carlo methods the perfect tool for accurate simulations. As we will see, the Schrödinger equation resembles a \textit{diffusion equation} in complex time. It is therefore from a mix of diffusion theory and Quantum Mechanics that the Quantum Monte-Carlo methods originate.
 
@@ -42,7 +43,7 @@ where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increas
 The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
 
 
-\cfbox{}{
+\cfbox{-6pt}{
 \begin{eqnarray}
   \Phi(x, n\delta\tau) &=& \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right]\Phi(x, t=0) \label{eq:genSolTimeStepsProj} \\
                        &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeStepsExp} \\
@@ -70,7 +71,7 @@ where complete sets of position basis states are introduced (see appendix \ref{a
  \Phi(x, n\delta\tau) &=& \bra{x}\OP{P}(n, \delta\tau)\ket{\Phi(t=0)} \\
                  &=& \int_{x_1}\int_{x_2}\cdots\int_{x_{n-1}}\bra{x} e^{-(\OP{H} - E_T)\delta\tau}
                  \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
-                  &\qquad\qquad\times& \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\Phi(x_1, t=0)\mathrm{d}x_{1}\cdots\mathrm{d}x_{n-1} 
+                  &&\qquad\quad\,\,\qquad\times \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\Phi(x_1, t=0)\mathrm{d}x_{1}\cdots\mathrm{d}x_{n-1} 
 \end{eqnarray}
 
 The final state $x_n$ are replaced by $x$ due to the fact that $\braket{x}{x_n} = \delta(x=x_n)$, which makes the $x_n$ integral vanish. The final state is achieved by summing through all possible \textit{paths} represented by integrals over the position variables $x_i$. This is the path integral formalism of Quantum Mechanics. More information about this formalism can be found in ref. \cite{leinaas}. Integrating out a degree of freedom, that is, \textit{evolving} from $x_i$ to $x_{i+1}$ is given by
@@ -165,7 +166,7 @@ Anisotropic diffusion, in contrast to isotropic diffusion, does not count all di
  \frac{\partial P(\vec r, t)}{\partial t} = D\nabla\cdot\Big[\Big(\nabla - \vec F(\vec r, t)\Big) P(\vec r, t)\Big] 
 \end{equation}
 
-The remarkable thing is that simple isotropic diffusion processes obey this relation \cite{abInitioMC}. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations. 
+As will be derived in details in Section \ref{sec:ConnectAnisIs}, using the Fokker-Planck equation does not violate the original Schrödinger equation, but merely substitute the diffusing value of interest. This means that Quantum Mechanical distributions can be modeled by the Fokker-Planck Equation, leading to a more optimized way of sampling in practical situations due to the drift term. 
 
 In Quantum Monte Carlo we want convergence to a stationary state. We can use this criteria to deduce expression for the drift term given our Quantum Mechanical distribution. A stationary state is obtained when the left hand side of Eq.~(\ref{Eq:fokkerPlanck}) is zero:
 
@@ -182,7 +183,7 @@ The next thing we want to achieve is cancellation in the rest of the terms. In o
 
 Looking at the factors in front of the Laplacian suggests using $g(\vec r, t) = 1/P(\vec r, t)$. A quick check reveals that this also cancels out the gradient terms, and the resulting expression for the drift term becomes
 
-\cfbox{3mm}{
+\cfbox{3mm -0.5pt}{
 \begin{eqnarray}
  \vec F(\vec r, t) &=& \frac{1}{P(\vec r, t)}\nabla P(\vec r, t) \nonumber \\
                    &=& \frac{2}{|\psi(\vec r, t)|}\nabla |\psi(\vec r, t)| \\
@@ -220,7 +221,8 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
 where $\xi$ is the same as for the isotropic case. We observe that if the drift term is set to zero, we are back in the isotropic case, just as required. For more details regarding the Fokker-Planck Equation and the Langevin equation, see ref. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
 
 
-\subsubsection{Notes on importance sampling}
+\subsection{The connection between anisotropic- and isotropic diffusion models}
+\label{sec:ConnectAnisIs}
 
 To this point, it might seem far-fetched that switching diffusion model to a Fokker-Planck distribution does not violate the original equation, i.e. the Schrödinger equation. Introducing the distribution function $f(x, t) = \Phi(x, t)\Phi(x, t=0) = \Phi(x, t)\Psi_T(x)$, we can restate the (imaginary time) Schrödinger equation as
 
@@ -291,7 +293,7 @@ Introducing diffusion by the Fokker-Planck equation does not violate the Schröd
 
 \section{Diffusive Equilibrium Constraints}
 
-Upon convergence of a Markov process, the system at hand will reach its most likely state. This is exactly the behaviour of a real system of diffusing particles described by statistical mechanics: It will \textit{thermalize}, that is, be in its most likely state given a surrounding temperature. Markov processes are hence beloved by physicists; they are simple, yet realistic. 
+Upon convergence of a Markov process, the system at hand will reach its most likely state. This is exactly the behavior of a real system of diffusing particles described by statistical mechanics: It will \textit{thermalize}, that is, be in its most likely state given a surrounding temperature. Markov processes are hence beloved by physicists; they are simple, yet realistic. 
 
 Once thermalization is reached, average values may be sampled. However, simply spawning a Markov process and waiting for thermalization is an inefficient and unpractical scenario. This may take forever, and it may not; either way its not optimal. We can introduce rules of acceptance and rejection of transitions purposed by following the solutions of the Langevin Equation (Eq.~(\ref{eq:langevinSolSimple}) and Eq.~(\ref{eq:langevinSolFP})), but not without constraints. If any of the following conditions break, we have no guarantee that the system will thermalize properly:
 
@@ -338,7 +340,7 @@ Assume now that configuration $i$ has a higher overall probability than configur
 
 Concatenating both scenarios yields the following acceptance/rejection rules:
 
-\cfbox{10mm}{
+\cfbox{10mm - 7pt}{
 \begin{equation}
 \label{eq:MetroGeneralGreen}
  A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
@@ -364,14 +366,11 @@ For the isotropic case, we have a cancellation of the Greens function due to sym
 If we on the other hand use the Fokker-Planck equation, we will not get a cancellation. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials
 
 \begin{eqnarray}
- R_G^\mathrm{FP}(i\,\rightarrow\,j) &=&G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j) \nonumber \\
-                                    &=& \exp{\Big[\frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big)\Big]}
+ \log{R_G^\mathrm{FP}(i\,\rightarrow\,j)} &=& \log \left(G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j)\right) \nonumber \\
+                                    &=& \frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big) \\
+                                    \nonumber\\
+ A(i\,\rightarrow\,j) &=& \min\{\exp \left(\log R_G^\mathrm{FP}(i\,\rightarrow\,j)\right)R_\psi(i\,\rightarrow\,j)^2, \,1\} \label{eq:MetropolisHastings}
 \end{eqnarray}
-
-\begin{equation}
-\label{eq:MetropolisHastings}
- A(i\,\rightarrow\,j) = \min\{R_G^\mathrm{FP}(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}
-\end{equation}
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, we have methods such as the \textit{Ising Model} which greatly benefit from these rules \cite{morten}.
 
@@ -405,7 +404,7 @@ The Green's function represents a weight of the walker in a current position. Wh
 
 The practical implementation becomes simply creating $\left[\mathrm{floor}(G_B) - 1\right]$ replicas of the current walker, with $\left[G_B - \mathrm{floor}(G_B)\right]$ probability of adding one extra on top (I skip the transition indices for now). As an example, a Green's function of $G_B=3.3$ will have guaranteed three replicas, however, there is a $3.3-3 = 0.3$ chance that one additional replica is made. The efficient comparison to do is to define 
 
-\cfbox{1.1cm}{
+\cfbox{1.1cm-3pt}{
 \begin{equation}
  \overline{G}_B = \mathrm{floor}\left(G_B + a\right),\label{eq:gbMean}
 \end{equation}
@@ -600,7 +599,7 @@ Shifting the focus back to the spatial wave function, in the case of a fermionic
 
 Since the particles are identical, we are free to say that the first half are spin up, and the second spin down, hence the splitting as above. For simplicity, the spin up determinant will from here on be labeled $D^\uparrow$, and the spin down one $D^\downarrow$. Stitching everything together yields the following explicit shape for a spin-independent Hamiltonian using a one-parameter Padé Jastrow function
 
-\cfbox{1.5cm}{
+\cfbox{1.5cm-1pt}{
 \begin{equation}
 \label{eq:MultiDeterminantTWF}
  \Psi_T(x_1, ..., x_N; \beta) = \sum_{k=0}^K C_kD^\uparrow_kD^\downarrow_k\prod_{i<j}^Nf(r_{ij}; \beta).
@@ -709,7 +708,7 @@ In order to work with Eq.~(\ref{eq:varMin}) in practice, we need to rewrite it i
 
 where the product and division rules for derivatives have been applied. The Hamiltonian does not depend on the variational parameters, and hence both terms in the first expansion is equal. Cleaning up the expression yields
 
-\cfbox{2cm}{
+\cfbox{2cm-2pt}{
 \begin{eqnarray}
  \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
   &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right) \label{eq:varParGrad} \\
@@ -756,7 +755,7 @@ Assume now that we start from an initial position $x_0$, and measure the directi
 
 A better algorithm is to continue iterating even though the minimum is crossed. The brute force scheme breaks down in this case, oscillating between two points, e.g. $x_1$ and $x_2$ in Fig. \ref{fig:SGD}, because of the constant step length $\delta$. To counter this, a changing step length $\delta_i$ is introduced
 
-\cfbox{2.2cm}{
+\cfbox{2.2cm-0.2pt}{
 \begin{equation}
 \label{eq:SGD}
   x_{i+1} = x_i - \delta_i\nabla f(x_i)
@@ -975,7 +974,7 @@ The new trial energy (remember Eq.~(\ref{eq:genSolTimeStepsExp})) is set to be
 
 The DMC energy is updated each cycle to be the trailing average of the trial energies
 
-\cfbox{2.5cm}{
+\cfbox{2.5cm-2pt}{
 \begin{equation}
  E_\mathrm{DMC} = \overline{E_T} = \frac{1}{n}\sum_{k=1}^n E_k
 \end{equation}
@@ -1148,7 +1147,7 @@ This result is important; the true error is given in terms of the covariance, an
 
 Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
 
-\cfbox{2.7cm}{
+\cfbox{2.7cm-1pt}{
 \begin{eqnarray}
 \label{eq:realErrorCovariance2}
    \sigma^2(m) &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j) \nonumber\\

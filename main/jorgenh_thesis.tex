@@ -7,6 +7,9 @@
 \usepackage[pdfborder={0 0 0 }]{hyperref}
 \usepackage{enumerate, enumitem, color, rotating, subfigure, placeins, dsfont, listliketab, dirtree} 
 \usepackage{titlesec}
+\usepackage{url}
+
+\pdfminorversion=5
 
 \newcommand{\OP}[1]{{\bf\widehat{#1}}}
 \newcommand{\ket}[1]{\left| #1 \right>}
@@ -34,7 +37,7 @@
 
 \titleformat{\chapter}[frame]
 {\normalfont\Huge\bfseries}
-{\color{black}\hspace{0.5cm}\thechapter\hspace{0.5cm}}{1em}{\hspace{0.5cm}\color{green}}
+{\color{black}\hspace{0.5cm}\thechapter\hspace{0.5cm}}{1em}{\color{green}}
 
 % \setlength{\fboxrule}{0.5mm}
 \newcommand{\cfbox}[2]{%
@@ -59,6 +62,7 @@
 \part{Theory}
 \input{../chapters/04SciProg/ch04SciProg.tex}
 \input{../chapters/05Manybody/ch05Manybody.tex}
+\input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
 
 \part{Results}
 \input{../chapters/07ImpVal/ImpVal.tex}
@@ -75,9 +79,12 @@
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
+\color{black}
+\begingroup
+\sloppy
 \bibliographystyle{IEEEtran}
 \bibliography{../bibtex/bibtex.bib}
-
+\endgroup
 
 
 
