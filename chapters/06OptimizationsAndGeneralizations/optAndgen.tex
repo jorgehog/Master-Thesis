@@ -220,7 +220,7 @@ where $\alpha$ is the spin configuration of particle $i$. The counterpart to $\a
 Equally for the Laplacians used in the local energy, we get
 
 \begin{eqnarray}
- E_L &=& \sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + V \nonumber\\
+ E_L &=& \sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + V \label{eq:localEsum}\\
   \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PT}\nabla^2_i \PT \nonumber\\
   &=& \frac{\nabla^2_i \Du}{\Du} + \frac{\nabla^2_i \Dd}{\Dd} + \frac{\nabla^2_i J}{J} \nonumber\\
   && +\,\, 2\frac{\left(\nabla_i\Du\right)\left(\nabla_i\Dd\right)}{\Du\Dd} + 2 \frac{\left(\nabla_i\Du\right)\left(\nabla_i J\right)}{\Du J} + 2 \frac{\left(\nabla_i\Dd\right)\left(\nabla_i J\right)}{\Dd J} \nonumber\\
@@ -239,11 +239,12 @@ where either the spin up or the spin down determinant is unchanged by the step.
 
 From these expressions it is clear that we get a halving of the dimensionality of the system by splitting the Slater determinants. Calculation the determinant of a $N\times N$ matrix is $\mathcal{O}(N^2)$ floating point operations (flops). This implies a speedup of four in estimating the determinants alone. 
 
-\section{Optimizations due to single-particle moves}
+\section{Optimizations due to Single-particle Moves}
 
 Moving only one particle at the time (see the diffusion algorithm in Fig. \ref{fig:diffFlowChart}), means changing a single row in the Slater-determinant at the time. Changes to a single row means that almost every \textit{co-factor} remains unchanged. Since all of the expressions deduced in the previous section contains ratios of the spatial wave functions, expressing these determinants in terms of their co-factors should reveal cancellation of terms. 
 
 \subsection{Optimizing the Slater ratios}
+\label{sec:optSlaterRat}
 
 The inverse of the Slater-matrix is given in terms of its \textit{adjugate} by the following relation \cite{linAlg} (spin-configuration parameter $\alpha$ will be skipped for now)
 
@@ -299,10 +300,12 @@ where $j$ is the currently moved particle. The sum $i$ spans the Slater matrix w
 
 Similar reductions can be applied to all the Slater ratio expressions from the previous section, see refs. \cite{abInitioMC, morten}:
 
+\cfbox{4cm}{
 \begin{eqnarray}
  \frac{\nabla_i|D|}{|D|} &=& \sum_{k} \nabla_i\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1} \\
   \frac{\nabla_i^2|D|}{|D|} &=& \sum_{k} \nabla_i^2\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1}
 \end{eqnarray}
+}
 
 where again, $k$ spans the Slater matrix whose spin values match that of the moved particle. Unlike for the ratio, $N/2$ of the gradients needs to be recalculated once a particle is moved (with $N$ being the number of particles). This is due to the fact that it is the new Slater inverse that is used, and not the old.
 
@@ -314,25 +317,240 @@ One might question the efficiency of calculating inverse matrices compared to br
 
 Let $i$ be the currently moved particle, the new inverse is given in terms of the old by the following expression \cite{abInitioMC, morten}
 
+\cfbox{4.5cm-5pt}{
 \begin{eqnarray}
  \tilde I_{ij} &=& \sum_l D_{il}^\mathrm{new}(D_{lj}^\mathrm{old})^{-1} \\
  \ \nonumber\\
  (D_{kj}^\mathrm{new})^{-1} &=& (D_{kj}^\mathrm{old})^{-1} - \frac{1}{R_S}(D_{ji}^\mathrm{old})^{-1}\tilde I_{ij} \qquad\qquad j \ne i\\
- (D_{ki}^\mathrm{new})^{-1} &=& \frac{1}{R_S}(D_{ki}^\mathrm{old})^{-1} \qquad\qquad\qquad\qquad\qquad\,\, \mathrm{else}
+ (D_{ki}^\mathrm{new})^{-1} &=& \frac{1}{R_S}(D_{ki}^\mathrm{old})^{-1} \qquad\qquad\qquad\qquad\qquad\,\, \mathrm{else} \\
+ \ \nonumber
 \end{eqnarray}
-
+}
 
 This reduces the cost of calculating the inverse by an order of magnitude down to $\mathcal{O}(N^2)$.
 
 Further optimization can be achieved by calculating the $\tilde I$ vector for particle $i$ prior to performing the loop over $k$ and $j$. Again, this loop should only update the inverse Slater matrix whose spin value correspond to that of the moved particle.
 
+\subsection{Optimizing the Padé Jastrow factor Ratio}
+
+As for the Green's function ratio is Eq.~(\ref{eq:MetropolisHastings}), the ratio between two Jastrow factors are best calculating as exponentiation the logarithm
+
+\begin{eqnarray}
+ \log \frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j = 1}^N \frac{a_{kj}r^\mathrm{new}_{kj}}{1 + \beta r^\mathrm{new}_{kj}} - \frac{a_{kj}r^\mathrm{old}_{kj}}{1 + \beta r^\mathrm{old}_{kj}} \\
+                      &\equiv& \sum_{k<j = 1}^N g^\mathrm{new}_{kj} - g^\mathrm{old}_{kj} \label{eq:jastrowRatSTD}
+\end{eqnarray}
+
+The relative distances $r_{kj}$ behave much like the cofactors in Section \ref{sec:optSlaterRat}; changing $r_i$ only changes $r_{ij}$, in other words
+
+\begin{equation}
+ r^\mathrm{new}_{kj} = r^\mathrm{old}_{kj} \qquad k \ne i 
+\end{equation}
+
+which inserted into Eq.~(\ref{eq:jastrowRatSTD}) yields
+
+\begin{eqnarray}
+  \log\frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j \ne i} g^\mathrm{old}_{kj} - g^\mathrm{old}_{kj} + \sum_{j = 1}^N g^\mathrm{new}_{ij} - g^\mathrm{old}_{ij} \nonumber\\
+                                            &=& \sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right)
+\end{eqnarray}
+
+Exponentiating both sides reveals the final optimized ratio 
+
+\cfbox{4.6cm-2pt}{
+\begin{equation}
+ \frac{J^\mathrm{new}}{J^\mathrm{old}} = \exp \left[\sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right)\right]
+\end{equation}
+}
+
+
+\section{Optimizing the Padé Jastrow Derivative Ratios}
+
+The shape of the Padé Jastrow factor is general in the sense that its shape is independent of the system at hand. Calculating closed form expressions for the derivatives is then a process which can be done once and for all. 
+
+\subsection{The Gradient}
+
+Using the notation of Eq.~(\ref{eq:jastrowRatSTD}), the $x$ component of the Padé Jastrow gradient ratio for particle $i$ then becomes
+
+\begin{equation}
+ \frac{1}{J}\frac{\partial J}{\partial x_i} = \frac{1}{\prod_{k < l}\exp g_{kl}}\frac{\partial }{\partial x_i}\prod_{k < l}\exp g_{kl} 
+\end{equation}
+
+Using the product rule, only terms with $k$ or $l$ equal to $i$ survive the differentiation. In addition, the terms independent of $i$ will cancel the corresponding terms in the denominator. In other words, 
+
+\begin{eqnarray}
+  \frac{1}{J}\frac{\partial J}{\partial x_i} &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\frac{\partial}{\partial x_i} \exp g_{ik} \nonumber\\
+  &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\exp g_{ik}\frac{\partial g_{ik}}{\partial x_i} \nonumber \\
+  &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial x_i} \nonumber \\
+  &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial r_{ik}}\frac{\partial r_{ik}}{\partial x_i}
+\end{eqnarray}
+
+\begin{eqnarray}
+ \frac{\partial g_{ik}}{\partial r_{ik}} &=& \frac{\partial }{\partial r_{ik}} \left(\frac{a_{ik}r_{ik}}{1 + \beta r_{ik}}\right) \nonumber\\
+  &=& \frac{a_{ik}}{1 + \beta r_{ik}} - \frac{a_{ik}r_{ik}}{(1 + \beta r_{ik})^2}\beta \nonumber \\
+  &=& \frac{a_{ik}(1 + \beta r_{ik}) - a_{ik}\beta r_{ik}}{(1 + \beta r_{ik})^2}  \nonumber \\
+  &=& \frac{a_{ik}}{(1 + \beta r_{ik})^2} \label{eq:jastrowDgikDrik}
+\end{eqnarray}
+
+\begin{eqnarray}
+ \frac{\partial r_{ik}}{\partial x_i} &=& \frac{\partial }{\partial x_i} \sqrt{(x_i - x_k)^2 + (y_i - y_k)^2 + (z_i - z_k)^2} \nonumber \\
+  &=& \frac{1}{2} 2(x_i - x_k) / \sqrt{(x_i - x_k)^2 + (y_i - y_k)^2 + (z_i - z_k)^2} \nonumber \\
+  &=& \frac{x_i - x_k}{r_{ik}}
+\end{eqnarray}
+
+Combining these expressions yields
+
+\begin{equation}
+\label{eq:jastrowDerivX}
+ \frac{1}{J}\frac{\partial J}{\partial x_i} = \sum_{k \ne i} \frac{a_{ik}}{r_{ik}}\frac{x_i - x_k}{(1 + \beta r_{ik})^2}
+\end{equation}
+
+When changing Cartesian variable in the differentiation, the only change to the expression is that the corresponding Cartesian variable changes in the numerator of Eq.~(\ref{eq:jastrowDerivX}). In other words, generalizing to the full gradient is done by substituting the Cartesian difference with the position vector difference.
+
+\cfbox{4.8cm}{
+\begin{equation}
+ \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2}
+\end{equation}
+}
+
+
+\subsection{The Laplacian}
+
+The method of deducing the closed form expression for the Laplacian of the Padé Jastrow factor is identical to that of the gradient. The full calculation is done in ref. \cite{morten}. The expression becomes
+
+\begin{equation}
+\label{eq:jastrowLaplRaw}
+ \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N \left(\frac{d-1}{r_{ik}}\frac{\partial g_{ik}}{\partial r_{ik}} + \frac{\partial^2 g_{ik}}{\partial r_{ik}^2}\right) 
+\end{equation}
+
+where $d$ is the number of dimensions, arising due to the fact that the Laplacian, unlike the gradient, is a summation of contributions from all dimensions. A simple differentiation of Eq.~(\ref{eq:jastrowDgikDrik}) with respect to $r_{ik}$ yields
+
+\begin{equation}
+\label{eq:jastrowD2gikDrik2}
+ \frac{\partial^2 g_{ik}}{\partial r_{ik}^2} = -\frac{2a_{ik}\beta}{(1 + \beta r_{ik})^3}
+\end{equation}
+
+Inserting Eq.~(\ref{eq:jastrowDgikDrik}) and Eq.~(\ref{eq:jastrowD2gikDrik2}) into Eq.~(\ref{eq:jastrowLaplRaw}) yields
+
+\begin{eqnarray}
+ \frac{\nabla^2_i J}{J} &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N \left(\frac{d-1}{r_{ik}}\frac{a_{ik}}{(1 + \beta r_{ik})^2} - \frac{2a_{ik}\beta}{(1 + \beta r_{ik})^3}\right) \nonumber\\
+  &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N a_{ik}\frac{(d-1)(1 + \beta r_{ik}) - 2\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3} \nonumber
+\end{eqnarray}
+
+which with a little cleanup results in
+
+\begin{equation}
+ \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i} a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+\end{equation}
+
+The local energy calculation needs the sum of the Laplacians for all particles (see Eq.~(\ref{eq:localEsum})). In other words, the quantity of interest becomes
+
+\begin{equation}
+ \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left|\frac{\nabla_i J}{J}\right|^2 + \sum_{i \ne k}^N a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+\end{equation}
+
+However, due to the symmetry of $r_{ik}$, the second term count equal values twice. We can therefore optimize the calculation by only summing for $k>i$, and rather multiply the sum by two. Bringing it all together, we get
+
+\cfbox{5cm}{
+\begin{equation}
+ \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left|\frac{\nabla_i J}{J}\right|^2 + 2\sum_{i < k}^N a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+\end{equation}
+}
+
+
+\section{Further Optimizations}
+
+The optimizations covered in this section will exclusively arise from point \ref{it::opt::reCalc} in section \ref{sec:optGoals}. Avoiding recalculation of expressions which could have been tabulated is a major source of speedup. 
+
+rrel, r2, phimatrix, delphi, oppdatere jastrow gradient, qnum indie terms ++ a s a s d a d sd f s f s a sa dsa sda a a  ads ad  gf asrfs asdf as fas  a asd asd as 
+
+\subsection{Tabulating Recalculated Data}
+
+blah
+sad
+sda
+
+
+sda
+sdasda
 
 
 
+\begin{equation}
+r_{rel} = r_{rel}^T = \left( \begin{array}{ccccc}
+0 & r_{12} & r_{13} & \cdots & r_{1N} \\
+ & 0 & r_{23} & \cdots & r_{2N}  \\
+ &  & \ddots & \ddots & \vdots \\
+ & \cdots &  & 0 & r_{(N-1)N} \\
+ &  &  &  & 0\end{array} \right).
+\end{equation}
+
+\begin{lstlisting}
+ void Sampling::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
+
+    ...
+
+    //Updating the part of the r_rel matrix which is changed by moving the [particle]
+    for (int j = 0; j < n_p; j++) {
+        if (j != particle) {
+            walker_post->r_rel(particle, j) = walker_post->r_rel(j, particle)
+                    = walker_post->calc_r_rel(particle, j);
+        }
+    }
+    
+    ...
+
+}
+\end{lstlisting}
 
 
+Functions such as Coulomb and the Jastrow Factor can then simply access these matrix elements.
 
 
+Avoid if-testing spin:
+
+\begin{equation}
+ D^{-1} \equiv \left[(D^\uparrow)^{-1}\,(D^\downarrow)^{-1}\right]
+\end{equation}
+
+\begin{equation}
+ D \equiv \left[D^\uparrow\,D^\downarrow\right] = \left[ \begin{array}{cccc}
+\phi_1(r_0)     & \phi_1(r_1)     & \cdots & \phi_1(r_N)       \\
+\phi_2(r_0)     & \phi_2(r_1)     & \cdots & \phi_2(r_N)       \\
+\vdots          & \vdots          &        & \vdots            \\
+\phi_{N/2}(r_0) & \phi_{N/2}(r_1) & \cdots & \phi_{N/2}(r_N)   \end{array} \right]
+\end{equation}
+
+\begin{equation}
+ \nabla D \equiv \left[ \begin{array}{cccc}
+\nabla \phi_1(r_0)     & \nabla \phi_1(r_1)     & \cdots & \nabla \phi_1(r_N)       \\
+\nabla \phi_2(r_0)     & \nabla \phi_2(r_1)     & \cdots & \nabla \phi_2(r_N)       \\
+\vdots                 & \vdots                 &        & \vdots                   \\
+\nabla \phi_{N/2}(r_0) & \nabla \phi_{N/2}(r_1) & \cdots & \nabla \phi_{N/2}(r_N)   \end{array} \right]
+\end{equation}
+
+\begin{equation}
+ \mathrm{d}\vec J_{ik} = -\mathrm{d}\vec J_{ki} \equiv \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2}
+\end{equation}
 
 
+\begin{equation}
+ \mathrm{d}J = -\mathrm{d}J^T \equiv \left( \begin{array}{ccccc}
+0 & \mathrm{d}J_{12} & \mathrm{d}J_{13} & \cdots & \mathrm{d}J_{1N} \\
+ & 0 & \mathrm{d}J_{23} & \cdots & \mathrm{d}J_{2N}  \\
+ &  & \ddots & \ddots & \vdots \\
+ & (-) &  & 0 & \mathrm{d}J_{(N-1)N} \\
+ &  &  &  & 0\end{array} \right).
+\end{equation}
+
+
+\begin{lstlisting}
+void AlphaHarmonicOscillator::set_qnum_indie_terms(const Walker * walker, int i) {
+   
+   //k2 = alpha*omega 
+   *exp_factor = exp(-0.5 * (*k2) * walker->get_r_i2(i));
+}
+\end{lstlisting}
+
+for N particles, saves $N(1 + \frac{d}{2})$ exponential calls pr. particle pr. walker pr. cycle.
+
+3000 cycles, ~1000 walkers, 100 blocks, 42 particles = $12.6\cdot 10^9$ exponential calls saved.
 
