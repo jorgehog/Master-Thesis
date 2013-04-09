@@ -1,50 +1,50 @@
 \chapter{Generalization and Optimization}
 
-Writing code for a specific case without flexibility is relatively easy; the implementation is brief and simple. On the other hand, creating a general solver for Quantum Mechanical systems involves several layers of complexity, such as different potentials, single particle bases, sampling models, etc., which may easily lead to a combinatoric disaster if the planning is not done right. 
+There is a big difference in strategy between writing code for a specific problem, and creating a general solver. A general Quantum Monte-Carlo solver involves several layers of complexity, such as support for different potentials, single particle bases, sampling models, etc., which may easily lead to a combinatoric disaster if the planning is not done right. 
 
 This chapter will cover the underlaying assumptions and goals in Section \ref{sec:AssGoal}, the ..
 
-\section{Underlaying Assumptions and Goals}
+\section{Underlying Assumptions and Goals}
 \label{sec:AssGoal}
 
-The overall goal to achieve efficiency for a high number of degrees of freedom without sacrificing diversity and readability was heavily dependent on the planning process. Thousands of lines of code should be written once and for all\footnote{This, however, is rarely the case. The code used in this thesis has been completely restructured four times.}.
+Thousands of lines of code should be written once and for all\footnote{This, however, is rarely the case. The code used in this thesis has been completely restructured four times.}. This section will cover the assumptions made and the goals set, preliminary to the coding process.
 
 \subsection{Assumptions}
 \label{sec:ass}
 
-The optimizations scheme was laid down based on the following assumptions
+The code scheme was laid down based on the following assumptions
 
 \cfbox{3cm-3pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item The constituents of the simulated systems are either pure fermionic or pure bosinic. \label{it::ass::pureFermBos}
- \item A fermionic system is a two-level system\footnote{The actual code is developed to easily add support for $n$-level systems.}. \label{it::ass::2level}
+ \item A fermionic system is a two-level system described by one Slater determinant pr. spin eigenvalue\footnote{The actual code is developed to easily add support for $n$-level systems.}. \label{it::ass::2level}
  \item The trial wave function of a fermionic system is a single determinant. \label{it::ass::fermiSingleDet}
  \item A bosonic system is modeled by all particles being in the same assumed single particle ground state. \label{it::ass::bosCondensate}
  \vspace{0.3cm}
 \end{enumerate}
 }
 
-Other assumptions are done, such as the time-independence of the Hamiltonian, however, these arise due to the QMC solver, not the specific implementation, and are hence described in Chapter \ref{ch:QMC}.
+Other assumptions, such as the time-independence of the Hamiltonian, arise due to the QMC solver, not the specific implementation, and are hence covered in Chapter \ref{ch:QMC}.
 
 \subsection{Generalization Goals}
 \label{sec:genGoals}
 
-The level of generalization is set to be at any combination of the following
+The implementation should be general for:
 
 \cfbox{3.17cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item Fermions and Bosons. \label{it::gen::FermiAndBoson}
  \item Anisotropic- and isotropic diffusion, i.e. Brute Force - or Importance sampling. \label{it::gen::BF_IS}
- \item Minimization techniques. 
- \item Jastrow factor.
- \item Error estimator.
- \item Single particle bases, including expanded single particle bases. \label{it::gen::SP_basis}
+ \item Different minimization algorithms. 
+ \item Any Jastrow factor.
+ \item Any error estimation algorithm.
+ \item Any single particle basis, including expanded single particle bases. \label{it::gen::SP_basis}
  \item Any combination of any potentials. \label{it::gen::pot}
  \vspace{0.2cm}
 \end{enumerate}
 }
  
-In addition, the following requirement is made to the solver in order to generalize to expressions which does not have a closed-form solution
+In addition, the following constraint is set on solvers:
 
 \cfbox{3.42cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
@@ -55,7 +55,7 @@ In addition, the following requirement is made to the solver in order to general
 }
 
 
-This ends up as a complex span of scenarios. The challenge is to, despite the numerous combinations, simplify the structure in a way that makes the code readable and easily expandable. If-testing inside the solver in order to achieve generalization are in other words out of the question (see the next section).
+The challenge is, despite the vast array of combinations, to preserve simplicity and structure as layers of complexity are added. If-testing inside the solvers in order to achieve generalization are in other words out of the question (see the next section).
 
 \subsection{Optimization Goals}
 \label{sec:optGoals}
@@ -74,13 +74,13 @@ Designed for the CPU, runtime optimizations are favored over memory optimization
 \clearpage
 \section{Specifics Regarding Generalization}
 
-The implementation of methods are done using the concepts introduced in Chapter \ref{ch:SciProg}. Generalization is achieved through the use of deep object orientation, i.e. polymorphism, rather than if-testing. The assumptions listed in Section \ref{sec:ass} are applied if not otherwise stated.
+Generalization is achieved through the use of deep object orientation, i.e. polymorphism, rather than if-testing. These concepts are described in Section \ref{sec:OO}. The assumptions listed in Section \ref{sec:ass} are applied if not otherwise is stated.
 
 For details regarding the implementation of methods, see the code in \cite{libBorealisCode}.
 
 \subsection{Generalization Goals \ref{it::gen::FermiAndBoson}-\ref{it::gen::pot}}
 
-As discussed in Section \ref{sec:manyBodyWFs}, the only thing separating fermions and bosons is how the many-body wave function is constructed from the single-particle orbitals. In the case of fermions, the expression is given in terms of two determinants, while for bosons, it is simply the product of all states.
+As discussed in Section \ref{sec:manyBodyWFs}, the mathematical difference between fermions and bosons (of importance to QMC) is how the many-body wave functions are constructed from the single-particle basis. In the case of fermions, the expression is given in terms of two Slater determinants, while for bosons, it is simply the product of all states.
 
 \vspace{0.2cm}
 \begin{lstlisting}
@@ -107,11 +107,11 @@ double Bosons::get_spatial_wf(const Walker* walker) {
 }
 \end{lstlisting}
 
-Fermion/Boson overloaded pure virtual methods exist for e.g. the spatial ratio and the Laplacian sum. When the \verb+QMC+ solver asks the system, declared as the superclass of fermions and bosons, for a spatial ratio, it automatically returns the loaded systems value. 
+Fermion/Boson overloaded pure virtual methods exist for all methods involving evaluation of the many body wave function, e.g. the spatial ratio and the Laplacian sum. When the \verb+QMC+ solver asks the \verb+System*+ object for a spatial ratio, depending on whether Fermions or Bosons are loaded run-time, the Fermion or Boson spatial ratio is evaluated. 
 
-This way of splitting the system class also takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of if-tests in order to generalize the code. 
+This way of splitting the system class also takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of repeating if-tests. 
 
-Similar splitting is introduced in the following classes:
+Similar polymorphic splitting is introduced in the following classes:
 
 \begin{listliketab}
 \storestyleof{itemize}
@@ -127,15 +127,20 @@ Similar splitting is introduced in the following classes:
  \end{tabular}
 \end{listliketab}
 
-Keep in mind that e.g. implementing a new Jastrow Factor is done by creating a new subclass of \verb+Jastrow+. This is a very organized way of structuring the code. For more details, see Section \ref{sec:OO}. The splitting done in \verb+QMC+ is to avoid rewriting a lot of general QMC code.
+Implementing a new Jastrow Factor done simply by creating a new subclass of \verb+Jastrow+: Simple yet versatile. For more details, see Section \ref{sec:OO}. The splitting done in \verb+QMC+ is done to avoid rewriting a lot of general QMC code.
 
 A detailed description of the generalization of potentials (point \ref{it::gen::pot}) is given in Section \ref{sec:typeCastPoly}.
 
 \subsection{Generalization Goal \ref{it::gen::SP_basis} and Expanded bases}
 
+An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass. It is designed as a wrapper to an \verb+Orbitals+ subclass containing basis elements $\phi_\alpha(r_j)$. In addition to these elements, the class has a set of expansion coefficients $C_{\gamma\alpha}$ in which the new basis elements are constructed
 
+\begin{equation}
+\label{eq:ExpBasisSP}
+ \psi_\gamma^\mathrm{Exp.}(r_j) = \sum_{\alpha=0}^{B - 1} C_{\gamma\alpha}\phi_\alpha(r_j) 
+\end{equation}
 
-An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass, holding a set of basis functions in which to expand the single particle orbitals, and a set of expansion coefficients.
+where $B$ is the size of the expanded basis.
 
 \vspace{0.5cm}
 \begin{lstlisting}[language=C++]
@@ -156,9 +161,9 @@ protected:
 
 \end{lstlisting}
 
-In order to obtain these coefficients, a \textit{Hartree-Fock} solver has been implemented. For a given set of orbitals, e.g. harmonic oscillator, everything that is needed in order to obtain an expanded basis, is to implement expressions for the one-body - and two-body interaction elements.
+In order to calculate the expansion coefficients, a \textit{Hartree-Fock} solver has been implemented. For a given set of orbitals, e.g. harmonic oscillator, everything that is needed in order to obtain an expanded basis, is to implement expressions for the one-body - and two-body interaction elements.
 
-Although \verb+ExpandedBasis+ is implemented as a subclass to the original orbital class, it is designed to work along side it. The reason why \verb+Orbitals::phi+ is a virtual function, is so that the \verb+ExpandedBasis+ class can override it. Implementing the new single particle functions is simply done by virtual function overriding as below: 
+The implementation of Eq.~(\ref{eq:ExpBasisSP}) are done by overloading the original \verb+Orbitals.phi+ method
 
 \vspace{0.5cm}
 \begin{lstlisting}
@@ -181,20 +186,153 @@ See Section \textbf{REF HF} for details regarding Hartree-Fock theory.
 
 \subsection{Generalization Goal \ref{it::gen::numSupp}}
 
-Functionality for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivative can be obtained\footnote{In most cases they can, however, in some cases the expressions are so heavy that they are not practical to use.}.
+Functionality for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivatives can be obtained\footnote{In most cases they can, however, in some cases the expressions are so heavy that they are not practical to use.}.
 
-The way this is implemented into the solvers are through virtual function overloading. The function in \verb+Orbitals+ which returns a single particle derivative, is virtual, and can be overloaded to call the numerical derivative implementation of gradients and Laplacians. The same goes for the Jastrow factor and the variational derivatives in the minimizers.
-
-One could perform the derivatives on the total wave function, and not on the single particle orbitals, however, this would add another layer of complexity by having to differentiate between whether or not the actual single particle expressions are needed etc. It results in a more refined implementation to simply let the numerical differentiation substitute the closed form expressions at the lowest level.
+As an example, \verb+Orbitals.dell_phi+, which returns a single particle derivative, is virtual, and can be overloaded to call the numerical derivative implementation \verb+Orbitals.num_diff+\footnote{An alternative would be to perform the derivative on the full many-body wave function, however, this would demand another layer of polymorphism and make the code less intuitive.}. The same goes for the Jastrow factor and the variational derivatives in the minimizers. Similar implementations exist for the Laplacian.
 
 The numerical implementations are finite difference schemes with error proportional to the squared step length.
 
-\section{Optimizing the Single-determinant Expressions}
+\section{Optimizations due to a Single two-level Determinant}
 
-Assumption \ref{it::ass::fermiSingleDet} unlocks the possibility to optimize the expressions involving the Slater-determinant dramatically. Similar expressions for bosons due to assumption \ref{it::ass::bosCondensate} are considered trivial and will not be covered. See the code in \cite{libBorealisCode} for details regarding bosons.
+Assumption \ref{it::ass::fermiSingleDet} unlocks the possibility to optimize the expressions involving the Slater-determinant dramatically. Similar optimizations for bosons due to assumption \ref{it::ass::bosCondensate} are considered trivial and will not be covered in detail. See the code in \cite{libBorealisCode} for details regarding bosons.
 
-The reason optimizations are possible is that only one particle is moved at the time (see the diffusion algorithm in Fig. \ref{fig:diffFlowChart}). Altering one particle only changes a single row in the Slater-determinant, which means that almost every \textit{co-factor} remains unchanged. Moreover, the expressions used in Metropolis, the Quantum force, and the local energy all involve ratios, implying that parts of the expressions will cancel. If we can tell a priori that parts of an expression will cancel, we should avoid calculating these in the first place, and hard code them equal to zero or one.
+The full trial wave function $\Psi_T$ is given by Eq.~(\ref{eq:singleDeterminantTWF}). I will drop the function arguments to clean up the expressions. Written in terms of a spatial function $|D|$ and a Jastrow function $J$, we get
 
-\subsection{Introducing the inverse of the Slater-matrix}
+\newcommand{\PT}{|D^\uparrow||D^\downarrow|J}
+\newcommand{\Du}{|D^\uparrow|}
+\newcommand{\Dd}{|D^\downarrow|}
+\newcommand{\Da}{|D^\alpha|}
+
+\begin{equation}
+ \Psi_T = \PT
+\end{equation}
+
+The Quantum Force becomes
+
+\begin{eqnarray}
+ F_i &=& 2\frac{\nabla_i\left(\PT\right)}{\PT} \nonumber\\
+     &=& 2\left(\frac{\nabla_i\Du}{\Du} + \frac{\nabla_i\Dd}{\Dd} + \frac{\nabla_i J}{J}\right) \nonumber \\
+     &=& 2\left(\frac{\nabla_i\Da}{\Da} + \frac{\nabla_i J}{J}\right)
+\end{eqnarray}
+
+where $\alpha$ is the spin configuration of particle $i$. The counterpart to $\alpha$ has no dependence of particle $i$ and will hence be zero in the expression above.
+
+Equally for the Laplacians used in the local energy, we get
+
+\begin{eqnarray}
+ E_L &=& \sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + V \nonumber\\
+  \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PT}\nabla^2_i \PT \nonumber\\
+  &=& \frac{\nabla^2_i \Du}{\Du} + \frac{\nabla^2_i \Dd}{\Dd} + \frac{\nabla^2_i J}{J} \nonumber\\
+  && +\,\, 2\frac{\left(\nabla_i\Du\right)\left(\nabla_i\Dd\right)}{\Du\Dd} + 2 \frac{\left(\nabla_i\Du\right)\left(\nabla_i J\right)}{\Du J} + 2 \frac{\left(\nabla_i\Dd\right)\left(\nabla_i J\right)}{\Dd J} \nonumber\\
+  &=& \frac{\nabla^2_i \Da}{\Da} + \frac{\nabla^2_i J}{J} + 2\frac{\nabla_i\Da}{\Da} \frac{\nabla_i J}{J}
+\end{eqnarray}
+
+Finally, the expression for the $R_\psi$ ratio for Metropolis is
+
+\begin{eqnarray}
+ R_\psi &=& \frac{\Psi_T^\mathrm{new}}{\Psi_T^\mathrm{old}} \nonumber\\
+        &=& \frac{\Du^\mathrm{new} \Dd^\mathrm{new} J^\mathrm{new}}{\Du^\mathrm{old} \Dd^\mathrm{old} J^\mathrm{old}} \nonumber\\
+        &=& \frac{\Da^\mathrm{new}}{\Da^\mathrm{old}}\frac{J^\mathrm{new}}{J^\mathrm{old}} \label{eq:RpsiOpt}
+\end{eqnarray}
+
+where either the spin up or the spin down determinant is unchanged by the step. 
+
+From these expressions it is clear that we get a halving of the dimensionality of the system by splitting the Slater determinants. Calculation the determinant of a $N\times N$ matrix is $\mathcal{O}(N^2)$ floating point operations (flops). This implies a speedup of four in estimating the determinants alone. 
+
+\section{Optimizations due to single-particle moves}
+
+Moving only one particle at the time (see the diffusion algorithm in Fig. \ref{fig:diffFlowChart}), means changing a single row in the Slater-determinant at the time. Changes to a single row means that almost every \textit{co-factor} remains unchanged. Since all of the expressions deduced in the previous section contains ratios of the spatial wave functions, expressing these determinants in terms of their co-factors should reveal cancellation of terms. 
+
+\subsection{Optimizing the Slater ratios}
+
+The inverse of the Slater-matrix is given in terms of its \textit{adjugate} by the following relation \cite{linAlg} (spin-configuration parameter $\alpha$ will be skipped for now)
+
+\begin{equation*}
+ D^{-1} = \frac{1}{|D|}\mathrm{adj} D
+\end{equation*}
+
+The adjugate of a matrix is the transpose of the cofactor matrix $C$. Given in terms of matrix element equations, we have
+
+\begin{eqnarray}
+ D^{-1}_{ij} &=& \frac{C_{ji}}{|D|}\label{eq:invExpCofac} \\
+ D_{ji} &=& \phi_i(r_j) \label{eq:slaterMatPhi}
+\end{eqnarray}
+
+Moreover, the determinant can be expressed as a \textit{cofactor expansion} around row $j$ (Kramer's rule)
+
+\begin{equation}
+\label{eq:cofacExp}
+ |D| = \sum_i D_{ji} C_{ji}.
+\end{equation}
+
+The spatial part of the $R_\psi$ ratio is then (inserting Eq.~(\ref{eq:cofacExp}) into Eq.~(\ref{eq:RpsiOpt}))
+
+\begin{equation}
+\label{eq:RpsiCofac}
+ R_S = \frac{\sum_i D_{ji}^\mathrm{new}C_{ji}^\mathrm{new}}{\sum_i D_{ji}^\mathrm{old}C_{ji}^\mathrm{old}}
+\end{equation}
+
+Let $j$ represent the moved particle, the $j$'th column of the cofactor matrix is unchanged when the particle moves (column $j$ depends on every column but its own). In other words,
+
+\begin{equation}
+ C_{ji}^\mathrm{new} = C_{ji}^\mathrm{old} = (D^\mathrm{old}_{ij})^{-1}|D^\mathrm{old}|,
+\end{equation}
+
+where the inverse relation of Eq.~(\ref{eq:invExpCofac}) has been used. Inserting this into Eq.~(\ref{eq:RpsiCofac}) yields
+
+\begin{eqnarray}
+  R_S &=& \frac{|D^\mathrm{old}|}{|D^\mathrm{old}|}\frac{\sum_i D_{ji}^\mathrm{new}(D_{ij}^\mathrm{old})^{-1}}{\sum_i D_{ji}^\mathrm{old}(D_{ij}^\mathrm{old})^{-1}} \nonumber\\
+         &=& \frac{\sum_i D_{ji}^\mathrm{new}(D_{ij}^\mathrm{old})^{-1}}{I_{jj}} \nonumber
+\end{eqnarray}
+
+The diagonal element of the identity matrix is by definition unity. Inserting this fact combined with the relation from Eq.~(\ref{eq:slaterMatPhi}) yields the optimized expression for the ratio
+
+\cfbox{4cm-4pt}{
+\begin{equation}
+\label{eq:spatialRatioDet}
+ R_S = \sum_i \phi_i(r_j^\mathrm{new})(D_{ij}^\mathrm{old})^{-1}
+\end{equation}
+}
+
+where $j$ is the currently moved particle. The sum $i$ spans the Slater matrix whose spin value matches that of particle $j$.
+
+
+Similar reductions can be applied to all the Slater ratio expressions from the previous section, see refs. \cite{abInitioMC, morten}:
+
+\begin{eqnarray}
+ \frac{\nabla_i|D|}{|D|} &=& \sum_{k} \nabla_i\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1} \\
+  \frac{\nabla_i^2|D|}{|D|} &=& \sum_{k} \nabla_i^2\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1}
+\end{eqnarray}
+
+where again, $k$ spans the Slater matrix whose spin values match that of the moved particle. Unlike for the ratio, $N/2$ of the gradients needs to be recalculated once a particle is moved (with $N$ being the number of particles). This is due to the fact that it is the new Slater inverse that is used, and not the old.
+
+Closed form expressions for the derivatives and Laplacians of the single particle may be implemented and accessed when calling these functions to avoid expensive numerical calculations. See Appendices \textbf{REF SYMPYGEN} for a tabulation of closed form expressions.
+
+\subsection{Optimizing the Inverse}
+
+One might question the efficiency of calculating inverse matrices compared to brute force estimation of the determinants. However, as for the ratio in Eq.~(\ref{eq:spatialRatioDet}), using co-factor expansions we can construct an updating algorithm which dramatically decreases the cost of calculating the inverse of the new Slater matrix.
+
+Let $i$ be the currently moved particle, the new inverse is given in terms of the old by the following expression \cite{abInitioMC, morten}
+
+\begin{eqnarray}
+ \tilde I_{ij} &=& \sum_l D_{il}^\mathrm{new}(D_{lj}^\mathrm{old})^{-1} \\
+ \ \nonumber\\
+ (D_{kj}^\mathrm{new})^{-1} &=& (D_{kj}^\mathrm{old})^{-1} - \frac{1}{R_S}(D_{ji}^\mathrm{old})^{-1}\tilde I_{ij} \qquad\qquad j \ne i\\
+ (D_{ki}^\mathrm{new})^{-1} &=& \frac{1}{R_S}(D_{ki}^\mathrm{old})^{-1} \qquad\qquad\qquad\qquad\qquad\,\, \mathrm{else}
+\end{eqnarray}
+
+
+This reduces the cost of calculating the inverse by an order of magnitude down to $\mathcal{O}(N^2)$.
+
+Further optimization can be achieved by calculating the $\tilde I$ vector for particle $i$ prior to performing the loop over $k$ and $j$. Again, this loop should only update the inverse Slater matrix whose spin value correspond to that of the moved particle.
+
+
+
+
+
+
+
+
+
 
 
