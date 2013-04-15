@@ -58,12 +58,12 @@ which remains exact for an infinite amount of infinitely small time steps. In pr
 In order to simulate the effect of the exponential operator in Eq.~(\ref{eq:genSolTimeStepsProj}) on our initial state,
 consider the following rewriting
 
-\begin{eqnarray}
- \OP{P}(n, \delta\tau) &\equiv& \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right] \\
-  &=& e^{-(\OP{H} - E_T)\delta\tau}e^{-(\OP{H} - E_T)\delta\tau}\cdots e^{-(\OP{H} - E_T)\delta\tau} \\
-     &=& \int_{x_1}\int_{x_2}\cdots\int_{x_n} \ket{x_n}\bra{x_n} e^{-(\OP{H} - E_T)\delta\tau} \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
-     &\qquad\qquad\times& \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\bra{x_1}\mathrm{d}x_{1}\cdots\mathrm{d}x_{n} 
-\end{eqnarray}
+\begin{align}
+ \OP{P}(n, \delta\tau) &\equiv \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right] \\
+  &= e^{-(\OP{H} - E_T)\delta\tau}e^{-(\OP{H} - E_T)\delta\tau}\cdots e^{-(\OP{H} - E_T)\delta\tau} \\
+     &= \int_{x_1}\int_{x_2}\cdots\int_{x_n} \ket{x_n}\bra{x_n} e^{-(\OP{H} - E_T)\delta\tau} \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
+     &\qquad\qquad\times \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\bra{x_1}\mathrm{d}x_{1}\cdots\mathrm{d}x_{n} 
+\end{align}
 
 where complete sets of position basis states are introduced (see appendix \ref{app:Dirac}). The state from Eq.~(\ref{eq:genSolTimeStepsProj}) are then given by
 
