@@ -1,27 +1,25 @@
-\chapter{Visualization of Data}
+\chapter{DCViz: Visualization of Data}
 
-With an increasingly massive code framework comes the increased need of data analysis tools. Data analysis usually involves visualization of the data; there is only so much information a single number can hold. To supplement the QMC code, a visualization tool has been developed, dramatically easing the implementation of additional visualization scripts.
-
-\section{DCViz}
+With an increasingly massive code framework comes the increased need of data analysis tools. Data analysis usually involves visualization of the data; there is only so much information a single number can hold. To supplement the QMC code, a visualization tool has been developed.
 
 The tool DCViz (Dynamic Column data Visualizer) is a Python based visualization tool designed to plot data stored in columns. The plot library used is \textit{Matplotlib}. The data can be plotted dynamically at a specified interval, and is hence designed to run parallel to the main application, e.g. DMC. The convergence of the DMC method is much better represented by a trailing energy graph than simply a stream of numbers. The same goes for the minimization process.
 
-\subsection{Implementing a Visualization Tool}
+\section{Basic Usage}
 
 Just like for the \verb+orbitalsGenerator+ tool (see Appendix \ref{appendix:sympy}), specific implementations come in the shape of subclasses of the DCViz superclass. All the functionality regarding setting up figures, re-plotting dynamically, clearing figures to avoid random crashes if used repeatedly, etc. is inherited from the superclass. The necessary elements to implement is
 
 \begin{small}
-\begin{tabular}{lp{14cm}}
-\verb+figMap+		& A dictionary representing the names and structure of the plotted figures. If e.g. two figures 				\verb+fig1+ and \verb+fig2+ are wanted, where \verb+fig1+ should contain three sub-figures 					\verb+subFig1+, \verb+subFig2+ and \verb+subFig3+, the figure map should be set up as \\					& \verb+figMap = {"fig1": ["subFig1", "subFig2", "subFig3"], "fig2": ["subFig4"]}+ \\
-			& In class member functions, e.g. \verb+self.subFig1+ will be available as the figure representing the first sub-figure of the first figure. \\
+\begin{tabular}{lp{12cm}}
+\verb+figMap+		& A dictionary representing the names and structure of the plotted figures. \\						& \verb+figMap = {"fig1": ["subFig1", "subFig2", "subFig3"], "fig2": ["subFig4"]}+ \\
+			& Will create two figures, where the first is split into three sub-figures.\\
+			& In class member functions, \verb+self.subFig1+ will be available as the figure representing the first sub-figure of \verb+self.fig1+. \\
 			\ \\
-\verb+nametag+		& A string representing the name of the output files associated with the given implementation 				(subclass). Full regular expressions support. E.g. \verb|nametag = "DMC_out_\d+\.dat"|. All files
-			loaded which matches the name-tag will be automatically plotted by the corresponding subclass implementation. \\
+\verb+nametag+		& A string, e.g. \verb|nametag = "DMC_out_\d+\.dat"|, representing the name of the output files 				associated with the given implementation (subclass). Full regular expressions support. Used in 				order to automatically detect which subclass to load for a specific file.\\
 			\ \\
 \verb+plot(self, data)+& The loaded file will be loaded into a \verb+data+ object, which is an iterator where each elements
-			represents a column in the data file. Designed such that expressions such as \verb+col1, col2 = data+ is possible (and fast). For the raw data loaded in a matrix, use \verb+data.data+ to directly access the loaded file.
+			represents a column in the data file. Designed such that expressions like \verb+col1, col2 = data+ is possible (and fast). To access the raw data as a matrix, use \verb+data.data+ \\
 			\ \\
-			&In the plot function, the sub-figures introduced in \verb+figMap+ should be loaded with data through e.g. \verb+self.subFig1.plot(col1, col2)+. The superclass' main loop will take care of the rest.
+			&In the plot function, the sub-figures introduced in \verb+figMap+ should be loaded with data through e.g. \verb+self.subFig1.plot(col1, col2)+. 
 \end{tabular}
 \end{small}
 
@@ -29,6 +27,10 @@ An example implementation would be
 
 \vspace{0.5cm}
 \begin{lstlisting}[language=Python]
+#DCViz_classes.py
+
+from DCViz_sup import DCVizPlotter
+
 class myTestClass(DCVizPlotter):
     nametag =  'testcase\d\.dat' #filename with regex support
     
@@ -50,7 +52,7 @@ class myTestClass(DCVizPlotter):
 
 
 
-\subsection{Additional Support}
+\subsubsection{Additional Support}
 
 Additional parameters can be overloaded for additional functionality
 
@@ -75,6 +77,10 @@ To keep track of which file a given data-set was loaded from, a list \verb+self.
 A class member string \verb+familyName+ can be overridden to display a more general name in the auto-detection feedback. An example implementation using data file families would be
 \vspace{0.5cm}
 \begin{lstlisting}[language=Python]
+#DCViz_classes.py
+
+from DCViz_sup import DCVizPlotter
+
 class myTestClassFamily(DCVizPlotter):
     nametag =  'testcaseFamily\d\.dat' #filename with regex support
     
@@ -107,14 +113,12 @@ class myTestClassFamily(DCVizPlotter):
 
 loading e.g. \verb+testcaseFamily0.dat+ would automatically load \verb+testcaseFamily1.dat+ etc. as well.
 
-\subsection{Usage: The API, Terminal Client and GUI}
-
-All listed interfaces to the DCViz core has full warning support and reconfigurability. DCViz, like the QMC code in general, is designed to be used by other people than the Author.
 
 \subsubsection{The Application Programming Interface (API)}
-The DCViz library has been developed to interface nicely with any python script \footnote{DCViz can also be called through C++, however, no header has been implemented for this. Typically one would use the std::system or std::thread to start the script in the background.} Given a path to the data file, all that is needed in order to visualize it is
 
+The DCViz library has been developed to interface nicely with any Python script \footnote{DCViz can also be called through C++, however, no header has been implemented for this. Typically one would use the std::system or std::thread to start the script in the background.}. Given a path to the data file, all that is needed in order to visualize it is
 
+\vspace{0.5cm}
 \begin{lstlisting}[language=Python]
 import DCVizWrapper as viz
 dynamicMode = False #or true
@@ -127,17 +131,79 @@ dynamicMode = False #or true
 viz.main(path=myDataFile, dynamic=dynamicMode)
 \end{lstlisting}
 
-\subsubsection{Using the Terminal}
+\subsubsection{The Terminal Client}
 
 The \verb+DCVizWrapper.py+ script can also be called directly from a terminal using the path as first command line argument. If the option \verb+-d+ is supplied, dynamic mode is activated.
 
 \subsubsection{The GUI}
 
-The script \verb+DCVizGUI.py+ sets up a GUI for visualizing data using DCViz. The GUI is implemented using pyside (python wrapper for QT), and is designed to be simple. Data files are loaded from an open-file dialog, and will appear in a drop-down menu once loaded. The play button executes the main loop of the currently selected data file. Dynamic mode is selected though a check-box, and the refresh interval is set by a slider (from zero to ten seconds). Warnings can be disabled through the configuration file.
+The script \verb+DCVizGUI.py+ sets up a GUI for visualizing data using DCViz. The GUI is implemented using pyside (python wrapper for Qt), and is designed to be simple. Data files are loaded from an open-file dialog, and will appear in a drop-down menu once loaded. The play button executes the main loop of the currently selected data file. Dynamic mode is selected though a check-box, and the refresh interval is set by a slider (from zero to ten seconds). Warnings can be disabled through the configuration file.
 
-The GUI file can be called from another script (threaded) with main path as first commandline arg. 
+The GUI can be opened from any Python script by calling the \verb+main+ function (should be threaded if used as part of another application). If a path is supplied to the function,
+this path will be default in all file dialogues. Defaults to the current working directory.
 
-Ha med screenshot av DCViz i action.
+The following is a tiny script executing the GUI for a QMC application. If no path is supplied at the command line,
+the default path is set to the scratch path.
+
+\vspace{0.5cm}
+\begin{lstlisting}[language=Python]
+import sys, os
+from pyLibQMC import paths #contains all files specific to the QMC library
+
+#Adds DCVizGUI to the Python path
+sys.path.append(os.path.join(paths.toolsPath, "DCViz", "GUI"))
+
+import DCVizGUI
+
+if __name__ == "__main__":
+
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+    path = paths.scratchPath
+   
+    sys.exit(DCVizGUI.main(path))
+\end{lstlisting}
+
+Alternatively, \verb+DCVizGUI.py+ can be executed directly from the terminal with an optional default path as first command line argument. 
+
+The following is the terminal feedback supplied from opening the GUI
+
+\begin{verbatim}
+ ~/.../DCViz/GUI$ python DCVizGUI.py
+[ Detector ]:  Found subclasses 'myTestClass', 'myTestClassFamily', 'EnergyTrail', 
+'Blocking', 'DMC_OUT', 'radial_out', 'dist_out', 'testBinFile', 'MIN_OUT'
+[   GUI    ]:  Data reset.
+\end{verbatim}
+
+Selecting a folder from the open-folder dialog initializes the detector on all file content
+
+\begin{verbatim}
+[ Detector ]:  matched [  DMC_out.dat  ] with [    DMC_OUT    ]
+[ Detector ]:  matched [  ASGD_out.dat ] with [    MIN_OUT    ]
+[ Detector ]:  matched [blocking_DMC_out.dat] with [    Blocking   ]
+[ Detector ]:  'blocking_MIN_out0_RAWDATA.arma' does not match any DCViz class
+[ Detector ]:  'blocking_DMC_out_RAWDATA.arma' does not match any DCViz class
+[ Detector ]:  matched [blocking_VMC_out.dat] with [    Blocking   ]
+\end{verbatim}
+
+All matched files will be listed in the drop-down menu. Selecting a file, and pressing the play button initializes a job. Pressing the stop button (replacing the play in case of dynamic mode), will end the job. All jobs are threaded, hence several non-dynamic jobs can be ran at once. The limit is set to one dynamic job pr. application. 
+
+\begin{verbatim}
+[   Job    ]:  Starting.
+[   Job    ]:  Stoping...  Stopped.
+\end{verbatim}
+
+Screen-shots of the GUI taken in the process listed previously is given in Fig. \ref{fig:gui}.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics{../Graphics/gui.png}
+  \caption{Two consequent screen shots of the GUI. The first (top) is taken directly after the detector is finished loading files into the drop-down menu. The second is taken directly after the job is started.}
+  \label{fig:gui}
+ \end{center}
+\end{figure}
+
+The terminal tracker can be silenced through to configuration file to not interfere with the standard output of an application. Alternatively, the GUI thread can redirect its standard output to file.
 
 
 
