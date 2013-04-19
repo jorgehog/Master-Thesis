@@ -186,14 +186,12 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/DMC_notExactWF.png}
-  \caption{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega=1$. Calculations are done with $\alpha=0.75$, where the exact wave function is given for $\alpha=1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. The exact energy is $2.0$ Ha. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.}
+  \caption{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega=1$. Calculations are done with $\alpha=0.75$, where the exact wave function is given for $\alpha=1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.}
   \label{fig:DMC_nonExactWF}
  \end{center}
 \end{figure}
 
 \section{Results for Quantum Dots}
-
-
 
 \begin{table}
 \begin{center}
@@ -244,7 +242,7 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
 \end{center}
 \end{table}
 
-\section{FIXED NODE TESTS}
+\subsection{FIXED NODE TESTS}
 
 \begin{table}
 \begin{center}
@@ -291,4 +289,22 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
 \caption{Results for Quantum Dots without fixed node approximation calculated on the cluster Abel using $2000$ DMC cycles on 128 cores. $\epsilon_\mathrm{DMC}^\mathrm{F.N.} = |\mathrm{E_{DMC}} - \mathrm{E_{DMC}^{F.N.}}|$. $\overline{\sigma}  = \frac{1}{2}(\sigma_\mathrm{DMC} + \sigma_\mathrm{DMC}^\mathrm{F.N.})$. The last column serves as an indicator of how many average standard deviations the results differ. For two particles, where the fixed node approximation does not affect the system, the results are as expected exactly the same. For all other system sizes, the difference is mostly within one deviation. This indicates that the effect due to the fixed node approximation for closed shell Quantum Dots are very small.}
 \end{center}
 \end{table}
+
+blah blah
+
+
+\subsection{One-body Densities}
+
+The one-body densities has been calculating using the methods described in Section \ref{sec:OBD}.
+
+
+
+
+
+
+
+
+
+
+
 

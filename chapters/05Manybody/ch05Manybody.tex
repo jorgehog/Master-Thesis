@@ -290,6 +290,25 @@ Just as in traditional importance sampled Monte-Carlo integrals, optimized sampl
 
 Introducing diffusion by the Fokker-Planck equation does not violate the Schrödinger equation, it simply alters the physical interpretation of the distribution of walkers. This new function, $\Psi_T(x)$, is referred to as a \textit{trial wave function}, and will be discussed in more detail in Section \ref{sec:trialWF}.
 
+The QMC energy estimated using the new distribution $f(x, t)$ will still yield the exact energy in the limit of convergeance. Consider the following relation
+
+\begin{align*}
+ E_\mathrm{DMC} &= \frac{1}{N}\int f(\bf r, \tau) \frac{1}{\Psi_T(\bf r)} \OP{H} \Psi_T(\vec r) \mathrm{d}\bf r \\
+                &= \frac{1}{N}\int \Phi(\bf r, \tau) \OP{H} \Psi_T(\bf r) \mathrm{d}\bf r \\
+                &= \frac{1}{N}\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T} \\
+               N&= \int f(\bf r, \tau) \mathrm{d}\bf r \\
+                &= \int \Phi(\bf r, \tau)\Psi_T(\bf r)\mathrm{d}\bf r \\
+                &= \braket{\Phi(\tau)}{\Psi_T}\\
+ E_\mathrm{DMC} &= \frac{\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T}}{\braket{\Phi(\tau)}{\Psi_T}}\\
+\end{align*}
+
+Assuming the DMC has converged to the exact ground state, i.e. $\ket{\Phi(\tau)}\to\ket{\Phi_0}$, letting the Hamiltonian work to the left yields
+
+\begin{align*}
+ E_\mathrm{DMC} &= E_0\frac{\braket{\Phi_0}{\Psi_T}}{\braket{\Phi_0}{\Psi_T}} \\
+                &= E_0
+\end{align*}
+
 
 \section{Diffusive Equilibrium Constraints}
 
@@ -1044,6 +1063,83 @@ where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as descri
   \includegraphics[scale=0.3]{../Graphics/fixxednode.pdf}
   \caption{An illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi_0(x)$. The distribution of walkers at cycle $n$, $\Phi(x, n\delta\tau)$, similar in shape with $\Psi_0(x)$, however, sharing nodes with the trial wave function $\Psi_T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.}
   \label{fig:fixxednode}
+ \end{center}
+\end{figure}
+
+
+\section{Estimating the One-body Density}
+\label{sec:OBD}
+
+The one-body density is defined as
+
+\begin{equation}
+ \rho_\Phi(\bf r_1) = \iint\limits_{\bf r_2 \bf r_3}...\int\limits_{\bf r_N} \left|\Phi(\bf r_1 \bf r_2 ... \bf r_N)\right|^2\mathrm{d}\bf r_2...\mathrm{d}\bf r_N.
+\end{equation}
+
+Due to the indistinguishable nature of the particles, the integral above corresponds to projecting every degree of freedom into a single configuration. In a Monte-Carlo simulation, estimating this quantity is done by collecting snapshots of the position data. These snapshots serve as samples to a histogram where each set of Cartesian coordinates (independent of particle number) give rise to one count on the grid.
+
+\subsection{Estimating the Exact Ground State Density}
+
+The one-body density of the trial wave functions is in other words trivial; create a histogram of sampled VMC positions. The challenge is estimating the one-body density of the exact wave function, given a set of DMC data. As described in Section \ref{sec:anisFokker}, the distribution of walkers are designed to span $f(\bf r, \tau) = \Phi(\bf r, \tau)\Psi_T(\bf r)$, which does not correspond to the ground state distribution unless the trial wave function is indeed the exact ground state. 
+
+In other words: We need a method to transform a given estimate from the \textit{mixed estimate} (using $f(\bf r, \tau)$) into the \textit{pure estimate} using the ground state distribution $|\Phi_0(\bf r)|^2$. This is done by using a third estimate obtained from VMC, the \textit{variational estimate}, which is the estimate sampled from $|\Psi_T(\bf r)|^2$. It is shown in ref. \cite{abInitioMC} that the relation is
+
+\begin{align}
+ \langle A \rangle_0 = \frac{\bra{\Phi_0}\OP{A}\ket{\Phi_0}}{\braket{\Phi_0}{\Phi_0}} &\simeq  2\frac{\bra{\Phi_0}\OP{A}\ket{\Psi_T}}{\braket{\Phi_0}{\Psi_T}} -  \frac{\bra{\Psi_T}\OP{A}\ket{\Psi_T}}{\braket{\Psi_T}{\Psi_T}} + \mathcal{O}(\Delta^2)\notag\\
+  &= 2\langle A \rangle_\mathrm{DMC} - \langle A \rangle_\mathrm{VMC}  + \mathcal{O}(\Delta^2) \label{eq:PureEstimRelat}
+\end{align}
+
+where $\Delta \equiv \Phi_0(\bf r) - \Psi_T(\bf r)$. Expressed in terms of \textit{density operators}, the expectation values becomes
+
+\newcommand{\tr}{\mathrm{tr}}
+
+\begin{align*}
+ \langle A \rangle_0 &= \tr(\OP{\rho}_0\OP{A}) \\
+ \langle A \rangle_\mathrm{VMC} &= \tr(\OP{\rho}_\mathrm{VMC}\OP{A}) \\
+ \langle A \rangle_\mathrm{DMC} &= \tr(\OP{\rho}_\mathrm{DMC}\OP{A}) 
+ \end{align*}
+
+where $\tr$ denotes the \textit{trace} (sum of eigenvalues. Read more in ref. \cite{leinaas}). Inserting these equation into Eq.~(\ref{eq:PureEstimRelat}) yields
+
+\begin{align}
+ \tr(\OP{\rho}_0\OP{A}) &\simeq 2\tr(\OP{\rho}_\mathrm{DMC}\OP{A}) -  \tr(\OP{\rho}_\mathrm{VMC}\OP{A}) + \mathcal{O}(\Delta^2) \notag\\
+  &\simeq \tr\left(\left(2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC}\right)\OP{A}\right) + \mathcal{O}(\Delta^2)
+\end{align}
+
+which leads to the conclusion that the mixed density can be transformed in the following manner
+
+\begin{equation}
+ \OP{\rho}_0 \simeq 2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC} \label{eq:densityTransform}
+\end{equation}
+
+In other words, combining the one-body densities from DMC and VMC according to Eq.~(\ref{eq:densityTransform}) will give a good view of the exact one-body density.
+
+\subsection{Radial Densities}
+
+In the case of symmetric wave functions, like in the case for Helium and Quantum Dots, the radial one-body density is obtained by integrating out the angular dependencies of the one-body density. This corresponds to weighing all angular directions equally in a brute for average and should only be applied to algular symmetric systems.
+
+Calculating the integral in two and three dimensions yields
+
+\begin{align}
+ I_\mathrm{3D} &= \iint \rho (r_1, \theta_1, \phi_1)r_1^2\sin\theta_1\mathrm{d}\theta_1\mathrm{d}\phi_1 \notag\\
+   &= r_1^2\rho(r_1) \label{eq:averagedRadialOBD_3D} \\
+ I_\mathrm{2D} &= \int \rho (r_1, \phi_1)r_1\mathrm{d}\phi_1 \notag\\
+   &= r_1\rho(r_1) \label{eq:averagedRadialOBD_2D}
+\end{align}
+
+In practice, this integral is calculated by creating a histogram $H(r)$ of sampled radii. Transforming this histogram into the radial one-body density $\rho(r_1)$ is according to Eq.~(\ref{eq:averagedRadialOBD_3D}) and Eq.~(\ref{eq:averagedRadialOBD_2D}) done in the following manner
+
+\begin{equation}
+ \rho(r_1) = \frac{H(r_1)}{r_1^{(d-1)}}\label{eq:radial_OBD}
+\end{equation}
+
+where $d$ denotes the number of dimensions. An example radial one-body density is given in Fig. \ref{fig:OBD_ex}
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[scale=0.5]{../Graphics/OBD_rad_ex_12pw01.png}
+  \caption{An example radial one-body density of a 12-particle Quantum Dot with $\omega=0.1$. The one-body density is flat in for VMC in comparison to DMC. The pure density calculated from Eq.~(\ref{eq:densityTransform}) transforms the mixed density $f(\bf r, \tau) = \Phi(\bf r, \tau)\Psi_T(\bf r)$ from DMC into $|\Phi(\bf r, \tau)|^2$ with very small errors. The density diverges close to zero due to a ``$\frac{0}{0}$'' expression (see Eq.~(\ref{eq:radial_OBD})).}
+  \label{fig:OBD_ex}
  \end{center}
 \end{figure}
 
