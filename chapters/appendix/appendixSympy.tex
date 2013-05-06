@@ -217,16 +217,4 @@ The Python superclass \verb+orbitalsGenerator+ (the generator) aims to serve as 
 \end{tabular}
 \end{small}
 
-Implementing these functions will generate a Latex file listing the calculated expressions (see Sections \ref{sec:SymPyHO} and \ref{sec:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the case of Harmonic Oscillator functions, over 2000 lines of code is auto-generated.
-
-\clearpage
-\newpage
-\section{Harmonic Oscillator Orbitals}
-\label{sec:SymPyHO}
-\input{../orbitals/HarmonicOscillator.tex}
-
-\clearpage
-\newpage
-\section{Hydrogenic Orbitals}
-\label{sec:SymPyHydro}
-\input{../orbitals/hydrogenic.tex}
+Implementing these functions will generate a Latex file listing the calculated expressions (see Appendix \ref{appendix:SymPyHO} and \ref{appendix:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the code used in this thesis, ~6000 lines of C++ code was auto-generated using SymPy.

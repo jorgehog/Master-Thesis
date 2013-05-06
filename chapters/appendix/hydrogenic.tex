@@ -1,0 +1,345 @@
+\chapter{Hydrogen Orbitals}
+\label{appendix:SymPyHydro}
+
+Orbitals are constructed in the following fashion:
+\begin{equation*}
+\phi(\vec r)_{n, l, m} = L_{n - l - 1}^{2l + 1}\Big(\frac{2r}{n}k\Big)S_{l}^{m}(\vec r)e^{-\frac{r}{n}k}
+\end{equation*}   
+
+where $n$ is the principal quantum number, $k = \alpha Z$ with $Z$ being the nucleus charge and 
+$\alpha$ being the variational parameter.
+$$l = 0,\, 1,\, ...,\, (n-1)$$ 
+$$m = -l,\, (-l + 1),\, ...,\, (l-1),\, l$$
+  
+\newpage
+
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{0} \rightarrow \phi_{1, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $1$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x}{r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y}{r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k z}{r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(k r -2\right)}{r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 1, 0, 0. Factor $e^{- k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{1} \rightarrow \phi_{2, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $k r -2$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x \left(k r -4\right)}{2 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y \left(k r -4\right)}{2 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k z \left(k r -4\right)}{2 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(k r -8\right) \left(k r -2\right)}{4 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 2, 0, 0. Factor $e^{- \frac{1}{2} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{2} \rightarrow \phi_{2, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x z}{2 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y z}{2 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $\frac{- k z^{2} + 2 r}{2 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k z \left(k r -8\right)}{4 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 2, 1, 0. Factor $e^{- \frac{1}{2} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{3} \rightarrow \phi_{2, 1, 1}$\\
+\hline
+$\phi(\vec r)$ & $x$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $\frac{- k x^{2} + 2 r}{2 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k x y}{2 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k x z}{2 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k x \left(k r -8\right)}{4 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 2, 1, 1. Factor $e^{- \frac{1}{2} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{4} \rightarrow \phi_{2, 1, -1}$\\
+\hline
+$\phi(\vec r)$ & $y$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x y}{2 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $\frac{- k y^{2} + 2 r}{2 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k y z}{2 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k y \left(k r -8\right)}{4 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 2, 1, -1. Factor $e^{- \frac{1}{2} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{5} \rightarrow \phi_{3, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $2 k^{2} r^{2} - 18 k r + 27$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x \left(2 k^{2} r^{2} - 30 k r + 81\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y \left(2 k^{2} r^{2} - 30 k r + 81\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k z \left(2 k^{2} r^{2} - 30 k r + 81\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(k r -18\right) \left(2 k^{2} r^{2} - 18 k r + 27\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 0, 0. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{6} \rightarrow \phi_{3, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $z \left(k r -6\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x z \left(k r -9\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y z \left(k r -9\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $\frac{3 k r^{2} - k z^{2} \left(k r -9\right) - 18 r}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k z \left(k r -18\right) \left(k r -6\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 1, 0. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{7} \rightarrow \phi_{3, 1, 1}$\\
+\hline
+$\phi(\vec r)$ & $x \left(k r -6\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $\frac{3 k r^{2} - k x^{2} \left(k r -9\right) - 18 r}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k x y \left(k r -9\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k x z \left(k r -9\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k x \left(k r -18\right) \left(k r -6\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 1, 1. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{8} \rightarrow \phi_{3, 1, -1}$\\
+\hline
+$\phi(\vec r)$ & $y \left(k r -6\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x y \left(k r -9\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $\frac{3 k r^{2} - k y^{2} \left(k r -9\right) - 18 r}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k y z \left(k r -9\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k y \left(k r -18\right) \left(k r -6\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 1, -1. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{9} \rightarrow \phi_{3, 2, 0}$\\
+\hline
+$\phi(\vec r)$ & $- r^{2} + 3 z^{2}$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{x \left(k \left(- r^{2} + 3 z^{2}\right) + 6 r\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{y \left(k \left(- r^{2} + 3 z^{2}\right) + 6 r\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{z \left(k \left(- r^{2} + 3 z^{2}\right) - 12 r\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(- r^{2} + 3 z^{2}\right) \left(k r -18\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 2, 0. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{10} \rightarrow \phi_{3, 2, 1}$\\
+\hline
+$\phi(\vec r)$ & $x z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{z \left(k x^{2} - 3 r\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k x y z}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{x \left(k z^{2} - 3 r\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k x z \left(k r -18\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 2, 1. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{11} \rightarrow \phi_{3, 2, -1}$\\
+\hline
+$\phi(\vec r)$ & $y z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x y z}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{z \left(k y^{2} - 3 r\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{y \left(k z^{2} - 3 r\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k y z \left(k r -18\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 2, -1. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{12} \rightarrow \phi_{3, 2, 2}$\\
+\hline
+$\phi(\vec r)$ & $x^{2} - y^{2}$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{x \left(k \left(x^{2} - y^{2}\right) - 6 r\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{y \left(k \left(x^{2} - y^{2}\right) + 6 r\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k z \left(x^{2} - y^{2}\right)}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(x^{2} - y^{2}\right) \left(k r -18\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 2, 2. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{13} \rightarrow \phi_{3, 2, -2}$\\
+\hline
+$\phi(\vec r)$ & $x y$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{y \left(k x^{2} - 3 r\right)}{3 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{x \left(k y^{2} - 3 r\right)}{3 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k x y z}{3 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k x y \left(k r -18\right)}{9 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 3, 2, -2. Factor $e^{- \frac{1}{3} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{14} \rightarrow \phi_{4, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $k^{3} r^{3} - 24 k^{2} r^{2} + 144 k r -192$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x \left(k^{3} r^{3} - 36 k^{2} r^{2} + 336 k r -768\right)}{4 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y \left(k^{3} r^{3} - 36 k^{2} r^{2} + 336 k r -768\right)}{4 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k z \left(k^{3} r^{3} - 36 k^{2} r^{2} + 336 k r -768\right)}{4 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k \left(k r -32\right) \left(k^{3} r^{3} - 24 k^{2} r^{2} + 144 k r -192\right)}{16 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 4, 0, 0. Factor $e^{- \frac{1}{4} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{15} \rightarrow \phi_{4, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $z \left(k^{2} r^{2} - 20 k r + 80\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x z \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k y z \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $\frac{4 k^{2} r^{3} - 80 k r^{2} - k z^{2} \left(k r -20\right) \left(k r -8\right) + 320 r}{4 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k z \left(k r -32\right) \left(k^{2} r^{2} - 20 k r + 80\right)}{16 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 4, 1, 0. Factor $e^{- \frac{1}{4} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{16} \rightarrow \phi_{4, 1, 1}$\\
+\hline
+$\phi(\vec r)$ & $x \left(k^{2} r^{2} - 20 k r + 80\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $\frac{4 k^{2} r^{3} - 80 k r^{2} - k x^{2} \left(k r -20\right) \left(k r -8\right) + 320 r}{4 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \frac{k x y \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k x z \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k x \left(k r -32\right) \left(k^{2} r^{2} - 20 k r + 80\right)}{16 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 4, 1, 1. Factor $e^{- \frac{1}{4} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{17} \rightarrow \phi_{4, 1, -1}$\\
+\hline
+$\phi(\vec r)$ & $y \left(k^{2} r^{2} - 20 k r + 80\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \frac{k x y \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $\frac{4 k^{2} r^{3} - 80 k r^{2} - k y^{2} \left(k r -20\right) \left(k r -8\right) + 320 r}{4 r}$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \frac{k y z \left(k r -20\right) \left(k r -8\right)}{4 r}$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $\frac{k y \left(k r -32\right) \left(k^{2} r^{2} - 20 k r + 80\right)}{16 r}$\\
+\end{tabular}
+\caption{Orbital expressions hydrogenicOrbitals : 4, 1, -1. Factor $e^{- \frac{1}{4} k r}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
