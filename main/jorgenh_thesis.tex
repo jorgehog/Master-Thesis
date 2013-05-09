@@ -5,9 +5,11 @@
 \usepackage[vscale=0.8,left=3cm,right=2cm,footskip=2.5cm, headsep=1cm]{geometry}
 \usepackage{amsmath, amsfonts, amssymb, graphicx}
 \usepackage[pdfborder={0 0 0 }]{hyperref}
-\usepackage{enumerate, enumitem, color, rotating, subfigure, placeins, dsfont, listliketab, dirtree} 
+\usepackage{enumerate, enumitem, color, rotating, subfig, placeins, dsfont, listliketab, dirtree} 
 \usepackage{titlesec}
 \usepackage{url}
+\usepackage{pdflscape}
+\usepackage{rotating}
 
 \pdfminorversion=5
 
@@ -24,6 +26,8 @@
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Exp}[1]{\left< #1 \right>}
 \newcommand{\Cov}{\mathrm{Cov}}
+
+\newcommand{\subfigure}{\subfloat}
 
 \input{../includes/lst.tex}
 

@@ -143,8 +143,8 @@ The first step to validating the code would be to reproduce these exact results.
 
 \begin{figure}
  \begin{center}
-  \subfigure{\includegraphics[scale=0.5]{../Graphics/ASGD_nonint_E.png}}
-  \subfigure{\includegraphics[scale=0.5]{../Graphics/ASGD_nonint.png}} 
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint_E.png}}
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint.png}} 
   \caption{ASGD results for a non-interaction two-particle Quantum Dot with $\omega=0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha$ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref{sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.}
   \label{fig:ASGD_nonint}
  \end{center}
@@ -195,6 +195,8 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
 
 \section{Results for Quantum Dots}
 
+
+\setlength{\tabcolsep}{5pt}
 \begin{table}
 \begin{center}
 \begin{tabular}{rl|rrrrrr}
@@ -244,6 +246,7 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
 \label{tab:QDotsResultsAll}
 \end{center}
 \end{table}
+\setlength{\tabcolsep}{6pt}
 
 \subsection{FIXED NODE TESTS}
 
@@ -302,60 +305,51 @@ blah blah
 The one-body densities has been calculating using the methods described in Section \ref{sec:OBD}.
 
 
+\clearpage
+\captionsetup[subfloat]{labelformat=empty}
 \begin{figure}
  \begin{center}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png}} \\
+  \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png}}
+  \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D.png}} \\
+  \subfigure[$N=12$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png}}
+  \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png}} \\
+  \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png}}
+  \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png}} \\
   \caption{DMC one-body densities for Quantum Dots with frequency $\omega=1$. Counting left to right and top to bottom, the number of particles is respectively 2, 6, 12, 20, 30 and 42}
   \label{fig:OBD_DMC_QDOTS_w1}
  \end{center}
 \end{figure}
 
 
-\begin{figure}
+\clearpage
+\setlength{\tabcolsep}{0.1pt}
+\newcommand{\OBDscale}{0.25}
+\newcommand{\rot}[1]{\begin{sideways}#1\end{sideways}}
+\begin{landscape}
+ \begin{figure}
  \begin{center}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c05_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c05_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c05_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c05_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c05_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c05_3D.png}} \\
-  \caption{DMC one-body densities for Quantum Dots with frequency $\omega=0.5$. Counting left to right and top to bottom, the number of particles is respectively 2, 6, 12, 20, 30 and 42}
-  \label{fig:OBD_DMC_QDOTS_w05}
+ \begin{tabular}{rl}
+  \rot{$\qquad\quad\omega=0.28$}&\subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c028_3D.png}}
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c028_3D.png}} 
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png}}
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c028_3D.png}} \\[-0pt]
+  \rot{$\qquad\quad\omega=0.1$}&\subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png}}
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png}} 
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png}}
+  \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png}} \\[-0pt]
+  \rot{$\qquad\quad\omega=0.01$}&\subfigure[$N=2$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png}}
+  \subfigure[$N=6$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png}} 
+  \subfigure[$N=12$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png}}
+  \subfigure[$N=20$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png}} \\
+ \end{tabular}
+  \caption{\small{Quantum Dots one-body densities. Each row represents a given value of the oscillator frequency (see the side row labels), and each column represents a given particle number (see the bottom labels). Notice that the densities for $\omega=1$ from figure \ref{fig:OBD_DMC_QDOTS_w1} are indistinguishable from those of $\omega=0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for omega=0.5, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega=0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}}
+  \label{fig:OBD_DMC_QDOTS_lowering3D}
  \end{center}
 \end{figure}
+\end{landscape}
 
-
-\begin{figure}
- \begin{center}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c028_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c028_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c028_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c028_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c028_3D.png}} \\
-  \caption{DMC one-body densities for Quantum Dots with frequency $\omega=0.28$. Counting left to right and top to bottom, the number of particles is respectively 2, 6, 12, 20, 30 and 42}
-  \label{fig:OBD_DMC_QDOTS_w028}
- \end{center}
-\end{figure}
-
-
-\begin{figure}
- \begin{center}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c01_3D.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c01_3D.png}} \\
-  \caption{DMC one-body densities for Quantum Dots with frequency $\omega=0.1$. Counting left to right and top to bottom, the number of particles is respectively 2, 6, 12, 20, 30 and 42}
-  \label{fig:OBD_DMC_QDOTS_w01}
- \end{center}
-\end{figure}
+\captionsetup[subfloat]{labelformat=parens}
+\setlength{\tabcolsep}{6pt}
 
 \clearpage
 
@@ -432,22 +426,22 @@ blah blah something clever.
  
 \begin{table}
 \begin{center}
-\caption{Ground state energies for Atoms calculated using Variational - and Diffusion Monte-Carlo. Experimental energies are listed in the last column. As we see, DMC is rather close to the experimental energy.}
-\begin{tabular}{lp{2cm}ccl}
-Atom & & $E_\mathrm{VMC}$ & \qquad $E_\mathrm{DMC}$ & \qquad\,\, Expt. \\
+\caption{Ground state energies for Atoms calculated using Variational - and Diffusion Monte-Carlo. Experimental energies are listed in the last column. As we see, DMC is rather close to the experimental energy. $\epsilon_\mathrm{rel} = |E_\mathrm{DMC} - \mathrm{Expt.}|/|\mathrm{Expt.}|$}
+\begin{tabular}{lp{2cm}cclc}
+Atom & & $E_\mathrm{VMC}$ & \qquad $E_\mathrm{DMC}$ & \qquad\,\, Expt. & \qquad $\epsilon_\mathrm{rel}$\\
 \hline\hline
 \ \\
-He & \qquad & -2.8903(2) & \qquad -2.9036(2) & \qquad $-2.9037^\mathrm{a}$ \\
+He & \qquad & -2.8903(2) & \qquad -2.9036(2) & \qquad $-2.9037^\mathrm{a}$ & \qquad $3.44\cdot 10^{-5}$\\
 \ \\
-Be & \qquad & -14.145(2) & \qquad -14.657(2)  & \qquad $-14.6674^\mathrm{a}$ \\
+Be & \qquad & -14.145(2) & \qquad -14.657(2)  & \qquad $-14.6674^\mathrm{a}$ & \qquad $7.10\cdot 10^{-4}$ \\
 \ \\
-Ne & \qquad & -127.853(2) & \qquad -128.765(4) & \qquad $-128.9383^\mathrm{a}$ \\
+Ne & \qquad & -127.853(2) & \qquad -128.765(4) & \qquad $-128.9383^\mathrm{a}$ & \qquad $1.34\cdot 10^{-3}$  \\
 \ \\
-Mg & \qquad & -197.269(3) & \qquad -199.904(8) & \qquad $-200.054^\mathrm{a}$ \\
+Mg & \qquad & -197.269(3) & \qquad -199.904(8) & \qquad $-200.054^\mathrm{a}$ & \qquad $7.50\cdot 10^{-4}$  \\
 \ \\
-Ar & \qquad & -524.16(7) & \qquad -527.30(4) & \qquad $-527.544^\mathrm{a}$ \\
+Ar & \qquad & -524.16(7) & \qquad -527.30(4) & \qquad $-527.544^\mathrm{a}$ & \qquad $4.63\cdot 10^{-4}$  \\
 \ \\
-Kr & \qquad & -2700(5) & \qquad -2749.9(2) & \qquad $-2752.05498^\mathrm{b}$ \\
+Kr & \qquad & -2700(5) & \qquad -2749.9(2) & \qquad $-2752.05498^\mathrm{b}$ & \qquad $7.83\cdot 10^{-4}$  \\
 \ \\
 \end{tabular}
 \label{tab:AtomsRes}
@@ -470,14 +464,14 @@ Kr & \qquad & -2700(5) & \qquad -2749.9(2) & \qquad $-2752.05498^\mathrm{b}$ \\
  
 \begin{figure}
  \begin{center}
-   \subfigure{\includegraphics[scale=0.47]{../Graphics/OBD/OBD_Atoms/3D/Helium.png}} 
-   \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_Atoms/2D/Helium.png}}  \\
-   \subfigure{\includegraphics[scale=0.47]{../Graphics/OBD/OBD_Atoms/3D/Neon.png}} 
-   \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_Atoms/2D/Neon.png}}  \\
-   \subfigure{\includegraphics[scale=0.47]{../Graphics/OBD/OBD_Atoms/3D/Argon.png}} 
-   \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_Atoms/2D/Argon.png}}  \\
-   \subfigure{\includegraphics[scale=0.47]{../Graphics/OBD/OBD_Atoms/3D/Krypton.png}} 
-   \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_Atoms/2D/Krypton.png}}  \\
+   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Helium.png}} 
+   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Helium.png}}  \\
+   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Neon.png}} 
+   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Neon.png}}  \\
+   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Argon.png}} 
+   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Argon.png}}  \\
+   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Krypton.png}} 
+   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Krypton.png}}  \\
   \caption{Counting top to bottom: Helium, Neon, Argon and Krypton. See Fig. \ref{fig:OBD_alkaline_Atoms_2D_combo} for descriptions.}
   \label{fig:OBD_noble_Atoms_2D_combo}
  \end{center}
