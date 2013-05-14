@@ -238,6 +238,12 @@ A final non-interacting case to run is the case of DMC without the exact wave fu
           &   0.28   & 220.161(1)  & 219.8426(2)  & - 		&219.8836 \{14\}	& 222.1401 \{8\}& -\\
           &   0.5    & 331.002(1)  & 330.6306(2)  & - 		&330.6485 \{14\}	& 331.8901 \{8\}& -\\
           &   1.0    & 544.2(8)    & 542.9428(8)  & - 		&542.9528 \{14\}	& 543.1155 \{18\}& -\\
+\cline{2-8}
+\multicolumn{8}{c}{} \\
+    56    &   0.1    & 176.269(2) & 175.9553(7)   & -		& -		& 186.1034 \{9\} & -		\\
+          &   0.28   & 358.594(2) & 358.145(2)    & -		& -		& 363.2048 \{9\} & -		\\
+          &   0.5    & 538.5(6)   & 537.353(2)    & -		& -		& 540.3430 \{9\} & -		\\
+          &   1      & 880.2(7)   & 879.3986(6)   & -		& -		& 879.6386 \{17\}& -		\\
 \hline\hline
 
 
@@ -304,9 +310,62 @@ blah blah
 
 The one-body densities has been calculating using the methods described in Section \ref{sec:OBD}.
 
+From figure \ref{fig:OBD_DMC_QDOTS_w1} it is clear that the particle distribution of Quantum Dots follows a clear trend: Odd number of closed shells ($N=2$, 12, 30) are all similar in shape; the $N=2$ case can be viewed as a zoom-in of the $N=12$ top, which in turn can be viewed as a zoom-in of the $N=30$ top. A metaphoric example would be the density ``rising from the ground'' as the number of particles increase. The same trend is clearly visible for the even numbered shells ($N=6$, 20, 42). The density for $N=56$ (not included) further demonstrates this trend.
+
+\subsection{Lowering the frequency}
+
+Viewing the one-body densities for lower values of $\omega$ (Fig. \ref{fig:OBD_DMC_QDOTS_lowering3D}) in light of the corresponding densities for $\omega=1$ (Fig. \ref{fig:OBD_DMC_QDOTS_w1}), it is clear that there is little to no change in the density profile of $\omega=1$ to $\omega=0.28$. This is further verified by $\omega=0.5$ densities (not presented). 
+
+This implies that the oscillator frequency merely scales the extent of the wave function and leaves the general density profile unchanged. However, going below $\omega=0.28$ reveals an interesting scenario where all of a sudden the densities change form. This is illustrated in figure \ref{fig:OBD_collapsed_w001}: At $\omega=0.1$ the changes become visible, yet the density is still comparable with that of higher frequencies. Going further down to $\omega=0.01$, the profile is entirely different, and will not collapse onto high frequency densities.
+
+The ground state density represents the most energy efficient state of the particles given a potential, and it is therefore implied that the sudden change in the density profile at lower frequencies must be induced by a shift in the system's priorities between the different potential sources. In the case of Quantum Dots, these sources are the oscillator well and the Coulomb interaction. The amount of kinetic energy is also of interest.
+
+It is tempting to state that the impact of the oscillator potential goes down proportional to the frequency squared (remember $V(\vec r) = \frac{1}{2}\omega^2r^2$), however, this view is in fact too naive, as the Coulomb interaction and the kinetic energy is dependent of the distribution of particles which in turn is dependent on the oscillator frequency. What is true, however, is that in the limit $\omega\to 0$, the effect of the oscillator potential is gone. 
+
+Imagine an extremely narrow oscillator well: All the particles would favor stacking up in the center, as $r^2$ (oscillator) decrease quicker than $r^{-1}$ (Coulomb) increase. For lower frequencies we have the different situation where the particles would favor being very far apart, since the coefficient $\omega^2$ scaling the oscillator is very small. However, at a certain level, there comes a point where climbing the well further would cause the oscillator energy to increase more than Coulomb decrease. In other words, there is a balance - the oscillator will impact the particles even at very small frequencies. This is illustrated in Fig.
+
+The question then becomes: Why do we get a change in the distribution below $\omega=0.28$ if a balance is always present between the oscillator and Coulomb? The answer is 
+
+\captionsetup[subfloat]{labelformat=empty}
+\begin{figure}
+ \begin{center}
+  \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E2.png}}
+  \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E6.png}} \\
+  \subfigure[$N=12$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E12.png}}
+  \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E20.png}} \\
+  \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E30.png}}
+  \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E42.png}} \\
+  \caption{}
+  \label{fig:E_dist_qdots}	
+ \end{center}
+\end{figure}
+
+\begin{figure}
+ \begin{center}
+  \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V2.png}}
+  \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V6.png}} \\
+  \subfigure[$N=12$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V12.png}}
+  \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V20.png}} \\
+  \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V30.png}}
+  \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V42.png}} \\
+  \caption{}
+  \label{fig:V_dist_qdots}
+ \end{center}
+\end{figure}
+
+% The radial one-body densities are collapsed onto each other in Fig. \ref{fig:OBD_pure_collapsed} showing this effect in more detail. From this figure it is apparent that the density profiles of Quantum Dots with frequencies from $\omega=0.28$ and upwards are if fact extremely equal. At lower frequencies, the outer-lying shells gets an increase in particle population, and thus shifts the shape of the wave function as well as the extent.
+% 
+% The frequency $\omega=0.28$ are used in numerous studies of Quantum Dots \textbf{referer}. The results of this section serve as a demonstration of why this apparently random limit is so widely applied; it is beyond this limit where the well-behaving high-frequency density profile starts to break down, leaving iterating methods struggling to converge. 
+% 
+% In the previous section it was demonstrated that lowering the frequency gave an increased particle population on outer-lying shells. This is expected since the lower the frequency is set, the lower the energy cost of populating a higher shell becomes.
+% 
+% Lowering the frequency further, to $\omega=0.01$, interesting turn of events are revealed: The density profile completely changes, hardly resembling figure \ref{fig:OBD_pure_collapsed}. The number of shells increase due to the dominating Coulomb interaction. Moreover, these shells appear equally populated, if not more populated further out. This is the reversed effect than in the high-frequency case.
+% 
+% Enourmous calculations was perform in order to converge the densities to a satisfactory shape. The 20-particle density is the larges calculation performed with the code to date, clocking in at ~20 000 CPU hours.
+% 
+% An equally populated shell structure implies that it is not energetically efficient for the electrons to occupy several shells simultaneously, indicating that crystallization becomes the preferred positional state\footnote{Unless at least one particle is frozen in the QMC simulations, the Quantum Dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. This effect is called \textit{Wigner Crystallization}, and is expected for confined electrons where the correlation energy dominates the kinetic energy \textbf{cite wigner}. This effect has strong experimental evidence \textbf{cite wigner experiment}. 
 
 \clearpage
-\captionsetup[subfloat]{labelformat=empty}
 \begin{figure}
  \begin{center}
   \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png}}
@@ -315,7 +374,7 @@ The one-body densities has been calculating using the methods described in Secti
   \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png}} \\
   \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png}}
   \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png}} \\
-  \caption{DMC one-body densities for Quantum Dots with frequency $\omega=1$. Counting left to right and top to bottom, the number of particles is respectively 2, 6, 12, 20, 30 and 42}
+  \caption{DMC one-body densities for Quantum Dots with frequency $\omega=1$. The number of particles $N$ are listed below each density. The density for 56 particles are calculated, however, it brings little new insights as it follows the clear trend demonstrated in the current figure.}
   \label{fig:OBD_DMC_QDOTS_w1}
  \end{center}
 \end{figure}
@@ -337,12 +396,12 @@ The one-body densities has been calculating using the methods described in Secti
   \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png}} 
   \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png}}
   \subfigure{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png}} \\[-0pt]
-  \rot{$\qquad\quad\omega=0.01$}&\subfigure[$N=2$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png}}
+  \rot{$\qquad\quad\omega=0.01$}&\subfigure[$N=2$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png}}
   \subfigure[$N=6$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png}} 
   \subfigure[$N=12$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png}}
   \subfigure[$N=20$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png}} \\
  \end{tabular}
-  \caption{\small{Quantum Dots one-body densities. Each row represents a given value of the oscillator frequency (see the side row labels), and each column represents a given particle number (see the bottom labels). Notice that the densities for $\omega=1$ from figure \ref{fig:OBD_DMC_QDOTS_w1} are indistinguishable from those of $\omega=0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for omega=0.5, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega=0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}}
+  \caption{\small{DMC One-body densities for Quantum Dots for decreasing oscillator frequencies $\omega$ and increasing number of particles $N$. Each row represents a given $\omega$, and each column represents a given $N$. Notice that the densities for $\omega=1$ (from figure \ref{fig:OBD_DMC_QDOTS_w1}) are indistinguishable from those of $\omega=0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for $\omega=0.5$, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega=0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}}
   \label{fig:OBD_DMC_QDOTS_lowering3D}
  \end{center}
 \end{figure}
@@ -353,72 +412,36 @@ The one-body densities has been calculating using the methods described in Secti
 
 \clearpage
 
-The one-body densities are remarkably identical, implying that the oscillator frequencies merely scales the extent of the wave function and leaves the general density profile unchanged. The radial one-body densities are collapsed onto each other in Fig. \ref{fig:OBD_pure_collapsed} showing this effect in more detail. From this figure it is apparent that the density profiles of Quantum Dots with frequencies from $\omega=0.28$ and upwards are if fact extremely equal. At lower frequencies, the outer-lying shells gets an increase in particle population, and thus shifts the shape of the wave function as well as the extent.
-
-The frequency $\omega=0.28$ are used in numerous studies of Quantum Dots \textbf{referer}. The results of this section serve as a demonstration of why this apparently random limit is so widely applied; it is beyond this limit where the well-behaving high-frequency density profile starts to break down, leaving iterating methods struggling to converge.   
-
+\newcommand{\qqq}{\qquad\qquad\qquad}
+\newcommand{\OBDscaleR}{0.3}
+\setlength{\tabcolsep}{5pt}
+\captionsetup[subfloat]{labelformat=empty}
 \begin{figure}
  \begin{center}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_2.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_6.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_12.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_20.png}} \\
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_30.png}}
-  \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_rad_psort/QDots_42.png}} \\
-  \caption{Pure estimators for the radial one-body densities collapsed to span the same axis. Each plot represents one particle number with multiple (labeled) oscillator frequencies. Counting left to right, top to bottom, these numbers are $N=$ 2, 6, 12, 20, 30 and 42.}
-  \label{fig:OBD_pure_collapsed}
+ \begin{tabular}{lr}
+   \rot{$\qqq N=2$}  & \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_rad_psort/QDots_2.png}} 
+  \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_2.png}} \\[-0pt]
+   \rot{$\qqq N=6$}  & \subfigure{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_6.png}}
+  \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_6.png}} \\[-0pt]
+   \rot{$\qqq N=12$} & \subfigure{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_12.png}} 
+  \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_12.png}} \\[-0pt]
+   \rot{$\qqq N=20$} & \subfigure[Collapsed results]{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_20.png}}
+  \subfigure[$\omega=0.01$]{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_w001/QDots_20.png}} \\[-0pt]
+  \end{tabular}
+  \caption{Right column: Radial one-body densities for high frequencies (see specific legends)}
+  \label{fig:OBD_collapsed_w001}
  \end{center}
 \end{figure}
 
+\setlength{\tabcolsep}{6pt}
+\captionsetup[subfloat]{labelformat=parens}
 
-\subsection{Lowering the frequency}
-
-In the previous section it was demonstrated that lowering the frequency gave an increased particle population on outer-lying shells. This is expected since the lower the frequency is set, the lower the energy cost of populating a higher shell becomes.
-
-Lowering the frequency further, to $\omega=0.01$, interesting turn of events are revealed: The density profile completely changes, hardly resembling figure \ref{fig:OBD_pure_collapsed}. The number of shells increase due to the dominating Coulomb interaction. Moreover, these shells appear equally populated, if not more populated further out. This is the reversed effect than in the high-frequency case.
-
-Enourmous calculations was perform in order to converge the densities to a satisfactory shape. The 20-particle density is the larges calculation performed with the code to date, clocking in at ~20 000 CPU hours.
-
-An equally populated shell structure implies that it is not energetically efficient for the electrons to occupy several shells simultaneously, indicating that crystallization becomes the preferred positional state\footnote{Unless at least one particle is frozen in the QMC simulations, the Quantum Dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. This effect is called \textit{Wigner Crystallization}, and is expected for confined electrons where the correlation energy dominates the kinetic energy \textbf{cite wigner}. This effect has strong experimental evidence \textbf{cite wigner experiment}. 
-
-
-\begin{figure}
- \begin{center}
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png}} 
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_w001/QDots_2.png}} \\
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png}}
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_w001/QDots_6.png}} \\
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png}} 
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_w001/QDots_12.png}} \\
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png}}
-  \subfigure{\includegraphics[scale=0.34]{../Graphics/OBD/OBD_w001/QDots_20.png}} \\
-  \caption{One-body densities for Quantum Dots with $\omega=0.01$ for (from top) $N=$ 2, 6, 12 and 20.}
-  \label{fig:OBD_pure_w001}
- \end{center}
-\end{figure}
 
 blah blah something clever.
 
  
  \clearpage
 
- \subsection{Increasing the Number of Particles}
- 
- \begin{table}
-\begin{center}
-\begin{tabular}{rlp{2cm}|rrrr}
-    N     & $\omega$& & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_\mathrm{ref}^{(a)}$& $E_\mathrm{ref}^{(b)}$ \\
-\hline\hline
-   56     & 0.1     & & 176.269(2) & 175.9553(7) & & 186.1034 \{9\} \\
-          & 0.28    & & 358.594(2) & 358.145(2)  & & 363.2048 \{9\}  \\
-          & 0.5     & & 538.5(6)   & 537.353(2)  & & 540.3430 \{9\}  \\
-          & 1       & & 880.2(7)   & 879.3986(6) & & 879.6386 \{17\} \\
-\hline\hline
-\end{tabular}
-\caption{56 particle results Qdots. Omega=1 20 000 CPU hours. 0.5, 0.28 and 0.1 decreased dramatically resulting in decreased precision. Ref b = christoffer. (*) calculated without HF basis.}
-\end{center}
-\end{table}
- 
  
  \section{Results for Atoms}
  
