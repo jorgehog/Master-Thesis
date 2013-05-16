@@ -193,24 +193,25 @@ As an example, \verb+Orbitals.dell_phi+, which returns a single particle derivat
 The numerical implementations are finite difference schemes with error proportional to the squared step length.
 
 \section{Optimizations due to a Single two-level Determinant}
+\label{sec:optSingleSlater}
 
 Assumption \ref{it::ass::fermiSingleDet} unlocks the possibility to optimize the expressions involving the Slater-determinant dramatically. Similar optimizations for bosons due to assumption \ref{it::ass::bosCondensate} are considered trivial and will not be covered in detail. See the code in \cite{libBorealisCode} for details regarding bosons.
 
 The full trial wave function $\Psi_T$ is given by Eq.~(\ref{eq:singleDeterminantTWF}). I will drop the function arguments to clean up the expressions. Written in terms of a spatial function $|D|$ and a Jastrow function $J$, we get
 
-\newcommand{\PT}{|D^\uparrow||D^\downarrow|J}
+\newcommand{\PTd}{|D^\uparrow||D^\downarrow|J}
 \newcommand{\Du}{|D^\uparrow|}
 \newcommand{\Dd}{|D^\downarrow|}
 \newcommand{\Da}{|D^\alpha|}
 
 \begin{equation}
- \Psi_T = \PT
+ \Psi_T = \PTd
 \end{equation}
 
 The Quantum Force becomes
 
 \begin{eqnarray}
- F_i &=& 2\frac{\nabla_i\left(\PT\right)}{\PT} \nonumber\\
+ F_i &=& 2\frac{\nabla_i\left(\PTd\right)}{\PTd} \nonumber\\
      &=& 2\left(\frac{\nabla_i\Du}{\Du} + \frac{\nabla_i\Dd}{\Dd} + \frac{\nabla_i J}{J}\right) \nonumber \\
      &=& 2\left(\frac{\nabla_i\Da}{\Da} + \frac{\nabla_i J}{J}\right)
 \end{eqnarray}
@@ -221,7 +222,7 @@ Equally for the Laplacians used in the local energy, we get
 
 \begin{eqnarray}
  E_L &=& \sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + V \label{eq:localEsum}\\
-  \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PT}\nabla^2_i \PT \nonumber\\
+  \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PTd}\nabla^2_i \PTd \nonumber\\
   &=& \frac{\nabla^2_i \Du}{\Du} + \frac{\nabla^2_i \Dd}{\Dd} + \frac{\nabla^2_i J}{J} \nonumber\\
   && +\,\, 2\frac{\left(\nabla_i\Du\right)\left(\nabla_i\Dd\right)}{\Du\Dd} + 2 \frac{\left(\nabla_i\Du\right)\left(\nabla_i J\right)}{\Du J} + 2 \frac{\left(\nabla_i\Dd\right)\left(\nabla_i J\right)}{\Dd J} \nonumber\\
   &=& \frac{\nabla^2_i \Da}{\Da} + \frac{\nabla^2_i J}{J} + 2\frac{\nabla_i\Da}{\Da} \frac{\nabla_i J}{J}
