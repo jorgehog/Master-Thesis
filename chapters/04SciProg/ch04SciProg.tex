@@ -11,11 +11,6 @@ The native language of the computer is \textit{binary}: Ones and zeros, i.e. hig
 
 The closer the programming language at hand is to pure processor (CPU) instructions\footnote{The CPU is the part of the computer responsible for flipping bits.}, the lower the \textit{level} of the language is. This section will introduce high- and low level languages, focusing on C++ and Python, as these were the most used languages throughout this thesis.   
 
-% 
-% Other languages such as Python are interpreted real-time and therefore require no compilation; it instructs as it reads. Although the latter seems like a better solution, it comes at the price of efficiency, a key concept in programming. 
-% 
-% As a rule of thumb, efficiency is inverse proportional to the complexity of the programming language. It is therefore natural to sort languages into different subgroups depending on where they are at the efficiency-complexity scale.
-
 
 \subsection{High-level Languages}
 
@@ -50,11 +45,11 @@ To demonstrate the simplicity of Python, let us have a look at a simple implemen
 \subsection{Low-level Languages}
 \label{sec:lowlevel}
 
-Scientific programming involves solving complex equations. Complexity does not necessarily imply that the equations themselves are hard to understand; frankly, this is often not the case. In most cases of e.g. linear algebra, the problem can be boiled down to solving $\mathbf{A}\mathbf{x} = \mathbf{b}$, however, the complexity lies in the dimensionality of the problem at hand. Matrix dimensions range as high as millions. With each element being a double precision number (8 bytes or 64 bits), it is crucial that we have full control of the memory, and execute operations as efficiently as possible. 
+Scientific programming involves solving complex equations. Complexity does not necessarily imply that the equations themselves are hard to understand; frankly, this is often not the case. In most cases of e.g. linear algebra, the problem can be boiled down to solving $\mathbf{A}\mathbf{x} = \mathbf{b}$, however, the complexity lies in the dimensionality of the problem at hand. Matrix dimensions range as high as millions. With each element being a double precision number (8 bytes or 64 bits), it is crucial to have full control of the memory and execute operations as efficiently as possible. 
 
 This is where lower level languages excel. Hiding few to none of the details, the power is in the hand of the programmer. This, however, comes at a price: More technical concepts such as memory pointers, declarations, compiling, linking, etc. makes the development process slower than that of a higher-level language. 
 
-Requesting access to an uninitialized element outside the bounds of an allocated array, Python will provide a detailed error message with proper traceback, whereas the compiled C++ code would crash runtime leaving nothing but a ``segmentation fault'' for the user. However, when the optimized program ends up running for days, the extra time spent in development pays off. 
+Moreover, requesting access to an uninitialized element outside the bounds of an allocated array, Python will provide a detailed error message with proper traceback, whereas the compiled C++ code would crash runtime leaving nothing but a ``segmentation fault'' for the user. The payoff comes when the optimized program ends up running for days, in contrast to the high-level implementation which might end up running for months.
 
 In addition, several options to optimize compiled machine code are available by having the compiler rearrange the way instructions are sent to the processor. Details regarding memory latency optimization will be discussed in section \ref{sec:CPUcache}. 
 
@@ -81,7 +76,33 @@ Even though this is an extremely simply example, it illustrates the difference i
 
 The concept of classes and objects were introduced for the first time in the language \textit{Simula 67}, developed by the Norwegian scientists Ole-Johan Dahl and Kristen Nygaard at the Norwegian Computing Research Center \cite{ORegan}. Object orientation quickly became the state-of-the-art in programming, and has since enjoyed great success in numerous computational fields. 
 
-Object orientation ties our everyday intuition into the programming language: Our brains are object oriented in the sense that we tend to focus around \textit{objects} of \textit{classes}, e.g. an animal of a certain species. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter. 
+Object orientation ties everyday intuition into the programming language. Humans are object oriented without noticing it, in the sense that the focus is around \textit{objects} of \textit{classes}, e.g. an animal of a certain species, artifacts of a certain culture, people of a certain country, etc. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter, however, for the sake of completeness, a brief introductory to class syntax is given.
+
+\subsection{A Brief Introduction to Essential Concepts}
+
+\subsubsection{Members}
+
+As mentioned, a class in its simplest representation is a collection of variables and functions unique to a specified object of the class\footnote{Members can be shared by all class instances in C++ by using the static keyword. This will make the variables and function obtainable without initializing an object as well.}. When an object is created, it is uniquely identified by its own set of member variables.
+
+An important member of a class is the object itself. In Python, this intrinsic mirror image is called \verb+self+, and must, due to the interpreter nature of the language, be present in all function calls. In C++, it is available in any class member function as the \verb+this+ pointer. Making changes to \verb+self+ or \verb+this+ inside a function is equivalent to changing the object outside the function. It is nothing but a way for an object to have access to itself at any time.
+
+\subsubsection{Constructors}
+
+The constructor is the class function responsible for initializing new objects. When requesting a new instance of a class, a constructor is called with specific input parameters. In Python, the constructor is called \verb+__init__()+, while in C++, the name of the constructor must match that of the class, e.g. \verb+someClass::someClass()+\footnote{The double colon notation means ``someClass' member someClass()''.}.
+
+Creating a new object is simply done by calling the constructor
+
+\begin{lstlisting}
+someClass* someObject = new SomeClass("constructor argument");
+\end{lstlisting}
+
+The constructor can then assign values to member variables based on the input parameters.
+
+\subsubsection{Destructors}
+
+Opposite to constructors, destructors are responsible for deleting an object. In Python this is automatically done by the \textit{garbage collector}, however, in C++ this is sometimes important in order to avoid memory leaks. The destructor is implemented as the function \verb+someClass::~someClass()+, and is invoked by typing e.g. \verb+delete someObject;+.
+
+Ref. \cite{inf1100} is suggested for further introduction to basic concepts of classes.  
 
 \subsection{Inheritance}
 
@@ -99,7 +120,7 @@ This class does not function on its own, and is clearly an abstract class meant 
 
 \begin{figure}[h]
  \begin{center}
-  \includegraphics[scale=0.27]{../Graphics/UMLkeyboard.pdf}
+  \includegraphics[scale=0.35]{../Graphics/UMLkeyboard.pdf}
   \caption{Inheritance diagram for a Keyboard superclass. Class members are listed below the class name.}
   \label{fig:UMLkeyboard}
  \end{center}
