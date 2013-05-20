@@ -799,7 +799,17 @@ where the product and division rules for derivatives has been applied. The Hamil
 \end{eqnarray}
 }
 
-Using this expression for the \textit{variational gradient}, the derivatives can be calculated exactly the same way as for e.g. the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
+In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater determinant, the relationship between the variational derivative of the determinant and the variational derivative of the single particle orbitals $\phi_n(\mathbf{r}_i; \alpha_i)$ is
+
+\cfbox{2cm-5pt}{
+\begin{equation}
+ \frac{\partial \Psi_T(\mathbf{r}; \alpha_i)}{\partial \alpha_i} = \sum_{p=1}^N\sum_{q=0}^{N/2} \phi_q(\mathbf{r}_p; \alpha_i) \left[\frac{\partial \phi_q(\mathbf{r}_p; \alpha_i)}{\partial \alpha_i}\right]D^{-1}_{qp},
+\end{equation}
+}
+
+where $D^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
+
+Using these expressiosn for the \textit{variational energy gradient}, the derivatives can be calculated exactly the same way as for e.g. the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
 
 This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
 The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. The gradient descent methods will be covered in Section \ref{sec:GradientDescent}.

@@ -1,0 +1,157 @@
+\chapter{Modeled Systems}
+
+The systems modeled in this thesis is exclusively systems which resemble an analytically solvable non-interacting case. As discussed in the Section \ref{sec:trialWF} of the QMC chapter, these closed form solutions are used to construct an optimal trial wave function, opening up the possibility of using a single determinant, which in turn opens up the possibility to run extremely optimized simulations for large number of particles (see the previous chapter). 
+
+The systems modeled in this thesis are various kinds of \textit{quantum dots} and \textit{atomic systems} resembling the harmonic oscillator and the hydrogen atom respectively. These systems will be the topic of this chapter.
+
+The content of this chapter has been taken from Ref. \cite{griffiths} if not otherwise stated.
+
+\section{Atomic Systems}
+
+Atomic systems are described by electrons surrounding opposite charged nuclei. As an approximation, the position of the nucleus is fixed, which due to the mass of core being several orders of magnitude larger than the mass of the electrons is a very good approximation. 
+
+The single particle basis used to construct trial wave functions for atomic systems in this thesis comes from the closed form solutions for the hydrogen atom, i.e. one electron surrounding a single nucleus.
+
+\subsection{The Single Particle Basis}
+
+Given a nucleus with charge $Z$, the external potential between the electron and the core is
+
+\begin{equation}
+ \OP{v}_\mathrm{ext}(\mathbf{r}) = -\frac{Z}{r}  
+\end{equation}
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[scale=0.5]{../Graphics/Potentials/hydrogen.png}
+  \caption{The single particle potential of hydrogen along the x-axis. The potential is spherically symmetric.}
+  \label{fig:extPotHydrogen}
+ \end{center}
+\end{figure}
+
+which results in the following single particle Hamiltonian
+
+\begin{equation}
+ \OP{h}_0(\mathbf{r}) = -\frac{1}{2}\nabla^2 - \frac{Z}{r}.
+\end{equation}
+
+The external potential is displayed in figure \ref{fig:extPotHydrogen}. The eigenfunctions of the Hamiltonian are
+
+\begin{equation}
+ \phi_{nlm}(r, \theta, \phi; Z) \propto r^l e^{-Zr/n}\left[L_{n-l-1}^{2l+1}\left(\frac{2r}{n}Z\right)\right] Y_l^m(\theta, \phi), \label{eq:hydrogenBasisComplex}
+\end{equation}
+
+where $L_{q-p}^p(x)$ is the \textit{associated Laguerre polynomial} and $Y_l^m(\theta, \phi)$ is called the \textit{spherical harmonics}, related to the \textit{associated Legendre functions} $P_l^m$ as following
+
+\begin{equation}
+ Y_l^m(\theta, \phi) \propto   P_l^m(\cos\theta)e^{im\phi}, \label{eq:spherHarm}
+\end{equation}
+
+In the current model, the principal quantum number $n$ together with $Z$ controls the energy level of the atom, 
+
+\begin{equation}
+ E(n; Z) = -\frac{Z^2}{2n^2}\label{eq:AtomNonIntEnergy}
+\end{equation}
+
+which implies that the energy levels are degenerate for all combinations of $l$ and $m$. For a given value of $n$, the allowed levels of the \textit{azimuthal} quantum number $l$ and the \textit{magnetic} quantum number $m$ is 
+
+\begin{align*}
+ n &= 1, 2, ... \\
+ l &= 0, 1, ...\,, n-1 \\
+ m &= -l, -l + 1, ...\,, l - 1, l
+\end{align*}
+
+
+A problem with the single particle basis of hydrogen is the complex terms in the spherical harmonics (see Eq.~(\ref{eq:spherHarm})). Complex bases will require the entire code to work in complex variables, which should be avoided if possible. For this reason, the spherical harmonics in Eq.~(\ref{eq:hydrogenBasisComplex}) are substituted with the real-valued \textit{solid harmonics} $S_l^m(r, \theta, \phi)$ \cite{SolidHarmonics}
+
+\begin{align}
+S_l^m(r, \theta, \phi) &= (-1)^m\frac{(1+m)!}{2}r^l\left[Y_l^m(\theta, \phi) + (-1)^m Y_l^{-m}(\theta, \phi)\right] \\
+ &= (-1)^m r^{l} P_l^{|m|}(\cos\theta) \begin{cases} \cos m\phi & m \ge 0 \\ \sin|m|\phi &  m < 0, \end{cases}                                                                                                             
+\end{align}
+
+which yields the following real eigenfunctions
+
+\begin{equation}
+  \phi_{nlm}(r, \theta, \phi; k) \propto e^{-kr/n}\left[L_{n-l-1}^{2l+1}\left(\frac{2r}{n}k\right)\right] S_l^m(r, \theta, \phi) \equiv \phi_{nml}(\mathbf{r}), \label{eq:hydrogenBasisReal}
+\end{equation}
+
+where $k = \alpha Z$ is a scaled charge with $\alpha$ as a variational parameter chosen by methods described in Section \ref{sec:selectingOptVarPar}.
+
+A set of quantum numbers $nlm$ is mapped to a single index $i$. A listing of all the single particle wave functions are given in Appendix \ref{appendix:SymPyHydro}.
+
+\subsection{Atoms}
+
+At atom is described as $N$ electrons surrounding a fixed nucleus of charge $Z=N$. The Hamiltonian consists of $N$ single particle Hamiltonians corresponding to the hydrogen case, in addition to the Coulomb interaction term
+
+\begin{align}
+ \OP{H}_{\mathrm{Atoms}} &= \sum_{i=1}^N \OP{h}_0(\mathbf{r}_i) + \sum_{i<j} \frac{1}{r_{ij}} \\
+                         &= \sum_{i=1}^N \left[-\frac{1}{2}\nabla_i^2 - \frac{Z}{r_i}\right] + \sum_{i<j} \frac{1}{r_{ij}},
+\end{align}
+
+where $r_ij = |\mathbf{r}_i -\mathbf{r}_j|$. Excluding the Coulomb term, the Hamiltonian can be decoupled into single particle terms with energy
+
+\begin{equation}
+ E_0 = -\frac{Z^2}{2}\sum_{i=1}^N \frac{1}{n_i^2}.
+\end{equation}
+
+The Slater determinant is set up to fill the $N$ lowest lying states, that is, the $N$ states with lowest $n$\footnote{Keep in mind that only two particles can obtain the same state simultaneously.}, using the single particle orbitals from Eq.~(\ref{eq:hydrogenBasisReal}).
+
+\subsection{Homonuclear Diatomic Molecules}
+
+A homonuclear diatomic molecule consists of two atoms (diatomic molecule) of the same element (homonuclear) with charge $Z$, separated by a distance $R$. The origin is set between the atoms, which is then fixed at positions $\pm \mathbf{R}/2$. An electron at position $\mathbf{r}_i$ gets a contribution from both the cores as displayed in figure \ref{fig:dimolecules}. In addition, there is a repulsive Coulomb potential between the two cores equal to $Z^2/R$. The resulting Hamiltonian becomes
+
+\begin{equation}
+ \OP{H}_{\mathrm{Mol.}} = \sum_{i=1}^N \left[-\frac{1}{2}\nabla_i^2 + \frac{Z}{|\mathbf{r}_i + \mathbf{R}/2|} + \frac{Z}{|\mathbf{r}_i - \mathbf{R}/2|}\right] + \frac{Z^2}{R} + \sum_{i<j} \frac{1}{r_{ij}}
+\end{equation}
+
+
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[scale=0.3]{../Graphics/Molecules.pdf}
+  \caption{The model for the diatomic molecule used in this thesis. An electron at position $\mathbf{r}_i$ gets a potential energy contribution from both the cores equal to $Z/|\mathbf{r}_i + \mathbf{R}/2|$ and  $Z/|\mathbf{r}_i - \mathbf{R}/2|$, where Z is the charge of the nuclei (homonuclear).}
+  \label{fig:dimolecules}
+ \end{center}
+\end{figure}
+
+
+In order to transform the hydrogen eigenstates $\phi_{nml}^\mathrm{H}(\mathbf{r})$ (which is symmetric around a single nucleus) into molecular single particle states $\phi_{nml}^\pm (\mathbf{r}_i)$, a superposition of the two mono-nucleus wave functions are used
+
+\begin{align}
+ \phi_{nml}^+ (\mathbf{r}_i) &= \phi_{nml}^\mathrm{H}(\mathbf{r}_i + \mathbf{R}/2) + \phi_{nml}^\mathrm{H}(\mathbf{r}_i - \mathbf{R}/2) \\
+ \phi_{nml}^- (\mathbf{r}_i) &= \phi_{nml}^\mathrm{H}(\mathbf{r}_i + \mathbf{R}/2) - \phi_{nml}^\mathrm{H}(\mathbf{r}_i - \mathbf{R}/2)
+\end{align}
+
+which reads ``electron surrounding first nucleus combined with electron surrounding second nucleus'' (recall that $\mathbf{r}_i \pm \mathbf{R}/2$ describes the vector from the nuclei to the electron). As seen from the equations above, there are necessarily two ways of doing this superposition: Adding and subtracting the states. It is easy to show that 
+
+\begin{equation}
+ \braket{\phi_{n'm'l'}^-}{\phi_{nml}^+} = 0
+\end{equation}
+
+which implies that these states form an expanded complete set of single particle states for the molecular system, resulting in a four-fold degeneracy in each set of quantum numbers $nml$. It is necessary to use both the positive and negative states in order to fit e.g. four electrons into $n=0$ for the case of lithium and beryllium. Using only positive or only negative states would result in a singular Slater determinant.
+
+Using $\mathbf{R} = \left(R_x, R_y, R_z\right)$, $\mathbf{j} = (0, 1, 0)$, $\mathbf{r}_i = \left(x_i, y_i, z_i\right)$,  and the chain rule of derivation, the dell operator (in the $\mathbf{j}$-direction) becomes
+
+\begin{align}
+ \mathbf{j}\cdot \nabla_i \phi_{nml}^\pm (\mathbf{r}_i) &= \underbrace{\frac{\partial (y_i + R_y/2)}{\partial y_i}}_{1}\frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{r}_i + \mathbf{R}/2)}{\partial (y_i + R_y/2)} \notag \\
+  &\pm \underbrace{\frac{\partial (y_i - R_y/2)}{\partial y_i}}_{1}\frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{r}_i - \mathbf{R}/2)}{\partial (y_i - R_y/2)} \notag\\
+  &= \frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{r}_i + \mathbf{R}/2)}{\partial (y_i + R_y/2)} \pm \frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{r}_i - \mathbf{R}/2)}{\partial (y_i - R_y/2)} \notag\\
+  &=  \frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{\tilde R_i^+})}{\partial \tilde Y_i^+} \pm \frac{\partial \phi_{nml}^\mathrm{H}(\mathbf{\tilde R_i^-})}{\partial \tilde Y_i^-}, \label{eq:MoleculeWorksWithOldFunctions}
+\end{align}
+
+where $\mathbf{\tilde R_i^\pm} = \mathbf{r}_i \pm \mathbf{R}/2 = (\tilde X_i^\pm, \tilde Y_i^\pm, \tilde Z_i^\pm)$ represents the electron position in the two nuclei coordinate frames. Eq.~(\ref{eq:MoleculeWorksWithOldFunctions}) demonstrates that the closed form expressions from the atoms can be reused in the case of diatomic molecules; the functions in Appendix \ref{appendix:SymPyHydro} can simply be called  with $\mathbf{\tilde R_i^\pm}$ instead of $\mathbf{r}_i$ and then be either subtracted or added. This result holds for the Laplacian as well.
+
+The non-interacting energy is equal to that of the regular atoms, however, now with a four-fold degeneracy and a charge equal to $N/2$.
+
+\section{Quantum Dots}
+
+\subsection{The Single Particle basis}
+
+\subsection{2D and 3D Quantum Dots}
+
+\subsection{Double-well Quantum Dots}
+
+
+
+
+
+
