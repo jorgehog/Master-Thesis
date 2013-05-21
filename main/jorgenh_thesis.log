@@ -1,11 +1,17 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.20)  21 MAY 2013 19:23
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  21 MAY 2013 22:40
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
 (./jorgenh_thesis.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/book.cls
 Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/bk10.clo
@@ -241,7 +247,7 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/var/lib/texmf/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
 (/usr/share/texmf-texlive/tex/generic/babel/english.ldf
@@ -252,8 +258,6 @@ File: babel.def 2008/07/06 v3.8l Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
 )
-\l@british = a dialect from \language\l@english 
-\l@UKenglish = a dialect from \language\l@english 
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
@@ -587,10 +591,10 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \llt@arraystretch=\skip65
 \llt@list@box=\box29
 )
-(/usr/share/texmf-texlive/tex/latex/tools/dirtree.sty
+(/usr/share/texmf-texlive/tex/generic/dirtree/dirtree.sty
 Package: dirtree 2006/01/25 v0.2 package wrapper for dirtree
 
-(/usr/share/texmf-texlive/tex/latex/tools/dirtree.tex
+(/usr/share/texmf-texlive/tex/generic/dirtree/dirtree.tex
 `dirtree' v0.2, 2006/01/25 (jcc)
 \DT@offset=\dimen134
 \DT@width=\dimen135
@@ -1429,12 +1433,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
 
 [158]) [159] (./jorgenh_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12446 strings out of 495061
- 185728 string characters out of 1182621
- 749728 words of memory out of 3000000
- 13833 multiletter control sequences out of 15000+50000
+ 12447 strings out of 493848
+ 185789 string characters out of 1152823
+ 751243 words of memory out of 3000000
+ 13931 multiletter control sequences out of 15000+50000
  17903 words of font info for 73 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
+ 714 hyphenation exceptions out of 8191
  44i,18n,58p,1341b,1874s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
@@ -1463,7 +1467,7 @@ exlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts
 ic/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/type1/public/doublestroke/dsrom10.
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (159 pages, 7631278 bytes).
+Output written on jorgenh_thesis.pdf (159 pages, 7631456 bytes).
 PDF statistics:
  3585 PDF objects out of 4296 (max. 8388607)
  1412 named destinations out of 1440 (max. 500000)
