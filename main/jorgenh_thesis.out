@@ -1,0 +1,116 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [-1][-]{part.1}{I Theory}{}
+\BOOKMARK [0][-]{chapter.2}{Scientific Programming}{part.1}
+\BOOKMARK [1][-]{section.2.1}{Programming Languages}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.1.1}{High-level Languages}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.2}{Low-level Languages}{section.2.1}
+\BOOKMARK [1][-]{section.2.2}{Object Orientation}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{A Brief Introduction to Essential Concepts}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Inheritance}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Pointers, Typecasting and Virtual Functions}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.4}{Polymorphism}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.5}{Const Correctness}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.6}{Accessibility levels and Friend classes}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.7}{Example: PotionGame}{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{Structuring the code}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{File Structures}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Class Structures}{section.2.3}
+\BOOKMARK [0][-]{chapter.3}{Quantum Monte-Carlo}{part.1}
+\BOOKMARK [1][-]{section.3.1}{Modeling Diffusion}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{Stating the Schr\366dinger Equation as a Diffusion Problem}{section.3.1}
+\BOOKMARK [1][-]{section.3.2}{Solving the Diffusion Problem}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{Isotropic Diffusion}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{Anisotropic Diffusion: Fokker-Planck}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.3}{The connection between anisotropic- and isotropic diffusion models}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{Diffusive Equilibrium Constraints}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.3.1}{Detailed Balance}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.2}{Ergodicity}{section.3.3}
+\BOOKMARK [1][-]{section.3.4}{The Metropolis Algorithm}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{The Process of Branching}{chapter.3}
+\BOOKMARK [1][-]{section.3.6}{The Trial Wave Function}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.6.1}{Many-body Wave Functions}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.2}{Choice of Trial Wave function}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.3}{Selecting Optimal Variational Parameters}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.4}{Calculating Expectation Values}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.5}{Normalization}{section.3.6}
+\BOOKMARK [1][-]{section.3.7}{Gradient Descent Methods}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.7.1}{General Gradient Descent}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.2}{Stochastic Gradient Descent}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.3}{Adaptive Stochastic Gradient Descent}{section.3.7}
+\BOOKMARK [1][-]{section.3.8}{Variational Monte-Carlo}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.8.1}{Motivating the use of Diffusion Theory}{section.3.8}
+\BOOKMARK [2][-]{subsection.3.8.2}{Implementation}{section.3.8}
+\BOOKMARK [2][-]{subsection.3.8.3}{Limitations}{section.3.8}
+\BOOKMARK [1][-]{section.3.9}{Diffusion Monte-Carlo}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.9.1}{Implementation}{section.3.9}
+\BOOKMARK [2][-]{subsection.3.9.2}{Sampling the Energy}{section.3.9}
+\BOOKMARK [2][-]{subsection.3.9.3}{Limitations}{section.3.9}
+\BOOKMARK [2][-]{subsection.3.9.4}{Fixed node approximation}{section.3.9}
+\BOOKMARK [1][-]{section.3.10}{Estimating One-body Densities}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.10.1}{Estimating the Exact Ground State Density}{section.3.10}
+\BOOKMARK [2][-]{subsection.3.10.2}{Radial Densities}{section.3.10}
+\BOOKMARK [1][-]{section.3.11}{Estimating the Statistical Error}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.11.1}{The Variance and Standard Deviates}{section.3.11}
+\BOOKMARK [2][-]{subsection.3.11.2}{The Covariance and correlated samples}{section.3.11}
+\BOOKMARK [2][-]{subsection.3.11.3}{The Deviate from the Exact Mean}{section.3.11}
+\BOOKMARK [2][-]{subsection.3.11.4}{Blocking}{section.3.11}
+\BOOKMARK [2][-]{subsection.3.11.5}{Variance Estimators}{section.3.11}
+\BOOKMARK [0][-]{chapter.4}{Generalization and Optimization}{part.1}
+\BOOKMARK [1][-]{section.4.1}{Underlying Assumptions and Goals}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.1.1}{Assumptions}{section.4.1}
+\BOOKMARK [2][-]{subsection.4.1.2}{Generalization Goals}{section.4.1}
+\BOOKMARK [2][-]{subsection.4.1.3}{Optimization Goals}{section.4.1}
+\BOOKMARK [1][-]{section.4.2}{Specifics Regarding Generalization}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.2.1}{Generalization Goals \(i\)-\(vii\)}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.2}{Generalization Goal \(vi\) and Expanded bases}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.3}{Generalization Goal \(viii\)}{section.4.2}
+\BOOKMARK [1][-]{section.4.3}{Optimizations due to a Single two-level Determinant}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{Optimizations due to Single-particle Moves}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.4.1}{Optimizing the Slater ratios}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.2}{Optimizing the Inverse}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.3}{Optimizing the Pad\351 Jastrow factor Ratio}{section.4.4}
+\BOOKMARK [1][-]{section.4.5}{Optimizing the Pad\351 Jastrow Derivative Ratios}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.5.1}{The Gradient}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.2}{The Laplacian}{section.4.5}
+\BOOKMARK [1][-]{section.4.6}{Tabulating Recalculated Data}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{The relative distance matrix}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{The Slater related matrices}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.3}{Avoiding spin tests}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.4}{The Pad\351 Jastrow gradient}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.5}{The single-particle Wave Functions}{section.4.6}
+\BOOKMARK [1][-]{section.4.7}{CPU Cache Optimization}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{Modeled Systems}{part.1}
+\BOOKMARK [1][-]{section.5.1}{Atomic Systems}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.1.1}{The Single Particle Basis}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.2}{Atoms}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.3}{Homonuclear Diatomic Molecules}{section.5.1}
+\BOOKMARK [1][-]{section.5.2}{Quantum Dots}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.2.1}{The Single Particle Basis}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.2}{2D and 3D Quantum Dots}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.3}{Double-well Quantum Dots}{section.5.2}
+\BOOKMARK [-1][-]{part.2}{II Results}{}
+\BOOKMARK [0][-]{chapter.6}{Results}{part.2}
+\BOOKMARK [1][-]{section.6.1}{Optimization Results}{chapter.6}
+\BOOKMARK [1][-]{section.6.2}{Validating the code}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.2.1}{Calculation for non-interacting particles}{section.6.2}
+\BOOKMARK [1][-]{section.6.3}{Results for Quantum Dots}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.3.1}{FIXED NODE TESTS}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.2}{One-body Densities}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.3}{Lowering the frequency}{section.6.3}
+\BOOKMARK [1][-]{section.6.4}{Results for Atoms}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.4.1}{Ground State Energies}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.2}{The Noble-Gases}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.3}{Alkaline Earth Metals}{section.6.4}
+\BOOKMARK [0][-]{appendix.A}{Dirac Notation}{part.2}
+\BOOKMARK [0][-]{appendix.B}{DCViz: Visualization of Data}{part.2}
+\BOOKMARK [1][-]{section.B.1}{Basic Usage}{appendix.B}
+\BOOKMARK [0][-]{appendix.C}{Auto-generation with SymPy}{part.2}
+\BOOKMARK [1][-]{section.C.1}{Usage}{appendix.C}
+\BOOKMARK [2][-]{subsection.C.1.1}{Doing Symbolic Algebra}{section.C.1}
+\BOOKMARK [2][-]{subsection.C.1.2}{Exporting C++ and Latex Code}{section.C.1}
+\BOOKMARK [2][-]{subsection.C.1.3}{Calculating Derivatives}{section.C.1}
+\BOOKMARK [1][-]{section.C.2}{Using the auto-generation Script}{appendix.C}
+\BOOKMARK [0][-]{appendix.D}{Harmonic Oscillator Orbitals 2D}{part.2}
+\BOOKMARK [0][-]{appendix.E}{Harmonic Oscillator Orbitals 3D}{part.2}
+\BOOKMARK [0][-]{appendix.F}{Hydrogen Orbitals}{part.2}
+\BOOKMARK [0][-]{section*.108}{Bibliography}{part.2}

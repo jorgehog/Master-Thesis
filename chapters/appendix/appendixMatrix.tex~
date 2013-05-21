@@ -1,0 +1,169 @@
+\chapter{Matrix representation of states and operators}
+
+One of the most common ways to represent states and operators, at least in computational quantum mechanics, is using vectors and matrices. It is crucial to note, however, that we are discussing a \textit{representation} of states and operators; the theory itself is general, and independent of whatever convenient choice of representation we make. 
+
+The matrix representation of an operator $\OP{A}$ in necessarily dependent of our choice of basis. To illustrate this we look at the matrix representation of the Hamiltonian. It satisfies the time independent Schrödinger equation
+
+\[
+ \OP{H}\ket{\psi_{E_i}} = E_i\ket{\psi_{E_i}}.
+\]
+
+Using \textit{spectral decomposition} on $\OP{H}$ we get
+
+\begin{equation}
+ \OP{H} = \sum_{k} E_k\ket{\psi_{E_k}}\bra{\psi_{E_k}}, \label{eq:spectralHamiltonian}
+\end{equation}
+
+which by definition of $\OP{H}$ is diagonal in the energy eigenstates:
+
+\begin{equation}
+H = \left( 
+\begin{array}{ccccc}
+E_0    & 0      & 0      & \cdots & 0      \\
+0      & E_1    & 0      &        & \vdots \\
+0      & 0      & \ddots &        &        \\
+\vdots &        &        &        &        \\
+0      & \cdots &        &        & E_N
+\end{array} \right).
+\end{equation}
+
+However, if we perform a change of basis from $\ket{\psi_{E_i}}$ to an arbitrary complete set of orthogonal states $\ket{\phi_i}$ by using the completeness relation from eq.~\ref{eq:Completeness}, we get the following relation
+
+\begin{eqnarray}
+ \OP{H} &=& \sum_{k} E_k\ket{\psi_{E_k}}\bra{\psi_{E_k}}                                                                        \nonumber   \\ 
+        &=& \sum_{k}\sum_{i,j} E_k \ket{\phi_i}\braket{\phi_i}{\psi_{E_k}}\braket{\psi_{E_k}}{\phi_j}\bra{\phi_j}               \nonumber   \\
+        &=& \sum_{k}\sum_{i,j} \ket{\phi_i}\bra{\phi_i}\OP{H}\ket{\psi_{E_k}}\braket{\psi_{E_k}}{\phi_j}\bra{\phi_j}            \nonumber   \\
+        &=& \sum_{i,j} \ket{\phi_i}\bra{\phi_i}\OP{H}\Big[\sum_{k}\ket{\psi_{E_k}}\bra{\psi_{E_k}}\Big]\ket{\phi_j}\bra{\phi_j} \nonumber   \\
+        &=& \sum_{i,j} \ket{\phi_i}\bra{\phi_i}\OP{H}\ket{\phi_j}\bra{\phi_j}                                                   \nonumber   \\
+        &=& \sum_{i,j} \bra{\phi_i}\OP{H}\ket{\phi_j}\ket{\phi_i}\bra{\phi_j}                                                   \nonumber   \\
+        &=& \sum_{i,j} H_{ij}\ket{\phi_i}\bra{\phi_j},
+\end{eqnarray}
+
+which is not diagonal in the new basis. This is usually the starting point when we do physics, since the goal of the computation is to obtain the true eigenstates and eigenvectors of a Hamiltonian. If we choose an initial complete orthonormal basis, we can always set up the matrix and diagonalize it\footnote{The brute force method of doing this (up to a given truncation in the infinite basis) is called \textit{full configuration interaction} (FCI) or \textit{full scale diagonalization}.}. 
+
+Doing this basis change, we have also deduced the general form of the matrix elements in a given basis:
+
+\begin{equation}
+ A_{ij} = \bra{\psi_i} \OP{A} \ket{\psi_j},
+\end{equation}
+
+\begin{equation}
+A = \left( 
+\begin{array}{ccccc}
+\bra{\psi_0} \OP{A} \ket{\psi_0}  &  \bra{\psi_0} \OP{A} \ket{\psi_1} & \bra{\psi_0} \OP{A} \ket{\psi_2} & \cdots &  \bra{\psi_0} \OP{A} \ket{\psi_N}\\
+\bra{\psi_1} \OP{A} \ket{\psi_0}  &  \bra{\psi_1} \OP{A} \ket{\psi_1} & \bra{\psi_1} \OP{A} \ket{\psi_2} &        &  \vdots                          \\
+\bra{\psi_2} \OP{A} \ket{\psi_0}  &  \bra{\psi_2} \OP{A} \ket{\psi_1} & \ddots                           &        &                                  \\
+\vdots                            &                                   &                                  &        &                                  \\
+\bra{\psi_N} \OP{A} \ket{\psi_0}  &  \cdots                           &                                  &        &  \bra{\psi_N} \OP{A} \ket{\psi_N}\\
+\end{array} \right).
+\end{equation}
+
+The matrix elements are calculated as integrals, e.g. the expectation value of the energy in an interacting quantum dot using single particle harmonic oscillator wave functions.
+
+
+\newpage
+\begin{lstlisting}[language=c++, basicstyle=\scriptsize]
+void DMC::node_comm() {
+#ifdef MPI_ON
+    if (parallel) {
+        MPI_Allreduce(MPI_IN_PLACE, &E, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+        MPI_Allreduce(MPI_IN_PLACE, &samples, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+
+        MPI_Allgather(&n_w, 1, MPI_INT, n_w_list.memptr(), 1, MPI_INT, MPI_COMM_WORLD);
+
+        n_w_tot = arma::accu(n_w_list);
+
+    }
+#else
+    n_w_tot = n_w;
+#endif
+
+}
+
+void DMC::switch_souls(int root, int root_id, int dest, int dest_id) {
+    if (node == root) {
+        original_walkers[root_id]->send_soul(dest);
+        n_w--;
+    } else if (node == dest) {
+        original_walkers[dest_id]->recv_soul(root);
+        n_w++;
+    }
+}
+
+void DMC::normalize_population() {
+#ifdef MPI_ON
+    using namespace arma;
+
+    if (!(cycle % (n_c / check_thresh) == 0) || cycle > (int) n_c * 0.9) return;
+
+    
+    int avg = n_w_tot / n_nodes;
+    umat swap_map = zeros<umat > (n_nodes, n_nodes);
+    uvec snw = sort_index(n_w_list, 1);
+
+    
+    int root = 0;
+    int dest = n_nodes - 1;
+    while (root < dest) {
+        if (n_w_list(snw(root)) > avg) {
+            if (n_w_list(snw(dest)) < avg) {
+                swap_map(snw(root), snw(dest))++;
+                n_w_list(snw(root))--;
+                n_w_list(snw(dest))++;
+            } else {
+                dest--;
+            }
+        } else {
+            root++;
+        }
+    }
+
+    
+    uvec test = sum(swap_map, 1);
+    if (test.max() < sendcount_thresh) {
+        test.clear();
+        swap_map.clear();
+        return;
+    }
+
+
+    for (int root = 0; root < n_nodes; root++) {
+        for (int dest = 0; dest < n_nodes; dest++) {
+            if (swap_map(root, dest) != 0) {
+                for (int sendcount = 0; sendcount < swap_map(root, dest); sendcount++) {
+                    switch_souls(root, n_w - 1, dest, n_w);
+                }
+            }
+        }
+    }
+    
+    swap_map.clear();
+    test.clear();
+    MPI_Barrier(MPI_COMM_WORLD);
+
+#endif
+}
+\end{lstlisting}
+
+\newpage\begin{table}
+
+\begin{center}
+\label{}
+\begin{tabular}{cc|cccc}
+    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $\beta$  \\
+\hline
+    20    &   0.01   & 6.21374  & 6.14963  & 0.421499 & 0.108668 \\
+          &   0.1    & 30.0811  & 29.9775  & 0.673606 & 0.283105 \\
+          &   0.28   & 62.0604  & 61.9265  & 0.763565 & 0.417363 \\
+          &   0.5    &  94.027  & 93.8745  & 0.801079 & 0.533715 \\
+          &   1.0    &  156.05  & 155.884  & 0.83984  & 0.732855 \\
+    30    &   0.01   & 12.5867  &  12.505  & 0.419354 & 0.131479 \\
+          &   0.1    & 60.5914  & 60.4193  & 0.62963  & 0.306035 \\
+          &   0.28   & 124.179  & 123.968  & 0.727472 & 0.446524 \\
+          &   0.5    & 187.295  & 187.042  & 0.76652  & 0.576088 \\
+          &   1.0    & 308.859  & 308.564  & 0.809796 & 0.794661 \\
+\end{tabular}
+\caption{30 particles lolol}
+\end{center}
+\end{table}
+

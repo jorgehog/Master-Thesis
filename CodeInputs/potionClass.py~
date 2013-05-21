@@ -1,0 +1,37 @@
+#potionClass.py
+
+class Potion:
+	
+	def __init__(self, amount):
+		self.amount = amount;
+		self.setName()
+
+	def applyPotion(self, player):
+		#Pure virtual function	
+		return None
+
+	def setName(self):
+		#Virtual function
+		self.name = "Undefined"
+
+
+class HealthPotion(Potion):
+	
+	#Constructor is inherited
+
+	def applyPotion(self, player):
+		player.changeHealth(self.amount)
+	
+	def setName(self):
+		self.name = "Health Potion (" + str(self.amount) + ")"
+
+
+class EnergyPotion(Potion):
+	
+	def applyPotion(self, player):
+		player.changeEnergy(self.amount)
+	
+	def setName(self):
+		self.name = "Energy Potion (" + str(self.amount) + ")"
+
+

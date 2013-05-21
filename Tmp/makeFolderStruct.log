@@ -1,0 +1,78 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.20)  4 OCT 2012 11:02
+entering extended mode
+ %&-line parsing enabled.
+**makeFolderStruct.tex
+(./makeFolderStruct.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/tools/dirtree.sty
+Package: dirtree 2006/01/25 v0.2 package wrapper for dirtree
+
+(/usr/share/texmf-texlive/tex/latex/tools/dirtree.tex
+`dirtree' v0.2, 2006/01/25 (jcc)
+\DT@offset=\dimen103
+\DT@width=\dimen104
+\DT@sep=\dimen105
+\DT@all=\dimen106
+\DT@rulewidth=\dimen107
+\DT@dotwidth=\dimen108
+\DTbaselineskip=\dimen109
+\DT@counti=\count87
+\DT@countii=\count88
+\DT@countiii=\count89
+\DT@countiv=\count90
+)
+File: dirtree.tex 2006/01/25 v0.2 `dirtree' (jcc)
+) (./makeFolderStruct.aux)
+\openout1 = `makeFolderStruct.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./makeFolderStruct.aux) )
+ 
+Here is how much of TeX's memory you used:
+ 299 strings out of 495061
+ 3459 string characters out of 1182621
+ 49800 words of memory out of 3000000
+ 3554 multiletter control sequences out of 15000+50000
+ 3808 words of font info for 15 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 23i,4n,17p,167b,105s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on makeFolderStruct.pdf (1 page, 21538 bytes).
+PDF statistics:
+ 14 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

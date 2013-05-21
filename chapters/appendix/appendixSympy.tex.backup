@@ -1,0 +1,220 @@
+
+\chapter{Auto-generation with SymPy}
+\label{appendix:sympy}
+
+``\textit{SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. SymPy is written entirely in Python and does not require any external libraries.}'' - The SymPy Home Page
+
+The focus on this appendix will be on using SymPy to calculate closed form expressions for single particle wave functions needed to optimize the calculations of the Slater gradient and Laplacian. For systems of many particles, it is crucial to optimize to have these expressions in order for the code to remain efficient. 
+
+Calculating these expressions by hand is out of the question, given that the complexity of the expressions is proportional to the magnitude of the quantum number, which again scales with the number of particles. In the case of a $42$ particle Quantum Dot, the number of unique derivatives involved in the simulation is $84$. 
+
+\section{Usage}
+
+SymPy is, as described in the introductory quote, designed to be simple to use. This section will cover the basics needed to calculate gradients and Laplacians, auto-generating C++ - and Latex code.
+
+\subsection{Doing Symbolic Algebra}
+
+In order for SymPy to recognize e.g. \verb+x+ as a symbol, that is, a \textit{mathematical variable}. In contrast to programming variables, symbols are not initialized to a value. Initializing symbols can be done in several ways, the two most common are listed below
+
+\begin{lstlisting}[language=Python]
+In [1]: from sympy import Symbol, symbols
+
+In [2]: x = Symbol('x')
+
+In [3]: y, z = symbols('y z')
+
+In [7]: x*x+y
+Out[7]: 'x**2 + y'
+
+\end{lstlisting}
+
+The \verb+Symbol+ function handles single symbols, while \verb+symbols+ can initialize several symbols simultaneously. The string argument might seem redundant, however, this represents the \textit{label} displayed using print functions. In addition, key word arguments can be sent to the symbol functions, flagging variables as e.g. positive, real, etc.
+
+\begin{lstlisting}[language=Python]
+In [1]: from sympy import Symbol, symbols, im
+
+In [2]: x2 = Symbol('x^2', real=True, positive=True) #Flagged as real. Note the label.
+
+In [3]: y, z = symbols('y z') #Not flagged as real
+
+In [7]: x2+y #x2 is printed more nicely given a describing label
+Out[7]: 'x^2 + y'
+
+In [8]: im(z) #Imaginary part cannot be assumed to be anything.
+Out[8]: 'im(z)'
+
+In [9]: im(x2) #Flagged as real, the imaginary part is zero.
+Out[9]: 0
+
+\end{lstlisting}
+
+\subsection{Exporting C++ and Latex Code}
+
+Exporting code is extremely simple. Consider the following example
+
+\begin{lstlisting}[language=Python]
+In [1]: from sympy import symbols, printing, exp
+
+In [2]: x, x2 = symbols('x x^2')
+
+In [3]: printing.ccode(x*x*x*x*exp(-x2*x))
+Out[3]: 'pow(x, 4)*exp(-x*x^2)'
+
+In [4]: printing.ccode(x*x*x*x)
+Out[4]: 'pow(x, 4)'
+
+In [5]: print printing.latex(x*x*x*x*exp(-x2))
+\frac{x^{4}}{e^{x^{2}}}
+
+\end{lstlisting}
+
+The following expression is the direct output from line five compiled in Latex
+
+\begin{equation*}
+ \frac{x^{4}}{e^{x^{2}}}
+\end{equation*}
+
+\subsection{Calculating Derivatives}
+
+As an example for this section, let's look at the $2s$ orbital from hydrogen (not normalized)
+
+\begin{align}
+ \phi_{2s}(\vec r) &= (Zr - 2)e^{-\frac{1}{2}Zr} \\
+ r^2 &= x^2 + y^2 + z^2
+\end{align}
+
+Calculating the gradients and Laplacian is very simply by using the \verb+diff+ function
+
+\begin{lstlisting}[language=Python]
+In [1]: from sympy import symbols, diff, exp, sqrt
+
+In [2]: x, y, z, Z = symbols('x y z Z')
+
+In [3]: r = sqrt(x*x + y*y + z*z)
+
+In [4]: r
+Out[4]: '(x**2 + y**2 + z**2)**(1/2)'
+
+In [5]: phi = (Z*r - 2)*exp(-Z*r/2)
+
+In [6]: phi
+Out[6]: '(Z*(x**2 + y**2 + z**2)**(1/2) - 2)*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)'
+
+In [7]: diff(phi, x)
+Out[7]: '-Z*x*(Z*(x**2 + y**2 + z**2)**(1/2) - 2)*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)/(2*(x**2 + y**2 + z**2)**(1/2)) + Z*x*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)/(x**2 + y**2 + z**2)**(1/2)'
+
+\end{lstlisting}
+
+Now, this looks like a nightmare. However, SymPy has great support for simplifying expressions. The following code demonstrated this quite nicely
+
+\begin{lstlisting}[language=Python]
+...
+
+In [6]: phi
+Out[6]: '(Z*(x**2 + y**2 + z**2)**(1/2) - 2)*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)'
+
+In [7]: from sympy import factor, Symbol, printing
+
+In [8]: R = Symbol('r') #Creates a symbolic equivalent of the mathematical r
+
+In [9]: diff(phi, x).factor() #Gathers all the terms nicely
+Out[9]: '-Z*x*(Z*(x**2 + y**2 + z**2)**(1/2) - 4)*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)/(2*(x**2 + y**2 + z**2)**(1/2))'
+
+In [10]: diff(phi, x).factor().subs(r, R) #replaces (x^2 + y^2 + z^2)^(1/2) with r
+Out[10]: '-Z*x*(Z*r - 4)*exp(-Z*r/2)/(2*r)'
+
+In [11]: print printing.latex(diff(phi, x).factor().subs(r, R))
+- \frac{Z x \left(Z r -4\right)}{2 r e^{\frac{1}{2} Z r}}
+
+\end{lstlisting}
+
+This version of the expression is much more satisfying to the eye. Result:
+
+\begin{equation*}
+ - \frac{Z x \left(Z r -4\right)}{2 r e^{\frac{1}{2} Z r}}
+\end{equation*}
+
+Estimating the Laplacian is just a matter of summing double derivatives
+
+\begin{lstlisting}[language=Python]
+...
+
+In [12]: (diff(diff(phi, x), x) + 
+   ....:  diff(diff(phi, y), y) + 
+   ....:  diff(diff(phi, z), z)).factor().subs(r, R)
+Out[12]: 'Z*(Z**2*x**2 + Z**2*y**2 + Z**2*z**2 - 10*Z*r + 16)*exp(-Z*r/2)/(4*r)'
+
+In [13]: (diff(diff(phi, x), x) + #Not quite satisfying.
+   ....:  diff(diff(phi, y), y) + #Let's collect the 'Z' terms.
+   ....:  diff(diff(phi, z), z)).factor().collect(Z).subs(r, R)
+Out[13]: 'Z*(Z**2*(x**2 + y**2 + z**2) - 10*Z*r + 16)*exp(-Z*r/2)/(4*r)'
+
+In [14]: (diff(diff(phi, x), x) + #Still not satisfying.
+   ....:  diff(diff(phi, y), y) + #The r^2 terms needs to be substituted as well.
+   ....:  diff(diff(phi, z), z)).factor().collect(Z).subs(r, R).subs(r**2, R**2)
+Out[14]: 'Z*(Z**2*r**2 - 10*Z*r + 16)*exp(-Z*r/2)/(4*r)'
+
+In [15]: (diff(diff(phi, x), x) + #Let's try to factorize once more.
+   ....:  diff(diff(phi, y), y) + 
+   ....:  diff(diff(phi, z), z)).factor().collect(Z).subs(r, R).subs(r**2, R**2).factor()
+Out[15]: 'Z*(Z*r - 8)*(Z*r - 2)*exp(-Z*r/2)/(4*r)'
+
+\end{lstlisting}
+
+Getting the right factorization may come across as tricky, but with minimal training this poses no real problems.
+
+\section{Using the auto-generation Script}
+
+The Python superclass \verb+orbitalsGenerator+ (the generator) aims to serve as a interface with the C++ \verb+BasisFunctions+ class, automatically generating the C++ code containing all the implementations of the derivatives for the given single particle states. The single particle states are implemented in the generator by subclasses overloading system specific virtual functions:
+
+\begin{small}
+\begin{tabular}{ll}
+\verb+constructor+	& Takes argument \verb+M+ equal to the number of orbitals to compute,\\
+			& should directly be set by \verb+self.setMax(M)+.\\
+			&\\
+			& Second argument \verb+doInit+ defaults to \verb+True+. Should be sent to superclass \\
+			& constructor. If false, does not initialize the construction of expression, latex file, etc.\\
+			&\\
+			& Third argument \verb+toCPP+ defaults to \verb+False+. Should be sent to superclass \\
+			& constructor. If true, C++ files will be generated. \\
+			&\\
+			&\\
+\verb+makeStateMap+	& Setup the \verb+self.stateMap+ list, where index $i$ represents a set of quantum numbers. \\
+			& Auto-generated \LaTeX tables will then include quantum numbers. \\
+			& Ensured correct quantum number - expression pairs sent to simplification functions etc. \\
+			& \\
+\verb+setupOrbitals+	& Fill the \verb+self.orbitals+ list with SymPy expressions representing the single particle \\
+			& wave functions. Must be functions of the $x$, $y$ and $z$ SymPy Symbols. \\
+			& Used to calculate the gradients and Laplacians. \\
+			& Element $i$ will represent quantum number $i$. \\
+			&\\
+\verb+simplifyLocal+	& Implement the factorization of the raw expressions. \\
+			& E.g. $kxe^{-x} + ke^{-x} \to k(x + 1)e^{-x}$. \\
+			& Quantum numbers are supplied in the argument in case they are needed, e.g. in the $n$- \\ 
+			& dependent exponential factor of the hydrogenic orbitals. \\
+			&\\
+\verb+genericFactor+	& Defaults to unity. In case all expressions share a common factor, e.g. \\
+			& $\exp(-\frac{1}{2}\alpha\omega r^2)$ in the case of Quantum Dots, this can be \\
+			& implemented as a generic factor, cleaning up the Latex table. \\
+			& May also dramatically clean up the simplification code. \\
+\verb+extraToFile+	& Returns a string which will be set as an introductory text to the Latex output. \\
+			&\\
+			&\\
+\verb+initCPPbasis+	& Set up the C++ class names, constructor arguments, member variables. See e.g. the \\
+			& \verb+HO.py+ file for examples. \\
+			&\\
+\verb+getCPre+		& Given an expression and a its index $i$ as input, set up the C++ pre-return calculation. \\
+			& E.g. \verb+H = printing.ccode(expr/self.genericFactor(i));+ \\
+			&\\
+\verb+getCreturn+	& Given an expression and a its index $i$ as input, set up the C++ return value. \\
+			& E.g. \verb+return H*(*exp_factor);+\\
+			&\\
+			&\\
+\verb+makeOrbConstArg+	& Used to set up the constructor input in the generated \verb+Orbitals+ constructor.\\
+			& Defaults to sending names equal to those used in the declaration, however, in e.g. the \\
+			& case of hydrogenic orbitals, different basis functions need different exponential factors. \\
+			& See \verb+hydrogenic.py+ for an example.
+\end{tabular}
+\end{small}
+
+Implementing these functions will generate a Latex file listing the calculated expressions (see Sections \ref{sec:SymPyHO} and \ref{sec:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the code used in this thesis, ~6000 lines of C++ code was auto-generated using SymPy.

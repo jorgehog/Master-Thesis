@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{dirtree}
+
+\DTsetlength{0.5em}{2em}{0.2em}{0.6pt}{2.6pt}
+\begin{document}
+
+\dirtree{%
+.1 src/.
+.2 Class1/.
+.3 Class1.cpp.
+.3 Class1.h.
+.3 Class1Subclass1/.
+.4 Class1Subclass1.cpp.
+.4 Class1Subclass1.h.
+.2 Class2/.
+.3 Class2.cpp.
+.3 Class2.h.
+.3 Class2Subclass1/.
+.4 Class2Subclass1.cpp.
+.4 Class2Subclass1.h.
+.3 Class2Subclass2/.
+.4 Class2Subclass2.cpp.
+.4 Class2Subclass2.h.
+.2 main.cpp.
+.2 Headers.h.
+}
+
+\end{document}

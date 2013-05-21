@@ -1,0 +1,41 @@
+\begin{titlepage}
+\begin{center}
+\ \\
+\ \\
+\ \\
+{\huge \bf Quantum Monte-Carlo Studies of Generalized Many-body Systems}\\ 
+\ \\ 
+{\Large by}\\
+\ \\
+{\Large \bf J\o{}rgen H\o{}gberget}\\
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+{\large \bf THESIS}\\
+{\large for the degree of}\\
+{\large \bf MASTER OF SCIENCE}\\
+\ \\
+(Master in Computational Physics)\\
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{../Graphics/UiO_Segl_300dpi.png}
+\end{center}
+\end{figure}
+\ \\
+\Large{\rm Faculty of Mathematics and Natural Sciences}\\
+{\rm Department of Physics}\\
+{\rm University of Oslo}\\
+\ \\
+\ \\
+{\rm June 2013}
+\end{center}
+\end{titlepage}

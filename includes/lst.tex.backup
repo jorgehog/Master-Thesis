@@ -1,0 +1,37 @@
+\usepackage{listings}
+
+% Code parameters
+\lstset{language=c++}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{grey}}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{blue}\bfseries}
+\lstset{commentstyle=\color{red}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt}
+
+\setlength{\parskip}{11pt}
+\setlength{\parindent}{0mm}
+
+\definecolor{grey}{rgb}{0.88,0.98,0.98}
+
+\lstset{
+language=Python,
+basicstyle=\footnotesize,
+backgroundcolor=\color{grey}
+}
+
+\lstset{
+language=Matlab,
+basicstyle=\footnotesize,
+backgroundcolor=\color{grey}
+}
+
+\lstset{
+language=C++,
+backgroundcolor=\color{grey}
+}
+

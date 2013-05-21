@@ -1,0 +1,63 @@
+#KeyboardClassPython.py
+
+class Keyboard():
+
+	keys
+	board
+
+	#No implementations (pure virtual)	
+	def setupKeys(self):
+
+	def pressKey(self, key):
+
+
+
+
+class ComputerKeyboard(Keyboard):
+
+	language
+	
+	def __init__(self, language):
+		self.language = language
+
+		self.setupKeys()
+
+	def setupKeys(self):
+		if self.language == "Norwegian":
+			keys[0] = "|"
+			keys[1] = "1"
+			#...
+
+
+
+		#...
+
+	def pressKey(self, key):
+		return self.keys[key]
+
+
+
+
+class MusicalKeyboard(Keyboard):
+	
+	def __init__(self, nKeys, noteLength, amplitude):
+
+		self.amplitude = amplitude
+		self.noteLenght = noteLength
+
+		keys = zeros(nKeys)
+		self.setupKeys()
+	
+	def setupKeys(self):
+		keys[0] = lowestNote
+		#...
+
+		keys[30] = 440 #Hz
+		#... 
+
+	def presskey(self, key):
+
+		t = linspace(0, self.noteLength, 100)
+		pi = 3.141592
+
+		return self.amplitude*sin(2*pi*keys[key]*t)

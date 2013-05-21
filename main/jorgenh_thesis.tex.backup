@@ -1,0 +1,76 @@
+\documentclass[10pt,a4paper,twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[titletoc]{appendix}
+\usepackage[vscale=0.8,left=3cm,right=2cm,footskip=2.5cm, headsep=1cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, graphicx}
+\usepackage[pdfborder={0 0 0 }]{hyperref}
+\usepackage{enumerate, enumitem, color, rotating, subfigure, placeins, dsfont, listliketab, dirtree} 
+\usepackage{titlesec}
+
+\newcommand{\OP}[1]{{\bf\widehat{#1}}}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\braket}[2]{\left\langle #1 | #2\right\rangle}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\x}{\otimes}
+\newcommand{\su}{\uparrow}
+\newcommand{\sd}{\downarrow}	
+\newcommand{\p}{\psi(\vec r, t)}
+
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Exp}[1]{\left< #1 \right>}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\input{../includes/lst.tex}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries}
+{\color{black}\thesection}{1em}{\color{green}\underline
+
+% \titleformat{\subsection}
+% {\color{green}\normalfont\Large\bfseries}
+% {\color{black}\thesubsection}{1em}{}
+
+\titleformat{\chapter}[frame]
+{\normalfont\Large\bfseries}
+{\color{black}\hspace{0.5cm}\thechapter\hspace{0.5cm}}{1em}{\hspace{0.8cm}\color{green}}
+
+
+\begin{document}
+\input{../chapters/01frontpage/ch01frontpage.tex}
+\input{../chapters/02preface/ch02preface.tex}
+\tableofcontents
+\input{../chapters/03intro/ch03intro.tex}
+\part{Theory}
+\input{../chapters/04SciProg/ch04SciProg.tex}
+\input{../chapters/05Manybody/ch05Manybody.tex}
+
+\part{Results}
+\input{../chapters/07ImpVal/ImpVal.tex}
+\input{../chapters/08Results/ch08Results.tex}
+
+\clearpage
+\appendix
+%\noappendixpagetoc
+%\noappendixheadtotoc
+%\appendixpage
+\input{../chapters/appendix/appendixDirac.tex}
+\input{../chapters/appendix/appendixMatrix.tex}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{../bibtex/bibtex.bib}
+
+
+
+
+
+
+
+
+
+
+\end{document}

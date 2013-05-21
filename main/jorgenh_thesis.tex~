@@ -1,0 +1,114 @@
+\documentclass[10pt,a4paper,twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[titletoc]{appendix}
+\usepackage[vscale=0.8,left=3cm,right=2cm,footskip=2.5cm, headsep=1cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, graphicx}
+\usepackage[pdfborder={0 0 0 }]{hyperref}
+\usepackage{enumerate, enumitem, color, rotating, subfig, placeins, dsfont, listliketab, dirtree} 
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{pdflscape}
+\usepackage{rotating}
+
+\pdfminorversion=5
+
+\newcommand{\OP}[1]{{\bf\widehat{#1}}}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\braket}[2]{\left\langle #1 | #2\right\rangle}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\x}{\otimes}
+\newcommand{\su}{\uparrow}
+\newcommand{\sd}{\downarrow}	
+\newcommand{\ph}{\phi(\mathbf{r}, t)}
+\newcommand{\Ph}{\Phi(\mathbf{r}, t)}
+\newcommand{\Phn}{\Phi(\mathbf{r}, t_0)}
+\newcommand{\PT}{\Psi_T(\mathbf{r})}
+\newcommand{\Ptau}{\Phi(\mathbf{r}, \tau)}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Exp}[1]{\left< #1 \right>}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+
+\newcommand{\subfigure}{\subfloat}
+
+
+\input{../includes/lst.tex}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries}
+{\color{green}\thesection}{1em}{\underline}
+
+\titleformat{\subsection}
+{\normalfont\large\bfseries}
+{\color{green}\thesubsection}{1em}{}
+
+\titleformat{\chapter}[frame]
+{\normalfont\Huge\bfseries}
+{\color{black}\hspace{0.5cm}\thechapter\hspace{0.5cm}}{1em}{\color{green}}
+
+% \setlength{\fboxrule}{0.5mm}
+\newcommand{\cfbox}[2]{%
+    \color{green}%
+    \addtolength{\linewidth}{-2\fboxsep}%
+    \addtolength{\linewidth}{-2\fboxrule}%
+
+    \fbox{%
+      \color{black}%
+        \begin{minipage}{#1 + \linewidth}
+	  #2
+	\end{minipage}
+    }
+    \color{black}
+}
+
+\begin{document}
+% \input{../chapters/01frontpage/ch01frontpage.tex}
+% \input{../chapters/02preface/ch02preface.tex}
+% \tableofcontents
+% \input{../chapters/03intro/ch03intro.tex}
+\part{Theory}
+\input{../chapters/04SciProg/ch04SciProg.tex}
+\input{../chapters/05Manybody/ch05Manybody.tex}
+\input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
+\input{../chapters/ModeledSystems/ModeledSystems.tex}
+
+\part{Results}
+%% \input{../chapters/07ImpVal/ImpVal.tex}
+% \input{../chapters/08Results/ch08Results.tex}
+
+\clearpage
+\appendix
+%% \noappendixpagetoc
+%% \noappendixheadtotoc
+\appendixpage
+% \input{../chapters/appendix/appendixDirac.tex}
+% \input{../chapters/appendix/appendixViz.tex}
+\input{../chapters/appendix/appendixSympy.tex}
+\input{../chapters/appendix/HarmonicOscillator.tex}
+\input{../chapters/appendix/3DHO.tex}
+\input{../chapters/appendix/hydrogenic.tex}
+%%% \input{../chapters/appendix/appendixMatrix.tex}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\color{black}
+\begingroup
+\sloppy
+\bibliographystyle{IEEEtran}
+\bibliography{../bibtex/bibtex.bib}
+\endgroup
+
+
+
+
+
+
+
+
+
+\end{document}

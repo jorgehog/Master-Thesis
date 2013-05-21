@@ -1,0 +1,41 @@
+#potionGameMain.py
+
+from potionClass import *
+from playerClass import *
+
+def roundOutput(players, n):
+	header= "\nRound %d: " % n
+	print header.replace('0','start')
+	for player in players:
+		print "%s (hp/e=%d/%d):" % (player.name, player.health, player.energy)
+		player.displayPotions()
+		print
+
+
+player1 = Player('john')
+player2 = Player('james')
+	
+player1.addPotion(HealthPotion(10))
+player1.addPotion(EnergyPotion(30))
+
+player2.addPotion(EnergyPotion(20))
+player2.addPotion(EnergyPotion(20))
+
+roundOutput([player1, player2], 0)
+
+print "\nPlayer2 hit Player1 for 50 using 100 energy"
+player1.changeHealth(-50) 
+player2.changeEnergy(-100)
+
+print "Players used all potions"
+player1.usePotion(1) 
+player1.usePotion(0) 
+player2.usePotion(1)
+player2.usePotion(0)
+
+print "Player1 hit Player2 for 40 using 90 energy\n"
+player1.changeEnergy(-90); player2.changeHealth(-40)
+
+roundOutput([player1, player2], 1)
+
+

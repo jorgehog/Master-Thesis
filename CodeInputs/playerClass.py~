@@ -1,0 +1,54 @@
+#playerClass.py
+
+class Player:
+	def __init__(self, name):
+		self.health = 100
+		self.energy = 100
+		self.name = name
+
+		self.dead = False
+		
+		self.potions = []	
+
+	def addPotion(self, potion):
+		self.potions.append(potion)
+	
+	def usePotion(self, potionIndex):
+		self.potions[potionIndex].applyPotion(self)
+		self.potions.pop(potionIndex)	
+
+	def changeHealth(self, amount):
+		self.health += amount
+
+		#Cap health at [0,100]. 
+		if self.health > 100:
+			self.health = 100
+		elif self.health <= 0:
+			self.health = 0
+			self.dead = True;
+						
+
+	def changeEnergy(self, amount):
+		self.energy += amount
+	
+		#Cap energy at [0,100].
+		if self.energy > 100:
+			self.energy = 100
+		elif self.energy < 0:
+			self.energy = 0
+	
+	
+	def superPowers(self):
+		#Pure virtual function
+		return None
+	
+	def displayPotions(self):
+		if len(self.potions) == 0:
+			print "No potions aviable"
+		for potion in self.potions:
+			print potion.name
+
+class Superman:
+	def superPowers(self):
+		self.canFly = True;
+

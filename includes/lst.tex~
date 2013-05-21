@@ -1,0 +1,35 @@
+\usepackage{listings}
+
+% Code parameters
+\lstset{language=c++}
+\lstset{basicstyle=\ttfamily\footnotesize}
+\lstset{backgroundcolor=\color{grey}}
+\lstset{stringstyle=\color{beige}}
+\lstset{keywordstyle=\color{green}\bfseries}
+\lstset{commentstyle=\color{red}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt}
+\lstset{linewidth=16cm}
+
+\setlength{\parskip}{11pt}
+\setlength{\parindent}{0mm}
+
+\definecolor{grey}{rgb}{0.92,0.92,0.92}
+\definecolor{green}{rgb}{0, 0.4, 0}
+\definecolor{beige}{rgb}{0.62, 0.44, 0.1}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}

@@ -1,0 +1,402 @@
+\chapter{Harmonic Oscillator Orbitals 3D}
+\label{appendix:SymPyHO3D}
+
+Orbitals are constructed in the following fashion:
+\begin{equation*}
+\phi(\vec r)_{n_x, n_y, n_z} = H_{n_x}(kx)H_{n_y}(ky)H_{n_z}(kz)e^{-\frac{1}{2}k^2r^2}
+\end{equation*}   
+
+where $k = \sqrt{\omega\alpha}$, with $\omega$ being the oscillator frequency and $\alpha$ being the variational parameter.  
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$H_{0}(kx)$ & $1$\\
+$H_{1}(kx)$ & $2 k x$\\
+$H_{2}(kx)$ & $4 k^{2} x^{2} -2$\\
+$H_{3}(kx)$ & $8 k^{3} x^{3} - 12 k x$\\
+\hline
+$H_{0}(ky)$ & $1$\\
+$H_{1}(ky)$ & $2 k y$\\
+$H_{2}(ky)$ & $4 k^{2} y^{2} -2$\\
+$H_{3}(ky)$ & $8 k^{3} y^{3} - 12 k y$\\
+\hline
+$H_{0}(kz)$ & $1$\\
+$H_{1}(kz)$ & $2 k z$\\
+$H_{2}(kz)$ & $4 k^{2} z^{2} -2$\\
+$H_{3}(kz)$ & $8 k^{3} z^{3} - 12 k z$\\
+\end{tabular}
+\caption{Hermite polynomials used to construct orbital functions}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{0} \rightarrow \phi_{0, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $1$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} y$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} z$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} \left(k^{2} r^{2} -3\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 0, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{1} \rightarrow \phi_{0, 0, 1}$\\
+\hline
+$\phi(\vec r)$ & $z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x z$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} y z$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \left(k z -1\right) \left(k z + 1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} z \left(k^{2} r^{2} -5\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 0, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{2} \rightarrow \phi_{0, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $y$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x y$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \left(k y -1\right) \left(k y + 1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} y z$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} y \left(k^{2} r^{2} -5\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 1, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{3} \rightarrow \phi_{1, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $x$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \left(k x -1\right) \left(k x + 1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} x y$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} x z$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x \left(k^{2} r^{2} -5\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 0, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{4} \rightarrow \phi_{0, 0, 2}$\\
+\hline
+$\phi(\vec r)$ & $4 k^{2} z^{2} -2$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} x \left(2 k^{2} z^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} y \left(2 k^{2} z^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} z \left(2 k^{2} z^{2} -5\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $2 k^{2} \left(k^{2} r^{2} -7\right) \left(2 k^{2} z^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 0, 2. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{5} \rightarrow \phi_{0, 1, 1}$\\
+\hline
+$\phi(\vec r)$ & $y z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x y z$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- z \left(k y -1\right) \left(k y + 1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- y \left(k z -1\right) \left(k z + 1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} y z \left(k^{2} r^{2} -7\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 1, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{6} \rightarrow \phi_{0, 2, 0}$\\
+\hline
+$\phi(\vec r)$ & $4 k^{2} y^{2} -2$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} x \left(2 k^{2} y^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} y \left(2 k^{2} y^{2} -5\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} z \left(2 k^{2} y^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $2 k^{2} \left(k^{2} r^{2} -7\right) \left(2 k^{2} y^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 2, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{7} \rightarrow \phi_{1, 0, 1}$\\
+\hline
+$\phi(\vec r)$ & $x z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- z \left(k x -1\right) \left(k x + 1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} x y z$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- x \left(k z -1\right) \left(k z + 1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x z \left(k^{2} r^{2} -7\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 0, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{8} \rightarrow \phi_{1, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $x y$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- y \left(k x -1\right) \left(k x + 1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- x \left(k y -1\right) \left(k y + 1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} x y z$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x y \left(k^{2} r^{2} -7\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 1, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{9} \rightarrow \phi_{2, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $4 k^{2} x^{2} -2$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} x \left(2 k^{2} x^{2} -5\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} y \left(2 k^{2} x^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- 2 k^{2} z \left(2 k^{2} x^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $2 k^{2} \left(k^{2} r^{2} -7\right) \left(2 k^{2} x^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 2, 0, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{10} \rightarrow \phi_{0, 0, 3}$\\
+\hline
+$\phi(\vec r)$ & $z \left(2 k^{2} z^{2} -3\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} z^{2} -3\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} z^{2} -3\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- 2 k^{4} z^{4} + 9 k^{2} z^{2} -3$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} z \left(k^{2} r^{2} -9\right) \left(2 k^{2} z^{2} -3\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 0, 3. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{11} \rightarrow \phi_{0, 1, 2}$\\
+\hline
+$\phi(\vec r)$ & $y \left(2 k^{2} z^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} z^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \left(k y -1\right) \left(k y + 1\right) \left(2 k^{2} z^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} z^{2} -5\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} y \left(k^{2} r^{2} -9\right) \left(2 k^{2} z^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 1, 2. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{12} \rightarrow \phi_{0, 2, 1}$\\
+\hline
+$\phi(\vec r)$ & $z \left(2 k^{2} y^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} y^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} y^{2} -5\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \left(k z -1\right) \left(k z + 1\right) \left(2 k^{2} y^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} z \left(k^{2} r^{2} -9\right) \left(2 k^{2} y^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 2, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{13} \rightarrow \phi_{0, 3, 0}$\\
+\hline
+$\phi(\vec r)$ & $y \left(2 k^{2} y^{2} -3\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} y^{2} -3\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- 2 k^{4} y^{4} + 9 k^{2} y^{2} -3$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} y^{2} -3\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} y \left(k^{2} r^{2} -9\right) \left(2 k^{2} y^{2} -3\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 0, 3, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{14} \rightarrow \phi_{1, 0, 2}$\\
+\hline
+$\phi(\vec r)$ & $x \left(2 k^{2} z^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \left(k x -1\right) \left(k x + 1\right) \left(2 k^{2} z^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} z^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} z^{2} -5\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x \left(k^{2} r^{2} -9\right) \left(2 k^{2} z^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 0, 2. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{15} \rightarrow \phi_{1, 1, 1}$\\
+\hline
+$\phi(\vec r)$ & $x y z$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- y z \left(k x -1\right) \left(k x + 1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- x z \left(k y -1\right) \left(k y + 1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- x y \left(k z -1\right) \left(k z + 1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x y z \left(k^{2} r^{2} -9\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 1, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{16} \rightarrow \phi_{1, 2, 0}$\\
+\hline
+$\phi(\vec r)$ & $x \left(2 k^{2} y^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- \left(k x -1\right) \left(k x + 1\right) \left(2 k^{2} y^{2} -1\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} y^{2} -5\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} y^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x \left(k^{2} r^{2} -9\right) \left(2 k^{2} y^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 1, 2, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{17} \rightarrow \phi_{2, 0, 1}$\\
+\hline
+$\phi(\vec r)$ & $z \left(2 k^{2} x^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} x^{2} -5\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} x^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- \left(k z -1\right) \left(k z + 1\right) \left(2 k^{2} x^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} z \left(k^{2} r^{2} -9\right) \left(2 k^{2} x^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 2, 0, 1. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{18} \rightarrow \phi_{2, 1, 0}$\\
+\hline
+$\phi(\vec r)$ & $y \left(2 k^{2} x^{2} -1\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} x^{2} -5\right)$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- \left(k y -1\right) \left(k y + 1\right) \left(2 k^{2} x^{2} -1\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} y z \left(2 k^{2} x^{2} -1\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} y \left(k^{2} r^{2} -9\right) \left(2 k^{2} x^{2} -1\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 2, 1, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|l}
+$\phi_{19} \rightarrow \phi_{3, 0, 0}$\\
+\hline
+$\phi(\vec r)$ & $x \left(2 k^{2} x^{2} -3\right)$\\
+\hline
+$\vec i\cdot \nabla \phi(\vec r)$ & $- 2 k^{4} x^{4} + 9 k^{2} x^{2} -3$\\
+$\vec j\cdot \nabla \phi(\vec r)$ & $- k^{2} x y \left(2 k^{2} x^{2} -3\right)$\\
+$\vec k\cdot \nabla \phi(\vec r)$ & $- k^{2} x z \left(2 k^{2} x^{2} -3\right)$\\
+\hline
+$\nabla^2 \phi(\vec r)$ & $k^{2} x \left(k^{2} r^{2} -9\right) \left(2 k^{2} x^{2} -3\right)$\\
+\end{tabular}
+\caption{Orbital expressions HOOrbitals3D : 3, 0, 0. Factor $e^{- \frac{1}{2} k^{2} r^{2}}$ is omitted.}
+\end{center}
+\end{table}
+
+\clearpage
+
+
+\end{document}
+

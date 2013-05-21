@@ -1,0 +1,667 @@
+@comment{x-kbibtex-personnameformatting=<%l><, %f>}
+
+% This file was created with JabRef 2.7b.
+% Encoding: UTF-8
+
+@article{ChemPhys.45.4256,
+	author = "\v{C}{\'i}\v{z}ek, Ji\v{r}{\'i}",
+	doi = "10.1063/1.1727484",
+	journal = "The Journal of Chemical Physics",
+	number = "11",
+	pages = "4256--4266",
+	publisher = "AIP",
+	title = "{On the Correlation Problem in Atomic and Molecular Systems. Calculation of Wavefunction Components in Ursell-Type Expansion Using Quantum-Field Theoretical Methods}",
+	url = "http://link.aip.org/link/?JCP/45/4256/1",
+	volume = "45",
+	year = "1966"
+}
+
+@article{zurquanten,
+	author = "Born, Max and Jordan, Pascual",
+	journal = "Zeitschrift f{\"u}r Physikj",
+	owner = "toffyrn",
+	pages = "858--888",
+	timestamp = "2012.03.15",
+	title = "{Zur Quantenmechanik}",
+	volume = "34",
+	year = "1925"
+}
+
+@article{NucPhys.7.421,
+	author = "Coester, F.",
+	doi = "10.1016/0029-5582(58)90280-3",
+	issn = "0029-5582",
+	journal = "Nuclear Physics",
+	number = "0",
+	pages = "421--424",
+	title = "{Bound states of a many-particle system}",
+	url = "http://www.sciencedirect.com/science/article/pii/0029558258902803",
+	volume = "7",
+	year = "1958"
+}
+
+@article{NucPhys.17.477,
+	author = "Coester, F. and K{\"u}mmel, H.",
+	doi = "10.1016/0029-5582(60)90140-1",
+	issn = "0029-5582",
+	journal = "Nuclear Physics",
+	number = "0",
+	pages = "477--485",
+	title = "{Short-range correlations in nuclear wave functions}",
+	url = "http://www.sciencedirect.com/science/article/pii/0029558260901401",
+	volume = "17",
+	year = "1960"
+}
+
+@inbook{CompChem.14.33,
+	author = "Crawford, T. Daniel and Schaefer, Henry F.",
+	booktitle = "{Reviews in Computational Chemistry}",
+	doi = "10.1002/9780470125915.ch2",
+	isbn = "9780470125915",
+	pages = "33--136",
+	publisher = "John Wiley \& Sons, Inc.",
+	title = "{An Introduction to Coupled Cluster Theory for Computational Chemists}",
+	url = "http://dx.doi.org/10.1002/9780470125915.ch2",
+	year = "2007"
+}
+
+@article{bracket,
+	author = "Dirac, Paul Adrien Maurice",
+	journal = "Mathematical Proceedings of the Cambridge Philosophical Society",
+	owner = "toffyrn",
+	pages = "416--418",
+	timestamp = "2012.03.15",
+	title = "{A new notation for quantum mechanics}",
+	volume = "35",
+	year = "1939"
+}
+
+@article{Goto:2008:HIL:1377603.1377607,
+	acmid = "1377607",
+	address = "New York, NY, USA",
+	articleno = "4",
+	author = "Goto, Kazushige and {Van De Geijn}, Robert",
+	doi = "10.1145/1377603.1377607",
+	issn = "0098-3500",
+	issue_date = "July 2008",
+	journal = "ACM Trans. Math. Softw.",
+	keywords = "Linear algebra; basic linear algebra subprograms; libraries; matrix-matrix operations",
+	month = jul,
+	number = "1",
+	numpages = "14",
+	pages = "4:1--4:14",
+	publisher = "ACM",
+	title = "{High-performance implementation of the level-3 BLAS}",
+	url = "http://doi.acm.org/10.1145/1377603.1377607",
+	volume = "35",
+	year = "2008"
+}
+
+@book{griffiths,
+	author = "Griffiths, David",
+	edition = "2nd Edition",
+	publisher = "Pearson",
+	title = "{Introduction to Quantum Mechanics}",
+	year = "2005"
+}
+
+@article{Higham:1990:EFM:98267.98290,
+	acmid = "98290",
+	address = "New York, NY, USA",
+	author = "Higham, Nicholas J.",
+	doi = "10.1145/98267.98290",
+	issn = "0098-3500",
+	issue_date = "Dec. 1990",
+	journal = "ACM Trans. Math. Softw.",
+	month = dec,
+	number = "4",
+	numpages = "17",
+	pages = "352--368",
+	publisher = "ACM",
+	title = "{Exploiting fast matrix multiplication within the level 3 BLAS}",
+	url = "http://doi.acm.org/10.1145/98267.98290",
+	volume = "16",
+	year = "1990"
+}
+
+@electronic{p1src,
+	author = "Hirth, Christoffer",
+	owner = "toffyrn",
+	timestamp = "2011.05.11",
+	title = "{source files for Fys4411}",
+	url = "https://orion.toffyrn.net/trac/study/browser/Fys4411/Project1/src",
+	year = "2011"
+}
+
+@manual{refman,
+	author = "Hirth, Christoffer",
+	owner = "toffyrn",
+	timestamp = "2011.05.13",
+	title = "{Fys4411 Project - 2011, C++ documentation}",
+	url = "https://orion.toffyrn.net/trac/study/browser/Fys4411/Project1/proj/refman.pdf",
+	year = "2011"
+}
+
+@mastersthesis{marte,
+	author = "J{\o}rgensen, Marte Hoel",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.30",
+	title = "{Many-Body Approaches to Quantum Dots}",
+	year = "2011"
+}
+
+@standard{openclspec,
+	author = "{Khronos OpenCL Working Group}",
+	number = "Version 1.1",
+	organization = "Khronos Group",
+	owner = "toffyrn",
+	revision = "36",
+	timestamp = "2011.09.07",
+	title = "{{OpenCL} Specification}"
+}
+
+@article{openfci,
+	author = "Kvaal, Simen",
+	eid = "arXiv:0810.2644v1",
+	note = "arXiv:0810.2644v1",
+	owner = "toffyrn",
+	timestamp = "2012.05.19",
+	title = "{Open source FCI code for quantum dots and effective interactions}",
+	year = "2008"
+}
+
+@unpublished{leinaas,
+	author = "Leinaas, Jon Magne",
+	note = "lecture notes FYS4110",
+	owner = "jorgehog",
+	timestamp = "2012.05.30",
+	title = "{Non-Relativistic Quantum Mechanics}"
+}
+
+@mastersthesis{larseivind,
+	author = "Lerv{\aa}g, Lars Eivind",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.13",
+	title = "{VMC CALCULATIONS OF TWO-DIMENSIONAL QUANTUM DOTS}",
+	year = "2010"
+}
+
+@mastersthesis{mplohne,
+	author = "Lohne, Magnus Pedersen",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.30",
+	title = "{Coupled-cluster studies of quantum dots}",
+	year = "2010"
+}
+
+@article{springerlink:10.1007/BF02980631,
+	affiliation = "Institut f{\"u}r theoretische Physik Hamburg",
+	author = "Pauli, W.",
+	issn = "0939-7922",
+	issue = "1",
+	journal = "Zeitschrift f{\"u}r Physik A Hadrons and Nuclei",
+	keyword = "Physics and Astronomy",
+	note = "10.1007/BF02980631",
+	pages = "765--783",
+	publisher = "Springer Berlin / Heidelberg",
+	title = "{{\"U}ber den Zusammenhang des Abschlusses der Elektronengruppen im Atom mit der Komplexstruktur der Spektren}",
+	url = "http://dx.doi.org/10.1007/BF02980631",
+	volume = "31",
+	year = "1925"
+}
+
+@article{PhysRevB.84.115302,
+	author = "{Pedersen Lohne}, M. and Hagen, G. and Hjorth-Jensen, M. and Kvaal, S. and Pederiva, F.",
+	doi = "10.1103/PhysRevB.84.115302",
+	issue = "11",
+	journal = "Phys. Rev. B",
+	month = "Sep",
+	numpages = "15",
+	pages = "115302",
+	publisher = "American Physical Society",
+	title = "{\textit{Ab initio} computation of the energies of circular quantum dots}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevB.84.115302",
+	volume = "84",
+	year = "2011"
+}
+
+@techreport{armadillo,
+	author = "Sanderson, Conrad",
+	institution = "NICTA",
+	owner = "toffyrn",
+	timestamp = "2011.05.10",
+	title = "{Armadillo: An Open Source C++ Linear Algebra Library for Fast Prototyping and Computationally Intensive Experiments}",
+	year = "2010"
+}
+
+@book{shavitt2009many,
+	author = "Shavitt, Isaiah and Bartlett, Rodney J.",
+	isbn = "9780521818322",
+	lccn = "2009517972",
+	publisher = "Cambridge University Press",
+	series = "{Cambridge molecular science series}",
+	title = "{Many-body methods in chemistry and physics: MBPT and coupled-cluster theory}",
+	url = "http://books.google.no/books?id=gU1eHAAACAAJ",
+	year = "2009"
+}
+
+@article{PhysRev.34.1293,
+	author = "Slater, John Clarke",
+	doi = "10.1103/PhysRev.34.1293",
+	issue = "10",
+	journal = "Phys. Rev.",
+	month = "Nov",
+	pages = "1293--1322",
+	publisher = "American Physical Society",
+	title = "{The Theory of Complex Spectra}",
+	url = "http://link.aps.org/doi/10.1103/PhysRev.34.1293",
+	volume = "34",
+	year = "1929"
+}
+
+@article{mtaut,
+	author = "Taut, M.",
+	journal = "Journal of Physics A: Mathematical and General",
+	owner = "toffyrn",
+	pages = "pp. 1045--1055",
+	timestamp = "2011.05.30",
+	title = "{Two electrons in a homogeneous magnetic field: particular analytical solutions}",
+	volume = "vol. 27, no. 3",
+	year = "1994"
+}
+
+@book{thijssen,
+	author = "Thijssen, Joseph Marie",
+	owner = "toffyrn",
+	publisher = "Cambridge university press",
+	timestamp = "2011.05.13",
+	title = "{Computational Physics}",
+	year = "1999"
+}
+
+@mastersthesis{ymwang,
+	author = "Wang, Yang Min",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2012.05.21",
+	title = "{Coupled-Cluster Studies of Double Quantum Dots}",
+	year = "2011"
+}
+
+@article{PhysRev.80.268,
+	author = "Wick, Gian-Carlo",
+	doi = "10.1103/PhysRev.80.268",
+	issue = "2",
+	journal = "Phys. Rev.",
+	month = "Oct",
+	pages = "268--272",
+	publisher = "American Physical Society",
+	title = "{The Evaluation of the Collision Matrix}",
+	url = "http://link.aps.org/doi/10.1103/PhysRev.80.268",
+	volume = "80",
+	year = "1950"
+}
+
+@article{zhang,
+	author = "{Yao Zhang}, Jonathan Cohen John D. Owens",
+	journal = "Proceedings of the 15th ACM SIGPLAN symposium on Principles and practice of parallel programming PPoPP 10",
+	owner = "toffyrn",
+	timestamp = "2011.06.04",
+	title = "{Fast Tridiagonal Solvers on the GPU}",
+	year = "2010"
+}
+
+@electronic{netlibblas,
+	owner = "toffyrn",
+	timestamp = "2012.05.11",
+	url = "http://www.netlib.org/blas"
+}
+
+@manual{amdguide,
+	edition = "1.3f",
+	month = "August",
+	organization = "Advanced Micro Devices, Inc.",
+	owner = "toffyrn",
+	timestamp = "2011.09.20",
+	title = "{AMD Accelerated Parallel Processing, OpenCL Programming Guide}",
+	year = "2011"
+}
+
+@electronic{radeon6970,
+	month = "June",
+	organization = "Advanced Micro Devices, Inc.",
+	owner = "toffyrn",
+	timestamp = "2011.06.04",
+	title = "{Radeon {HD} 6970 specifications}",
+	url = "http://www.amd.com/us/products/desktop/graphics/amd-radeon-hd-6000/hd-6970",
+	year = "2011"
+}
+
+jabref-meta: selector_publisher:
+
+jabref-meta: selector_author:
+
+jabref-meta: selector_journal:
+
+jabref-meta: selector_keywords:
+
+@book{inf3331,
+	abstract = "The whole bibliography file I use.",
+	added-at = "2009-06-03T11:20:58.000+0200",
+	author = "Langtangen, Hans Petter",
+	edition = "3rd",
+	interhash = "75fbfdbe2d4c50c47b17f1c388de94a0",
+	intrahash = "40eb1bb4f4f80d745c3df06a8e882392",
+	keywords = "imported",
+	publisher = "Springer",
+	timestamp = "2008.06.02",
+	title = "{Python Scripting for Computational Science}",
+	url = "http://www.bibsonomy.org/bibtex/240eb1bb4f4f80d745c3df06a8e882392/hake",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2008
+}
+
+@book{inf1100,
+	abstract = "very up to date introduction into the basic techniques of scientific computing. Based on an introductory course from the University of Oslo.",
+	added-at = "2012-01-18T14:09:19.000+0100",
+	address = "Berlin; Heidelberg; New York",
+	author = "Langtangen, Hans Petter",
+	groups = "public",
+	interhash = "4f65ea09a895327619fc695fee47745b",
+	intrahash = "c5c7c9849e177a04c30dd31b0b5615f7",
+	isbn = "9783642183669 3642183662",
+	keywords = "latex programming python scientific",
+	publisher = "Springer",
+	refid = "719362739",
+	timestamp = "2012-01-18 02:09:19",
+	title = "{A primer on scientific programming with Python}",
+	url = "http://www.worldcat.org/search?qt=worldcat_org_all&q=9783642183652",
+	username = "ulger",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2011
+}
+
+@book{ORegan,
+	added-at = "2012-06-01T00:00:00.000+0200",
+	author = "O'Regan, Gerard",
+	interhash = "399b404bcb8a9f8cfac7225835ef141e",
+	intrahash = "9ccda94c4c5c89a6ee3ef44d8d10671e",
+	isbn = "978-1-4471-2358-3",
+	keywords = "dblp",
+	pages = "I--XXIII, 1--264",
+	publisher = "Springer",
+	title = "{A Brief History of Computing, Second Edition.}",
+	url = "http://dx.doi.org/10.1007/978-1-4471-2359-0",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2012
+}
+
+@book{BrainsBerkeley,
+	added-at = "2011-02-08T00:00:00.000+0100",
+	author = "Berkeley, Edmund C.",
+	interhash = "6f0f2c4bc4e61343e45ebbb0959d96a6",
+	intrahash = "19129c57a1e10890758d8da0629932cf",
+	keywords = "dblp",
+	publisher = "Wiley",
+	title = "{Giants brains, or machines that think.}",
+	url = "http://www.bibsonomy.org/bibtex/219129c57a1e10890758d8da0629932cf/dblp",
+	x-fetchedfrom = "Bibsonomy",
+	year = 1949
+}
+
+@book{supermen,
+	author = "Murray, Charles J.",
+	isbn = "0-471-04885-2",
+	pages = "VII, 232 s.",
+	publisher = "New York: Wiley",
+	title = "{The SUPERMEN}",
+	year = "1997"
+}
+
+@unpublished{morten,
+	author = "Hjorth-Jensen, Morten",
+	organization = "University of Oslo",
+	title = "{Computational Physics}",
+	year = "2010"
+}
+
+@book{abInitioMC,
+	author = "Hammond, B.L. and {W. A. Lester}, Jr. and Reynolds, P. J.",
+	editor = "Lin, S.H.",
+	publisher = "World Scientific Publishing Co.",
+	title = "{Monte Carlo Methods in Ab Initio Quantum Chemistry}",
+	year = "1994"
+}
+
+@book{Gardiner:2004bk,
+	abstract = "alexeilist1a",
+	added-at = "2008-09-05T09:09:33.000+0200",
+	address = "Berlin",
+	author = "Gardiner, C. W",
+	bdsk-url-1 = "http://www.loc.gov/catdir/enhancements/fy0818/2004043676-d.html",
+	biburl = "http://www.bibsonomy.org/bibtex/2982cb5cff63c31f2bc7d3f5880eb85e1/sidney",
+	call-number = "QA274",
+	date-added = "2008-09-04 22:46:56 +0100",
+	date-modified = "2008-09-04 22:46:56 +0100",
+	dewey-call-number = "519.2",
+	edition = "3rd ed",
+	genre = "Stochastic processes",
+	interhash = "0a57802d674483628fe9dc84ec2f6fd9",
+	intrahash = "982cb5cff63c31f2bc7d3f5880eb85e1",
+	isbn = "3540208828 (acid-free paper)",
+	keywords = "alexei1",
+	library-id = "2004043676",
+	publisher = "Springer-Verlag",
+	title = "{Handbook of stochastic methods for physics, chemistry, and the natural sciences}",
+	url = "http://www.loc.gov/catdir/enhancements/fy0818/2004043676-d.html",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2004
+}
+
+@book{risken1989fpe,
+	added-at = "2007-11-09T10:18:25.000+0100",
+	author = "Risken, H. and Haken, H.",
+	biburl = "http://www.bibsonomy.org/bibtex/286c22cc79cf766e80d52e7eb6c1f0e64/sbattiston",
+	interhash = "d1d01e90c7f0fa5aa401e94e33cfc8fd",
+	intrahash = "86c22cc79cf766e80d52e7eb6c1f0e64",
+	keywords = "imported",
+	publisher = "Springer",
+	tag = "stochastic processes",
+	title = "{The Fokker-Planck Equation: Methods of Solution and Applications Second Edition}",
+	x-fetchedfrom = "Bibsonomy",
+	year = 1989
+}
+
+@book{langevin,
+	author = "Coffey, W. T and Kalmykov, Y. P and Waldron, J. T",
+	publisher = "World Scientific, Singapore",
+	title = "{The Langevin Equation: With Applications to Stochastic Problems in Physics, Chemistry, and Electrical Engineering. }",
+	year = "2004"
+}
+
+@book{Sakurai:94,
+	added-at = "2010-10-02T20:10:53.000+0200",
+	address = "New York",
+	author = "Sakurai, J. J.",
+	biburl = "http://www.bibsonomy.org/bibtex/27580a575c87d08da024e6ddeb7e8bc9c/bgeneto",
+	edition = "{Revised ed}",
+	interhash = "c3d44666bb64b48d4b842ff404ab1025",
+	intrahash = "7580a575c87d08da024e6ddeb7e8bc9c",
+	keywords = "",
+	publisher = "Addison-Wesley",
+	title = "{Modern Quantum Mechanics}",
+	x-fetchedfrom = "Bibsonomy",
+	year = 1994
+}
+
+@book{Shavitt,
+	added-at = "2010-10-02T18:22:22.000+0200",
+	address = "Cambridge",
+	author = "Shavitt, I. and Bartlett, R. J.",
+	biburl = "http://www.bibsonomy.org/bibtex/2740b593b16aa30c1a991ce50783275b9/brouder",
+	interhash = "9929c2fc5be6feb365b0475bec5038ac",
+	intrahash = "740b593b16aa30c1a991ce50783275b9",
+	keywords = "imported",
+	publisher = "Cambridge University Press",
+	title = "{Many-Body Methods in Chemistry and Physics}",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2009
+}
+
+@phdthesis{QMCPHD2008,
+	author = "Nissenbaum, Daniel Andres",
+	publisher = "Physics Dissertations. Paper 11.",
+	school = "Northeastern University",
+	title = "{The stochastic gradient approximation: an application to li nanoclusters}",
+	url = "http://hdl.handle.net/2047/d10016466",
+	year = "2008"
+}
+
+@book{golub1996matrix,
+	added-at = "2012-04-11T20:36:28.000+0200",
+	author = "Golub, G.H. and {Van Loan}, C.F.",
+	biburl = "http://www.bibsonomy.org/bibtex/2b828c4f8e070d6613c98d1ecdea6e1ab/aude.hofleitner",
+	groups = "public",
+	interhash = "e4e3160da299a446f86da948f6745ecb",
+	intrahash = "b828c4f8e070d6613c98d1ecdea6e1ab",
+	keywords = "",
+	publisher = "Johns Hopkins Univ Press",
+	title = "{Matrix computations}",
+	username = "aude.hofleitner",
+	volume = 3,
+	x-fetchedfrom = "Bibsonomy",
+	year = 1996
+}
+
+@article{MagnusArticle,
+	author = "{Pedersen Lohne}, M. and Hagen, G. and Hjorth-Jensen, M. and Kvaal, S. and Pederiva, F.",
+	doi = "10.1103/PhysRevB.84.115302",
+	issue = "11",
+	journal = "Phys. Rev. B",
+	month = "Sep",
+	numpages = "15",
+	pages = "115302",
+	publisher = "American Physical Society",
+	title = "{\textit{Ab initio} computation of the energies of circular quantum dots}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevB.84.115302",
+	volume = "84",
+	year = "2011"
+}
+
+@article{flyvbjerg:461,
+	author = "Flyvbjerg, H. and Petersen, H. G.",
+	collaboration = "",
+	doi = "10.1063/1.457480",
+	journal = "The Journal of Chemical Physics",
+	keywords = "ERRORS; DATA EVALUATION; DATA ANALYSIS; COMPUTERIZED SIMULATION; CORRELATION FUNCTIONS; CORRELATION LENGTH; RENORMALIZATION GROUP METHOD",
+	number = "1",
+	pages = "461--466",
+	publisher = "AIP",
+	title = "{Error estimates on averages of correlated data}",
+	url = "http://link.aip.org/link/?JCP/91/461/1",
+	volume = "91",
+	year = "1989"
+}
+
+@manual{libBorealisCode,
+	author = "H{\o}gberget, J{\o}rgen",
+	publisher = "GitHub",
+	school = "University of Oslo",
+	title = "{Git Repository: LibBorealis}",
+	url = "http://www.github.com/jorgehog/QMC2",
+	year = "2013"
+}
+
+@article{ASGD,
+	abstract = "dblp",
+	added-at = "2009-11-13T00:00:00.000+0100",
+	author = "Klein, Stefan and Pluim, Josien P. W. and Staring, Marius and Viergever, Max A.",
+	date = "2009-11-13",
+	interhash = "2750b4dc0f7466f05d559d855b82e842",
+	intrahash = "a23447f4a7e318e7fc3166a88075dceb",
+	journal = "International Journal of Computer Vision",
+	keywords = "dblp",
+	number = 3,
+	pages = "227--239",
+	title = "{Adaptive Stochastic Gradient Descent Optimisation for Image Registration.}",
+	url = "http://dx.doi.org/10.1007/s11263-008-0168-y",
+	volume = 81,
+	x-fetchedfrom = "Bibsonomy",
+	year = 2009
+}
+
+@article{ASGD_MB,
+	adsnote = "Provided by the SAO/NASA Astrophysics Data System",
+	adsurl = "http://adsabs.harvard.edu/abs/1997PhRvL..79.1173H",
+	author = "{Harju}, A. and {Barbiellini}, B. and {Siljam{\"a}ki}, S. and {Nieminen}, R.~M. and {Ortiz}, G.",
+	doi = "10.1103/PhysRevLett.79.1173",
+	journal = "Physical Review Letters",
+	month = aug,
+	pages = "1173--1177",
+	title = "{Stochastic Gradient Approximation: An Efficient Method to Optimize Many-Body Wave Functions}",
+	volume = 79,
+	year = 1997
+}
+
+@book{linAlg,
+	author = "Lay, David C.",
+	edition = "4",
+	publisher = "Pearson",
+	title = "{Linear Algebra and its Applications}",
+	year = "2012"
+}
+
+@mastersthesis{Sarah,
+	author = "Reimann, Sarah",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.13",
+	title = "{SRG Title}",
+	year = "2013"
+}
+
+@mastersthesis{Olsen,
+	author = "Olsen, Veronica K. B.",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.13",
+	title = "{Full Configuration Interaction Simulation of Quantum Dots}",
+	year = "2012"
+}
+
+@mastersthesis{Hirth,
+	author = "Hirth, Christoffer",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.13",
+	title = "{Studies of quantum dots: Ab initio coupled-cluster analysis using OpenCL and GPU programming}",
+	year = "2012"
+}
+
+@book{pythonBook,
+	added-at = "2011-03-24T00:00:00.000+0100",
+	author = "Lutz, Mark",
+	interhash = "e00bafaa1d45ba279ff6df4b903ed25b",
+	intrahash = "b34de9c149a4962403c89fe6360cd3b7",
+	isbn = "978-0-596-00925-0",
+	keywords = "dblp",
+	pages = "I--XLII, 1--1552",
+	publisher = "O'Reilly",
+	title = "{Programming Python - powerful object-oriented programming (3. ed.).}",
+	url = "http://www.oreilly.de/catalog/python3/index.html; http://www.bibsonomy.org/bibtex/2b34de9c149a4962403c89fe6360cd3b7/dblp",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2006
+}
+
+@article{UmrigarMolecules,
+	author = "Filippi, Claudia and Umrigar, C. J.",
+	journal = "The Journal of Chemical Physics",
+	month = jul,
+	title = "{Multiconfiguration wave function for quantum Monte Carlo calculations of first-row diatomic molecules}",
+	volume = 105,
+	year = 1996
+}
+
