@@ -653,10 +653,11 @@ Due to $\mathrm{d}J$ being a 3-dimensional matrix (tensor), this optimization sc
 \subsection{The single-particle Wave Functions}
 \label{sec:optSPWFqnumIndie}
 
-A single particle wave function is defined by a position in space $r$ and a quantum number $q$. A QMC walker holds the position of all particles, so in the case of QMC, the parameters defining the single particle wave function is a walker, a particle number $i$ and of course the quantum number (for the gradient we also need the dimension).
+In order to evaluate a specific single particle wave function, a quantum number $q$ and a position in space $r$ is needed. A QMC walker holds the position of all particles, so in addition, the particle number $i$ needs to be supplied. In the case of the gradient of the single particle wave functions, the dimension parameter representing $x$, $y$ or $z$ also needs to be supplied.
 
-For systems of many particles, the function call \verb+Orbitals.phi(walker, i, qnum)+ needs to figure out which expression is related to which quantum number. The brute force implementation is to simply if-test on the quantum number, and calculate the corresponding expression inside the correct if-test.
+For systems of many particles, the function call \verb+Orbitals::phi(walker, i, qnum)+ needs to figure out which expression is related to which quantum number. The brute force implementation is to simply if-test on the quantum number, and calculate the corresponding expression inside the correct if-test.
 
+\vspace{0.5cm}
 \begin{lstlisting}
 double AlphaHarmonicOscillator::phi(const Walker* walker, int particle, int q_num) {
     
@@ -670,10 +671,11 @@ double AlphaHarmonicOscillator::phi(const Walker* walker, int particle, int q_nu
 }
 \end{lstlisting}
 
-This is however inefficient when the number of particles numbers become large. A more efficient implementation is to implement the single particle wave function expressions as \verb+BasisFunctions+ subclasses. \verb+BasisFunctions+ has one pure virtual function, \textit{eval}, which then only needs the particle number $i$ and the walker. The class itself is defined by the quantum number. 
+This is an inefficient solution when the number of particles are big. A more efficient implementation is to implement the single particle wave function expressions as \verb+BasisFunctions+ subclasses, which holds only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker. The class itself is defined by the quantum number $q$. 
 
-The following is an example of the harmonic oscillator single particle wave function for quantum number $q=1$.
+The following is an example of the 2D harmonic oscillator single particle wave function for quantum number $q=1$ (see Appendix \ref{appendix:SymPyHO} for $\phi_1$)
 
+\vspace{0.5cm}
 \begin{lstlisting}
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
@@ -687,27 +689,32 @@ double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 }
 \end{lstlisting}
 
-These objects representing single particle wave functions can be loaded into an array, such that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number. The new \verb+Orbitals+ function then becomes
+These objects representing single particle wave functions can be loaded into an array in such a way that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number, e.g. \verb+basis_functions[1] = new HarmonicOscillator_1()+. The new \verb+Orbitals+ function then becomes an in-lined call to an array instead of an endless stream of if-tests:
 
+\vspace{0.5cm}
 \begin{lstlisting}
 double Orbitals::phi(const Walker* walker, int particle, int q_num) {
     return basis_functions[q_num]->eval(walker, particle);
 }
 \end{lstlisting}
 
-with no if-tests required.
+All discussed optimizations thus far have been general in the sense that they do not depend on the shape of the single particle wave functions. There should, however, be room for optimizations in the basis functions, as long as these are applied locally within each class where the explicit shape of the orbitals are absolute.
 
-Other more specific optimizations can be implemented, so called \textit{quantum number independent factors}, $\overline{Q}_i$. When moving particle $p$, as discussed previously, a single column in the Slater matrix from Eq.~(\ref{eq:slaterConcat}) needs to be updated. All these terms are calculated in the same position. This implies that terms independent of the quantum number will be equal. Looking at the single particle states for harmonic oscillator and hydrogen listed in the Appendix, their exponential form results in that an exponential factor independent of the quantum number is present in all terms.
+As discussed previously, only a single column in the Slater related matrices from Section \ref{sec:storeSlater} needs to be updated when a particle is moved. This implies that terms which are independent of the quantum number can be calculated once for every particle instead of once for every quantum number. These terms often come in shape of exponentials, and are thus conserved though derivatives, implying that these terms are not only shared between quantum numbers locally within each Slater matrix, but also shared between the matrices.
+
+Looking at the single particle states for harmonic oscillator and hydrogen listed in Appendix \ref{appendix:SymPyHO} - \ref{appendix:SymPyHydro}, the exponential factor is indeed independent of the quantum number in all the terms. Referring to the quantum number independent terms as $\overline{Q}_i$, the expressions are 
 
 \begin{eqnarray}
 \overline{Q}_i^\mathrm{H.O.} &=& e^{-\frac{1}{2}\alpha\omega r_i^2} \\
  \overline{Q}_i^\mathrm{Hyd.} &=& e^{-\frac{1}{n}\alpha Z r_i}
 \end{eqnarray}
 
-For hydrogen, we have a dependence on the principle quantum number $n$, however, for e.g $n=2$,  $20$ terms share this exponential factor. Calculating it once and for all saves $19$ exponential calls pr. particle pr. walker pr. cycle etc.
+For hydrogen, there is a dependence on the principle quantum number $n$, however, for e.g $n=2$,  $20$ terms share this exponential factor. Calculating it once and for all saves $19$ exponential calls pr. particle pr. walker pr. cycle etc. resulting in a dramatic speedup.
 
-The implementation is rather simple. Upon moving a particle, the virtual function \\\verb+Orbitals.set_qnum_indie_terms+ is called, updating the value of e.g. an \verb+exp_factor+ pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class.
+The implementation is very simple; upon moving a particle, the virtual function \\\verb+Orbitals::set_qnum_indie_terms+ is called, updating the value of e.g. an \verb+exp_factor+ pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class:
 
+
+\vspace{0.5cm}
 \begin{lstlisting}
 void AlphaHarmonicOscillator::set_qnum_indie_terms(const Walker * walker, int i) {
    
@@ -715,18 +722,26 @@ void AlphaHarmonicOscillator::set_qnum_indie_terms(const Walker * walker, int i)
    *exp_factor = exp(-0.5 * (*k2) * walker->get_r_i2(i));
 }
 
-void hydrogenicOrbitals::set_qnum_indie_terms(const Walker* walker, int i) {
+void hydrogenicOrbitals::set_qnum_indie_terms(Walker* walker, int i) {
 
-    //k = alpha*Z
-    *exp_factor_n1 = exp(-(*k) * walker->get_r_i(i));
-    *exp_factor_n2 = exp(-(*k) * walker->get_r_i(i) / 2);
-    ...
+    //waler::calc_r_i() calculates |r_i| such that walker::get_r_i() can be used
+    walker->calc_r_i(i);
+
+    //k = alpha*Z 
+    double kr = -(*k) * walker->get_r_i(i);
+    
+    //Calculates only the exponentials needed based on the number of particles
+    *exp_factor_n1 = exp(kr);
+    if (n_p > 2) *exp_factor_n2 = exp(kr / 2);
+    if (n_p > 10) *exp_factor_n3 = exp(kr / 3);
+    if (n_p > 28) *exp_factor_n4 = exp(kr / 4);
 
 }
 \end{lstlisting}
 
-The \verb+BasisFunctions+ objects can then simply access this value instead of calculating the exponential 
+The \verb+BasisFunctions+ objects share the pointer to the correct exponential factor with the orbital class. These exponential factors can then simply be accessed instead of being recalculated numerous times
 
+\clearpage
 \begin{lstlisting}
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
@@ -749,29 +764,24 @@ double lapl_hydrogenic_0::eval(const Walker* walker, int i) {
 }
 \end{lstlisting}
 
-This optimization is an enormous speedup for many particle simulations.
+As will be presented in the result section, this optimization represents an enormous speedup for many-particle simulations.
 
-All single particle expressions given are calculated using \textit{SymPy}. See Appendix \textbf{REF SYMPY} for details. For Quantum Dots, $84$ \verb+BasisFunctions+ objects are needed for a $42$-particle simulation, reducing the number of exponential calls with $83$ pr. particle pr. walker pr. cycle, which for an average DMC calculation results in $~24\cdot 10^9$ saved exponential calls.
+For Quantum Dots, $112$ \verb+BasisFunctions+ objects are needed for a $56$-particle simulation Applying the currently discussed optimization reduces the number of exponential calls from $84$ to $1$ pr. particle pr. walker pr. cycle etc., which for an average DMC calculation results in $~6\cdot 10^11$ saved exponential calls. Generally, the number of exponential calls are reduced by a factor $\frac{N}{2}(N + 1)$.
 
 
 \section{CPU Cache Optimization}
 \label{sec:CPUcache}
 
-The \textit{CPU cache} is a limited amount of memory directly connected to the CPU designed to reduce the average time to access memory. Simply speaking, standard memory is slower than the CPU cache, as bits have to travel through the motherboard before it can be fed to the CPU (a so called \textit{bus}). 
+The \textit{CPU cache} is a limited amount of memory directly connected to the CPU, designed to reduce the average time to access memory. Simply speaking, standard memory is slower than the CPU cache, as bits have to travel through the motherboard before it can be fed to the CPU (a so called \textit{bus}). 
 
-Which values are held in the CPU cache is controlled by the compiler, however, if programmed poorly, the compiler will not be able to handle the cache storage optimally. Optimization tools exist in order to work around this, however, keeping the cache in mind from the beginning of the coding process can result in a much faster code. In the case of the QMC code, the most optimal use of the cache would be to have complete walkers ready in the cache at all times. 
+Which values are held in the CPU cache is controlled by the compiler, however, if programmed poorly, the compiler will not be able to handle the cache storage optimally. Optimization tools such as \verb+O3+ exist in order to work around this, however, keeping the cache in mind from the beginning of the coding process may result in a much faster code. In the case of the QMC code, the most optimal use of the cache would be to have all the active walkers in the cache at all times. 
 
-The memory is sent to the cache as arrays, which means that storing walker data sequentially in memory is the way to go in order to make take full use of the processor cache. This is ensured by not using pointers within the walker objects, as pointers are free to be declared in any memory address.
+The memory is sent to the cache as arrays, which means that storing walker data sequentially in memory is the way to go in order to make take full use of the processor cache. If objects are declared as pointers, which is the case when declaring matrices of general sizes, the memory layout is uncontrollable. This fact renders a QMC solver for a general number of particles hard to optimize with respect to the cache.
 
-\subsection{Disadvantage of Generalizing the code}
+The alternative is to statically declare the matrices, i.e. declare matrices with a fixed size known at compile time. An apparent work-around would be to declare the matrices to the maximum possible simulation size independent of the actual simulation size. This would however waste a ton of memory in case of the walkers, and would render most applications impossible to run at a standard computer. However, in the case of the basis function arrays described in the previous section, the memory waste is not so large, and hence this is done in the code used in this thesis.
 
-The size of the matrices within the walker objects are dynamically allocated in order to handle any number of particles and dimensions. At compile-time, there is no telling how much memory each walker will demand, and thus it is harder for the compiler to optimize the cache usage.
+A second alternative would be to re-compile the code every time the system variables are changed. This is not optimal in the case of a generalized solver.
 
-The alternative is to statically declare, i.e. declare with a fixed size known at compile time, the matrices to be of the maximum possible simulation size. This would however waste a ton of memory, and would render most applications impossible to run at a standard computer. A second alternative would be to re-compile the code every time the system variables are changed. This is not optimal in the case of a generalized solver.
-
-\subsection{Consequences}
-
-The QMC code has support for both kinds of scenarios. Compiling the source code with a main file which fixes the system variables will result in a more efficient executable. For the purpose of this thesis, this was not done; all system variables are controlled via a configuration script (see \verb+runQMC.py+ in ref. \cite{libBorealisCode}).
 
 
 
