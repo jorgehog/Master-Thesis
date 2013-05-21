@@ -336,7 +336,7 @@ Further optimization can be achieved by calculating the $\tilde I$ vector for pa
 
 \subsection{Optimizing the Padé Jastrow factor Ratio}
 
-As for the Green's function ratio is Eq.~(\ref{eq:MetropolisHastings}), the ratio between two Jastrow factors are best calculating as exponentiation the logarithm
+As done with the Green's function ratio in Eq.~(\ref{eq:MetropolisHastings}), the ratio between two Jastrow factors are best calculating as exponentiation the logarithm
 
 \begin{eqnarray}
  \log \frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j = 1}^N \frac{a_{kj}r^\mathrm{new}_{kj}}{1 + \beta r^\mathrm{new}_{kj}} - \frac{a_{kj}r^\mathrm{old}_{kj}}{1 + \beta r^\mathrm{old}_{kj}} \\
@@ -371,7 +371,7 @@ The shape of the Padé Jastrow factor is general in the sense that its shape is 
 
 \subsection{The Gradient}
 
-Using the notation of Eq.~(\ref{eq:jastrowRatSTD}), the $x$ component of the Padé Jastrow gradient ratio for particle $i$ then becomes
+Using the notation of Eq.~(\ref{eq:jastrowRatSTD}), the $x$ component of the Padé Jastrow gradient ratio for particle $i$ is
 
 \begin{equation}
  \frac{1}{J}\frac{\partial J}{\partial x_i} = \frac{1}{\prod_{k < l}\exp g_{kl}}\frac{\partial }{\partial x_i}\prod_{k < l}\exp g_{kl} 
@@ -383,20 +383,24 @@ Using the product rule, only terms with $k$ or $l$ equal to $i$ survive the diff
   \frac{1}{J}\frac{\partial J}{\partial x_i} &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\frac{\partial}{\partial x_i} \exp g_{ik} \nonumber\\
   &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\exp g_{ik}\frac{\partial g_{ik}}{\partial x_i} \nonumber \\
   &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial x_i} \nonumber \\
-  &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial r_{ik}}\frac{\partial r_{ik}}{\partial x_i}
+  &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial r_{ik}}\frac{\partial r_{ik}}{\partial x_i},
 \end{eqnarray}
+
+where
 
 \begin{eqnarray}
  \frac{\partial g_{ik}}{\partial r_{ik}} &=& \frac{\partial }{\partial r_{ik}} \left(\frac{a_{ik}r_{ik}}{1 + \beta r_{ik}}\right) \nonumber\\
   &=& \frac{a_{ik}}{1 + \beta r_{ik}} - \frac{a_{ik}r_{ik}}{(1 + \beta r_{ik})^2}\beta \nonumber \\
   &=& \frac{a_{ik}(1 + \beta r_{ik}) - a_{ik}\beta r_{ik}}{(1 + \beta r_{ik})^2}  \nonumber \\
-  &=& \frac{a_{ik}}{(1 + \beta r_{ik})^2} \label{eq:jastrowDgikDrik}
+  &=& \frac{a_{ik}}{(1 + \beta r_{ik})^2}, \label{eq:jastrowDgikDrik}
 \end{eqnarray}
+
+and
 
 \begin{eqnarray}
  \frac{\partial r_{ik}}{\partial x_i} &=& \frac{\partial }{\partial x_i} \sqrt{(x_i - x_k)^2 + (y_i - y_k)^2 + (z_i - z_k)^2} \nonumber \\
   &=& \frac{1}{2} 2(x_i - x_k) / \sqrt{(x_i - x_k)^2 + (y_i - y_k)^2 + (z_i - z_k)^2} \nonumber \\
-  &=& \frac{x_i - x_k}{r_{ik}}
+  &=& \frac{x_i - x_k}{r_{ik}}.
 \end{eqnarray}
 
 Combining these expressions yields
@@ -418,7 +422,7 @@ When changing Cartesian variable in the differentiation, the only change to the 
 
 \subsection{The Laplacian}
 
-The method of deducing the closed form expression for the Laplacian of the Padé Jastrow factor is identical to that of the gradient. The full calculation is done in ref. \cite{morten}. The expression becomes
+The same strategy used to obtain the closed form expression for the gradient in the previous section can be applied to the Laplacian. The full calculation is done in ref. \cite{morten}. The expression becomes
 
 \begin{equation}
 \label{eq:jastrowLaplRaw}
@@ -439,42 +443,40 @@ Inserting Eq.~(\ref{eq:jastrowDgikDrik}) and Eq.~(\ref{eq:jastrowD2gikDrik2}) in
   &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N a_{ik}\frac{(d-1)(1 + \beta r_{ik}) - 2\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3} \nonumber
 \end{eqnarray}
 
-which with a little cleanup results in
+which when cleaned up results in
 
 \begin{equation}
- \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i} a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+ \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i} a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}
 \end{equation}
 
 The local energy calculation needs the sum of the Laplacians for all particles (see Eq.~(\ref{eq:localEsum})). In other words, the quantity of interest becomes
 
 \begin{equation}
- \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left|\frac{\nabla_i J}{J}\right|^2 + \sum_{i \ne k}^N a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+ \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left[\left|\frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i}^N a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}\right]
 \end{equation}
 
-However, due to the symmetry of $r_{ik}$, the second term count equal values twice. We can therefore optimize the calculation by only summing for $k>i$, and rather multiply the sum by two. Bringing it all together, we get
+Due to the symmetry of $r_{ik}$, the second term count equal values twice. Further optimization can thus be achieved by calculation only terms where $k>i$, and multiply the sum by two. Bringing it all together yields
 
 \cfbox{5cm}{
 \begin{equation}
 \label{eq:jastrowLaplFin}
- \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left|\frac{\nabla_i J}{J}\right|^2 + 2\sum_{i < k}^N a_{ik}\frac{(d-1) + (d-3)\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}
+ \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left|\frac{\nabla_i J}{J}\right|^2 + 2\sum_{k > i} a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}
 \end{equation}
 }
 
 
 \section{Tabulating Recalculated Data}
 
-The optimizations covered in this section will exclusively arise from point \ref{it::opt::reCalc} in section \ref{sec:optGoals}. Avoiding recalculating expressions also include exploiting, such as was done in the Padé Jastrow Laplacian in Eq.~(\ref{eq:jastrowLaplFin}).
+The optimizations covered in this section will exclusively arise from point \ref{it::opt::reCalc} in section \ref{sec:optGoals}. Avoiding recalculating expressions also include exploiting symmetries, such as was done in the Padé Jastrow Laplacian in Eq.~(\ref{eq:jastrowLaplFin}).
 
-rrel, r2, phimatrix, delphi, oppdatere jastrow gradient, qnum indie terms ++ a s a s d a d sd f s f s a sa dsa sda a a  ads ad  gf asrfs asdf as fas  a asd asd as 
-
-
+Code examples are presented to narrow the gap between presented optimizations and practical implementations in order to demonstrate that most optimizations does not require much additional code.
 
 \subsection{The relative distance matrix}
 
-In the discussions regarding the optimization of the Jastrow ratio, it became clear that moving one particle only changed $N$ of the relative distances. Storing these values in a matrix, consequently updating the values corresponding to the moved particle, ensures that these values are calculated once and for all.
+In the discussions regarding the optimization of the Jastrow ratio, it became clear that moving one particle only changed $N$ of the relative distances. Storing these values in a matrix $r_\mathrm{rel}$, the row and column representing the moved particle can be updated, ensuring that the relative distances are calculated once and for all.
 
 \begin{equation}
-r_{rel} = r_{rel}^T = \left( \begin{array}{ccccc}
+r_\mathrm{rel} = r_\mathrm{rel}^T = \left( \begin{array}{ccccc}
 0 & r_{12} & r_{13} & \cdots & r_{1N} \\
  & 0 & r_{23} & \cdots & r_{2N}  \\
  &  & \ddots & \ddots & \vdots \\
@@ -482,6 +484,7 @@ r_{rel} = r_{rel}^T = \left( \begin{array}{ccccc}
  &  &  &  & 0\end{array} \right).
 \end{equation}
 
+\vspace{0.5cm}
 \begin{lstlisting}
  void Sampling::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
 
@@ -501,16 +504,16 @@ r_{rel} = r_{rel}^T = \left( \begin{array}{ccccc}
 \end{lstlisting}
 
 
-Functions such as \verb+Coulomb.get_potential_energy+ and all of the evaluation functions of the Jastrow Factor can then simply access these matrix elements.
+Functions such as \verb+Coulomb::get_potential_energy+ and all of the Jastrow functions can then simply access these matrix elements.
 
-Similar storage has been done for the squared distance vector. 
+Similar storage has been done for the squared distance vector in all cases and the length of the distance vector in case of atomic orbitals. 
 
 \subsection{The Slater related matrices}
 \label{sec:storeSlater}
 
 Apart from the inverse, whose optimization was covered in Section \ref{sec:optInv}, calculating the single particle wave functions and its gradients are the most expensive operations of the QMC algorithm.
 
-Storing these function values in a matrices representing the Slater Matrix and its derivatives, will ensure that these values never gets recalculated. 
+Storing these function values in a matrices representing the Slater Matrix and its derivatives will ensure that these values never gets recalculated. 
 
 \begin{equation}
 \label{eq:slaterConcat}
@@ -523,7 +526,7 @@ Storing these function values in a matrices representing the Slater Matrix and i
 
 \begin{equation}
 \label{eq:slaterDellConcat}
- \nabla D \equiv \left[ \begin{array}{cccc}
+ \nabla D \equiv \left[\nabla D^\uparrow\,\nabla D^\downarrow\right] =\left[ \begin{array}{cccc}
 \nabla \phi_1(r_0)     & \nabla \phi_1(r_1)     & \cdots & \nabla \phi_1(r_N)       \\
 \nabla \phi_2(r_0)     & \nabla \phi_2(r_1)     & \cdots & \nabla \phi_2(r_N)       \\
 \vdots                 & \vdots                 &        & \vdots                   \\
@@ -532,7 +535,7 @@ Storing these function values in a matrices representing the Slater Matrix and i
 
 \subsection{Avoiding spin tests}
 
-Since the slater determinant is split by spin eigenvalues, the same splitting occurs in the inverse, the Slater matrix etc. The brute force implementation is to if-test which of the matrices to access. In the case of a two-level system we get
+Since the slater determinant is split by spin eigenvalues, the same splitting occurs in the inverse, the Slater matrix etc. The brute force implementation is to perform an if-test to decide which of the matrices to access. In the case of a two-level system we get
 
 \begin{equation}
 \begin{array}{cl}
@@ -547,106 +550,104 @@ However, simply concatenating the Slater related matrices solves the entire prob
  D^{-1} \equiv \left[(D^\uparrow)^{-1}\,(D^\downarrow)^{-1}\right]
 \end{equation}
 
-Leaving no if-tests required in order to sort the spin splitting. In e.g. the updating algorithm for the inverse, we must now simply keep track of which part we need to update by selecting a start and stop criteria, the rest of the code is general.
+When the index representing the moved particle succeeds $N/2-1$, the values representing the opposite spin is automatically accessed, which means that no if-tests is required in order to sort the spin splitting. In e.g. the updating algorithm for the inverse, simply keeping track of whether to start at $k=0$ or $k=N/2$ solves the problem. This ``start'' parameter can be calculated once every particle move, and can then be used throughout the program. 
 
 \subsection{The Padé Jastrow gradient}
 \label{sec:optJastGrad}
 
-Consider Eq.~(\ref{eq:jastrowGradFull}). Defining
+Consider Eq.~(\ref{eq:jastrowGradFull}). Just as for the Jastrow Laplacian, there are (anti)symmetries in the expression, which implies an optimized way of calculating the gradient. However, unlike the Laplacian, the gradient is split into components, which makes the exploitation of symmetries a little less straight-forward. 
+
+Defining
 
 \begin{equation}
- \mathrm{d}\vec J_{ik} = -\mathrm{d}\vec J_{ki} \equiv \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2},
+ \mathrm{d}\mbf{J}_{ik}  \equiv \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2} = -\mathrm{d}\mbf{J}_{ki},
 \end{equation}
 
 the gradient can be written in a more compact form
 
 \begin{equation}
- \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \mathrm{d}\vec J_{ik}.
+ \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}_{ik}.
 \end{equation}
 
 As for the relative distances, storing the elements and exploiting the symmetry properties, only half the total elements needs to be calculated. 
 
 \begin{equation}
 \label{eq:jastrowDJ}
- \mathrm{d}\vec J = -\mathrm{d}\vec J^T \equiv \left( \begin{array}{ccccc}
-0 & \mathrm{d}\vec J_{12} & \mathrm{d}\vec J_{13} & \cdots & \mathrm{d}\vec J_{1N} \\
- & 0 & \mathrm{d}\vec J_{23} & \cdots & \mathrm{d}\vec J_{2N}  \\
+ \mathrm{d}J\equiv \left( \begin{array}{ccccc}
+0 & \mathrm{d}\mbf{J}_{12} & \mathrm{d}\mbf{J}_{13} & \cdots & \mathrm{d}\mbf{J}_{1N} \\
+ & 0 & \mathrm{d}\mbf{J}_{23} & \cdots & \mathrm{d}\mbf{J}_{2N}  \\
  &  & \ddots & \ddots & \vdots \\
- & (-) &  & 0 & \mathrm{d}\vec J_{(N-1)N} \\
- &  &  &  & 0\end{array} \right).
+ & (-) &  & 0 & \mathrm{d}\mbf{J}_{(N-1)N} \\
+ &  &  &  & 0\end{array} \right)  = -\mathrm{d}J^T.
 \end{equation}
 
+\vspace{0.5cm}
 \begin{lstlisting}
 void Pade_Jastrow::get_dJ_matrix(Walker* walker, int i) const {
     
-    //for all j != i
-    b_ij = 1.0 + beta * walker->r_rel(i, j);
-    factor = a(i, j) / (walker->r_rel(i, j) * b_ij * b_ij);
-    for (int k = 0; k < dim; k++) {
-        walker->dJ(i, j, k) = (walker->r(i, k) - walker->r(j, k)) * factor;
-        walker->dJ(j, i, k) = -walker->dJ(i, j, k);
+    for (int j = 0; j < n_p; j++) {
+	if (j == i) continue;
+	
+        b_ij = 1.0 + beta * walker->r_rel(i, j);
+        factor = a(i, j) / (walker->r_rel(i, j) * b_ij * b_ij);
+        for (int k = 0; k < dim; k++) {
+            walker->dJ(i, j, k) = (walker->r(i, k) - walker->r(j, k)) * factor;
+            walker->dJ(j, i, k) = -walker->dJ(i, j, k);
+        }
     }
 }
 \end{lstlisting}
 
 
-Calculating the gradient is now only a matter of summing the rows of the matrix in Eq.~(\ref{eq:jastrowDJ}). On a more careful notice, we can further optimize the calculation of the gradient by taking into account that we have access to the previous gradient
+Calculating the gradient is now only a matter of summing the rows of the matrix in Eq.~(\ref{eq:jastrowDJ}). Further optimization can be achieved by realizing that the function has access to the gradient of the previous iteration
 
 \begin{eqnarray}
-  \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\vec J^\mathrm{old}_{ik} \\
-  \frac{\nabla_i J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\vec J^\mathrm{new}_{ik} \label{eq:jastrowGradDJnew}
+  \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{old}_{ik} \\
+  \frac{\nabla_i J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{new}_{ik} \label{eq:jastrowGradDJnew}
 \end{eqnarray}
 
-By moving particle $p$ in QMC, only a single row and column of the $\mathrm{d}vec J$ matrix changes. Assuming that $i\ne p$, only a single term from the new matrix is required
+By moving particle $p$ in QMC, only a single row and column of the $\mathrm{d} J$ matrix changes. Assuming that $i\ne p$, only a single term from the new matrix is required
 
 \begin{eqnarray}
- \frac{\nabla_{i\ne p} J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i \ne p} \mathrm{d}\vec J^\mathrm{old}_{ik} + \mathrm{d}\vec J^\mathrm{new}_{ip} \\
- &=& \left[\sum_{k \ne i \ne p} \mathrm{d}\vec J^\mathrm{old}_{ik} + \mathrm{d}\vec J^\mathrm{old}_{ip}\right] - \mathrm{d}\vec J^\mathrm{old}_{ip} + \mathrm{d}\vec J^\mathrm{new}_{ip} \\
- &=& \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} - \mathrm{d}\vec J^\mathrm{old}_{ip} + \mathrm{d}\vec J^\mathrm{new}_{ip}
+ \frac{\nabla_{i\ne p} J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip} \\
+ &=& \left[\sum_{k \ne i \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik} + \mathrm{d}\mbf{J}^\mathrm{old}_{ip}\right] - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip} \\
+ &=& \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip}
 \end{eqnarray}
 
-reducing the calculation to three flops. For the case $i=p$, the entire sum as in Eq.~(\ref{eq:jastrowGradDJnew}) must be calculated. 
+reducing the calculation to three flops. For the case $i=p$, the entire sum as in Eq.~(\ref{eq:jastrowGradDJnew}) must be calculated. This is demonstrated in the following code
 
+\vspace{0.5cm}
 \begin{lstlisting}
 void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p) const {
     double sum;
 
-    //i < p
-    for (int i = 0; i < p; i++) {
-        for (int k = 0; k < dim; k++) {
-            walker_post->jast_grad(i, k) = walker_pre->jast_grad(i, k)
-                    + walker_post->dJ(i, p, k) - walker_pre->dJ(i, p, k);
+    for (int i = 0; i < n_p; i++) {
+        if (i == p) {
+       
+            //for i == p the entire sum needs to be calculated
+            for (int k = 0; k < dim; k++) {
+
+                sum = 0;
+                for (int j = 0; j < n_p; j++) {
+                    sum += walker_post->dJ(p, j, k);
+                }
+
+                walker_post->jast_grad(p, k) = sum;
+            }
+        
+        } else {
+       
+            //for i != p only one term differ from the old and the new matrix
+            for (int k = 0; k < dim; k++) {
+                walker_post->jast_grad(i, k) = walker_pre->jast_grad(i, k)
+                        + walker_post->dJ(i, p, k) - walker_pre->dJ(i, p, k);
+            }
         }
     }
-
-    //i = p
-    for (int k = 0; k < dim; k++) {
-
-        sum = 0;
-        for (int j = 0; j < p; j++) {
-            sum += walker_post->dJ(p, j, k);
-        }
-
-        for (int j = p + 1; j < n_p; j++) {
-            sum += walker_post->dJ(p, j, k);
-        }
-
-        walker_post->jast_grad(p, k) = sum;
-
-    }
-
-    //i > p
-    for (int i = p + 1; i < n_p; i++) {
-        for (int k = 0; k < dim; k++) {
-            walker_post->jast_grad(i, k) = walker_pre->jast_grad(i, k) 
-                    + walker_post->dJ(i, p, k) - walker_pre->dJ(i, p, k);
-        }
-    }
-
 }
 \end{lstlisting}
 
-This optimization scales very well with increasing number of particles.
+Due to $\mathrm{d}J$ being a 3-dimensional matrix (tensor), this optimization scales very well with increasing number of particles.
 
 
 \subsection{The single-particle Wave Functions}
