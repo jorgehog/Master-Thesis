@@ -1,21 +1,24 @@
-
 \chapter{Auto-generation with SymPy}
 \label{appendix:sympy}
 
-``\textit{SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. SymPy is written entirely in Python and does not require any external libraries.}'' - The SymPy Home Page
+``\textit{SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. SymPy is written entirely in Python and does not require any external libraries.}'' 
 
-The focus on this appendix will be on using SymPy to calculate closed form expressions for single particle wave functions needed to optimize the calculations of the Slater gradient and Laplacian. For systems of many particles, it is crucial to optimize to have these expressions in order for the code to remain efficient. 
+\hfill - The SymPy Home Page \cite{SymPy}
 
-Calculating these expressions by hand is out of the question, given that the complexity of the expressions is proportional to the magnitude of the quantum number, which again scales with the number of particles. In the case of a $42$ particle Quantum Dot, the number of unique derivatives involved in the simulation is $84$. 
+\vspace{0.5cm}
+This appendix will be focused on using SymPy to calculate closed form expressions for single particle wave functions needed to optimize the calculations of the Slater gradient and Laplacian. For systems of many particles, it is crucial to have these expressions in order for the code to remain efficient. 
+
+Calculating these expressions by hand is not human, given that the complexity of the expressions is proportional to the magnitude of the quantum number, which again scales with the number of particles. In the case of a $56$ particle Quantum Dot, the number of unique derivatives involved in the simulation is $112$. 
 
 \section{Usage}
 
 SymPy is, as described in the introductory quote, designed to be simple to use. This section will cover the basics needed to calculate gradients and Laplacians, auto-generating C++ - and Latex code.
 
-\subsection{Doing Symbolic Algebra}
+\subsection{Symbolic Algebra}
 
-In order for SymPy to recognize e.g. \verb+x+ as a symbol, that is, a \textit{mathematical variable}. In contrast to programming variables, symbols are not initialized to a value. Initializing symbols can be done in several ways, the two most common are listed below
+In order for SymPy to recognize e.g. \verb+x+ as a symbol, that is, a \textit{mathematical variable}, special action must be made. In contrast to programming variables, symbols are not initialized to a value. Initializing symbols can be done in several ways, the two most common are listed below
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 In [1]: from sympy import Symbol, symbols
 
@@ -23,13 +26,14 @@ In [2]: x = Symbol('x')
 
 In [3]: y, z = symbols('y z')
 
-In [7]: x*x+y
-Out[7]: 'x**2 + y'
+In [4]: x*x+y
+Out[4]: 'x**2 + y'
 
 \end{lstlisting}
 
-The \verb+Symbol+ function handles single symbols, while \verb+symbols+ can initialize several symbols simultaneously. The string argument might seem redundant, however, this represents the \textit{label} displayed using print functions. In addition, key word arguments can be sent to the symbol functions, flagging variables as e.g. positive, real, etc.
+The \verb+Symbol+ function handles single symbols, while \verb+symbols+ can initialize several symbols simultaneously. The string argument might seem redundant, however, this represents the \textit{label} displayed using print functions, which is neat to control. In addition, key word arguments can be sent to the symbol functions, flagging variables as e.g. positive, real, etc.
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 In [1]: from sympy import Symbol, symbols, im
 
@@ -37,21 +41,22 @@ In [2]: x2 = Symbol('x^2', real=True, positive=True) #Flagged as real. Note the 
 
 In [3]: y, z = symbols('y z') #Not flagged as real
 
-In [7]: x2+y #x2 is printed more nicely given a describing label
-Out[7]: 'x^2 + y'
+In [4]: x2+y #x2 is printed more nicely given a describing label
+Out[4]: 'x^2 + y'
 
-In [8]: im(z) #Imaginary part cannot be assumed to be anything.
-Out[8]: 'im(z)'
+In [5]: im(z) #Imaginary part cannot be assumed to be anything.
+Out[5]: 'im(z)'
 
-In [9]: im(x2) #Flagged as real, the imaginary part is zero.
-Out[9]: 0
+In [6]: im(x2) #Flagged as real, the imaginary part is zero.
+Out[6]: 0
 
 \end{lstlisting}
 
 \subsection{Exporting C++ and Latex Code}
 
-Exporting code is extremely simple. Consider the following example
+Exporting code is extremely simple: SymPy functions exist in the \verb+sympy.printing+ module, which simply takes a SymPy expression on input and returns the requested code-style equivalent. Consider the following example
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 In [1]: from sympy import symbols, printing, exp
 
@@ -76,15 +81,16 @@ The following expression is the direct output from line five compiled in Latex
 
 \subsection{Calculating Derivatives}
 
-As an example for this section, let's look at the $2s$ orbital from hydrogen (not normalized)
+The $2s$ orbital from hydrogen (not normalized) is chosen as an example for this section
 
 \begin{align}
  \phi_{2s}(\vec r) &= (Zr - 2)e^{-\frac{1}{2}Zr} \\
  r^2 &= x^2 + y^2 + z^2
 \end{align}
 
-Calculating the gradients and Laplacian is very simply by using the \verb+diff+ function
+Calculating the gradients and Laplacian is very simply by using the \verb+sympy.diff+ function
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 In [1]: from sympy import symbols, diff, exp, sqrt
 
@@ -105,8 +111,9 @@ Out[7]: '-Z*x*(Z*(x**2 + y**2 + z**2)**(1/2) - 2)*exp(-Z*(x**2 + y**2 + z**2)**(
 
 \end{lstlisting}
 
-Now, this looks like a nightmare. However, SymPy has great support for simplifying expressions. The following code demonstrated this quite nicely
+Now, this looks like a nightmare. However, SymPy has great support for simplifying expressions through factorization, collecting, substituting etc. The following code demonstrated this quite nicely
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 ...
 
@@ -117,7 +124,7 @@ In [7]: from sympy import factor, Symbol, printing
 
 In [8]: R = Symbol('r') #Creates a symbolic equivalent of the mathematical r
 
-In [9]: diff(phi, x).factor() #Gathers all the terms nicely
+In [9]: diff(phi, x).factor() #Factors out common factors
 Out[9]: '-Z*x*(Z*(x**2 + y**2 + z**2)**(1/2) - 4)*exp(-Z*(x**2 + y**2 + z**2)**(1/2)/2)/(2*(x**2 + y**2 + z**2)**(1/2))'
 
 In [10]: diff(phi, x).factor().subs(r, R) #replaces (x^2 + y^2 + z^2)^(1/2) with r
@@ -128,14 +135,18 @@ In [11]: print printing.latex(diff(phi, x).factor().subs(r, R))
 
 \end{lstlisting}
 
-This version of the expression is much more satisfying to the eye. Result:
+This version of the expression is much more satisfying to the eye. The output from line 11 compiled in Latex is
 
 \begin{equation*}
  - \frac{Z x \left(Z r -4\right)}{2 r e^{\frac{1}{2} Z r}}
 \end{equation*}
 
+SymPy has a general method for simplifying expressions \verb+sympy.simplify+, however, this function is extremely slow and does not behave well on general expressions. SymPy is still young, so nothing can be expected to work perfectly. Moreover, in contrast to \textit{Wolfram Alpha} and \textit{Mathematica}, SymPy is open source, which means that much of the work, if not all of the work, is done by ordinary people on their spare time. The ill behaving simplify function is not really a great loss; full control for a Python programmer is never considered a bad thing, whether it is enforced or not.
+
+\clearpage
 Estimating the Laplacian is just a matter of summing double derivatives
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
 ...
 
@@ -165,44 +176,120 @@ Getting the right factorization may come across as tricky, but with minimal trai
 
 \section{Using the auto-generation Script}
 
-The Python superclass \verb+orbitalsGenerator+ (the generator) aims to serve as a interface with the C++ \verb+BasisFunctions+ class, automatically generating the C++ code containing all the implementations of the derivatives for the given single particle states. The single particle states are implemented in the generator by subclasses overloading system specific virtual functions:
+The superclass \verb+orbitalsGenerator+ aims to serve as a interface with the QMC C++ \verb+BasisFunctions+ class, automatically generating the C++ code containing all the implementations of the derivatives for the given single particle states. The single particle states are implemented in the generator by subclasses overloading system specific virtual functions which will be described in the following sections.
+
+\subsection{Generating Latex code}
+
+The following methods are user-implemented functions used to calculate the expressions which are in turn automagically converted to Latex code. Once they are implemented, the following code can be executed in order to create the latex output
+
+\begin{lstlisting}[language=Python]
+   orbitalSet = HO_3D.HOOrbitals3D(N=40) #Creating a 3D harm. osc. object
+   orbitalSet.closedFormify() 
+   orbitalSet.TeXToFile(outPath)
+\end{lstlisting}
+
+\subsubsection{The constructor}
+
+The superclass constructor takes on input the maximum number of particles for which expressions should be generated and the name of the orbital set, e.g. \verb+hydrogenic+.
+Calling a superclass constructor from a subclass constructor is done in the following way
+
+\vspace{0.25cm}
+\begin{lstlisting}[language=Python, otherkeywords={self}]
+class hydrogenicOrbitals(orbitalGenerator):
+ 
+    def __init__(self, M):
+      
+        super(hydrogenicOrbitals, self).__init__(M, "hydrogenic")
+        #...
+\end{lstlisting}
+
+
+\subsubsection{makeStateMap}
+
+This function takes care of the mapping of a set of quantum numbers, e.g. $nml$ to a specific index $i$. The Python dictionary \verb+self.stateMap+ must be filled with values for every unique set of quantum numbers (not counting spin) in order for the Latex and C++ files to be created successfully. For the three-dimensional harmonic oscillator wave functions, the state map looks like this
+
+\begin{center}
+\begin{tabular}{l|ccccccccccccccccccccccc}
+$i$   &  0 & & 1 &  2 &  3 & & 4 &  5 &  6 &  7 &  8 &  9 & & 10 &  11 &  12 &  13 &  14 &  15 &  16 &  17 &  18 & 19 \\
+\hline
+$n_x$ &  0 & & 0 &  0 &  1 & & 0 &  0 &  0 &  1 &  1 &  2 & & 0 &  0 &  0 &  0 &  1 &  1 &  1 &  2 &  2 &  3 \\
+$n_y$ &  0 & & 0 &  1 &  0 & & 0 &  1 &  2 &  0 &  1 &  0 & & 0 &  1 &  2 &  3 &  0 &  1 &  2 &  0 &  1 &  0 \\
+$n_z$ &  0 & & 1 &  0 &  0 & & 2 &  1 &  0 &  1 &  0 &  0 & & 3 &  2 &  1 &  0 &  2 &  1 &  0 &  1 &  0 &  0 
+\end{tabular}
+\end{center}
+
+\subsubsection{setUpOrbitals}
+
+Within this function, the orbital elements corresponding to the quantum number mappings made in \verb+makeStateMap+ needs to be implemented in a matching order. The quantum numbers from \verb+self.stateMap+ are calculated prior to this function being called, and can thus be accessed in case they are needed, as is the case for the $n$-dependent exponential factor of the hydrogen-like orbitals.
+
+The $i$'th orbital needs to be implemented in \verb+self.orbitals[i]+, using the \verb+x+, \verb+y+ and \verb+z+ variables defined in the superclass. For the three-dimensional harmonic oscillator, the function is simply
+
+\vspace{0.25cm}
+\begin{lstlisting}[language=Python, otherkeywords={self}]
+def setupOrbitals(self):
+      
+    for i, stateMap in self.stateMap.items():
+        nx, ny, nz = stateMap
+        
+        self.orbitals[i] = self.Hx[nx]*self.Hy[ny]*self.Hz[nz]*self.expFactor
+  
+\end{lstlisting}
+
+where \verb+self.Hx+ and the exponential factor are implemented in the constructor. After the orbitals are created, the gradients and Laplacians are calculated.
+
+\subsubsection{simplifyLocal}
+
+As demonstrated in the previous example, SymPy expressions are messy when they are fresh out of the derivative functions. Since every system needs to be treated differently when it comes to cleaning up their expressions, this function are available. For hydrogen-like wave functions, the previous example's strategy can be applied up to the level of Neon. Going higher will require more advanced strategies for cleaning up the expressions.
+
+The expression and the corresponding set of quantum numbers are given on input. In addition, there is an input argument \verb+subs+, which if set to false should make the function return the expression in terms of \verb+x+, \verb+y+ and \verb+z+ without substituting e.g. $x^2 + y^2 = r^2$.
+
+\subsubsection{genericFactor}
+
+A convenient function for returning generic parts of the expressions, i.e. the exponential parts. A set of quantum numbers are supplied on input in case the generic expression is dependent of these. In addition, a flag \verb+basic+ is supplied on input, which if set to true should, as in the simplify function, return the generic factor in Cartesian coordinates. This generic factor can then be taken out of the Latex expression and mentioned in the caption in order to clean up the expression tables.
+
+\subsubsection{\_\_str\_\_}
+
+This method is invoked by calling \verb+str(obj)+ on an arbitrary Python object \verb+obj+. In the case of the orbital generator class, this string will serve as an introductory text to the latex output.
+
+\subsection{Generating C++ code}
+
+A class \verb+CPPbasis+ is constructed to supplement the orbitals generator class. This objects holds the raw shell of the C++ constructors and implementations. After the functions described in this section are implemented, the following code can be executed to generate the C++ files   
+
+\subsubsection{initCPPbasis}
+
+Sets up the variables in the \verb+CPPbasis+ object needed in order to construct the C++ file, such as the dimension, the name, the constructor input variables and the C++ class members. The following function is the implementation for the two-dimensional harmonic oscillator
+
+\vspace{0.25cm}
+\begin{lstlisting}[language=Python, otherkeywords={self}]
+def initCPPbasis(self):
+    
+    self.cppBasis.dim = 2
+    
+    self.cppBasis.setName(self.name)
+    
+    self.cppBasis.setConstVars('double* k',          #sqrt(k2)
+                               'double* k2',         #scaled oscillator freq.
+                               'double* exp_factor') #The exponential
+                               
+    self.cppBasis.setMembers('double* k', 
+                             'double* k2',         
+                             'double* exp_factor',  
+                             'double H',             #The Hermite polynomial part
+                             'double x',
+                             'double y',
+                             'double x2',            #Squared Cartesian coordinates
+                             'double y2') 
+\end{lstlisting}
+
+\subsubsection{getCPre}
+
+
+
+\subsubsection{}
 
 \begin{small}
 \begin{tabular}{ll}
-\verb+constructor+	& Takes argument \verb+M+ equal to the number of orbitals to compute,\\
-			& should directly be set by \verb+self.setMax(M)+.\\
-			&\\
-			& Second argument \verb+doInit+ defaults to \verb+True+. Should be sent to superclass \\
-			& constructor. If false, does not initialize the construction of expression, latex file, etc.\\
-			&\\
-			& Third argument \verb+toCPP+ defaults to \verb+False+. Should be sent to superclass \\
-			& constructor. If true, C++ files will be generated. \\
-			&\\
-			&\\
-\verb+makeStateMap+	& Setup the \verb+self.stateMap+ list, where index $i$ represents a set of quantum numbers. \\
-			& Auto-generated \LaTeX tables will then include quantum numbers. \\
-			& Ensured correct quantum number - expression pairs sent to simplification functions etc. \\
-			& \\
-\verb+setupOrbitals+	& Fill the \verb+self.orbitals+ list with SymPy expressions representing the single particle \\
-			& wave functions. Must be functions of the $x$, $y$ and $z$ SymPy Symbols. \\
-			& Used to calculate the gradients and Laplacians. \\
-			& Element $i$ will represent quantum number $i$. \\
-			&\\
-\verb+simplifyLocal+	& Implement the factorization of the raw expressions. \\
-			& E.g. $kxe^{-x} + ke^{-x} \to k(x + 1)e^{-x}$. \\
-			& Quantum numbers are supplied in the argument in case they are needed, e.g. in the $n$- \\ 
-			& dependent exponential factor of the hydrogenic orbitals. \\
-			&\\
-\verb+genericFactor+	& Defaults to unity. In case all expressions share a common factor, e.g. \\
-			& $\exp(-\frac{1}{2}\alpha\omega r^2)$ in the case of Quantum Dots, this can be \\
-			& implemented as a generic factor, cleaning up the Latex table. \\
-			& May also dramatically clean up the simplification code. \\
-\verb+extraToFile+	& Returns a string which will be set as an introductory text to the Latex output. \\
-			&\\
-			&\\
-\verb+initCPPbasis+	& Set up the C++ class names, constructor arguments, member variables. See e.g. the \\
-			& \verb+HO.py+ file for examples. \\
-			&\\
+
 \verb+getCPre+		& Given an expression and a its index $i$ as input, set up the C++ pre-return calculation. \\
 			& E.g. \verb+H = printing.ccode(expr/self.genericFactor(i));+ \\
 			&\\
@@ -217,4 +304,4 @@ The Python superclass \verb+orbitalsGenerator+ (the generator) aims to serve as 
 \end{tabular}
 \end{small}
 
-Implementing these functions will generate a Latex file listing the calculated expressions (see Sections \ref{sec:SymPyHO} and \ref{sec:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the code used in this thesis, ~6000 lines of C++ code was auto-generated using SymPy.
+Implementing these functions will generate a Latex file listing the calculated expressions (see Appendix \ref{appendix:SymPyHO} and \ref{appendix:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the code used in this thesis, 8975 lines of C++ code was auto-generated using SymPy (not counting blank lines).

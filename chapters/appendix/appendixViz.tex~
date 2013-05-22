@@ -2,7 +2,9 @@
 
 With a code framework increasing in complexity comes an increasing need for tools to ease the interface between the code and the developer(s). In computational science, a must-have tool is a tool for efficient visualization of data; there is only so much information a single number can hold. To supplement the QMC code, a visualization tool named DCViz (\textbf{D}ynamic \textbf{C}olumn data \textbf{Vi}suali\textbf{z}er) has been developed.
 
-The tool is a Python based visualization tool designed to plot data stored in columns. The tool is not designed explicitly for the QMC framework, and has been successfully applied to codes by several Master students at the time of this thesis. The plot library used is \textit{Matplotlib}\cite{Matplotlib} with a graphical user interface coded using \textit{PySide}\cite{Pyside}. The data can be plotted dynamically at a specified interval, and designed to be run parallel to the main application, e.g. DMC. The convergence of the DMC method is much better represented by a trailing energy graph than simply a stream of numbers.
+The tool is written in Python, designed to plot data stored in columns. The tool is not designed explicitly for the QMC framework, and has been successfully applied to codes by several Master students at the time of this thesis. The plot library used is \textit{Matplotlib}\cite{Matplotlib} with a graphical user interface coded using \textit{PySide}\cite{Pyside}. The data can be plotted dynamically at a specified interval, and designed to be run parallel to the main application, e.g. DMC.
+
+DCViz is available at \url{https://github.com/jorgehog/DCViz}
 
 \section{Basic Usage}
 
@@ -10,7 +12,7 @@ The application is centered around the \verb+mainloop()+ function, which handles
 
 \subsubsection{The figure map}
 
-Represented by the member variable \verb+figMap+, the figure map is where the user specifies the figure setup, that is, the names of the main-figures and their sub-figures. As en example, consider the following figure map:  
+Represented by the member variable \verb+figMap+, the figure map is where the user specifies the figure setup, that is, the names of the main-figures and their sub-figures. Consider the following figure map:  
 
 \begin{lstlisting}[language=Python]
 figMap = {"mainFig1": ["subFig1", "subFig2"], "mainFig2": []} 
@@ -65,7 +67,7 @@ which can then in turn be used in standard Matplotlib functions with the figures
 Additional parameters can be overloaded for additional functionality
 
 \begin{small}
-\begin{tabular}{lp{14cm}}
+\begin{tabular}{lp{14cm - 5pt}}
 \verb+nCols+ & The number of columns present in the file. Will be automatically detected unless the data is stored in binary format.\\
 \verb+skipRows+ & The number of initial rows to skip. Will be automatically detected unless the data is stored as a single column.\\
 \verb+skipCols+ & The number of initial columns to skip. Defaults to zero.\\

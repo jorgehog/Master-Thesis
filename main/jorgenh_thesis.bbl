@@ -41,4 +41,9 @@ G.~Golub and C.~{Van Loan}, \emph{{Matrix computations}}.\hskip 1em plus 0.5em
   \url{http://qt-project.org/wiki/Category:LanguageBindings::PySide}
 \BIBentrySTDinterwordspacing
 
+\bibitem{SymPy}
+\BIBentryALTinterwordspacing
+(2013, May) {SymPy website}. [Online]. Available: \url{http://sympy.org}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

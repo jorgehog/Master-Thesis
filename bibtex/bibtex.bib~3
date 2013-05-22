@@ -690,11 +690,11 @@ jabref-meta: selector_keywords:
 	year = "2008"
 }
 
-@online{Doe:2009:Online,
+@online{Matplotlib,
 	author = "Doe, Ringo",
-	month = jun,
-	title = "{This is a test entry of type {@ONLINE}}",
-	url = "http://www.test.org/doe",
-	year = "2009"
+	month = may,
+	title = "{Matplotlib website}",
+	url = "http://matplotlib.org",
+	year = "2013"
 }
 
