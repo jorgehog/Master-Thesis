@@ -1,39 +1,44 @@
 \chapter{Dirac Notation}
 \label{app:Dirac}
 
-Due to the orthogonal nature of Hermitian operators' eigenfunctions\footnote{Eigenfunctions of a Hermitian operator always make up a complete orthogonal set.}, the inner product between two states constructed from them will result in a lot of integrals being zero, one, or eigenvalues for that matter. Writing the integrals in their full form then feels like a waste of space and time. Even specifying e.g. a position basis is obsolete. Abstracting the wave functions from a given parameter space (e.g. $\mathbb{C}^n$) into a \textit{Hilbert space}\footnote{A Hilbert space is an inner product space spanned by the different states. For every state, there exists a complementary state which is the Hermitian conjugate of the original\cite{griffiths}.} is what is called the \textit{Dirac notation}, or the \textit{Bra-ket notation}.
+Calculations involving sums over inner products of orthogonal states are common in Quantum Mechanics. This due to the fact that eigenfunctions of Hermitian operators, which is the kind of operators which represent observables\cite{griffiths}, are necessarily orthogonal\cite{golub1996matrix}. These inner-products will in many cases result in either zero or one, i.e. the \textit{Kronecker-delta} function $\delta_{ij}$; explicitly calculating the integrals is unnecessary. 
 
-The basic idea is that since the coordinate representation of a wave function is the projection of an abstract state on the position basis through an inner product, we can separate the different pieces of the inner product:
+\textit{Dirac notation} is a notation in which quantum states are represented as abstract components of a \textit{Hilbert space}, i.e. an inner product space. This implies that the inner-product between two states are represented by these states alone, without the integral over a specific basis, which makes derivations a lot cleaner and general in the sense that no specific basis is needed.
+
+Extracting the abstract state from a wave function is done by realizing that the wave function can be written as the inner product between the position basis eigenstates $\ket{x}$ and the abstract quantum state $\ket{\psi}$ 
 
 \begin{equation*}
- \psi(\vec r) = \langle r, \psi_j \rangle \equiv \braket{r}{\psi_j} = \bra{r}\times\ket{\psi_j}. 
+ \psi(x) = \langle r, \psi \rangle \equiv \braket{x}{\psi} = \bra{x}\times\ket{\psi}. 
 \end{equation*}
 
 
-The notation is designed to be simple. The right hand side of the inner product is called a \textit{ket}, while the left hand side is called a \textit{bra}. Combining both of them leaves you with an inner product bracket, hence the names. Let us look at an example where this notation is extremely powerful. Imagine a coupled two-particle spin-$\frac{1}{2}$ system in the following state
+The notation is designed to be simple. The right hand side of the inner product is called a \textit{ket}, while the left hand side is called a \textit{bra}. Combining both of them leaves you with an inner product bracket, hence Dirac notation is commonly referred to as \textit{bra-ket} notation. 
+
+To demonstrate the simplicity introduced with this notation, imagine a coupled two-level spin-$\frac{1}{2}$ system in the following state
 
 \begin{eqnarray}
- \ket{\psi} &=& N\Big[\ket{\su\sd} -i\ket{\sd\su}\Big]\\
- \bra{\psi} &=& N\Big[\bra{\su\sd} +i\bra{\sd\su}\Big]
+ \ket{\chi} &=& N\Big[\ket{\su\sd} -i\ket{\sd\su}\Big]\\
+ \bra{\chi} &=& N\Big[\bra{\su\sd} +i\bra{\sd\su}\Big]
 \end{eqnarray} 
 
-Using the fact that both the full two-particle state and the two-level spin states should be orthonormal, we can with this notation calculate the normalization factor without explicitly calculating anything.
+Using the fact that both the $\ket{\chi}$ state and the two-level spin states should be orthonormal, the normalization factor can be calculated without explicitly setting up any integrals
 
 \begin{eqnarray*}
- \braket{\psi}{\psi} &=& N^2\Big[\bra{\su\sd} +i\bra{\sd\su}\Big]\Big[\ket{\su\sd} -i\ket{\sd\su}\Big] \\
+ \braket{\chi}{\chi} &=& N^2\Big[\bra{\su\sd} +i\bra{\sd\su}\Big]\Big[\ket{\su\sd} -i\ket{\sd\su}\Big] \\
  &=& N^2\Big[\braket{\su\sd}{\su\sd} + i\braket{\sd\su}{\su\sd} - i\braket{\su\sd}{\sd\su} + \braket{\sd\su}{\sd\su}\Big] \\
  &=& N^2\Big[1 + 0 - 0 + 1\Big] \\
- &=& 2N^2
+ &=& 2N^2\\
+ &=& 1,
 \end{eqnarray*}
 
-This implies as we expected $N=1/\sqrt{2}$. With this powerful notation at hand, we can easily show properties such as the \textit{completeness relation} of a set. We start by expanding one state $\ket{\phi}$ in a complete set of different states $\ket{\psi_i}$:
+This implies the trivial solution $N=1/\sqrt{2}$. With this powerful notation at hand, important properties such as the \textit{completeness relation} of a set of states can be shown. A standard strategy is to start by expanding one state $\ket{\phi}$ in a complete set of different states $\ket{\psi_i}$:
 
 \begin{eqnarray*}
  \ket{\phi}            &=& \displaystyle\sum_i c_i\ket{\psi_i}\\
- \braket{\psi_k}{\phi} &=& \displaystyle\sum_i c_i\braket{\psi_k}{\psi_i}\\
+ \braket{\psi_k}{\phi} &=& \displaystyle\sum_i c_i\underbrace{\braket{\psi_k}{\psi_i}}_{\delta_{ik}}\\
                        &=& c_k\\
  \ket{\phi}            &=& \displaystyle\sum_i \braket{\psi_i}{\phi}\ket{\psi_i}\\
-                       &=& \left[\displaystyle\sum_i \ket{\psi_i}\bra{\psi_i}\right]\ket{\phi},
+                       &=& \left[\displaystyle\sum_i \ket{\psi_i}\bra{\psi_i}\right]\ket{\phi} 
 \end{eqnarray*}
 
 which implies that
@@ -43,12 +48,12 @@ which implies that
  \label{eq:Completeness}
 \end{equation}
 
-for any complete set of orthonormal states $\ket{\psi_i}$. For a continuous basis like e.g. the position basis we have a a similar relation:
+for any complete set of orthonormal states $\ket{\psi_i}$. Calculating the corresponding identity for a continuous basis like e.g. the position basis yields
 
 \begin{eqnarray}
  \int |\psi(x)|^2dx    &=& 1 \label{eq:posIdentityFirst} \\
- \int |\psi(x)|^2dx    &=& \int \psi^\ast(x)\psi(x)dx \nonumber \\
-                       &=& \int \braket{\psi}{x}\braket{x}{\psi}dx \nonumber \\
+ \int |\psi(x)|^2dx    &=& \int \psi^\ast(x)\psi(x)\mathrm{d}x \nonumber \\
+                       &=& \int \braket{\psi}{x}\braket{x}{\psi}\mathrm{d}x \nonumber \\
                        &=& \bra{\psi}\Big[\int \ket{x}\bra{x}dx\Big]\ket{\psi} \label{eq:posIdentityLast}.
 \end{eqnarray}
 
@@ -58,3 +63,5 @@ Combining eq.~\ref{eq:posIdentityFirst} and eq.~\ref{eq:posIdentityLast} with th
  \int \ket{x}\bra{x}dx = \I.
  \label{eq:CompletenessCont}
 \end{equation}
+
+Looking back at the introductory example, this identity is exactly what is extracted when a wave function is described as an inner product instead of an explicit function.

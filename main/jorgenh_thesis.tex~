@@ -32,6 +32,8 @@
 \newcommand{\Exp}[1]{\left< #1 \right>}
 \newcommand{\Cov}{\mathrm{Cov}}
 
+%HEI SVEIS
+
 
 \newcommand{\subfigure}{\subfloat}
 

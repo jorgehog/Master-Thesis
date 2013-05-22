@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.0
-lastDocument=../main/jorgenh_thesis.tex
+lastDocument=../chapters/appendix/appendixDirac.tex
 masterDocument=
 name=MasterThesisKile
 pkg_extIsRegExp=false
@@ -197,7 +197,7 @@ Mode=LaTeX
 ReadWrite=true
 
 [document-settings,item:../main/jorgenh_thesis.tex]
-Bookmarks=35,37
+Bookmarks=37,39
 Encoding=UTF-8
 FoldedColumns=
 FoldedLines=
@@ -263,7 +263,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=723
 mode=LaTeX
-open=true
+open=false
 order=1
 
 [item:../chapters/06OptimizationsAndGeneralizations/optAndgen.tex]
@@ -273,7 +273,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=773
 mode=LaTeX
-open=true
+open=false
 order=3
 
 [item:../chapters/07ImpVal/ImpVal.tex]
@@ -293,17 +293,17 @@ encoding=UTF-8
 highlight=LaTeX
 line=135
 mode=LaTeX
-open=true
+open=false
 order=6
 
 [item:../chapters/ModeledSystems/ModeledSystems.tex]
 archive=true
-column=151
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=246
+line=230
 mode=LaTeX
-open=true
+open=false
 order=2
 
 [item:../chapters/appendix/3DHO.tex]
@@ -313,7 +313,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=56
 mode=LaTeX
-open=true
+open=false
 order=8
 
 [item:../chapters/appendix/HarmonicOscillator.tex]
@@ -323,18 +323,18 @@ encoding=UTF-8
 highlight=LaTeX
 line=1
 mode=LaTeX
-open=true
+open=false
 order=5
 
 [item:../chapters/appendix/appendixDirac.tex]
 archive=true
-column=10
+column=17
 encoding=UTF-8
 highlight=LaTeX
-line=1
+line=7
 mode=LaTeX
-open=false
-order=4
+open=true
+order=2
 
 [item:../chapters/appendix/appendixMatrix.tex]
 archive=true
@@ -348,13 +348,13 @@ order=3
 
 [item:../chapters/appendix/appendixSympy.tex]
 archive=true
-column=57
+column=6
 encoding=UTF-8
 highlight=LaTeX
-line=202
+line=189
 mode=LaTeX
 open=true
-order=7
+order=1
 
 [item:../chapters/appendix/appendixViz.tex]
 archive=true
@@ -373,7 +373,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=1
 mode=LaTeX
-open=true
+open=false
 order=4
 
 [item:../includes/lst.tex]
@@ -388,10 +388,10 @@ order=4
 
 [item:../main/jorgenh_thesis.tex]
 archive=true
-column=43
+column=45
 encoding=UTF-8
 highlight=LaTeX
-line=42
+line=94
 mode=LaTeX
 open=true
 order=0
@@ -461,8 +461,8 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:../chapters/ModeledSystems/ModeledSystems.tex]
-CursorColumn=151
-CursorLine=246
+CursorColumn=0
+CursorLine=230
 JumpList=
 ViMarks=
 
@@ -479,8 +479,8 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:../chapters/appendix/appendixDirac.tex]
-CursorColumn=10
-CursorLine=1
+CursorColumn=17
+CursorLine=7
 JumpList=
 ViMarks=
 
@@ -491,8 +491,8 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:../chapters/appendix/appendixSympy.tex]
-CursorColumn=57
-CursorLine=202
+CursorColumn=6
+CursorLine=189
 JumpList=
 ViMarks=
 
@@ -515,7 +515,7 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:../main/jorgenh_thesis.tex]
-CursorColumn=43
-CursorLine=42
+CursorColumn=45
+CursorLine=94
 JumpList=
-ViMarks=a,37,0,b,35,0
+ViMarks=a,39,0,b,37,0
