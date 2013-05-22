@@ -3,6 +3,8 @@
 \BOOKMARK [0][-]{appendix.A}{Dirac Notation}{part.2}
 \BOOKMARK [0][-]{appendix.B}{DCViz: Visualization of Data}{part.2}
 \BOOKMARK [1][-]{section.B.1}{Basic Usage}{appendix.B}
+\BOOKMARK [2][-]{subsection.B.1.1}{The Terminal Client}{section.B.1}
+\BOOKMARK [2][-]{subsection.B.1.2}{The Application Programming Interface \(API\)}{section.B.1}
 \BOOKMARK [0][-]{appendix.C}{Auto-generation with SymPy}{part.2}
 \BOOKMARK [1][-]{section.C.1}{Usage}{appendix.C}
 \BOOKMARK [2][-]{subsection.C.1.1}{Doing Symbolic Algebra}{section.C.1}

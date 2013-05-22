@@ -29,4 +29,16 @@ D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
 G.~Golub and C.~{Van Loan}, \emph{{Matrix computations}}.\hskip 1em plus 0.5em
   minus 0.4em\relax Johns Hopkins Univ Press, 1996, vol.~3.
 
+\bibitem{Matplotlib}
+\BIBentryALTinterwordspacing
+(2013, May) {Matplotlib website}. [Online]. Available:
+  \url{http://matplotlib.org}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Pyside}
+\BIBentryALTinterwordspacing
+(2013, May) {PySide website}. [Online]. Available:
+  \url{http://qt-project.org/wiki/Category:LanguageBindings::PySide}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

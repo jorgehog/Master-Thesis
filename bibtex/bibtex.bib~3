@@ -660,8 +660,41 @@ jabref-meta: selector_keywords:
 	author = "Filippi, Claudia and Umrigar, C. J.",
 	journal = "The Journal of Chemical Physics",
 	month = jul,
-	title = "{aids}",
+	title = "{Multiconfiguration wave function for quantum Monte Carlo calculations of first-row diatomic molecules}",
 	volume = 105,
 	year = 1996
+}
+
+@article{SolidHarmonics,
+	author = "Rico, Jaime Fern{\'a}ndez and L{\'o}pez, Rafael and Ema, Ignacio and Ram{\'i}rez, Guillermo",
+	doi = "10.1002/qua.24356",
+	issn = "1097-461X",
+	journal = "International Journal of Quantum Chemistry",
+	keywords = "spherical harmonics; molecular structure; electrostatic potential",
+	number = "10",
+	pages = "1544--1548",
+	publisher = "Wiley Subscription Services, Inc., A Wiley Company",
+	title = "{Translation of real solid spherical harmonics}",
+	url = "http://dx.doi.org/10.1002/qua.24356",
+	volume = "113",
+	year = "2013"
+}
+
+@article{doubleWellExpt,
+	author = "Shenoi, R. V. and Hou, J. and Sharma, Y. and Shao, J. and Vandervelde, T. E. and Krishna, S.",
+	doi = "10.1117/12.795661",
+	eprint = "",
+	pages = "708207--708207--6",
+	title = "{Low strain quantum dots in a double well infrared detector}",
+	url = "http://dx.doi.org/10.1117/12.795661",
+	year = "2008"
+}
+
+@online{Doe:2009:Online,
+	author = "Doe, Ringo",
+	month = jun,
+	title = "{This is a test entry of type {@ONLINE}}",
+	url = "http://www.test.org/doe",
+	year = "2009"
 }
 

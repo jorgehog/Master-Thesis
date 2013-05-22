@@ -8,44 +8,44 @@ Database file #1: ../bibtex/bibtex.bib.bib
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 2 entries,
+You've used 4 entries,
             4039 wiz_defined-function locations,
-            821 strings with 7425 characters,
-and the built_in function-call counts, 941 in all, are:
-= -- 55
-> -- 16
+            830 strings with 7578 characters,
+and the built_in function-call counts, 1525 in all, are:
+= -- 98
+> -- 18
 < -- 4
-+ -- 6
++ -- 8
 - -- 3
-* -- 51
-:= -- 162
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 1
+* -- 71
+:= -- 262
+add.period$ -- 6
+call.type$ -- 4
+change.case$ -- 3
 chr.to.int$ -- 9
-cite$ -- 2
-duplicate$ -- 71
-empty$ -- 101
+cite$ -- 4
+duplicate$ -- 123
+empty$ -- 167
 format.name$ -- 4
-if$ -- 198
+if$ -- 325
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 12
-newline$ -- 29
+int.to.str$ -- 4
+missing$ -- 24
+newline$ -- 39
 num.names$ -- 2
-pop$ -- 38
+pop$ -- 78
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 69
+skip$ -- 117
 stack$ -- 0
 substring$ -- 8
-swap$ -- 38
+swap$ -- 68
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 2
+type$ -- 4
 warning$ -- 0
 while$ -- 3
-width$ -- 3
-write$ -- 37
+width$ -- 5
+write$ -- 55
