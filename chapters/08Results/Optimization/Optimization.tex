@@ -2,11 +2,11 @@
 
 The optimization results listed in this section are estimated using a $30$ particle two-dimensional quantum dot as reference system.
 
-Profiling the code revealed, not surprisingly, that $~99\%$ of the runtime was spent in the \\\verb+QMC.diffuse_walker+ function for both VMC, DMC and ASGD. Optimizing the code then solely involved optimizing this function. 
+Profiling the code revealed, not surprisingly, that $~99\%$ of the runtime was spent diffusing the particles, i.e. spent in \verb+QMC::diffuse_walker+, regardless of whether VMC, DMC or ASGD was run. Optimizing the code then solely involved optimizing this function. 
 
-The profiling tool of choice was KCacheGrind, aviable at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks, whose size is proportional to the time spent inside the function, much like standard hard drive listing software does with files and file size.
+The profiling tool of choice was \textit{KCacheGrind}, available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks, whose size is proportional to the time spent inside the function, much like standard hard drive listing software does with files and file size.
 
-Prior to the listed optimizations, all other optimizations mentioned in previous sections has been implemented. The reason why they are not explicitly listed is the fact that they were implemented from start, and are considered ``standard optimizations''. Writing a program without them was considered pointless. 
+Optimizations discussed in chapter \ref{ch:optAndGen} which are not mentioned in the following sections are optimizations implemented prior to the optimization process. These optimizations were considered ``standard optimizations'' and was thus implemented from start. 
 
 \subsubsection{Storing the Slater Matrix}
 
@@ -15,15 +15,15 @@ This optimization is described in detail in Section \ref{sec:storeSlater}. In ad
 The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
 
 \begin{tabular}{ll}
- \verb+Orbitals.phi+ & \\
+ \verb+Orbitals::phi+ & \\
  \hline\hline
- Relative time spent prior to optimization & 80.88\% \\
- Relative time spent after optimization    & 8.2\% \\
+ Relative runtime used prior to optimization & 80.88\% \\
+ Relative runtime used after optimization    & 8.2\% \\
  \hline
- Relative speedup                          & 9.86
+ Relative function speedup                   & 9.86
 \end{tabular}
 
-The speedup is not because of optimizations within the function itself, but rather due to far less calls to the function. If the calculation of $\tilde I$ was done outside the main loops in the first place, the speedup would be far less. 
+The speedup is not a result of optimizations within the function itself, but a result of far less calls to the function. If $\tilde I$ was calculated outside the main loops in the first place, the speedup would be far less significant. 
 
 
 \subsubsection{Optimized Jastrow Gradient}
@@ -33,15 +33,15 @@ The optimization described in this Section is discussed in detail in Section \re
 The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
 
 \begin{tabular}{ll}
- \verb+Jastrow.get_grad+ + \verb+Jastrow.calc_dJ+ & \\
+ \verb+Jastrow::get_grad+ \& \verb+Jastrow::calc_dJ+ & \\
  \hline\hline
- Relative time spent prior to optimization & 40\% \\
- Relative time spent after optimization    & 5.24\% \\
+ Relative runtime used prior to optimization & 40\% \\
+ Relative runtime used after optimization    & 5.24\% \\
  \hline
- Relative speedup                          & 7.63
+ Relative function speedup                   & 7.63
 \end{tabular}
 
-Exploiting the symmetries of the Padé Jastrow Gradient in addition to calculating the new gradient based on the old is in other words extremely efficient. Keep in mind however, that these results are for a high number of particles. For e.g. two particles, this optimization would not matter at all.
+Exploiting the symmetries of the Padé Jastrow Gradient, in addition to calculating the new gradient based on the old, is in other words extremely efficient. Keep in mind however, that these results are for a high number of particles. For e.g. two particles, this optimization would not matter at all (they actually slow down the code).
 
 \subsubsection{Storing the Orbital Derivatives}
 
@@ -53,10 +53,10 @@ The percentages listed in the following table is the total time spent inside thi
 \begin{tabular}{ll}
  \verb+Orbitals.dell_phi+ & \\
  \hline\hline
- Relative time spent prior to optimization & 56.27\% \\
- Relative time spent after optimization    & 7.31\% \\
+ Relative runtime used prior to optimization & 56.27\% \\
+ Relative runtime used after optimization    & 7.31\% \\
  \hline
- Relative speedup                          & 7.70
+ Relative function speedup                   & 7.70
 \end{tabular}
 
 
@@ -67,16 +67,18 @@ This optimization is covered in detail in Section \ref{sec:optSPWFqnumIndie}. Th
 The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
 
 \begin{tabular}{ll}
- \verb+Jastrow.get_grad+ + \verb+Jastrow.calc_dJ+ & \\
+ \verb+Orbitals::phi+ \& \verb+Orbitals::dell_phi+ & \\
  \hline\hline
- Relative time spent prior to optimization & 5.85\% \\
- Relative time spent after optimization    & 0.13\% \\
+ Relative runtime used prior to optimization & 5.85\% \\
+ Relative runtime used after optimization    & 0.13\% \\
  \hline
- Relative speedup                          & 45
+ Relative function speedup                   & ~45
 \end{tabular}
 
-This result is not surprisingly equal to $15$ quantum numbers (for $30$ particles) times three. One from the orbitals, and two from their gradients. Prior to this optimization, $45$ exponential calls was needed to fill a row in the Slater matrix and the derivative matrix; this has been reduced to one.
+This result is not surprisingly equal to $15\cdot 3$, since a $30$ particle quantum dot has $15$ unique quantum numbers. One set is used by the orbitals, and two by their gradients (the Laplacian is not a part of the diffusion). Prior to this optimization, $45$ exponential calls was needed to fill a row in the Slater matrix and the derivative matrix; this has been reduced to one.
 
 \subsubsection{Overall Optimization}
 
-Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling was
+Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling are presented in the following figures
+
+\textbf{TA MED FIGURER FOR SKALERING AV KODE}

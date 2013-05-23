@@ -180,21 +180,4 @@ R.~V. Shenoi, J.~Hou, Y.~Sharma, J.~Shao, T.~E. Vandervelde, and S.~Krishna,
 Y.~M. Wang, ``{Coupled-Cluster Studies of Double Quantum Dots},'' Master's
   thesis, University of Oslo, 2011.
 
-\bibitem{Matplotlib}
-\BIBentryALTinterwordspacing
-(2013, May) {Matplotlib website}. [Online]. Available:
-  \url{http://matplotlib.org}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Pyside}
-\BIBentryALTinterwordspacing
-(2013, May) {PySide website}. [Online]. Available:
-  \url{http://qt-project.org/wiki/Category:LanguageBindings::PySide}
-\BIBentrySTDinterwordspacing
-
-\bibitem{SymPy}
-\BIBentryALTinterwordspacing
-(2013, May) {SymPy website}. [Online]. Available: \url{http://sympy.org}
-\BIBentrySTDinterwordspacing
-
 \end{thebibliography}

@@ -1,152 +1,117 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Introduction}{11}{chapter.1}
-\contentsline {part}{I\hspace {1em}Theory}{13}{part.1}
-\contentsline {chapter}{\numberline {2}Scientific Programming}{15}{chapter.2}
-\contentsline {section}{\numberline {2.1}Programming Languages}{15}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}High-level Languages}{15}{subsection.2.1.1}
-\contentsline {subsubsection}{Python}{16}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Low-level Languages}{16}{subsection.2.1.2}
-\contentsline {subsubsection}{C++}{17}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}Object Orientation}{17}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}A Brief Introduction to Essential Concepts}{18}{subsection.2.2.1}
-\contentsline {subsubsection}{Members}{18}{subsection.2.2.1}
-\contentsline {subsubsection}{Constructors}{18}{subsection.2.2.1}
-\contentsline {subsubsection}{Destructors}{18}{lstnumber.-3.1}
-\contentsline {subsection}{\numberline {2.2.2}Inheritance}{18}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Pointers, Typecasting and Virtual Functions}{21}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Polymorphism}{22}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Const Correctness}{24}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Accessibility levels and Friend classes}{24}{subsection.2.2.6}
-\contentsline {subsection}{\numberline {2.2.7}Example: PotionGame}{25}{subsection.2.2.7}
-\contentsline {section}{\numberline {2.3}Structuring the code}{29}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}File Structures}{29}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Class Structures}{30}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}Quantum Monte-Carlo}{31}{chapter.3}
-\contentsline {section}{\numberline {3.1}Modeling Diffusion}{31}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Stating the Schr\IeC {\"o}dinger Equation as a Diffusion Problem}{32}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}Solving the Diffusion Problem}{34}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Isotropic Diffusion}{35}{subsection.3.2.1}
-\contentsline {subsubsection}{The Langevin Equation for Isotropic Diffusion}{35}{equation.3.2.18}
-\contentsline {subsection}{\numberline {3.2.2}Anisotropic Diffusion: Fokker-Planck}{35}{subsection.3.2.2}
-\contentsline {subsubsection}{The Langevin Equation for the Fokker-Planck Equation}{36}{equation.3.2.22}
-\contentsline {subsection}{\numberline {3.2.3}The connection between anisotropic- and isotropic diffusion models}{37}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Diffusive Equilibrium Constraints}{39}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Detailed Balance}{39}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Ergodicity}{40}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}The Metropolis Algorithm}{40}{section.3.4}
-\contentsline {section}{\numberline {3.5}The Process of Branching}{43}{section.3.5}
-\contentsline {section}{\numberline {3.6}The Trial Wave Function}{45}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Many-body Wave Functions}{45}{subsection.3.6.1}
-\contentsline {subsubsection}{Step one in detail}{47}{figure.caption.8}
-\contentsline {subsubsection}{Step two in detail}{47}{equation.3.6.46}
-\contentsline {subsubsection}{Dealing with correlations}{48}{equation.3.6.47}
-\contentsline {subsection}{\numberline {3.6.2}Choice of Trial Wave function}{48}{subsection.3.6.2}
-\contentsline {subsubsection}{Explicit shapes}{49}{equation.3.6.49}
-\contentsline {subsubsection}{Limitations}{50}{equation.3.6.53}
-\contentsline {subsubsection}{Single Determinant Trial Wave function}{50}{equation.3.6.53}
-\contentsline {subsection}{\numberline {3.6.3}Selecting Optimal Variational Parameters}{51}{subsection.3.6.3}
-\contentsline {subsection}{\numberline {3.6.4}Calculating Expectation Values}{52}{subsection.3.6.4}
-\contentsline {subsection}{\numberline {3.6.5}Normalization}{53}{subsection.3.6.5}
-\contentsline {section}{\numberline {3.7}Gradient Descent Methods}{53}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}General Gradient Descent}{53}{subsection.3.7.1}
-\contentsline {subsection}{\numberline {3.7.2}Stochastic Gradient Descent}{55}{subsection.3.7.2}
-\contentsline {subsection}{\numberline {3.7.3}Adaptive Stochastic Gradient Descent}{55}{subsection.3.7.3}
-\contentsline {subsubsection}{Assumptions}{57}{figure.caption.11}
-\contentsline {subsubsection}{Implementation}{57}{figure.caption.11}
-\contentsline {section}{\numberline {3.8}Variational Monte-Carlo}{59}{section.3.8}
-\contentsline {subsection}{\numberline {3.8.1}Motivating the use of Diffusion Theory}{59}{subsection.3.8.1}
-\contentsline {subsection}{\numberline {3.8.2}Implementation}{61}{subsection.3.8.2}
-\contentsline {subsection}{\numberline {3.8.3}Limitations}{61}{subsection.3.8.3}
-\contentsline {section}{\numberline {3.9}Diffusion Monte-Carlo}{62}{section.3.9}
-\contentsline {subsection}{\numberline {3.9.1}Implementation}{62}{subsection.3.9.1}
-\contentsline {subsection}{\numberline {3.9.2}Sampling the Energy}{62}{subsection.3.9.2}
-\contentsline {subsection}{\numberline {3.9.3}Limitations}{63}{subsection.3.9.3}
-\contentsline {subsubsection}{Time Step Errors}{63}{subsection.3.9.3}
-\contentsline {subsubsection}{Selecting the Time-step}{63}{subsection.3.9.3}
-\contentsline {subsection}{\numberline {3.9.4}Fixed node approximation}{65}{subsection.3.9.4}
-\contentsline {section}{\numberline {3.10}Estimating One-body Densities}{65}{section.3.10}
-\contentsline {subsection}{\numberline {3.10.1}Estimating the Exact Ground State Density}{66}{subsection.3.10.1}
-\contentsline {subsection}{\numberline {3.10.2}Radial Densities}{67}{subsection.3.10.2}
-\contentsline {section}{\numberline {3.11}Estimating the Statistical Error}{68}{section.3.11}
-\contentsline {subsection}{\numberline {3.11.1}The Variance and Standard Deviates}{68}{subsection.3.11.1}
-\contentsline {subsection}{\numberline {3.11.2}The Covariance and correlated samples}{69}{subsection.3.11.2}
-\contentsline {subsection}{\numberline {3.11.3}The Deviate from the Exact Mean}{70}{subsection.3.11.3}
-\contentsline {subsection}{\numberline {3.11.4}Blocking}{71}{subsection.3.11.4}
-\contentsline {subsection}{\numberline {3.11.5}Variance Estimators}{72}{subsection.3.11.5}
-\contentsline {chapter}{\numberline {4}Generalization and Optimization}{75}{chapter.4}
-\contentsline {section}{\numberline {4.1}Underlying Assumptions and Goals}{75}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Assumptions}{75}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Generalization Goals}{76}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Optimization Goals}{76}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Specifics Regarding Generalization}{77}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Generalization Goals \ref {it::gen::FermiAndBoson}-\ref {it::gen::pot}}{77}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Generalization Goal \ref {it::gen::SP_basis} and Expanded bases}{78}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Generalization Goal \ref {it::gen::numSupp}}{79}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Optimizations due to a Single two-level Determinant}{79}{section.4.3}
-\contentsline {section}{\numberline {4.4}Optimizations due to Single-particle Moves}{80}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Optimizing the Slater ratios}{81}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Optimizing the Inverse}{82}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Optimizing the Pad\IeC {\'e} Jastrow factor Ratio}{82}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Optimizing the Pad\IeC {\'e} Jastrow Derivative Ratios}{83}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}The Gradient}{83}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}The Laplacian}{84}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Tabulating Recalculated Data}{85}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}The relative distance matrix}{86}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}The Slater related matrices}{86}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}Avoiding spin tests}{87}{subsection.4.6.3}
-\contentsline {subsection}{\numberline {4.6.4}The Pad\IeC {\'e} Jastrow gradient}{87}{subsection.4.6.4}
-\contentsline {subsection}{\numberline {4.6.5}The single-particle Wave Functions}{89}{subsection.4.6.5}
-\contentsline {section}{\numberline {4.7}CPU Cache Optimization}{91}{section.4.7}
-\contentsline {chapter}{\numberline {5}Modeled Systems}{93}{chapter.5}
-\contentsline {section}{\numberline {5.1}Atomic Systems}{93}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}The Single Particle Basis}{93}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Atoms}{95}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Homonuclear Diatomic Molecules}{95}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Quantum Dots}{97}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}The Single Particle Basis}{97}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}2D and 3D Quantum Dots}{98}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Double-well Quantum Dots}{99}{subsection.5.2.3}
-\contentsline {part}{II\hspace {1em}Results}{101}{part.2}
-\contentsline {chapter}{\numberline {6}Results}{103}{chapter.6}
-\contentsline {section}{\numberline {6.1}Optimization Results}{103}{section.6.1}
-\contentsline {subsubsection}{Storing the Slater Matrix}{103}{section.6.1}
-\contentsline {subsubsection}{Optimized Jastrow Gradient}{104}{section.6.1}
-\contentsline {subsubsection}{Storing the Orbital Derivatives}{104}{section.6.1}
-\contentsline {subsubsection}{Storing the Quantum Number Independent Terms}{104}{section.6.1}
-\contentsline {subsubsection}{Overall Optimization}{104}{section.6.1}
-\contentsline {chapter}{\numberline {A}Dirac Notation}{107}{appendix.A}
-\contentsline {chapter}{\numberline {B}DCViz: Visualization of Data}{109}{appendix.B}
-\contentsline {section}{\numberline {B.1}Basic Usage}{109}{section.B.1}
-\contentsline {subsubsection}{The figure map}{109}{section.B.1}
-\contentsline {subsubsection}{The name tag}{110}{lstnumber.-29.1}
-\contentsline {subsubsection}{The plot function}{110}{lstnumber.-31.9}
-\contentsline {subsubsection}{Additional (optional) support}{110}{lstnumber.-33.1}
-\contentsline {subsubsection}{An example}{111}{lstnumber.-33.1}
-\contentsline {subsubsection}{Families}{111}{lstnumber.-34.23}
-\contentsline {subsubsection}{Family example}{112}{lstnumber.-35.9}
-\contentsline {subsubsection}{Dynamic mode}{112}{lstnumber.-36.30}
-\contentsline {subsubsection}{Saving figures to file}{112}{lstnumber.-37.2}
-\contentsline {subsection}{\numberline {B.1.1}The Terminal Client}{113}{subsection.B.1.1}
-\contentsline {subsection}{\numberline {B.1.2}The Application Programming Interface (API)}{113}{subsection.B.1.2}
-\contentsline {subsubsection}{The GUI}{114}{lstnumber.-40.5}
-\contentsline {chapter}{\numberline {C}Auto-generation with SymPy}{117}{appendix.C}
-\contentsline {section}{\numberline {C.1}Usage}{117}{section.C.1}
-\contentsline {subsection}{\numberline {C.1.1}Symbolic Algebra}{117}{subsection.C.1.1}
-\contentsline {subsection}{\numberline {C.1.2}Exporting C++ and Latex Code}{118}{subsection.C.1.2}
-\contentsline {subsection}{\numberline {C.1.3}Calculating Derivatives}{118}{subsection.C.1.3}
-\contentsline {section}{\numberline {C.2}Using the auto-generation Script}{120}{section.C.2}
-\contentsline {subsection}{\numberline {C.2.1}Generating Latex code}{120}{subsection.C.2.1}
-\contentsline {subsubsection}{The constructor}{120}{lstnumber.-48.3}
-\contentsline {subsubsection}{makeStateMap}{121}{lstnumber.-49.6}
-\contentsline {subsubsection}{setUpOrbitals}{121}{lstnumber.-49.6}
-\contentsline {subsubsection}{simplifyLocal}{121}{lstnumber.-50.7}
-\contentsline {subsubsection}{genericFactor}{121}{lstnumber.-50.7}
-\contentsline {subsubsection}{\_\_str\_\_}{122}{lstnumber.-50.7}
-\contentsline {subsection}{\numberline {C.2.2}Generating C++ code}{122}{subsection.C.2.2}
-\contentsline {subsubsection}{initCPPbasis}{122}{lstnumber.-51.4}
-\contentsline {subsubsection}{getCPre and getCreturn}{122}{lstnumber.-52.18}
-\contentsline {subsubsection}{makeOrbConstArg}{123}{lstnumber.-55.6}
-\contentsline {chapter}{\numberline {D}Harmonic Oscillator Orbitals 2D}{125}{appendix.D}
-\contentsline {chapter}{\numberline {E}Harmonic Oscillator Orbitals 3D}{133}{appendix.E}
-\contentsline {chapter}{\numberline {F}Hydrogen Orbitals}{139}{appendix.F}
-\contentsline {chapter}{Bibliography}{145}{section*.93}
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}
+\contentsline {part}{I\hspace {1em}Theory}{11}{part.1}
+\contentsline {chapter}{\numberline {2}Scientific Programming}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Programming Languages}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}High-level Languages}{13}{subsection.2.1.1}
+\contentsline {subsubsection}{Python}{14}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Low-level Languages}{14}{subsection.2.1.2}
+\contentsline {subsubsection}{C++}{15}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Object Orientation}{15}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}A Brief Introduction to Essential Concepts}{16}{subsection.2.2.1}
+\contentsline {subsubsection}{Members}{16}{subsection.2.2.1}
+\contentsline {subsubsection}{Constructors}{16}{subsection.2.2.1}
+\contentsline {subsubsection}{Destructors}{16}{lstnumber.-3.1}
+\contentsline {subsection}{\numberline {2.2.2}Inheritance}{16}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Pointers, Typecasting and Virtual Functions}{19}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Polymorphism}{20}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Const Correctness}{22}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Accessibility levels and Friend classes}{22}{subsection.2.2.6}
+\contentsline {subsection}{\numberline {2.2.7}Example: PotionGame}{23}{subsection.2.2.7}
+\contentsline {section}{\numberline {2.3}Structuring the code}{27}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}File Structures}{27}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Class Structures}{28}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Quantum Monte-Carlo}{29}{chapter.3}
+\contentsline {section}{\numberline {3.1}Modeling Diffusion}{29}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Stating the Schr\IeC {\"o}dinger Equation as a Diffusion Problem}{30}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Solving the Diffusion Problem}{32}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Isotropic Diffusion}{33}{subsection.3.2.1}
+\contentsline {subsubsection}{The Langevin Equation for Isotropic Diffusion}{33}{equation.3.2.18}
+\contentsline {subsection}{\numberline {3.2.2}Anisotropic Diffusion: Fokker-Planck}{33}{subsection.3.2.2}
+\contentsline {subsubsection}{The Langevin Equation for the Fokker-Planck Equation}{34}{equation.3.2.22}
+\contentsline {subsection}{\numberline {3.2.3}The connection between anisotropic- and isotropic diffusion models}{35}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Diffusive Equilibrium Constraints}{37}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Detailed Balance}{37}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Ergodicity}{38}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}The Metropolis Algorithm}{38}{section.3.4}
+\contentsline {section}{\numberline {3.5}The Process of Branching}{41}{section.3.5}
+\contentsline {section}{\numberline {3.6}The Trial Wave Function}{43}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Many-body Wave Functions}{43}{subsection.3.6.1}
+\contentsline {subsubsection}{Step one in detail}{45}{figure.caption.8}
+\contentsline {subsubsection}{Step two in detail}{45}{equation.3.6.46}
+\contentsline {subsubsection}{Dealing with correlations}{46}{equation.3.6.47}
+\contentsline {subsection}{\numberline {3.6.2}Choice of Trial Wave function}{46}{subsection.3.6.2}
+\contentsline {subsubsection}{Explicit shapes}{47}{equation.3.6.49}
+\contentsline {subsubsection}{Limitations}{48}{equation.3.6.53}
+\contentsline {subsubsection}{Single Determinant Trial Wave function}{48}{equation.3.6.53}
+\contentsline {subsection}{\numberline {3.6.3}Selecting Optimal Variational Parameters}{49}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Calculating Expectation Values}{50}{subsection.3.6.4}
+\contentsline {subsection}{\numberline {3.6.5}Normalization}{51}{subsection.3.6.5}
+\contentsline {section}{\numberline {3.7}Gradient Descent Methods}{51}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}General Gradient Descent}{51}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Stochastic Gradient Descent}{53}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Adaptive Stochastic Gradient Descent}{53}{subsection.3.7.3}
+\contentsline {subsubsection}{Assumptions}{55}{figure.caption.11}
+\contentsline {subsubsection}{Implementation}{55}{figure.caption.11}
+\contentsline {section}{\numberline {3.8}Variational Monte-Carlo}{57}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}Motivating the use of Diffusion Theory}{57}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.2}Implementation}{59}{subsection.3.8.2}
+\contentsline {subsection}{\numberline {3.8.3}Limitations}{59}{subsection.3.8.3}
+\contentsline {section}{\numberline {3.9}Diffusion Monte-Carlo}{60}{section.3.9}
+\contentsline {subsection}{\numberline {3.9.1}Implementation}{60}{subsection.3.9.1}
+\contentsline {subsection}{\numberline {3.9.2}Sampling the Energy}{60}{subsection.3.9.2}
+\contentsline {subsection}{\numberline {3.9.3}Limitations}{61}{subsection.3.9.3}
+\contentsline {subsubsection}{Time Step Errors}{61}{subsection.3.9.3}
+\contentsline {subsubsection}{Selecting the Time-step}{61}{subsection.3.9.3}
+\contentsline {subsection}{\numberline {3.9.4}Fixed node approximation}{63}{subsection.3.9.4}
+\contentsline {section}{\numberline {3.10}Estimating One-body Densities}{63}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}Estimating the Exact Ground State Density}{64}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}Radial Densities}{65}{subsection.3.10.2}
+\contentsline {section}{\numberline {3.11}Estimating the Statistical Error}{66}{section.3.11}
+\contentsline {subsection}{\numberline {3.11.1}The Variance and Standard Deviates}{66}{subsection.3.11.1}
+\contentsline {subsection}{\numberline {3.11.2}The Covariance and correlated samples}{67}{subsection.3.11.2}
+\contentsline {subsection}{\numberline {3.11.3}The Deviate from the Exact Mean}{68}{subsection.3.11.3}
+\contentsline {subsection}{\numberline {3.11.4}Blocking}{69}{subsection.3.11.4}
+\contentsline {subsection}{\numberline {3.11.5}Variance Estimators}{70}{subsection.3.11.5}
+\contentsline {chapter}{\numberline {4}Generalization and Optimization}{73}{chapter.4}
+\contentsline {section}{\numberline {4.1}Underlying Assumptions and Goals}{73}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Assumptions}{73}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Generalization Goals}{74}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Optimization Goals}{74}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Specifics Regarding Generalization}{75}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Generalization Goals \ref {it::gen::FermiAndBoson}-\ref {it::gen::pot}}{75}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Generalization Goal \ref {it::gen::SP_basis} and Expanded bases}{76}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Generalization Goal \ref {it::gen::numSupp}}{77}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Optimizations due to a Single two-level Determinant}{77}{section.4.3}
+\contentsline {section}{\numberline {4.4}Optimizations due to Single-particle Moves}{78}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Optimizing the Slater ratios}{79}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Optimizing the Inverse}{80}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Optimizing the Pad\IeC {\'e} Jastrow factor Ratio}{80}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Optimizing the Pad\IeC {\'e} Jastrow Derivative Ratios}{81}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}The Gradient}{81}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}The Laplacian}{82}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Tabulating Recalculated Data}{83}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}The relative distance matrix}{84}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}The Slater related matrices}{84}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Avoiding spin tests}{85}{subsection.4.6.3}
+\contentsline {subsection}{\numberline {4.6.4}The Pad\IeC {\'e} Jastrow gradient}{85}{subsection.4.6.4}
+\contentsline {subsection}{\numberline {4.6.5}The single-particle Wave Functions}{87}{subsection.4.6.5}
+\contentsline {section}{\numberline {4.7}CPU Cache Optimization}{89}{section.4.7}
+\contentsline {chapter}{\numberline {5}Modeled Systems}{91}{chapter.5}
+\contentsline {section}{\numberline {5.1}Atomic Systems}{91}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}The Single Particle Basis}{91}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Atoms}{93}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Homonuclear Diatomic Molecules}{93}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Quantum Dots}{95}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}The Single Particle Basis}{95}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}2D and 3D Quantum Dots}{96}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Double-well Quantum Dots}{97}{subsection.5.2.3}
+\contentsline {part}{II\hspace {1em}Results}{99}{part.2}
+\contentsline {chapter}{\numberline {6}Results}{101}{chapter.6}
+\contentsline {section}{\numberline {6.1}Optimization Results}{101}{section.6.1}
+\contentsline {subsubsection}{Storing the Slater Matrix}{101}{section.6.1}
+\contentsline {subsubsection}{Optimized Jastrow Gradient}{102}{section.6.1}
+\contentsline {subsubsection}{Storing the Orbital Derivatives}{102}{section.6.1}
+\contentsline {subsubsection}{Storing the Quantum Number Independent Terms}{102}{section.6.1}
+\contentsline {subsubsection}{Overall Optimization}{103}{section.6.1}
+\contentsline {chapter}{Bibliography}{107}{section*.24}
