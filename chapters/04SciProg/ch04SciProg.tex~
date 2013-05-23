@@ -113,7 +113,7 @@ On the other hand, there exist different specific kinds of keyboards, e.g. compu
 The following examples will assume a basic knowledge of programming concepts such as constructors and functions. Consider the following Python implementation of a keyboard superclass
 
 \vspace{0.5cm}
-\lstinputlisting[language=Python]{../CodeInputs/KeyBoardSuper.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/KeyBoardSuper.py}
 
 
 This class does not function on its own, and is clearly an abstract class meant for sub-classing. Potential subclasses are e.g. computer - and musical keyboards. An easy way to visualize this inheritance relation is by drawing an \textit{inheritance diagram} as in figure \ref{fig:UMLkeyboard}. A python implementation of these subclasses are given on the next page. 
@@ -127,7 +127,7 @@ This class does not function on its own, and is clearly an abstract class meant 
 \end{figure}
 
 \clearpage
-\lstinputlisting[language=Python]{../CodeInputs/KeyboardClassPython.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/KeyboardClassPython.py}
 
 It is clear from looking at the superclass that two keyboard are at least different in the way their keys are set up. Not overriding the \verb+setupKeys()+ function would cause the generic superclass constructor to call the function which would raise an exception and close the program. These kinds of superclass member functions which requires an implementation in order for the object to be constructed are referred to as \textit{pure virtual functions}\footnote{We could simply choose not to call the superclass constructor in the given example, however, let's assume for the sake of proving a point that we can't.}. The other two functions does not necessarily have to be implemented, and are thus referred to as \textit{virtual} functions. These topics will be discussed in more detail in the next section.
 
@@ -346,7 +346,7 @@ In this section the focus has not been solely on scientific computing, but rathe
 On the following page, a game is constructed using the \verb+Player+ and \verb+Potion+ classes. 
  
 \clearpage
-\lstinputlisting[language=Python]{../CodeInputs/potionGameMain.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/potionGameMain.py}
 
 \scriptsize
 \begin{verbatim}

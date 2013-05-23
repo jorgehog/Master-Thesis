@@ -284,7 +284,7 @@ Looking at the factors in front of the Laplacian suggests using $g(\mbf{ r}, t) 
 
 In QMC, the drift term is commonly referred to as the \textit{quantum force}, due to the fact that it is responsible for pushing the walkers into regions of higher probabilities, analogous to a force in Newtonian mechanics.
 
-Another strength of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function still has a closed form solution. This means that we can evaluate it efficiently. If this was not the case, the practical value would be reduced dramatically. The reason for this will become clear in Section \ref{sec:MetroMain}. As expected, it is no longer symmetric 
+Another strength of the Fokker-Planck equation is that even though the equation itself is more complicated, it's Green's function still has a closed form solution. This means that it can be evaluated efficiently. If this was not the case, the practical value would be reduced dramatically. The reason for this will become clear in Section \ref{sec:MetroMain}. As expected, it is no longer symmetric 
 
 \cfbox{5mm-7pt}{
 \begin{equation}
@@ -546,7 +546,7 @@ There are some programming challenges due to the fact that the number of walkers
 \label{sec:trialWF}
 
 Recall Eq.~(\ref{eq:projOPonTrial}) and (\ref{eq:schrodGeneralSolution2}). The initial condition, $\Phi(\mathbf{r}, t_0) \equiv \PT$ ,
-is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, we may choose any normalizable wave function, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
+is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, any normalizable wave function can be chosen, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
 
 In other words: The trial wave function should be chosen in such a manner that the overlap is optimized, i.e. close to unity. Since the exact ground state is unknown, this overlap has to be optimized based on educational guesses and by exploiting known requirements put on the exact ground state. This will be the focus in this section.  
 
@@ -555,7 +555,7 @@ Before getting into specifics, a few notes on many-body theory is needed. From t
 \subsection{Many-body Wave Functions}
 \label{sec:manyBodyWFs}
 
-Many-body theory arise from the fact that we have \textit{many-body interactions}, e.g. the Coulomb interaction between two particles. Nature operates with $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, i.e. for non-interacting particles, the full system would decouple into $N$ single particle systems, rendering many-body theory redundant.
+Many-body theory arise from the existence of \textit{many-body interactions}, e.g. the Coulomb interaction between two particles. Nature operates with $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, i.e. for non-interacting particles, the full system would decouple into $N$ single particle systems, rendering many-body theory redundant.
 
 Finding the ground state is, not surprisingly, equivalent to solving the time-independent Schrödinger Equation (Eq.~(\ref{eq:schrodTimeIndie})) for the lowest energy eigenvalue
 
@@ -661,9 +661,9 @@ The permutation operator $\OP{P}$ is simply a way of writing \textit{in any comb
 
 The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are referred to as \textit{correlation} terms. Given that the orbital wave functions are chosen by Eq.~(\ref{eq:orbitalEigenEq}), the existence of the correlation terms, i.e. $C_k' \ne 0$ for $k>0$, follows as a direct consequence of the many-body interaction, $H_\mathrm{I}$, hence the name.
 
-As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if we perform the calculation using the exact wave function, the diverging terms will cancel out; the energy is independent of the position. 
+As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if the calculations are performed using the exact wave function, the diverging terms will cancel out; the energy is independent of the position. 
 
-In other words, incorporating the correct correlated wave function will result in a cancellation in the diverging term as we approach singularities in the many-body interactions, a property of exact ground states which can be enforced upon the approximation to further optimize the overlap. 
+In other words, incorporating the correct correlated wave function will result in a cancellation in the diverging terms as walkers approach regions where the many-body interactions are singular, a property of exact ground states which can be enforced upon the approximation to further optimize the overlap. 
 
 These criteria are called \textit{Cusp Conditions}, and serve as a powerful guide when it comes to selecting a trial wave function. 
 
@@ -711,7 +711,7 @@ For systems where the correlations are relatively well behaving, it is custom to
 
 where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems this thesis.
 
-Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming we have a spin-independent Hamiltonian, we can (in QMC) split the spatial wave function in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. Assuming spin-half particles we get
+Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues can be assumed identical, which allows the spatial wave function to be split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. Assuming spin-half particles yields
 
 \begin{equation}
  \Psi_T(\mathbf{r}; \beta) = \Big[\sum_{k=0}^K C_k'\tilde\Phi_k(\mbf{r}_1, ..., \mbf{r}_{\frac{N}{2}})\tilde\Phi_k(\mbf{r}_{\frac{N}{2}-1}, ..., \mbf{r}_{N})\Big]\prod_{i<j}^Nf(r_{ij}; \beta). \label{eq:splitSlater}
@@ -732,7 +732,7 @@ This shape is referred to as a \textit{Multi-determinant} trial wave function.
 
 Depending on the complexity of the system at hand, more complicated trial wave functions might be needed to obtain reasonable convergence. However, it is important to distinguish between simply integrating a trial wave function, and performing the full diffusion calculation. As a reminder: Simple integration will not be able to alter the distribution; what you have is what you get. Solving the diffusion problem, on the other hand, will alter the distribution from that of the trial wave function ($\tau = 0$) into a distribution closer to the exact wave function by Eq.~(\ref{eq:schrodGeneralSolution2}). 
 
-Because of this fact, limitations due to the trial wave function in full\footnote{``Full'' in the sense that all Green's functions are applied. As will be revealed later, VMC corresponds to a standard importance sampled Monte-Carlo integration by omitting the branching process.} QMC is far less than what is the case of standard Monte-Carlo integration. A more complex trial wave function might convergence faster, but at the expense of being more CPU-intensive. This means that we are in a position to trade CPU-time per walker for convergence time. For systems of many particles, CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time, i.e., the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
+Because of this fact, limitations due to the trial wave function in full\footnote{``Full'' in the sense that all Green's functions are applied. As will be revealed later, VMC corresponds to a standard importance sampled Monte-Carlo integration by omitting the branching process.} QMC is far less than what is the case of standard Monte-Carlo integration. A more complex trial wave function might convergence faster, but at the expense of being more CPU-intensive. This implies that CPU-time per walker can be traded for convergence time. For systems of many particles, CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time, i.e., the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
 
 On the other hand, increasing the number of particles in the system may cause the generic trial wave function to be relatively worse than in the case with fewer particles. This is demonstrated in Ref. \cite{UmrigarMolecules} where calculations for $\mathrm{F}_2$ (18 particles) needs an increase in the number of determinants to achieve a result with the same precision as calculations for $\mathrm{O}_2$ (16 particles).  
 
@@ -840,7 +840,7 @@ where $x_i$ is a random variable taken from distribution of the trial wave funct
 \end{equation}
 
 
-In the case of the energy estimation, this implies that once the walkers reach equilibrium, local values can be sampled based on the walker configurations $\mathbf{r}_i$ (remember that Metropolis ensures that the walkers follow $|\PT|^2$). In the case of energies, we get
+In the case of the energy estimation, this implies that once the walkers reach equilibrium, local values can be sampled based on the walker configurations $\mathbf{r}_i$ (remember that Metropolis ensures that the walkers follow $|\PT|^2$). In the case of energies, the explicit expression becomes
 
 \begin{equation}
  \langle E \rangle \simeq \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
@@ -952,7 +952,7 @@ The step length from Eq.~(\ref{eq:SGD}) is modeled in the following manner in AS
 
 with $f_\mathrm{max} > 0$, $f_\mathrm{min} < 0$, and $\omega > 0$. Free parameters are $a$, $A$ and $t_0$, however, Ref. \cite{ASGD} suggests $A=20$ and $t_0=t_1=A$ for universal usage.
 
-Notice that the step length increase if $t_i$ decrease and vice-versa. A smaller step length is sought for regions close to the minimum. The function $f(x)$ is responsible of altering the step length by changing the trend of $t$. If we are close to the minimum, a smaller step length is sought, and hence $t$ must increase. Being close to the minimum implies that the gradient changes sign frequently. Crossing the minimum with ASGD has the following consequence
+Notice that the step length increase if $t_i$ decrease and vice-versa. A smaller step length is sought for regions close to the minimum. The function $f(x)$ is responsible of altering the step length by changing the trend of $t$. Close to the minimum, a smaller step length is sought, and hence $t$ must increase. Being close to the minimum implies that the gradient changes sign frequently. Crossing the minimum with ASGD has the following consequence
 
 \begin{itemize}
  \item Eq.~(\ref{eq:ASGD_X_i}): The value of $X_i$ will be positive.
@@ -1001,7 +1001,7 @@ A flow chart of the implementation is given in Fig. \ref{fig:ASGD_flow}. For spe
  \begin{center}
   \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_paramGrad_ex.png}}
   \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_step_ex.png}} 
-  \caption{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time step. The left figure shows the evolution of the variational parameters $\alpha$ and $\beta$ introduced in Section \ref{sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are cycle averaged to reveal the pattern underlying the noise. We clearly see that they tend to zero, $\beta$ somewhat before $\alpha$. The step rushes to zero; we get a small rebound in the step after forcing it zero as it attempts to cross to negative values.}
+  \caption{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time step. The left figure shows the evolution of the variational parameters $\alpha$ and $\beta$ introduced in Section \ref{sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta$ somewhat before $\alpha$. The step rushes to zero with a small rebound in  as it attempts to cross to negative values.}
   \label{fig:ASGD_Ex}
  \end{center}
 \end{figure}
@@ -1325,7 +1325,7 @@ It was briefly mentioned in the introduction that certain error estimation techn
             &=& \Exp{xy} - \Exp{x}\Exp{y}.
 \end{eqnarray}
 
-Notice that $\Cov(x,x) = \Var(x)$. Using this definition, whether or not we have correlated samples boils down to whether or not $\Exp{xy} = \Exp{x}\Exp{y}$. 
+Notice that $\Cov(x,x) = \Var(x)$. Using this definition, whether or not the samples are correlated boils down to whether or not $\Exp{xy} = \Exp{x}\Exp{y}$. 
 
 The consequence of ignoring the correlations is a resulting error estimate which is generally less than the true error; correlated samplings are more clustered, i.e. less spread, due to previous samplings' influence on the value of the current sample\footnote{Samples in QMC is obviously correlated due to the nature of the Langevin equation (difference equation).}. Denoting the true standard deviation as $\sigma_c$, the above discussion can be distilled to
 

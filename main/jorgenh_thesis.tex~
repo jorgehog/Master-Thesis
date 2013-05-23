@@ -76,7 +76,7 @@
 % \input{../chapters/04SciProg/ch04SciProg.tex}
 % \input{../chapters/05Manybody/ch05Manybody.tex}
 \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
-% \input{../chapters/ModeledSystems/ModeledSystems.tex}
+\input{../chapters/ModeledSystems/ModeledSystems.tex}
 
 \part{Results}
 %% \input{../chapters/07ImpVal/ImpVal.tex}
@@ -90,9 +90,9 @@
 \input{../chapters/appendix/appendixDirac.tex}
 \input{../chapters/appendix/appendixViz.tex}
 \input{../chapters/appendix/appendixSympy.tex}
-% \input{../chapters/appendix/HarmonicOscillator.tex}
-% \input{../chapters/appendix/3DHO.tex}
-% \input{../chapters/appendix/hydrogenic.tex}
+\input{../chapters/appendix/HarmonicOscillator.tex}
+\input{../chapters/appendix/3DHO.tex}
+\input{../chapters/appendix/hydrogenic.tex}
 %%% \input{../chapters/appendix/appendixMatrix.tex}
 
 \clearpage
