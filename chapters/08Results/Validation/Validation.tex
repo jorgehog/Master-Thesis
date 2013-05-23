@@ -1,76 +1,54 @@
-\section{Validating the code}
+\section{The Non-interacting Case}
 
-\subsection{Calculation for non-interacting particles}
+For non-interacting particles, disabeling the Jastrow factor and forcing $\alpha=1$ provides the exact wave function for both quantum dots and atoms. In the case of molecules and the double-well, the additional requirement that $R\to\infty$ should also be applied. This serves as a powerful guide, since results can be benchmarked against exact solutions. In the non-interacting case, the minimization should always yield $\alpha=1$.
 
-For non-interacting particles in a Quantum Dot, no Jastrow factor and $\alpha=1$ provides the exact wave function. This serves as a powerful guide, since results can be benchmarked against exact solutions. In the non-interacting case, the minimization should always yield $\alpha=1$.
+The minimization method should seek an $\alpha$ close to one, where the variational derivative should be zero. The obtained energies should obey Eq.~(\ref{eq:qdotsE0}) in the case of quantum dots and Eq.~(\ref{eq:atomsE0}) in the case of atomic systems. In Table \ref{tab:res_valid_qdots}, validation runs for the three lowest closed-shell quantum dots are run for both two and three dimensions. Figure \ref{fig:ASGD_nonint} shows the ASGD method finding the minima. Table \ref{tab:res_valid_atoms} shows similar results for atoms.
 
-Let $R$ denote the highest filled \textit{shell}, i.e. the maximum value of $n_x + n_y$, $N_j$ be the number of particles in a given shell ($1\le j\le R$), $\chi$ be the spin levels and $\epsilon_i = i\omega$, where $i=n_x + n_y$, is the single particle energy at shell level $i$. Then the non-interacting energy of a closed shell Quantum Dot is
+The DMC method in case of an exact wave function should do nothing. The trial energy should equal the ground state energy through all time steps and zero fluctuations in the number of walkers should occur. This trend is shown for Neon in Fig. \ref{fig:DMC_neon_nonint}.
 
-\begin{align}
- E_0 &= \sum_\chi\sum_{i=1}^R\sum_{j=1}^{N_i} \epsilon_i \\
-     &= 2\sum_{i=1}^R N_i i \omega 
-\end{align}
+A final non-interacting case to run is the case of DMC without the exact wave function. As discussed in Chapter \ref{ch:QMC}, DMC should result in a better estimate of the ground state energy than VMC in case of a trial wave function different from the exact grouns state. A test-case is presented in Fig. \ref{fig:DMC_nonExactWF}.
 
-Realizing that (not counting spin) $N_i = i$ for a Quantum Dot, we get
-
-\begin{align}
- E_0 &= 2\omega\sum_{i=1}^R i^2 \\
-     &= 2\omega \left(\frac{1}{6}R(R+1)(2R + 1)\right) \\
-     &= \frac{R}{3}(R + 1)(2R + 1)\omega
-\end{align}
-
-which tabulated for the lowest lying shells yields
-
+\setlength{\tabcolsep}{0.3cm}
+\begin{table}[h]
 \begin{center}
- \begin{tabular}{cc|c}
- R & N  & $E_0/\omega$ \\
- \hline
- 1 & 2  & 2  \\
- 2 & 6  & 10 \\
- 3 & 12 & 28 \\
- 4 & 20 & 60 \\
- 5 & 30 & 110\\
- 6 & 42 & 182\\
- \end{tabular}
-\end{center}
-
-The first step to validating the code would be to reproduce these exact results. The minimization method should seek an $\alpha$ close to one, where the variational derivative should be zero. In Table \ref{tab:res_valid_qdots}, validation runs for the three lowest shells are run. Figure \ref{fig:ASGD_nonint} shows the ASGD method finding the minima.
-
-
-\begin{table}
-\begin{center}
-\begin{tabular}{cc|cccc}
-    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $E_0$ \\
+\begin{tabular}{c|cccccc||cccccc}
+ & & & 2D & & & & & & & 3D \\
 \hline
-    2     &   0.5    &   1.0    &   1.0    &   1.0    & 1 \\
-          &   1.0    &   2.0    &   2.0    &   1.0    & 2 \\
-    6     &   0.5    &   5.0    &   5.0    &   1.0    & 5 \\
-          &   1.0    &   10.0   &   10.0   &   1.0    & 10 \\
-    12    &   0.5    &   14.0   &   14.0   &   1.0    & 14 \\
-          &   1.0    &   28.0   &   28.0   &   1.0    & 28 \\
+  $\omega$   & N & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $E_0$ & \qquad  & \qquad &  N   & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $E_0$ \\
+\hline
+ 0.5 &   2   &   1.0    &   1.0    &   1.0    & 1  & \qquad & \qquad & 2     &   3.0   &   3.0    &   1.0    & 3 \\
+ 1.0 &       &   2.0    &   2.0    &   1.0    & 2  & \qquad & \qquad &       &   1.5   &   1.5    &   1.0    & 1.5 \\
+ 0.5 &   6   &   5.0    &   5.0    &   1.0    & 5  & \qquad & \qquad &  8    &   18.0  &   18.0   &   1.0    & 18 \\
+ 1.0 &       &   10.0   &   10.0   &   1.0    & 10 & \qquad & \qquad &       &  9.0    &   9.0    &   1.0    & 9 \\
+ 0.5 &   12  &   14.0   &   14.0   &   1.0    & 14 & \qquad & \qquad & 20    &  60.0   &   60.0   &   1.0    & 60 \\
+ 1.0 &       &   28.0   &   28.0   &   1.0    & 28 & \qquad & \qquad &       &  30.0   &   30.0   &   1.0    & 30 \\
 \end{tabular}
-\caption{Validation results for Quantum Dots generated using 2000 to 3000 ASGD cycles starting from $\alpha=0.5$. The sampled variance from DMC and VMC is of order $10^{-16}$ (non-zero due to small deviations in $\alpha$ from unity). The last column lists the exact energies. As required we have an exact match (to machine precision). Hard coding $\alpha=1.0$ will yield zero variance.}
+\caption{Validation results for quantum dots. The last column of each dimensions region lists the exact energies calculated from Eq.~(\ref{eq:qdotsE0}). }
 \label{tab:res_valid_qdots}
 \end{center}
 \end{table}
+\setlength{\tabcolsep}{6pt}
 
+\setlength{\tabcolsep}{0.7cm}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{cc|cccc}
+  $\omega$   & N & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $\alpha$ & $E_0(R\to\infty)$ \\
+\hline
+  0.5  &       &   4.0   & 4.0   &   1.0    & 4   \\
+  1    &   4   &   2.0   & 2.0   &   1.0    & 2   \\
+  0.5  &       &   20.0  & 20.0  &   1.0    & 20  \\
+  1    &   12  &   10.0  & 10.0  &   1.0    & 10  \\
+  0.5  &       &   28.0  & 28.0  &   1.0    & 28   \\
+  1    &   24  &   56.0  & 56.0  &   1.0    & 56   \\
+\end{tabular}
+\caption{Validation results for double-well quantum dots. The exact energy is listed in the last column. The calculations are performed with the wells separated at a distance $R=20$.}
+\label{tab:res_valid_qdots_doublewell}
+\end{center}
+\end{table}
+\setlength{\tabcolsep}{6pt}
 
-\begin{figure}
- \begin{center}
-  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint_E.png}}
-  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint.png}} 
-  \caption{ASGD results for a non-interaction two-particle Quantum Dot with $\omega=0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha$ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref{sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.}
-  \label{fig:ASGD_nonint}
- \end{center}
-\end{figure}
-
-Similar validation can be done for atoms, and is listed in Table \ref{tab:res_valid_atoms}. The non-interaction energy is given by the following expression
-
-\begin{equation}
- E_0 = -\frac{N^2}{2}\sum_{i=1}^N \frac{1}{n_i^2}
-\end{equation}
-
-
+\setlength{\tabcolsep}{1cm}
 \begin{table}
 \begin{center}
 \begin{tabular}{c|cccc}
@@ -80,14 +58,47 @@ Similar validation can be done for atoms, and is listed in Table \ref{tab:res_va
     4     &  -20.0   &  -20.0   &   1.0  & -20 \\
     10    &  -200.0  &  -200.0  &   1.0  & -200\\
 \end{tabular}
-\caption{Validation results for Atoms generated in a similar way to the Quantum Dots results in Table \ref{tab:res_valid_qdots}.}
+\caption{Validation results for Atoms. The exact energies $E_0$ are calculated from Eq.~(\ref{eq:atomsE0}).}
 \label{tab:res_valid_atoms}
 \end{center}
 \end{table}
+\setlength{\tabcolsep}{6pt}
 
-The DMC method in case of an exact wave function should do nothing. The trial energy should equal the ground state energy through all time steps and zero fluctuations in the number of walkers should occur. This trend is shown for Neon in Fig. \ref{fig:DMC_neon_nonint}.
+\setlength{\tabcolsep}{0.8cm}
+\begin{table}
+\begin{center}
+\begin{tabular}{c|cccc}
+    N     & $R$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_0(R\to\infty)$\\
+\hline
+    4     & 10  &   -8.403     &  -8.398    & -8  \\
+          & 100 &   -8.085     &  -8.067    &     \\
+          & 325 &   -8.032     &  -8.030    &     \\
+    8     & 10  &  -41.596     &  -41.608   & -40 \\
+          & 100 &  -40.298     &  -40.231   &     \\
+          & 325 &  -40.123     &  -40.112   &     \\
+    20    & 10  &  -409.999    &  -410.010  & -400\\
+          & 100 &  -401.390    &  -401.049  &     \\
+          & 325 &  -           &  -         &     \\
+\end{tabular}
+\caption{Validation results for Molecules. The last column lists the exact energies calculated from Eq.~(\ref{eq:atomsE0}). The energies converge to the exact energies, however, slower than the double well. Setting $R$ too high results in a singular slater determinant due to finite machine precision.}
+\label{tab:res_valid_molecules}
+\end{center}
+\end{table}
+\setlength{\tabcolsep}{6pt}
 
-\begin{figure}
+
+\begin{figure}[h]
+ \begin{center}
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint_E.png}}
+  \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_nonint.png}} 
+  \caption{ASGD results for a non-interaction two-particle Quantum Dot with $\omega=0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha$ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref{sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.}
+  \label{fig:ASGD_nonint}
+ \end{center}
+\end{figure}
+
+
+
+\begin{figure}[h]
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/DMC_neon_valid.png}
   \caption{DMC convergence for the Neon result listed in Table \ref{tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.}
@@ -95,9 +106,7 @@ The DMC method in case of an exact wave function should do nothing. The trial en
  \end{center}
 \end{figure}
 
-A final non-interacting case to run is the case of DMC without the exact wave function. As discussed in Chapter \ref{ch:QMC}, DMC should result in a better estimate of the ground state energy than VMC in case of a trial wave function different from the exact grouns state. A test-case is presented in Fig. \ref{fig:DMC_nonExactWF}.
-
-\begin{figure}
+\begin{figure}[h]
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/DMC_notExactWF.png}
   \caption{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega=1$. Calculations are done with $\alpha=0.75$, where the exact wave function is given for $\alpha=1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.}

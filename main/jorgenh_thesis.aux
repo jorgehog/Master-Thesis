@@ -361,6 +361,7 @@
 \newlabel{eq:AtomNonIntEnergy}{{5.5}{92}{The Single Particle Basis\relax }{equation.5.1.5}{}}
 \newlabel{eq:hydrogenBasisReal}{{5.8}{93}{The Single Particle Basis\relax }{equation.5.1.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Atoms}{93}{subsection.5.1.2}}
+\newlabel{eq:atomsE0}{{5.11}{93}{Atoms\relax }{equation.5.1.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Homonuclear Diatomic Molecules}{93}{subsection.5.1.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The model for the diatomic molecule used in this thesis. An electron at position $\mathbf  {r}_i$ gets a potential energy contribution from both the cores equal to $Z/|\mathbf  {r}_i + \mathbf  {R}/2|$ and $Z/|\mathbf  {r}_i - \mathbf  {R}/2|$, where Z is the charge of the nuclei (homonuclear).\relax }}{94}{figure.caption.21}}
 \newlabel{fig:dimolecules}{{5.2}{94}{The model for the diatomic molecule used in this thesis. An electron at position $\mathbf {r}_i$ gets a potential energy contribution from both the cores equal to $Z/|\mathbf {r}_i + \mathbf {R}/2|$ and $Z/|\mathbf {r}_i - \mathbf {R}/2|$, where Z is the charge of the nuclei (homonuclear).\relax \relax }{figure.caption.21}{}}
@@ -374,6 +375,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}2D and 3D Quantum Dots}{96}{subsection.5.2.2}}
 \citation{doubleWellExpt}
 \citation{ymwang}
+\newlabel{eq:qdotsE0}{{5.25}{97}{2D and 3D Quantum Dots\relax }{equation.5.2.25}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Double-well Quantum Dots}{97}{subsection.5.2.3}}
 \newlabel{eq:VextDoubleWell}{{5.26}{97}{Double-well Quantum Dots\relax }{equation.5.2.26}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces The external potential for a double-well quantum dot from Eq.~(\ref  {eq:VextDoubleWell})\relax }}{98}{figure.caption.23}}
@@ -382,12 +384,21 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{101}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Optimization Results}{101}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Storing the Slater Matrix}{101}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Optimized Jastrow Gradient}{102}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Storing the Orbital Derivatives}{102}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Storing the Quantum Number Independent Terms}{102}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Overall Optimization}{103}{section.6.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}The Non-interacting Case}{101}{section.6.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Validation results for quantum dots. The last column of each dimensions region lists the exact energies calculated from Eq.~(\ref  {eq:qdotsE0}). \relax }}{101}{table.caption.24}}
+\newlabel{tab:res_valid_qdots}{{6.1}{101}{Validation results for quantum dots. The last column of each dimensions region lists the exact energies calculated from Eq.~(\ref {eq:qdotsE0}). \relax \relax }{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Validation results for double-well quantum dots. The exact energy is listed in the last column. The calculations are performed with the wells separated at a distance $R=20$.\relax }}{102}{table.caption.25}}
+\newlabel{tab:res_valid_qdots_doublewell}{{6.2}{102}{Validation results for double-well quantum dots. The exact energy is listed in the last column. The calculations are performed with the wells separated at a distance $R=20$.\relax \relax }{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Validation results for Atoms. The exact energies $E_0$ are calculated from Eq.~(\ref  {eq:atomsE0}).\relax }}{102}{table.caption.26}}
+\newlabel{tab:res_valid_atoms}{{6.3}{102}{Validation results for Atoms. The exact energies $E_0$ are calculated from Eq.~(\ref {eq:atomsE0}).\relax \relax }{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Validation results for Molecules. The last column lists the exact energies calculated from Eq.~(\ref  {eq:atomsE0}). The energies converge to the exact energies, however, slower than the double well. Setting $R$ too high results in a singular slater determinant due to finite machine precision.\relax }}{102}{table.caption.27}}
+\newlabel{tab:res_valid_molecules}{{6.4}{102}{Validation results for Molecules. The last column lists the exact energies calculated from Eq.~(\ref {eq:atomsE0}). The energies converge to the exact energies, however, slower than the double well. Setting $R$ too high results in a singular slater determinant due to finite machine precision.\relax \relax }{table.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref  {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax }}{102}{figure.caption.28}}
+\newlabel{fig:ASGD_nonint}{{6.1}{102}{ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax \relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces DMC convergence for the Neon result listed in Table \ref  {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax }}{103}{figure.caption.29}}
+\newlabel{fig:DMC_neon_nonint}{{6.2}{103}{DMC convergence for the Neon result listed in Table \ref {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax \relax }{figure.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax }}{103}{figure.caption.30}}
+\newlabel{fig:DMC_nonExactWF}{{6.3}{103}{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax \relax }{figure.caption.30}{}}
 \bibstyle{IEEEtran}
 \bibdata{../bibtex/bibtex.bib}
 \bibcite{supermen}{1}
@@ -401,7 +412,7 @@
 \bibcite{Gardiner:2004bk}{9}
 \bibcite{risken1989fpe}{10}
 \bibcite{langevin}{11}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{107}{section*.24}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{107}{section*.31}}
 \bibcite{morten}{12}
 \bibcite{Sakurai:94}{13}
 \bibcite{Shavitt}{14}

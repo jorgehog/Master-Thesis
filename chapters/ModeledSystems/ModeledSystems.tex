@@ -92,7 +92,7 @@ An atom is described as $N$ electrons surrounding a fixed nucleus of charge $Z=N
 where $r_ij = |\mathbf{r}_i -\mathbf{r}_j|$. Excluding the Coulomb term, the Hamiltonian can be decoupled into single particle terms with a total ground state energy
 
 \begin{equation}
- E_0 = -\frac{Z^2}{2}\sum_{i=1}^N \frac{1}{n_i^2}.
+ E_0 = -\frac{Z^2}{2}\sum_{i=1}^N \frac{1}{n_i^2}. \label{eq:atomsE0}
 \end{equation}
 
 The Slater determinant is set up to fill the $N$ lowest lying states, that is, the $N$ states with lowest $n$ without breaking the Pauli principle, using the single particle orbitals from Eq.~(\ref{eq:hydrogenBasisReal}). The degeneracy of level $n$ in an atom is $g(n) = 2n^2$.
@@ -203,7 +203,7 @@ A quantum dot is described as $N$ electrons confined in an oscillator potential 
 where $r_{ij} = |\mathbf{r}_i -\mathbf{r}_j|$. Excluding the Coulomb term, the Hamiltonian can be decoupled into single particle terms with a total ground state energy
 
 \begin{equation}
- E_0 = \omega\sum_{i=1}^N \left(n_i + \frac{d}{2}\right),
+ E_0 = \omega\sum_{i=1}^N \left(n_i + \frac{d}{2}\right), \label{eq:qdotsE0}
 \end{equation}
 
 where $d$ is the number of dimensions, $n_i = n_x + n_y + n_z \ge 0$ for three dimensions and $n_i = n_x + n_y \ge 0$ for two dimensions. The degeneracy of level $n$ in a quantum dot is $g(n) = 2n$ for two dimensions and $g(n) = (n+2)(n+1)$ for three dimensions.

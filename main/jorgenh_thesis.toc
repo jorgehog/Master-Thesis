@@ -108,10 +108,5 @@
 \contentsline {subsection}{\numberline {5.2.3}Double-well Quantum Dots}{97}{subsection.5.2.3}
 \contentsline {part}{II\hspace {1em}Results}{99}{part.2}
 \contentsline {chapter}{\numberline {6}Results}{101}{chapter.6}
-\contentsline {section}{\numberline {6.1}Optimization Results}{101}{section.6.1}
-\contentsline {subsubsection}{Storing the Slater Matrix}{101}{section.6.1}
-\contentsline {subsubsection}{Optimized Jastrow Gradient}{102}{section.6.1}
-\contentsline {subsubsection}{Storing the Orbital Derivatives}{102}{section.6.1}
-\contentsline {subsubsection}{Storing the Quantum Number Independent Terms}{102}{section.6.1}
-\contentsline {subsubsection}{Overall Optimization}{103}{section.6.1}
-\contentsline {chapter}{Bibliography}{107}{section*.24}
+\contentsline {section}{\numberline {6.1}The Non-interacting Case}{101}{section.6.1}
+\contentsline {chapter}{Bibliography}{107}{section*.31}

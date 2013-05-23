@@ -203,7 +203,7 @@ A quantum dot is described as $N$ electrons confined in an oscillator potential 
 where $r_{ij} = |\mathbf{r}_i -\mathbf{r}_j|$. Excluding the Coulomb term, the Hamiltonian can be decoupled into single particle terms with a total ground state energy
 
 \begin{equation}
- E_0 = \omega\sum_{i=1}^N \left(n_i + \frac{d}{2}\right),
+ E_0 = \omega\sum_{i=1}^N \left(n_i + \frac{d}{2}\right), \label{eq:qdotsE0}
 \end{equation}
 
 where $d$ is the number of dimensions, $n_i = n_x + n_y + n_z \ge 0$ for three dimensions and $n_i = n_x + n_y \ge 0$ for two dimensions. The degeneracy of level $n$ in a quantum dot is $g(n) = 2n$ for two dimensions and $g(n) = (n+2)(n+1)$ for three dimensions.
@@ -244,5 +244,5 @@ which can be simplified to fit the standard form of the previous Hamiltonians by
 
 The eigenstates are as for the homonuclear diatomic molecules given as positive and negative superpositions of the standard harmonic oscillator eigenstates (see Eq.~(\ref{eq:moleculeTransPlus} and (\ref{eq:moleculeTransMin})). Just like shown for molecules in Eq.~(\ref{eq:MoleculeWorksWithOldFunctions}), the closed form expressions for the single-well quantum dot can be reused in the case of a double-well as well. 
 
-The degeneracy of the $n$'th level is $g(n) = 4n$. The non-interacting single particle energies are identical to those of the single-well in the limit $R\to0$ (single-well) and $R\to\infty$ (two decoupled single-wells).
+The degeneracy of the $n$'th level is $g(n) = 4n$. The non-interacting single particle energies are identical to those of the single-well in the limit $R\to\infty$ (two decoupled single-wells).
 

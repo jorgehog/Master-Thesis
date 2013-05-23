@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  23 MAY 2013 20:29
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  23 MAY 2013 23:02
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1100,16 +1100,40 @@ oubleWell.png>] [99
 
 ] [100] (../chapters/08Results/ch08Results.tex
 Chapter 6.
-(../chapters/08Results/Optimization/Optimization.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(../chapters/08Results/Validation/Validation.tex
 
- [101
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<../Graphics/ASGD_nonint_E.png, id=2329, 586.8324pt x 442.2924pt>
+File: ../Graphics/ASGD_nonint_E.png Graphic file (type png)
 
- [102]))
-[103] [104
+<use ../Graphics/ASGD_nonint_E.png>
+<../Graphics/ASGD_nonint.png, id=2330, 586.8324pt x 442.2924pt>
+File: ../Graphics/ASGD_nonint.png Graphic file (type png)
+
+<use ../Graphics/ASGD_nonint.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../Graphics/DMC_neon_valid.png, id=2333, 586.8324pt x 442.2924pt>
+File: ../Graphics/DMC_neon_valid.png Graphic file (type png)
+
+<use ../Graphics/DMC_neon_valid.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../Graphics/DMC_notExactWF.png, id=2336, 586.8324pt x 442.2924pt>
+File: ../Graphics/DMC_notExactWF.png Graphic file (type png)
+
+<use ../Graphics/DMC_notExactWF.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)) [101
+
+] [102 <../Graphics/ASGD_nonint_E.png> <../Graphics/ASGD_nonint.png>]
+[103 <../Graphics/DMC_neon_valid.png> <../Graphics/DMC_notExactWF.png>]
+[104
 
 
 ] [105] [106] (./jorgenh_thesis.bbl
@@ -1149,10 +1173,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 11547 strings out of 493848
- 165826 string characters out of 1152823
+ 11586 strings out of 493848
+ 166765 string characters out of 1152823
  531243 words of memory out of 3000000
- 13512 multiletter control sequences out of 15000+50000
+ 13538 multiletter control sequences out of 15000+50000
  15211 words of font info for 58 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,17n,58p,1030b,1816s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1176,9 +1200,9 @@ onts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
 i8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texm
 f-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (109 pages, 1662629 bytes).
+Output written on jorgenh_thesis.pdf (109 pages, 1834279 bytes).
 PDF statistics:
- 2661 PDF objects out of 2984 (max. 8388607)
- 1009 named destinations out of 1200 (max. 500000)
- 873 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2691 PDF objects out of 2984 (max. 8388607)
+ 1018 named destinations out of 1200 (max. 500000)
+ 893 words of extra memory for PDF output out of 10000 (max. 10000000)
 
