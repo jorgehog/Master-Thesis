@@ -182,10 +182,11 @@ The superclass \verb+orbitalsGenerator+ aims to serve as a interface with the QM
 
 The following methods are user-implemented functions used to calculate the expressions which are in turn automagically converted to Latex code. Once they are implemented, the following code can be executed in order to create the latex output
 
+\vspace{0.25cm}
 \begin{lstlisting}[language=Python]
-   orbitalSet = HO_3D.HOOrbitals3D(N=40) #Creating a 3D harm. osc. object
-   orbitalSet.closedFormify() 
-   orbitalSet.TeXToFile(outPath)
+orbitalSet = HO_3D.HOOrbitals3D(N=40) #Creating a 3D harm. osc. object
+orbitalSet.closedFormify() 
+orbitalSet.TeXToFile(outPath)
 \end{lstlisting}
 
 \subsubsection{The constructor}
@@ -253,7 +254,16 @@ This method is invoked by calling \verb+str(obj)+ on an arbitrary Python object 
 
 \subsection{Generating C++ code}
 
-A class \verb+CPPbasis+ is constructed to supplement the orbitals generator class. This objects holds the raw shell of the C++ constructors and implementations. After the functions described in this section are implemented, the following code can be executed to generate the C++ files   
+A class \verb+CPPbasis+ is constructed to supplement the orbitals generator class. This objects holds the empty shells of the C++ constructors and implementations. After the functions described in this section are implemented, the following code can be executed to generate the C++ files
+
+\vspace{0.25cm}
+\begin{lstlisting}[language=Python]
+orbitalSet = HO_3D.HOOrbitals3D(N=40) #Creating a 3D harm. osc. object
+orbitalSet.closedFormify() 
+orbitalSet.TeXToFile(outPath)
+orbitalSet.CPPToFile(outPath)
+\end{lstlisting}
+
 
 \subsubsection{initCPPbasis}
 
@@ -281,27 +291,88 @@ def initCPPbasis(self):
                              'double y2') 
 \end{lstlisting}
 
-\subsubsection{getCPre}
+\subsubsection{getCPre and getCreturn}
+
+The empty shell of the \verb+BasisFunctions::eval+ functions in the \verb+CPPbasis+ class are
+
+\vspace{0.5cm}
+\begin{lstlisting}[otherkeywords={self}]
+self.evalShell = """
+double __name__::eval(const Walker* walker, int i) {
+
+__necessities__
+    
+    //__simpleExpr__
+    
+__preCalc__
+    return __return__
+    
+}
+"""
+\end{lstlisting}
+
+where \verb+__preCalc__+ is a generated C++ expression returned from \verb+getCpre()+, and \verb+__return__+ is the returned C++ expression from \verb+getCreturn()+. The commented \verb+__simpleExpr__+ will be replaced by the expression in nicely formatted SymPy output code. \verb+__necessities__+ is automatically detected by the script, and represents the Cartesian variable expressions needed by the expressions.
+
+The functions take a SymPy generated expression on input, i.e. an orbital, gradient or Laplacian, and the corresponding index of the expression $i$. The reason these functions are split into a precalculation and a return expression is purely cosmetic, however, looking back to Section \ref{sec:optSPWFqnumIndie}, the single particle orbital expressions often share certain quantum number independent factors, which are available as pointer references in the \verb+BasisFunctions+ class (see \verb+initCPPbasis+), leaving the splitting quite intuitive. To demonstrate this, consider the following example output for the hydrogen-like wave functions
+
+\vspace{0.5cm}
+\begin{lstlisting}
+double dell_hydrogenic_9_y::eval(const Walker* walker, int i) {
+
+    y = walker->r(i, 1);
+    z = walker->r(i, 2);
+
+    z2 = z*z;
+    
+    //-y*(k*(-r^2 + 3*z^2) + 6*r)*exp(-k*r/3)/(3*r)
+    
+    psi = -y*((*k)*(-walker->get_r_i2(i) + 3*z2) + 6*walker->get_r_i(i))/(3*walker->get_r_i(i));
+    return psi*(*exp_factor);
+    
+}
+\end{lstlisting}
+
+The \verb+*exp_factor+ is the precalculated $n=3$ exponential which is then simply multiplied by the non-exponential terms. The commented line gives a clean insight to what expression the function represents, and all the required Cartesian components are retrieved prior to the evaluation.
+
+The full implementation of \verb+getCpre()+ and \verb+getCreturn()+ for the hydrogen-like wave functions are given below
+
+\vspace{0.5cm}
+\begin{lstlisting}[language=Python, otherkeywords={self}]
+def getCReturn(self, expr, i):
+     return "psi*(*exp_factor);" 
+     
+def getCPre(self, expr, i):
+     qNums = self.stateMap[i]
+     return "    psi = %s;" % printing.ccode(expr/self.genericFactor(qNums))
+\end{lstlisting}
 
 
 
-\subsubsection{}
+\subsubsection{makeOrbConstArg}
 
-\begin{small}
-\begin{tabular}{ll}
+The way \verb+BasisFunctions+ are loaded into the \verb+Orbitals+ object is rather dull, and is not designed to be done manually. The function \verb+makeOrbConstArg+ is designed to automate this process. This is best demonstrated by an example: Consider the following constructor of the hydrogen-like wave function's orbital class
 
-\verb+getCPre+		& Given an expression and a its index $i$ as input, set up the C++ pre-return calculation. \\
-			& E.g. \verb+H = printing.ccode(expr/self.genericFactor(i));+ \\
-			&\\
-\verb+getCreturn+	& Given an expression and a its index $i$ as input, set up the C++ return value. \\
-			& E.g. \verb+return H*(*exp_factor);+\\
-			&\\
-			&\\
-\verb+makeOrbConstArg+	& Used to set up the constructor input in the generated \verb+Orbitals+ constructor.\\
-			& Defaults to sending names equal to those used in the declaration, however, in e.g. the \\
-			& case of hydrogenic orbitals, different basis functions need different exponential factors. \\
-			& See \verb+hydrogenic.py+ for an example.
-\end{tabular}
-\end{small}
+\vspace{0.5cm}
+\begin{lstlisting}
+basis_functions[0] = new hydrogenic_0(k, k2, exp_factor_n1);
+basis_functions[1] = new hydrogenic_1(k, k2, exp_factor_n2);
+//...
+basis_functions[5] = new hydrogenic_5(k, k2, exp_factor_n3);
+//..
+basis_functions[14] = new hydrogenic_14(k, k2, exp_factor_n4);
+//..
+basis_functions[17] = new hydrogenic_17(k, k2, exp_factor_n4);
+\end{lstlisting}
+
+The same procedure are applied to the gradients and the Laplacians as well, leaving a total of 90 sequential initializations. Doing this automatic is extremely simple:
+
+\vspace{0.5cm}
+\begin{lstlisting}[language=Python, otherkeywords={self}]
+def makeOrbConstArgs(self, args, i):
+    n = self.stateMap[i][0]
+    args = args.replace('exp_factor', 'exp_factor_n%d' % n)
+    return args
+\end{lstlisting}
+
 
 Implementing these functions will generate a Latex file listing the calculated expressions (see Appendix \ref{appendix:SymPyHO} and \ref{appendix:SymPyHydro}), the constructor needed by the \verb+Orbitals+ subclass holding the generated orbitals and C++ header and source files containing the \verb+BasisFunctions+ implementation. In the code used in this thesis, 8975 lines of C++ code was auto-generated using SymPy (not counting blank lines).

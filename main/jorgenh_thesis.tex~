@@ -74,8 +74,8 @@
 % \input{../chapters/03intro/ch03intro.tex}
 \part{Theory}
 % \input{../chapters/04SciProg/ch04SciProg.tex}
-\input{../chapters/05Manybody/ch05Manybody.tex}
-% \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
+% \input{../chapters/05Manybody/ch05Manybody.tex}
+\input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
 % \input{../chapters/ModeledSystems/ModeledSystems.tex}
 
 \part{Results}

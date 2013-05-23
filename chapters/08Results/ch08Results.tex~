@@ -533,4 +533,26 @@ Kr & \qquad & -2700(5) & \qquad -2749.9(2) & \qquad $-2752.05498^\mathrm{b}$ & \
  
  
  
+\section{Results for 3D QDots}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{rl|rrrrrr}
+    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_\mathrm{ref}^{(a)}$\\
+\hline\hline
+\multicolumn{8}{c}{} \\
+    2     &   0.01   &   &    & -		\\
+          &   0.1    &   &    & - 		\\
+          &   0.28   &   &    & -		\\
+          &   0.5    &   & 2.000001(3)  & 2.0 \\
+          &   1.0    &   &   & \\
+\cline{2-5}
+\multicolumn{5}{c}{} \\
+\hline\hline
+\end{tabular}
+\caption{Results for Quantum Dots with fixed node approximation calculated on the cluster Abel using $10^8$ VMC cycles, $64000$ walkers, with $2000$ DMC cycles on 128 cores. Ref: $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $b$: S. Reimann \cite{Sarah} (SRG), $c$: C. Hirth \cite{Hirth} (CCSD), $d$: V. K. B. Olsen \cite{Olsen} (FCI). The numbers inside curly brackets denote the number of shells used above \textit{Fermi-level} to contruct the basis for the calculation.}
+\label{tab:QDotsResults3D}
+\end{center}
+\end{table}
+
 
