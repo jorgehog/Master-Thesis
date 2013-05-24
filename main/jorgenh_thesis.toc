@@ -127,4 +127,4 @@
 \contentsline {subsection}{\numberline {6.4.3}Alkaline Earth Metals}{121}{subsection.6.4.3}
 \contentsline {section}{\numberline {6.5}Molecules}{123}{section.6.5}
 \contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{123}{subsection.6.5.1}
-\contentsline {chapter}{Bibliography}{127}{section*.44}
+\contentsline {chapter}{Bibliography}{129}{section*.45}

@@ -1,13 +1,16 @@
 \chapter{Results}
 
-% \input{../chapters/08Results/Optimization/Optimization.tex}
-% \clearpage
+The results were produced using atomic units, i.e $\hbar=e=m_e=4\pi\epsilon_0 = 1$, where $m_e$ and $e_0$ is the electron mass and vacuum permittivity respectively. This implies that all listed energies are given in Hartrees, i.e. scaled with $\hbar^2/m_ea_0^2$, and all lengths are given in Bohr radii, i.e. scaled with $a_0=4\pi\epsilon_0\hbar^2/m_e e^2$.
+
+
+\input{../chapters/08Results/Optimization/Optimization.tex}
+\clearpage
 \input{../chapters/08Results/Validation/Validation.tex}
-% \clearpage
+\clearpage
 \input{../chapters/08Results/QD_2D/QD_2D.tex}
-% \clearpage
-% \input{../chapters/08Results/Atoms/Atoms.tex}
-% \clearpage
+\clearpage
+\input{../chapters/08Results/Atoms/Atoms.tex}
+\clearpage
 \input{../chapters/08Results/Molecules/Molecules.tex}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  24 MAY 2013 18:01
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  24 MAY 2013 20:34
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1090,16 +1090,10 @@ doubleWell.png>] [101
 
 ] [102] (../chapters/08Results/ch08Results.tex
 Chapter 6.
-(../chapters/08Results/Optimization/Optimization.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(../chapters/08Results/Optimization/Optimization.tex [103
 
- [103
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [104])
-[105] (../chapters/08Results/Validation/Validation.tex
+] [104]) [105]
+(../chapters/08Results/Validation/Validation.tex
 <../Graphics/ASGD_nonint_E.png, id=2425, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_nonint_E.png Graphic file (type png)
 
@@ -1393,21 +1387,48 @@ File: ../Graphics/OBD/OBD_Atoms/3D/colorbar.png Graphic file (type png)
 /OBD_Atoms/3D/Magnesium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Magnesium
 .png> <../Graphics/OBD/OBD_Atoms/3D/colorbar.png>] (../chapters/08Results/Molec
 ules/Molecules.tex
-<../Graphics/R_VS_E/R_vs_E_hyd_0.png, id=2711, 578.16pt x 433.62pt>
+<../Graphics/OBD/OBD_MOL/Li2_3D.png, id=2711, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/Li2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Li2_3D.png>
+<../Graphics/OBD/OBD_MOL/Li2_2D.png, id=2712, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/Li2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Li2_2D.png>
+<../Graphics/OBD/OBD_MOL/Be2_3D.png, id=2713, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/Be2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Be2_3D.png>
+<../Graphics/OBD/OBD_MOL/Be2_2D.png, id=2714, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/Be2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Be2_2D.png>
+<../Graphics/OBD/OBD_MOL/O2_3D.png, id=2715, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/O2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/O2_3D.png>
+<../Graphics/OBD/OBD_MOL/O2_2D.png, id=2716, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/O2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/O2_2D.png>
+<../Graphics/R_VS_E/R_vs_E_hyd_0.png, id=2717, 578.16pt x 433.62pt>
 File: ../Graphics/R_VS_E/R_vs_E_hyd_0.png Graphic file (type png)
 
 <use ../Graphics/R_VS_E/R_vs_E_hyd_0.png>
-<../Graphics/R_VS_E/R_vs_E_lit_0.png, id=2712, 578.16pt x 433.62pt>
+<../Graphics/R_VS_E/R_vs_E_lit_0.png, id=2718, 578.16pt x 433.62pt>
 File: ../Graphics/R_VS_E/R_vs_E_lit_0.png Graphic file (type png)
 
 <use ../Graphics/R_VS_E/R_vs_E_lit_0.png>)) [123
 
-] [124 <../Graphics/R_VS_E/R_vs_E_hyd_0.png> <../Graphics/R_VS_E/R_vs_E_lit_0.p
-ng>] [125
+] [124 <../Graphics/OBD/OBD_MOL/Li2_3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL
+/Li2_2D.png> <../Graphics/OBD/OBD_MOL/Be2_3D.png (PNG copy)> <../Graphics/OBD/O
+BD_MOL/Be2_2D.png> <../Graphics/OBD/OBD_MOL/O2_3D.png (PNG copy)> <../Graphics/
+OBD/OBD_MOL/O2_2D.png>]
+[125 <../Graphics/R_VS_E/R_vs_E_hyd_0.png> <../Graphics/R_VS_E/R_vs_E_lit_0.png
+>] [126
 
 
-] [126]
-(./jorgenh_thesis.bbl
+] [127] [128] (./jorgenh_thesis.bbl
 Underfull \hbox (badness 1571) in paragraph at lines 30--35
 \OT1/cmr/m/n/10 line]. Avail-able: []$http : / / www . bibsonomy . org / bibtex
  /
@@ -1425,7 +1446,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--43
 tex /
  []
 
-[127
+[129
 
 
 ]
@@ -1438,23 +1459,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
 \OT1/cmr/m/n/10 DIMENSIONAL QUAN-TUM DOTS,'' Mas-ter's the-sis,
  []
 
-[128]
+[130]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-) [129] (./jorgenh_thesis.aux)
+) [131] (./jorgenh_thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 12014 strings out of 493848
- 180203 string characters out of 1152823
+ 12055 strings out of 493848
+ 181355 string characters out of 1152823
  531243 words of memory out of 3000000
- 13791 multiletter control sequences out of 15000+50000
+ 13816 multiletter control sequences out of 15000+50000
  17064 words of font info for 65 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,18n,58p,1341b,1816s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1481,9 +1502,9 @@ texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (129 pages, 7474759 bytes).
+Output written on jorgenh_thesis.pdf (131 pages, 7928103 bytes).
 PDF statistics:
- 3089 PDF objects out of 3580 (max. 8388607)
- 1125 named destinations out of 1200 (max. 500000)
- 1257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3114 PDF objects out of 3580 (max. 8388607)
+ 1134 named destinations out of 1200 (max. 500000)
+ 1287 words of extra memory for PDF output out of 10000 (max. 10000000)
 
