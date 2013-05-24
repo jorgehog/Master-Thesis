@@ -704,3 +704,10 @@ jabref-meta: selector_keywords:
 	year = "2013"
 }
 
+@online{SymPy,
+	month = may,
+	title = "{SymPy website}",
+	url = "http://sympy.org",
+	year = "2013"
+}
+

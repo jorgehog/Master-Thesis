@@ -9,50 +9,47 @@ Database file #1: ../bibtex/bibtex.bib.bib
 Warning--empty note in morten
 Warning--edition ordinal word "{Revised ed}" may be too high (or improper) for conversion in Sakurai:94
 Warning--empty journal in doubleWellExpt
-Warning--empty author in ExactMolecules
-Warning--empty journal in ExactMolecules
-Warning--empty year in ExactMolecules
 
 Done.
 You've used 33 entries,
             4039 wiz_defined-function locations,
-            1004 strings with 12245 characters,
-and the built_in function-call counts, 16410 in all, are:
-= -- 1332
-> -- 328
-< -- 82
-+ -- 169
-- -- 68
-* -- 743
-:= -- 2817
+            1008 strings with 12348 characters,
+and the built_in function-call counts, 17242 in all, are:
+= -- 1416
+> -- 350
+< -- 95
++ -- 182
+- -- 71
+* -- 786
+:= -- 2942
 add.period$ -- 65
 call.type$ -- 33
 change.case$ -- 26
-chr.to.int$ -- 198
-cite$ -- 39
-duplicate$ -- 1220
-empty$ -- 1482
-format.name$ -- 75
-if$ -- 3669
+chr.to.int$ -- 228
+cite$ -- 36
+duplicate$ -- 1261
+empty$ -- 1523
+format.name$ -- 79
+if$ -- 3866
 int.to.chr$ -- 0
 int.to.str$ -- 33
-missing$ -- 218
-newline$ -- 148
-num.names$ -- 34
+missing$ -- 224
+newline$ -- 150
+num.names$ -- 35
 pop$ -- 548
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 4
-skip$ -- 1304
+skip$ -- 1371
 stack$ -- 0
-substring$ -- 451
-swap$ -- 842
-text.length$ -- 16
+substring$ -- 521
+swap$ -- 901
+text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 33
-warning$ -- 6
-while$ -- 59
+warning$ -- 3
+while$ -- 64
 width$ -- 35
-write$ -- 327
-(There were 6 warnings)
+write$ -- 336
+(There were 3 warnings)

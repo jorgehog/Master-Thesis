@@ -718,3 +718,8 @@ jabref-meta: selector_keywords:
 	year = "1981"
 }
 
+@article{ExactMolecules,
+	collaboration = "",
+	title = "{Properties of selected diatomics using variational Monte Carlo methods}"
+}
+

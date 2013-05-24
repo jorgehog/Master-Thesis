@@ -205,6 +205,11 @@ M.~and Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
   of Quantum Chemistry}, 1981.
 
 \bibitem{ExactMolecules}
-``{Properties of selected diatomics using variational Monte Carlo methods}.''
+\BIBentryALTinterwordspacing
+S.~Datta, S.~A. Alexander, and R.~L. Coldwell, ``{Properties of selected
+  diatomics using variational Monte Carlo methods},'' \emph{The Journal of
+  Chemical Physics}, vol. 120, no.~8, pp. 3642--3647, 2004. [Online].
+  Available: \url{http://link.aip.org/link/?JCP/120/3642/1}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
