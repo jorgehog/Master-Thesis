@@ -711,3 +711,25 @@ jabref-meta: selector_keywords:
 	year = "2013"
 }
 
+@article{H_He_exact,
+	author = "and Kalos, Moskowitz",
+	journal = "Int. Journal of Quantum Chemistry",
+	title = "{A new Look at Correlations in Atomic and Molecular Systems. Application of Fermion Monte Carlo Variational Method}",
+	year = "1981"
+}
+
+@article{ExactMolecules,
+	author = "Datta, S. and Alexander, S. A. and Coldwell, R. L.",
+	collaboration = "",
+	doi = "10.1063/1.1643351",
+	journal = "The Journal of Chemical Physics",
+	keywords = "lithium; beryllium; boron; carbon; nitrogen; oxygen; fluorine; Monte Carlo methods; wave functions; ground states; variational techniques",
+	number = "8",
+	pages = "3642--3647",
+	publisher = "AIP",
+	title = "{Properties of selected diatomics using variational Monte Carlo methods}",
+	url = "http://link.aip.org/link/?JCP/120/3642/1",
+	volume = "120",
+	year = "2004"
+}
+

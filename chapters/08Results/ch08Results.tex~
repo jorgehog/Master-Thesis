@@ -2,7 +2,7 @@
 
 % \input{../chapters/08Results/Optimization/Optimization.tex}
 % \clearpage
-% \input{../chapters/08Results/Validation/Validation.tex}
+\input{../chapters/08Results/Validation/Validation.tex}
 % \clearpage
 \input{../chapters/08Results/QD_2D/QD_2D.tex}
 % \clearpage

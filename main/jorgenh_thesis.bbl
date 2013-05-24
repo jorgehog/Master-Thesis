@@ -199,6 +199,19 @@ C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
 V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
   Dots},'' Master's thesis, University of Oslo, 2012.
 
+\bibitem{AtomsExact}
+M.~Degroote, ``\BIBforeignlanguage{English}{{Faddeev random phase approximation
+  applied to molecules}},'' \emph{\BIBforeignlanguage{English}{The European
+  Physical Journal Special Topics}}, vol. 218, no.~1, pp. 1--70, 2013.
+
+\bibitem{KryptonExact}
+\BIBentryALTinterwordspacing
+H.~Partridge, ``{Near Hartree--Fock quality GTO basis sets for the first- and
+  third-row atoms},'' \emph{The Journal of Chemical Physics}, vol.~90, no.~2,
+  pp. 1043--1047, 1989. [Online]. Available:
+  \url{http://link.aip.org/link/?JCP/90/1043/1}
+\BIBentrySTDinterwordspacing
+
 \bibitem{H_He_exact}
 M.~and Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
   Application of Fermion Monte Carlo Variational Method},'' \emph{Int. Journal
