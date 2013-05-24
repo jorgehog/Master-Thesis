@@ -370,7 +370,7 @@ where \verb+exp_factor_nk+ represents $\exp(-Zr/k)$, which is saved as a pointer
 \begin{lstlisting}[language=Python, otherkeywords={self}]
 def makeOrbConstArgs(self, args, i):
     n = self.stateMap[i][0]
-    args = args.replace('exp_factor', 'exp_factor_n%d' % n)
+    args = args.replace('exp_factor', 'exp_fa-ctor_n%d' % n)
     return args
 \end{lstlisting}
 

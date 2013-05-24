@@ -68,15 +68,15 @@
 }
 
 \begin{document}
-% \input{../chapters/01frontpage/ch01frontpage.tex}
-% \input{../chapters/02preface/ch02preface.tex}
+\input{../chapters/01frontpage/ch01frontpage.tex}
+\input{../chapters/02preface/ch02preface.tex}
 \tableofcontents
-% \input{../chapters/03intro/ch03intro.tex}
+\input{../chapters/03intro/ch03intro.tex}
 \part{Theory}
-% \input{../chapters/04SciProg/ch04SciProg.tex}
-% \input{../chapters/05Manybody/ch05Manybody.tex}
+\input{../chapters/04SciProg/ch04SciProg.tex}
+\input{../chapters/05Manybody/ch05Manybody.tex}
 \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
-% \input{../chapters/ModeledSystems/ModeledSystems.tex}
+\input{../chapters/ModeledSystems/ModeledSystems.tex}
 
 \part{Results}
 %% \input{../chapters/07ImpVal/ImpVal.tex}

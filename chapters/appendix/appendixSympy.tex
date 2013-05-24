@@ -374,6 +374,6 @@ def makeOrbConstArgs(self, args, i):
     return args
 \end{lstlisting}
 
-which tells the SymPy framework that the input arguments to e.g. element $1$ is \verb+(k, k2, exp_factor_n2)+, since the single particle orbital \verb+self.phi[1]+ has a principle quantum number $n=2$. The input argument \verb+args+ is the default constructor arguments set up the the \verb+initCPPbasis+, and is in the case of hydrogen-like wave functions \verb+(k, k2, exp_factor)+.
+which ensures that the input arguments to e.g. element $1$ is \verb+(k, k2, exp_factor_n2)+, since the single particle orbital \verb+self.phi[1]+ has a principle quantum number $n=2$. The input argument \verb+args+ is the default constructor arguments set up the the \verb+initCPPbasis+, and is in the case of hydrogen-like wave functions \verb+(k, k2, exp_factor)+.
 
 The tables listed in Appendix \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} are all generated within seconds using this framework. The generated C++ code for these span 8975 lines not counting blank ones.

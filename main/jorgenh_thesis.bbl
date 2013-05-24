@@ -225,4 +225,21 @@ S.~Datta, S.~A. Alexander, and R.~L. Coldwell, ``{Properties of selected
   Available: \url{http://link.aip.org/link/?JCP/120/3642/1}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Matplotlib}
+\BIBentryALTinterwordspacing
+(2013, May) {Matplotlib website}. [Online]. Available:
+  \url{http://matplotlib.org}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Pyside}
+\BIBentryALTinterwordspacing
+(2013, May) {PySide website}. [Online]. Available:
+  \url{http://qt-project.org/wiki/Category:LanguageBindings::PySide}
+\BIBentrySTDinterwordspacing
+
+\bibitem{SymPy}
+\BIBentryALTinterwordspacing
+(2013, May) {SymPy website}. [Online]. Available: \url{http://sympy.org}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
