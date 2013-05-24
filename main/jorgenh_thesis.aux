@@ -381,6 +381,14 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces The external potential for a double-well quantum dot from Eq.~(\ref  {eq:VextDoubleWell})\relax }}{98}{figure.caption.23}}
 \newlabel{fig:extPotDoubleWell}{{5.4}{98}{The external potential for a double-well quantum dot from Eq.~(\ref {eq:VextDoubleWell})\relax \relax }{figure.caption.23}{}}
 \@writefile{toc}{\contentsline {part}{II\hspace  {1em}Results}{99}{part.2}}
+\citation{MagnusArticle}
+\citation{Sarah}
+\citation{Hirth}
+\citation{Olsen}
+\citation{MagnusArticle}
+\citation{Sarah}
+\citation{Hirth}
+\citation{Olsen}
 \@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{101}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -391,14 +399,73 @@
 \newlabel{tab:res_valid_qdots_doublewell}{{6.2}{102}{Validation results for double-well quantum dots. The exact energy is listed in the last column. The calculations are performed with the wells separated at a distance $R=20$.\relax \relax }{table.caption.25}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Validation results for Atoms. The exact energies $E_0$ are calculated from Eq.~(\ref  {eq:atomsE0}).\relax }}{102}{table.caption.26}}
 \newlabel{tab:res_valid_atoms}{{6.3}{102}{Validation results for Atoms. The exact energies $E_0$ are calculated from Eq.~(\ref {eq:atomsE0}).\relax \relax }{table.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Quantum Dots}{102}{section.6.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}FIXED NODE TESTS}{102}{subsection.6.2.1}}
 \@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Validation results for Molecules. The last column lists the exact energies calculated from Eq.~(\ref  {eq:atomsE0}). The energies converge to the exact energies, however, slower than the double well. Setting $R$ too high results in a singular slater determinant due to finite machine precision.\relax }}{102}{table.caption.27}}
 \newlabel{tab:res_valid_molecules}{{6.4}{102}{Validation results for Molecules. The last column lists the exact energies calculated from Eq.~(\ref {eq:atomsE0}). The energies converge to the exact energies, however, slower than the double well. Setting $R$ too high results in a singular slater determinant due to finite machine precision.\relax \relax }{table.caption.27}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref  {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax }}{102}{figure.caption.28}}
-\newlabel{fig:ASGD_nonint}{{6.1}{102}{ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax \relax }{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces DMC convergence for the Neon result listed in Table \ref  {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax }}{103}{figure.caption.29}}
-\newlabel{fig:DMC_neon_nonint}{{6.2}{103}{DMC convergence for the Neon result listed in Table \ref {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax \relax }{figure.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax }}{103}{figure.caption.30}}
-\newlabel{fig:DMC_nonExactWF}{{6.3}{103}{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax \relax }{figure.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Results for Quantum Dots with fixed node approximation calculated on the cluster Abel using $10^8$ VMC cycles, $64000$ walkers, with $2000$ DMC cycles on 128 cores. Ref: $(a)$: F. Pederiva \cite  {MagnusArticle} (DMC), $b$: S. Reimann \cite  {Sarah} (SRG), $c$: C. Hirth \cite  {Hirth} (CCSD), $d$: V. K. B. Olsen \cite  {Olsen} (FCI). The numbers inside curly brackets denote the number of shells used above \textit  {Fermi-level} to contruct the basis for the calculation.\relax }}{103}{table.caption.31}}
+\newlabel{tab:QDotsResultsAll}{{6.5}{103}{Results for Quantum Dots with fixed node approximation calculated on the cluster Abel using $10^8$ VMC cycles, $64000$ walkers, with $2000$ DMC cycles on 128 cores. Ref: $(a)$: F. Pederiva \cite {MagnusArticle} (DMC), $b$: S. Reimann \cite {Sarah} (SRG), $c$: C. Hirth \cite {Hirth} (CCSD), $d$: V. K. B. Olsen \cite {Olsen} (FCI). The numbers inside curly brackets denote the number of shells used above \textit {Fermi-level} to contruct the basis for the calculation.\relax \relax }{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.6}{\ignorespaces Results for Quantum Dots without fixed node approximation calculated on the cluster Abel using $2000$ DMC cycles on 128 cores. $\epsilon _\mathrm  {DMC}^\mathrm  {F.N.} = |\mathrm  {E_{DMC}} - \mathrm  {E_{DMC}^{F.N.}}|$. $\overline  {\sigma } = \frac  {1}{2}(\sigma _\mathrm  {DMC} + \sigma _\mathrm  {DMC}^\mathrm  {F.N.})$. The last column serves as an indicator of how many average standard deviations the results differ. For two particles, where the fixed node approximation does not affect the system, the results are as expected exactly the same. For all other system sizes, the difference is mostly within one deviation. This indicates that the effect due to the fixed node approximation for closed shell Quantum Dots are very small.\relax }}{104}{table.caption.32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref  {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax }}{105}{figure.caption.28}}
+\newlabel{fig:ASGD_nonint}{{6.1}{105}{ASGD results for a non-interaction two-particle Quantum Dot with $\omega =0.5$. The exact energy of $E_0=1$ is reached after approximatly 1000 cycles, where $\alpha $ has converged close to unity. Due to enormous fluctuations, the variational derivative is plotted as an accumulated average, and is in practice dead zero after 1000 cycles. The variational principle described in Section \ref {sec:selectingOptVarPar} is governing the trend of the energy convergence, however, alot of statistical noise is present in the first 1000 cycles due to high variance and few samples.\relax \relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces DMC convergence for the Neon result listed in Table \ref  {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax }}{105}{figure.caption.29}}
+\newlabel{fig:DMC_neon_nonint}{{6.2}{105}{DMC convergence for the Neon result listed in Table \ref {tab:res_valid_atoms}. The trial energy is fixed at the exact ground state energy as expected. The number of walkers are constant, implying a approximatly zero variance.\relax \relax }{figure.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax }}{106}{figure.caption.30}}
+\newlabel{fig:DMC_nonExactWF}{{6.3}{106}{DMC convergence for a non-interacting two-particle Quantum Dot with $\omega =1$. Calculations are done with $\alpha =0.75$, where the exact wave function is given for $\alpha =1$. Unlike the case with the exact wave function, the trial energy oscillates around the exact value. The final result (with blocking) reveals a DMC energy of $2.00000(2)$, where the original VMC energy was $2.0042(3)$. This illustrates the power of DMC over VMC in the interesting cases with an unknown exact wave function. The calculation were done with $10000$ walkers.\relax \relax }{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}One-body Densities}{107}{subsection.6.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Lowering the frequency}{107}{subsection.6.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces \relax }}{108}{figure.caption.33}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$N=2$}}}{108}{subfigure.4.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$N=6$}}}{108}{subfigure.4.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$N=12$}}}{108}{subfigure.4.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$N=20$}}}{108}{subfigure.4.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {$N=30$}}}{108}{subfigure.4.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {$N=42$}}}{108}{subfigure.4.6}}
+\newlabel{fig:E_dist_qdots}{{6.4}{108}{\relax \relax }{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces \relax }}{109}{figure.caption.34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$N=2$}}}{109}{subfigure.5.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$N=6$}}}{109}{subfigure.5.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$N=12$}}}{109}{subfigure.5.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$N=20$}}}{109}{subfigure.5.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {$N=30$}}}{109}{subfigure.5.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {$N=42$}}}{109}{subfigure.5.6}}
+\newlabel{fig:V_dist_qdots}{{6.5}{109}{\relax \relax }{figure.caption.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces DMC one-body densities for Quantum Dots with frequency $\omega =1$. The number of particles $N$ are listed below each density. The density for 56 particles are calculated, however, it brings little new insights as it follows the clear trend demonstrated in the current figure.\relax }}{110}{figure.caption.35}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$N=2$}}}{110}{subfigure.6.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$N=6$}}}{110}{subfigure.6.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$N=12$}}}{110}{subfigure.6.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$N=20$}}}{110}{subfigure.6.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {$N=30$}}}{110}{subfigure.6.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {$N=42$}}}{110}{subfigure.6.6}}
+\newlabel{fig:OBD_DMC_QDOTS_w1}{{6.6}{110}{DMC one-body densities for Quantum Dots with frequency $\omega =1$. The number of particles $N$ are listed below each density. The density for 56 particles are calculated, however, it brings little new insights as it follows the clear trend demonstrated in the current figure.\relax \relax }{figure.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces \relax \fontsize  {9}{11}\selectfont  \abovedisplayskip 8.5\p@ plus3\p@ minus4\p@ \abovedisplayshortskip \z@ plus2\p@ \belowdisplayshortskip 4\p@ plus2\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 4\p@ plus2\p@ minus2\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {DMC One-body densities for Quantum Dots for decreasing oscillator frequencies $\omega $ and increasing number of particles $N$. Each row represents a given $\omega $, and each column represents a given $N$. Notice that the densities for $\omega =1$ (from figure \ref  {fig:OBD_DMC_QDOTS_w1}) are indistinguishable from those of $\omega =0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for $\omega =0.5$, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega =0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}\relax }}{111}{figure.caption.36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces {$N=2$}}}{111}{subfigure.7.9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces {$N=6$}}}{111}{subfigure.7.10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(k)}{\ignorespaces {$N=12$}}}{111}{subfigure.7.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces {$N=20$}}}{111}{subfigure.7.12}}
+\newlabel{fig:OBD_DMC_QDOTS_lowering3D}{{6.7}{111}{\small {DMC One-body densities for Quantum Dots for decreasing oscillator frequencies $\omega $ and increasing number of particles $N$. Each row represents a given $\omega $, and each column represents a given $N$. Notice that the densities for $\omega =1$ (from figure \ref {fig:OBD_DMC_QDOTS_w1}) are indistinguishable from those of $\omega =0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for $\omega =0.5$, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega =0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}\relax \relax }{figure.caption.36}{}}
+\citation{H_He_exact}
+\citation{UmrigarMolecules}
+\citation{H_He_exact}
+\citation{ExactMolecules}
+\citation{H_He_exact}
+\citation{UmrigarMolecules}
+\citation{H_He_exact}
+\citation{ExactMolecules}
+\@writefile{lot}{\contentsline {table}{\numberline {6.7}{\ignorespaces a: taut\relax }}{112}{table.caption.38}}
+\newlabel{tab:QDotsResults3D}{{6.7}{112}{a: taut\relax \relax }{table.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Going to three Dimensions}{112}{subsection.6.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.5}Simulatings in a Double-well}{112}{subsection.6.2.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Molecules}{112}{section.6.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Ground State Energies}{112}{subsection.6.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces Right column: Radial one-body densities for high frequencies (see specific legends)\relax }}{113}{figure.caption.37}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces {Collapsed results}}}{113}{subfigure.8.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces {$\omega =0.01$}}}{113}{subfigure.8.8}}
+\newlabel{fig:OBD_collapsed_w001}{{6.8}{113}{Right column: Radial one-body densities for high frequencies (see specific legends)\relax \relax }{figure.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.8}{\ignorespaces Ground state energies for homonuclear diatomic molecules calculated using Variational - and Diffusion Monte-Carlo. The distance between the atoms $R$ are taken from Ref. \cite  {H_He_exact} for $\mathrm  {H_2}$ and from Ref. \cite  {UmrigarMolecules} for $\mathrm  {Li_2}$ to $\mathrm  {O_2}$. The experimental energies are taken from Ref. \cite  {H_He_exact} for $\mathrm  {H_2}$ and from Ref. \cite  {ExactMolecules} for $\mathrm  {Li_2}$ to $\mathrm  {O_2}$ As expected DMC is close to the experimental energy compared to VMC. $\epsilon _\mathrm  {rel} = |E_\mathrm  {DMC} - \mathrm  {Expt.}|/|\mathrm  {Expt.}|$\relax }}{114}{table.caption.39}}
+\newlabel{tab:AtomsRes}{{6.8}{114}{Ground state energies for homonuclear diatomic molecules calculated using Variational - and Diffusion Monte-Carlo. The distance between the atoms $R$ are taken from Ref. \cite {H_He_exact} for $\mathrm {H_2}$ and from Ref. \cite {UmrigarMolecules} for $\mathrm {Li_2}$ to $\mathrm {O_2}$. The experimental energies are taken from Ref. \cite {H_He_exact} for $\mathrm {H_2}$ and from Ref. \cite {ExactMolecules} for $\mathrm {Li_2}$ to $\mathrm {O_2}$ As expected DMC is close to the experimental energy compared to VMC. $\epsilon _\mathrm {rel} = |E_\mathrm {DMC} - \mathrm {Expt.}|/|\mathrm {Expt.}|$\relax \relax }{table.caption.39}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces The distance between the atoms $R$ plotted against the potential and total energy for hydrogen gas (left) and litium gas (right). It is evident that there exist a well-defined minima in the energy in the case of hydrogen gas. For litium this is not the case, which corresponds well with the fact that litium does not appear naturally in a gas phase in nature.\relax }}{114}{figure.caption.40}}
+\newlabel{fig:molecules_R_vs_E}{{6.9}{114}{The distance between the atoms $R$ plotted against the potential and total energy for hydrogen gas (left) and litium gas (right). It is evident that there exist a well-defined minima in the energy in the case of hydrogen gas. For litium this is not the case, which corresponds well with the fact that litium does not appear naturally in a gas phase in nature.\relax \relax }{figure.caption.40}{}}
 \bibstyle{IEEEtran}
 \bibdata{../bibtex/bibtex.bib}
 \bibcite{supermen}{1}
@@ -412,7 +479,7 @@
 \bibcite{Gardiner:2004bk}{9}
 \bibcite{risken1989fpe}{10}
 \bibcite{langevin}{11}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{107}{section*.31}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{117}{section*.41}}
 \bibcite{morten}{12}
 \bibcite{Sakurai:94}{13}
 \bibcite{Shavitt}{14}
@@ -429,3 +496,9 @@
 \bibcite{SolidHarmonics}{25}
 \bibcite{doubleWellExpt}{26}
 \bibcite{ymwang}{27}
+\bibcite{MagnusArticle}{28}
+\bibcite{Sarah}{29}
+\bibcite{Hirth}{30}
+\bibcite{Olsen}{31}
+\bibcite{H_He_exact}{32}
+\bibcite{ExactMolecules}{33}

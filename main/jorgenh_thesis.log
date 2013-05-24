@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  23 MAY 2013 23:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  24 MAY 2013 16:55
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -765,7 +765,7 @@ Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count146
 
 (../chapters/01frontpage/ch01frontpage.tex
-<../Graphics/UiO_Segl_300dpi.png, id=379, 142.3719pt x 142.3719pt>
+<../Graphics/UiO_Segl_300dpi.png, id=411, 142.3719pt x 142.3719pt>
 File: ../Graphics/UiO_Segl_300dpi.png Graphic file (type png)
 
 <use ../Graphics/UiO_Segl_300dpi.png> [1
@@ -825,7 +825,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1.
 ) [14] (../CodeInputs/Sum100C++.cpp) [15]
 [16] (../CodeInputs/KeyBoardSuper.py)
-<../Graphics/UMLkeyboard.pdf, id=615, 845.04686pt x 597.50786pt>
+<../Graphics/UMLkeyboard.pdf, id=655, 845.04686pt x 597.50786pt>
 File: ../Graphics/UMLkeyboard.pdf Graphic file (type pdf)
 
 <use ../Graphics/UMLkeyboard.pdf> [17 <../Graphics/UMLkeyboard.pdf>]
@@ -857,7 +857,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] (../CodeInputs/potionGameMain.py) [26
 
 ]
-<../Graphics/SRCfolderStruct.pdf, id=1038, 272.49pt x 366.58156pt>
+<../Graphics/SRCfolderStruct.pdf, id=1078, 272.49pt x 366.58156pt>
 File: ../Graphics/SRCfolderStruct.pdf Graphic file (type pdf)
 
 <use ../Graphics/SRCfolderStruct.pdf> [27
@@ -874,7 +874,7 @@ LaTeX Warning: Reference `app:Dirac' on page 29 undefined on input line 8.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [36]
-[37] [38] <../Graphics/DiffusionUML.pdf, id=1188, 597.50786pt x 845.04686pt>
+[37] [38] <../Graphics/DiffusionUML.pdf, id=1228, 597.50786pt x 845.04686pt>
 File: ../Graphics/DiffusionUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/DiffusionUML.pdf> [39] [40 <../Graphics/DiffusionUML.pdf>]
@@ -887,7 +887,7 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 516.
 
-<../Graphics/branching.pdf, id=1259, 597.50786pt x 845.04686pt>
+<../Graphics/branching.pdf, id=1299, 597.50786pt x 845.04686pt>
 File: ../Graphics/branching.pdf Graphic file (type pdf)
 
 <use ../Graphics/branching.pdf> [41
@@ -895,57 +895,52 @@ File: ../Graphics/branching.pdf Graphic file (type pdf)
 ] [42 <../Graphics/branching.pdf>] [43
 
 ]
-<../Graphics/shellStructure.pdf, id=1344, 845.04686pt x 597.50786pt>
+<../Graphics/shellStructure.pdf, id=1384, 845.04686pt x 597.50786pt>
 File: ../Graphics/shellStructure.pdf Graphic file (type pdf)
 
 <use ../Graphics/shellStructure.pdf> [44 <../Graphics/shellStructure.pdf>]
-[45] [46]
-
-LaTeX Warning: Reference `tab:AtomsRes' on page 47 undefined on input line 696.
-
-
-[47]
+[45] [46] [47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
-[49] [50] <../Graphics/SGD.pdf, id=1429, 845.04686pt x 597.50786pt>
+[49] [50] <../Graphics/SGD.pdf, id=1471, 845.04686pt x 597.50786pt>
 File: ../Graphics/SGD.pdf Graphic file (type pdf)
 
 <use ../Graphics/SGD.pdf> [51]
 Underfull \vbox (badness 5460) has occurred while \output is active []
 
- [52 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=1453, 845.04686pt x 597.5
+ [52 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=1495, 845.04686pt x 597.5
 0786pt>
 File: ../Graphics/SSGD.pdf Graphic file (type pdf)
 
 <use ../Graphics/SSGD.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [53 <../Graphics/SSGD.pdf>] <../Graphics/ASGD_f.pdf, id=1475, 344.28625pt x 34
+ [53 <../Graphics/SSGD.pdf>] <../Graphics/ASGD_f.pdf, id=1517, 344.28625pt x 34
 1.275pt>
 File: ../Graphics/ASGD_f.pdf Graphic file (type pdf)
 
 <use ../Graphics/ASGD_f.pdf> [54 <../Graphics/ASGD_f.pdf>]
-<../Graphics/ASGD_min_paramGrad_ex.png, id=1493, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_min_paramGrad_ex.png, id=1535, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_min_paramGrad_ex.png Graphic file (type png)
 
 <use ../Graphics/ASGD_min_paramGrad_ex.png>
-<../Graphics/ASGD_min_step_ex.png, id=1494, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_min_step_ex.png, id=1536, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_min_step_ex.png Graphic file (type png)
 
 <use ../Graphics/ASGD_min_step_ex.png>
-<../Graphics/ASGD_UML.pdf, id=1497, 597.50786pt x 845.04686pt>
+<../Graphics/ASGD_UML.pdf, id=1539, 597.50786pt x 845.04686pt>
 File: ../Graphics/ASGD_UML.pdf Graphic file (type pdf)
 
 <use ../Graphics/ASGD_UML.pdf> [55 <../Graphics/ASGD_min_paramGrad_ex.png> <../
 Graphics/ASGD_min_step_ex.png>] [56 <../Graphics/ASGD_UML.pdf>]
-<../Graphics/VMCUML.pdf, id=1562, 597.50786pt x 845.04686pt>
+<../Graphics/VMCUML.pdf, id=1604, 597.50786pt x 845.04686pt>
 File: ../Graphics/VMCUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/VMCUML.pdf> [57
 
 ] [58 <../Graphics/VMCUML.pdf>]
-<../Graphics/WFComp.png, id=1623, 586.8324pt x 442.2924pt>
+<../Graphics/WFComp.png, id=1665, 586.8324pt x 442.2924pt>
 File: ../Graphics/WFComp.png Graphic file (type png)
 
 <use ../Graphics/WFComp.png>
@@ -954,21 +949,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [59
 
  <../Graphics/WFComp.png>] [60]
-<../Graphics/DMCUML.pdf, id=1648, 597.50786pt x 845.04686pt>
+<../Graphics/DMCUML.pdf, id=1690, 597.50786pt x 845.04686pt>
 File: ../Graphics/DMCUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/DMCUML.pdf> [61] [62 <../Graphics/DMCUML.pdf>]
-<../Graphics/fixxednode.pdf, id=1730, 845.04686pt x 597.50786pt>
+<../Graphics/fixxednode.pdf, id=1772, 845.04686pt x 597.50786pt>
 File: ../Graphics/fixxednode.pdf Graphic file (type pdf)
 
 <use ../Graphics/fixxednode.pdf> [63
 
 ] [64 <../Graphics/fixxednode.pdf>]
-<../Graphics/OBD_rad_ex_12pw01.png, id=1756, 586.8324pt x 442.2924pt>
+<../Graphics/OBD_rad_ex_12pw01.png, id=1798, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD_rad_ex_12pw01.png Graphic file (type png)
 
 <use ../Graphics/OBD_rad_ex_12pw01.png>
-<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=1757, 586.8324pt x 442.2924pt>
+<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=1799, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png>
@@ -985,11 +980,11 @@ m.png>]
 Underfull \vbox (badness 1521) has occurred while \output is active []
 
  [68]
-[69] <../Graphics/BlockingExampleUncorr.png, id=1824, 586.8324pt x 442.2924pt>
+[69] <../Graphics/BlockingExampleUncorr.png, id=1866, 586.8324pt x 442.2924pt>
 File: ../Graphics/BlockingExampleUncorr.png Graphic file (type png)
 
 <use ../Graphics/BlockingExampleUncorr.png>
-<../Graphics/BlockingExampleCorr.png, id=1825, 586.8324pt x 442.2924pt>
+<../Graphics/BlockingExampleCorr.png, id=1867, 586.8324pt x 442.2924pt>
 File: ../Graphics/BlockingExampleCorr.png Graphic file (type png)
 
 <use ../Graphics/BlockingExampleCorr.png> [70 <../Graphics/BlockingExampleUncor
@@ -1062,7 +1057,7 @@ ne 705.
 
 ]
 Chapter 5.
-<../Graphics/Potentials/hydrogen.png, id=2210, 586.8324pt x 442.2924pt>
+<../Graphics/Potentials/hydrogen.png, id=2252, 586.8324pt x 442.2924pt>
 File: ../Graphics/Potentials/hydrogen.png Graphic file (type png)
 
 <use ../Graphics/Potentials/hydrogen.png> [91] [92 <../Graphics/Potentials/hydr
@@ -1071,7 +1066,7 @@ ogen.png>]
 LaTeX Warning: Reference `appendix:SymPyHydro' on page 93 undefined on input li
 ne 81.
 
-[93] <../Graphics/Molecules.pdf, id=2245, 845.04686pt x 597.50786pt>
+[93] <../Graphics/Molecules.pdf, id=2287, 845.04686pt x 597.50786pt>
 File: ../Graphics/Molecules.pdf Graphic file (type pdf)
 
 <use ../Graphics/Molecules.pdf> [94 <../Graphics/Molecules.pdf>]
@@ -1079,7 +1074,7 @@ File: ../Graphics/Molecules.pdf Graphic file (type pdf)
 LaTeX Warning: Reference `appendix:SymPyHydro' on page 95 undefined on input li
 ne 143.
 
-<../Graphics/Potentials/qdots.png, id=2258, 586.8324pt x 442.2924pt>
+<../Graphics/Potentials/qdots.png, id=2300, 586.8324pt x 442.2924pt>
 File: ../Graphics/Potentials/qdots.png Graphic file (type png)
 
 <use ../Graphics/Potentials/qdots.png> [95]
@@ -1092,7 +1087,7 @@ LaTeX Warning: Reference `appendix:SymPyHO3D' on page 96 undefined on input lin
 e 191.
 
 [96 <../Graphics/Potentials/qdots.png>]
-<../Graphics/Potentials/doubleWell.png, id=2281, 586.8324pt x 442.2924pt>
+<../Graphics/Potentials/doubleWell.png, id=2323, 586.8324pt x 442.2924pt>
 File: ../Graphics/Potentials/doubleWell.png Graphic file (type png)
 
 <use ../Graphics/Potentials/doubleWell.png> [97]) [98 <../Graphics/Potentials/d
@@ -1104,39 +1099,251 @@ Chapter 6.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../Graphics/ASGD_nonint_E.png, id=2329, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_nonint_E.png, id=2371, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_nonint_E.png Graphic file (type png)
 
 <use ../Graphics/ASGD_nonint_E.png>
-<../Graphics/ASGD_nonint.png, id=2330, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_nonint.png, id=2372, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_nonint.png Graphic file (type png)
 
 <use ../Graphics/ASGD_nonint.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../Graphics/DMC_neon_valid.png, id=2333, 586.8324pt x 442.2924pt>
+<../Graphics/DMC_neon_valid.png, id=2375, 586.8324pt x 442.2924pt>
 File: ../Graphics/DMC_neon_valid.png Graphic file (type png)
 
 <use ../Graphics/DMC_neon_valid.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../Graphics/DMC_notExactWF.png, id=2336, 586.8324pt x 442.2924pt>
+<../Graphics/DMC_notExactWF.png, id=2378, 586.8324pt x 442.2924pt>
 File: ../Graphics/DMC_notExactWF.png Graphic file (type png)
 
 <use ../Graphics/DMC_notExactWF.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-)) [101
+) (../chapters/08Results/QD_2D/QD_2D.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [102 <../Graphics/ASGD_nonint_E.png> <../Graphics/ASGD_nonint.png>]
-[103 <../Graphics/DMC_neon_valid.png> <../Graphics/DMC_notExactWF.png>]
-[104
+ [101
+
+]
+[102] [103] [104] [105 <../Graphics/ASGD_nonint_E.png> <../Graphics/ASGD_nonint
+.png> <../Graphics/DMC_neon_valid.png>] [106 <../Graphics/DMC_notExactWF.png>]
+<../Graphics/VirialPlots/E_vs_w_E2.png, id=2436, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E2.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E2.png>
+<../Graphics/VirialPlots/E_vs_w_E6.png, id=2437, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E6.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E6.png>
+<../Graphics/VirialPlots/E_vs_w_E12.png, id=2438, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E12.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E12.png>
+<../Graphics/VirialPlots/E_vs_w_E20.png, id=2439, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E20.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E20.png>
+<../Graphics/VirialPlots/E_vs_w_E30.png, id=2440, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E30.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E30.png>
+<../Graphics/VirialPlots/E_vs_w_E42.png, id=2441, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_E42.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_E42.png>
+<../Graphics/VirialPlots/E_vs_w_V2.png, id=2442, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V2.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V2.png>
+<../Graphics/VirialPlots/E_vs_w_V6.png, id=2443, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V6.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V6.png>
+<../Graphics/VirialPlots/E_vs_w_V12.png, id=2444, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V12.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V12.png>
+<../Graphics/VirialPlots/E_vs_w_V20.png, id=2445, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V20.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V20.png>
+<../Graphics/VirialPlots/E_vs_w_V30.png, id=2446, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V30.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V30.png>
+<../Graphics/VirialPlots/E_vs_w_V42.png, id=2447, 578.16pt x 433.62pt>
+File: ../Graphics/VirialPlots/E_vs_w_V42.png Graphic file (type png)
+
+<use ../Graphics/VirialPlots/E_vs_w_V42.png> [107
+
+] [108 <../Graphics/VirialPlots/E_vs_w_E2.png> <../Graphics/VirialPlots/E_vs_w_
+E6.png> <../Graphics/VirialPlots/E_vs_w_E12.png> <../Graphics/VirialPlots/E_vs_
+w_E20.png> <../Graphics/VirialPlots/E_vs_w_E30.png> <../Graphics/VirialPlots/E_
+vs_w_E42.png>] [109 <../Graphics/VirialPlots/E_vs_w_V2.png> <../Graphics/Virial
+Plots/E_vs_w_V6.png> <../Graphics/VirialPlots/E_vs_w_V12.png> <../Graphics/Viri
+alPlots/E_vs_w_V20.png> <../Graphics/VirialPlots/E_vs_w_V30.png> <../Graphics/V
+irialPlots/E_vs_w_V42.png>]
+<../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png, id=2491, 578.16pt x 433.62pt
+>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png Graphic file (type png)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots2c1_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D.png, id=2492, 578.16pt x 433.62pt
+>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D.png Graphic file (type png)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png, id=2493, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png, id=2494, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots20c1_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png, id=2495, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png, id=2496, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png> [110 <../Graphics/OBD/
+OBD_DMC/dist_out_QDots2c1_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots6c1_3D
+.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots12c1_3D.png> <../Graphics/OBD/OBD_
+DMC/dist_out_QDots20c1_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots30c1_3D.p
+ng> <../Graphics/OBD/OBD_DMC/dist_out_QDots42c1_3D.png>]
+<../Graphics/OBD/OBD_DMC/dist_out_QDots2c028_3D.png, id=2513, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots2c028_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots2c028_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots6c028_3D.png, id=2514, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots6c028_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots6c028_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png, id=2515, 578.16pt x 433.6
+2pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png Graphic file (type pn
+g)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots20c028_3D.png, id=2516, 578.16pt x 433.6
+2pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots20c028_3D.png Graphic file (type pn
+g)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots20c028_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png, id=2517, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots2c01_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png, id=2518, 578.16pt x 433.62p
+t>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png Graphic file (type png)
+
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png, id=2519, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots12c01_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png, id=2520, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots20c01_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png, id=2521, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png, id=2522, 578.16pt x 433.62
+pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png Graphic file (type png
+)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots6c001_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png, id=2523, 578.16pt x 433.6
+2pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png Graphic file (type pn
+g)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png>
+<../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png, id=2524, 578.16pt x 433.6
+2pt>
+File: ../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png Graphic file (type pn
+g)
+ <use ../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png> [111 <../Graphics/OB
+D/OBD_DMC/dist_out_QDots2c028_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots6c
+028_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots12c028_3D.png> <../Graphics/
+OBD/OBD_DMC/dist_out_QDots20c028_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDot
+s2c01_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots6c01_3D.png> <../Graphics/
+OBD/OBD_DMC/dist_out_QDots12c01_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots
+20c01_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots2c001_3D.png> <../Graphics
+/OBD/OBD_DMC/dist_out_QDots6c001_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDot
+s12c001_3D.png> <../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png>]
+<../Graphics/OBD/OBD_rad_psort/QDots_2.png, id=2557, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_rad_psort/QDots_2.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_rad_psort/QDots_2.png>
+<../Graphics/OBD/OBD_w001/QDots_2.png, id=2558, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_w001/QDots_2.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_w001/QDots_2.png>
+<../Graphics/OBD/OBD_rad_psort/QDots_6.png, id=2559, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_rad_psort/QDots_6.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_rad_psort/QDots_6.png>
+<../Graphics/OBD/OBD_w001/QDots_6.png, id=2560, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_w001/QDots_6.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_w001/QDots_6.png>
+<../Graphics/OBD/OBD_rad_psort/QDots_12.png, id=2561, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_rad_psort/QDots_12.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_rad_psort/QDots_12.png>
+<../Graphics/OBD/OBD_w001/QDots_12.png, id=2562, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_w001/QDots_12.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_w001/QDots_12.png>
+<../Graphics/OBD/OBD_rad_psort/QDots_20.png, id=2563, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_rad_psort/QDots_20.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_rad_psort/QDots_20.png>
+<../Graphics/OBD/OBD_w001/QDots_20.png, id=2564, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_w001/QDots_20.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_w001/QDots_20.png>)
+(../chapters/08Results/Molecules/Molecules.tex
+<../Graphics/R_VS_E/R_vs_E_hyd_0.png, id=2573, 578.16pt x 433.62pt>
+File: ../Graphics/R_VS_E/R_vs_E_hyd_0.png Graphic file (type png)
+
+<use ../Graphics/R_VS_E/R_vs_E_hyd_0.png>
+<../Graphics/R_VS_E/R_vs_E_lit_0.png, id=2574, 578.16pt x 433.62pt>
+File: ../Graphics/R_VS_E/R_vs_E_lit_0.png Graphic file (type png)
+
+<use ../Graphics/R_VS_E/R_vs_E_lit_0.png>)) [112
 
 
-] [105] [106] (./jorgenh_thesis.bbl
+
+
+
+] [113 <../Graphics/OBD/OBD_rad_psort/QDots_2.png> <../Graphics/OBD/OBD_w001/QD
+ots_2.png> <../Graphics/OBD/OBD_rad_psort/QDots_6.png> <../Graphics/OBD/OBD_w00
+1/QDots_6.png> <../Graphics/OBD/OBD_rad_psort/QDots_12.png> <../Graphics/OBD/OB
+D_w001/QDots_12.png> <../Graphics/OBD/OBD_rad_psort/QDots_20.png> <../Graphics/
+OBD/OBD_w001/QDots_20.png>]
+[114 <../Graphics/R_VS_E/R_vs_E_hyd_0.png> <../Graphics/R_VS_E/R_vs_E_lit_0.png
+>] [115
+
+
+] [116] (./jorgenh_thesis.bbl
 Underfull \hbox (badness 1571) in paragraph at lines 30--35
 \OT1/cmr/m/n/10 line]. Avail-able: []$http : / / www . bibsonomy . org / bibtex
  /
@@ -1154,7 +1361,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--43
 tex /
  []
 
-[107
+[117
 
 
 ]
@@ -1167,19 +1374,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
 \OT1/cmr/m/n/10 DIMENSIONAL QUAN-TUM DOTS,'' Mas-ter's the-sis,
  []
 
-[108]) [109] (./jorgenh_thesis.aux)
+[118]) [119] (./jorgenh_thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 11586 strings out of 493848
- 166765 string characters out of 1152823
+ 11908 strings out of 493848
+ 177103 string characters out of 1152823
  531243 words of memory out of 3000000
- 13538 multiletter control sequences out of 15000+50000
- 15211 words of font info for 58 fonts, out of 3000000 for 9000
+ 13733 multiletter control sequences out of 15000+50000
+ 17064 words of font info for 65 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 44i,17n,58p,1030b,1816s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,18n,58p,1341b,1816s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
@@ -1187,22 +1394,25 @@ type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cmextra/cmex7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
 5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
-i8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (109 pages, 1834279 bytes).
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmsl10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb>
+Output written on jorgenh_thesis.pdf (119 pages, 6663050 bytes).
 PDF statistics:
- 2691 PDF objects out of 2984 (max. 8388607)
- 1018 named destinations out of 1200 (max. 500000)
- 893 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2961 PDF objects out of 2984 (max. 8388607)
+ 1092 named destinations out of 1200 (max. 500000)
+ 1157 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -180,4 +180,31 @@ R.~V. Shenoi, J.~Hou, Y.~Sharma, J.~Shao, T.~E. Vandervelde, and S.~Krishna,
 Y.~M. Wang, ``{Coupled-Cluster Studies of Double Quantum Dots},'' Master's
   thesis, University of Oslo, 2011.
 
+\bibitem{MagnusArticle}
+\BIBentryALTinterwordspacing
+M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva,
+  ``{\textit{Ab initio} computation of the energies of circular quantum
+  dots},'' \emph{Phys. Rev. B}, vol.~84, p. 115302, Sep 2011. [Online].
+  Available: \url{http://link.aps.org/doi/10.1103/PhysRevB.84.115302}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Sarah}
+S.~Reimann, ``{SRG Title},'' Master's thesis, University of Oslo, 2013.
+
+\bibitem{Hirth}
+C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
+  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{Olsen}
+V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
+  Dots},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{H_He_exact}
+M.~and Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
+  Application of Fermion Monte Carlo Variational Method},'' \emph{Int. Journal
+  of Quantum Chemistry}, 1981.
+
+\bibitem{ExactMolecules}
+``{Properties of selected diatomics using variational Monte Carlo methods}.''
+
 \end{thebibliography}

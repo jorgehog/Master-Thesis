@@ -109,4 +109,12 @@
 \contentsline {part}{II\hspace {1em}Results}{99}{part.2}
 \contentsline {chapter}{\numberline {6}Results}{101}{chapter.6}
 \contentsline {section}{\numberline {6.1}The Non-interacting Case}{101}{section.6.1}
-\contentsline {chapter}{Bibliography}{107}{section*.31}
+\contentsline {section}{\numberline {6.2}Quantum Dots}{102}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}FIXED NODE TESTS}{102}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}One-body Densities}{107}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Lowering the frequency}{107}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Going to three Dimensions}{112}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Simulatings in a Double-well}{112}{subsection.6.2.5}
+\contentsline {section}{\numberline {6.3}Molecules}{112}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Ground State Energies}{112}{subsection.6.3.1}
+\contentsline {chapter}{Bibliography}{117}{section*.41}
