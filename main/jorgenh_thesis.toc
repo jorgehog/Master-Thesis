@@ -121,10 +121,10 @@
 \contentsline {subsection}{\numberline {6.3.3}Lowering the frequency}{112}{subsection.6.3.3}
 \contentsline {subsection}{\numberline {6.3.4}Going to three Dimensions}{117}{subsection.6.3.4}
 \contentsline {subsection}{\numberline {6.3.5}Simulatings in a Double-well}{117}{subsection.6.3.5}
-\contentsline {section}{\numberline {6.4}Atoms}{119}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Ground State Energies}{119}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}The Noble-Gases}{119}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Alkaline Earth Metals}{121}{subsection.6.4.3}
-\contentsline {section}{\numberline {6.5}Molecules}{123}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{123}{subsection.6.5.1}
-\contentsline {chapter}{Bibliography}{129}{section*.45}
+\contentsline {section}{\numberline {6.4}Atoms}{120}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Ground State Energies}{120}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}The Noble-Gases}{120}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Alkaline Earth Metals}{122}{subsection.6.4.3}
+\contentsline {section}{\numberline {6.5}Molecules}{124}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{124}{subsection.6.5.1}
+\contentsline {chapter}{Bibliography}{129}{section*.46}
