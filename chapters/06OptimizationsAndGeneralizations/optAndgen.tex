@@ -1,31 +1,31 @@
 \chapter{Generalization and Optimization}
 \label{ch:optAndGen}
 
-There is a big difference in strategy between writing code for a specific problem, and creating a general solver. A general Quantum Monte-Carlo solver involves several layers of complexity, such as support for different potentials, single particle bases, sampling models, etc., which may easily lead to a combinatoric disaster if the planning is not done right. 
+There is a big difference in strategy between writing code for a specific problem, and creating a general solver. A general Quantum Monte-Carlo (QMC) solver involves several layers of complexity, such as support for different potentials, single particle bases, sampling models, etc., which may easily lead to a combinatoric disaster if the planning is not done right. 
 
-This chapter will begin by covering the underlaying assumptions regarding the modeled systems in Section \ref{sec:ass} before listing the generalization goals in Section \ref{sec:genGoals} and the optimization goals in Section \ref{sec:optGoals}. The strategies used to reach the generalization goals based on the assumptions will then be covered in Section \ref{sec:specGen}, followed by several optimization schemes, some of which are a direct consequence of the initial assumptions, and some of which are more general.
+This chapter begins by introducing a list of underlying assumptions regarding the modelled systems. Whether or not a system can be solved is then a question of whether the listed assumptions are valid for the system or not. The next part will cover generalization, that is, the flexibility of the code and the strategies used to obtain this flexibility. The result of a generalized code is that different systems and algorithms can be implemented by making simple changes to the code. Finally, optimizations will be covered. Optimizations are crucial in order to maintain efficiency for a high number of particles. 
 
 \section{Underlying Assumptions and Goals}
 \label{sec:AssGoal}
 
-Thousands of lines of code should be written once and for all. In industrial computational projects it is custom to plan every single part of the program before the coding begins, simply due to the fact that large scale object oriented frame works demands it. Brute-force coding massive frameworks almost exclusively result in unforeseen consequences, rendering the code difficult to expand, disorganized, if not completely defect. The code used in this thesis has been completely restructured four times. This section will cover the assumptions made and the goals set in the planning stages preliminary to the coding process.
+In large computational projects it is custom to plan every single part of the program before the actual process of coding begins. Coding massive frameworks without planning almost exclusively result in unforeseen consequences, rendering the code difficult to expand, disorganized, and inefficient. The code used in this thesis has been completely restructured four times. This section will cover the assumptions regarding the modelled systems and the goals regarding generalization and optimization made in the planning stages preliminary to the coding process.
 
 \subsection{Assumptions}
 \label{sec:ass}
 
-The code scheme was laid down based on the following assumptions
+The code structure was designed based on the following assumptions
 
 \cfbox{3cm-3pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item The particles of the simulated systems are either all fermions or all bosons. \label{it::ass::pureFermBos}
  \item The Hamiltonian is spin - and time independent.\label{it::ass::2level}
  \item The trial wave function of a fermionic system is a single determinant. \label{it::ass::fermiSingleDet}
- \item A bosonic system is modeled by all particles being in the same assumed single particle ground state. \label{it::ass::bosCondensate}
+ \item A bosonic system is modelled by all particles being in the same assumed single particle ground state. \label{it::ass::bosCondensate}
  \vspace{0.3cm}
 \end{enumerate}
 }
 
-The second assumption implies that the Slater determinant can be split into parts corresponding to different spin eigenvalues. The time-independence is a requirement on the QMC solver. These topics has been covered in Chapter \ref{ch:QMC}.
+As discussed in Section \ref{sec:trialWF}, the second assumption implies that the Slater determinant can be split into parts corresponding to different spin eigenvalues. The time-independence is a requirement on the QMC solver explained in Section \ref{sec:statingDiff}. The assumptions listed are considered true for any system which is implemented in the code, and will thus be applied in all of the following sections. 
 
 \subsection{Generalization Goals}
 \label{sec:genGoals}
@@ -35,7 +35,7 @@ The implementation should be general for:
 \cfbox{3.17cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item Fermions and Bosons. \label{it::gen::FermiAndBoson}
- \item Anisotropic- and isotropic diffusion, i.e. Brute Force - or Importance sampling. \label{it::gen::BF_IS}
+ \item Anisotropic- and isotropic diffusion, i.e.~Brute Force - or Importance sampling. \label{it::gen::BF_IS}
  \item Different gradient descent algorithms. 
  \item Any Jastrow factor.
  \item Any error estimation algorithm.
@@ -55,46 +55,43 @@ In addition, the following constraint is set on solvers:
 \end{enumerate}
 }
 
-
-The challenge is, despite the vast array of combinations, to preserve simplicity and structure as layers of complexity are added. If-testing inside the solvers in order to achieve generalization is considered less optimal, and is only used if no other solution is apparent/exists.
+The challenge is, despite the vast array of combinations, to preserve simplicity and structure as layers of complexity are added. Achieving generalization by the use of conditional if tests inside the solvers is considered inefficient, and should only be used if no other solution is apparent or exists.
 
 \subsection{Optimization Goals}
 \label{sec:optGoals}
 
-Designed for the CPU, runtime optimizations are favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
+Modern computers have a vast amount of physical memory available, which makes runtime optimizations favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
 
 \cfbox{3.6cm}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item Identical values should never be re-calculated. \label{it::opt::reCalc}
- \item Generalization should not be achieved through if-tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}). \label{it::opt::noIF}
- \item Linear scaling of runtime vs. the number of CPUs for large simulations. \label{it::opt::parScale}
+ \item Generalization should not be achieved through conditional if tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}). \label{it::opt::noIF}
+ \item Linear scaling of runtime vs. the number of processors (CPUs) for large simulations. \label{it::opt::parScale}
  \vspace{0.2cm}
 \end{enumerate}
 }
+
+Goal (\label{it::opt::noIF}) has been the ground pillar of the code design. 
 
 \clearpage
 \section{Specifics Regarding Generalization}
 \label{sec:specGen}
 
-Generalization is achieved through the use of deep object orientation, i.e. polymorphism, rather than if-testing. These concepts are described in Section \ref{sec:OO}. The assumptions listed in Section \ref{sec:ass} are applied if not otherwise is stated.
-
-For details regarding the implementation of methods, see the code in \cite{libBorealisCode}.
+This section will introduce how object orientation is used to achieve the goals regarding generalization of the code. Several examples are discussed, however, for more details regarding the implementation of methods, see the code in Ref. \cite{libBorealisCode}.
 
 \subsection{Generalization Goals \ref{it::gen::FermiAndBoson}-\ref{it::gen::pot}}
 
-As discussed in Section \ref{sec:manyBodyWFs}, the mathematical difference between fermions and bosons (of importance to QMC) is how the many-body wave functions are constructed from the single-particle basis. In the case of fermions, the expression is given in terms of two Slater determinants, while for bosons, it is simply the product of all states.
+As discussed in Section \ref{sec:manyBodyWFs}, the mathematical difference between fermions and bosons (of importance to QMC) is how the many-body wave functions are constructed from the single-particle basis. In the case of fermions, the expression is given in terms of a Slater determinant which, due to the fact that the Hamiltonian is spin-independent, can be split into two parts corresponding to spin up and spin down. On the other hand, for bosons, it is simply the product of all states due to the fact that they are all assumed to occupy the same orbital. This is demonstrated in the following code example, where the wave functions of fermionic and bosonic systems are evaluated:
 
 \vspace{0.2cm}
-\begin{lstlisting}
+\begin{lstlisting}[caption=The implementation of the evaluation of fermionic and bosonic wave functions. Line 5: The fermion class accesses the walker's single particle state matrix and returns the determinant of the first half (spin up) times the determinant of the second half (spin down). Line 14-16: The boson class simply calculates the product of all the single particle states.]
 double Fermions::get_spatial_wf(const Walker* walker) {
     using namespace arma;
     
     //Spin up times Spin down (determinants)
     return det(walker->phi(span(0, n2 - 1), span())) * det(walker->phi(span(n2, n_p - 1), span()));
 }
-\end{lstlisting}
 
-\begin{lstlisting}
 double Bosons::get_spatial_wf(const Walker* walker) {
  
     double wf = 1;
@@ -109,43 +106,43 @@ double Bosons::get_spatial_wf(const Walker* walker) {
 }
 \end{lstlisting}
 
-Fermion/Boson overloaded pure virtual methods exist for all methods involving evaluation of the many body wave function, e.g. the spatial ratio and the Laplacian sum. When the \verb+QMC+ solver asks the \verb+System*+ object for a spatial ratio, depending on whether Fermions or Bosons are loaded run-time, the Fermion or Boson spatial ratio is evaluated. 
+Overloaded pure virtual methods for fermions and bosons exist for all of the methods which involves evaluating the many body wave function, for example the spatial ratio and the sum of Laplacians. When the \verb+QMC+ solver asks the \verb+System*+ object for a spatial ratio, depending on whether fermions or bosons are loaded run-time, the fermion or boson spatial ratio is evaluated. 
 
-This way of splitting the system class also takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of repeating if-tests. 
+It is apparent that this way of implementing the system class takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of conditional if tests to determine the nature of the system. 
 
-Similar polymorphic splitting is introduced in the following classes:
+A similar polymorphic splitting is introduced in the following classes:
 
 \begin{listliketab}
 \storestyleof{itemize}
  \begin{tabular}{l l}
- \textbullet \,\verb+Orbitals+       & Hydrogen orbitals, harmonic oscillator, etc. \\
- \textbullet \,\verb+BasisFunctions+ & Stand-alone single particle wave functions. Initialized by \verb+Orbitals+. \\
+ \textbullet \,\verb+Orbitals+       & The hydrogen-like or the harmonic oscillator orbitals. \\
+ \textbullet \,\verb+BasisFunctions+ & Stand-alone single particle wave functions initialized by \verb+Orbitals+. \\
  \textbullet \,\verb+Sampling+       & Brute force - or importance sampling. \\
- \textbullet \,\verb+Diffusion+      & Isotropic or Fokker-Planck. Automatically selected by \verb+Sampling+. \\
+ \textbullet \,\verb+Diffusion+      & Isotropic or Fokker-Planck diffusion. Automatically selected by \verb+Sampling+. \\
  \textbullet \,\verb+ErrorEstimator+ & Simple or Blocking. \\
  \textbullet \,\verb+Jastrow+        & Padé Jastrow - or no Jastrow factor. \\
- \textbullet \,\verb+QMC+            & VMC or DMC. \\
- \textbullet \,\verb+Minimizer+      & ASGD. Support for adding additional minimizers. \\
+ \textbullet \,\verb+QMC+            & Variational - (VMC) or diffusion Monte-Carlo (DMC). \\
+ \textbullet \,\verb+Minimizer+      & Adaptive stochastic gradient descent (ASGD). Support for adding additional minimizers. \\
  \end{tabular}
 \end{listliketab}
 
-Implementing e.g. a new Jastrow Factor is done by simply creating a new subclass of \verb+Jastrow+. The QMC solver does not need to change to adapt to the new implementation. For more details, see Section \ref{sec:OO}. The splitting done in \verb+QMC+ is done to avoid rewriting a lot of general QMC code.
+Implementing, for example, a new Jastrow Factor is done by simply creating a new subclass of \verb+Jastrow+. The QMC solver does not need to change to adapt to the new implementation. For more details, see Section \ref{sec:OO}. The splitting done in \verb+QMC+ is done to avoid rewriting a lot of general QMC code, such as diffusing walkers.
 
-A detailed description of the generalization of potentials, i.e. generalization goal \ref{it::gen::pot}, is given in Section \ref{sec:typeCastPoly}.
+A detailed description of the generalization of potentials, i.e.~generalization goal \ref{it::gen::pot}, is given in Section \ref{sec:typeCastPoly}.
 
 \subsection{Generalization Goal \ref{it::gen::SP_basis} and Expanded bases}
 
-An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass. It is designed as a wrapper to an \verb+Orbitals+ subclass, e.g. harmonic oscillator, containing basis elements $\phi_\alpha(r_j)$. In addition to these elements, the class has a set of expansion coefficients $C_{\gamma\alpha}$ in which the new basis elements are constructed
+An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass. It wraps around an \verb+Orbitals+ implementation, e.g.~the harmonic oscillator orbitals, containing basis elements $\phi_\alpha(\mathbf{r}_j)$. In addition to these elements, the expanded basis class has a set of expansion coefficients $\mathbf{C}_{\gamma\alpha}$ from which the new basis elements are constructed
 
 \begin{equation}
 \label{eq:ExpBasisSP}
- \psi_\gamma^\mathrm{Exp.}(r_j) = \sum_{\alpha=0}^{B - 1} C_{\gamma\alpha}\phi_\alpha(r_j) 
+ \psi_\gamma^\mathrm{Exp.}(r_j) = \sum_{\alpha=0}^{B - 1} \mathbf{C}_{\gamma\alpha}\phi_\alpha(r_j), 
 \end{equation}
 
-where $B$ is the size of the expanded basis.
+where $B$ is the size of the expanded basis. The following code snippet presents the vital members of the expanded basis class: 
 
 \vspace{0.5cm}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++, caption={The declaration of the expanded basis class. The vital members are the size of the basis, the expansion coefficients and another basis in which the new are expanded. A method for calculating the coefficients is present, but the actual implementation has not been a focus of this thesis.}]
 class ExpandedBasis : public Orbitals {
 
 ...
@@ -156,19 +153,17 @@ protected:
     arma::mat coeffs;
     Orbitals* basis;
     
-    //Hartree-Fock
     void calculate_coefficients();
 
 };
 
 \end{lstlisting}
 
-In order to calculate the expansion coefficients, a \textit{Hartree-Fock} solver has been implemented. For a given single particle basis loaded in the \verb+Orbitals* basis+ member, everything that is needed in order to obtain an expanded basis, i.e. calculate the coefficients, is expressions for the one-body - and two-body interaction elements.
 
-The implementation of Eq.~(\ref{eq:ExpBasisSP}) into the expanded basis class is achieved by overloading the original \verb+Orbitals::phi+ virtual member function
+The implementation of Eq.~(\ref{eq:ExpBasisSP}) into the expanded basis class is achieved by overloading the original \verb+Orbitals::phi+ virtual member function as shown in the following example
 
 \vspace{0.5cm}
-\begin{lstlisting}
+\begin{lstlisting}[caption=The explicit implementation of the expanded basis single particle wave function. The wave function is evaluated by expanding a given basis in a set of expansion coefficients (see the previous code example).]
 double ExpandedBasis::phi(const Walker* walker, int particle, int q_num) {
 
     double value = 0;
@@ -183,205 +178,250 @@ double ExpandedBasis::phi(const Walker* walker, int particle, int q_num) {
 }
 \end{lstlisting}
 
-The Hartree-Fock implementation at the present time is bugged, and has not been a focus for the thesis. The implementation has merely been done to lay the foundation in case future Master students are to expand upon the code. Hence Hartree-Fock theory will not be covered in detail, however, introductory theory can be found in Refs. \cite{morten, shavitt2009many}.
+Expanded bases has not been a focus for the thesis, thus explicit algorithms for calculating the coefficients will not be covered. The reason the implementation has been presented, is to lay the foundation in case future Master students are to expand upon the code.
 
 \subsection{Generalization Goal \ref{it::gen::numSupp}}
 
-Functionality for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivatives can be obtained or become too expensive to evaluate.
+Support for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivatives can be obtained or become too expensive to evaluate.
 
-As an example, \verb+Orbitals::dell_phi+, which returns a single particle derivative, is virtual, and can be overloaded to call the numerical derivative implementation \verb+Orbitals::num_diff+.The same goes for the Jastrow factor and the variational derivatives in the minimizers. Similar implementations exist for the Laplacian. An alternative to numerically evaluate the single particle wave function derivatives would be to perform the derivative on the full many-body wave function, however, this would demand another layer of polymorphism and make the code all-around less intuitive. 
+As an example, the orbital class implementation responsible for the gradient of the single particle states, \verb+Orbitals::del_phi+, is virtual. This implies that it can be overloaded to call the numerical derivative implementation \verb+Orbitals::num_diff+. The same goes for the Laplacian, the Jastrow factor derivatives, and the variational derivatives in the minimizer. An alternative to numerically evaluating the derivatives of the single particle wave functions would be to perform the derivative on the full many-body wave function, however, this would not fit naturally into the code design.
 
-The implemented numerical derivatives are finite difference schemes with error proportional to the squared step length.
+The implemented numerical derivatives are finite difference schemes with an error proportional to the square of the chosen step length.
 
 \section{Optimizations due to a Single two-level Determinant}
 \label{sec:optSingleSlater}
 
-Assumption \ref{it::ass::fermiSingleDet} unlocks the possibility to optimize the expressions involving the Slater-determinant dramatically. Similar optimizations for bosons due to assumption \ref{it::ass::bosCondensate} are considered trivial and will not be covered in detail. See the code in \cite{libBorealisCode} for details regarding bosons.
+Assuming the trial wave function to consist of a single term unlocks several optimizations involving the Slater-determinant. Similar optimizations for bosons are considered trivial in comparison and will not be covered in detail. See the code in \cite{libBorealisCode} for details regarding bosons.
 
-The full trial wave function $\Psi_T$ is given by Eq.~(\ref{eq:singleDeterminantTWF}). The function arguments will be skipped in order to clean up the expressions. Written in terms of a spatial function $|D|$, which is split into a spin up  -and spin down part by Eq.~(\ref{eq:splitSlater}), and a Jastrow function $J$, the trial wave function reads
+Writing the Slater determinant as the determinant of the \textit{Slater matrix} $\mathbf{S}$, the expression for the trial wave function in Eq.~(\ref{eq:singleDeterminantTWF}) becomes
 
-\newcommand{\PTd}{|D^\uparrow||D^\downarrow|J}
-\newcommand{\Du}{|D^\uparrow|}
-\newcommand{\Dd}{|D^\downarrow|}
-\newcommand{\Da}{|D^\alpha|}
+\newcommand{\PTd}{|\mathbf{S}^\uparrow||\mathbf{S}^\downarrow |J}
+\newcommand{\Du}{|\mathbf{S}^\uparrow|}
+\newcommand{\Dd}{|\mathbf{S}^\downarrow|}
+\newcommand{\Da }{|\mathbf{S}^{\alpha}|}
+\newcommand{\Daa}{|\mathbf{S}^{\overline{\alpha}}|}
+\newcommand{\PTda}{\Da\Daa J}
 
 \begin{equation}
- \Psi_T = \PTd
+ \Psi_T = \PTd, \label{eq:phiTrialOptGen}
 \end{equation}
 
-The Quantum Force becomes
+where the splitting of the Slater determinant described in parts corresponding to spin up and spin down has been applied (see Eq.~(\ref{eq:splitSlater})). The Jastrow-factor, $J$, is described in section \ref{sec:ChoiceTrialWF}. Function arguments are skipped to clean up the expression. 
+
+Several quantities involves evaluating the trial wave function, one of which are the quantum force from section \ref{sec:anisFokker} responsible for pushing the walkers in the direction of higher probabilities. Written in terms of Eq.~(\ref{eq:phiTrialOptGen}), the expression for the quantum force of particle $i$ becomes 
 
 \begin{eqnarray}
  \mathbf{F}_i &=& 2\frac{\nabla_i\left(\PTd\right)}{\PTd} \nonumber\\
-     &=& 2\left(\frac{\nabla_i\Du}{\Du} + \frac{\nabla_i\Dd}{\Dd} + \frac{\nabla_i J}{J}\right) \nonumber \\
-     &=& 2\left(\frac{\nabla_i\Da}{\Da} + \frac{\nabla_i J}{J}\right)
+     &=& 2\left(\frac{\nabla_i\Du}{\Du} + \frac{\nabla_i\Dd}{\Dd} + \frac{\nabla_i J}{J}\right). \nonumber \\
 \end{eqnarray}
 
-where $\alpha$ is the spin configuration of particle $i$. The counterpart to $\alpha$ is independent of particle $i$ and will be zero in the expression above.
+The important part to realize now, is that particle $i$ \textit{either} has spin up or spin down. This implies that one of the derivatives in the last expression is zero due to the fact that the spins are opposite. Denoting the spin of particle $i$ as $\alpha$ and the opposite spin as $\overline{\alpha}$, the expressions for the quantum force reads
 
-Equally for the Laplacian used in the local energy, the result becomes
+\begin{align}
+ \mathbf{F}_i &= 2\left(\frac{\nabla_i\Da}{\Da} + \frac{\nabla_i\Daa}{\Daa} + \frac{\nabla_i J}{J}\right), \\ \nonumber
+\end{align}
 
-\begin{eqnarray}
- E_L &=& \sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + V \label{eq:localEsum}\\
-  \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PTd}\nabla^2_i \PTd \nonumber\\
-  &=& \frac{\nabla^2_i \Du}{\Du} + \frac{\nabla^2_i \Dd}{\Dd} + \frac{\nabla^2_i J}{J} \nonumber\\
-  && +\,\, 2\frac{\left(\nabla_i\Du\right)\left(\nabla_i\Dd\right)}{\Du\Dd} + 2 \frac{\left(\nabla_i\Du\right)\left(\nabla_i J\right)}{\Du J} + 2 \frac{\left(\nabla_i\Dd\right)\left(\nabla_i J\right)}{\Dd J} \nonumber\\
-  &=& \frac{\nabla^2_i \Da}{\Da} + \frac{\nabla^2_i J}{J} + 2\frac{\nabla_i\Da}{\Da} \frac{\nabla_i J}{J}
+where 
+
+\begin{equation}
+ \nabla_i\Daa = 0, \label{eq:differentSpinDie}
+\end{equation}
+
+due to the fact that there is no trace of particle $i$ in $\Daa$. The resulting expression involves evaluating the Slater matrix for a single spin configuration only
+
+\begin{equation}
+ \mathbf{F}_i = 2\left(\frac{\nabla_i\Da}{\Da} + \frac{\nabla_i J}{J}\right). \nonumber
+\end{equation}
+
+The expression for the local energy from Section \ref{sec:calcExpVals} can be simplified in a similar manner. Starting from the original expression
+
+\begin{equation}
+ E_L = -\frac{1}{2}\sum_i \frac{1}{\Psi_T}\nabla^2_i \Psi_T + \sum_iV_i, \label{eq:localEsum}
+\end{equation}
+
+the Laplacian can be expanded in the same way as was done for the quantum force
+
+ \begin{eqnarray}
+  \frac{1}{\Psi_T}\nabla^2_i\Psi_T &=&  \frac{1}{\PTda}\nabla^2_i \PTda \nonumber\\
+  &=& \frac{\nabla^2_i \Da}{\Da} + \frac{\nabla^2_i \Daa}{\Daa} + \frac{\nabla^2_i J}{J} \nonumber\\
+  && +\,\, 2\frac{\left(\nabla_i\Da\right)\left(\nabla_i\Daa\right)}{\Da\Daa} + 2 \frac{\left(\nabla_i\Da\right)\left(\nabla_i J\right)}{\Da J} + 2 \frac{\left(\nabla_i\Daa\right)\left(\nabla_i J\right)}{\Daa J} \nonumber\\
+  &=& \frac{\nabla^2_i \Da}{\Da} + \frac{\nabla^2_i J}{J} + 2\frac{\nabla_i\Da}{\Da} \frac{\nabla_i J}{J},
 \end{eqnarray}
 
-Finally, the expression for the $R_\psi$ ratio for Metropolis is
+where half of the terms vanish due to Eq.~(\ref{eq:differentSpinDie}).
+
+The last expression involving the Slater matrix (which can be simplified) is the spatial ratio, $R_\psi$, used in the Metropolis algorithm (see Section \ref{sec:MetroMain}). The expression reads
 
 \begin{eqnarray}
  R_\psi &=& \frac{\Psi_T^\mathrm{new}}{\Psi_T^\mathrm{old}} \nonumber\\
-        &=& \frac{\Du^\mathrm{new} \Dd^\mathrm{new} J^\mathrm{new}}{\Du^\mathrm{old} \Dd^\mathrm{old} J^\mathrm{old}} \nonumber\\
-        &=& \frac{\Da^\mathrm{new}}{\Da^\mathrm{old}}\frac{J^\mathrm{new}}{J^\mathrm{old}} \label{eq:RpsiOpt}
+ &=& \frac{\Du^\mathrm{new} \Dd^\mathrm{new} J^\mathrm{new}}{\Du^\mathrm{old} \Dd^\mathrm{old} J^\mathrm{old}}, \label{eq:R_psi_allspins}\\
 \end{eqnarray}
 
-where either the spin up or the spin down determinant is unchanged by the step, i.e. $|D^{\overline{\alpha}}|^\mathrm{new} = |D^{\overline{\alpha}}|^\mathrm{old}$, where $\overline{\alpha}$ denotes the opposite spin of $\alpha$. 
+where the old and new superscript denotes the wave function prior to and after moving one particle respectively. Let again $i$ be the currently moved particle with spin $\alpha$. As discussed previously, the part of the trial wave function representing the opposite spin of $\alpha$, $\Daa$, is independent of particle $i$. This implies that moving particle $i$ does not change the value of $\Daa$, that is
 
-From these expressions it is clear that the dimensionality of the calculations is halved by splitting the Slater determinants. Calculation the determinant of a $N\times N$ matrix is $\mathcal{O}(N^2)$ floating point operations (flops). This implies a speedup of four in estimating the determinants alone. 
+\begin{equation}
+ \Daa^\mathrm{new} = \Daa^\mathrm{old}.
+\end{equation}
+
+Inserting this into Eq.~(\ref{eq:R_psi_allspins}) in addition to the spin parameters $\alpha$ and $\overline{\alpha}$ gives
+
+\begin{equation}
+ R_\psi = \frac{\Daa^\mathrm{new}}{\Daa^\mathrm{old}} = \underbrace{\frac{\Daa^\mathrm{new}}{\Daa^\mathrm{old}}}_{1}\frac{\Da^\mathrm{new}}{\Da^\mathrm{old}}\frac{J^\mathrm{new}}{J^\mathrm{old}} = \frac{\Da^\mathrm{new}}{\Da^\mathrm{old}}\frac{J^\mathrm{new}}{J^\mathrm{old}}. \label{eq:RpsiOpt}
+\end{equation}
+
+From the expressions deduced in this section it is clear that the dimensionality of the calculations is halved by splitting the Slater determinant into two parts. Calculating the determinant of a $N\times N$ matrix is $\mathcal{O}(N^2)$ floating point operations (flops), which implies a speedup of four in estimating the determinants alone. 
 
 \section{Optimizations due to Single-particle Moves}
 
-Moving one particle at the time (see the diffusion algorithm in Fig. \ref{fig:diffFlowChart}), means changing only a single row in the Slater-determinant at the time. Changes to a single row implies that many \textit{co-factors} remain unchanged. Since all of the expressions deduced in the previous section contains ratios of the spatial wave functions, expressing these determinants in terms of their co-factors should reveal a cancellation of terms. 
+Moving a single particle at the time implies that only a single row in the Slater-determinant from Eq.~(\ref{eq:SlaterDeterminantExplicit}) will be changed between the calculations. Changes to a single row implies that many \textit{co-factors} remain unchanged. Since all of the expressions deduced in the previous section contains ratios of the spatial wave functions, expressing these determinants in terms of their co-factors should reveal a cancellation of terms. 
+
+Expressing the cancellation mathematically presents the possibility to optimize the calculations by implementing only the parts which does not cancel. 
+
+In the previous section it became apparent that only the determinant whose spin level matches that of the moved particle needs to be calculated explicitly. In the following sections, the spin indication on the Slater matrix $\Da$ will be skipped in order to clean up the equations.
 
 \subsection{Optimizing the Slater ratios}
 \label{sec:optSlaterRat}
 
-The inverse of the Slater-matrix is given in terms of its \textit{adjugate} by the following relation \cite{linAlg} (spin-configuration parameter $\alpha$ will be skipped for now)
+\newcommand{\Sinv}{\mathbf{S}^{-1}}
+
+The inverse of the Slater-matrix introduced in the previous section, is given in terms of its \textit{adjugate} by the following relation \cite{linAlg}
 
 \begin{equation*}
- D^{-1} = \frac{1}{|D|}\mathrm{adj} D
+ \Sinv = \frac{1}{|\mathbf{S}|}\mathrm{adj} \mathbf{S}.
 \end{equation*}
 
-The adjugate of a matrix is the transpose of the cofactor matrix $C$. The expression in terms of matrix element equations reads
+The adjugate of a matrix is the transpose of the cofactor matrix $\mathbf{C}$. The expression in terms of matrix element equations reads
 
 \begin{eqnarray}
- D^{-1}_{ij} &=& \frac{C_{ji}}{|D|}\label{eq:invExpCofac} \\
- D_{ji} &=& \phi_i(r_j) \label{eq:slaterMatPhi}
+ \Sinv &=& \frac{\mathbf{C}^T}{|\mathbf{S}|}, \\
+ \Sinv_{ij} &=& \frac{\mathbf{C}_{ji}}{|\mathbf{S}|}\label{eq:invExpCofac}, \\
+ \mathbf{S}_{ji} &=& \phi_i(\mathbf{r}_j). \label{eq:slaterMatPhi}
 \end{eqnarray}
 
-Moreover, the determinant can be expressed as a \textit{cofactor expansion} around row $j$ (Kramer's rule)
+Moreover, the determinant can be expressed as a \textit{cofactor expansion} around row $j$ (Kramer's rule) \cite{linAlg}
 
 \begin{equation}
 \label{eq:cofacExp}
- |D| = \sum_i D_{ji} C_{ji}.
+ |\mathbf{S}| = \sum_i \mathbf{S}_{ji} \mathbf{C}_{ji}.
 \end{equation}
 
 The spatial part of the $R_\psi$ ratio is obtained by inserting Eq.~(\ref{eq:cofacExp}) into Eq.~(\ref{eq:RpsiOpt})
 
 \begin{equation}
 \label{eq:RpsiCofac}
- R_S = \frac{\sum_i D_{ji}^\mathrm{new}C_{ji}^\mathrm{new}}{\sum_i D_{ji}^\mathrm{old}C_{ji}^\mathrm{old}}
+ R_S = \frac{\sum_i \mathbf{S}_{ji}^\mathrm{new}\mathbf{C}_{ji}^\mathrm{new}}{\sum_i \mathbf{S}_{ji}^\mathrm{old}\mathbf{C}_{ji}^\mathrm{old}}.
 \end{equation}
 
 Let $j$ represent the moved particle. The $j$'th column of the cofactor matrix is unchanged when the particle moves (column $j$ depends on every column but its own). In other words
 
 \begin{equation}
- C_{ji}^\mathrm{new} = C_{ji}^\mathrm{old} = (D^\mathrm{old}_{ij})^{-1}|D^\mathrm{old}|,
+ \mathbf{C}_{ji}^\mathrm{new} = \mathbf{C}_{ji}^\mathrm{old} = (\mathbf{S}^\mathrm{old}_{ij})^{-1}|\mathbf{S}^\mathrm{old}|,
 \end{equation}
 
 where the inverse relation of Eq.~(\ref{eq:invExpCofac}) has been used. Inserting this into Eq.~(\ref{eq:RpsiCofac}) yields
 
 \begin{eqnarray}
-  R_S &=& \frac{|D^\mathrm{old}|}{|D^\mathrm{old}|}\frac{\sum_i D_{ji}^\mathrm{new}(D_{ij}^\mathrm{old})^{-1}}{\sum_i D_{ji}^\mathrm{old}(D_{ij}^\mathrm{old})^{-1}} \nonumber\\
-         &=& \frac{\sum_i D_{ji}^\mathrm{new}(D_{ij}^\mathrm{old})^{-1}}{I_{jj}} \nonumber
+  R_S &=& \frac{|\mathbf{S}^\mathrm{old}|}{|\mathbf{S}^\mathrm{old}|}\frac{\sum_i \mathbf{S}_{ji}^\mathrm{new}(\mathbf{S}_{ij}^\mathrm{old})^{-1}}{\sum_i \mathbf{S}_{ji}^\mathrm{old}(\mathbf{S}_{ij}^\mathrm{old})^{-1}} \nonumber\\
+         &=& \frac{\sum_i \mathbf{S}_{ji}^\mathrm{new}(\mathbf{S}_{ij}^\mathrm{old})^{-1}}{\mathbf{I}_{jj}}. \nonumber
 \end{eqnarray}
 
-The diagonal element of the identity matrix is by definition unity. Inserting this fact combined with the relation from Eq.~(\ref{eq:slaterMatPhi}) yields the optimized expression for the ratio
+The diagonal element of the identity matrix is by definition unity. Inserting this fact combined with the relation from Eq.~(\ref{eq:slaterMatPhi}), an optimized expression for the ratio is obtained:
 
 \cfbox{4cm-4pt}{
 \begin{equation}
 \label{eq:spatialRatioDet}
- R_S = \sum_i \phi_i(r_j^\mathrm{new})(D_{ij}^\mathrm{old})^{-1}
+ R_S = \sum_i \phi_i(\mathbf{r}_j^\mathrm{new})(\mathbf{S}_{ij}^\mathrm{old})^{-1},
 \end{equation}
 }
 
-where $j$ is the currently moved particle. The sum $i$ spans the Slater matrix whose spin value matches that of particle $j$.
+where $j$ is the currently moved particle. The sum over $i$ spans the Slater matrix whose spin value matches that of particle $j$, i.e either $\mathbf{S}^\alpha$ or $\mathbf{S}^{\overline{\alpha}}$ (see the previous section).
 
-
-Similar reductions can be applied to all the Slater ratio expressions from the previous section, see refs. \cite{abInitioMC, morten}:
+Similar reductions can be applied to all the Slater ratio expressions from the previous section \cite{abInitioMC, morten}:
 
 \cfbox{4cm}{
 \begin{eqnarray}
- \frac{\nabla_i|D|}{|D|} &=& \sum_{k} \nabla_i\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1} \\
-  \frac{\nabla_i^2|D|}{|D|} &=& \sum_{k} \nabla_i^2\phi_k(r_i^\mathrm{new})(D_{ki}^\mathrm{new})^{-1}
+ \frac{\nabla_i|\mathbf{S}|}{|\mathbf{S}|} &=& \sum_{k} \nabla_i\phi_k(r_i^\mathrm{new})(\mathbf{S}_{ki}^\mathrm{new})^{-1}, \\
+  \frac{\nabla_i^2|\mathbf{S}|}{|\mathbf{S}|} &=& \sum_{k} \nabla_i^2\phi_k(r_i^\mathrm{new})(\mathbf{S}_{ki}^\mathrm{new})^{-1},
 \end{eqnarray}
 }
 
-where $k$ spans the Slater matrix whose spin values match that of the moved particle. Unlike for the ratio, $N/2$ of the gradients needs to be recalculated once a particle is moved (with $N$ being the number of particles). This is due to the fact that it is the new Slater inverse that is used, and not the old.
+where the sum $k$ spans the Slater matrix whose spin values match that of the moved particle.
 
-Closed form expressions for the derivatives and Laplacians of the single particle may be implemented and accessed when calling these functions to avoid expensive numerical calculations. See Appendices \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} for a tabulation of closed form expressions. Appendix \ref{appendix:sympy} presents an efficient framework for obtaining these expressions.
+Closed form expressions for the derivatives and Laplacians of the single particle wave functions can be implemented in order to avoid expensive numerical calculations. See Appendices \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} for a tabulation of closed form expressions used in this Thesis. Appendix \ref{appendix:sympy} presents an efficient strategy for obtaining these expressions.
 
 \subsection{Optimizing the Inverse}
 \label{sec:optInv}
 
-One might question the efficiency of calculating inverse matrices compared to brute force estimation of the determinants. However, as for the ratio in Eq.~(\ref{eq:spatialRatioDet}), using co-factor expansions, an updating algorithm which dramatically decreases the cost of calculating the inverse of the new Slater matrix can be implemented.
+One might question the efficiency of calculating inverse matrices compared to brute force estimation of the determinants. The efficiency of the inverse becomes apparent, as with the ratio in Eq.~(\ref{eq:spatialRatioDet}), by co-factor expanding the expression; an updating algorithm which dramatically decreases the cost of calculating the inverse of the new Slater matrix can be implemented.
 
-Letting $i$ denote the currently moved particle, the new inverse is given in terms of the old by the following expression \cite{abInitioMC, morten}
+Let $i$ denote the currently moved particle. The new inverse is given in terms of the previous by the following expression \cite{abInitioMC, morten}
 
 \cfbox{4.5cm-5pt}{
 \begin{eqnarray}
- \tilde I_{ij} &=& \sum_l D_{il}^\mathrm{new}(D_{lj}^\mathrm{old})^{-1} \\
+ \mathbf{\tilde I}_{ij} &=& \sum_l \mathbf{S}_{il}^\mathrm{new}(\mathbf{S}_{lj}^\mathrm{old})^{-1}, \\
  \ \label{eq:Itilde}\
- (D_{kj}^\mathrm{new})^{-1} &=& (D_{kj}^\mathrm{old})^{-1} - \frac{1}{R_S}(D_{ji}^\mathrm{old})^{-1}\tilde I_{ij} \qquad\qquad j \ne i\\
- (D_{ki}^\mathrm{new})^{-1} &=& \frac{1}{R_S}(D_{ki}^\mathrm{old})^{-1} \qquad\qquad\qquad\qquad\qquad\,\, \mathrm{else} \\
+ (\mathbf{S}_{kj}^\mathrm{new})^{-1} &=& (\mathbf{S}_{kj}^\mathrm{old})^{-1} - \frac{1}{R_S}(\mathbf{S}_{ji}^\mathrm{old})^{-1}\tilde I_{ij} \qquad\qquad j \ne i,\\
+ (\mathbf{S}_{ki}^\mathrm{new})^{-1} &=& \frac{1}{R_S}(\mathbf{S}_{ki}^\mathrm{old})^{-1} \qquad\qquad\qquad\qquad\qquad\,\, \mathrm{else}. \\
  \ \nonumber
 \end{eqnarray}
 }
 
 This reduces the cost of calculating the inverse by an order of magnitude down to $\mathcal{O}(N^2)$.
 
-Further optimization can be achieved by calculating the $\tilde I$ vector for particle $i$ prior to performing the loop over $k$ and $j$. Again, this loop should only update the inverse Slater matrix whose spin value correspond to that of the moved particle.
+Further optimization can be achieved by calculating the $\mathbf{\tilde I}$ vector for particle $i$ prior to performing the loop over $k$ and $j$. Again, this loop should only update the inverse Slater matrix whose spin value correspond to that of the moved particle.
 
 \subsection{Optimizing the Padé Jastrow factor Ratio}
+\label{sec:optPagejastRat}
 
-As done with the Green's function ratio in Eq.~(\ref{eq:MetropolisHastings}), the ratio between two Jastrow factors are best calculating as exponentiation the logarithm
+Such as was done with the Green's function ratio in Eq.~(\ref{eq:MetropolisHastings}), the ratio between two Jastrow factors are best expressed in terms of the logarithm
 
 \begin{eqnarray}
- \log \frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j = 1}^N \frac{a_{kj}r^\mathrm{new}_{kj}}{1 + \beta r^\mathrm{new}_{kj}} - \frac{a_{kj}r^\mathrm{old}_{kj}}{1 + \beta r^\mathrm{old}_{kj}} \\
-                      &\equiv& \sum_{k<j = 1}^N g^\mathrm{new}_{kj} - g^\mathrm{old}_{kj} \label{eq:jastrowRatSTD}
+ \log \frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j = 1}^N \left[\frac{a_{kj}r^\mathrm{new}_{kj}}{1 + \beta r^\mathrm{new}_{kj}} - \frac{a_{kj}r^\mathrm{old}_{kj}}{1 + \beta r^\mathrm{old}_{kj}}\right] \\
+                      &\equiv& \sum_{k<j = 1}^N \left[g^\mathrm{new}_{kj} - g^\mathrm{old}_{kj}\right]. \label{eq:jastrowRatSTD}
 \end{eqnarray}
 
-The relative distances $r_{kj}$ behave much like the cofactors in Section \ref{sec:optSlaterRat}: Changing $r_i$ only changes $r_{ij}$, that is
+The relative distances $r_{kj}$ behave much like the cofactors in Section \ref{sec:optSlaterRat}: Changing $r_i$ changes only $r_{ij}$, that is
 
 \begin{equation}
- r^\mathrm{new}_{kj} = r^\mathrm{old}_{kj} \qquad k \ne i 
+ r^\mathrm{new}_{kj} = r^\mathrm{old}_{kj} \qquad k \ne i, 
 \end{equation}
 
 which inserted into Eq.~(\ref{eq:jastrowRatSTD}) yields
 
 \begin{eqnarray}
-  \log\frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j \ne i} g^\mathrm{old}_{kj} - g^\mathrm{old}_{kj} + \sum_{j = 1}^N g^\mathrm{new}_{ij} - g^\mathrm{old}_{ij} \nonumber\\
-                                            &=& \sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right)
+  \log\frac{J^\mathrm{new}}{J^\mathrm{old}} &=& \sum_{k<j \ne i}  \underbrace{\left[g^\mathrm{old}_{kj} - g^\mathrm{old}_{kj}\right]}_{0} + \sum_{j = 1}^N \left[ g^\mathrm{new}_{ij} - g^\mathrm{old}_{ij}\right] \nonumber\\
+                                            &=& \sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right).
 \end{eqnarray}
 
 Exponentiating both sides reveals the final optimized ratio 
 
 \cfbox{4.6cm-2pt}{
 \begin{equation}
- \frac{J^\mathrm{new}}{J^\mathrm{old}} = \exp \left[\sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right)\right]
+ \frac{J^\mathrm{new}}{J^\mathrm{old}} = \exp \left[\sum_{j = 1}^N a_{ij}\left(\frac{r^\mathrm{new}_{ij}}{1 + \beta r^\mathrm{new}_{ij}} - \frac{r^\mathrm{old}_{ij}}{1 + \beta r^\mathrm{old}_{ij}}\right)\right].
 \end{equation}
 }
 
 
 \section{Optimizing the Padé Jastrow Derivative Ratios}
 
-The shape of the Padé Jastrow factor is general in the sense that its shape is independent of the system at hand. Calculating closed form expressions for the derivatives is then a process which can be done once and for all. 
+
+The shape of the Padé Jastrow factor is general in the sense that it is independent of the system at hand. Calculating closed form expressions for the derivatives is then a process which can be done once and for all. 
+
+Closed form expressions are not only very efficient compared to a numerical evaluation, but also exact to machine precision. These facts renders closed form expressions of high interest to any Monte-Carlo implementation. 
 
 \subsection{The Gradient}
 
-Using the notation of Eq.~(\ref{eq:jastrowRatSTD}), the $x$ component of the Padé Jastrow gradient ratio for particle $i$ is
+Using the notation of Eq.~(\ref{eq:jastrowRatSTD}), the $x$-component of the Padé Jastrow gradient ratio for particle $i$ is
 
 \begin{equation}
- \frac{1}{J}\frac{\partial J}{\partial x_i} = \frac{1}{\prod_{k < l}\exp g_{kl}}\frac{\partial }{\partial x_i}\prod_{k < l}\exp g_{kl} 
+ \frac{1}{J}\frac{\partial J}{\partial x_i} = \frac{1}{\prod_{k < l}\exp g_{kl}}\frac{\partial }{\partial x_i}\prod_{k < l}\exp g_{kl}.
 \end{equation}
 
-Using the product rule, only terms with $k$ or $l$ equal to $i$ survive the differentiation. In addition, the terms independent of $i$ will cancel the corresponding terms in the denominator. In other words, 
+Using the product rule, the above product will be transformed into a sum, where only the terms which has $k$ or $l$ equal to $i$ survive the differentiation. In addition, the terms independent of $i$ will cancel the corresponding terms in the denominator. Performing this calculation yields
 
 \begin{eqnarray}
   \frac{1}{J}\frac{\partial J}{\partial x_i} &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\frac{\partial}{\partial x_i} \exp g_{ik} \nonumber\\
-  &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\exp g_{ik}\frac{\partial g_{ik}}{\partial x_i} \nonumber \\
+  &=& \sum_{k \ne i} \frac{1}{\exp g_{ik}}\frac{\partial g_{ik}}{\partial x_i} \exp g_{ik}\nonumber \\
   &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial x_i} \nonumber \\
   &=& \sum_{k \ne i} \frac{\partial g_{ik}}{\partial r_{ik}}\frac{\partial r_{ik}}{\partial x_i},
 \end{eqnarray}
@@ -407,15 +447,15 @@ Combining these expressions yields
 
 \begin{equation}
 \label{eq:jastrowDerivX}
- \frac{1}{J}\frac{\partial J}{\partial x_i} = \sum_{k \ne i} \frac{a_{ik}}{r_{ik}}\frac{x_i - x_k}{(1 + \beta r_{ik})^2}
+ \frac{1}{J}\frac{\partial J}{\partial x_i} = \sum_{k \ne i} \frac{a_{ik}}{r_{ik}}\frac{x_i - x_k}{(1 + \beta r_{ik})^2}.
 \end{equation}
 
-When changing Cartesian variable in the differentiation, the only change to the expression is that the corresponding Cartesian variable changes in the numerator of Eq.~(\ref{eq:jastrowDerivX}). In other words, generalizing to the full gradient is done by substituting the Cartesian difference with the position vector difference.
+Changing the Cartesian variable in the differentiation changes only the numerator of Eq.~(\ref{eq:jastrowDerivX}). In other words, generalizing to the full gradient is done by substituting the Cartesian difference with the position vector difference. The expression for the gradient becomes
 
 \cfbox{4.8cm}{
 \begin{equation}
 \label{eq:jastrowGradFull}
- \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2}
+ \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \frac{a_{ik}}{r_{ik}}\frac{\mathbf{r}_i - \mathbf{r}_k}{(1 + \beta r_{ik})^2}.
 \end{equation}
 }
 
@@ -429,30 +469,30 @@ The same strategy used to obtain the closed form expression for the gradient in 
  \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N \left(\frac{d-1}{r_{ik}}\frac{\partial g_{ik}}{\partial r_{ik}} + \frac{\partial^2 g_{ik}}{\partial r_{ik}^2}\right) 
 \end{equation}
 
-where $d$ is the number of dimensions, arising due to the fact that the Laplacian, unlike the gradient, is a summation of contributions from all dimensions. A simple differentiation of Eq.~(\ref{eq:jastrowDgikDrik}) with respect to $r_{ik}$ yields
+where $d$ is the number of dimensions arising due to the fact that the Laplacian, unlike the gradient, is a summation of contributions from all dimensions. A simple differentiation of Eq.~(\ref{eq:jastrowDgikDrik}) with respect to $r_{ik}$ yields
 
 \begin{equation}
 \label{eq:jastrowD2gikDrik2}
  \frac{\partial^2 g_{ik}}{\partial r_{ik}^2} = -\frac{2a_{ik}\beta}{(1 + \beta r_{ik})^3}
 \end{equation}
 
-Inserting Eq.~(\ref{eq:jastrowDgikDrik}) and Eq.~(\ref{eq:jastrowD2gikDrik2}) into Eq.~(\ref{eq:jastrowLaplRaw}) yields
+Inserting Eq.~(\ref{eq:jastrowDgikDrik}) and Eq.~(\ref{eq:jastrowD2gikDrik2}) into Eq.~(\ref{eq:jastrowLaplRaw}) further reveals
 
 \begin{eqnarray}
  \frac{\nabla^2_i J}{J} &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N \left(\frac{d-1}{r_{ik}}\frac{a_{ik}}{(1 + \beta r_{ik})^2} - \frac{2a_{ik}\beta}{(1 + \beta r_{ik})^3}\right) \nonumber\\
-  &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N a_{ik}\frac{(d-1)(1 + \beta r_{ik}) - 2\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3} \nonumber
+  &=& \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i = 1}^N a_{ik}\frac{(d-1)(1 + \beta r_{ik}) - 2\beta r_{ik}}{r_{ik}(1 + \beta r_{ik})^3}, \nonumber
 \end{eqnarray}
 
 which when cleaned up results in
 
 \begin{equation}
- \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i} a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}
+ \frac{\nabla^2_i J}{J} = \left| \frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i} a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}.
 \end{equation}
 
 The local energy calculation needs the sum of the Laplacians for all particles (see Eq.~(\ref{eq:localEsum})). In other words, the quantity of interest becomes
 
 \begin{equation}
- \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left[\left|\frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i}^N a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}\right]
+ \sum_i \frac{\nabla^2_i J}{J} = \sum_i \left[\left|\frac{\nabla_i J}{J}\right|^2 + \sum_{k \ne i}^N a_{ik}\frac{(d-3)(\beta r_{ik} + 1) + 2}{r_{ik}(1 + \beta r_{ik})^3}\right].
 \end{equation}
 
 Due to the symmetry of $r_{ik}$, the second term count equal values twice. Further optimization can thus be achieved by calculation only terms where $k>i$, and multiply the sum by two. Bringing it all together yields
@@ -467,26 +507,29 @@ Due to the symmetry of $r_{ik}$, the second term count equal values twice. Furth
 
 \section{Tabulating Recalculated Data}
 
-The optimizations covered in this section will exclusively arise from point \ref{it::opt::reCalc} in section \ref{sec:optGoals}. Avoiding recalculating expressions also include exploiting symmetries, such as was done in the Padé Jastrow Laplacian in Eq.~(\ref{eq:jastrowLaplFin}).
+The expressions introduced so far in this chapter contain terms which are identical. Explicitly calculating these terms every time they are countered in the code would waste a lot of CPU time in contrast to the optimal scenario where they are calculated only once.
 
-Code examples are presented to narrow the gap between presented optimizations and practical implementations in order to demonstrate that most optimizations does not require much additional code.
+Tabulating data is crucial in order for the code to remain efficient for an increased number of particles. 
 
 \subsection{The relative distance matrix}
+\label{sec:relDist}
 
-In the discussions regarding the optimization of the Jastrow ratio, it became clear that moving one particle only changed $N$ of the relative distances. Storing these values in a matrix $r_\mathrm{rel}$, the row and column representing the moved particle can be updated, ensuring that the relative distances are calculated once and for all.
+In the discussions regarding the optimization of the Jastrow ratio in section \ref{sec:optPagejastRat}, it became clear that moving one particle only changed $N$ of the relative distances. Tabulating these distances in a matrix $\mathbf{r}_\mathrm{rel}$, which then can be updated when a particle is moved, will ensure that the relative distances are calculated once and for all. The matrix is set up in the following manner
 
 \begin{equation}
-r_\mathrm{rel} = r_\mathrm{rel}^T = \left( \begin{array}{ccccc}
+\mathbf{r}_\mathrm{rel} = \mathbf{r}_\mathrm{rel}^T = \left( \begin{array}{ccccc}
 0 & r_{12} & r_{13} & \cdots & r_{1N} \\
- & 0 & r_{23} & \cdots & r_{2N}  \\
+r_{21} & 0 & r_{23} & \cdots & r_{2N}  \\
  &  & \ddots & \ddots & \vdots \\
  & \cdots &  & 0 & r_{(N-1)N} \\
- &  &  &  & 0\end{array} \right).
+ &  &  &  & 0\end{array} \right),
 \end{equation}
 
-\vspace{0.5cm}
-\begin{lstlisting}
- void Sampling::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
+where the first equality expresses that the matrix is symmetric, that is, equal to it's own transpose. The following code presents the updating of the matrix when a particle is moved
+
+\vspace{0.25cm}
+\begin{lstlisting}[caption={The code used to update the relative distance matrix of a walker when a particle is moved. Pay extra attention to line 8 where the symmetry of the matrix is exploited to further decrease the number of calls to the relative distance function in line 9.}]
+void Sampling::update_pos(const Walker* walker_pre, Walker* walker_post, int particle) const {
 
     ...
 
@@ -504,87 +547,95 @@ r_\mathrm{rel} = r_\mathrm{rel}^T = \left( \begin{array}{ccccc}
 \end{lstlisting}
 
 
-Functions such as \verb+Coulomb::get_potential_energy+ and all of the Jastrow functions can then simply access these matrix elements.
+Functions such as \verb+Coulomb::get_potential_energy+ and all of the Jastrow functions can then simply access these matrix elements without having to perform any explicit calculations.
 
-Similar storage has been done for the squared distance vector in all cases and the length of the distance vector in case of atomic orbitals. 
+A similar updating algorithm has been implemented for the squared distance vector and the absolute value of the distance vector. 
 
 \subsection{The Slater related matrices}
 \label{sec:storeSlater}
 
-Apart from the inverse, whose optimization was covered in Section \ref{sec:optInv}, calculating the single particle wave functions and its gradients are the most expensive operations of the QMC algorithm.
+Apart from the inverse, whose optimization was covered in Section \ref{sec:optInv}, calculating the single particle wave functions and its gradients are the most expensive operations in the QMC algorithm.
 
-Storing these function values in a matrices representing the Slater Matrix and its derivatives will ensure that these values never gets recalculated. 
+Storing these function values in matrices representing the Slater matrices $\mathbf{S}^\uparrow$ and $\mathbf{S}^\downarrow$ introduced in Section \ref{sec:optSingleSlater}, ensures that these values never gets recalculated. The following expression describes how the Slater matrix is represented in the code 
 
 \begin{equation}
 \label{eq:slaterConcat}
- D  \equiv \left[D^\uparrow\,D^\downarrow\right] = \left[ \begin{array}{cccc}
-\phi_1(r_0)     & \phi_1(r_1)     & \cdots & \phi_1(r_N)       \\
-\phi_2(r_0)     & \phi_2(r_1)     & \cdots & \phi_2(r_N)       \\
+ \mathbf{S}  \equiv \mathrm{join}\left(\mathbf{S}^\uparrow,\,\,\mathbf{S}^\downarrow\right) = \left[ \begin{array}{cccc}
+\phi_1(\mbf{r}_0)     & \phi_1(\mbf{r}_1)     & \cdots & \phi_1(\mbf{r}_N)       \\
+\phi_2(\mbf{r}_0)     & \phi_2(\mbf{r}_1)     & \cdots & \phi_2(\mbf{r}_N)       \\
 \vdots          & \vdots          &        & \vdots            \\
-\phi_{N/2}(r_0) & \phi_{N/2}(r_1) & \cdots & \phi_{N/2}(r_N)   \end{array} \right]
+\phi_{N/2}(\mbf{r}_0) & \phi_{N/2}(\mbf{r}_1) & \cdots & \phi_{N/2}(\mbf{r}_N)   \end{array} \right],
 \end{equation}
+
+where $\mathrm{join}(\mathbf{A}, \mathbf{B})$ denotes joining the columns of the matrices $A$ and $B$, i.e. \textit{concatenate} the matrices\cite{linAlg}. Similarly for the gradient terms, the following matrix is responsible for storing the gradient of all the elements in Eq.~(\ref{eq:slaterConcat})
 
 \begin{equation}
 \label{eq:slaterDellConcat}
- \nabla D \equiv \left[\nabla D^\uparrow\,\nabla D^\downarrow\right] =\left[ \begin{array}{cccc}
-\nabla \phi_1(r_0)     & \nabla \phi_1(r_1)     & \cdots & \nabla \phi_1(r_N)       \\
-\nabla \phi_2(r_0)     & \nabla \phi_2(r_1)     & \cdots & \nabla \phi_2(r_N)       \\
+ \mathbf{dS} \equiv \left[ \begin{array}{cccc}
+\nabla \phi_1(\mbf{r}_0)     & \nabla \phi_1(\mbf{r}_1)     & \cdots & \nabla \phi_1(\mbf{r}_N)       \\
+\nabla \phi_2(\mbf{r}_0)     & \nabla \phi_2(\mbf{r}_1)     & \cdots & \nabla \phi_2(\mbf{r}_N)       \\
 \vdots                 & \vdots                 &        & \vdots                   \\
-\nabla \phi_{N/2}(r_0) & \nabla \phi_{N/2}(r_1) & \cdots & \nabla \phi_{N/2}(r_N)   \end{array} \right]
+\nabla \phi_{N/2}(\mbf{r}_0) & \nabla \phi_{N/2}(\mbf{r}_1) & \cdots & \nabla \phi_{N/2}(\mbf{r}_N)   \end{array} \right].
 \end{equation}
 
-\subsection{Avoiding spin tests}
-
-Since the slater determinant is split by spin eigenvalues, the same splitting occurs in the inverse, the Slater matrix etc. The brute force implementation is to perform an if-test to decide which of the matrices to access. In the case of a two-level system we get
+The inverse Slater matrices are implemented this way as well:
 
 \begin{equation}
-\begin{array}{cl}
- i < N/2 & D^\uparrow(i) \\
- i \ge N/2 & D^\downarrow(i - N/2)
-\end{array} 
+ \Sinv \equiv \mathrm{join}\left((\mathbf{S}^\uparrow)^{-1}\,\,,(\mathbf{S}^\downarrow)^{-1}\right).
 \end{equation}
 
-However, simply concatenating the Slater related matrices solves the entire problem. This has already been done in Eq.~(\ref{eq:slaterConcat}) and Eq.~(\ref{eq:slaterDellConcat}). Applying this to the inverse yields
+In the code, these matrices are stored as \verb+walker.phi+, \verb+walker.del_phi+ and \verb+walker.inv+. When one particle is moved, only a single row in the two first matrices needs to be recalculated, and only half of the concatenated inverse needs to be updated.
 
-\begin{equation}
- D^{-1} \equiv \left[(D^\uparrow)^{-1}\,(D^\downarrow)^{-1}\right]
-\end{equation}
-
-When the index representing the moved particle succeeds $N/2-1$, the values representing the opposite spin is automatically accessed, which means that no if-tests is required in order to sort the spin splitting. In e.g. the updating algorithm for the inverse, simply keeping track of whether to start at $k=0$ or $k=N/2$ solves the problem. This ``start'' parameter can be calculated once every particle move, and can then be used throughout the program. 
+This concatenation of matrices ensures that no conditional tests are needed in order to access the correct matrix for a given particle. 
 
 \subsection{The Padé Jastrow gradient}
 \label{sec:optJastGrad}
 
-Consider Eq.~(\ref{eq:jastrowGradFull}). Just as for the Jastrow Laplacian, there are (anti)symmetries in the expression, which implies an optimized way of calculating the gradient. However, unlike the Laplacian, the gradient is split into components, which makes the exploitation of symmetries a little less straight-forward. 
+Just as for the Jastrow Laplacian, there are symmetries in the expression for the gradient in Eq.~(\ref{eq:jastrowGradFull}), which implies an optimized way of calculating it. However, unlike the Laplacian, the gradient is split into components, which makes the exploitation of symmetries a little less straight-forward. 
 
 Defining
 
 \begin{equation}
- \mathrm{d}\mbf{J}_{ik}  \equiv \frac{a_{ik}}{r_{ik}}\frac{\vec r_i - \vec r_k}{(1 + \beta r_{ik})^2} = -\mathrm{d}\mbf{J}_{ki},
+ \mathrm{d}\mbf{J}_{ik}  \equiv \frac{a_{ik}}{r_{ik}}\frac{\mathbf{r}_i -  \mathbf{r}_k}{(1 + \beta r_{ik})^2},
 \end{equation}
 
-the gradient can be written in a more compact form
+it is apparent that 
 
 \begin{equation}
- \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}_{ik}.
+ \mathrm{d}\mbf{J}_{ik} = -\mathrm{d}\mbf{J}_{ki}.
 \end{equation}
 
-As for the relative distances, storing the elements and exploiting the symmetry properties, only half the total elements needs to be calculated. 
+Since the gradient can be written in terms of this quantity, that is,
+
+\begin{equation}
+ \frac{\nabla_i J}{J} = \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}_{ik},
+\end{equation}
+
+the code can be optimized by exploiting this antisymmetry. Consider the following matrix
 
 \begin{equation}
 \label{eq:jastrowDJ}
- \mathrm{d}J\equiv \left( \begin{array}{ccccc}
+ \mathbf{\mathrm{d}J}\equiv \left( \begin{array}{ccccc}
 0 & \mathrm{d}\mbf{J}_{12} & \mathrm{d}\mbf{J}_{13} & \cdots & \mathrm{d}\mbf{J}_{1N} \\
- & 0 & \mathrm{d}\mbf{J}_{23} & \cdots & \mathrm{d}\mbf{J}_{2N}  \\
+ -\mathrm{d}\mbf{J}_{12} & 0 & \mathrm{d}\mbf{J}_{23} & \cdots & \mathrm{d}\mbf{J}_{2N}  \\
  &  & \ddots & \ddots & \vdots \\
  & (-) &  & 0 & \mathrm{d}\mbf{J}_{(N-1)N} \\
- &  &  &  & 0\end{array} \right)  = -\mathrm{d}J^T.
+ &  &  &  & 0\end{array} \right).
 \end{equation}
 
-\vspace{0.5cm}
-\begin{lstlisting}
-void Pade_Jastrow::get_dJ_matrix(Walker* walker, int i) const {
+In the same way that the relative distance matrix was equal to its transpose, the matrix above is equal to the negative of its transpose. In other words:
+
+\begin{equation}
+ \mathrm{d}\mathbf{J} = -\mathrm{d}\mathbf{J}^T.
+\end{equation}
+
+Additionally, just as for the relative distances, moving a single particle only changes one row and one column in the matrix. This implies that a similar updating algorithm as the one discussed in section \ref{sec:relDist} can be implemented. This is demonstrated in the following code snippet
+
+\vspace{0.25cm}
+\begin{lstlisting}[caption={The updating algorithm for the three dimensional matrix used in the Padé Jastrow gradient. Pay close attention to line 11, where the symmetry property is exploited by setting the transposed term equal to the negative of an already calculated term.}]
+void Pade_Jastrow::get_dJ_matrix(Walker* walker, int moved_particle) const {
     
+    int i = moved_particle;
     for (int j = 0; j < n_p; j++) {
 	if (j == i) continue;
 	
@@ -599,25 +650,35 @@ void Pade_Jastrow::get_dJ_matrix(Walker* walker, int i) const {
 \end{lstlisting}
 
 
-Calculating the gradient is now only a matter of summing the rows of the matrix in Eq.~(\ref{eq:jastrowDJ}). Further optimization can be achieved by realizing that the function has access to the gradient of the previous iteration
+Calculating the new gradient is now only a matter of summing the rows of the matrix in Eq.~(\ref{eq:jastrowDJ}):
+
+\begin{equation}
+\frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} = \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{old}_{ik}.\label{eq:jastrowGraDJold}
+\end{equation}
+
+Further optimization can be achieved by realizing that the function which calculates the new gradient also has access to the gradient of the previous iteration
+
+\begin{equation}
+ \frac{\nabla_i J^\mathrm{new}}{J^\mathrm{new}} = \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{new}_{ik}. \label{eq:jastrowGradDJnew}
+\end{equation}
+
+As mentioned previously, moving a particle, $p$, only a single row and column in $\mathrm{d} J$. For all other particles $i\ne p$, only a single term from the new matrix is required to update the old gradient
+
+\begin{equation}
+ \frac{\nabla_{i\ne p} J^\mathrm{new}}{J^\mathrm{new}} = \sum_{k = 1}^N \mathrm{d}\mbf{J}^\mathrm{new}_{ik} = \left[\sum_{k \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik}\right] + \mathrm{d}\mbf{J}^\mathrm{new}_{ip}.
+\end{equation}
+
+Adding and subtracting the term missing from the sum to make it equal to the old gradient from Eq.~(\ref{eq:jastrowGraDJold}) gives
 
 \begin{eqnarray}
-  \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{old}_{ik} \\
-  \frac{\nabla_i J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i = 1}^N \mathrm{d}\mbf{J}^\mathrm{new}_{ik} \label{eq:jastrowGradDJnew}
+ \frac{\nabla_{i\ne p} J^\mathrm{new}}{J^\mathrm{new}} &=& \left[\sum_{k \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik} + \mathrm{d}\mbf{J}^\mathrm{old}_{ip}\right] - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip} \\
+ &=& \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip}, \label{eq:jastrowGradOptDJ}
 \end{eqnarray}
 
-By moving particle $p$ in QMC, only a single row and column of the $\mathrm{d} J$ matrix changes. Assuming that $i\ne p$, only a single term from the new matrix is required
+effectively reducing the calculation to three flops. For the case where $i=p$, the entire sum must be calculated as in Eq.~(\ref{eq:jastrowGradDJnew}). This process is demonstrated in the following code
 
-\begin{eqnarray}
- \frac{\nabla_{i\ne p} J^\mathrm{new}}{J^\mathrm{new}} &=& \sum_{k \ne i \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip} \\
- &=& \left[\sum_{k \ne i \ne p} \mathrm{d}\mbf{J}^\mathrm{old}_{ik} + \mathrm{d}\mbf{J}^\mathrm{old}_{ip}\right] - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip} \\
- &=& \frac{\nabla_i J^\mathrm{old}}{J^\mathrm{old}} - \mathrm{d}\mbf{J}^\mathrm{old}_{ip} + \mathrm{d}\mbf{J}^\mathrm{new}_{ip}
-\end{eqnarray}
-
-reducing the calculation to three flops. For the case $i=p$, the entire sum as in Eq.~(\ref{eq:jastrowGradDJnew}) must be calculated. This is demonstrated in the following code
-
-\vspace{0.5cm}
-\begin{lstlisting}
+\vspace{0.25cm}
+\begin{lstlisting}[caption={The implementation of the Padé Jastrow gradient using the matrix from Eq.~(\ref{eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e. Eq.~(\ref{eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as Eq.~(\ref{eq:jastrowGradDJnew}).}]
 void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p) const {
     double sum;
 
@@ -647,17 +708,16 @@ void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p
 }
 \end{lstlisting}
 
-Due to $\mathrm{d}J$ being a 3-dimensional matrix (tensor), this optimization scales very well with increasing number of particles.
+The dimensions of $\mathrm{d}\mathbf{J}$ are $N\times N\times d$, where $N$ is the number of particles and $d$ is the dimension. This implies that the optimizations in the Jastrow gradient discussed in this section scales very well with $N$. See Section \ref{optRes} for a demonstration of the speedup in a $N=30$, $d=2$ case. 
 
 
 \subsection{The single-particle Wave Functions}
 \label{sec:optSPWFqnumIndie}
 
-In order to evaluate a specific single particle wave function, a quantum number $q$ and a position in space $r$ is needed. A QMC walker holds the position of all particles, so in addition, the particle number $i$ needs to be supplied. In the case of the gradient of the single particle wave functions, the dimension parameter representing $x$, $y$ or $z$ also needs to be supplied.
+For systems of many particles, the function call \verb+Orbitals::phi(walker, i, qnum)+ needs to figure out which expression is related to which quantum number. The brute force implementation is to simply perform an if test on the quantum number, and use this to return the corresponding expression. This is demonstrated in the following code
 
-For systems of many particles, the function call \verb+Orbitals::phi(walker, i, qnum)+ needs to figure out which expression is related to which quantum number. The brute force implementation is to simply if-test on the quantum number, and calculate the corresponding expression inside the correct if-test.
-
-\vspace{0.5cm}
+\clearpage
+\vspace{0.25cm}
 \begin{lstlisting}
 double AlphaHarmonicOscillator::phi(const Walker* walker, int particle, int q_num) {
     
@@ -671,11 +731,14 @@ double AlphaHarmonicOscillator::phi(const Walker* walker, int particle, int q_nu
 }
 \end{lstlisting}
 
-This is an inefficient solution when the number of particles are big. A more efficient implementation is to implement the single particle wave function expressions as \verb+BasisFunctions+ subclasses, which holds only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker. The class itself is defined by the quantum number $q$. 
+For a low number of particles this is quite efficient, however, this is not the case for a large number of particles. 
 
-The following is an example of the 2D harmonic oscillator single particle wave function for quantum number $q=1$ (see Appendix \ref{appendix:SymPyHO} for $\phi_1$)
+A more efficient implementation is to represent the single particle wave functions as \verb+BasisFunctions+ objects. These objects holds only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker and returns the evaluated single particle wave function. The object itself is defined by a quantum number $q$. 
 
-\vspace{0.5cm}
+The following is an example of a two dimensional harmonic oscillator single particle wave function for quantum number $q=1$ (see Appendix \ref{appendix:SymPyHO} for $\phi_1$)
+
+\vspace{0.25cm}
+%[caption={The implementation of a two dimensional harmonic oscillator single particle wave function representing quantum number 1.}]
 \begin{lstlisting}
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
@@ -689,33 +752,35 @@ double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 }
 \end{lstlisting}
 
-These objects representing single particle wave functions can be loaded into an array in such a way that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number, e.g. \verb+basis_functions[1] = new HarmonicOscillator_1()+. The new \verb+Orbitals+ function then becomes an in-lined call to an array instead of an endless stream of if-tests:
+These objects representing single particle wave functions can be loaded into an array in such a way that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number, e.g.~\\\verb+basis_functions[1] = new HarmonicOscillator_1()+. The new \verb+Orbitals::phi+ implementation then simply becomes a call to an array. This is demonstrated in the following code
 
-\vspace{0.5cm}
-\begin{lstlisting}
+\vspace{0.25cm}
+\begin{lstlisting}[caption={The implementation of the single particle basis used in the code. It is simply a call to an array holding all the different single particle wave functions. The quantum number is used as an index, and the corresponding evaluation function is called with the supplied walker for the given particle.}]
 double Orbitals::phi(const Walker* walker, int particle, int q_num) {
     return basis_functions[q_num]->eval(walker, particle);
 }
 \end{lstlisting}
 
-All discussed optimizations thus far have been general in the sense that they do not depend on the shape of the single particle wave functions. There should, however, be room for optimizations in the basis functions, as long as these are applied locally within each class where the explicit shape of the orbitals are absolute.
+All discussed optimizations thus so far are general in the sense that they are independent of the explicit shape of the single particle wave functions. There should, however, be room for optimizations in the basis functions themselves, as long as these are applied locally within each class where the explicit shape of the orbitals are absolute.
 
-As discussed previously, only a single column in the Slater related matrices from Section \ref{sec:storeSlater} needs to be updated when a particle is moved. This implies that terms which are independent of the quantum number can be calculated once for every particle instead of once for every quantum number. These terms often come in shape of exponentials, and are thus conserved though derivatives, implying that these terms are not only shared between quantum numbers locally within each Slater matrix, but also shared between the matrices.
+As discussed previously, only a single column in the Slater related matrices from Section \ref{sec:storeSlater} needs to be updated when a particle is moved. This implies that the terms which are independent of the quantum numbers can be calculated once for every particle instead of once for every quantum number. 
 
-Looking at the single particle states for harmonic oscillator and hydrogen listed in Appendix \ref{appendix:SymPyHO} - \ref{appendix:SymPyHydro}, the exponential factor is indeed independent of the quantum number in all the terms. Referring to the quantum number independent terms as $\overline{Q}_i$, the expressions are 
+These terms often come in the shape of exponentials factors, which are conserved in derivatives, implying that these terms appear in both the gradients and the Laplacians as well as in the single particle wave functions themselves.
+
+Looking at the harmonic oscillator - and the hydrogen-like wave functions listed in Appendix \ref{appendix:SymPyHO} - \ref{appendix:SymPyHydro}, the exponential factors are indeed independent of the quantum numbers in all of the terms. Referring to the quantum number independent terms as $\overline{Q}_i$, the expressions are 
 
 \begin{eqnarray}
 \overline{Q}_i^\mathrm{H.O.} &=& e^{-\frac{1}{2}\alpha\omega r_i^2} \\
  \overline{Q}_i^\mathrm{Hyd.} &=& e^{-\frac{1}{n}\alpha Z r_i}
 \end{eqnarray}
 
-For hydrogen, there is a dependence on the principle quantum number $n$, however, for e.g $n=2$,  $20$ terms share this exponential factor. Calculating it once and for all saves $19$ exponential calls pr. particle pr. walker pr. cycle etc. resulting in a dramatic speedup.
+The hydrogen eigenstates has a dependence on the principal quantum number $n$ in the exponential, nevertheless several expressions share this exponential factor. Calculating for example the $n=2$ exponentials beforehand saves $19$ exponential calls per particle every cycle, resulting in a dramatic speedup.
 
-The implementation is very simple; upon moving a particle, the virtual function \\\verb+Orbitals::set_qnum_indie_terms+ is called, updating the value of e.g. an \verb+exp_factor+ pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class:
+Implementing these quantum number independent factors are very simple; upon moving a particle, the virtual function \verb+Orbitals::set_qnum_indie_terms+ is called, which updates the value of the \verb+exp_factor+  pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class. The following code snippet presents implementations of the function in case of the harmonic oscillator - and the hydrogen-like basis
 
 
 \vspace{0.5cm}
-\begin{lstlisting}
+\begin{lstlisting}[caption={Implementation of the function handling the calculation of the quantum number independent terms. Lines 1-5 describe the harmonic oscillator case, where the exponential factor $\exp(-\alpha\omega r_i^2)$ is the independent factor. Lines 7-21 describe the hydrogen-like case, where the calculated exponential factor $\exp(-\alpha Z |r_i|/n)$ has a dependence on the principal quantum number $n$. One factor is thus calculated per $n$, however, if no particles occupy states with a given $n$, the corresponding factor is not calculated (see lines 17-19). }]
 void AlphaHarmonicOscillator::set_qnum_indie_terms(const Walker * walker, int i) {
    
    //k2 = alpha*omega 
@@ -739,10 +804,9 @@ void hydrogenicOrbitals::set_qnum_indie_terms(Walker* walker, int i) {
 }
 \end{lstlisting}
 
-The \verb+BasisFunctions+ objects share the pointer to the correct exponential factor with the orbital class. These exponential factors can then simply be accessed instead of being recalculated numerous times
+The \verb+BasisFunctions+ objects share the pointer to the correct exponential factor with the orbital class. These exponential factors can then simply be accessed instead of being recalculated numerous times. The following code demonstrates accessing the exponential factor calculated in the previous code example
 
-\clearpage
-\begin{lstlisting}
+\begin{lstlisting}[caption={The implementation of a single particle wave function. The pointer to the previously calculated exponential factor is simply accessed in line 8.}]
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
     y = walker->r(i, 1);
@@ -753,20 +817,9 @@ double HarmonicOscillator_1::eval(const Walker* walker, int i) {
     return H*(*exp_factor);
     
 }
-
-double lapl_hydrogenic_0::eval(const Walker* walker, int i) {
-    
-    //k*(k*r - 2)*exp(-k*r)/r
-    
-    psi = (*k)*((*k)*walker->get_r_i(i) - 2)/walker->get_r_i(i);
-    return psi*(*exp_factor);
-    
-}
 \end{lstlisting}
 
-As will be presented in the result section, this optimization represents an enormous speedup for many-particle simulations.
-
-For Quantum Dots, $112$ \verb+BasisFunctions+ objects are needed for a $56$-particle simulation Applying the currently discussed optimization reduces the number of exponential calls from $84$ to $1$ pr. particle pr. walker pr. cycle etc., which for an average DMC calculation results in $~6\cdot 10^11$ saved exponential calls. Generally, the number of exponential calls are reduced by a factor $\frac{N}{2}(N + 1)$.
+For two dimensional quantum dots, $112$ \verb+BasisFunctions+ objects are needed for a $56$-particle simulation. Applying the currently discussed optimization reduces the number of exponential calls needed to calculate every wave function from $112$ to $1$, which for an average DMC calculation results in $~6\cdot 10^{11}$ saved exponential calls. Generally, the number of exponential calls are reduced by a factor $\frac{N}{2}(N + 1)$.
 
 
 \section{CPU Cache Optimization}
@@ -776,12 +829,7 @@ The \textit{CPU cache} is a limited amount of memory directly connected to the C
 
 Which values are held in the CPU cache is controlled by the compiler, however, if programmed poorly, the compiler will not be able to handle the cache storage optimally. Optimization tools such as \verb+O3+ exist in order to work around this, however, keeping the cache in mind from the beginning of the coding process may result in a much faster code. In the case of the QMC code, the most optimal use of the cache would be to have all the active walkers in the cache at all times. 
 
-The memory is sent to the cache as arrays, which means that storing walker data sequentially in memory is the way to go in order to make take full use of the processor cache. If objects are declared as pointers, which is the case when declaring matrices of general sizes, the memory layout is uncontrollable. This fact renders a QMC solver for a general number of particles hard to optimize with respect to the cache.
-
-The alternative is to statically declare the matrices, i.e. declare matrices with a fixed size known at compile time. An apparent work-around would be to declare the matrices to the maximum possible simulation size independent of the actual simulation size. This would however waste a ton of memory in case of the walkers, and would render most applications impossible to run at a standard computer. However, in the case of the basis function arrays described in the previous section, the memory waste is not so large, and hence this is done in the code used in this thesis.
-
-A second alternative would be to re-compile the code every time the system variables are changed. This is not optimal in the case of a generalized solver.
-
+The memory is sent to the cache as arrays, which means that storing walker data sequentially in memory is the way to go in order to make take full use of the processor cache. If objects are declared as pointers, which is the case for matrices of general sizes, the memory layout is uncontrollable. This fact renders a QMC solver for a general number of particles hard to optimize with respect to the cache.
 
 
 

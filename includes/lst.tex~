@@ -20,16 +20,3 @@
 \definecolor{grey}{rgb}{0.92,0.92,0.92}
 \definecolor{green}{rgb}{0, 0.4, 0}
 \definecolor{beige}{rgb}{0.62, 0.44, 0.1}
-
-% Python style for highlighting
-\newcommand\pythonstyle{\lstset{
-language=Python,
-basicstyle=\ttm,
-otherkeywords={self},             % Add keywords here
-keywordstyle=\ttb\color{deepblue},
-emph={MyClass,__init__},          % Custom highlighting
-emphstyle=\ttb\color{deepred},    % Custom highlighting style
-stringstyle=\color{deepgreen},
-frame=tb,                         % Any extra options here
-showstringspaces=false            % 
-}}

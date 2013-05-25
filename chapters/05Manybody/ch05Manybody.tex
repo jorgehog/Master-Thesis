@@ -633,7 +633,7 @@ If no such choice can be made, choosing e.g. free-particle solutions, Laguerre p
 
 \subsubsection{Step two in detail}
 
-In the case of \textit{Fermions}, i.e. half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
+In the case of \textit{fermions}, i.e. half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
 
 Bosons on the other hand have symmetric wave functions (see Eq.~(\ref{eq:BosonicWFExplicit})), which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract and confusing, from here on, the focus will be on systems of fermions.
 
@@ -803,11 +803,11 @@ In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater dete
 
 \cfbox{2cm-5pt}{
 \begin{equation}
- \frac{\partial \Psi_T(\mathbf{r}; \alpha_i)}{\partial \alpha_i} = \sum_{p=1}^N\sum_{q=0}^{N/2} \phi_q(\mathbf{r}_p; \alpha_i) \left[\frac{\partial \phi_q(\mathbf{r}_p; \alpha_i)}{\partial \alpha_i}\right]D^{-1}_{qp},
+ \frac{\partial \Psi_T(\mathbf{r}; \alpha_i)}{\partial \alpha_i} = \sum_{p=1}^N\sum_{q=0}^{N/2} \phi_q(\mathbf{r}_p; \alpha_i) \left[\frac{\partial \phi_q(\mathbf{r}_p; \alpha_i)}{\partial \alpha_i}\right]\mathbf{S}^{-1}_{qp},
 \end{equation}
 }
 
-where $D^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
+where $\mathbf{S}^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
 
 Using these expressiosn for the \textit{variational energy gradient}, the derivatives can be calculated exactly the same way as for e.g. the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
 
@@ -1170,7 +1170,7 @@ where theoretically using an exact projection operator
   \lim_{\tau\to\infty} P(\mathbf{r}, \tau) = \braket{\Phi_0}{\Phi_T}\Phi_0(\mathbf{r})\Psi_T(\mathbf{r}),
 \end{equation}
 
-which, if interpreted as a density, should always be greater than zero. In the case of Fermions, this is not guaranteed, as
+which, if interpreted as a density, should always be greater than zero. In the case of fermions, this is not guaranteed, as
 the node structure, i.e. the roots, of the exact ground state and the trial wave function will generally be different.  
 
 To avoid this anomaly in the density, $\Ptau$ and $\PT$ have to change sign simultaneously\footnote{It should be mentioned that more sophisticated methods exist for dealing with the sign problem, some of which splits the distribution of walkers into a negative and a positive regions, however, due to the infinity position space, this requires an enormous amount of walkers to succeed.}. The brute force way of solving this problem is to \textit{fix} the nodes by rejecting a walker's step if the trial wave function changes sign:

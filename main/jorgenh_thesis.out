@@ -75,9 +75,8 @@
 \BOOKMARK [1][-]{section.4.6}{Tabulating Recalculated Data}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.6.1}{The relative distance matrix}{section.4.6}
 \BOOKMARK [2][-]{subsection.4.6.2}{The Slater related matrices}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.3}{Avoiding spin tests}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.4}{The Pad\351 Jastrow gradient}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.5}{The single-particle Wave Functions}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.3}{The Pad\351 Jastrow gradient}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.4}{The single-particle Wave Functions}{section.4.6}
 \BOOKMARK [1][-]{section.4.7}{CPU Cache Optimization}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Modeled Systems}{part.1}
 \BOOKMARK [1][-]{section.5.1}{Atomic Systems}{chapter.5}
