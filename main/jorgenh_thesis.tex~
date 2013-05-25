@@ -70,25 +70,31 @@
 \begin{document}
 \input{../chapters/01frontpage/ch01frontpage.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \input{../chapters/02preface/ch02preface.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \tableofcontents
 \input{../chapters/03intro/ch03intro.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \part{Theory}
 \input{../chapters/04SciProg/ch04SciProg.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \input{../chapters/05Manybody/ch05Manybody.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
+
 \input{../chapters/ModeledSystems/ModeledSystems.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
 
 \part{Results}
 %% \input{../chapters/07ImpVal/ImpVal.tex}
-% \input{../chapters/08Results/ch08Results.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/08Results/ch08Results.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
 
 \clearpage
 \appendix
