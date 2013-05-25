@@ -114,39 +114,51 @@
 \contentsline {subsubsection}{Storing quantum number independent terms}{106}{section.6.1}
 \contentsline {subsubsection}{Overall optimization}{107}{section.6.1}
 \contentsline {section}{\numberline {6.2}The Non-interacting Case}{108}{section.6.2}
-\contentsline {chapter}{\numberline {A}Dirac Notation}{113}{appendix.A}
-\contentsline {chapter}{\numberline {B}DCViz: Visualization of Data}{115}{appendix.B}
-\contentsline {section}{\numberline {B.1}Basic Usage}{115}{section.B.1}
-\contentsline {subsubsection}{The figure map}{115}{section.B.1}
-\contentsline {subsubsection}{The name tag}{116}{lstnumber.-19.1}
-\contentsline {subsubsection}{The plot function}{116}{lstnumber.-21.9}
-\contentsline {subsubsection}{Additional (optional) support}{116}{lstnumber.-23.1}
-\contentsline {subsubsection}{An example}{117}{lstnumber.-23.1}
-\contentsline {subsubsection}{Families}{117}{lstnumber.-24.23}
-\contentsline {subsubsection}{Family example}{118}{lstnumber.-25.9}
-\contentsline {subsubsection}{Dynamic mode}{118}{lstnumber.-26.30}
-\contentsline {subsubsection}{Saving figures to file}{118}{lstnumber.-27.2}
-\contentsline {subsection}{\numberline {B.1.1}The Terminal Client}{119}{subsection.B.1.1}
-\contentsline {subsection}{\numberline {B.1.2}The Application Programming Interface (API)}{119}{subsection.B.1.2}
-\contentsline {subsubsection}{The GUI}{120}{lstnumber.-30.5}
-\contentsline {chapter}{\numberline {C}Auto-generation with SymPy}{123}{appendix.C}
-\contentsline {section}{\numberline {C.1}Usage}{123}{section.C.1}
-\contentsline {subsection}{\numberline {C.1.1}Symbolic Algebra}{123}{subsection.C.1.1}
-\contentsline {subsection}{\numberline {C.1.2}Exporting C++ and Latex Code}{124}{subsection.C.1.2}
-\contentsline {subsection}{\numberline {C.1.3}Calculating Derivatives}{124}{subsection.C.1.3}
-\contentsline {section}{\numberline {C.2}Using the auto-generation Script}{126}{section.C.2}
-\contentsline {subsection}{\numberline {C.2.1}Generating Latex code}{126}{subsection.C.2.1}
-\contentsline {subsubsection}{The constructor}{126}{lstnumber.-38.3}
-\contentsline {subsubsection}{makeStateMap}{127}{lstnumber.-39.6}
-\contentsline {subsubsection}{setUpOrbitals}{127}{lstnumber.-39.6}
-\contentsline {subsubsection}{simplifyLocal}{127}{lstnumber.-40.7}
-\contentsline {subsubsection}{genericFactor}{127}{lstnumber.-40.7}
-\contentsline {subsubsection}{\_\_str\_\_}{128}{lstnumber.-40.7}
-\contentsline {subsection}{\numberline {C.2.2}Generating C++ code}{128}{subsection.C.2.2}
-\contentsline {subsubsection}{initCPPbasis}{128}{lstnumber.-41.4}
-\contentsline {subsubsection}{getCPre and getCreturn}{128}{lstnumber.-42.18}
-\contentsline {subsubsection}{makeOrbConstArg}{129}{lstnumber.-45.6}
-\contentsline {chapter}{\numberline {D}Harmonic Oscillator Orbitals 2D}{131}{appendix.D}
-\contentsline {chapter}{\numberline {E}Harmonic Oscillator Orbitals 3D}{139}{appendix.E}
-\contentsline {chapter}{\numberline {F}Hydrogen Orbitals}{145}{appendix.F}
-\contentsline {chapter}{Bibliography}{151}{section*.100}
+\contentsline {section}{\numberline {6.3}Quantum Dots}{111}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}FIXED NODE TESTS}{111}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}One-body Densities}{114}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Lowering the frequency}{114}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Going to three Dimensions}{119}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Simulatings in a Double-well}{119}{subsection.6.3.5}
+\contentsline {section}{\numberline {6.4}Atoms}{123}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Ground State Energies}{123}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}The Noble-Gases}{123}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Alkaline Earth Metals}{125}{subsection.6.4.3}
+\contentsline {section}{\numberline {6.5}Molecules}{127}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{127}{subsection.6.5.1}
+\contentsline {chapter}{\numberline {A}Dirac Notation}{133}{appendix.A}
+\contentsline {chapter}{\numberline {B}DCViz: Visualization of Data}{135}{appendix.B}
+\contentsline {section}{\numberline {B.1}Basic Usage}{135}{section.B.1}
+\contentsline {subsubsection}{The figure map}{135}{section.B.1}
+\contentsline {subsubsection}{The name tag}{136}{lstnumber.-19.1}
+\contentsline {subsubsection}{The plot function}{136}{lstnumber.-21.9}
+\contentsline {subsubsection}{Additional (optional) support}{136}{lstnumber.-23.1}
+\contentsline {subsubsection}{An example}{137}{lstnumber.-23.1}
+\contentsline {subsubsection}{Families}{137}{lstnumber.-24.23}
+\contentsline {subsubsection}{Family example}{138}{lstnumber.-25.9}
+\contentsline {subsubsection}{Dynamic mode}{138}{lstnumber.-26.30}
+\contentsline {subsubsection}{Saving figures to file}{138}{lstnumber.-27.2}
+\contentsline {subsection}{\numberline {B.1.1}The Terminal Client}{139}{subsection.B.1.1}
+\contentsline {subsection}{\numberline {B.1.2}The Application Programming Interface (API)}{139}{subsection.B.1.2}
+\contentsline {subsubsection}{The GUI}{140}{lstnumber.-30.5}
+\contentsline {chapter}{\numberline {C}Auto-generation with SymPy}{143}{appendix.C}
+\contentsline {section}{\numberline {C.1}Usage}{143}{section.C.1}
+\contentsline {subsection}{\numberline {C.1.1}Symbolic Algebra}{143}{subsection.C.1.1}
+\contentsline {subsection}{\numberline {C.1.2}Exporting C++ and Latex Code}{144}{subsection.C.1.2}
+\contentsline {subsection}{\numberline {C.1.3}Calculating Derivatives}{144}{subsection.C.1.3}
+\contentsline {section}{\numberline {C.2}Using the auto-generation Script}{146}{section.C.2}
+\contentsline {subsection}{\numberline {C.2.1}Generating Latex code}{146}{subsection.C.2.1}
+\contentsline {subsubsection}{The constructor}{146}{lstnumber.-38.3}
+\contentsline {subsubsection}{makeStateMap}{147}{lstnumber.-39.6}
+\contentsline {subsubsection}{setUpOrbitals}{147}{lstnumber.-39.6}
+\contentsline {subsubsection}{simplifyLocal}{147}{lstnumber.-40.7}
+\contentsline {subsubsection}{genericFactor}{147}{lstnumber.-40.7}
+\contentsline {subsubsection}{\_\_str\_\_}{148}{lstnumber.-40.7}
+\contentsline {subsection}{\numberline {C.2.2}Generating C++ code}{148}{subsection.C.2.2}
+\contentsline {subsubsection}{initCPPbasis}{148}{lstnumber.-41.4}
+\contentsline {subsubsection}{getCPre and getCreturn}{148}{lstnumber.-42.18}
+\contentsline {subsubsection}{makeOrbConstArg}{149}{lstnumber.-45.6}
+\contentsline {chapter}{\numberline {D}Harmonic Oscillator Orbitals 2D}{151}{appendix.D}
+\contentsline {chapter}{\numberline {E}Harmonic Oscillator Orbitals 3D}{159}{appendix.E}
+\contentsline {chapter}{\numberline {F}Hydrogen Orbitals}{165}{appendix.F}
+\contentsline {chapter}{Bibliography}{171}{section*.116}

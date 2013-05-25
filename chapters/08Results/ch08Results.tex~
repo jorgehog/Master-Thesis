@@ -6,12 +6,12 @@ The results were produced using atomic units, i.e $\hbar=e=m_e=4\pi\epsilon_0 = 
 \input{../chapters/08Results/Optimization/Optimization.tex}
 \clearpage
 \input{../chapters/08Results/Validation/Validation.tex}
-\clearpage
-\input{../chapters/08Results/QD_2D/QD_2D.tex}
-\clearpage
-\input{../chapters/08Results/Atoms/Atoms.tex}
-\clearpage
-\input{../chapters/08Results/Molecules/Molecules.tex}
+% \clearpage
+% \input{../chapters/08Results/QD_2D/QD_2D.tex}
+% \clearpage
+% \input{../chapters/08Results/Atoms/Atoms.tex}
+% \clearpage
+% \input{../chapters/08Results/Molecules/Molecules.tex}
 
 
 

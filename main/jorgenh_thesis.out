@@ -91,6 +91,18 @@
 \BOOKMARK [0][-]{chapter.6}{Results}{part.2}
 \BOOKMARK [1][-]{section.6.1}{Optimization Results}{chapter.6}
 \BOOKMARK [1][-]{section.6.2}{The Non-interacting Case}{chapter.6}
+\BOOKMARK [1][-]{section.6.3}{Quantum Dots}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.3.1}{FIXED NODE TESTS}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.2}{One-body Densities}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.3}{Lowering the frequency}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.4}{Going to three Dimensions}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.5}{Simulatings in a Double-well}{section.6.3}
+\BOOKMARK [1][-]{section.6.4}{Atoms}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.4.1}{Ground State Energies}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.2}{The Noble-Gases}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.3}{Alkaline Earth Metals}{section.6.4}
+\BOOKMARK [1][-]{section.6.5}{Molecules}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.5.1}{Ground State Energies}{section.6.5}
 \BOOKMARK [0][-]{appendix.A}{Dirac Notation}{part.2}
 \BOOKMARK [0][-]{appendix.B}{DCViz: Visualization of Data}{part.2}
 \BOOKMARK [1][-]{section.B.1}{Basic Usage}{appendix.B}
@@ -107,4 +119,4 @@
 \BOOKMARK [0][-]{appendix.D}{Harmonic Oscillator Orbitals 2D}{part.2}
 \BOOKMARK [0][-]{appendix.E}{Harmonic Oscillator Orbitals 3D}{part.2}
 \BOOKMARK [0][-]{appendix.F}{Hydrogen Orbitals}{part.2}
-\BOOKMARK [0][-]{section*.100}{Bibliography}{part.2}
+\BOOKMARK [0][-]{section*.116}{Bibliography}{part.2}
