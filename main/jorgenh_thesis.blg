@@ -11,45 +11,45 @@ Warning--edition ordinal word "{Revised ed}" may be too high (or improper) for c
 Warning--empty journal in doubleWellExpt
 
 Done.
-You've used 37 entries,
+You've used 33 entries,
             4039 wiz_defined-function locations,
-            1030 strings with 12650 characters,
-and the built_in function-call counts, 19363 in all, are:
-= -- 1600
-> -- 367
-< -- 116
-+ -- 196
-- -- 71
-* -- 885
-:= -- 3282
-add.period$ -- 70
-call.type$ -- 37
-change.case$ -- 31
+            1018 strings with 12354 characters,
+and the built_in function-call counts, 17946 in all, are:
+= -- 1450
+> -- 360
+< -- 115
++ -- 193
+- -- 69
+* -- 834
+:= -- 2962
+add.period$ -- 62
+call.type$ -- 33
+change.case$ -- 27
 chr.to.int$ -- 273
-cite$ -- 40
-duplicate$ -- 1422
-empty$ -- 1690
-format.name$ -- 78
-if$ -- 4340
+cite$ -- 36
+duplicate$ -- 1309
+empty$ -- 1576
+format.name$ -- 77
+if$ -- 4043
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 251
-newline$ -- 168
-num.names$ -- 36
-pop$ -- 610
+int.to.str$ -- 33
+missing$ -- 229
+newline$ -- 154
+num.names$ -- 32
+pop$ -- 573
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 4
-skip$ -- 1537
+skip$ -- 1414
 stack$ -- 0
-substring$ -- 627
-swap$ -- 1035
-text.length$ -- 25
+substring$ -- 618
+swap$ -- 963
+text.length$ -- 24
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 37
+type$ -- 33
 warning$ -- 3
-while$ -- 73
-width$ -- 39
-write$ -- 377
+while$ -- 68
+width$ -- 35
+write$ -- 338
 (There were 3 warnings)

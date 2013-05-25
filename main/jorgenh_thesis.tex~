@@ -83,10 +83,12 @@
 \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
 \input{../chapters/ModeledSystems/ModeledSystems.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
 
 \part{Results}
 %% \input{../chapters/07ImpVal/ImpVal.tex}
 % \input{../chapters/08Results/ch08Results.tex}
+% \clearpage{\pagestyle{plain}\cleardoublepage}
 
 \clearpage
 \appendix

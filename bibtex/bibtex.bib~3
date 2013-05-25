@@ -720,10 +720,8 @@ jabref-meta: selector_keywords:
 
 @article{ExactMolecules,
 	author = "Datta, S. and Alexander, S. A. and Coldwell, R. L.",
-	collaboration = "",
 	doi = "10.1063/1.1643351",
 	journal = "The Journal of Chemical Physics",
-	keywords = "lithium; beryllium; boron; carbon; nitrogen; oxygen; fluorine; Monte Carlo methods; wave functions; ground states; variational techniques",
 	number = "8",
 	pages = "3642--3647",
 	publisher = "AIP",
@@ -731,5 +729,32 @@ jabref-meta: selector_keywords:
 	url = "http://link.aip.org/link/?JCP/120/3642/1",
 	volume = "120",
 	year = "2004"
+}
+
+@article{AtomsExact,
+	author = "Degroote, Matthias",
+	doi = "10.1140/epjst",
+	issn = "1951-6355",
+	journal = "The European Physical Journal Special Topics",
+	language = "English",
+	number = "1",
+	pages = "1--70",
+	publisher = "Springer-Verlag",
+	title = "{Faddeev random phase approximation applied to molecules}",
+	volume = "218",
+	year = "2013"
+}
+
+@article{KryptonExact,
+	author = "Partridge, Harry",
+	doi = "10.1063/1.456157",
+	journal = "The Journal of Chemical Physics",
+	number = "2",
+	pages = "1043--1047",
+	publisher = "AIP",
+	title = "{Near Hartree--Fock quality GTO basis sets for the first- and third-row atoms}",
+	url = "http://link.aip.org/link/?JCP/90/1043/1",
+	volume = "90",
+	year = "1989"
 }
 
