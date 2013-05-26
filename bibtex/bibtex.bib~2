@@ -795,10 +795,9 @@ jabref-meta: selector_keywords:
 	year = 2008
 }
 
-@article{LOS98,
+@article{QDOTS_QUANTUM,
 	added-at = "2009-03-03T17:19:04.000+0100",
 	author = "Loss, D. and Vincenzo, D. P.",
-	biburl = "http://www.bibsonomy.org/bibtex/2bbc8cb777c995f0096cff50df2681b43/bronckobuster",
 	interhash = "b79788f9e36e575445e73987c70bbc5f",
 	intrahash = "bbc8cb777c995f0096cff50df2681b43",
 	journal = "Phys.~Rev.~A",
@@ -806,6 +805,7 @@ jabref-meta: selector_keywords:
 	nota = "GK:",
 	pages = 120,
 	title = "{Quantum computation with quantum dots}",
+	url = "http://www.bibsonomy.org/bibtex/2bbc8cb777c995f0096cff50df2681b43/bronckobuster",
 	volume = 57,
 	x-fetchedfrom = "Bibsonomy",
 	year = 1998
@@ -818,8 +818,17 @@ jabref-meta: selector_keywords:
 	journal = "Photonics Technology Letters, IEEE",
 	number = "3",
 	pages = "230--232",
-	title = "{Low-threshold oxide-confined 1.3- µm quantum-dot laser}",
+	title = "{Low-threshold oxide-confined 1.3- micrometer quantum-dot laser}",
 	volume = "12",
 	year = "2000"
+}
+
+@article{QDOTS_MEDICINE,
+	author = "Ben-Ari, E.T.",
+	journal = "J. Natl. Cancer Inst.",
+	pages = "502-504",
+	title = "{Nanoscale quantum dots hold promise for cancer applications}",
+	volume = "90",
+	year = "2003"
 }
 

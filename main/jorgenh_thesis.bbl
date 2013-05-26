@@ -201,6 +201,14 @@ R.~V. Shenoi, J.~Hou, Y.~Sharma, J.~Shao, T.~E. Vandervelde, and S.~Krishna,
 Y.~M. Wang, ``{Coupled-Cluster Studies of Double Quantum Dots},'' Master's
   thesis, University of Oslo, 2011.
 
+\bibitem{taut}
+\BIBentryALTinterwordspacing
+M.~Taut, ``{Two electrons in an external oscillator potential: Particular
+  analytic solutions of a Coulomb correlation problem},'' \emph{Phys. Rev. A},
+  vol.~48, pp. 3561--3566, Nov 1993. [Online]. Available:
+  \url{http://link.aps.org/doi/10.1103/PhysRevA.48.3561}
+\BIBentrySTDinterwordspacing
+
 \bibitem{MagnusArticle}
 \BIBentryALTinterwordspacing
 M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva,
@@ -210,7 +218,8 @@ M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva,
 \BIBentrySTDinterwordspacing
 
 \bibitem{Sarah}
-S.~Reimann, ``{SRG Title},'' Master's thesis, University of Oslo, 2013.
+S.~Reimann, ``{Quantum-mechanical systems in traps and Similarity
+  Renormalization Group theory},'' Master's thesis, University of Oslo, 2013.
 
 \bibitem{Hirth}
 C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using

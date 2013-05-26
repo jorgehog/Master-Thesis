@@ -1,4 +1,5 @@
 \chapter{Modelled Systems}
+\label{ch:modelledSystems}
 
 The systems modelled in this thesis are exclusively systems which have closed form solutions when the Coulomb interaction is removed, i.e. in the non-interacting case. As discussed in Section \ref{sec:trialWF}, these closed form solutions are used to construct an optimal trial wave function in the form of a single Slater determinant. Without such an optimal basis, a single Slater determinant is not sufficient in Quantum Monte-Carlo (QMC) simulations. It is therefore not random that the focus of this thesis has been on various kinds of \textit{quantum dots} and \textit{atomic systems}, resembling the analytically solvable harmonic oscillator and the hydrogen atom respectively.
 
@@ -149,6 +150,7 @@ where $\mathbf{\tilde R_i^\pm} = \mathbf{r}_i \pm \mathbf{R}/2 = (\tilde X_i^\pm
 The non-interacting energy is equal to that of the regular atoms in the limit $R\to\infty$, however, now with a four-fold degeneracy and a charge equal to $N/2$. This four-foulding also implies that the degeneracy of level $n$ becomes $g(n) = 4n^2$.
 
 \section{Quantum Dots}
+\label{sec:modelQDots}
 
 Quantum dots are electrons confined within a potential well. This potential well can be broadened and narrowed in such a way that the material properties of the quantum dot can be tuned to desired values. Such manufactured quantum dots have practical applications in solar cells \cite{QDOTS_SOLAR}, lasers \cite{QDOTS_LASER}, medical imaging \cite{QDOTS_MEDICINE}, and quantum computing \cite{QDOTS_QUANTUM}, however, the focus on quantum dots in this thesis has been purely academic.
 

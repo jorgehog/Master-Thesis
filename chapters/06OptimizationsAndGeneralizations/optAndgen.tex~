@@ -71,7 +71,7 @@ Modern computers have a vast amount of physical memory available, which makes ru
 \end{enumerate}
 }
 
-Goal (\label{it::opt::noIF}) has been the ground pillar of the code design. 
+Goal (\ref{it::opt::noIF}) has been the ground pillar of the code design. 
 
 \clearpage
 \section{Specifics Regarding Generalization}
@@ -708,7 +708,7 @@ void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p
 }
 \end{lstlisting}
 
-The dimensions of $\mathrm{d}\mathbf{J}$ are $N\times N\times d$, where $N$ is the number of particles and $d$ is the dimension. This implies that the optimizations in the Jastrow gradient discussed in this section scales very well with $N$. See Section \ref{optRes} for a demonstration of the speedup in a $N=30$, $d=2$ case. 
+The dimensions of $\mathrm{d}\mathbf{J}$ are $N\times N\times d$, where $N$ is the number of particles and $d$ is the dimension. This implies that the optimizations in the Jastrow gradient discussed in this section scales very well with $N$. See Section \ref{sec:optRes} for a demonstration of the speedup in a $N=30$, $d=2$ case. 
 
 
 \subsection{The single-particle Wave Functions}
@@ -830,7 +830,6 @@ The \textit{CPU cache} is a limited amount of memory directly connected to the C
 Which values are held in the CPU cache is controlled by the compiler, however, if programmed poorly, the compiler will not be able to handle the cache storage optimally. Optimization tools such as \verb+O3+ exist in order to work around this, however, keeping the cache in mind from the beginning of the coding process may result in a much faster code. In the case of the QMC code, the most optimal use of the cache would be to have all the active walkers in the cache at all times. 
 
 The memory is sent to the cache as arrays, which means that storing walker data sequentially in memory is the way to go in order to make take full use of the processor cache. If objects are declared as pointers, which is the case for matrices of general sizes, the memory layout is uncontrollable. This fact renders a QMC solver for a general number of particles hard to optimize with respect to the cache.
-
 
 
 

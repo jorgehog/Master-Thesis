@@ -1,10 +1,42 @@
 \section{Quantum Dots}
 
+Quantum dots are introduced in Section \ref{sec:modelQDots}. The focus of the results has been on studying the distributions as a function of the level of confinement, however, ground state energies are provided and compared to other many-body methods. In the case of two dimensional quantum dots there are multiple published results, however, for three dimensions, this is not the case. 
+
+The double-well quantum dot has not been a focus of this thesis, however, some simple results are provided to demonstrate the flexibility of the code.
+
+\subsection{Ground State Energies}
+
+\subsubsection{Two dimensional quantum dots}
+
+Table \ref{tab:QDotsResultsAll} presents the calculated ground state energies for two-dimensional quantum dots. The results are compared to methods such as Similarity Renormalization Group theory (SRG), Coupled Cluster Singles and Doubles (CCSD) and Full Configuration Interaction (FCI). In addition, some previously published DMC results are supplied. The references are listed in the table caption.
+
+In light of the variational nature of DMC and VMC, the results show that DMC provides a more precise estimate for the ground state energy than VMC, both in terms of lower energies and lower errors. The exact energy in the case of two electrons with $\omega=1$ has been calculated in Ref. \cite{taut} and is $E_0 = 3$, which is in excellent agreement with the presented results.
+
+There is a trend that the DMC energies calculated in this thesis has a lower error than those provided in Ref. \cite{MagnusArticle}. This may only be due to the fact that the calculations in this thesis have been run on a super computer. Running smaller simulations on fewer processors results in a larger error. Both the implementations successfully agree with the FCI result for two particles, which strongly indicates that the disagreements in results are a result of systematic errors.    
+
+In the case of two particles, DMC and FCI agree up to 5 decimals, which leads to the conclusion that DMC indeed is a very precise method. The SRG method is not variational in the sense that it can undershoot the exact energy. The DMC result should thus not be read as less precise in the cases where SRG provides a lower energy estimate. Diffusion Monte-Carlo and SRG are in excellent agreement for a large number of particles compared to FCI and SRG, which drift away from the DMC results as their basis size shrink. 
+
+% \subsubsection{Comparisons with CCSD}
+
+For high frequencies, the VMC energy is higher than the CCSD energy. The fact that both the methods are variational implies that CCSD performs better than VMC in this frequency range. However, looking at the results the lower frequency range, it is clear that VMC performs better than CCSD. This is due to the fact that CCSD struggles with convergence as the correlations within a systems increase, due to the fact that CCSD only incorporates single and double excitations in the model space. 
+
+The DMC energy is overall less than the CCSD energy, which, due to the variational nature of the methods, implies that DMC performs better than CCSD. The results for $56$ particles are in excellent agreement with those of CCSD. 
+
+% \subsubsection{Comparisons with FCI}
+
+% Full Configuration Interaction provides an exact answer in the limit where the model space represents the full Hilbert space. The listed two-particle results are thus to be considered very close to the exact energy This is demonstrated by the results for $\omega=1$, where FCI provides six trailing zeros to the exact result of $E_0=3$ \cite{taut}. Diffusion Monte-Carlo has overall a five decimal overlap with the FCI result, which demonstrates the fact that DMC successfully projects out the exact ground state.
+
+% As the number of particles increase, the size of the FCI model space blows up. Consequently, the DMC results for $N=6$ and larger are lower than the FCI results, since DMC does not suffer from the same \textit{curse of dimensionality}.
+
+% \subsubsection{Comparisons with SRG}
+% 
+% Similarity Renormalization Group theory is, unlike VMC, DMC, CCSD and FCI, not variational. This implies that the resulting energy can undershoot the exact energy, which renders conclusions regarding the final energy estimate harder to make. Nevertheless, DMC and SRG are in excellent agreement for higher number of particles.
+
 
 \setlength{\tabcolsep}{5pt}
 \begin{table}
 \begin{center}
-\begin{tabular}{rl|rrrrrr}
+\begin{tabular}{cc|rrrrrr}
     N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_\mathrm{ref}^{(a)}$& $E_\mathrm{ref}^{(b)}$ & $E_\mathrm{ref}^{(c)}$ & $E_\mathrm{ref}^{(d)}$\\
 \hline\hline
 \multicolumn{8}{c}{} \\
@@ -53,69 +85,116 @@
 
 
 \end{tabular}
-\caption{Results for Quantum Dots with fixed node approximation calculated on the cluster Abel using $10^8$ VMC cycles, $64000$ walkers, with $2000$ DMC cycles on 128 cores. Ref: $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $b$: S. Reimann \cite{Sarah} (SRG), $c$: C. Hirth \cite{Hirth} (CCSD), $d$: V. K. B. Olsen \cite{Olsen} (FCI). The numbers inside curly brackets denote the number of shells used above \textit{Fermi-level} to contruct the basis for the calculation.}
+\caption{Ground state energy results for two dimensional $N$-electron quantum dots with frequency $\omega$. Refs. $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $(b)$: S. Reimann \cite{Sarah} (Similarity Renormalization Group theory), $(c)$: C. Hirth \cite{Hirth} (Coupled Cluster Singles and Doubles), $(d)$: V. K. B. Olsen \cite{Olsen} (Full Configuration Interaction). The numbers inside curly brackets denote the number of shells used above \textit{Fermi-level} to construct the basis for the corresponding methods.}
 \label{tab:QDotsResultsAll}
 \end{center}
 \end{table}
 \setlength{\tabcolsep}{6pt}
 
-\subsection{FIXED NODE TESTS}
-
-\begin{table}
-\begin{center}
-\begin{tabular}{rl|rrc}
-    N     & $\omega$ & $\mathrm{E_{DMC}}$ & $\mathrm{E_{DMC}^\mathrm{F.N.}}$  & $\epsilon_\mathrm{DMC}^\mathrm{F.N.}/\overline{\sigma}$ \\
-\hline\hline
-\multicolumn{5}{c}{} \\
-    2     &   0.1    & 0.44079(1) & 0.44079(1)  & 0 \\
-          &   0.28   & 1.02164(1) & 1.02164(1)  & 0 \\
-          &   0.5    & 1.65977(1) & 1.65977(1)  & 0 \\
-          &   1.0    & 3.00000(1) & 3.00000(1)  & 0 \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    6     &   0.1    &  3.55385(5) & 3.55374(5) & 2.2  \\
-          &   0.28   &  7.60019(6) & 7.60016(5) & 0.54 \\ 
-          &   0.5    & 11.78484(6) & 11.78489(6)& 0.83 \\
-          &   1.0    & 20.15932(8) & 20.15945(7)& 1.73 \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    12    &   0.1    & 12.26984(8) & 12.26986(8)& 0.25\\
-          &   0.28   & 25.63577(9) & 25.6358(1) & 0.32 \\
-          &   0.5    & 39.1596(1) & 39.1594(1)  & 2 \\
-          &   1.0    & 65.7001(1) & 65.7000(1)  & 1 \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    20    &   0.1    &  29.9779(1) & 29.9779(2) & 0 \\
-          &   0.28   &  61.9268(1) & 61.9265(2) & 2 \\
-          &   0.5    &  93.8752(1) & 93.8752(2) & 0 \\
-          &   1.0    & 155.8822(1) & 155.8821(2)& 0.66 \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    30    &   0.1    &  60.4205(2) & 60.4207(2) & 1 \\
-          &   0.28   & 123.9683(2) & 123.9682(2)& 0.5 \\
-          &   0.5    & 187.0426(2) & 187.0430(2)& 2 \\
-          &   1.0    & 308.5627(2) & 308.5626(2)& 0.5 \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    42    &   0.1    & 107.6389(2) & 107.638(2) & 0.81 \\
-          &   0.28   & 219.8426(2) & 219.8426(3)& 0 \\
-          &   0.5    & 330.6306(2) & 330.6307(2)& 0.5 \\
-          &   1.0    & 542.9428(8) &    -       & - \\
-\hline\hline
-\end{tabular}
-\caption{Results for Quantum Dots without fixed node approximation calculated on the cluster Abel using $2000$ DMC cycles on 128 cores. $\epsilon_\mathrm{DMC}^\mathrm{F.N.} = |\mathrm{E_{DMC}} - \mathrm{E_{DMC}^{F.N.}}|$. $\overline{\sigma}  = \frac{1}{2}(\sigma_\mathrm{DMC} + \sigma_\mathrm{DMC}^\mathrm{F.N.})$. The last column serves as an indicator of how many average standard deviations the results differ. For two particles, where the fixed node approximation does not affect the system, the results are as expected exactly the same. For all other system sizes, the difference is mostly within one deviation. This indicates that the effect due to the fixed node approximation for closed shell Quantum Dots are very small.}
-\end{center}
-\end{table}
-
-blah blah
 
 \clearpage
+\subsubsection{Three dimensional quantum dots}
+
+\setlength{\tabcolsep}{1.05cm}
+\begin{table}
+\begin{center}
+\begin{tabular}{cc|rrr}
+    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_\mathrm{ref}$\\
+\hline\hline
+\multicolumn{5}{c}{} \\
+    2     &   0.01   & 0.07939(3)  & 0.079206(3) & -		\\
+          &   0.1    & 0.50024(8)  & 0.499997(3) & 0.5        \\
+          &   0.28   & 1.20173(5)  & 1.201725(2) & -		\\
+          &   0.5    & 2.00005(2)  & 2.000000(2) & 2.0 \\
+          &   1.0    & 3.73032(8)  & 3.730123(3) & - \\
+\cline{2-5}
+\multicolumn{5}{c}{} \\
+    8     &   0.1    & 5.7130(6)   & 5.7028(1)   & - 		\\
+          &   0.28   & 12.2040(8)  & 12.1927(1)  & -		\\
+          &   0.5    & 18.9750(7)  & 18.9611(1)  & -\\
+          &   1.0    & 32.6842(8)  & 32.6680(1)  & -\\
+\cline{2-5}
+\multicolumn{5}{c}{} \\
+    20    &   0.1    & 27.316(2)   & 27.2717(2)   & - 		\\
+          &   0.28   & 56.440(2)   & 56.3868(2)   & -		\\
+          &   0.5    & 85.714(2)   & 85.6555(2)   & - \\
+          &   1.0    & 142.951(2)  & 142.8875(2)  & -\\
+\cline{2-5}
+\multicolumn{5}{c}{} \\
+\hline\hline
+\end{tabular}
+\caption{Ground state energy results for three-dimensional $N$-electron quantum dots with frequency $\omega$. The values in the fifth column is exact calculations taken from Ref. \cite{taut}. The VMC result is as expected always higher than the corresponding DMC result.}
+\label{tab:QDotsResults3D}
+\end{center}
+\end{table}
+\setlength{\tabcolsep}{6pt}
+
+The results for three dimensional quantum dots are presented in Table \ref{tab:QDotsResults3D}. Three dimensional quantum dots do not have the same foothold in literature as the two dimensional ones, hence no results are listed except for some exact solutions taken from Ref. \cite{taut}. 
+
+As expected, DMC reproduces the exact results for two particles. Compared to the exact results for two dimensions $E_0=3$ for $\omega=1$, which was reproduced with five digit precision, the exact results are reproduced with six decimal precision for three dimensions. This strongly indicates that DMC behaves better for three dimensions than for two in the case of two electrons. For higher number of particles, however, the errors are of the same order of magnitude as for two dimensions, leading to the conclusion that DMC performs equally good in either dimension for quantum dots. 
+
+
+
+% \subsection{FIXED NODE TESTS}
+% 
+% \begin{table}
+% \begin{center}
+% \begin{tabular}{rl|rrc}
+%     N     & $\omega$ & $\mathrm{E_{DMC}}$ & $\mathrm{E_{DMC}^\mathrm{F.N.}}$  & $\epsilon_\mathrm{DMC}^\mathrm{F.N.}/\overline{\sigma}$ \\
+% \hline\hline
+% \multicolumn{5}{c}{} \\
+%     2     &   0.1    & 0.44079(1) & 0.44079(1)  & 0 \\
+%           &   0.28   & 1.02164(1) & 1.02164(1)  & 0 \\
+%           &   0.5    & 1.65977(1) & 1.65977(1)  & 0 \\
+%           &   1.0    & 3.00000(1) & 3.00000(1)  & 0 \\
+% \cline{2-5}
+% \multicolumn{5}{c}{} \\
+%     6     &   0.1    &  3.55385(5) & 3.55374(5) & 2.2  \\
+%           &   0.28   &  7.60019(6) & 7.60016(5) & 0.54 \\ 
+%           &   0.5    & 11.78484(6) & 11.78489(6)& 0.83 \\
+%           &   1.0    & 20.15932(8) & 20.15945(7)& 1.73 \\
+% \cline{2-5}
+% \multicolumn{5}{c}{} \\
+%     12    &   0.1    & 12.26984(8) & 12.26986(8)& 0.25\\
+%           &   0.28   & 25.63577(9) & 25.6358(1) & 0.32 \\
+%           &   0.5    & 39.1596(1) & 39.1594(1)  & 2 \\
+%           &   1.0    & 65.7001(1) & 65.7000(1)  & 1 \\
+% \cline{2-5}
+% \multicolumn{5}{c}{} \\
+%     20    &   0.1    &  29.9779(1) & 29.9779(2) & 0 \\
+%           &   0.28   &  61.9268(1) & 61.9265(2) & 2 \\
+%           &   0.5    &  93.8752(1) & 93.8752(2) & 0 \\
+%           &   1.0    & 155.8822(1) & 155.8821(2)& 0.66 \\
+% \cline{2-5}
+% \multicolumn{5}{c}{} \\
+%     30    &   0.1    &  60.4205(2) & 60.4207(2) & 1 \\
+%           &   0.28   & 123.9683(2) & 123.9682(2)& 0.5 \\
+%           &   0.5    & 187.0426(2) & 187.0430(2)& 2 \\
+%           &   1.0    & 308.5627(2) & 308.5626(2)& 0.5 \\
+% \cline{2-5}
+% \multicolumn{5}{c}{} \\
+%     42    &   0.1    & 107.6389(2) & 107.638(2) & 0.81 \\
+%           &   0.28   & 219.8426(2) & 219.8426(3)& 0 \\
+%           &   0.5    & 330.6306(2) & 330.6307(2)& 0.5 \\
+%           &   1.0    & 542.9428(8) &    -       & - \\
+% \hline\hline
+% \end{tabular}
+% \caption{Results for Quantum Dots without fixed node approximation calculated on the cluster Abel using $2000$ DMC cycles on 128 cores. $\epsilon_\mathrm{DMC}^\mathrm{F.N.} = |\mathrm{E_{DMC}} - \mathrm{E_{DMC}^{F.N.}}|$. $\overline{\sigma}  = \frac{1}{2}(\sigma_\mathrm{DMC} + \sigma_\mathrm{DMC}^\mathrm{F.N.})$. The last column serves as an indicator of how many average standard deviations the results differ. For two particles, where the fixed node approximation does not affect the system, the results are as expected exactly the same. For all other system sizes, the difference is mostly within one deviation. This indicates that the effect due to the fixed node approximation for closed shell Quantum Dots are very small.}
+% \end{center}
+% \end{table}
+% 
+% blah blah
+% 
+
 
 \subsection{One-body Densities}
 
-The one-body densities has been calculating using the methods described in Section \ref{sec:OBD}.
+The one-body densities are calculated using the methods described in Section \ref{sec:OBD}.
 
 From figure \ref{fig:OBD_DMC_QDOTS_w1} it is clear that the particle distribution of Quantum Dots follows a clear trend: Odd number of closed shells ($N=2$, 12, 30) are all similar in shape; the $N=2$ case can be viewed as a zoom-in of the $N=12$ top, which in turn can be viewed as a zoom-in of the $N=30$ top. A metaphoric example would be the density ``rising from the ground'' as the number of particles increase. The same trend is clearly visible for the even numbered shells ($N=6$, 20, 42). The density for $N=56$ (not included) further demonstrates this trend.
+
+
+
 
 \subsection{Lowering the frequency}
 
@@ -247,39 +326,10 @@ blah blah something clever.
 
 \subsection{Going to three Dimensions}
 
-\begin{table}
-\begin{center}
-\begin{tabular}{rl|rrr}
-    N     & $\omega$ & $\mathrm{E_{VMC}}$ & $\mathrm{E_{DMC}}$ & $E_\mathrm{ref}^{(a)}$\\
-\hline\hline
-\multicolumn{5}{c}{} \\
-    2     &   0.01   & 0.07939(3)  & 0.079206(3) & -		\\
-          &   0.1    & 0.50024(8)  & 0.499997(3) & - 		\\
-          &   0.28   & 1.20173(5)  & 1.201725(2) & -		\\
-          &   0.5    & 2.00005(2)  & 2.000000(2) & 2.0 \\
-          &   1.0    & 3.73032(8)  & 3.730123(3) & \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    8     &   0.1    & 5.7130(6)   & 5.7028(1)   & - 		\\
-          &   0.28   & 12.2040(8)  & 12.1927(1)   & -		\\
-          &   0.5    & 18.9750(7)  & 18.9611(1) & \\
-          &   1.0    & 32.6842(8)  & 32.6680(1)  & \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
-    20    &   0.1    & 27.316(2)   & 27.2717(2)   & - 		\\
-          &   0.28   & 56.440(2)   & 56.3868(2)   & -		\\
-          &   0.5    & 85.714(2)   & 85.6555(2)  &  \\
-          &   1.0    & 142.951(2)  & 142.8875(2)  & \\
-\cline{2-5}
-\multicolumn{5}{c}{} \\
+
 
      
-\hline\hline
-\end{tabular}
-\caption{a: taut}
-\label{tab:QDotsResults3D}
-\end{center}
-\end{table}
+
 
 \begin{figure}
  \begin{center}
@@ -290,7 +340,7 @@ blah blah something clever.
    \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Q3D/QD20w1_3D.png}} 
    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD20w1_2D.png}}  \\
   \caption{One body densities for quantum dots in three dimensions with $\omega=1$. From top to bottom the number of particles are $2$, $8$ and $20$.}
-  \label{fig:OBD_QDOTS3D_lowfreq}
+  \label{fig:OBD_QDOTS3D_highfreq}
  \end{center}
 \end{figure}
 
