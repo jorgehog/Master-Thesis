@@ -67,7 +67,7 @@ which can then in turn be used in standard Matplotlib functions with the figures
 Additional parameters can be overloaded for additional functionality
 
 \begin{small}
-\begin{tabular}{lp{14cm - 5pt}}
+\begin{tabular}{lp{14cm - 7pt}}
 \verb+nCols+ & The number of columns present in the file. Will be automatically detected unless the data is stored in binary format.\\
 \verb+skipRows+ & The number of initial rows to skip. Will be automatically detected unless the data is stored as a single column.\\
 \verb+skipCols+ & The number of initial columns to skip. Defaults to zero.\\

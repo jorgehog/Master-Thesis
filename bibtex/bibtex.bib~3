@@ -846,9 +846,18 @@ jabref-meta: selector_keywords:
 	year = "1993"
 }
 
-@article{WignerOrig,
+@article{WignerCrystal,
+	author = "Wigner, E.",
+	doi = "10.1103/PhysRev.46.1002",
 	issue = "11",
-	title = "{On the Interaction of Electrons in Metals}"
+	journal = "Phys. Rev.",
+	month = "Dec",
+	pages = "1002--1011",
+	publisher = "American Physical Society",
+	title = "{On the Interaction of Electrons in Metals}",
+	url = "http://link.aps.org/doi/10.1103/PhysRev.46.1002",
+	volume = "46",
+	year = "1934"
 }
 
 @article{FockVirial,

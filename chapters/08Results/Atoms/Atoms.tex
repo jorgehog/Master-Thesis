@@ -1,6 +1,12 @@
 \section{Atoms}
  
- \subsection{Ground State Energies}
+ The focus regarding atoms has been on simulating heavy atoms using a simple ansatz for the trial wave function, and thus test its limits. Due to the important nature of atoms in nature, precise experimental data which can be used to benchmark the results exist. Due to having an non-negligible relativistic nature, atoms which are heavier than Krypton are not simulated. The specifics regarding the model used for atoms are covered in Section \ref{sec:modelAtoms}.
+ 
+\subsection{Ground State Energies}
+ 
+ Table \ref{tab:AtomsRes} presents the ground state energy results for different atoms together with the experimental results. As expected, the helium ground state has the highest overlap with the corresponding experimental result. The relative precision of the heavier atoms are in the range $10^{-3}$ - $10^{-4}$, indicating that DMC performs equally well in all cases. However, the error in the calculations increase as the atoms become heavier. The calculations were done on a single node; running the calculations on several nodes with an increased number of walkers could reduce the error somewhat. 
+ 
+ As expected, VMC performs rather poorly compared to DMC. In comparison to quantum dots, where the two methods produced significantly similar energies, atoms have an addition approximation in the trial wave function due to the fact that the solid harmonics are used instead of the spherical harmonics. This is covered in detail in Section \ref{sec:modelAtoms}. This fact further demonstrates that DMC, unlike VMC, has the power to perform well even in situations where the trial wave function is not optimal. 
  
 \begin{table}
 \begin{center}
@@ -27,61 +33,42 @@ Kr & \qquad & -2700(5) & \qquad -2749.9(2) & \qquad $-2752.054976*$ & \qquad $7.
 \end{table}
  
  
- \subsection{The Noble-Gases}
+ \subsection{One-body densities}
  
- blah blah
+ The one-body densities for the \textit{noble gases}, that is, the closed shell atoms, are presented in Figure \ref{fig:OBD_noble_Atoms_2D_combo}. Comparing these to the one-body densities for the alkaline earth metals, i.e. $\mathrm{Be}$, $\mathrm{Mg}$, etc., in Figure \ref{fig:OBD_alkaline_Atoms_2D_combo}, it is clear that the noble gases have a more confined electron distribution. This corresponds well to the fact that noble gases do not form compound materials, i.e. molecules \cite{UniversityPhysics}. The alkaline earth metals on the other hand are found naturally as parts of compound materials. The one-body densities of the alkaline earth metals spreading out in space are thus in excellent agreement with nature.
  
- nuclear interaction extremely dominating. One-body densities utterly boring; exponential decay from core.
+ The attractive nature of the nuclear potential is demonstrated by the core having an extremely high electron density, independent of the number of electrons. The radial density is thus not very insightful, however, multiplied with the radius squared, the difference between atoms become noticeable.
  
- Interesting still: angular averaged radial one-body density.
+It is apparent that the VMC distribution and the pure distribution differ more in the case of alkaline earth metals than for noble gases. This implies that the trial wave function is better in the case of noble gases. To explain this phenomenon, it is important to realize that for closed shell systems, there is only one configuration with the lowest possible non-interacting energy. For open shell systems, there are several ways of configuring the electrons which produce the same non-interacting energy. This is due to the fact that the single particle energy is independent of the angular and azimuthal quantum numbers $l$ and $m$ introduced in Section \ref{sec:modelAtoms}.
 
- More dispersed = More chemically unstable. 
- 
- As expected Krypton is most stable.
+For instance, Beryllium has two electrons in the $n=1$ state and two in the $n=2$ state. The trial wave function used in this thesis uses the $m=l=0$ states only for beryllium, however, in light of the previous paragraph, the wave function suffers from the fact that the $l=1$ states are equally energy efficient. In order to have an equally optimal ansatz in the case of alkaline earth metals as in the case of noble gases, the contributions from these equally efficient states must be included. 
  
  
-\begin{figure}
+ 
+ \begin{figure}
  \begin{center}
-   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Helium.png}} 
-   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Helium.png}}  \\
-   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Neon.png}} 
-   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Neon.png}}  \\
-   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Argon.png}} 
-   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Argon.png}}  \\
-   \subfigure{\includegraphics[scale=0.46]{../Graphics/OBD/OBD_Atoms/3D/Krypton.png}} 
-   \subfigure{\includegraphics[scale=0.33]{../Graphics/OBD/OBD_Atoms/2D/Krypton.png}}  \\
-  \caption{Counting top to bottom: Helium, Neon, Argon and Krypton. See Fig. \ref{fig:OBD_alkaline_Atoms_2D_combo} for descriptions.}
-  \label{fig:OBD_noble_Atoms_2D_combo}
- \end{center}
-\end{figure}
-
- 
- \clearpage
- 
- 
- \subsection{Alkaline Earth Metals}
- 
- blah blah good approximation with one determinant -> calculations possible. 
- 
- More smushed out; missing contribution from higher |m| since the shell is not closed. 
- 
- DMC still are able to span out a more correct wave function. This is backed up by experimental data comparisons. 
- 
- The densities are similar to their close noble-gas relative, however, the two additional particles creates a disperse probability cloud. The noble gases have more well-defined (sharp) shell structures.
- 
- Another interesting fact: VMC distribution and the estimated pure DMC distribution is more different for the alkaline earth metals than for the noble gases. This is expected since M=0 S=0 ground state is major contributions from 3p 2p states. 
- 
- 
-\begin{figure}
- \begin{center}
-   \subfigure{\includegraphics[scale=0.5]{../Graphics/OBD/OBD_Atoms/3D/Beryllium.png}} 
-   \subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Atoms/2D/Beryllium.png}}  \\
-   \subfigure{\includegraphics[scale=0.5]{../Graphics/OBD/OBD_Atoms/3D/Magnesium.png}} 
-   \subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Atoms/2D/Magnesium.png}}  \\
-   \vspace{0.5cm}
-   \subfigure{\includegraphics[scale=1.5]{../Graphics/OBD/OBD_Atoms/3D/colorbar.png}}
-   \vspace{0.5cm}
-  \caption{Three dimensional one-body density (left column) and angular averaged radii (right column) for alkaline earth metals; Beryllium (top) and Magnesium (bottom). The color bar shows increasing values from left to right. Notice that it is not the radial one-body density (which is too steep to reveal characteristics) in the right column, but the electron . Compared to the noble gases in Fig.~\ref{fig:OBD_noble_Atoms_2D_combo}, the alkaline earth metals have a surrounding dispersed probability cloud due to the broken closed shell symmetry. The element is thus more unstable and potent for chemical reactions and molecular formations through covalent bonds.}
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Beryllium.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Beryllium.png}}  \\
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Magnesium.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Magnesium.png}}  \\
+  \caption{Three dimensional one-body density (left column) and angular averaged radii (right column) for alkaline earth metals; Beryllium (top) and Magnesium (bottom). The color bar shows increasing values from left to right. Notice that it is not the radial one-body density (which is too steep to reveal characteristics) in the right column, but the electron . Compared to the noble gases in Figure \ref{fig:OBD_noble_Atoms_2D_combo}, the alkaline earth metals have a surrounding dispersed probability cloud due to the broken closed shell symmetry. The element is thus more unstable and potent for chemical reactions and molecular formations through covalent - and ionic bonds \cite{UniversityPhysics}. Red and blue color implies a low and high electron density respectively.}
   \label{fig:OBD_alkaline_Atoms_2D_combo}
  \end{center}
 \end{figure}
+ 
+\begin{figure}
+ \begin{center}
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Helium.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Helium.png}}  \\
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Neon.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Neon.png}}  \\
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Argon.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Argon.png}}  \\
+   \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Atoms/3D/Krypton.png}} 
+   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Atoms/2D/Krypton.png}}  \\
+  \caption{One-body densities for noble gases. Counting top to bottom: Helium, Neon, Argon and Krypton. A quarter of the spherical density is removed to present a better view of the core. Red and blue color implies a low and high electron density respectively.}
+  \label{fig:OBD_noble_Atoms_2D_combo}
+ \end{center}
+\end{figure}
+ 
+ 

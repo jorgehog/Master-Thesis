@@ -269,6 +269,11 @@ H.~Partridge, ``{Near Hartree--Fock quality GTO basis sets for the first- and
   \url{http://link.aip.org/link/?JCP/90/1043/1}
 \BIBentrySTDinterwordspacing
 
+\bibitem{UniversityPhysics}
+H.~D. Young, R.~Freedman, and L.~Ford, \emph{{Sears and Zemansky's University
+  Physics}}, 12th~ed.\hskip 1em plus 0.5em minus 0.4em\relax Pearson,
+  Addison-Wesley, 2008.
+
 \bibitem{H_He_exact}
 M.~Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
   Application of Fermion Monte Carlo Variational Method},'' \emph{Int. Journal

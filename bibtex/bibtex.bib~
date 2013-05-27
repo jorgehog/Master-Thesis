@@ -887,3 +887,14 @@ jabref-meta: selector_keywords:
 	year = "1938"
 }
 
+@article{WignerMolecule,
+	author = "Yannouleas, Constantine and Landman, Uzi",
+	journal = "Reports on Progress in Physics",
+	number = "12",
+	pages = "2067",
+	title = "{Symmetry breaking and quantum correlations in finite systems: studies of quantum dots and ultracold Bose gases and related nuclear and chemical methods}",
+	url = "http://stacks.iop.org/0034-4885/70/i=12/a=R02",
+	volume = "70",
+	year = "2007"
+}
+
