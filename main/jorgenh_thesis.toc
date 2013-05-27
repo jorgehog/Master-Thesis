@@ -119,13 +119,15 @@
 \contentsline {subsubsection}{Two dimensional quantum dots}{111}{subsection.6.3.1}
 \contentsline {subsubsection}{Three dimensional quantum dots}{113}{table.caption.31}
 \contentsline {subsection}{\numberline {6.3.2}One-body Densities}{113}{subsection.6.3.2}
-\contentsline {subsection}{\numberline {6.3.3}Lowering the frequency}{117}{subsection.6.3.3}
-\contentsline {subsection}{\numberline {6.3.4}Simulatings in a Double-well}{120}{subsection.6.3.4}
-\contentsline {section}{\numberline {6.4}Atoms}{121}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Ground State Energies}{121}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}One-body densities}{121}{subsection.6.4.2}
-\contentsline {section}{\numberline {6.5}Molecules}{124}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{124}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.3.3}Lowering the frequency}{116}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Simulatings in a Double-well}{119}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.4}Atoms}{120}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Ground State Energies}{120}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}One-body densities}{120}{subsection.6.4.2}
+\contentsline {section}{\numberline {6.5}Homonuclear Diatomic Molecules}{123}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{123}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}One-body densities}{123}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Parameterizing Forces}{125}{subsection.6.5.3}
 \contentsline {chapter}{\numberline {A}Dirac Notation}{129}{appendix.A}
 \contentsline {chapter}{\numberline {B}DCViz: Visualization of Data}{131}{appendix.B}
 \contentsline {section}{\numberline {B.1}Basic Usage}{131}{section.B.1}

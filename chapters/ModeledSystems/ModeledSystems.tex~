@@ -6,6 +6,7 @@ The systems modelled in this thesis are exclusively systems which have closed fo
 In this chapter atomic units will be used, that is, $\hbar=e=m_e=4\pi\epsilon_0 = 1$, where $m_e$ and $e_0$ is the electron mass and vacuum permittivity respectively.
 
 \section{Atomic Systems}
+\label{sec:modelAtoms}
 
 Atomic systems are described as a number of electrons surrounding oppositely charged nuclei. As an approximation, the position of the nucleus is fixed. Due to the fact that the mass of the core is several orders of magnitude larger than the mass of the electrons, this serves as a very good approximation. In literature this is referred to as the \textit{Born-Oppenheimer Approximation} \cite{Sakurai:94}.
 
@@ -101,6 +102,7 @@ g(n) = 2\sum_{l=0}^{n-1}\sum_{m={-l}}^l 1 = 2n^2.
 \end{equation}
 
 \subsection{Homonuclear Diatomic Molecules}
+\label{homoMolecules}
 
 A homonuclear diatomic molecule consists of two atoms (diatomic molecule) of the same element (homonuclear) with charge $Z=N/2$, separated by a distance $R$. The origin is set between the atoms, which are fixed at positions $\pm \mathbf{R}/2$. An electron at position $\mathbf{r}_i$ gets a contribution from both the cores as displayed in figure \ref{fig:dimolecules}. In addition, there is a repulsive Coulomb potential between the two cores equal to $Z^2/R$. The resulting Hamiltonian becomes
 
