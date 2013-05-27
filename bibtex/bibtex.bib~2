@@ -619,7 +619,7 @@ jabref-meta: selector_keywords:
 	owner = "toffyrn",
 	school = "University of Oslo",
 	timestamp = "2011.05.13",
-	title = "{SRG Title}",
+	title = "{Quantum-mechanical systems in traps and Similarity Renormalization Group theory}",
 	year = "2013"
 }
 
@@ -830,5 +830,46 @@ jabref-meta: selector_keywords:
 	title = "{Nanoscale quantum dots hold promise for cancer applications}",
 	volume = "90",
 	year = "2003"
+}
+
+@article{taut,
+	author = "Taut, M.",
+	doi = "10.1103/PhysRevA.48.3561",
+	issue = "5",
+	journal = "Phys. Rev. A",
+	month = "Nov",
+	pages = "3561--3566",
+	publisher = "American Physical Society",
+	title = "{Two electrons in an external oscillator potential: Particular analytic solutions of a Coulomb correlation problem}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevA.48.3561",
+	volume = "48",
+	year = "1993"
+}
+
+@article{WignerCrystal,
+	author = "Wigner, E.",
+	doi = "10.1103/PhysRev.46.1002",
+	issue = "11",
+	journal = "Phys. Rev.",
+	month = "Dec",
+	pages = "1002--1011",
+	publisher = "American Physical Society",
+	title = "{On the Interaction of Electrons in Metals}",
+	url = "http://link.aps.org/doi/10.1103/PhysRev.46.1002",
+	volume = "46",
+	year = "1934"
+}
+
+@article{FockVirial,
+	author = "Fock, V",
+	doi = "10.1007/BF01339281",
+	institution = "Leningrad, Physikalisches Instit ut der Universit{\"a}t",
+	journal = "Zeitschrift f{\"u}r Physik",
+	month = nov,
+	number = "11-12",
+	pages = "855--858",
+	title = "{Bemerkung zum Virialsatz}",
+	volume = "63",
+	year = "1930"
 }
 

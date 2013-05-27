@@ -179,33 +179,9 @@ From Figure \ref{fig:OBD_QDOTS3D_lowfreq} it is apparent that lowering the frequ
 
 This behavior is expected since the lower the frequency is set, the lower the energy cost of populating a higher shell becomes. 
 
-An equally populated shell structure implies that it is not energetically efficient for the electrons to occupy several shells simultaneously, indicating that crystallization becomes the preferred positional state\footnote{Unless at least one particle is frozen in the QMC simulations, the Quantum Dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. This effect is called \textit{Wigner Crystallization}, and is expected for confined electrons where the correlation energy dominates the kinetic energy \textbf{cite wigner}. This effect has strong experimental evidence \textbf{cite wigner experiment}. 
+An equally populated shell structure implies that it is not energetically efficient for the electrons to occupy several shells simultaneously, indicating that crystallization becomes the preferred positional state\footnote{Unless at least one particle is frozen in the QMC simulations, the Quantum Dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. This effect is called \textit{Wigner Crystallization}, and is expected for confined electrons with a potential energy which dominates the kinetic energy \cite{WignerMolecule}. This effect has strong experimental evidence \cite{WignerCrystal, WignerCrystal2}. 
 
 The fact that the correlation energy dominates the kinetic energy is clear by looking at Figure \ref{fig:E_dist_qdots}. The kinetic energy contribution is almost constant with respect to the frequency, while the Coulomb energy contribution rapidly increases.
-
-% \subsubsection{The critical limit}
-% 
-% Viewing the one-body densities for lower values of $\omega$ (Fig. \ref{fig:OBD_DMC_QDOTS_lowering3D}) in light of the corresponding densities for $\omega=1$ (Fig. \ref{fig:OBD_DMC_QDOTS_w1}), it is clear that there is little to no change in the density profile of $\omega=1$ to $\omega=0.28$. This is further verified by $\omega=0.5$ densities (not presented). 
-% 
-% This implies that the oscillator frequency merely scales the extent of the wave function and leaves the general density profile unchanged. However, going below $\omega=0.28$ reveals an interesting scenario where all of a sudden the densities change form. This is illustrated in figure \ref{fig:OBD_collapsed_w001}: At $\omega=0.1$ the changes become visible, yet the density is still comparable with that of higher frequencies. Going further down to $\omega=0.01$, the profile is entirely different, and will not collapse onto high frequency densities.
-% 
-% 
-% 
-% The frequency $\omega=0.28$ are used in numerous studies of Quantum Dots \textbf{referer}. The results of this section serve as a demonstration of why this apparently random limit is so widely applied; it is beyond this limit where the well-behaving high-frequency density profile starts to break down, leaving iterating methods struggling to converge. 
-% 
-% 
-% 
-% Lowering the frequency further, to $\omega=0.01$, interesting turn of events are revealed: The density profile completely changes, hardly resembling figure \ref{fig:OBD_collapsed_w001}. The number of shells increase due to the dominating Coulomb interaction. Moreover, these shells appear equally populated, if not more populated further out. This is the reversed effect than in the high-frequency case.
-% 
-% The ground state density represents the most energy efficient state of the particles given a potential, and it is therefore implied that the sudden change in the density profile at lower frequencies must be induced by a shift in the system's priorities between the different potential sources. In the case of Quantum Dots, these sources are the oscillator well and the Coulomb interaction. The amount of kinetic energy is also of interest.
-% 
-% It is tempting to state that the impact of the oscillator potential goes down proportional to the frequency squared (remember $V(\vec r) = \frac{1}{2}\omega^2r^2$), however, this view is in fact too naive, as the Coulomb interaction and the kinetic energy is dependent of the distribution of particles which in turn is dependent on the oscillator frequency. What is true, however, is that in the limit $\omega\to 0$, the effect of the oscillator potential is gone. 
-% 
-% Imagine an extremely narrow oscillator well: All the particles would favor stacking up in the center, as $r^2$ (oscillator) decrease quicker than $r^{-1}$ (Coulomb) increase. For lower frequencies we have the different situation where the particles would favor being very far apart, since the coefficient $\omega^2$ scaling the oscillator is very small. However, at a certain level, there comes a point where climbing the well further would cause the oscillator energy to increase more than Coulomb decrease. In other words, there is a balance - the oscillator will impact the particles even at very small frequencies. This is illustrated in Fig.
-% 
-% The question then becomes: Why do we get a change in the distribution below $\omega=0.28$ if a balance is always present between the oscillator and Coulomb? The answer is 
-
-% The radial one-body densities are collapsed onto each other in Fig. \ref{fig:OBD_collapsed_w001} showing this effect in more detail. From this figure it is apparent that the density profiles of Quantum Dots with frequencies from $\omega=0.28$ and upwards are if fact extremely equal. At lower frequencies, the outer-lying shells gets an increase in particle population, and thus shifts the shape of the wave function as well as the extent.
 
 \newcommand{\qqq}{\qquad\qquad\qquad}
 \newcommand{\qq}{\qquad\qquad}
@@ -214,12 +190,6 @@ The fact that the correlation energy dominates the kinetic energy is clear by lo
 \begin{figure}
  \begin{center}
  \begin{tabular}{rl}
-%    \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Q3D/QD2w01_3D.png}} 
-%    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD2w01_2D.png}}  \\
-%    \subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Q3D/QD2w001_3D.png}} 
-%    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD2w001_2D.png}}  \\
-%    \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_Q3D/QD8w01_3D.png}} 
-%    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD8w01_2D.png}}  \\
    \rot{$\qq\quad\omega=1$}&\subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Q3D/QD8w1_3D.png}}
    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD8w1_2D.png}} \\
    \rot{$\qq\omega=0.01$} &\subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Q3D/QD8w001_3D.png}} 
@@ -259,61 +229,6 @@ The fact that the correlation energy dominates the kinetic energy is clear by lo
 \setlength{\tabcolsep}{6pt}
 
 
-% \clearpage
-% 
-% \newcommand{\OBDscaleR}{0.3}
-% \setlength{\tabcolsep}{5pt}
-% \captionsetup[subfloat]{labelformat=empty}
-% \begin{figure}
-%  \begin{center}
-%  \begin{tabular}{lr}
-%    \rot{$\qqq N=2$}  & \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_rad_psort/QDots_2.png}} 
-%   \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_2.png}} \\[-0pt]
-%    \rot{$\qqq N=6$}  & \subfigure{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_6.png}}
-%   \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_6.png}} \\[-0pt]
-%    \rot{$\qqq N=12$} & \subfigure{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_12.png}} 
-%   \subfigure{\includegraphics[scale=\OBDscaleR ]{../Graphics/OBD/OBD_w001/QDots_12.png}} \\[-0pt]
-%    \rot{$\qqq N=20$} & \subfigure[Collapsed results]{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_rad_psort/QDots_20.png}}
-%   \subfigure[$\omega=0.01$]{\includegraphics[scale=\OBDscaleR]{../Graphics/OBD/OBD_w001/QDots_20.png}} \\[-0pt]
-%   \end{tabular}
-%   \caption{Right column: Radial one-body densities for high frequencies (see specific legends). Left column: Radial one-body densities for $\omega=0.01$.}
-%   \label{fig:OBD_collapsed_w001}
-%  \end{center}
-% \end{figure}
-% \setlength{\tabcolsep}{6pt}
-% \captionsetup[subfloat]{labelformat=parens}
-% \clearpage
-
-% 
-% \captionsetup[subfloat]{labelformat=empty}
-% \begin{figure}
-%  \begin{center}
-%   \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E2.png}}
-%   \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E6.png}} \\
-%   \subfigure[$N=12$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E12.png}}
-%   \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E20.png}} \\
-%   \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E30.png}}
-%   \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E42.png}} \\
-%   \caption{}
-%   \label{fig:E_dist_qdots}	
-%  \end{center}
-% \end{figure}
-% 
-% \begin{figure}
-%  \begin{center}
-%   \subfigure[$N=2$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V2.png}}
-%   \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V6.png}} \\
-%   \subfigure[$N=12$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V12.png}}
-%   \subfigure[$N=20$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V20.png}} \\
-%   \subfigure[$N=30$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V30.png}}
-%   \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_V42.png}} \\
-%   \caption{}
-%   \label{fig:V_dist_qdots}
-%  \end{center}
-% \end{figure}
-% \captionsetup[subfloat]{labelformat=parens}
-
-
 \captionsetup[subfloat]{labelformat=empty}
 \begin{figure}[h]
  \begin{center}
@@ -326,7 +241,7 @@ The fact that the correlation energy dominates the kinetic energy is clear by lo
 
 In other words, quantum dots fall into a crystallized state at low frequencies. In light of the previous discussion regarding Wigner crystallization, this follows as a consequence of the kinetic energy being dominated by the Coulomb energy. Since the Coulomb energy in turn dominates the oscillator energy (the left-hand side parts of the plots in Figure \ref{fig:E_dist_qdots}), the interesting quantity to study is the kinetic energy as a function of the total potential energy. 
 
-This is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{} and reads
+This is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{FockVirial} and reads
 
 \begin{equation}
  V(\mathbf{r}) \propto r^\gamma \quad\longrightarrow\quad \langle \OP{T} \rangle = \frac{\gamma}{2} \langle \OP{V} \rangle, \label{eq:virial}

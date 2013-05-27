@@ -229,6 +229,33 @@ C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
 V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
   Dots},'' Master's thesis, University of Oslo, 2012.
 
+\bibitem{WignerMolecule}
+\BIBentryALTinterwordspacing
+C.~Yannouleas and U.~Landman, ``{Symmetry breaking and quantum correlations in
+  finite systems: studies of quantum dots and ultracold Bose gases and related
+  nuclear and chemical methods},'' \emph{Reports on Progress in Physics},
+  vol.~70, no.~12, p. 2067, 2007. [Online]. Available:
+  \url{http://stacks.iop.org/0034-4885/70/i=12/a=R02}
+\BIBentrySTDinterwordspacing
+
+\bibitem{WignerCrystal}
+\BIBentryALTinterwordspacing
+E.~Wigner, ``{On the Interaction of Electrons in Metals},'' \emph{Phys. Rev.},
+  vol.~46, pp. 1002--1011, Dec 1934. [Online]. Available:
+  \url{http://link.aps.org/doi/10.1103/PhysRev.46.1002}
+\BIBentrySTDinterwordspacing
+
+\bibitem{WignerCrystal2}
+\BIBentryALTinterwordspacing
+------, ``{Effects of the electron interaction on the energy levels of
+  electrons in metals},'' \emph{Trans. Faraday Soc.}, vol.~34, pp. 678--685,
+  1938. [Online]. Available: \url{http://dx.doi.org/10.1039/TF9383400678}
+\BIBentrySTDinterwordspacing
+
+\bibitem{FockVirial}
+V.~Fock, ``{Bemerkung zum Virialsatz},'' \emph{Zeitschrift f{\"u}r Physik},
+  vol.~63, no. 11-12, pp. 855--858, Nov. 1930.
+
 \bibitem{AtomsExact}
 M.~Degroote, ``\BIBforeignlanguage{English}{{Faddeev random phase approximation
   applied to molecules}},'' \emph{\BIBforeignlanguage{English}{The European
