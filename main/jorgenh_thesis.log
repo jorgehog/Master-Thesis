@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  28 MAY 2013 22:05
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  28 MAY 2013 23:20
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1437,7 +1437,7 @@ Appendix B.
 Underfull \vbox (badness 7685) has occurred while \output is active []
 
  [137]
-[138] [139] <../Graphics/gui.png, id=3098, 231.86626pt x 282.30469pt>
+[138] [139] <../Graphics/gui.png, id=3105, 231.86626pt x 282.30469pt>
 File: ../Graphics/gui.png Graphic file (type png)
 
 <use ../Graphics/gui.png> [140]) (../chapters/appendix/appendixSympy.tex
@@ -1523,10 +1523,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--116
 ** the default language instead.
 [173]) [174] (./jorgenh_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12872 strings out of 493848
- 192429 string characters out of 1152823
- 545181 words of memory out of 3000000
- 14139 multiletter control sequences out of 15000+50000
+ 12874 strings out of 493848
+ 192452 string characters out of 1152823
+ 545212 words of memory out of 3000000
+ 14140 multiletter control sequences out of 15000+50000
  17807 words of font info for 72 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,18n,58p,1341b,1874s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1555,9 +1555,9 @@ share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/font
 s/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (174 pages, 8501071 bytes).
+Output written on jorgenh_thesis.pdf (174 pages, 8504422 bytes).
 PDF statistics:
- 3997 PDF objects out of 4296 (max. 8388607)
- 1595 named destinations out of 1728 (max. 500000)
+ 4004 PDF objects out of 4296 (max. 8388607)
+ 1596 named destinations out of 1728 (max. 500000)
  1405 words of extra memory for PDF output out of 10000 (max. 10000000)
 

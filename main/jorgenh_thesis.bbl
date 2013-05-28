@@ -315,6 +315,10 @@ A.~C.~T. van Duin, S.~Dasgupta, F.~Lorant, and W.~A. Goddard, ``{ReaxFF: A
   \url{http://pubs.acs.org/doi/abs/10.1021/jp004368u}
 \BIBentrySTDinterwordspacing
 
+\bibitem{vmcAtoms}
+H.~Sandsdalen, ``{Variational Monte Carlo studies of Atoms},'' Master's thesis,
+  University of Oslo, 2010.
+
 \bibitem{Matplotlib}
 \BIBentryALTinterwordspacing
 (2013, May) {Matplotlib website}. [Online]. Available:

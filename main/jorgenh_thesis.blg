@@ -12,45 +12,45 @@ Warning--empty journal in doubleWellExpt
 Warning--empty journal in MD1
 
 Done.
-You've used 51 entries,
+You've used 52 entries,
             4039 wiz_defined-function locations,
-            1147 strings with 15586 characters,
-and the built_in function-call counts, 31293 in all, are:
-= -- 2665
-> -- 599
+            1151 strings with 15666 characters,
+and the built_in function-call counts, 31636 in all, are:
+= -- 2700
+> -- 603
 < -- 241
-+ -- 332
-- -- 104
-* -- 1487
-:= -- 5128
-add.period$ -- 98
-call.type$ -- 51
-change.case$ -- 45
++ -- 334
+- -- 105
+* -- 1499
+:= -- 5205
+add.period$ -- 100
+call.type$ -- 52
+change.case$ -- 46
 chr.to.int$ -- 546
-cite$ -- 55
-duplicate$ -- 2255
-empty$ -- 2528
-format.name$ -- 120
-if$ -- 7082
+cite$ -- 56
+duplicate$ -- 2281
+empty$ -- 2555
+format.name$ -- 121
+if$ -- 7154
 int.to.chr$ -- 0
-int.to.str$ -- 51
-missing$ -- 374
-newline$ -- 228
-num.names$ -- 50
-pop$ -- 832
+int.to.str$ -- 52
+missing$ -- 380
+newline$ -- 231
+num.names$ -- 51
+pop$ -- 843
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 4
-skip$ -- 2487
+skip$ -- 2516
 stack$ -- 0
-substring$ -- 1288
-swap$ -- 1793
+substring$ -- 1289
+swap$ -- 1810
 text.length$ -- 59
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 51
+type$ -- 52
 warning$ -- 4
-while$ -- 129
-width$ -- 53
-write$ -- 548
+while$ -- 130
+width$ -- 54
+write$ -- 557
 (There were 4 warnings)

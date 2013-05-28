@@ -898,3 +898,11 @@ jabref-meta: selector_keywords:
 	year = "2007"
 }
 
+@book{UniversityPhysics,
+	author = "Young, H. D. and Freedman, R.A. and Ford, L.A.",
+	edition = "12",
+	publisher = "Pearson, Addison-Wesley",
+	title = "{Sears and Zemansky's University Physics}",
+	year = "2008"
+}
+

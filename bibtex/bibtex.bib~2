@@ -917,3 +917,16 @@ jabref-meta: selector_keywords:
 	year = "2010"
 }
 
+@article{ReaxFF,
+	author = "van Duin, Adri C. T. and Dasgupta, Siddharth and Lorant, Francois and Goddard, William A.",
+	doi = "10.1021/jp004368u",
+	eprint = "http://pubs.acs.org/doi/pdf/10.1021/jp004368u",
+	journal = "The Journal of Physical Chemistry A",
+	number = "41",
+	pages = "9396--9409",
+	title = "{ReaxFF: A Reactive Force Field for Hydrocarbons}",
+	url = "http://pubs.acs.org/doi/abs/10.1021/jp004368u",
+	volume = "105",
+	year = "2001"
+}
+

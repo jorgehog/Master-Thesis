@@ -906,3 +906,14 @@ jabref-meta: selector_keywords:
 	year = "2008"
 }
 
+@article{forcesQMC,
+	author = "Badinski, A and Haynes, P D and Trail, J R and Needs, R J",
+	journal = "Journal of Physics: Condensed Matter",
+	number = "7",
+	pages = "074202",
+	title = "{Methods for calculating forces within quantum Monte Carlo simulations}",
+	url = "http://stacks.iop.org/0953-8984/22/i=7/a=074202",
+	volume = "22",
+	year = "2010"
+}
+

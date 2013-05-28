@@ -930,3 +930,28 @@ jabref-meta: selector_keywords:
 	year = "2001"
 }
 
+@article{MD1,
+	author = "Barisik, Murat and Beskok, Ali",
+	month = sep,
+	number = "3",
+	pages = "269-282",
+	publisher = "Springer-Verlag",
+	title = "{Equilibrium molecular dynamics studies on nanoscale-confined fluids}",
+	volume = "11",
+	year = "2011"
+}
+
+@article{MD2,
+	author = "Travis, Karl P. and Gubbins, Keith E.",
+	collaboration = "",
+	doi = "10.1063/1.480758",
+	journal = "The Journal of Chemical Physics",
+	number = "4",
+	pages = "1984--1994",
+	publisher = "AIP",
+	title = "{Poiseuille flow of Lennard-Jones fluids in narrow slit pores}",
+	url = "http://link.aip.org/link/?JCP/112/1984/1",
+	volume = "112",
+	year = "2000"
+}
+
