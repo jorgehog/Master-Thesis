@@ -287,6 +287,34 @@ S.~Datta, S.~A. Alexander, and R.~L. Coldwell, ``{Properties of selected
   Available: \url{http://link.aip.org/link/?JCP/120/3642/1}
 \BIBentrySTDinterwordspacing
 
+\bibitem{MD1}
+M.~Barisik and A.~Beskok, ``{Equilibrium molecular dynamics studies on
+  nanoscale-confined fluids},'' vol.~11, no.~3, pp. 269--282, Sep. 2011.
+
+\bibitem{MD2}
+\BIBentryALTinterwordspacing
+K.~P. Travis and K.~E. Gubbins, ``{Poiseuille flow of Lennard-Jones fluids in
+  narrow slit pores},'' \emph{The Journal of Chemical Physics}, vol. 112,
+  no.~4, pp. 1984--1994, 2000. [Online]. Available:
+  \url{http://link.aip.org/link/?JCP/112/1984/1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{forcesQMC}
+\BIBentryALTinterwordspacing
+A.~Badinski, P.~D. Haynes, J.~R. Trail, and R.~J. Needs, ``{Methods for
+  calculating forces within quantum Monte Carlo simulations},'' \emph{Journal
+  of Physics: Condensed Matter}, vol.~22, no.~7, p. 074202, 2010. [Online].
+  Available: \url{http://stacks.iop.org/0953-8984/22/i=7/a=074202}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ReaxFF}
+\BIBentryALTinterwordspacing
+A.~C.~T. van Duin, S.~Dasgupta, F.~Lorant, and W.~A. Goddard, ``{ReaxFF: A
+  Reactive Force Field for Hydrocarbons},'' \emph{The Journal of Physical
+  Chemistry A}, vol. 105, no.~41, pp. 9396--9409, 2001. [Online]. Available:
+  \url{http://pubs.acs.org/doi/abs/10.1021/jp004368u}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Matplotlib}
 \BIBentryALTinterwordspacing
 (2013, May) {Matplotlib website}. [Online]. Available:

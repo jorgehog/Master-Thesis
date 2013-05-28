@@ -846,9 +846,18 @@ jabref-meta: selector_keywords:
 	year = "1993"
 }
 
-@article{WignerOrig,
+@article{WignerCrystal,
+	author = "Wigner, E.",
+	doi = "10.1103/PhysRev.46.1002",
 	issue = "11",
-	title = "{On the Interaction of Electrons in Metals}"
+	journal = "Phys. Rev.",
+	month = "Dec",
+	pages = "1002--1011",
+	publisher = "American Physical Society",
+	title = "{On the Interaction of Electrons in Metals}",
+	url = "http://link.aps.org/doi/10.1103/PhysRev.46.1002",
+	volume = "46",
+	year = "1934"
 }
 
 @article{FockVirial,
@@ -862,5 +871,30 @@ jabref-meta: selector_keywords:
 	title = "{Bemerkung zum Virialsatz}",
 	volume = "63",
 	year = "1930"
+}
+
+@article{WignerCrystal2,
+	abstract = "",
+	author = "Wigner, E.",
+	doi = "10.1039/TF9383400678",
+	issue = "0",
+	journal = "Trans. Faraday Soc.",
+	pages = "678--685",
+	publisher = "The Royal Society of Chemistry",
+	title = "{Effects of the electron interaction on the energy levels of electrons in metals}",
+	url = "http://dx.doi.org/10.1039/TF9383400678",
+	volume = "34",
+	year = "1938"
+}
+
+@article{WignerMolecule,
+	author = "Yannouleas, Constantine and Landman, Uzi",
+	journal = "Reports on Progress in Physics",
+	number = "12",
+	pages = "2067",
+	title = "{Symmetry breaking and quantum correlations in finite systems: studies of quantum dots and ultracold Bose gases and related nuclear and chemical methods}",
+	url = "http://stacks.iop.org/0034-4885/70/i=12/a=R02",
+	volume = "70",
+	year = "2007"
 }
 

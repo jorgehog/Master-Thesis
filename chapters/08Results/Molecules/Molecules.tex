@@ -59,22 +59,32 @@ Figure \ref{fig:OBD_Molecules} presents the one-body densities of $\mathrm{Li_2}
 
 \begin{figure}
  \begin{center}
-  \subfigure{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_hyd_0.png}}
-  \subfigure{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_lit_0.png}} 
-  \caption{The distance between the atoms $R$ vs. the potential and total energy. To the left: $\mathrm{Li_2}$. To the right: $\mathrm{Li_2}$. It is evident that there exist a well-defined minima in the energy in the case of hydrogen gas. For Lithium this is not the case, which corresponds well with the fact that Lithium does not appear naturally in a gas phase in nature, but rather as ionic compounds in other molecules \cite{UniversityPhysics}.}
+  \subfigure[$\mathrm{H_2}$]{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_hyd_pure.png}}
+  \subfigure[$\mathrm{Li_2}$]{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_lit_pure.png}} 
+%   \subfigure{\includegraphics[scale=0.3]{../Graphics/R_VS_E/LD.png}}\\
+  \caption{Top figures: The distance between the atoms $R$ vs. the potential and total energy calculated using QMC. To the left: $\mathrm{H_2}$. To the right: $\mathrm{Li_2}$. It is evident that there exist a well-defined minima in the energy in the case of Hydrogen. For Lithium this is not the case, which is expected since Lithium does not appear naturally in a diatomic gas phase, but rather as an ionic compound in other molecules \cite{UniversityPhysics}. Bottom figure: The general shape of the Lennard-Jones potential commonly used in molecular dynamics simulations as an approximation to the potential between atoms. The top figures clearly resemble the Lennard-Jones potential, leading to the conclusion that QMC calculations can be used to parameterize a more realistic potential.}
   \label{fig:molecules_R_vs_E}
+%   \vspace{0.25cm}
+  \setcounter{subfigure}{2}
+  \subfigure[The Lennard-Jones 12-6 potential.]{\includegraphics[scale=0.5]{../Graphics/R_VS_E/LD.png}}
+  \label{fig:LennardJones}
  \end{center}
 \end{figure}
 
-In molecular dynamics, it is custom to use the Lennard Jones potential as an ansatz to the intermolecular interaction \textbf{referer}. However, using ab-initio equation mechanics, these forces can be parameterized in greater detail, resulting in a more precise molecular dynamics simulation. The quantity of interest is the \textit{force}, that is, the gradient of the potential. However, the potential in molecular dynamics does not correspond to the potential in the Schrödinger equation, due to the fact that the kinetic energy of the electrons is not counted as part of the kinetic energy in the molecular dynamics simulation. Hence the total energy of the Schrödinger equation correspond to the potential in molecular dynamics. In the case of diatomic molecules this is 
+In molecular dynamics, it is custom to use the \textit{Lennard Jones 12-6 potential} as an ansatz to the interaction between pairs of atoms \cite{MD1, MD2}
 
 \begin{equation}
- \mathbf{F}_\mathrm{MD} = \frac{\mathrm{d}E}{\mathrm{d}R}.
+ V(R) = 4\epsilon \left(\left(\frac{\sigma}{R}\right)^{12} - \left(\frac{\sigma}{R}\right)^{6}\right),
 \end{equation}
 
+where $\epsilon$ and $\sigma$ are parameters which can be fit to a given system.
 
-Using the Hellmann-Feynman theorem, expressions for this derivative can be deduced \textbf{referer}, however, as a simple approximation, the slope of the energy in Figure \ref{fig:molecules_R_vs_E} can be estimated using e.g. a finite difference calculation. Figure \ref{fig:molecules_R_vs_E} and Figure LENNARD are clearly similar, indicating that...
+However, the force field can be parameterized in greater detail using QMC calculations, resulting in a more precise molecular dynamics simulation \cite{forcesQMC}. The quantity of interest is the \textit{force}, that is, the gradient of the potential. The classical potential in molecular dynamics does not correspond to the potential in the Schrödinger equation, due to the fact that the kinetic energy contribution from the electrons is not counted as part of the total kinetic energy in the molecular dynamics simulation. Hence it is the total energy of the Schrödinger equation which corresponds to the potential energy in molecular dynamics. In the case of diatomic molecules this means that 
 
-For more complicated molecules, the force can be found as a function of angles, radii, etc. which in turn can be used to parameterize a more complicated molecular dynamics potential. An example of such a potential is the REAXFF potential, which is based on Quantum Mechanical calculations involving five atoms \textbf{referer}.
+\begin{equation}
+ F_\mathrm{MD} = \frac{\mathrm{d}\langle E \rangle}{\mathrm{d}R}.
+\end{equation}
 
+Expressions for this derivative can be obtained in ab-initio methods by using the Hellmann-Feynman theorem \cite{forcesQMC}. However, the derivative can be approximated by the slope of the energy in Figure \ref{fig:molecules_R_vs_E}. The figure shows that there are clear similarities between the widely used Lennard-Jones 12-6 potential and the results of QMC calculations done in this thesis, leading to the conclusion that the current state of the code can in fact produce approximations to atomic forces for use in molecular dynamics.
 
+For more complicated molecules, modelling the force using a single parameter $R$ does not serve as a good approximation. However, the force can be found as a function of several angles, radii, etc., which in turn can be used to parameterize a more complicated molecular dynamics potential. An example of such a potential is the \textit{ReaxFF} potential for hydrocarbons \cite{ReaxFF}.

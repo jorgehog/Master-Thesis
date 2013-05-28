@@ -887,3 +887,33 @@ jabref-meta: selector_keywords:
 	year = "1938"
 }
 
+@article{WignerMolecule,
+	author = "Yannouleas, Constantine and Landman, Uzi",
+	journal = "Reports on Progress in Physics",
+	number = "12",
+	pages = "2067",
+	title = "{Symmetry breaking and quantum correlations in finite systems: studies of quantum dots and ultracold Bose gases and related nuclear and chemical methods}",
+	url = "http://stacks.iop.org/0034-4885/70/i=12/a=R02",
+	volume = "70",
+	year = "2007"
+}
+
+@book{UniversityPhysics,
+	author = "Young, H. D. and Freedman, R.A. and Ford, L.A.",
+	edition = "12",
+	publisher = "Pearson, Addison-Wesley",
+	title = "{Sears and Zemansky's University Physics}",
+	year = "2008"
+}
+
+@article{forcesQMC,
+	author = "Badinski, A and Haynes, P D and Trail, J R and Needs, R J",
+	journal = "Journal of Physics: Condensed Matter",
+	number = "7",
+	pages = "074202",
+	title = "{Methods for calculating forces within quantum Monte Carlo simulations}",
+	url = "http://stacks.iop.org/0953-8984/22/i=7/a=074202",
+	volume = "22",
+	year = "2010"
+}
+

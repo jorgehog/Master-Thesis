@@ -898,3 +898,35 @@ jabref-meta: selector_keywords:
 	year = "2007"
 }
 
+@book{UniversityPhysics,
+	author = "Young, H. D. and Freedman, R.A. and Ford, L.A.",
+	edition = "12",
+	publisher = "Pearson, Addison-Wesley",
+	title = "{Sears and Zemansky's University Physics}",
+	year = "2008"
+}
+
+@article{forcesQMC,
+	author = "Badinski, A and Haynes, P D and Trail, J R and Needs, R J",
+	journal = "Journal of Physics: Condensed Matter",
+	number = "7",
+	pages = "074202",
+	title = "{Methods for calculating forces within quantum Monte Carlo simulations}",
+	url = "http://stacks.iop.org/0953-8984/22/i=7/a=074202",
+	volume = "22",
+	year = "2010"
+}
+
+@article{ReaxFF,
+	author = "van Duin, Adri C. T. and Dasgupta, Siddharth and Lorant, Francois and Goddard, William A.",
+	doi = "10.1021/jp004368u",
+	eprint = "http://pubs.acs.org/doi/pdf/10.1021/jp004368u",
+	journal = "The Journal of Physical Chemistry A",
+	number = "41",
+	pages = "9396--9409",
+	title = "{ReaxFF: A Reactive Force Field for Hydrocarbons}",
+	url = "http://pubs.acs.org/doi/abs/10.1021/jp004368u",
+	volume = "105",
+	year = "2001"
+}
+

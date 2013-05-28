@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  27 MAY 2013 22:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  28 MAY 2013 16:22
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1375,24 +1375,27 @@ File: ../Graphics/OBD/OBD_MOL/O2_2D.png Graphic file (type png)
 g (PNG copy)> <../Graphics/OBD/OBD_MOL/Li2_2D.png> <../Graphics/OBD/OBD_MOL/Be2
 _3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/Be2_2D.png> <../Graphics/OBD/OBD_M
 OL/O2_3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/O2_2D.png>]
-<../Graphics/R_VS_E/R_vs_E_hyd_0.png, id=2877, 578.16pt x 433.62pt>
-File: ../Graphics/R_VS_E/R_vs_E_hyd_0.png Graphic file (type png)
+<../Graphics/R_VS_E/R_vs_E_hyd_pure.png, id=2877, 586.8324pt x 442.2924pt>
+File: ../Graphics/R_VS_E/R_vs_E_hyd_pure.png Graphic file (type png)
 
-<use ../Graphics/R_VS_E/R_vs_E_hyd_0.png>
-<../Graphics/R_VS_E/R_vs_E_lit_0.png, id=2878, 578.16pt x 433.62pt>
-File: ../Graphics/R_VS_E/R_vs_E_lit_0.png Graphic file (type png)
+<use ../Graphics/R_VS_E/R_vs_E_hyd_pure.png>
+<../Graphics/R_VS_E/R_vs_E_lit_pure.png, id=2878, 586.8324pt x 442.2924pt>
+File: ../Graphics/R_VS_E/R_vs_E_lit_pure.png Graphic file (type png)
 
-<use ../Graphics/R_VS_E/R_vs_E_lit_0.png>) [125
+<use ../Graphics/R_VS_E/R_vs_E_lit_pure.png>
+<../Graphics/R_VS_E/LD.png, id=2881, 528.2937pt x 294.1389pt>
+File: ../Graphics/R_VS_E/LD.png Graphic file (type png)
 
- <../Graphics/R_VS_E/R_vs_E_hyd_0.png> <../Graphics/R_VS_E/R_vs_E_lit_0.png>] [
-126
+<use ../Graphics/R_VS_E/LD.png>) [125
+
+] [126 <../Graphics/R_VS_E/R_vs_E_hyd_pure.png> <../Graphics/R_VS_E/R_vs_E_lit_
+pure.png> <../Graphics/R_VS_E/LD.png>]
+[127
 
 
-] [127
 
 
-] [128]
-(../chapters/appendix/appendixDirac.tex
+] [128] (../chapters/appendix/appendixDirac.tex
 Appendix A.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1413,7 +1416,7 @@ Appendix B.
 Underfull \vbox (badness 7685) has occurred while \output is active []
 
  [133]
-[134] [135] <../Graphics/gui.png, id=3041, 231.86626pt x 282.30469pt>
+[134] [135] <../Graphics/gui.png, id=3053, 231.86626pt x 282.30469pt>
 File: ../Graphics/gui.png Graphic file (type png)
 
 <use ../Graphics/gui.png> [136]) (../chapters/appendix/appendixSympy.tex
@@ -1499,10 +1502,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
 ** the default language instead.
 [169]) [170] (./jorgenh_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12829 strings out of 493848
- 191605 string characters out of 1152823
- 542921 words of memory out of 3000000
- 14119 multiletter control sequences out of 15000+50000
+ 12845 strings out of 493848
+ 191878 string characters out of 1152823
+ 544177 words of memory out of 3000000
+ 14128 multiletter control sequences out of 15000+50000
  17807 words of font info for 72 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,18n,58p,1341b,1874s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1531,9 +1534,9 @@ share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/font
 s/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (170 pages, 8379035 bytes).
+Output written on jorgenh_thesis.pdf (170 pages, 8408402 bytes).
 PDF statistics:
- 3934 PDF objects out of 4296 (max. 8388607)
- 1579 named destinations out of 1728 (max. 500000)
- 1382 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3952 PDF objects out of 4296 (max. 8388607)
+ 1585 named destinations out of 1728 (max. 500000)
+ 1387 words of extra memory for PDF output out of 10000 (max. 10000000)
 
