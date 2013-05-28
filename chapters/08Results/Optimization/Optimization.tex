@@ -80,6 +80,48 @@ This result is not surprisingly equal to $15\cdot 3$, since a $30$ particle quan
 
 \subsubsection{Overall optimization}
 
-Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling are presented in the following figures
+Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling is presented in Figure \ref{fig:scaling}.
 
-\textbf{TA MED FIGURER FOR SKALERING AV KODE}
+\begin{figure}[h]
+ \begin{center}
+  \subfigure{\includegraphics[scale=0.35]{../Graphics/scaling.png}}
+  \subfigure{\includegraphics[scale=0.35]{../Graphics/scaling_loglog.png}} \\
+  \caption{Scaling of the code with respect to the number of particles $N$ based on VMC calculations with $10^6$ cycles with $10^5$ thermalization steps run on eight processors. The figures are split into a low $N$ region and a high $N$ region. Only two dimensional quantum dots and atoms are displayed in the high $N$ figure. The figures to the right contain the same data as the figures to the left, however, displayed using logarithmic axes. As expected, the two-dimensional quantum dots (denoted Qdots 2D) are lowest on CPU-time and the homonuclear diatomic molecules are highest (denoted Molecules). The logarithmic figures clearly show a linear trend, implying a underlying power law.}
+  \label{fig:scaling}
+ \end{center}
+\end{figure}
+
+The following power laws are deduced based on linear regression of the above figures for $N > 2$
+
+\begin{tabular}{l|c}
+System & Scaling \\
+\hline
+Two dimensional quantum dots & $N^{2.1038}$ \\
+Three dimensional quantum dots & $N^{2.1008}$ \\
+Atoms & $N^{1.8119}$ \\
+Homonuclear diatomic molecules & $N^{1.8437}$ \\ 
+\end{tabular}
+
+
+As the number of particles increase, the spatial dimensions contribution to the scaling becomes negligible compared to the number of particles, rendering two dimensional quantum dots and atoms similar in runtime. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$, where $d$ denotes the dimension. 
+
+The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single particle wave functions. Consider for example the third single particle wave function for the hydrogen-like orbitals:
+
+\begin{equation}
+ \phi_3 = x.
+\end{equation}
+
+The corresponding expression for two dimensional quantum dots is
+
+\begin{equation}
+  \phi_3 = 2k^2y^2 - 1.
+\end{equation}
+
+It is obvious that the orbital for quantum dots contain a higher computational cost for the processor than the one for atoms. Comparing the expressions listed for quantum dots in Appendix \ref{appendix:SymPyHO3D} and Appendix \ref{appendix:SymPyHO} with those for atoms in Appendix \ref{appendix:SymPyHydro}, it is apparent that this trend is consistent.
+
+The fact that the molecules scale almost identical to the atoms demonstrates the efficiency of the implementation. 
+
+
+
+
+
