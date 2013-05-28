@@ -107,6 +107,9 @@
 \input{../chapters/08Results/Molecules/Molecules.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
 
+\input{../chapters/Conclusions/Conclusions.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+
 \clearpage
 \appendix
 %% \noappendixpagetoc
