@@ -21,6 +21,20 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Hirth}
+C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
+  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{Olsen}
+V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
+  Dots},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{libBorealisCode}
+\BIBentryALTinterwordspacing
+J.~H{\o}gberget, \emph{{Git Repository: LibBorealis}}, 2013. [Online].
+  Available: \url{http://www.github.com/jorgehog/QMC2}
+\BIBentrySTDinterwordspacing
+
 \bibitem{supermen}
 C.~J. Murray, \emph{{The SUPERMEN}}.\hskip 1em plus 0.5em minus 0.4em\relax New
   York: Wiley, 1997.
@@ -54,12 +68,6 @@ H.~P. Langtangen, \emph{{A primer on scientific programming with
 G.~O'Regan, \emph{{A Brief History of Computing, Second Edition.}}\hskip 1em
   plus 0.5em minus 0.4em\relax Springer, 2012. [Online]. Available:
   \url{http://dx.doi.org/10.1007/978-1-4471-2359-0}
-\BIBentrySTDinterwordspacing
-
-\bibitem{libBorealisCode}
-\BIBentryALTinterwordspacing
-J.~H{\o}gberget, \emph{{Git Repository: LibBorealis}}, 2013. [Online].
-  Available: \url{http://www.github.com/jorgehog/QMC2}
 \BIBentrySTDinterwordspacing
 
 \bibitem{griffiths}
@@ -220,14 +228,6 @@ M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva,
 \bibitem{Sarah}
 S.~Reimann, ``{Quantum-mechanical systems in traps and Similarity
   Renormalization Group theory},'' Master's thesis, University of Oslo, 2013.
-
-\bibitem{Hirth}
-C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
-  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
-
-\bibitem{Olsen}
-V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
-  Dots},'' Master's thesis, University of Oslo, 2012.
 
 \bibitem{WignerMolecule}
 \BIBentryALTinterwordspacing
