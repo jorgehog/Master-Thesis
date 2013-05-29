@@ -122,7 +122,7 @@ A similar polymorphic splitting is introduced in the following classes:
  \textbullet \,\verb+ErrorEstimator+ & Simple or Blocking. \\
  \textbullet \,\verb+Jastrow+        & Padé Jastrow - or no Jastrow factor. \\
  \textbullet \,\verb+QMC+            & Variational - (VMC) or diffusion Monte-Carlo (DMC). \\
- \textbullet \,\verb+Minimizer+      & Adaptive stochastic gradient descent (ASGD). Support for adding additional minimizers. \\
+ \textbullet \,\verb+Minimizer+      & Adaptive stochastic gradient descent (ASGD). \\
  \end{tabular}
 \end{listliketab}
 

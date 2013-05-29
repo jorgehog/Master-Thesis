@@ -1,53 +1,59 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: jorgenh_thesis.aux
 The style file: IEEEtran.bst
-I found no \citation commands---while reading file jorgenh_thesis.aux
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: ../bibtex/bibtex.bib.bib
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in MD1
+Warning--empty note in morten
+Warning--edition ordinal word "{Revised ed}" may be too high (or improper) for conversion in Sakurai:94
+Warning--empty journal in doubleWellExpt
+Warning--empty title in CCSD_WF
+Warning--empty journal in CCSD_WF
+Warning--empty year in CCSD_WF
 
 Done.
-You've used 0 entries,
+You've used 54 entries,
             4039 wiz_defined-function locations,
-            810 strings with 7247 characters,
-and the built_in function-call counts, 103 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 19
-:= -- 26
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 3
+            1163 strings with 15959 characters,
+and the built_in function-call counts, 32658 in all, are:
+= -- 2789
+> -- 625
+< -- 243
++ -- 344
+- -- 110
+* -- 1549
+:= -- 5373
+add.period$ -- 103
+call.type$ -- 54
+change.case$ -- 48
+chr.to.int$ -- 546
+cite$ -- 61
+duplicate$ -- 2371
+empty$ -- 2634
+format.name$ -- 128
+if$ -- 7381
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 23
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 54
+missing$ -- 396
+newline$ -- 239
+num.names$ -- 53
+pop$ -- 884
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 2
-skip$ -- 1
+quote$ -- 4
+skip$ -- 2601
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 1304
+swap$ -- 1871
+text.length$ -- 61
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 22
-(There was 1 error message)
+type$ -- 54
+warning$ -- 7
+while$ -- 133
+width$ -- 56
+write$ -- 576
+(There were 7 warnings)
