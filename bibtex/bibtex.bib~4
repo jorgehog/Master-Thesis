@@ -906,3 +906,69 @@ jabref-meta: selector_keywords:
 	year = "2008"
 }
 
+@article{forcesQMC,
+	author = "Badinski, A and Haynes, P D and Trail, J R and Needs, R J",
+	journal = "Journal of Physics: Condensed Matter",
+	number = "7",
+	pages = "074202",
+	title = "{Methods for calculating forces within quantum Monte Carlo simulations}",
+	url = "http://stacks.iop.org/0953-8984/22/i=7/a=074202",
+	volume = "22",
+	year = "2010"
+}
+
+@article{ReaxFF,
+	author = "van Duin, Adri C. T. and Dasgupta, Siddharth and Lorant, Francois and Goddard, William A.",
+	doi = "10.1021/jp004368u",
+	eprint = "http://pubs.acs.org/doi/pdf/10.1021/jp004368u",
+	journal = "The Journal of Physical Chemistry A",
+	number = "41",
+	pages = "9396--9409",
+	title = "{ReaxFF: A Reactive Force Field for Hydrocarbons}",
+	url = "http://pubs.acs.org/doi/abs/10.1021/jp004368u",
+	volume = "105",
+	year = "2001"
+}
+
+@article{MD1,
+	author = "Barisik, Murat and Beskok, Ali",
+	month = sep,
+	number = "3",
+	pages = "269-282",
+	publisher = "Springer-Verlag",
+	title = "{Equilibrium molecular dynamics studies on nanoscale-confined fluids}",
+	volume = "11",
+	year = "2011"
+}
+
+@article{MD2,
+	author = "Travis, Karl P. and Gubbins, Keith E.",
+	collaboration = "",
+	doi = "10.1063/1.480758",
+	journal = "The Journal of Chemical Physics",
+	number = "4",
+	pages = "1984--1994",
+	publisher = "AIP",
+	title = "{Poiseuille flow of Lennard-Jones fluids in narrow slit pores}",
+	url = "http://link.aip.org/link/?JCP/112/1984/1",
+	volume = "112",
+	year = "2000"
+}
+
+@mastersthesis{VMCatoms,
+	author = "Sandsdalen, H{\aa}vard",
+	owner = "toffyrn",
+	school = "University of Oslo",
+	timestamp = "2011.05.13",
+	title = "{Variational Monte Carlo studies of Atoms}",
+	year = "2010"
+}
+
+@article{New1
+}
+
+@article{CCSD_WF,
+	author = "Roggero, A. and Pederiva, F. and Mukherjee, A.",
+	localfile = "arXiv:1304.1549 [nucl-th]"
+}
+
