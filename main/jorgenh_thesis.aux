@@ -15,323 +15,220 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\citation{Hirth}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Theory}{1}{part.1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Quantum Monte-Carlo}{3}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\citation{H_He_exact,ExactMolecules,AtomsExact,KryptonExact}
-\citation{forcesQMC}
-\citation{Hirth}
-\citation{Olsen}
-\citation{libBorealisCode}
-\citation{MD1,MD2}
-\@writefile{toc}{\contentsline {subsubsection}{The structure of the thesis}{6}{chapter.1}}
-\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Theory}{7}{part.1}}
-\citation{supermen}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Scientific Programming}{9}{chapter.2}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:SciProg}{{2}{9}{Scientific Programming\relax }{chapter.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Programming Languages}{9}{section.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}High-level Languages}{9}{subsection.2.1.1}}
-\citation{inf3331,pythonBook}
-\citation{inf1100,pythonBook}
-\citation{inf1100}
-\citation{inf3331}
-\@writefile{toc}{\contentsline {subsubsection}{Python}{10}{subsection.2.1.1}}
-\newlabel{sec:Python}{{2.1.1}{10}{Python\relax }{subsection.2.1.1}{}}
-\newlabel{eq:sum100}{{2.1}{10}{Python\relax }{equation.2.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/Sum100Python.py}{10}{lstlisting.2.-1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Low-level Languages}{10}{subsection.2.1.2}}
-\newlabel{sec:lowlevel}{{2.1.2}{10}{Low-level Languages\relax }{subsection.2.1.2}{}}
-\citation{ORegan}
-\citation{ORegan}
-\@writefile{toc}{\contentsline {subsubsection}{C++}{11}{subsection.2.1.2}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/Sum100C++.cpp}{11}{lstlisting.2.-2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Object Orientation}{11}{section.2.2}}
-\newlabel{sec:OO}{{2.2}{11}{Object Orientation\relax }{section.2.2}{}}
-\citation{inf1100}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}A Brief Introduction to Essential Concepts}{12}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Members}{12}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Constructors}{12}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Destructors}{12}{lstnumber.-3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Inheritance}{12}{subsection.2.2.2}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/KeyBoardSuper.py}{13}{lstlisting.2.-4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Inheritance diagram for a keyboard superclass. Class members are listed below the class name.\relax }}{13}{figure.caption.2}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:UMLkeyboard}{{2.1}{13}{Inheritance diagram for a keyboard superclass. Class members are listed below the class name.\relax \relax }{figure.caption.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/KeyboardClassPython.py}{14}{lstlisting.2.-5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Pointers, Typecasting and Virtual Functions}{15}{subsection.2.2.3}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/virtualFunctionsC++.cpp}{15}{lstlisting.2.-8}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}This code demonstrates two different ways of creating an object of a subclass. In line 4, the object is created as a superclass type. Passing it to the function will cause the function to access the superclass functions unless they are declared as virtual. In line 7, the object is created as a subclass type, however, by passing it to the function, the object is typecast to the superclass type, rendering the two methods identical. In line 10, the functions are directly called, which ensures that only the subclass' functions are called regardless of them being virtual or not.}{16}{lstlisting.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}Polymorphism}{16}{subsection.2.2.4}}
-\newlabel{sec:typeCastPoly}{{2.2.4}{16}{Polymorphism\relax }{subsection.2.2.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}An example from the QMC code. The superclass of potentials is defined by a number of particles (line 3), a dimension (line 4) and a pure virtual function for extracting the local energy of a given walker (line 10). Specific potentials are implemented as subclasses (line 14 and 24), simply overriding the pure virtual function with their own implementations.}{17}{lstlisting.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}Const Correctness}{18}{subsection.2.2.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.6}Accessibility levels and Friend classes}{18}{subsection.2.2.6}}
-\newlabel{enum:accessibilityLevels}{{{(iii)}}{18}{Accessibility levels and Friend classes\relax }{Item.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.3}An example from the QMC code. The distribution class needs access to the private members of QMC. This is achieved in line 13 by friending the distribution class.}{19}{lstlisting.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.7}Example: PotionGame}{19}{subsection.2.2.7}}
-\newlabel{sec:PotionGame}{{2.2.7}{19}{Example: PotionGame\relax }{subsection.2.2.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/playerClass.py}{20}{lstlisting.2.-10}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/potionClass.py}{21}{lstlisting.2.-11}}
-\@writefile{lol}{\contentsline {lstlisting}{../CodeInputs/potionGameMain.py}{22}{lstlisting.2.-12}}
-\citation{libBorealisCode}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Structuring the code}{23}{section.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}File Structures}{23}{subsection.2.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Class Structures}{23}{subsection.2.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces An illustration of a standard way to organize source code. The file endings represent C++ code.\relax }}{24}{figure.caption.3}}
-\newlabel{FIG:SRCdirTree}{{2.2}{24}{An illustration of a standard way to organize source code. The file endings represent C++ code.\relax \relax }{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Generalization and Optimization}{25}{chapter.3}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:optAndGen}{{3}{25}{Generalization and Optimization\relax }{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Underlying Assumptions and Goals}{25}{section.3.1}}
-\newlabel{sec:AssGoal}{{3.1}{25}{Underlying Assumptions and Goals\relax }{section.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Assumptions}{25}{subsection.3.1.1}}
-\newlabel{sec:ass}{{3.1.1}{25}{Assumptions\relax }{subsection.3.1.1}{}}
-\newlabel{it::ass::pureFermBos}{{{(i)}}{25}{Assumptions\relax }{Item.4}{}}
-\newlabel{it::ass::2level}{{{(ii)}}{25}{Assumptions\relax }{Item.5}{}}
-\newlabel{it::ass::fermiSingleDet}{{{(iii)}}{25}{Assumptions\relax }{Item.6}{}}
-\newlabel{it::ass::bosCondensate}{{{(iv)}}{25}{Assumptions\relax }{Item.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Generalization Goals}{26}{subsection.3.1.2}}
-\newlabel{sec:genGoals}{{3.1.2}{26}{Generalization Goals\relax }{subsection.3.1.2}{}}
-\newlabel{it::gen::FermiAndBoson}{{{(i)}}{26}{Generalization Goals\relax }{Item.8}{}}
-\newlabel{it::gen::BF_IS}{{{(ii)}}{26}{Generalization Goals\relax }{Item.9}{}}
-\newlabel{it::gen::SP_basis}{{{(vi)}}{26}{Generalization Goals\relax }{Item.13}{}}
-\newlabel{it::gen::pot}{{{(vii)}}{26}{Generalization Goals\relax }{Item.14}{}}
-\newlabel{it::gen::numSupp}{{{(viii)}}{26}{Generalization Goals\relax }{Item.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Optimization Goals}{26}{subsection.3.1.3}}
-\newlabel{sec:optGoals}{{3.1.3}{26}{Optimization Goals\relax }{subsection.3.1.3}{}}
-\newlabel{it::opt::reCalc}{{{(i)}}{26}{Optimization Goals\relax }{Item.16}{}}
-\newlabel{it::opt::noIF}{{{(ii)}}{26}{Optimization Goals\relax }{Item.17}{}}
-\newlabel{it::opt::parScale}{{{(iii)}}{26}{Optimization Goals\relax }{Item.18}{}}
-\citation{libBorealisCode}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Specifics Regarding Generalization}{27}{section.3.2}}
-\newlabel{sec:specGen}{{3.2}{27}{Specifics Regarding Generalization\relax }{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Generalization Goals \ref  {it::gen::FermiAndBoson}-\ref  {it::gen::pot}}{27}{subsection.3.2.1}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}The implementation of the evaluation of fermionic and bosonic wave functions. Line 5: The fermion class accesses the walker's single particle state matrix and returns the determinant of the first half (spin up) times the determinant of the second half (spin down). Line 14-16: The boson class simply calculates the product of all the single particle states.}{27}{lstlisting.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Generalization Goal \ref  {it::gen::SP_basis} and Expanded bases}{28}{subsection.3.2.2}}
-\newlabel{eq:ExpBasisSP}{{3.1}{28}{Generalization Goal \ref {it::gen::SP_basis} and Expanded bases\relax }{equation.3.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}The declaration of the expanded basis class. The vital members are the size of the basis, the expansion coefficients and another basis in which the new are expanded. A method for calculating the coefficients is present, but the actual implementation has not been a focus of this thesis.}{28}{lstlisting.3.2}}
-\citation{libBorealisCode}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}The explicit implementation of the expanded basis single particle wave function. The wave function is evaluated by expanding a given basis in a set of expansion coefficients (see the previous code example).}{29}{lstlisting.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Generalization Goal \ref  {it::gen::numSupp}}{29}{subsection.3.2.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Optimizations due to a Single two-level Determinant}{29}{section.3.3}}
-\newlabel{sec:optSingleSlater}{{3.3}{29}{Optimizations due to a Single two-level Determinant\relax }{section.3.3}{}}
-\newlabel{eq:phiTrialOptGen}{{3.2}{29}{Optimizations due to a Single two-level Determinant\relax }{equation.3.3.2}{}}
-\newlabel{eq:differentSpinDie}{{3.5}{30}{Optimizations due to a Single two-level Determinant\relax }{equation.3.3.5}{}}
-\newlabel{eq:localEsum}{{3.6}{30}{Optimizations due to a Single two-level Determinant\relax }{equation.3.3.6}{}}
-\citation{linAlg}
-\newlabel{eq:R_psi_allspins}{{3.8}{31}{Optimizations due to a Single two-level Determinant\relax }{equation.3.3.8}{}}
-\newlabel{eq:RpsiOpt}{{3.11}{31}{Optimizations due to a Single two-level Determinant\relax }{equation.3.3.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Optimizations due to Single-particle Moves}{31}{section.3.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Optimizing the Slater ratios}{31}{subsection.3.4.1}}
-\newlabel{sec:optSlaterRat}{{3.4.1}{31}{Optimizing the Slater ratios\relax }{subsection.3.4.1}{}}
-\citation{linAlg}
-\citation{abInitioMC,morten}
-\newlabel{eq:invExpCofac}{{3.13}{32}{Optimizing the Slater ratios\relax }{equation.3.4.12}{}}
-\newlabel{eq:slaterMatPhi}{{3.14}{32}{Optimizing the Slater ratios\relax }{equation.3.4.12}{}}
-\newlabel{eq:cofacExp}{{3.15}{32}{Optimizing the Slater ratios\relax }{equation.3.4.15}{}}
-\newlabel{eq:RpsiCofac}{{3.16}{32}{Optimizing the Slater ratios\relax }{equation.3.4.16}{}}
-\newlabel{eq:spatialRatioDet}{{3.18}{32}{Optimizing the Slater ratios\relax }{equation.3.4.18}{}}
-\citation{abInitioMC,morten}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Optimizing the Inverse}{33}{subsection.3.4.2}}
-\newlabel{sec:optInv}{{3.4.2}{33}{Optimizing the Inverse\relax }{subsection.3.4.2}{}}
-\newlabel{eq:Itilde}{{3.22}{33}{Optimizing the Inverse\relax }{equation.3.4.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Optimizing the Pad\IeC {\'e} Jastrow factor Ratio}{33}{subsection.3.4.3}}
-\newlabel{sec:optPagejastRat}{{3.4.3}{33}{Optimizing the Padé Jastrow factor Ratio\relax }{subsection.3.4.3}{}}
-\newlabel{eq:jastrowRatSTD}{{3.25}{33}{Optimizing the Padé Jastrow factor Ratio\relax }{equation.3.4.24}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Optimizing the Pad\IeC {\'e} Jastrow Derivative Ratios}{34}{section.3.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}The Gradient}{34}{subsection.3.5.1}}
-\citation{morten}
-\newlabel{eq:jastrowDgikDrik}{{3.31}{35}{The Gradient\relax }{equation.3.5.31}{}}
-\newlabel{eq:jastrowDerivX}{{3.33}{35}{The Gradient\relax }{equation.3.5.33}{}}
-\newlabel{eq:jastrowGradFull}{{3.34}{35}{The Gradient\relax }{equation.3.5.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}The Laplacian}{35}{subsection.3.5.2}}
-\newlabel{eq:jastrowLaplRaw}{{3.35}{36}{The Laplacian\relax }{equation.3.5.35}{}}
-\newlabel{eq:jastrowD2gikDrik2}{{3.36}{36}{The Laplacian\relax }{equation.3.5.36}{}}
-\newlabel{eq:jastrowLaplFin}{{3.39}{36}{The Laplacian\relax }{equation.3.5.39}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Tabulating Recalculated Data}{36}{section.3.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}The relative distance matrix}{37}{subsection.3.6.1}}
-\newlabel{sec:relDist}{{3.6.1}{37}{The relative distance matrix\relax }{subsection.3.6.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}The code used to update the relative distance matrix of a walker when a particle is moved. Pay extra attention to line 8 where the symmetry of the matrix is exploited to further decrease the number of calls to the relative distance function in line 9.}{37}{lstlisting.3.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}The Slater related matrices}{37}{subsection.3.6.2}}
-\newlabel{sec:storeSlater}{{3.6.2}{37}{The Slater related matrices\relax }{subsection.3.6.2}{}}
-\citation{linAlg}
-\newlabel{eq:slaterConcat}{{3.41}{38}{The Slater related matrices\relax }{equation.3.6.41}{}}
-\newlabel{eq:slaterDellConcat}{{3.42}{38}{The Slater related matrices\relax }{equation.3.6.42}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}The Pad\IeC {\'e} Jastrow gradient}{38}{subsection.3.6.3}}
-\newlabel{sec:optJastGrad}{{3.6.3}{38}{The Padé Jastrow gradient\relax }{subsection.3.6.3}{}}
-\newlabel{eq:jastrowDJ}{{3.47}{39}{The Padé Jastrow gradient\relax }{equation.3.6.47}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}The updating algorithm for the three dimensional matrix used in the Pad\IeC {\'e} Jastrow gradient. Pay close attention to line 11, where the symmetry property is exploited by setting the transposed term equal to the negative of an already calculated term.}{39}{lstlisting.3.5}}
-\newlabel{eq:jastrowGraDJold}{{3.49}{39}{The Padé Jastrow gradient\relax }{equation.3.6.49}{}}
-\newlabel{eq:jastrowGradDJnew}{{3.50}{39}{The Padé Jastrow gradient\relax }{equation.3.6.50}{}}
-\newlabel{eq:jastrowGradOptDJ}{{3.53}{40}{The Padé Jastrow gradient\relax }{equation.3.6.52}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}The implementation of the Pad\IeC {\'e} Jastrow gradient using the matrix from Eq.~(\ref  {eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e. Eq.~(\ref  {eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as Eq.~(\ref  {eq:jastrowGradDJnew}).}{40}{lstlisting.3.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}The single-particle Wave Functions}{40}{subsection.3.6.4}}
-\newlabel{sec:optSPWFqnumIndie}{{3.6.4}{40}{The single-particle Wave Functions\relax }{subsection.3.6.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}The implementation of the single particle basis used in the code. It is simply a call to an array holding all the different single particle wave functions. The quantum number is used as an index, and the corresponding evaluation function is called with the supplied walker for the given particle.}{41}{lstlisting.3.7}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Implementation of the function handling the calculation of the quantum number independent terms. Lines 1-5 describe the harmonic oscillator case, where the exponential factor $\qopname  \relax o{exp}(-\alpha \omega r_i^2)$ is the independent factor. Lines 7-21 describe the hydrogen-like case, where the calculated exponential factor $\qopname  \relax o{exp}(-\alpha Z |r_i|/n)$ has a dependence on the principal quantum number $n$. One factor is thus calculated per $n$, however, if no particles occupy states with a given $n$, the corresponding factor is not calculated (see lines 17-19).}{42}{lstlisting.3.8}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}The implementation of a single particle wave function. The pointer to the previously calculated exponential factor is simply accessed in line 8.}{42}{lstlisting.3.9}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}CPU Cache Optimization}{43}{section.3.7}}
-\newlabel{sec:CPUcache}{{3.7}{43}{CPU Cache Optimization\relax }{section.3.7}{}}
-\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Results}{45}{part.2}}
+\newlabel{ch:QMC}{{1}{3}{Quantum Monte-Carlo\relax }{chapter.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Modelling Diffusion}{3}{section.1.1}}
 \citation{griffiths}
+\citation{Shavitt}
+\citation{QMCDIFF}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Stating the Schr\IeC {\"o}dinger Equation as a Diffusion Problem}{4}{subsection.1.1.1}}
+\newlabel{sec:statingDiff}{{1.1.1}{4}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{subsection.1.1.1}{}}
+\newlabel{eq:schrodTimeIndie}{{1.2}{4}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.2}{}}
+\newlabel{eq:schrodGeneralSolution}{{1.3}{4}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.3}{}}
+\newlabel{eq:TimeEvolOp}{{1.4}{4}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.4}{}}
+\newlabel{eq:projOPonTrial}{{1.5}{5}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.5}{}}
+\newlabel{eq:schrodGeneralSolution2}{{1.7}{5}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.7}{}}
+\newlabel{eq:ExactProjection}{{1.8}{5}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.8}{}}
+\citation{abInitioMC}
+\newlabel{eq:QMC_GF_EQ}{{1.13}{6}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.13}{}}
+\newlabel{eq:firstTrialEnergyIntro}{{1.14}{6}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.14}{}}
+\newlabel{eq:shortTimeApprox}{{1.15}{6}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.15}{}}
+\newlabel{eq:GDiff}{{1.16}{6}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.16}{}}
+\newlabel{eq:GB}{{1.17}{6}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.16}{}}
+\citation{abInitioMC}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Solving the Diffusion Problem}{7}{section.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}Isotropic Diffusion}{7}{subsection.1.2.1}}
+\newlabel{Eq:diffusionSimple}{{1.18}{7}{Isotropic Diffusion\relax }{equation.1.2.18}{}}
+\newlabel{eq:GF_iso}{{1.19}{7}{Isotropic Diffusion\relax }{equation.1.2.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{The Langevin Equation for isotropic diffusion}{7}{equation.1.2.19}}
+\newlabel{eq:langevinSolSimple}{{1.20}{7}{The Langevin Equation for isotropic diffusion\relax }{equation.1.2.20}{}}
+\citation{abInitioMC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}Anisotropic Diffusion and the Fokker-Planck equation}{8}{subsection.1.2.2}}
+\newlabel{sec:anisFokker}{{1.2.2}{8}{Anisotropic Diffusion and the Fokker-Planck equation\relax }{subsection.1.2.2}{}}
+\newlabel{Eq:fokkerPlanck}{{1.21}{8}{Anisotropic Diffusion and the Fokker-Planck equation\relax }{equation.1.2.21}{}}
+\citation{Gardiner:2004bk,risken1989fpe,langevin}
+\newlabel{eq:GF_FP}{{1.23}{9}{Anisotropic Diffusion and the Fokker-Planck equation\relax }{equation.1.2.23}{}}
+\@writefile{toc}{\contentsline {subsubsection}{The Langevin Equation for the Fokker-Planck equation}{9}{equation.1.2.23}}
+\newlabel{eq:langevinSolFP}{{1.25}{9}{The Langevin Equation for the Fokker-Planck equation\relax }{equation.1.2.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}The connection between anisotropic- and isotropic diffusion models}{9}{subsection.1.2.3}}
+\newlabel{sec:ConnectAnisIs}{{1.2.3}{9}{The connection between anisotropic- and isotropic diffusion models\relax }{subsection.1.2.3}{}}
+\newlabel{eq:impSamplRaw}{{1.26}{9}{The connection between anisotropic- and isotropic diffusion models\relax }{equation.1.2.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Diffusive Equilibrium Constraints}{11}{section.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}Detailed Balance}{12}{subsection.1.3.1}}
+\newlabel{eq:DetailedBalance}{{1.30}{12}{Detailed Balance\relax }{equation.1.3.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Ergodicity}{12}{subsection.1.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}The Metropolis Algorithm}{12}{section.1.4}}
+\newlabel{sec:MetroMain}{{1.4}{12}{The Metropolis Algorithm\relax }{section.1.4}{}}
+\newlabel{eq:metro1}{{1.31}{12}{The Metropolis Algorithm\relax }{equation.1.4.31}{}}
+\newlabel{eq:metro2}{{1.32}{12}{The Metropolis Algorithm\relax }{equation.1.4.32}{}}
+\citation{morten}
+\newlabel{eq:MetroGeneralGreen}{{1.33}{13}{The Metropolis Algorithm\relax }{equation.1.4.33}{}}
+\newlabel{eq:Metropolis_standard}{{1.35}{13}{The Metropolis Algorithm\relax }{equation.1.4.35}{}}
+\newlabel{eq:MetropolisHastings}{{1.37}{13}{The Metropolis Algorithm\relax }{equation.1.4.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Flow chart for iterating a walker through a single time-step, i.e. simulation the application of the Green's function from Eq.~(\ref  {eq:GDiff}) using the Metropolis algorithm. New positions are suggested according to the chosen diffusion model.\relax }}{14}{figure.caption.1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:diffFlowChart}{{1.1}{14}{Flow chart for iterating a walker through a single time-step, i.e. simulation the application of the Green's function from Eq.~(\ref {eq:GDiff}) using the Metropolis algorithm. New positions are suggested according to the chosen diffusion model.\relax \relax }{figure.caption.1}{}}
+\citation{abInitioMC}
+\citation{libBorealisCode}
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}The Process of Branching}{15}{section.1.5}}
+\newlabel{sec:branching}{{1.5}{15}{The Process of Branching\relax }{section.1.5}{}}
+\newlabel{eq:branchISO}{{1.38}{15}{The Process of Branching\relax }{equation.1.5.38}{}}
+\newlabel{eq:branchFP}{{1.39}{15}{The Process of Branching\relax }{equation.1.5.38}{}}
+\newlabel{eq:gbMean}{{1.40}{15}{The Process of Branching\relax }{equation.1.5.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref  {sec:branching}. The numerical value inside the nodes represents $\overline  {G}_B$ from Eq.~(\ref  {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e. a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal (given that not all of the steps was rejected).\relax }}{16}{figure.caption.2}}
+\newlabel{fig:branching}{{1.2}{16}{Branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref {sec:branching}. The numerical value inside the nodes represents $\overline {G}_B$ from Eq.~(\ref {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e. a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal (given that not all of the steps was rejected).\relax \relax }{figure.caption.2}{}}
+\citation{griffiths}
+\citation{Sakurai:94}
+\citation{Shavitt}
+\@writefile{toc}{\contentsline {section}{\numberline {1.6}The Trial Wave Function}{17}{section.1.6}}
+\newlabel{sec:trialWF}{{1.6}{17}{The Trial Wave Function\relax }{section.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.1}Many-body Wave Functions}{17}{subsection.1.6.1}}
+\newlabel{sec:manyBodyWFs}{{1.6.1}{17}{Many-body Wave Functions\relax }{subsection.1.6.1}{}}
+\newlabel{eq:manyBodyExp}{{1.42}{17}{Many-body Wave Functions\relax }{equation.1.6.42}{}}
+\newlabel{eq:manybodyWFexp}{{1.43}{17}{Many-body Wave Functions\relax }{equation.1.6.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Three different electron configurations in an shell structure making up three different $\Phi _k(\mathbf  {r})$, i.e. constituents of the many-body basis described in Eq.~(\ref  {eq:manybodyWFexp}). An electron (solid dot) is represented by e.g. the orbital $\phi _{1s}(\mathbf  {r}_1)$.\relax }}{18}{figure.caption.3}}
+\newlabel{fig:AtomicOrbitals}{{1.3}{18}{Three different electron configurations in an shell structure making up three different $\Phi _k(\mathbf {r})$, i.e. constituents of the many-body basis described in Eq.~(\ref {eq:manybodyWFexp}). An electron (solid dot) is represented by e.g. the orbital $\phi _{1s}(\mathbf {r}_1)$.\relax \relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step one in detail}{19}{figure.caption.3}}
+\newlabel{eq:orbitalEigenEq}{{1.47}{19}{Step one in detail\relax }{equation.1.6.47}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step two in detail}{19}{equation.1.6.47}}
+\newlabel{eq:SlaterDeterminantExplicit}{{1.48}{20}{Step two in detail\relax }{equation.1.6.48}{}}
+\newlabel{eq:BosonicWFExplicit}{{1.49}{20}{Step two in detail\relax }{equation.1.6.48}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Dealing with correlations}{20}{equation.1.6.48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}Choice of Trial Wave function}{20}{subsection.1.6.2}}
+\newlabel{sec:ChoiceTrialWF}{{1.6.2}{20}{Choice of Trial Wave function\relax }{subsection.1.6.2}{}}
+\newlabel{eq:firstAnzatsTWF}{{1.50}{20}{Choice of Trial Wave function\relax }{equation.1.6.50}{}}
+\citation{abInitioMC}
+\citation{abInitioMC}
+\citation{larseivind}
+\citation{QMCPHD2008}
+\@writefile{toc}{\contentsline {subsubsection}{Explicit shapes}{21}{equation.1.6.50}}
+\newlabel{eq:jastrow}{{1.52}{21}{Explicit shapes\relax }{equation.1.6.52}{}}
+\newlabel{eq:splitSlater}{{1.53}{21}{Explicit shapes\relax }{equation.1.6.53}{}}
+\citation{UmrigarMolecules}
+\newlabel{eq:MultiDeterminantTWF}{{1.54}{22}{Explicit shapes\relax }{equation.1.6.54}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Limitations}{22}{equation.1.6.54}}
+\@writefile{toc}{\contentsline {subsubsection}{Single Determinant Trial Wave function}{22}{equation.1.6.54}}
+\newlabel{eq:singleDeterminantTWF}{{1.55}{22}{Single Determinant Trial Wave function\relax }{equation.1.6.55}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.3}Selecting Optimal Variational Parameters}{23}{subsection.1.6.3}}
+\newlabel{sec:selectingOptVarPar}{{1.6.3}{23}{Selecting Optimal Variational Parameters\relax }{subsection.1.6.3}{}}
+\newlabel{eq:varMin}{{1.56}{23}{Selecting Optimal Variational Parameters\relax }{equation.1.6.56}{}}
 \citation{golub1996matrix}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Dirac Notation}{49}{appendix.A}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:Dirac}{{A}{49}{Dirac Notation\relax }{appendix.A}{}}
-\newlabel{eq:Completeness}{{A.3}{50}{Dirac Notation\relax }{equation.A.0.3}{}}
-\newlabel{eq:posIdentityFirst}{{A.4}{50}{Dirac Notation\relax }{equation.A.0.4}{}}
-\newlabel{eq:posIdentityLast}{{A.5}{50}{Dirac Notation\relax }{equation.A.0.4}{}}
-\newlabel{eq:CompletenessCont}{{A.6}{50}{Dirac Notation\relax }{equation.A.0.6}{}}
-\citation{Matplotlib}
-\citation{Pyside}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}DCViz: Visualization of Data}{51}{appendix.B}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{appendix:DCVIZ}{{B}{51}{DCViz: Visualization of Data\relax }{appendix.B}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Basic Usage}{51}{section.B.1}}
-\@writefile{toc}{\contentsline {subsubsection}{The figure map}{51}{section.B.1}}
-\@writefile{toc}{\contentsline {subsubsection}{The name tag}{52}{lstnumber.-15.1}}
-\@writefile{toc}{\contentsline {subsubsection}{The plot function}{52}{lstnumber.-17.9}}
-\@writefile{toc}{\contentsline {subsubsection}{Additional (optional) support}{52}{lstnumber.-19.1}}
-\@writefile{toc}{\contentsline {subsubsection}{An example}{53}{lstnumber.-19.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Families}{53}{lstnumber.-20.23}}
-\@writefile{toc}{\contentsline {subsubsection}{Family example}{54}{lstnumber.-21.9}}
-\@writefile{toc}{\contentsline {subsubsection}{Dynamic mode}{54}{lstnumber.-22.30}}
-\@writefile{toc}{\contentsline {subsubsection}{Saving figures to file}{54}{lstnumber.-23.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.1}The Terminal Client}{55}{subsection.B.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.2}The Application Programming Interface (API)}{55}{subsection.B.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{The GUI}{56}{lstnumber.-26.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces Two consequent screen shots of the GUI. The first (top) is taken directly after the detector is finished loading files into the drop-down menu. The second is taken directly after the job is started.\relax }}{57}{figure.caption.4}}
-\newlabel{fig:gui}{{B.1}{57}{Two consequent screen shots of the GUI. The first (top) is taken directly after the detector is finished loading files into the drop-down menu. The second is taken directly after the job is started.\relax \relax }{figure.caption.4}{}}
-\citation{SymPy}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Auto-generation with SymPy}{59}{appendix.C}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{appendix:sympy}{{C}{59}{Auto-generation with SymPy\relax }{appendix.C}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C.1}Usage}{59}{section.C.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1.1}Symbolic Algebra}{59}{subsection.C.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1.2}Exporting C++ and Latex Code}{60}{subsection.C.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1.3}Calculating Derivatives}{60}{subsection.C.1.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {C.2}Using the auto-generation Script}{62}{section.C.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.1}Generating Latex code}{62}{subsection.C.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{The constructor}{62}{lstnumber.-34.3}}
-\@writefile{toc}{\contentsline {subsubsection}{makeStateMap}{63}{lstnumber.-35.6}}
-\@writefile{toc}{\contentsline {subsubsection}{setUpOrbitals}{63}{lstnumber.-35.6}}
-\@writefile{toc}{\contentsline {subsubsection}{simplifyLocal}{63}{lstnumber.-36.7}}
-\@writefile{toc}{\contentsline {subsubsection}{genericFactor}{63}{lstnumber.-36.7}}
-\@writefile{toc}{\contentsline {subsubsection}{\_\_str\_\_}{64}{lstnumber.-36.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.2}Generating C++ code}{64}{subsection.C.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{initCPPbasis}{64}{lstnumber.-37.4}}
-\@writefile{toc}{\contentsline {subsubsection}{getCPre and getCreturn}{64}{lstnumber.-38.18}}
-\@writefile{toc}{\contentsline {subsubsection}{makeOrbConstArg}{65}{lstnumber.-41.6}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {D}Harmonic Oscillator Orbitals 2D}{67}{appendix.D}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{appendix:SymPyHO}{{D}{67}{Harmonic Oscillator Orbitals 2D\relax }{appendix.D}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.1}{\ignorespaces Hermite polynomials used to construct orbital functions\relax }}{67}{table.caption.5}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.2}{\ignorespaces Orbital expressions HOOrbitals : 0, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{68}{table.caption.6}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.3}{\ignorespaces Orbital expressions HOOrbitals : 0, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{68}{table.caption.7}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.4}{\ignorespaces Orbital expressions HOOrbitals : 1, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{68}{table.caption.8}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.5}{\ignorespaces Orbital expressions HOOrbitals : 0, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{68}{table.caption.9}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.6}{\ignorespaces Orbital expressions HOOrbitals : 1, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{68}{table.caption.10}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.7}{\ignorespaces Orbital expressions HOOrbitals : 2, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{69}{table.caption.11}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.8}{\ignorespaces Orbital expressions HOOrbitals : 0, 3. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{69}{table.caption.12}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.9}{\ignorespaces Orbital expressions HOOrbitals : 1, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{69}{table.caption.13}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.10}{\ignorespaces Orbital expressions HOOrbitals : 2, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{69}{table.caption.14}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.11}{\ignorespaces Orbital expressions HOOrbitals : 3, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{69}{table.caption.15}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.12}{\ignorespaces Orbital expressions HOOrbitals : 0, 4. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{70}{table.caption.16}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.13}{\ignorespaces Orbital expressions HOOrbitals : 1, 3. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{70}{table.caption.17}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.14}{\ignorespaces Orbital expressions HOOrbitals : 2, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{70}{table.caption.18}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.15}{\ignorespaces Orbital expressions HOOrbitals : 3, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{70}{table.caption.19}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.16}{\ignorespaces Orbital expressions HOOrbitals : 4, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{70}{table.caption.20}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.17}{\ignorespaces Orbital expressions HOOrbitals : 0, 5. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{71}{table.caption.21}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.18}{\ignorespaces Orbital expressions HOOrbitals : 1, 4. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{71}{table.caption.22}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.19}{\ignorespaces Orbital expressions HOOrbitals : 2, 3. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{71}{table.caption.23}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.20}{\ignorespaces Orbital expressions HOOrbitals : 3, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{71}{table.caption.24}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.21}{\ignorespaces Orbital expressions HOOrbitals : 4, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{71}{table.caption.25}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.22}{\ignorespaces Orbital expressions HOOrbitals : 5, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{72}{table.caption.26}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.23}{\ignorespaces Orbital expressions HOOrbitals : 0, 6. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{72}{table.caption.27}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.24}{\ignorespaces Orbital expressions HOOrbitals : 1, 5. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{72}{table.caption.28}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.25}{\ignorespaces Orbital expressions HOOrbitals : 2, 4. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{72}{table.caption.29}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.26}{\ignorespaces Orbital expressions HOOrbitals : 3, 3. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{72}{table.caption.30}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.27}{\ignorespaces Orbital expressions HOOrbitals : 4, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{73}{table.caption.31}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.28}{\ignorespaces Orbital expressions HOOrbitals : 5, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{73}{table.caption.32}}
-\@writefile{lot}{\contentsline {table}{\numberline {D.29}{\ignorespaces Orbital expressions HOOrbitals : 6, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{73}{table.caption.33}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {E}Harmonic Oscillator Orbitals 3D}{75}{appendix.E}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{appendix:SymPyHO3D}{{E}{75}{Harmonic Oscillator Orbitals 3D\relax }{appendix.E}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.1}{\ignorespaces Hermite polynomials used to construct orbital functions\relax }}{75}{table.caption.34}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.2}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 0, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{76}{table.caption.35}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.3}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 0, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{76}{table.caption.36}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.4}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 1, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{76}{table.caption.37}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.5}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 0, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{76}{table.caption.38}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.6}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 0, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{76}{table.caption.39}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.7}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 1, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{77}{table.caption.40}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.8}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 2, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{77}{table.caption.41}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.9}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 0, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{77}{table.caption.42}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.10}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 1, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{77}{table.caption.43}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.11}{\ignorespaces Orbital expressions HOOrbitals3D : 2, 0, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{77}{table.caption.44}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.12}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 0, 3. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{78}{table.caption.45}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.13}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 1, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{78}{table.caption.46}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.14}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 2, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{78}{table.caption.47}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.15}{\ignorespaces Orbital expressions HOOrbitals3D : 0, 3, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{78}{table.caption.48}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.16}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 0, 2. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{78}{table.caption.49}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.17}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 1, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{79}{table.caption.50}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.18}{\ignorespaces Orbital expressions HOOrbitals3D : 1, 2, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{79}{table.caption.51}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.19}{\ignorespaces Orbital expressions HOOrbitals3D : 2, 0, 1. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{79}{table.caption.52}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.20}{\ignorespaces Orbital expressions HOOrbitals3D : 2, 1, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{79}{table.caption.53}}
-\@writefile{lot}{\contentsline {table}{\numberline {E.21}{\ignorespaces Orbital expressions HOOrbitals3D : 3, 0, 0. Factor $e^{- \frac  {1}{2} k^{2} r^{2}}$ is omitted.\relax }}{79}{table.caption.54}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {F}Hydrogen Orbitals}{81}{appendix.F}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{appendix:SymPyHydro}{{F}{81}{Hydrogen Orbitals\relax }{appendix.F}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.1}{\ignorespaces Orbital expressions hydrogenicOrbitals : 1, 0, 0. Factor $e^{- k r}$ is omitted.\relax }}{82}{table.caption.55}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.2}{\ignorespaces Orbital expressions hydrogenicOrbitals : 2, 0, 0. Factor $e^{- \frac  {1}{2} k r}$ is omitted.\relax }}{82}{table.caption.56}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.3}{\ignorespaces Orbital expressions hydrogenicOrbitals : 2, 1, 0. Factor $e^{- \frac  {1}{2} k r}$ is omitted.\relax }}{82}{table.caption.57}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.4}{\ignorespaces Orbital expressions hydrogenicOrbitals : 2, 1, 1. Factor $e^{- \frac  {1}{2} k r}$ is omitted.\relax }}{82}{table.caption.58}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.5}{\ignorespaces Orbital expressions hydrogenicOrbitals : 2, 1, -1. Factor $e^{- \frac  {1}{2} k r}$ is omitted.\relax }}{83}{table.caption.59}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.6}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 0, 0. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{83}{table.caption.60}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.7}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 1, 0. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{83}{table.caption.61}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.8}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 1, 1. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{83}{table.caption.62}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.9}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 1, -1. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{84}{table.caption.63}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.10}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 2, 0. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{84}{table.caption.64}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.11}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 2, 1. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{84}{table.caption.65}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.12}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 2, -1. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{84}{table.caption.66}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.13}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 2, 2. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{85}{table.caption.67}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.14}{\ignorespaces Orbital expressions hydrogenicOrbitals : 3, 2, -2. Factor $e^{- \frac  {1}{3} k r}$ is omitted.\relax }}{85}{table.caption.68}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.15}{\ignorespaces Orbital expressions hydrogenicOrbitals : 4, 0, 0. Factor $e^{- \frac  {1}{4} k r}$ is omitted.\relax }}{85}{table.caption.69}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.16}{\ignorespaces Orbital expressions hydrogenicOrbitals : 4, 1, 0. Factor $e^{- \frac  {1}{4} k r}$ is omitted.\relax }}{85}{table.caption.70}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.17}{\ignorespaces Orbital expressions hydrogenicOrbitals : 4, 1, 1. Factor $e^{- \frac  {1}{4} k r}$ is omitted.\relax }}{86}{table.caption.71}}
-\@writefile{lot}{\contentsline {table}{\numberline {F.18}{\ignorespaces Orbital expressions hydrogenicOrbitals : 4, 1, -1. Factor $e^{- \frac  {1}{4} k r}$ is omitted.\relax }}{86}{table.caption.72}}
+\newlabel{eq:varParGrad}{{1.57}{24}{Selecting Optimal Variational Parameters\relax }{equation.1.6.57}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.4}Calculating Expectation Values}{24}{subsection.1.6.4}}
+\newlabel{sec:calcExpVals}{{1.6.4}{24}{Calculating Expectation Values\relax }{subsection.1.6.4}{}}
+\newlabel{eq:MeanVStrueExp}{{1.62}{24}{Calculating Expectation Values\relax }{equation.1.6.62}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.5}Normalization}{25}{subsection.1.6.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}Gradient Descent Methods}{25}{section.1.7}}
+\newlabel{sec:GradientDescent}{{1.7}{25}{Gradient Descent Methods\relax }{section.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}General Gradient Descent}{25}{subsection.1.7.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Two steps of a one dimensional Gradient Descent process. Steps are taken in the direction of the negative gradient (indicated by dotted lines).\relax }}{26}{figure.caption.4}}
+\newlabel{fig:SGD}{{1.4}{26}{Two steps of a one dimensional Gradient Descent process. Steps are taken in the direction of the negative gradient (indicated by dotted lines).\relax \relax }{figure.caption.4}{}}
+\newlabel{eq:SGD}{{1.68}{26}{General Gradient Descent\relax }{equation.1.7.68}{}}
+\citation{ASGD_MB}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax }}{27}{figure.caption.5}}
+\newlabel{fig:sSGD}{{1.5}{27}{A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax \relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.2}Stochastic Gradient Descent}{27}{subsection.1.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.3}Adaptive Stochastic Gradient Descent}{27}{subsection.1.7.3}}
+\newlabel{eq:ASGD_X_i}{{1.69}{27}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.69}{}}
+\citation{ASGD}
+\citation{ASGD}
+\citation{ASGD}
+\citation{ASGD}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Examples of $f(X_i)$ as published in ref. \cite  {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax }}{28}{figure.caption.6}}
+\newlabel{fig:f_ASGD}{{1.6}{28}{Examples of $f(X_i)$ as published in ref. \cite {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax \relax }{figure.caption.6}{}}
+\newlabel{eq:ASGD_delta_i}{{1.71}{28}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.70}{}}
+\newlabel{eq:ASGD_t_i}{{1.72}{28}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.70}{}}
+\newlabel{eq:ASGD_f_i}{{1.73}{28}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.70}{}}
+\citation{libBorealisCode}
+\@writefile{toc}{\contentsline {subsubsection}{Assumptions}{29}{figure.caption.6}}
+\@writefile{toc}{\contentsline {subsubsection}{Implementation}{29}{figure.caption.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref  {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound in as it attempts to cross to negative values.\relax }}{29}{figure.caption.7}}
+\newlabel{fig:ASGD_Ex}{{1.7}{29}{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound in as it attempts to cross to negative values.\relax \relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Chart flow of ASGD algorithm. Diffusing a walker is done as described in Fig. \ref  {fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref  {eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref  {eq:varParGrad}).\relax }}{30}{figure.caption.8}}
+\newlabel{fig:ASGD_flow}{{1.8}{30}{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Fig. \ref {fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref {eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref {eq:varParGrad}).\relax \relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}Variational Monte-Carlo}{31}{section.1.8}}
+\newlabel{sec:VMC}{{1.8}{31}{Variational Monte-Carlo\relax }{section.1.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}Motivating the use of Diffusion Theory}{31}{subsection.1.8.1}}
+\newlabel{eq:VMCrandomDistE}{{1.74}{31}{Motivating the use of Diffusion Theory\relax }{equation.1.8.74}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit  {Diffuse Walker}, is the process described in Fig. \ref  {fig:diffFlowChart}. Energies are sampled as described in Section \ref  {sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. \relax }}{32}{figure.caption.9}}
+\newlabel{fig:VMCchart}{{1.9}{32}{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit {Diffuse Walker}, is the process described in Fig. \ref {fig:diffFlowChart}. Energies are sampled as described in Section \ref {sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. \relax \relax }{figure.caption.9}{}}
+\citation{libBorealisCode}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit  {Optimal}) described in Section \ref  {sec:ChoiceTrialWF} the VMC energy gets very close to the ``exact'' answer. Lower energy means a better energy when dealing with variational methods. In this example, a 12 particle quantum dot with unit frequency is used.\relax }}{33}{figure.caption.10}}
+\newlabel{fig:VMC_wfcomp}{{1.10}{33}{Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit {Optimal}) described in Section \ref {sec:ChoiceTrialWF} the VMC energy gets very close to the ``exact'' answer. Lower energy means a better energy when dealing with variational methods. In this example, a 12 particle quantum dot with unit frequency is used.\relax \relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Implementation}{33}{subsection.1.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}Limitations}{33}{subsection.1.8.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.9}Diffusion Monte-Carlo}{34}{section.1.9}}
+\newlabel{sec:DMC}{{1.9}{34}{Diffusion Monte-Carlo\relax }{section.1.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Implementation}{34}{subsection.1.9.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Sampling the Energy}{34}{subsection.1.9.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Limitations}{35}{subsection.1.9.3}}
+\newlabel{sec:DMClimitations}{{1.9.3}{35}{Limitations\relax }{subsection.1.9.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Time-step Errors}{35}{subsection.1.9.3}}
+\@writefile{toc}{\contentsline {subsubsection}{Selecting the Time-step}{35}{subsection.1.9.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit  {i} is the index of the walker loop. The second step, \textit  {Diffuse and Branch Walker}, is the process described in Fig. \ref  {fig:diffFlowChart} in combination with the branching from Fig. \ref  {fig:branching}. Energies are sampled as described in Section \ref  {sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref  {fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.\relax }}{36}{figure.caption.11}}
+\newlabel{fig:DMCchart}{{1.11}{36}{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit {i} is the index of the walker loop. The second step, \textit {Diffuse and Branch Walker}, is the process described in Fig. \ref {fig:diffFlowChart} in combination with the branching from Fig. \ref {fig:branching}. Energies are sampled as described in Section \ref {sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref {fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.\relax \relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Fixed node approximation}{37}{subsection.1.9.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.10}Estimating One-body Densities}{37}{section.1.10}}
+\newlabel{sec:OBD}{{1.10}{37}{Estimating One-body Densities\relax }{section.1.10}{}}
+\citation{abInitioMC}
+\citation{leinaas}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces A one-dimensional illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi _0(x)$. The distribution of walkers at cycle $n$, $\Phi (x, n\delta \tau )$, similar in shape with $\Psi _0(x)$, however, sharing nodes with the trial wave function $\Psi _T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.\relax }}{38}{figure.caption.12}}
+\newlabel{fig:fixxednode}{{1.12}{38}{A one-dimensional illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi _0(x)$. The distribution of walkers at cycle $n$, $\Phi (x, n\delta \tau )$, similar in shape with $\Psi _0(x)$, however, sharing nodes with the trial wave function $\Psi _T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.\relax \relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.1}Estimating the Exact Ground State Density}{38}{subsection.1.10.1}}
+\newlabel{eq:PureEstimRelat}{{1.84}{38}{Estimating the Exact Ground State Density\relax }{equation.1.10.84}{}}
+\newlabel{eq:densityTransform}{{1.86}{39}{Estimating the Exact Ground State Density\relax }{equation.1.10.86}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.2}Radial Densities}{39}{subsection.1.10.2}}
+\newlabel{eq:averagedRadialOBD_3D}{{1.87}{39}{Radial Densities\relax }{equation.1.10.87}{}}
+\newlabel{eq:averagedRadialOBD_2D}{{1.88}{39}{Radial Densities\relax }{equation.1.10.88}{}}
+\newlabel{eq:radial_OBD}{{1.89}{39}{Radial Densities\relax }{equation.1.10.89}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Two examples of radial one-body densities for both VMC, DMC (from $f(\mathbf  {r}, \tau )$), and the pure density from Eq.~(\ref  {eq:densityTransform}). On the left: A 12-particle quantum dot with $\omega =0.1$. The density diverges close to zero due to a ``$\frac  {0}{0}$'' expression (see Eq.~(\ref  {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e. $r_1^2\rho (\mathbf  {r}_1)$. These results will be discussed in the results section.\relax }}{40}{figure.caption.13}}
+\newlabel{fig:OBD_ex}{{1.13}{40}{Two examples of radial one-body densities for both VMC, DMC (from $f(\mathbf {r}, \tau )$), and the pure density from Eq.~(\ref {eq:densityTransform}). On the left: A 12-particle quantum dot with $\omega =0.1$. The density diverges close to zero due to a ``$\frac {0}{0}$'' expression (see Eq.~(\ref {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e. $r_1^2\rho (\mathbf {r}_1)$. These results will be discussed in the results section.\relax \relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.11}Estimating the Statistical Error}{40}{section.1.11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.1}The Variance and Standard Deviates}{40}{subsection.1.11.1}}
+\newlabel{sec:varAndSTD}{{1.11.1}{40}{The Variance and Standard Deviates\relax }{subsection.1.11.1}{}}
+\newlabel{eq:variance}{{1.90}{40}{The Variance and Standard Deviates\relax }{equation.1.11.90}{}}
+\newlabel{eq:varianceZeroExact}{{1.92}{41}{The Variance and Standard Deviates\relax }{}{}}
+\newlabel{eq:stdNaive}{{1.92}{41}{The Variance and Standard Deviates\relax }{equation.1.11.92}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.2}The Covariance and correlated samples}{41}{subsection.1.11.2}}
+\newlabel{eq:covariance}{{1.93}{41}{The Covariance and correlated samples\relax }{equation.1.11.93}{}}
+\newlabel{eq:trueVsNaiveSTD}{{1.94}{41}{The Covariance and correlated samples\relax }{equation.1.11.94}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.3}The Deviate from the Exact Mean}{42}{subsection.1.11.3}}
+\newlabel{eq:meanx}{{1.96}{42}{The Deviate from the Exact Mean\relax }{equation.1.11.96}{}}
+\newlabel{eq:sigma_m}{{1.97}{42}{The Deviate from the Exact Mean\relax }{equation.1.11.96}{}}
+\newlabel{eq:realErrorCovariance1}{{1.98}{42}{The Deviate from the Exact Mean\relax }{equation.1.11.98}{}}
+\citation{flyvbjerg:461}
+\citation{morten}
+\citation{flyvbjerg:461}
+\newlabel{eq:realErrorCovariance2}{{1.101}{43}{The Deviate from the Exact Mean\relax }{equation.1.11.101}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.4}Blocking}{43}{subsection.1.11.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\DOTSI \intop \ilimits@ _1^2 2x\mathrm  {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax }}{44}{figure.caption.14}}
+\newlabel{FIG:BlockingExamples}{{1.14}{44}{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax \relax }{figure.caption.14}{}}
+\newlabel{eq:blockingError}{{1.105}{44}{Blocking\relax }{equation.1.11.104}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.5}Variance Estimators}{44}{subsection.1.11.5}}
+\newlabel{eq:varBias}{{1.106}{44}{Variance Estimators\relax }{equation.1.11.106}{}}
+\newlabel{eq:varUnbias}{{1.107}{45}{Variance Estimators\relax }{equation.1.11.107}{}}
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Results}{47}{part.2}}
 \bibstyle{IEEEtran}
 \bibdata{../bibtex/bibtex.bib}
-\bibcite{Hirth}{1}
-\bibcite{H_He_exact}{2}
-\bibcite{ExactMolecules}{3}
-\bibcite{AtomsExact}{4}
-\bibcite{KryptonExact}{5}
-\bibcite{forcesQMC}{6}
-\bibcite{Olsen}{7}
-\bibcite{libBorealisCode}{8}
-\bibcite{MD1}{9}
-\bibcite{MD2}{10}
-\bibcite{supermen}{11}
-\bibcite{inf3331}{12}
-\bibcite{pythonBook}{13}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{87}{section*.73}}
-\bibcite{inf1100}{14}
-\bibcite{ORegan}{15}
-\bibcite{linAlg}{16}
-\bibcite{abInitioMC}{17}
-\bibcite{morten}{18}
-\bibcite{griffiths}{19}
-\bibcite{golub1996matrix}{20}
-\bibcite{Matplotlib}{21}
-\bibcite{Pyside}{22}
-\bibcite{SymPy}{23}
+\bibcite{griffiths}{1}
+\bibcite{Shavitt}{2}
+\bibcite{QMCDIFF}{3}
+\bibcite{abInitioMC}{4}
+\bibcite{Gardiner:2004bk}{5}
+\bibcite{risken1989fpe}{6}
+\bibcite{langevin}{7}
+\bibcite{morten}{8}
+\bibcite{libBorealisCode}{9}
+\bibcite{Sakurai:94}{10}
+\bibcite{larseivind}{11}
+\bibcite{QMCPHD2008}{12}
+\bibcite{UmrigarMolecules}{13}
+\bibcite{golub1996matrix}{14}
+\bibcite{ASGD_MB}{15}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{51}{section*.15}}
+\bibcite{ASGD}{16}
+\bibcite{leinaas}{17}
+\bibcite{flyvbjerg:461}{18}

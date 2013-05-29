@@ -1,35 +1,35 @@
 \chapter{Quantum Monte-Carlo}
 \label{ch:QMC}
 
-Quantum Monte-Carlo (QMC) is a method of solving Schrödinger's equation using statistical \textit{Markov Chain} (random walk) simulations, i.e. Monte-Carlo simulations. The statistical nature of Quantum Mechanics makes Monte-Carlo methods the perfect tool not only for accurately estimating observables, but also for extracting interesting quantities such as densities, i.e. probability distributions. 
+Quantum Monte-Carlo (QMC) is a method for solving Schrödinger's equation using statistical \textit{Markov Chain} (random walk) simulations. The statistical nature of Quantum Mechanics makes Monte-Carlo methods the perfect tool not only for accurately estimating observables, but also for extracting interesting quantities such as densities, i.e.~probability distributions. 
 
-There are multiple ways to deduce the virtual\footnote{As will be shown, the time parameter in QMC does not correspond to physical time, but rather an imaginary axis at a fixed point in time. Whether nature operates on a complex time plane or not is not testable in a laboratory, and the origin of the probabilistic nature of Quantum Mechanics will thus remain a philosophical problem.} dynamics of QMC, some of which are more mathematically complex than others. In this chapter the focus will be on modeling the Schrödinger equation as a diffusion problem in complex (Wick rotated) time. Other more condensed mathematical approaches does not need the Schrödinger equation at all, however, for the purpose of transparency, this approach will be mentioned only briefly in Section \ref{sec:ConnectAnisIs}.
+There are multiple strategies which can be used in order to deduce the virtual\footnote{As will be shown, the time parameter in QMC does not correspond to physical time, but rather an imaginary axis at a fixed point in time. Whether nature operates on a complex time plane or not is not testable in a laboratory, and the origin of the probabilistic nature of Quantum Mechanics will thus remain a philosophical problem.} dynamics of QMC, some of which are more mathematically complex than others. In this chapter the focus will be on modelling the Schrödinger equation as a diffusion problem in complex (Wick rotated) time. Other more condensed mathematical approaches does not need the Schrödinger equation at all, however, for the purpose of completeness, this approach will be mentioned only briefly in Section \ref{sec:ConnectAnisIs}.
 
-In this chapter \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e. $\hbar = m_e = e = 1$.
+In this chapter, \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e. $\hbar = m_e = e = 4\pi\epsilon_0 = 1$, where $m_e$ and $\epsilon_0$ are the electron mass and the vacuum permittivity respectively.
 
-\section{Modeling Diffusion}
+\section{Modelling Diffusion}
 
-Like any phenomena involving a probability distribution, Quantum Mechanics may be modeled by a diffusion process. In Quantum Mechanics, the distribution is given by $|\Ph|^2$, the Wave function squared. The diffusing elements of interest are the particles making up our system. 
+Like any phenomena involving a probability distribution, Quantum Mechanics can be modelled by a diffusion process. In Quantum Mechanics, the distribution is given by $|\Ph|^2$, the wave function squared. The diffusing elements of interest are the particles in the system at hand. 
 
-The idea is to have an ensemble of \textit{Random Walkers} in which each walker is represented by a position in space and time. Once the walkers reach equilibrium, averaging values over the paths of the ensemble will yield average values corresponding to the probability distribution governing the movement of individual walkers. In other words: Counting every walker's contribution within a small volume $\mathrm{d}\mathbf{r}$ will correspond to $|\Ph|^2\mathrm{d}\mathbf{r}$ in the limit of infinite walkers.
+The basic idea is to introduce an ensemble of \textit{random walkers}, in which each walker is represented by a position in space at a given time. Once the walkers reach equilibrium, averaging values over the paths of the ensemble will yield average values corresponding to the probability distribution governing the movement of individual walkers. In other words: Counting every walker's contribution within a small volume $\mathrm{d}\mathbf{r}$ will correspond to $|\Ph|^2\mathrm{d}\mathbf{r}$ in the limit of infinite walkers.
 
-Such random movement of walkers are referred to as a \textit{Brownian motion}, named after the British Botanist R. Brown, originating from his experiments on plant pollen dispersed in water. Markov chains are a subtype of Brownian motion, where a walkers next move is independent of previous moves. This is the stochastic process in which Quantum Monte Carlo is described.
+Such random movement of walkers are referred to as a \textit{Brownian motion}, named after the British botanist R. Brown, originating from his experiments on plant pollen dispersed in water. Markov chains are a subtype of Brownian motion, where a walkers next move is independent of previous moves. This is the stochastic process in which QMC is described.
 
-The purpose of this section is to motivate the use of diffusion theory in Quantum Mechanics, and to derive the sampling rules needed in order to model Quantum Mechanical distributions by diffusion of random walkers correctly. I will be using natural units, that is $\hbar$, $m_e$, etc. are all set to unity, in order to simplify the expressions.
+The purpose of this section is to motivate the use of diffusion theory in Quantum Mechanics, and to derive the sampling rules needed in order to model Quantum Mechanical distributions by diffusion of random walkers correctly. 
 
 \subsection{Stating the Schrödinger Equation as a Diffusion Problem}
 \label{sec:statingDiff}
 
-Consider the time-dependent Schrödinger equation for an arbitrary many-body wave function\footnote{See Section \ref{sec:manyBodyWFs} for details regarding many-body wave functions.} $\Ph$ with an arbitrary energy shift $E'$
+Consider the time-dependent Schrödinger equation for an arbitrary wave function $\Ph$ using an arbitrary energy shift $E'$
 
 \begin{equation}
  -\frac{\partial \Ph}{i\partial t} = (\OP{H} - E')\Ph.
 \end{equation}
 
-Given that the Hamiltonian is time-independent, the formal solution is found by separation of variables in $\Ph$ (see ref. \cite{griffiths} for more details)
+Given that the Hamiltonian is time-independent, the formal solution is found by separation of variables in $\Ph$ \cite{griffiths}
 
 \begin{align}
- \OP{H}\Phn &= E\Phn \label{eq:schrodTimeIndie}\\
+ \OP{H}\Phn &= E\Phn, \label{eq:schrodTimeIndie}\\
  \Ph &= \exp\left(-i(\OP{H} - E')(t-t_0)\right)\Phn. \label{eq:schrodGeneralSolution}
 \end{align}
 
@@ -39,43 +39,41 @@ From Eq.~(\ref{eq:schrodGeneralSolution}) it is apparent that the time evolution
  \OP{U}(t, t_0) = \exp\left(-i(\OP{H} - E')(t-t_0)\right). \label{eq:TimeEvolOp}
 \end{equation}
 
-% Further expanding $\Phi(x, t=t_0)$ in the eigenstates of $\OP{H}$, $\Psi_k(x)$, yields the following solution
-% 
-% \begin{eqnarray}
-%  \Phi(x, t) &=& e^{-i(\OP{H} - E')(t-t_0)}\Phi(x, t=t_0) \label{eq:schrodGeneralSolution} \\
-%             &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-i(E_k - E')(t-t_0)} \label{eq:realSchrod} \\
-%  C_k &=& \braket{\Psi_k(x)}{\Phi(x, t=0)} \nonumber
-%  \end{eqnarray}
 
-The time-independent equation are solved for the ground state energy through methods such as \textit{Full Configuration Interaction} or similar methods based on diagonalizing the Hamiltonian. The time-dependent equation is used by methods such as \textit{Time-Dependent Multi-Configuration Hartree-Fock} in order to obtain solutions for the time-development of Quantum states. However, none of these originate from or resemble diffusion equations. 
+The time-independent equation is solved for the ground state energy through methods such as \textit{Full Configuration Interaction} \cite{Shavitt} or similar methods based on diagonalizing the Hamiltonian. The time-dependent equation is used by methods such as \textit{Time-Dependent Multi-Configuration Hartree-Fock} in order to obtain the time-development of quantum states. However, neither of the equations originate from, or resemble, diffusion equations. 
 
-The original Schrödinger equation, however, does resemble a diffusion equation in complex time\footnote{The physical time diffusion equation evolves the squared wave function, and can be deduced from the quantum continuity equation combined with Fick's laws of diffusion REFERER TIL TING :(}. It can not be treated as a true diffusion equation, since the time evolved quantity, the wave function, is not a probability distribution unless it is squared. However, the equation involves a time derivative and a Laplacian, strongly indicating some sort of connection to a diffusion process.
+The original Schrödinger equation, however, does resemble a diffusion equation in complex time\footnote{The physical time diffusion equation evolves the squared wave function, and can be deduced from the quantum continuity equation combined with Fick's laws of diffusion \cite{QMCDIFF}.}. It can not be treated as a true diffusion equation, since the time evolved quantity, the wave function, is not a probability distribution unless it is squared. However, the equation involves a time derivative and a Laplacian, strongly indicating some sort of connection to a diffusion process.
 
-Applying the complex time Wick rotation to the time evolution operator in Eq.~(\ref{eq:TimeEvolOp}) and choosing the energy shift $E'$ equal to the true ground state energy $E_0$ of $\OP{H}$ yields the \textit{projection operation} whose name will soon be apparent
+Substituting complex time with a parameter $\tau$ and choosing the energy shift $E'$ equal to the true ground state energy of $\OP{H}$, $E_0$, the time evolution operator in Eq.~(\ref{eq:TimeEvolOp}) becomes the \textit{projection operation} $\OP{P}(\tau)$, whose choice of name will soon be apparent. In other words:
 
 \begin{align}
-t &\to it \notag\\
+t &\to it \equiv \tau,\notag\\
 \OP{U}(t, 0) &\to \exp\left(-(\OP{H} - E_0)\tau\right) \equiv \OP{P}(\tau).\notag
 \end{align}
 
-Consider an arbitrary state $\PT$. Applying the new operator yields a new state $\Ptau$ and expanding $\PT$ in the eigenstates $\Psi_i(\mathbf{r})$ of $\OP{H}$ yields
+Consider an arbitrary wave function $\PT$. Applying the new operator yields a new wave function $\Ptau$ in the following manner
 
 \begin{align}
  \Ptau &= \bra{\mathbf{r}}\OP{P}(\tau)\ket{\Psi_T} \label{eq:projOPonTrial}\\
-       &= \bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_T} \notag\\
-       &= \sum_iC_i\bra{r}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_i}\notag \\
+       &= \bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_T}. \notag\\
+\end{align}
+
+Expanding the arbitrary state in the eigenfunction of $\OP{H}$, $\ket{\Psi_i}$, yields
+
+\begin{align}
+ \Ptau &= \sum_iC_i\bra{r}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_i}\notag \\
        &= \sum_iC_i\Psi_i(\mathbf{r})\exp\left(-(E_i - E_0)\tau\right) \notag \\
        &= C_0\Psi_0(x) + \sum_{i=1}^{\infty} C_i\Psi_k(x)e^{-\delta E_i\tau}, \label{eq:schrodGeneralSolution2}
 \end{align}
 
-where $C_i = \braket{\Psi_i}{\Psi_T}$ and $\delta E_i = E_i - E_0 \ge 0$. In the limit where $\tau$ goes to infinity, the ground state is the sole survivor of the expression, hence the name projection operator.
+where $C_i = \braket{\Psi_i}{\Psi_T}$ and $\delta E_i = E_i - E_0 \ge 0$. In the limit where $\tau$ goes to infinity, the ground state is the sole survivor of the expression, hence the name projection operator. In other words:
 
 \begin{align}
  \lim_{\tau\to\infty}\Ptau &=  \lim_{\tau\to\infty}\bra{\mathbf{r}}\OP{P}(\tau)\ket{\Psi_T}\notag \\
                            &= C_0\Psi_0(x). \label{eq:ExactProjection}
 \end{align}
 
-The projection operator can in other words be used to transform an arbitrary wave function $\PT$\footnote{This is called the \textit{trial wave function} and will be covered in detail in Section \ref{sec:trialWF}.} into the true ground state, given that the overlap $C_0$ is non-zero.
+The projection operator transforms an arbitrary wave function $\PT$, from here on referred to as the \textit{trial wave function}, into the true ground state, given that the overlap $C_0$ is non-zero.
 
 In order to model the projection with Markov chains, the process needs to be split into subprocesses which in turn can be described as transitions in the Markov chain. Introducing a time-step $\delta\tau$, the projection operator can be rewritten as
 
@@ -89,123 +87,46 @@ where $n = \tau/\delta\tau$. An important property to notice is that
  \OP{P}(\tau + \delta\tau) = \exp\left(-(\OP{H} - E_0)\delta\tau\right)\OP{P}(\tau).
 \end{equation}
 
-Using this relation in combination with Eq.~(\ref{eq:projOPonTrial}), the effect of the projection operator in a single time-step is revealed
+Using this relation in combination with Eq.~(\ref{eq:projOPonTrial}), the effect of the projection operator during a single time-step is revealed:
 
 \begin{align}
  \Phi(\mathbf{r}, \tau + \delta\tau) &= \bra{\mathbf{r}}\OP{P}(\tau + \delta\tau)\ket{\Psi_T} \notag \\
     &= \bra{\mathbf{r}} \exp\left(-(\OP{H} - E_0)\delta\tau\right)\OP{P}(\tau)\ket{\Psi_T} \notag \\
     &=  \bra{\mathbf{r}} \exp\left(-(\OP{H} - E_0)\delta\tau\right)\ket{\Phi(\tau)} \notag \\
-    &= \int_{\mathbf{r}'}\int_{\mathbf{r}''} \braket{\mathbf{r}}{\mathbf{r}''} \bra{\mathbf{r}''}\exp\left(-(\OP{H} - E_0)\delta\tau\right)\ket{\mathbf{r}'}\braket{\mathbf{r}'}{\Phi(\tau)}\mathrm{d}\mbf{r}'\mbf{r}'' \notag \\
-    &= \int_{\mathbf{r}'}\bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\delta\tau\right)\ket{\mathbf{r}'}\Phi(\mbf{r}', \tau)\mathrm{d}\mbf{r}'
+    &= \int_{\mathbf{r}'}\bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\delta\tau\right)\ket{\mathbf{r}'}\braket{\mathbf{r}'}{\Phi(\tau)}\mathrm{d}\mbf{r}' \notag \\
+    &= \int_{\mathbf{r}'}\bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\delta\tau\right)\ket{\mathbf{r}'}\Phi(\mbf{r}', \tau)\mathrm{d}\mbf{r}',
 \end{align}
 
-For practical purposes, $E_0$ needs to be substituted with an approximation $E_T$ to the ground state energy commonly referred to as the \textit{trial energy} in order to avoid self consistency. From Eq~(\ref{eq:schrodGeneralSolution2}) it is apparent that the projection will still converge as long as $E_T < E_1$, i.e. the energy of the first excitation.
+where a complete set of position states were introduced.
+
+For practical purposes, $E_0$ needs to be substituted with an approximation $E_T$ to the ground state energy, commonly referred to as the \textit{trial energy}, in order to avoid self consistency. From Eq.~(\ref{eq:schrodGeneralSolution2}) it is apparent that the projection will still converge as long as $E_T < E_1$, that is, the trial energy is less than that of the first excitation. The resulting expression reads:
 
 \begin{align}
  \Phi(\mathbf{r}, \tau + \delta\tau) &= \int_{\mathbf{r}'}\bra{\mathbf{r}}\exp\left(-(\OP{H} - E_T)\delta\tau\right)\ket{\mathbf{r}'}\Phi(\mbf{r}', \tau)\mathrm{d}\mbf{r}' \\
-  &\equiv \int_{\mathbf{r}'}G(\mbf{r}, \mbf{r'}; \delta\tau)\Phi(\mbf{r}', \tau)\mathrm{d}\mbf{r}'  \label{eq:QMC_GF_EQ}
+  &\equiv \int_{\mathbf{r}'}G(\mbf{r}, \mbf{r'}; \delta\tau)\Phi(\mbf{r}', \tau)\mathrm{d}\mbf{r}'.  \label{eq:QMC_GF_EQ}
 \end{align}
 
 The equations above are well suited for Markov Chain models, as an ensemble of walkers can be iterated by transitioning between configurations $\ket{\mbf{r}}$ and $\ket{\mbf{r}'}$ with probabilities given by the \textit{Green's function}, $G(\mbf{r}, \mbf{r'}; \delta\tau).$
 
-The effect of the Green's function from Eq.~(\ref{eq:QMC_GF_EQ}) on individual walkers is not trivial. In order to relate the Green's function to well-known processes, the exponential is split into two parts, one containing only the kinetic energy operator $\OP{T} = -\frac{1}{2}\nabla^2$, and the second containing the potential $\OP{V}$ and the energy shift. This is known as the \textit{short time approximation}\cite{abInitioMC}
+The effect of the Green's function from Eq.~(\ref{eq:QMC_GF_EQ}) on individual walkers is not trivial. In order to relate the Green's function to well-known processes, the exponential is split into two parts, one containing only the kinetic energy operator $\OP{T} = -\frac{1}{2}\nabla^2$, and the second containing the potential energy operator $\OP{V}$ and the energy shift. This is known as the \textit{short time approximation}\cite{abInitioMC}
 
 \begin{align}
   G(\mbf{r}, \mbf{r'}; \delta\tau) &= \bra{\mathbf{r}}\exp\left(-(\OP{H} - E_T)\delta\tau\right)\ket{\mathbf{r}'} \label{eq:firstTrialEnergyIntro} \\
   &= \bra{\mathbf{r}}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{\mathbf{r}'} + \frac{1}{2}[\OP{V}, \OP{T}]\delta\tau^2 + \mathcal{O}(\delta\tau^3).  \label{eq:shortTimeApprox}
 \end{align}
 
-
-% \begin{align}
-%  \Ptau &= \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_0)\tau} \label{eq:schrodGeneralSolution3}\\
-%                     &= C_0\Psi_0(x) + \sum_{k=1}^{\infty} C_k\Psi_k(x)e^{-\delta E_k\tau}, \label{eq:schrodGeneralSolution2}
-% \end{align}
-% 
-% where $\delta E_k = E_k - E_0 > 0$ for $k \ge 1$. Observe that as $\tau$ increase, the excited states of $\OP{H}$ will be exponentially dampened, hence the name projection operation. Note however, that no real-time solutions can be achieved by solving this equation; only in the limit $\tau\rightarrow\infty$ will the solution match that of the Schrödinger Equation. 
-% 
-% 
-% 
-% 
-% The approach of Quantum Monte Carlo is to split the evolution of $\tau$ into small sequential steps $\delta\tau$, and use the latest calculated energy, the \textit{trial energy}, $E_T$, as an approximation to the ground state energy. The error introduced by this approximation will be discussed in Section~\ref{sec:DMC}. Either way, restating Eq.~(\ref{eq:schrodGeneralSolution3}) in terms of sequential steps yields
-% 
-% 
-% \cfbox{-6pt}{
-% \begin{eqnarray}
-%   \Phi(x, n\delta\tau) &=& \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right]\Phi(x, t=0) \label{eq:genSolTimeStepsProj} \\
-%                        &=& \sum_{k=0}^{\infty} C_k\Psi_k(x)e^{-(E_k - E_T)n\delta\tau} \label{eq:genSolTimeStepsExp} \\
-%                        \nonumber\\
-%                        \nonumber
-% \end{eqnarray}
-% }
-% 
-% 
-% which remains exact for an infinite amount of infinitely small time steps. In practice, a balance is sought between the \textit{number of cycles}, $n$, and the time step. This restatement might seem redundant, however, it is the key which opens up the possibility to model the solution by discretized diffusion of particles in Quantum Mechanical potentials. 
-% 
-% In order to simulate the effect of the exponential operator in Eq.~(\ref{eq:genSolTimeStepsProj}) on our initial state,
-% consider the following rewriting
-% 
-% \begin{align}
-%  \OP{P}(n, \delta\tau) &\equiv \left[\prod_{i=1}^n e^{-(\OP{H} - E_T)\delta\tau}\right] \\
-%   &= e^{-(\OP{H} - E_T)\delta\tau}e^{-(\OP{H} - E_T)\delta\tau}\cdots e^{-(\OP{H} - E_T)\delta\tau} \\
-%      &= \int_{x_1}\int_{x_2}\cdots\int_{x_n} \ket{x_n}\bra{x_n} e^{-(\OP{H} - E_T)\delta\tau} \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
-%      &\qquad\qquad\times \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\bra{x_1}\mathrm{d}x_{1}\cdots\mathrm{d}x_{n} 
-% \end{align}
-% 
-% where complete sets of position basis states are introduced (see appendix \ref{app:Dirac}). The state from Eq.~(\ref{eq:genSolTimeStepsProj}) are then given by
-% 
-% \begin{eqnarray}
-%  \Phi(x, n\delta\tau) &=& \bra{x}\OP{P}(n, \delta\tau)\ket{\Phi(t=0)} \\
-%                  &=& \int_{x_1}\int_{x_2}\cdots\int_{x_{n-1}}\bra{x} e^{-(\OP{H} - E_T)\delta\tau}
-%                  \ket{x_{n-1}}\bra{x_{n-1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{n-2}} \nonumber\\
-%                   &&\qquad\quad\,\,\qquad\times \cdots\bra{x_2}e^{-(\OP{H} - E_T)\delta\tau} \ket{x_1}\Phi(x_1, t=0)\mathrm{d}x_{1}\cdots\mathrm{d}x_{n-1} 
-% \end{eqnarray}
-% 
-% The final state $x_n$ are replaced by $x$ due to the fact that $\braket{x}{x_n} = \delta(x=x_n)$, which makes the $x_n$ integral vanish. The final state is achieved by summing through all possible \textit{paths} represented by integrals over the position variables $x_i$. This is the path integral formalism of Quantum Mechanics. More information about this formalism can be found in ref. \cite{leinaas}. Integrating out a degree of freedom, that is, \textit{evolving} from $x_i$ to $x_{i+1}$ is given by
-% 
-% \begin{eqnarray}
-% \Phi(x_{i+1}, i\delta\tau + \delta\tau) &=& \int_{x_i}\bra{x_{i+1}}e^{-(\OP{H} - E_T)\delta\tau}\ket{x_{i}}\Phi(x_i, i\delta\tau)\mathrm{d}x_{i} \\
-% &\equiv& \int G(x_{i+1}, x_i; \delta\tau)\Phi(x_i, i\delta\tau)\mathrm{d}x_i
-% \end{eqnarray}
-% 
-% where the \textit{Green's Function}, $G(x_{i+1}, x_i; \delta\tau)$ serves as the transition probability. 
-% 
-% % Consider two sequential time steps $\tau$ and $\tau + \delta\tau$ in Eq.~(\ref{eq:genSolTimeSteps}). Without expanding the current state $\ket{\Phi(\tau)}$ like previously, we are left with an expression on the form
-% % 
-% % \begin{equation*}
-% %  \ket{\Phi(\tau + \delta\tau)} = e^{-(\OP{H} - E_0)\delta\tau}\ket{\Phi(\tau)}.
-% % \end{equation*}
-% % 
-% % Taking the inner product with $\bra{x}$ on both sides and inserting a complete set of states $\ket{y}$ on the left hand side yields
-% % 
-% % \begin{eqnarray*}
-% %  \Phi(x, \tau + \delta\tau) &=& \int \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y}\Phi(y, \tau)dy \\
-% % 			     &\equiv& \int G(x, y; \delta\tau)\Phi(y, \tau)dy
-% % \end{eqnarray*}
-% % 
-% % where the \textit{Green's Function}, $G(x, y; \delta\tau)$ serves as a transition probability. This is the path integral formalism of Quantum Mechanics, where a final state is obtained by integrating through all possible paths of all the particles in the system, but I will not go into details about it here. More information about this can be found in ref. \cite{leinaas}. A more detailed derivation of the Green's Function are given in ref. \cite{abInitioMC}.
-% 
-% This is still not a practical way of solving the equations. By finding the Green's function we might as well find the solution directly. However, if we split the Hamiltonian into the kinetic, $\OP{T}$ and the potential part, $\OP{V}$, we can split the Green's function into two well known processes. This splitting is known as the \textit{short time approximation}.
-% 
-% \begin{eqnarray}
-%  \bra{x}e^{-(\OP{H} - E_0)\delta\tau}\ket{y} &=& \bra{x}e^{-(\OP{T} + \OP{V} - E_T)\delta\tau}\ket{y} \nonumber \\
-%                                              &=& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} + \frac{1}{2}[\OP{V}, \OP{T}]\delta\tau^2 + \mathcal{O}(\delta\tau^3) \nonumber \\
-%                                              &\simeq& \bra{x}e^{-\OP{T}\delta\tau}e^{-(\OP{V} - E_T)\delta\tau}\ket{y} \label{eq:shortTimeApprox}
-% \end{eqnarray}
-% 
-% , that is, we split the Green's Function into two processes which are well known, respectively diffusion and branching
-
-The first exponential describes a transition of walkers governed by the Laplacian, which is a diffusion process. The second exponential is linear in position space and is thus a weighing function, distributing the correct weights to certain walkers. In other words:
+The first exponential describes a transition of walkers governed by the Laplacian, which is a diffusion process. The second exponential is linear in position space and is thus a weighing function responsible for distributing the correct weights to the corresponding walkers. In other words:
 
 \begin{eqnarray}
- G_\mathrm{Diff} &=& e^{\frac{1}{2}\nabla^2\delta\tau}\label{eq:GDiff} \\
+ G_\mathrm{Diff} &=& e^{\frac{1}{2}\nabla^2\delta\tau},\label{eq:GDiff} \\
  G_\mathrm{B} &=& e^{-(\OP{V} - E_T)\delta\tau} \label{eq:GB},
 \end{eqnarray}
 
-where $B$ denotes \textit{branching}. Modeling weights by branching will be covered in detail in Section \ref{sec:branching}.
+where $B$ denotes \textit{branching}. Modelling weights by branching will be covered in detail in Section \ref{sec:branching}.
 
 The flow of QMC is then to use these Green's functions to propagate the ensemble of walkers into the next time step. The final distributions of walkers will correspond to that of the direct solution of the Schrödinger Equation, given that the time step is sufficiently small, and the number of cycles $n$ are sufficiently large. These constraints will be covered in more detail later. 
 
-Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte Carlo} (VMC). Including the branching term as well results in \textit{Diffusion Monte Carlo} (DMC). These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is a key process.
+Incorporating only the effect of Eq.(\ref{eq:GDiff}) results in a method called \textit{Variational Monte-Carlo} (VMC). Including the branching term as well results in \textit{Diffusion Monte-Carlo} (DMC). These methods will be discussed in sections \ref{sec:VMC} and \ref{sec:DMC}. In either of these methods, diffusion is a key process.
 
 \section{Solving the Diffusion Problem}
 
@@ -482,7 +403,7 @@ On the other hand, for Fokker-Planck diffusion, there will be no cancellation of
  A(i\,\rightarrow\,j) &=& \min\{\exp \left(\log R_G^\mathrm{FP}(i\,\rightarrow\,j)\right)R_\psi(i\,\rightarrow\,j)^2, \,1\} \label{eq:MetropolisHastings}
 \end{eqnarray}
 
-Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte Carlo. Besides Quantum Monte Carlo, methods such as the \textit{Ising Model} solvers greatly benefit from these rules \cite{morten}.
+Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte-Carlo. Besides Quantum Monte-Carlo, methods such as the \textit{Ising Model} solvers greatly benefit from these rules \cite{morten}.
 
 In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in simulations are finite, and the trial positions of walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process in general is given in Fig. \ref{fig:diffFlowChart}.
 
@@ -501,7 +422,7 @@ In practice, without the Metropolis sampling, the ensemble of walkers will not s
 \section{The Process of Branching}
 \label{sec:branching}
 
-In the previous section it became clear that the Metropolis test will guide the walkers to span the trial wave function. This implies that without further action, no changes to the distribution can be made, and the point of modeling the projection operator from Eq.~(\ref{eq:projOPonTrial}) is rendered useless. The important fact to include is that the branching Green's function from Eq.~(\ref{eq:branchFP}) and ~(\ref{eq:branchISO}) distribute weights to the walkers, effectively altering the spanned distribution. 
+In the previous section it became clear that the Metropolis test will guide the walkers to span the trial wave function. This implies that without further action, no changes to the distribution can be made, and the point of modelling the projection operator from Eq.~(\ref{eq:projOPonTrial}) is rendered useless. The important fact to include is that the branching Green's function from Eq.~(\ref{eq:branchFP}) and ~(\ref{eq:branchISO}) distribute weights to the walkers, effectively altering the spanned distribution. 
 
 The process of branching in Quantum Monte-Carlo is simulated by the creation and destruction of walkers with probability equal to that of the branching Green's function \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is 
 
@@ -633,7 +554,7 @@ If no such choice can be made, choosing e.g. free-particle solutions, Laguerre p
 
 \subsubsection{Step two in detail}
 
-In the case of \textit{Fermions}, i.e. half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
+In the case of \textit{fermions}, i.e. half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
 
 Bosons on the other hand have symmetric wave functions (see Eq.~(\ref{eq:BosonicWFExplicit})), which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract and confusing, from here on, the focus will be on systems of fermions.
 
@@ -803,11 +724,11 @@ In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater dete
 
 \cfbox{2cm-5pt}{
 \begin{equation}
- \frac{\partial \Psi_T(\mathbf{r}; \alpha_i)}{\partial \alpha_i} = \sum_{p=1}^N\sum_{q=0}^{N/2} \phi_q(\mathbf{r}_p; \alpha_i) \left[\frac{\partial \phi_q(\mathbf{r}_p; \alpha_i)}{\partial \alpha_i}\right]D^{-1}_{qp},
+ \frac{\partial \Psi_T(\mathbf{r}; \alpha_i)}{\partial \alpha_i} = \sum_{p=1}^N\sum_{q=0}^{N/2} \phi_q(\mathbf{r}_p; \alpha_i) \left[\frac{\partial \phi_q(\mathbf{r}_p; \alpha_i)}{\partial \alpha_i}\right]\mathbf{S}^{-1}_{qp},
 \end{equation}
 }
 
-where $D^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
+where $\mathbf{S}^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
 
 Using these expressiosn for the \textit{variational energy gradient}, the derivatives can be calculated exactly the same way as for e.g. the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
 
@@ -941,7 +862,7 @@ Adaptive Stochastic Gradient Descent (ASGD) has it's roots in the mathematics of
  X_i \equiv -\nabla_i\cdot \nabla_{i-1}
 \end{equation}
 
-The step length from Eq.~(\ref{eq:SGD}) is modeled in the following manner in ASGD
+The step length from Eq.~(\ref{eq:SGD}) is modelled in the following manner in ASGD
 
 \begin{eqnarray}
  \delta_i   &=& \gamma(t_i) \\
@@ -1170,7 +1091,7 @@ where theoretically using an exact projection operator
   \lim_{\tau\to\infty} P(\mathbf{r}, \tau) = \braket{\Phi_0}{\Phi_T}\Phi_0(\mathbf{r})\Psi_T(\mathbf{r}),
 \end{equation}
 
-which, if interpreted as a density, should always be greater than zero. In the case of Fermions, this is not guaranteed, as
+which, if interpreted as a density, should always be greater than zero. In the case of fermions, this is not guaranteed, as
 the node structure, i.e. the roots, of the exact ground state and the trial wave function will generally be different.  
 
 To avoid this anomaly in the density, $\Ptau$ and $\PT$ have to change sign simultaneously\footnote{It should be mentioned that more sophisticated methods exist for dealing with the sign problem, some of which splits the distribution of walkers into a negative and a positive regions, however, due to the infinity position space, this requires an enormous amount of walkers to succeed.}. The brute force way of solving this problem is to \textit{fix} the nodes by rejecting a walker's step if the trial wave function changes sign:

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  29 MAY 2013 22:16
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  30 MAY 2013 00:28
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -768,9 +768,13 @@ LaTeX Info: Redefining \subref on input line 71.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count146
- (./jorgenh_thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+ [1
 
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (../chapters/05Manybod
+y/ch05Manybody.tex
+Chapter 1.
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
@@ -778,359 +782,195 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 6.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
 
+LaTeX Warning: Reference `app:Dirac' on page 3 undefined on input line 8.
 
-
-
-pdfTeX warning: /usr/bin/pdflatex: pop empty color page stack 0
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2])
-\tf@toc=\write4
-\openout4 = `jorgenh_thesis.toc'.
-
- [3] [4
-
-
-]
-(../chapters/03intro/ch03intro.tex
-Chapter 1.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5
+[3
 
 
 
 pdfTeX warning: /usr/bin/pdflatex: pop empty color page stack 0
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
- (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+] [4]
+Underfull \vbox (badness 6445) has occurred while \output is active []
+
+ [5]
+[6] [7] [8] [9] [10] [11] [12]
+<../Graphics/DiffusionUML.pdf, id=322, 597.50786pt x 845.04686pt>
+File: ../Graphics/DiffusionUML.pdf Graphic file (type pdf)
+
+<use ../Graphics/DiffusionUML.pdf> [13] [14 <../Graphics/DiffusionUML.pdf>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 439.
+
+
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 439.
 
+<../Graphics/branching.pdf, id=396, 597.50786pt x 845.04686pt>
+File: ../Graphics/branching.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `ch:modelledSystems' on page 6 undefined on input line
- 28.
+<use ../Graphics/branching.pdf> [15
 
-) [6] [7
-
-
-
-] [8] (../chapters/04SciProg/ch04SciProg.tex
-Chapter 2.
-[9
-
-] (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 36.
-
-(../CodeInputs/Sum100Python.py
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1.
-) [10] (../CodeInputs/Sum100C++.cpp) [11]
-[12] (../CodeInputs/KeyBoardSuper.py)
-<../Graphics/UMLkeyboard.pdf, id=435, 845.04686pt x 597.50786pt>
-File: ../Graphics/UMLkeyboard.pdf Graphic file (type pdf)
-
-<use ../Graphics/UMLkeyboard.pdf> [13 <../Graphics/UMLkeyboard.pdf>]
-(../CodeInputs/KeyboardClassPython.py)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14
+] [16 <../Graphics/branching.pdf>] [17
 
 ]
-(../CodeInputs/virtualFunctionsC++.cpp) [15]
-(../CodeInputs/virtualFunctionsC++MAIN.cpp) [16
+<../Graphics/shellStructure.pdf, id=480, 845.04686pt x 597.50786pt>
+File: ../Graphics/shellStructure.pdf Graphic file (type pdf)
 
-] [17
+<use ../Graphics/shellStructure.pdf> [18 <../Graphics/shellStructure.pdf>]
+[19] [20]
 
-] [18] [19
-
-]
-(../CodeInputs/playerClass.py)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [20
-
-]
-(../CodeInputs/potionClass.py) [21
-
-] (../CodeInputs/potionGameMain.py) [22
-
-]
-Overfull \hbox (18.96814pt too wide) in paragraph at lines 410--411
-\OT1/cmr/m/n/10 la-tions will again shorten the gap. There is no ques-tion what
- is done when the []\OT1/cmtt/m/n/10 system.get_potential_energy
- []
-
-[23
-
-] <../Graphics/SRCfolderStruct.pdf, id=861, 272.49pt x 366.58156pt>
-File: ../Graphics/SRCfolderStruct.pdf Graphic file (type pdf)
-
-<use ../Graphics/SRCfolderStruct.pdf>) [24 <../Graphics/SRCfolderStruct.pdf>]
-(../chapters/06OptimizationsAndGeneralizations/optAndgen.tex
-Chapter 3.
-
-Overfull \hbox (85.69159pt too wide) in paragraph at lines 26--27
-[][]
- []
+LaTeX Warning: Reference `tab:AtomsRes' on page 21 undefined on input line 619.
 
 
-LaTeX Warning: Reference `sec:trialWF' on page 25 undefined on input line 28.
+[21]
 
-
-LaTeX Warning: Reference `sec:statingDiff' on page 25 undefined on input line 2
-8.
-
-[25
-
-
-
-]
-Overfull \hbox (85.72852pt too wide) in paragraph at lines 46--47
-[][]
- []
-
-
-Overfull \hbox (86.04172pt too wide) in paragraph at lines 56--57
-[][]
- []
-
-
-Overfull \hbox (85.36345pt too wide) in paragraph at lines 72--73
-[][]
- []
-
-[26]
-
-LaTeX Warning: Reference `sec:manyBodyWFs' on page 27 undefined on input line 8
-4.
+LaTeX Warning: Reference `sec:optSingleSlater' on page 22 undefined on input li
+ne 664.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27
+ [22]
+[23]
 
-]
-[28]
+LaTeX Warning: Reference `sec:optSlaterRat' on page 24 undefined on input line 
+733.
 
-LaTeX Warning: Reference `eq:singleDeterminantTWF' on page 29 undefined on inpu
-t line 196.
+[24] <../Graphics/SGD.pdf, id=563, 845.04686pt x 597.50786pt>
+File: ../Graphics/SGD.pdf Graphic file (type pdf)
 
+<use ../Graphics/SGD.pdf> [25]
+Underfull \vbox (badness 5460) has occurred while \output is active []
 
-LaTeX Warning: Reference `eq:splitSlater' on page 29 undefined on input line 20
-9.
+ [26 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=588, 845.04686pt x 597.50
+786pt>
+File: ../Graphics/SSGD.pdf Graphic file (type pdf)
 
-
-LaTeX Warning: Reference `sec:ChoiceTrialWF' on page 29 undefined on input line
- 209.
-
-
-LaTeX Warning: Reference `sec:anisFokker' on page 29 undefined on input line 21
-1.
-
-[29]
-
-LaTeX Warning: Reference `sec:calcExpVals' on page 30 undefined on input line 2
-36.
-
-
-LaTeX Warning: Reference `sec:MetroMain' on page 30 undefined on input line 253
-.
-
-[30pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.3.6}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.255 \begin{eqnarray}
-                      ]
-
-LaTeX Warning: Reference `eq:SlaterDeterminantExplicit' on page 31 undefined on
- input line 276.
-
-[31]
-Overfull \hbox (85.9444pt too wide) in paragraph at lines 335--336
-[][]
- []
-
-
-Overfull \hbox (83.14441pt too wide) in paragraph at lines 346--347
-[][]
- []
-
-[32pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.4.18}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.347 
-      ]
-Overfull \hbox (85.5708pt too wide) in paragraph at lines 367--368
-[][]
- []
-
-
-LaTeX Warning: Reference `eq:MetropolisHastings' on page 33 undefined on input 
-line 376.
-
-[33]
-Overfull \hbox (84.61626pt too wide) in paragraph at lines 402--403
-[][]
- []
-
-
-Underfull \vbox (badness 2512) has occurred while \output is active []
-
- [34]
-Overfull \hbox (85.50673pt too wide) in paragraph at lines 460--461
-[][]
- []
-
-[35]
-Overfull \hbox (84.39722pt too wide) in paragraph at lines 505--506
-[][]
- []
-
-[36pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.5.37}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.518 
-      ]
-Underfull \vbox (badness 4096) has occurred while \output is active []
-
- [37]
-[38] [39]
-
-LaTeX Warning: Reference `sec:optRes' on page 40 undefined on input line 711.
-
-[40] [41
-
-] [42]) [43] [44
-
-
-] [45
-
-] [46] [47
-
-
-] [48]
-(../chapters/appendix/appendixDirac.tex
-Appendix A.
-
+<use ../Graphics/SSGD.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49
+ [27 <../Graphics/SSGD.pdf>] <../Graphics/ASGD_f.pdf, id=610, 344.28625pt x 341
+.275pt>
+File: ../Graphics/ASGD_f.pdf Graphic file (type pdf)
+
+<use ../Graphics/ASGD_f.pdf> [28 <../Graphics/ASGD_f.pdf>]
+<../Graphics/ASGD_min_paramGrad_ex.png, id=628, 586.8324pt x 442.2924pt>
+File: ../Graphics/ASGD_min_paramGrad_ex.png Graphic file (type png)
+
+<use ../Graphics/ASGD_min_paramGrad_ex.png>
+<../Graphics/ASGD_min_step_ex.png, id=630, 586.8324pt x 442.2924pt>
+File: ../Graphics/ASGD_min_step_ex.png Graphic file (type png)
+
+<use ../Graphics/ASGD_min_step_ex.png>
+<../Graphics/ASGD_UML.pdf, id=633, 597.50786pt x 845.04686pt>
+File: ../Graphics/ASGD_UML.pdf Graphic file (type pdf)
+
+<use ../Graphics/ASGD_UML.pdf> [29 <../Graphics/ASGD_min_paramGrad_ex.png> <../
+Graphics/ASGD_min_step_ex.png>] [30 <../Graphics/ASGD_UML.pdf>]
+<../Graphics/VMCUML.pdf, id=697, 597.50786pt x 845.04686pt>
+File: ../Graphics/VMCUML.pdf Graphic file (type pdf)
+
+<use ../Graphics/VMCUML.pdf> [31
+
+] [32 <../Graphics/VMCUML.pdf>]
+<../Graphics/WFComp.png, id=759, 586.8324pt x 442.2924pt>
+File: ../Graphics/WFComp.png Graphic file (type png)
+
+<use ../Graphics/WFComp.png>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33
+
+ <../Graphics/WFComp.png>] [34]
+<../Graphics/DMCUML.pdf, id=785, 597.50786pt x 845.04686pt>
+File: ../Graphics/DMCUML.pdf Graphic file (type pdf)
+
+<use ../Graphics/DMCUML.pdf> [35] [36 <../Graphics/DMCUML.pdf>]
+<../Graphics/fixxednode.pdf, id=866, 845.04686pt x 597.50786pt>
+File: ../Graphics/fixxednode.pdf Graphic file (type pdf)
+
+<use ../Graphics/fixxednode.pdf> [37
+
+] [38 <../Graphics/fixxednode.pdf>]
+<../Graphics/OBD_rad_ex_12pw01.png, id=893, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD_rad_ex_12pw01.png Graphic file (type png)
+
+<use ../Graphics/OBD_rad_ex_12pw01.png>
+<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=894, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png>
+
+LaTeX Warning: Reference `fig:OBD_noble_Atoms_2D_combo' on page 39 undefined on
+ input line 1195.
+
+[39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [40 <../Graphics/OBD_rad_ex_12pw01.png> <../Graphics/OBD/OBD_Atoms/2D/Berylliu
+m.png>]
+[41]
+Underfull \vbox (badness 1521) has occurred while \output is active []
+
+ [42]
+[43] <../Graphics/BlockingExampleUncorr.png, id=961, 586.8324pt x 442.2924pt>
+File: ../Graphics/BlockingExampleUncorr.png Graphic file (type png)
+
+<use ../Graphics/BlockingExampleUncorr.png>
+<../Graphics/BlockingExampleCorr.png, id=962, 586.8324pt x 442.2924pt>
+File: ../Graphics/BlockingExampleCorr.png Graphic file (type png)
+
+<use ../Graphics/BlockingExampleCorr.png> [44 <../Graphics/BlockingExampleUncor
+r.png> <../Graphics/BlockingExampleCorr.png>]) [45] [46
+
+
+] [47
+
+] [48] [49
+
 
 ]
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 47.
-
-(/usr/share/texmf-texlive/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-))
-(../chapters/appendix/appendixViz.tex [50]
-Appendix B.
-[51
-
-] [52]
-
-LaTeX Warning: Reference `fig:OBD_QDOTS3D_highfreq' on page 53 undefined on inp
-ut line 131.
+[50] (./jorgenh_thesis.bbl [51
 
 
-Underfull \vbox (badness 7685) has occurred while \output is active []
-
- [53]
-[54] [55] <../Graphics/gui.png, id=1400, 231.86626pt x 282.30469pt>
-File: ../Graphics/gui.png Graphic file (type png)
-
-<use ../Graphics/gui.png> [56]) (../chapters/appendix/appendixSympy.tex
-[57 <../Graphics/gui.png>] [58
-
-]
-Appendix C.
-[59] [60] [61] [62
-
-] [63] [64] [65])
-(../chapters/appendix/HarmonicOscillator.tex [66]
-Appendix D.
-[67
-
-] [68] [69] [70] [71] [72]) (../chapters/appendix/3DHO.tex [73] [74
-
-
-
-
-
-
-
-]
-Appendix E.
-[75] [76] [77] [78] [79]) (../chapters/appendix/hydrogenic.tex [80
-
-
-
-
-
-
-]
-Appendix F.
-[81] [82] [83] [84] [85] [86]) (./jorgenh_thesis.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-[87
-
-
-
-
-
-
-
-]) [88] (./jorgenh_thesis.aux)
+]) [52] (./jorgenh_thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 11844 strings out of 493848
- 167518 string characters out of 1152823
- 539189 words of memory out of 3000000
- 13664 multiletter control sequences out of 15000+50000
- 17807 words of font info for 72 fonts, out of 3000000 for 9000
+ 9837 strings out of 493848
+ 142345 string characters out of 1152823
+ 259189 words of memory out of 3000000
+ 12647 multiletter control sequences out of 15000+50000
+ 14707 words of font info for 55 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 44i,14n,58p,942b,1874s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,17n,58p,1030b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
-b></usr/share/texmf-texlive/fonts/type1/public/doublestroke/dsrom10.pfb>
-Output written on jorgenh_thesis.pdf (88 pages, 788579 bytes).
+xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cmextra/cmex7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbol
+s/msbm10.pfb>
+Output written on jorgenh_thesis.pdf (52 pages, 1053324 bytes).
 PDF statistics:
- 2158 PDF objects out of 2487 (max. 8388607)
- 1166 named destinations out of 1200 (max. 500000)
- 480 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1134 PDF objects out of 1200 (max. 8388607)
+ 238 named destinations out of 1000 (max. 500000)
+ 430 words of extra memory for PDF output out of 10000 (max. 10000000)
 

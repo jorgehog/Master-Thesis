@@ -6,49 +6,51 @@ Database file #1: ../bibtex/bibtex.bib.bib
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in MD1
+Warning--empty journal in QMCDIFF
+Warning--empty year in QMCDIFF
 Warning--empty note in morten
+Warning--edition ordinal word "{Revised ed}" may be too high (or improper) for conversion in Sakurai:94
 
 Done.
-You've used 23 entries,
+You've used 18 entries,
             4039 wiz_defined-function locations,
-            952 strings with 10311 characters,
-and the built_in function-call counts, 11593 in all, are:
-= -- 958
-> -- 183
-< -- 69
-+ -- 97
-- -- 31
-* -- 527
-:= -- 1998
-add.period$ -- 42
-call.type$ -- 23
-change.case$ -- 18
-chr.to.int$ -- 150
-cite$ -- 25
-duplicate$ -- 869
-empty$ -- 1038
-format.name$ -- 37
-if$ -- 2593
+            921 strings with 9926 characters,
+and the built_in function-call counts, 8843 in all, are:
+= -- 703
+> -- 187
+< -- 44
++ -- 91
+- -- 36
+* -- 412
+:= -- 1520
+add.period$ -- 35
+call.type$ -- 18
+change.case$ -- 16
+chr.to.int$ -- 102
+cite$ -- 22
+duplicate$ -- 662
+empty$ -- 796
+format.name$ -- 46
+if$ -- 1964
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 151
-newline$ -- 116
-num.names$ -- 22
-pop$ -- 363
+int.to.str$ -- 18
+missing$ -- 121
+newline$ -- 89
+num.names$ -- 20
+pop$ -- 304
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 2
-skip$ -- 934
+quote$ -- 4
+skip$ -- 693
 stack$ -- 0
-substring$ -- 339
-swap$ -- 620
-text.length$ -- 19
+substring$ -- 212
+swap$ -- 453
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 23
-warning$ -- 2
-while$ -- 44
-width$ -- 25
-write$ -- 246
-(There were 2 warnings)
+type$ -- 18
+warning$ -- 4
+while$ -- 33
+width$ -- 20
+write$ -- 184
+(There were 4 warnings)

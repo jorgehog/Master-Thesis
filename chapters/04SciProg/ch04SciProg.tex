@@ -407,7 +407,7 @@ Another gain by this structuring files this way, is that tools such as Make, QMa
 
 In scientific programming, the simulated process often has a physical or mathematical interpretation. Some examples are, for instance, atoms in molecular dynamics and Bose-Einstein condensates, random walkers in diffusion processes, etc. Implementing classes representing these quantities will shorten the gap between the mathematical formulation of the problem and the implementation.
 
-In addition, quantities such as the energy, entropy and temperature, are all calculated based on equations from statistical mechanics, quantum mechanics, or similar. Having class methods representing these calculations will again shorten the gap. There is no question what is done when the \verb+system.get_potential_energy+ method is called, however, if some random loop appears in the main solver, an initial investigation is required in order to understand the flow of the code.
+In addition, quantities such as the energy, entropy and temperature, are all calculated based on equations from statistical mechanics, quantum mechanics, or similar. Having class methods representing these calculations will again shorten the gap. There is no question what is done when the \verb+system::get_potential_E+ method is called, however, if some random loop appears in the main solver, an initial investigation is required in order to understand the flow of the code.
 
 As described in Section \ref{sec:typeCastPoly}, abstracting for example the potential energy function into a system object opens up the possibility of generalizing the code to any potential without altering the main solver. Structure is in other words vital if readability and versatility is desired. 
 

@@ -21,47 +21,48 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Hirth}
-C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
-  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
+\bibitem{griffiths}
+D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
+  plus 0.5em minus 0.4em\relax Pearson, 2005.
 
-\bibitem{H_He_exact}
-M.~Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
-  Application of Fermion Monte Carlo Variational Method},'' \emph{Int. Journal
-  of Quantum Chemistry}, 1981.
+\bibitem{Shavitt}
+I.~Shavitt and R.~J. Bartlett, \emph{{Many-Body Methods in Chemistry and
+  Physics}}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge: Cambridge
+  University Press, 2009.
 
-\bibitem{ExactMolecules}
+\bibitem{QMCDIFF}
 \BIBentryALTinterwordspacing
-S.~Datta, S.~A. Alexander, and R.~L. Coldwell, ``{Properties of selected
-  diatomics using variational Monte Carlo methods},'' \emph{The Journal of
-  Chemical Physics}, vol. 120, no.~8, pp. 3642--3647, 2004. [Online].
-  Available: \url{http://link.aip.org/link/?JCP/120/3642/1}
+J.~J. Mares \emph{et~al.}, ``{Periodic reactions and quantum diffusion}.''
+  [Online]. Available:
+  \url{http://www.fzu.cz/~sestak/yyx/periodic%20reactions.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem{AtomsExact}
-M.~Degroote, ``\BIBforeignlanguage{English}{{Faddeev random phase approximation
-  applied to molecules}},'' \emph{\BIBforeignlanguage{English}{The European
-  Physical Journal Special Topics}}, vol. 218, no.~1, pp. 1--70, 2013.
+\bibitem{abInitioMC}
+B.~Hammond, J.~{W. A. Lester}, and P.~J. Reynolds, \emph{{Monte Carlo Methods
+  in Ab Initio Quantum Chemistry}}, S.~Lin, Ed.\hskip 1em plus 0.5em minus
+  0.4em\relax World Scientific Publishing Co., 1994.
 
-\bibitem{KryptonExact}
+\bibitem{Gardiner:2004bk}
 \BIBentryALTinterwordspacing
-H.~Partridge, ``{Near Hartree--Fock quality GTO basis sets for the first- and
-  third-row atoms},'' \emph{The Journal of Chemical Physics}, vol.~90, no.~2,
-  pp. 1043--1047, 1989. [Online]. Available:
-  \url{http://link.aip.org/link/?JCP/90/1043/1}
+C.~W. Gardiner, \emph{{Handbook of stochastic methods for physics, chemistry,
+  and the natural sciences}}, 3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax
+  Berlin: Springer-Verlag, 2004. [Online]. Available:
+  \url{http://www.loc.gov/catdir/enhancements/fy0818/2004043676-d.html}
 \BIBentrySTDinterwordspacing
 
-\bibitem{forcesQMC}
-\BIBentryALTinterwordspacing
-A.~Badinski, P.~D. Haynes, J.~R. Trail, and R.~J. Needs, ``{Methods for
-  calculating forces within quantum Monte Carlo simulations},'' \emph{Journal
-  of Physics: Condensed Matter}, vol.~22, no.~7, p. 074202, 2010. [Online].
-  Available: \url{http://stacks.iop.org/0953-8984/22/i=7/a=074202}
-\BIBentrySTDinterwordspacing
+\bibitem{risken1989fpe}
+H.~Risken and H.~Haken, \emph{{The Fokker-Planck Equation: Methods of Solution
+  and Applications Second Edition}}.\hskip 1em plus 0.5em minus 0.4em\relax
+  Springer, 1989.
 
-\bibitem{Olsen}
-V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
-  Dots},'' Master's thesis, University of Oslo, 2012.
+\bibitem{langevin}
+W.~T. Coffey, Y.~P. Kalmykov, and J.~T. Waldron, \emph{{The Langevin Equation:
+  With Applications to Stochastic Problems in Physics, Chemistry, and
+  Electrical Engineering. }}.\hskip 1em plus 0.5em minus 0.4em\relax World
+  Scientific, Singapore, 2004.
+
+\bibitem{morten}
+M.~Hjorth-Jensen, ``{Computational Physics},'' 2010.
 
 \bibitem{libBorealisCode}
 \BIBentryALTinterwordspacing
@@ -69,88 +70,54 @@ J.~H{\o}gberget, \emph{{Git Repository: LibBorealis}}, 2013. [Online].
   Available: \url{http://www.github.com/jorgehog/QMC2}
 \BIBentrySTDinterwordspacing
 
-\bibitem{MD1}
-M.~Barisik and A.~Beskok, ``{Equilibrium molecular dynamics studies on
-  nanoscale-confined fluids},'' vol.~11, no.~3, pp. 269--282, Sep. 2011.
+\bibitem{Sakurai:94}
+J.~J. Sakurai, \emph{{Modern Quantum Mechanics}}, {Revised ed}~ed.\hskip 1em
+  plus 0.5em minus 0.4em\relax New York: Addison-Wesley, 1994.
 
-\bibitem{MD2}
+\bibitem{larseivind}
+L.~E. Lerv{\aa}g, ``{VMC CALCULATIONS OF TWO-DIMENSIONAL QUANTUM DOTS},''
+  Master's thesis, University of Oslo, 2010.
+
+\bibitem{QMCPHD2008}
 \BIBentryALTinterwordspacing
-K.~P. Travis and K.~E. Gubbins, ``{Poiseuille flow of Lennard-Jones fluids in
-  narrow slit pores},'' \emph{The Journal of Chemical Physics}, vol. 112,
-  no.~4, pp. 1984--1994, 2000. [Online]. Available:
-  \url{http://link.aip.org/link/?JCP/112/1984/1}
+D.~A. Nissenbaum, ``{The stochastic gradient approximation: an application to
+  li nanoclusters},'' Ph.D. dissertation, Northeastern University, 2008.
+  [Online]. Available: \url{http://hdl.handle.net/2047/d10016466}
 \BIBentrySTDinterwordspacing
 
-\bibitem{supermen}
-C.~J. Murray, \emph{{The SUPERMEN}}.\hskip 1em plus 0.5em minus 0.4em\relax New
-  York: Wiley, 1997.
-
-\bibitem{inf3331}
-\BIBentryALTinterwordspacing
-H.~P. Langtangen, \emph{{Python Scripting for Computational Science}},
-  3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2008. [Online].
-  Available:
-  \url{http://www.bibsonomy.org/bibtex/240eb1bb4f4f80d745c3df06a8e882392/hake}
-\BIBentrySTDinterwordspacing
-
-\bibitem{pythonBook}
-\BIBentryALTinterwordspacing
-M.~Lutz, \emph{{Programming Python - powerful object-oriented programming (3.
-  ed.).}}\hskip 1em plus 0.5em minus 0.4em\relax O'Reilly, 2006. [Online].
-  Available: \url{http://www.oreilly.de/catalog/python3/index.html;
-  http://www.bibsonomy.org/bibtex/2b34de9c149a4962403c89fe6360cd3b7/dblp}
-\BIBentrySTDinterwordspacing
-
-\bibitem{inf1100}
-\BIBentryALTinterwordspacing
-H.~P. Langtangen, \emph{{A primer on scientific programming with
-  Python}}.\hskip 1em plus 0.5em minus 0.4em\relax Berlin; Heidelberg; New
-  York: Springer, 2011. [Online]. Available:
-  \url{http://www.worldcat.org/search?qt=worldcat_org_all&q=9783642183652}
-\BIBentrySTDinterwordspacing
-
-\bibitem{ORegan}
-\BIBentryALTinterwordspacing
-G.~O'Regan, \emph{{A Brief History of Computing, Second Edition.}}\hskip 1em
-  plus 0.5em minus 0.4em\relax Springer, 2012. [Online]. Available:
-  \url{http://dx.doi.org/10.1007/978-1-4471-2359-0}
-\BIBentrySTDinterwordspacing
-
-\bibitem{linAlg}
-D.~C. Lay, \emph{{Linear Algebra and its Applications}}, 4th~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Pearson, 2012.
-
-\bibitem{abInitioMC}
-B.~Hammond, J.~{W. A. Lester}, and P.~J. Reynolds, \emph{{Monte Carlo Methods
-  in Ab Initio Quantum Chemistry}}, S.~Lin, Ed.\hskip 1em plus 0.5em minus
-  0.4em\relax World Scientific Publishing Co., 1994.
-
-\bibitem{morten}
-M.~Hjorth-Jensen, ``{Computational Physics},'' 2010.
-
-\bibitem{griffiths}
-D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
-  plus 0.5em minus 0.4em\relax Pearson, 2005.
+\bibitem{UmrigarMolecules}
+C.~Filippi and C.~J. Umrigar, ``{Multiconfiguration wave function for quantum
+  Monte Carlo calculations of first-row diatomic molecules},'' \emph{The
+  Journal of Chemical Physics}, vol. 105, Jul. 1996.
 
 \bibitem{golub1996matrix}
 G.~Golub and C.~{Van Loan}, \emph{{Matrix computations}}.\hskip 1em plus 0.5em
   minus 0.4em\relax Johns Hopkins Univ Press, 1996, vol.~3.
 
-\bibitem{Matplotlib}
+\bibitem{ASGD_MB}
+A.~{Harju}, B.~{Barbiellini}, S.~{Siljam{\"a}ki}, R.~M. {Nieminen}, and
+  G.~{Ortiz}, ``{Stochastic Gradient Approximation: An Efficient Method to
+  Optimize Many-Body Wave Functions},'' \emph{Physical Review Letters},
+  vol.~79, pp. 1173--1177, Aug. 1997.
+
+\bibitem{ASGD}
 \BIBentryALTinterwordspacing
-(2013, May) {Matplotlib website}. [Online]. Available:
-  \url{http://matplotlib.org}
+S.~Klein, J.~P.~W. Pluim, M.~Staring, and M.~A. Viergever, ``{Adaptive
+  Stochastic Gradient Descent Optimisation for Image Registration.}''
+  \emph{International Journal of Computer Vision}, vol.~81, no.~3, pp.
+  227--239, 2009. [Online]. Available:
+  \url{http://dx.doi.org/10.1007/s11263-008-0168-y}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Pyside}
-\BIBentryALTinterwordspacing
-(2013, May) {PySide website}. [Online]. Available:
-  \url{http://qt-project.org/wiki/Category:LanguageBindings::PySide}
-\BIBentrySTDinterwordspacing
+\bibitem{leinaas}
+J.~M. Leinaas, ``{Non-Relativistic Quantum Mechanics},'' lecture notes FYS4110.
 
-\bibitem{SymPy}
+\bibitem{flyvbjerg:461}
 \BIBentryALTinterwordspacing
-(2013, May) {SymPy website}. [Online]. Available: \url{http://sympy.org}
+H.~Flyvbjerg and H.~G. Petersen, ``{Error estimates on averages of correlated
+  data},'' \emph{The Journal of Chemical Physics}, vol.~91, no.~1, pp.
+  461--466, 1989. [Online]. Available:
+  \url{http://link.aip.org/link/?JCP/91/461/1}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

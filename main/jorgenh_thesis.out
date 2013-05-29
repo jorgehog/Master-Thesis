@@ -1,58 +1,43 @@
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}
 \BOOKMARK [-1][-]{part.1}{I Theory}{}
-\BOOKMARK [0][-]{chapter.2}{Scientific Programming}{part.1}
-\BOOKMARK [1][-]{section.2.1}{Programming Languages}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.1.1}{High-level Languages}{section.2.1}
-\BOOKMARK [2][-]{subsection.2.1.2}{Low-level Languages}{section.2.1}
-\BOOKMARK [1][-]{section.2.2}{Object Orientation}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{A Brief Introduction to Essential Concepts}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.2}{Inheritance}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.3}{Pointers, Typecasting and Virtual Functions}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.4}{Polymorphism}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.5}{Const Correctness}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.6}{Accessibility levels and Friend classes}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.7}{Example: PotionGame}{section.2.2}
-\BOOKMARK [1][-]{section.2.3}{Structuring the code}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.3.1}{File Structures}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.2}{Class Structures}{section.2.3}
-\BOOKMARK [0][-]{chapter.3}{Generalization and Optimization}{part.1}
-\BOOKMARK [1][-]{section.3.1}{Underlying Assumptions and Goals}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.1.1}{Assumptions}{section.3.1}
-\BOOKMARK [2][-]{subsection.3.1.2}{Generalization Goals}{section.3.1}
-\BOOKMARK [2][-]{subsection.3.1.3}{Optimization Goals}{section.3.1}
-\BOOKMARK [1][-]{section.3.2}{Specifics Regarding Generalization}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.2.1}{Generalization Goals \(i\)-\(vii\)}{section.3.2}
-\BOOKMARK [2][-]{subsection.3.2.2}{Generalization Goal \(vi\) and Expanded bases}{section.3.2}
-\BOOKMARK [2][-]{subsection.3.2.3}{Generalization Goal \(viii\)}{section.3.2}
-\BOOKMARK [1][-]{section.3.3}{Optimizations due to a Single two-level Determinant}{chapter.3}
-\BOOKMARK [1][-]{section.3.4}{Optimizations due to Single-particle Moves}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.4.1}{Optimizing the Slater ratios}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.2}{Optimizing the Inverse}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.3}{Optimizing the Pad\351 Jastrow factor Ratio}{section.3.4}
-\BOOKMARK [1][-]{section.3.5}{Optimizing the Pad\351 Jastrow Derivative Ratios}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.5.1}{The Gradient}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.2}{The Laplacian}{section.3.5}
-\BOOKMARK [1][-]{section.3.6}{Tabulating Recalculated Data}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.6.1}{The relative distance matrix}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.2}{The Slater related matrices}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.3}{The Pad\351 Jastrow gradient}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.4}{The single-particle Wave Functions}{section.3.6}
-\BOOKMARK [1][-]{section.3.7}{CPU Cache Optimization}{chapter.3}
+\BOOKMARK [0][-]{chapter.1}{Quantum Monte-Carlo}{part.1}
+\BOOKMARK [1][-]{section.1.1}{Modelling Diffusion}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.1.1}{Stating the Schr\366dinger Equation as a Diffusion Problem}{section.1.1}
+\BOOKMARK [1][-]{section.1.2}{Solving the Diffusion Problem}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.2.1}{Isotropic Diffusion}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.2}{Anisotropic Diffusion and the Fokker-Planck equation}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.3}{The connection between anisotropic- and isotropic diffusion models}{section.1.2}
+\BOOKMARK [1][-]{section.1.3}{Diffusive Equilibrium Constraints}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.3.1}{Detailed Balance}{section.1.3}
+\BOOKMARK [2][-]{subsection.1.3.2}{Ergodicity}{section.1.3}
+\BOOKMARK [1][-]{section.1.4}{The Metropolis Algorithm}{chapter.1}
+\BOOKMARK [1][-]{section.1.5}{The Process of Branching}{chapter.1}
+\BOOKMARK [1][-]{section.1.6}{The Trial Wave Function}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.6.1}{Many-body Wave Functions}{section.1.6}
+\BOOKMARK [2][-]{subsection.1.6.2}{Choice of Trial Wave function}{section.1.6}
+\BOOKMARK [2][-]{subsection.1.6.3}{Selecting Optimal Variational Parameters}{section.1.6}
+\BOOKMARK [2][-]{subsection.1.6.4}{Calculating Expectation Values}{section.1.6}
+\BOOKMARK [2][-]{subsection.1.6.5}{Normalization}{section.1.6}
+\BOOKMARK [1][-]{section.1.7}{Gradient Descent Methods}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.7.1}{General Gradient Descent}{section.1.7}
+\BOOKMARK [2][-]{subsection.1.7.2}{Stochastic Gradient Descent}{section.1.7}
+\BOOKMARK [2][-]{subsection.1.7.3}{Adaptive Stochastic Gradient Descent}{section.1.7}
+\BOOKMARK [1][-]{section.1.8}{Variational Monte-Carlo}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.8.1}{Motivating the use of Diffusion Theory}{section.1.8}
+\BOOKMARK [2][-]{subsection.1.8.2}{Implementation}{section.1.8}
+\BOOKMARK [2][-]{subsection.1.8.3}{Limitations}{section.1.8}
+\BOOKMARK [1][-]{section.1.9}{Diffusion Monte-Carlo}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.9.1}{Implementation}{section.1.9}
+\BOOKMARK [2][-]{subsection.1.9.2}{Sampling the Energy}{section.1.9}
+\BOOKMARK [2][-]{subsection.1.9.3}{Limitations}{section.1.9}
+\BOOKMARK [2][-]{subsection.1.9.4}{Fixed node approximation}{section.1.9}
+\BOOKMARK [1][-]{section.1.10}{Estimating One-body Densities}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.10.1}{Estimating the Exact Ground State Density}{section.1.10}
+\BOOKMARK [2][-]{subsection.1.10.2}{Radial Densities}{section.1.10}
+\BOOKMARK [1][-]{section.1.11}{Estimating the Statistical Error}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.11.1}{The Variance and Standard Deviates}{section.1.11}
+\BOOKMARK [2][-]{subsection.1.11.2}{The Covariance and correlated samples}{section.1.11}
+\BOOKMARK [2][-]{subsection.1.11.3}{The Deviate from the Exact Mean}{section.1.11}
+\BOOKMARK [2][-]{subsection.1.11.4}{Blocking}{section.1.11}
+\BOOKMARK [2][-]{subsection.1.11.5}{Variance Estimators}{section.1.11}
 \BOOKMARK [-1][-]{part.2}{II Results}{}
-\BOOKMARK [0][-]{appendix.A}{Dirac Notation}{part.2}
-\BOOKMARK [0][-]{appendix.B}{DCViz: Visualization of Data}{part.2}
-\BOOKMARK [1][-]{section.B.1}{Basic Usage}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.1.1}{The Terminal Client}{section.B.1}
-\BOOKMARK [2][-]{subsection.B.1.2}{The Application Programming Interface \(API\)}{section.B.1}
-\BOOKMARK [0][-]{appendix.C}{Auto-generation with SymPy}{part.2}
-\BOOKMARK [1][-]{section.C.1}{Usage}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.1.1}{Symbolic Algebra}{section.C.1}
-\BOOKMARK [2][-]{subsection.C.1.2}{Exporting C++ and Latex Code}{section.C.1}
-\BOOKMARK [2][-]{subsection.C.1.3}{Calculating Derivatives}{section.C.1}
-\BOOKMARK [1][-]{section.C.2}{Using the auto-generation Script}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.2.1}{Generating Latex code}{section.C.2}
-\BOOKMARK [2][-]{subsection.C.2.2}{Generating C++ code}{section.C.2}
-\BOOKMARK [0][-]{appendix.D}{Harmonic Oscillator Orbitals 2D}{part.2}
-\BOOKMARK [0][-]{appendix.E}{Harmonic Oscillator Orbitals 3D}{part.2}
-\BOOKMARK [0][-]{appendix.F}{Hydrogen Orbitals}{part.2}
-\BOOKMARK [0][-]{section*.73}{Bibliography}{part.2}
+\BOOKMARK [0][-]{section*.15}{Bibliography}{part.2}
