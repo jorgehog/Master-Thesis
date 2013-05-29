@@ -49,7 +49,7 @@ class Player:
     #Lists the potions to the user.
     def displayPotions(self):
         if not self.potions:
-            print "  No potions aviable"
+            print "  No potions available"
             
         for potion in self.potions: print "  " + potion.name     
     

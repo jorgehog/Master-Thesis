@@ -1,57 +1,60 @@
 \chapter{Scientific Programming}
 \label{ch:SciProg}
 
-The introduction of the computer around World War II had a major impact on the mathematical fields of science. Previously unsolvable problems were now  solvable. The question was no longer whether or not it was possible, but rather to what precision and with which method. The computer spawned a new branch of physics, \textit{computational physics}, redefining the limits of our understanding of nature. The first major result of this synergy between science and computers came with the infamous atomic bombs \textit{Little Boy} and \textit{Fat Man}, a product of \textit{The Manhattan Project} leaded by \textit{J. Robert Oppenheimer} \cite{supermen}. 
+The introduction of the computer around World War II had a major impact on the mathematical fields of science. Previously unsolvable problems were now solvable. The question was no longer whether or not it was possible, but rather to what precision and with which method. The computer spawned a new branch of physics, \textit{computational physics}, redefining the limits of our understanding of nature. The first major result of this synergy between science and computers came with the infamous atomic bombs \textit{Little Boy} and \textit{Fat Man}, a product of \textit{The Manhattan Project} lead by \textit{J. Robert Oppenheimer} \cite{supermen}. 
 
 \section{Programming Languages}
 
-Programming is the art of writing computer programs. A program is a list of instructions for the computer often referred to as \textit{code}. It is in many ways similar to human-to-human instructions; for instance, different programming languages may be used to write instructions, such as \textit{C++}, \textit{Python} or \textit{Java}, as long as the recipient is able to translate it. The instructions may be translated a priori of execution, i.e the code is \textit{compiled}, or it may be translated \textit{run-time} by an \textit{interpreter}. 
+Programming is the art of writing computer programs. A program is a list of instructions for the computer, commonly referred to as \textit{code}. It is in many ways similar to human-to-human instructions; for instance, different programming languages may be used to write instructions, such as \textit{C++}, \textit{Python} or \textit{Java}, as long as the recipient is able to translate it. The instructions may be translated prior to the execution, i.e~the code is \textit{compiled}, or it may be translated \textit{run-time} by an \textit{interpreter}. 
 
-The native language of the computer is \textit{binary}: Ones and zeros, i.e. high - or low voltage. Every character, number, color, etc. is on the lowest level represented as a sequence of binary numbers referred to as \textit{bits}. Programming languages, in other words, serve as a bridge between the binary language of computers and a more manageable language for everyday programmers.
+The native language of the computer is \textit{binary}: Ones and zeros, which corresponds to high - and low voltage readings. Every character, number, color, etc. is on the lowest level represented by a sequence of binary numbers referred to as \textit{bits}. In other words, programming languages serve as a bridge between the binary language of computers and a more manageable language for everyday programmers.
 
-The closer the programming language at hand is to pure processor (CPU) instructions\footnote{The CPU is the part of the computer responsible for flipping bits.}, the lower the \textit{level} of the language is. This section will introduce high- and low level languages, focusing on C++ and Python, as these were the most used languages throughout this thesis.   
+The closer the programming language at hand is to pure processor (CPU) instructions\footnote{The CPU is the part of the computer responsible for flipping bits.}, the lower the \textit{level} of the language is. This section will introduce high- and low level languages, focusing on C++ and Python, as these are the most commonly used languages throughout this thesis.   
 
 
 \subsection{High-level Languages}
 
-Scientific programming involves an array of different tasks, all from pure visualization and organization of data to efficient memory allocation and processing. For less CPU-intensive tasks, the runtime of the program is so small that efficiency becomes irrelevant, leaving languages which prefer simplicity and structure over efficiency the optimal tool for the job. These languages are referred to as \textit{high-level languages} \footnote{There are different definitions of the distinction between high- and low-level languages. Languages such as \textit{assembly} is extremely complex and close to machine code, leaving all machine-independent languages as high-level ones. However, for the purpose of this thesis I will not go into assembly languages, and keep the distinction at a higher level.}.
+Scientific programming involves a vast amount of different tasks, all from pure visualization and organization of data, to efficient memory allocation and processing. For less CPU-intensive tasks, the runtime of the program is so small that the efficiency becomes irrelevant, leaving languages which prefer simplicity and structure over efficiency the optimal tool for the job. These languages are referred to as \textit{high-level languages} \footnote{There are different definitions of the distinction between high- and low-level languages. Languages such as \textit{assembly} is extremely complex and close to machine code, leaving all machine-independent languages as high-level in comparison. However, for the purpose of this thesis, the distinction will be set at a higher level than assembly.}.
 
-High-level codes are often short and structured designed with a specific aim such as analyzing raw data, administrating input and output from different tools, creating a \textit{Graphical User Interface} (GUI), or gluing together different programs which are meant to be run sequentially or in parallel. These short specific codes are referred to as \textit{scripts}, and hence high-level languages designed for these tasks often are referred to as \textit{scripting languages}\cite{inf3331, pythonBook}. 
+High-level codes are often short snippets designed with a specific aim such as analyzing raw data, administrating input and output from different tools, creating a \textit{Graphical User Interface} (GUI), or \textit{gluing} different programs, which are meant to be run sequentially or in parallel, together into one. These short specific codes are referred to as \textit{scripts}, hence high-level languages designed for these tasks are commonly referred to as \textit{scripting languages}\cite{inf3331, pythonBook}. 
 
-Examples of high-level languages are Python, Ruby, Perl, Visual Basic and UNIX shells. Excellent introductions to these languages are found throughout the World Wide Web.
+Some examples of high-level languages are Python, Ruby, Perl, Visual Basic and UNIX shells. Excellent introductions to these languages are found throughout the World Wide Web.
 
 \subsubsection{Python}
 \label{sec:Python}
 
-Named after the infamous \textit{Monte Python's flying circus}, Python is an easy to learn open source interpreted programming language invented by Guido van Rossum around 1990 designed for optimized development time through very clean and rigorous coding syntax \cite{inf1100, pythonBook}. 
+Named after the infamous \textit{Monte Python's flying circus}, Python is an easy to learn open source interpreted programming language invented by Guido van Rossum around 1990. Python is designed for optimized development time by having a very clean and rigorous coding syntax \cite{inf1100, pythonBook}. 
 
-To demonstrate the simplicity of Python, let us have a look at a simple implementation and execution of the following expression
+To demonstrate the simplicity of Python, consider the following simple expression
 
-\[
- S = \sum_{i=1}^{100} i = 5050.  \label{eq:sum100}
-\]
+\begin{equation}
+ S = \sum_{i=1}^{100} i = 5050.  \label{eq:sum100},
+\end{equation}
+
+which is calculated in Python by the following expression:
 
 \lstinputlisting[language=Python]{../CodeInputs/Sum100Python.py}
 
+Executing the script yields the expected result:
 
 \begin{verbatim}
 ~$ python Sum100Python.py 
 5050
 \end{verbatim}
 
- For details regarding the basics of Python, I suggest reading Ref. \cite{inf1100}, or more advanced topics in Ref. \cite{inf3331}.  
+For details regarding the basics of Python, see Ref. \cite{inf1100}, or Ref. \cite{inf3331} for more advanced topics.  
 
 
 \subsection{Low-level Languages}
 \label{sec:lowlevel}
 
-Scientific programming involves solving complex equations. Complexity does not necessarily imply that the equations themselves are hard to understand; frankly, this is often not the case. In most cases of e.g. linear algebra, the problem can be boiled down to solving $\mathbf{A}\mathbf{x} = \mathbf{b}$, however, the complexity lies in the dimensionality of the problem at hand. Matrix dimensions range as high as millions. With each element being a double precision number (8 bytes or 64 bits), it is crucial to have full control of the memory and execute operations as efficiently as possible. 
+Scientific programming often involves solving complex equations. Complexity does not necessarily imply that the equations themselves are hard to understand; frankly, this is often not the case. In most cases of for example linear algebra, the problem at hand can be boiled down to solving $\mathbf{A}\mathbf{x} = \mathbf{b}$, however, the complexity lies in the dimensionality of the problem at hand. Matrix dimensions often range as high as millions. With each element being a double precision number (8 bytes or 64 bits), it is crucial to have full control of the memory and execute operations as efficiently as possible. 
 
 This is where lower level languages excel. Hiding few to none of the details, the power is in the hand of the programmer. This, however, comes at a price: More technical concepts such as memory pointers, declarations, compiling, linking, etc. makes the development process slower than that of a higher-level language. 
 
-Moreover, requesting access to an uninitialized element outside the bounds of an allocated array, Python will provide a detailed error message with proper traceback, whereas the compiled C++ code would crash runtime leaving nothing but a ``segmentation fault'' for the user. The payoff comes when the optimized program ends up running for days, in contrast to the high-level implementation which might end up running for months.
+Moreover, requesting access to an uninitialized element outside the bounds of an allocated array, Python will provide a detailed error message with proper traceback, whereas the compiled C++ code would simply crash runtime, leaving nothing but a ``segmentation fault'' for the user. The payoff comes when the optimized program ends up running for days, in contrast to the high-level implementation which might end up running for months.
 
-In addition, several options to optimize compiled machine code are available by having the compiler rearrange the way instructions are sent to the processor. Details regarding memory latency optimization will be discussed in section \ref{sec:CPUcache}. 
+In addition, several options to optimize compiled machine code are available by having the compiler rearrange the way instructions are sent to the processor. Details regarding memory latency optimization will be discussed in Section \ref{sec:CPUcache}. 
 
 \subsubsection{C++}
 
@@ -69,65 +72,75 @@ C++ is a programming language developed by Bjarne Stroustrup in 1983. It serves 
 
 Notice that, unlike Python, C++ requests an explicit declaration of \textit{S} as an integer variable. This in turn tells the compiler the exact amount of memory needed to store the variable, opening up the possibility of efficient memory optimization. 
 
-Even though this is an extremely simply example, it illustrates the difference in coding styles between high- and low-level languages. The next section will cover the basics needed to understand object orientation in C++, and how it can be used to develop larger generalized coding frameworks.
+Even though this is an extremely simply example, it illustrates the difference in coding styles between high- and low-level languages. The next section will cover the basics needed to understand object orientation in C++, and how it can be used to develop generalized coding frameworks.
 
 \section{Object Orientation}
 \label{sec:OO}
 
-The concept of classes and objects were introduced for the first time in the language \textit{Simula 67}, developed by the Norwegian scientists Ole-Johan Dahl and Kristen Nygaard at the Norwegian Computing Research Center \cite{ORegan}. Object orientation quickly became the state-of-the-art in programming, and has since enjoyed great success in numerous computational fields. 
+The concept of classes and objects were introduced for the first time in the language \textit{Simula 67}, developed by the Norwegian scientists Ole-Johan Dahl and Kristen Nygaard at the Norwegian Computing Research Center \cite{ORegan}. Object orientation quickly became the state-of-the-art in programming, and has ever since enjoyed great success in numerous computational fields. 
 
-Object orientation ties everyday intuition into the programming language. Humans are object oriented without noticing it, in the sense that the focus is around \textit{objects} of \textit{classes}, e.g. an animal of a certain species, artifacts of a certain culture, people of a certain country, etc. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter, however, for the sake of completeness, a brief introductory to class syntax is given.
+Object orientation ties everyday intuition into the programming language. Humans are object oriented without noticing it, in the sense that the focus is around \textit{objects} of \textit{classes}, for instance, an animal of a certain species, artifacts of a certain culture, people of a certain country, etc. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter, however, for the sake of completeness, a brief introductory to class syntax is given.
 
 \subsection{A Brief Introduction to Essential Concepts}
 
 \subsubsection{Members}
 
-As mentioned, a class in its simplest representation is a collection of variables and functions unique to a specified object of the class\footnote{Members can be shared by all class instances in C++ by using the static keyword. This will make the variables and function obtainable without initializing an object as well.}. When an object is created, it is uniquely identified by its own set of member variables.
+A class in its simplest representation is a collection of variables and functions unique to a specified object of the class\footnote{Members can be shared by all class instances in C++ by using the static keyword. This will make the variables and function obtainable without initializing an object as well.}. When an object is created, it is uniquely identified by its own set of member variables.
 
-An important member of a class is the object itself. In Python, this is called \verb+self+, and must, due to the interpreter nature of the language, be present in all function calls.
+An important member of a class is the object itself. In Python, this intrinsic mirror image is called \verb+self+, and must, due to the interpreter nature of the language, be present in all function calls. In C++, it is available in any class member function as the \verb+this+ pointer. Making changes to \verb+self+ or \verb+this+ inside a function is equivalent to changing the object outside the function. It is nothing but a way for an object to have access to itself at any time.
 
 \subsubsection{Constructors}
 
 The constructor is the class function responsible for initializing new objects. When requesting a new instance of a class, a constructor is called with specific input parameters. In Python, the constructor is called \verb+__init__()+, while in C++, the name of the constructor must match that of the class, e.g. \verb+someClass::someClass()+\footnote{The double colon notation means ``someClass' member someClass()''.}.
 
+Creating a new object is simply done by calling the constructor
+
+\begin{lstlisting}
+someClass* someObject = new SomeClass("constructor argument");
+\end{lstlisting}
+
+The constructor can then assign values to member variables based on the input parameters.
+
 \subsubsection{Destructors}
 
 Opposite to constructors, destructors are responsible for deleting an object. In Python this is automatically done by the \textit{garbage collector}, however, in C++ this is sometimes important in order to avoid memory leaks. The destructor is implemented as the function \verb+someClass::~someClass()+, and is invoked by typing e.g. \verb+delete someObject;+.
 
+Reference \cite{inf1100} is suggested for further introduction to basic concepts of classes.  
+
 \subsection{Inheritance}
 
-Consider the abstract idea of a keyboard: A board and keys (obviously). In object orientation terms, the \textit{superclass} of keyboards describe a board with keys. It is \textit{abstract} in the sense that no specific information regarding the formation or functionality of the keys is needed in order to define the concept of a keyboard.
+Consider the abstract idea of a keyboard: A board and keys (obviously). In object orientation terms, the keyboard \textit{superclass} describes a board with keys. It is \textit{abstract} in the sense that no specific information regarding the formation or functionality of the keys is needed in order to define the concept of a keyboard.
 
 On the other hand, there exist different specific kinds of keyboards, e.g. computer keyboards or musical keyboards. Although quite different in design and function, they both relate to the same concept of a keyboard described previously: They are both \textit{subclasses} of the same superclass, inheriting the basic concepts, but overloading the abstract parts with specific implementations. 
 
-The following examples will assume a basic knowledge of programming concepts such as constructors and functions. Consider the following Python implementation of a keyboard superclass
+Consider the following Python implementation of a keyboard superclass:
 
 \vspace{0.5cm}
-\lstinputlisting[language=Python]{../CodeInputs/KeyBoardSuper.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/KeyBoardSuper.py}
 
 
-This class does not function on its own, and is clearly an abstract class meant for sub-classing. Potential subclasses are e.g. computer - and musical keyboards. An easy way to visualize this inheritance relation is by drawing an \textit{inheritance diagram} as in figure \ref{fig:UMLkeyboard}. A python implementation of these subclasses are given on the next page. 
+This class does not function on its own, and is clearly an abstract class meant for sub-classing. Examples of subclasses of keyboards are as mentioned computer - and musical keyboards. An easy way to visualize this inheritance relation is by drawing an \textit{inheritance diagram} as in Figure \ref{fig:UMLkeyboard}. A python implementation of these subclasses are given on the next page. 
 
 \begin{figure}[h]
  \begin{center}
-  \includegraphics[scale=0.27]{../Graphics/UMLkeyboard.pdf}
-  \caption{Inheritance diagram for a Keyboard superclass. Class members are listed below the class name.}
+  \includegraphics[scale=0.35]{../Graphics/UMLkeyboard.pdf}
+  \caption{Inheritance diagram for a keyboard superclass. Class members are listed below the class name.}
   \label{fig:UMLkeyboard}
  \end{center}
 \end{figure}
 
 \clearpage
-\lstinputlisting[language=Python]{../CodeInputs/KeyboardClassPython.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/KeyboardClassPython.py}
 
-It is clear from looking at the superclass that two keyboard are at least different in the way their keys are set up. Not overriding the \verb+setupKeys()+ function would cause the generic superclass constructor to call the function which would raise an exception and close the program. These kinds of superclass member functions which requires an implementation in order for the object to be constructed are referred to as \textit{pure virtual functions}\footnote{We could simply choose not to call the superclass constructor in the given example, however, let's assume for the sake of proving a point that we can't.}. The other two functions does not necessarily have to be implemented, and are thus referred to as \textit{virtual} functions. These topics will be discussed in more detail in the next section.
+It is clear from looking at the superclass that two keyboards are differentiated by the way their keys are set up. Not overriding the \verb+setupKeys()+ function would cause the generic superclass constructor to call the function which would raise an exception and close the program. These kinds of superclass member functions, which requires an implementation in order for the object to be constructed, are referred to as \textit{pure virtual functions}. The other two functions do not necessarily have to be implemented, and are thus referred to as \textit{virtual} functions. These topics will be discussed in more detail in the next section.
 
 \subsection{Pointers, Typecasting and Virtual Functions}
 
-A pointer is a hexadecimal number representing a memory address where some \textit{type} of object is stored, e.g. a \verb+int+ at \verb+0x7fff0882306c+ (\verb+0x+ simply implies hexadecimal). Higher level languages like Python handles all the pointers and typesetting automatically. In low-level languages like C++, however, you need to control everything. This is commonly referred to as \textit{type safety}. 
+A pointer is a hexadecimal number representing a memory address where some \textit{type} of object is stored, for instance, an \verb+int+ at \verb+0x7fff0882306c+ (\verb+0x+ simply implies hexadecimal). Higher level languages like Python handles all the pointers and typesetting automatically. In low-level languages like C++, however, you need to control everything. This is commonly referred to as \textit{type safety}. 
 
 Memory addresses are \textit{global}, that is, they are shared throughout the program. This implies that changes done to a pointer to an object, e.g. \verb+Keyboard* myKeyboard+, are applied everywhere the object is in use. This is particularly handy (or dangerous) when passing a pointer as an argument to a function, as changes applied to the given object will cause the object to remain changed after exiting the function. Passing non-pointer arguments would only change a local copy of the object which is destroyed upon exiting the function. The alternative would be to pass the reference to the object, e.g. \verb+&myObject+, which passes the address just as in the case of pointers. 
 
-Creating a pointer to a keyboard object in C++ can be done in several ways, e.g. 
+Creating a pointer to a keyboard object in C++ can be done in several ways. Following are three examples: 
 \begin{lstlisting}
 MusicalKeyboard* myKeyboard1 = new MusicalKeyboard(...);
 Keyboard* myKeyboard2 = new MusicalKeyboard(...);
@@ -141,12 +154,12 @@ Keyboard* myKeyboard2 = (Keyboard*) myKeyboard1;
 
 For reasons which will be explained in Section \ref{sec:typeCastPoly}, the second expression is extremely handy. Technically, the subclass object is \textit{type cast} to the superclass type. This is allowed since \textit{any subclass is type-compatible with a pointer to it's superclass}. Any standard functions implemented in the subclass will not be directly callable from outside the object itself, and identical functions will be overwritten by the corresponding superclass functions, unless the functions are \textit{virtual}. Flagging a function as virtual in the superclass will then tell the compiler not to overwrite this particular function when a subclass object is typecast to the superclass type.
 
-Python does not support virtual functions in the same strict sense as C++, since typecasting does not make sense in a dynamically (automatically) typed language. The following example should bring some clarity to the current topic.
+Python does not support virtual functions in the same strict sense as C++, since typecasting is \textit{automagic} in a language which is not type safe. The following example should bring some clarity to the current topic:
 
 \vspace{0.5 cm}
 \lstinputlisting[language=c++]{../CodeInputs/virtualFunctionsC++.cpp}
 \clearpage
-\lstinputlisting{../CodeInputs/virtualFunctionsC++MAIN.cpp}
+\lstinputlisting[caption={hei}]{../CodeInputs/virtualFunctionsC++MAIN.cpp}
 
 \begin{verbatim}
 ~$ ./virtualFunctionsC++.x 
@@ -336,7 +349,7 @@ In this section the focus has not been solely on scientific computing, but rathe
 On the following page, a game is constructed using the \verb+Player+ and \verb+Potion+ classes. 
  
 \clearpage
-\lstinputlisting[language=Python]{../CodeInputs/potionGameMain.py}
+\lstinputlisting[language=Python, otherkeywords={self}]{../CodeInputs/potionGameMain.py}
 
 \scriptsize
 \begin{verbatim}

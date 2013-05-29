@@ -16,7 +16,7 @@ public:
 	void notVirtual()  {cout << "subclass non virtual"               << endl;}
 };
 
-//Testfunc is set to retrieve a superClass pointer, then calls all the functions.
+//Testfunc retrieves a superClass pointer, then calls all the functions.
 void testFunc(superClass* someObject){
 	someObject->pureVirtual(); someObject->justVirtual(); someObject->notVirtual();
 }

@@ -78,7 +78,7 @@ The percentages listed in the following table is the total time spent inside thi
 
 This result is not surprisingly equal to $15\cdot 3$, since a $30$ particle quantum dot has $15$ unique quantum numbers. One set is used by the orbitals, and two by their gradients (the Laplacian is not a part of the diffusion). Prior to this optimization, $45$ exponential calls were needed to fill a row in the Slater matrix and the derivative matrix; this has been reduced to one.
 
-\subsubsection{Overall optimization}
+\subsubsection{Overall optimization and final scaling}
 
 Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling is presented in Figure \ref{fig:scaling}.
 
@@ -121,6 +121,7 @@ It is obvious that the orbital for quantum dots contain a higher computational c
 
 The fact that the difference in the cost of the single particle wave functions govern the scaling demonstrates the efficiency in the general framework. Moreover, having the molecular system scaling almost identically to the atomic one demonstrates the efficiency of the system's implementation. 
 
+Both Variational Monte-Carlo (VMC) and Adaptive Stochastic Gradient Descent (ASGD) scales linearly with the number of processors, due to the fact that the processes does not require any communication besides summing final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the walker population on different nodes. Depending on whether some nodes have more deaths or newborns than the others, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is linear. 
 
 
 

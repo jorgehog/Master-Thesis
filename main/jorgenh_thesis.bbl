@@ -116,219 +116,25 @@ G.~O'Regan, \emph{{A Brief History of Computing, Second Edition.}}\hskip 1em
   \url{http://dx.doi.org/10.1007/978-1-4471-2359-0}
 \BIBentrySTDinterwordspacing
 
-\bibitem{griffiths}
-D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
-  plus 0.5em minus 0.4em\relax Pearson, 2005.
+\bibitem{linAlg}
+D.~C. Lay, \emph{{Linear Algebra and its Applications}}, 4th~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Pearson, 2012.
 
 \bibitem{abInitioMC}
 B.~Hammond, J.~{W. A. Lester}, and P.~J. Reynolds, \emph{{Monte Carlo Methods
   in Ab Initio Quantum Chemistry}}, S.~Lin, Ed.\hskip 1em plus 0.5em minus
   0.4em\relax World Scientific Publishing Co., 1994.
 
-\bibitem{Gardiner:2004bk}
-\BIBentryALTinterwordspacing
-C.~W. Gardiner, \emph{{Handbook of stochastic methods for physics, chemistry,
-  and the natural sciences}}, 3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax
-  Berlin: Springer-Verlag, 2004. [Online]. Available:
-  \url{http://www.loc.gov/catdir/enhancements/fy0818/2004043676-d.html}
-\BIBentrySTDinterwordspacing
-
-\bibitem{risken1989fpe}
-H.~Risken and H.~Haken, \emph{{The Fokker-Planck Equation: Methods of Solution
-  and Applications Second Edition}}.\hskip 1em plus 0.5em minus 0.4em\relax
-  Springer, 1989.
-
-\bibitem{langevin}
-W.~T. Coffey, Y.~P. Kalmykov, and J.~T. Waldron, \emph{{The Langevin Equation:
-  With Applications to Stochastic Problems in Physics, Chemistry, and
-  Electrical Engineering. }}.\hskip 1em plus 0.5em minus 0.4em\relax World
-  Scientific, Singapore, 2004.
-
 \bibitem{morten}
 M.~Hjorth-Jensen, ``{Computational Physics},'' 2010.
 
-\bibitem{Sakurai:94}
-J.~J. Sakurai, \emph{{Modern Quantum Mechanics}}, {Revised ed}~ed.\hskip 1em
-  plus 0.5em minus 0.4em\relax New York: Addison-Wesley, 1994.
-
-\bibitem{Shavitt}
-I.~Shavitt and R.~J. Bartlett, \emph{{Many-Body Methods in Chemistry and
-  Physics}}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge: Cambridge
-  University Press, 2009.
-
-\bibitem{larseivind}
-L.~E. Lerv{\aa}g, ``{VMC CALCULATIONS OF TWO-DIMENSIONAL QUANTUM DOTS},''
-  Master's thesis, University of Oslo, 2010.
-
-\bibitem{QMCPHD2008}
-\BIBentryALTinterwordspacing
-D.~A. Nissenbaum, ``{The stochastic gradient approximation: an application to
-  li nanoclusters},'' Ph.D. dissertation, Northeastern University, 2008.
-  [Online]. Available: \url{http://hdl.handle.net/2047/d10016466}
-\BIBentrySTDinterwordspacing
-
-\bibitem{UmrigarMolecules}
-C.~Filippi and C.~J. Umrigar, ``{Multiconfiguration wave function for quantum
-  Monte Carlo calculations of first-row diatomic molecules},'' \emph{The
-  Journal of Chemical Physics}, vol. 105, Jul. 1996.
+\bibitem{griffiths}
+D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
+  plus 0.5em minus 0.4em\relax Pearson, 2005.
 
 \bibitem{golub1996matrix}
 G.~Golub and C.~{Van Loan}, \emph{{Matrix computations}}.\hskip 1em plus 0.5em
   minus 0.4em\relax Johns Hopkins Univ Press, 1996, vol.~3.
-
-\bibitem{ASGD_MB}
-A.~{Harju}, B.~{Barbiellini}, S.~{Siljam{\"a}ki}, R.~M. {Nieminen}, and
-  G.~{Ortiz}, ``{Stochastic Gradient Approximation: An Efficient Method to
-  Optimize Many-Body Wave Functions},'' \emph{Physical Review Letters},
-  vol.~79, pp. 1173--1177, Aug. 1997.
-
-\bibitem{ASGD}
-\BIBentryALTinterwordspacing
-S.~Klein, J.~P.~W. Pluim, M.~Staring, and M.~A. Viergever, ``{Adaptive
-  Stochastic Gradient Descent Optimisation for Image Registration.}''
-  \emph{International Journal of Computer Vision}, vol.~81, no.~3, pp.
-  227--239, 2009. [Online]. Available:
-  \url{http://dx.doi.org/10.1007/s11263-008-0168-y}
-\BIBentrySTDinterwordspacing
-
-\bibitem{leinaas}
-J.~M. Leinaas, ``{Non-Relativistic Quantum Mechanics},'' lecture notes FYS4110.
-
-\bibitem{flyvbjerg:461}
-\BIBentryALTinterwordspacing
-H.~Flyvbjerg and H.~G. Petersen, ``{Error estimates on averages of correlated
-  data},'' \emph{The Journal of Chemical Physics}, vol.~91, no.~1, pp.
-  461--466, 1989. [Online]. Available:
-  \url{http://link.aip.org/link/?JCP/91/461/1}
-\BIBentrySTDinterwordspacing
-
-\bibitem{linAlg}
-D.~C. Lay, \emph{{Linear Algebra and its Applications}}, 4th~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Pearson, 2012.
-
-\bibitem{SolidHarmonics}
-\BIBentryALTinterwordspacing
-J.~F. Rico, R.~L{\'o}pez, I.~Ema, and G.~Ram{\'i}rez, ``{Translation of real
-  solid spherical harmonics},'' \emph{International Journal of Quantum
-  Chemistry}, vol. 113, no.~10, pp. 1544--1548, 2013. [Online]. Available:
-  \url{http://dx.doi.org/10.1002/qua.24356}
-\BIBentrySTDinterwordspacing
-
-\bibitem{QDOTS_SOLAR}
-\BIBentryALTinterwordspacing
-A.~Kongkanand, K.~Tvrdy, K.~Takechi, M.~Kuno, and P.~V. Kamat,
-  ``\BIBforeignlanguage{English}{{Quantum dot solar cells. Tuning photoresponse
-  through size and shape control of CdSe-TiO2 architecture}},''
-  \emph{\BIBforeignlanguage{English}{JOURNAL OF THE AMERICAN CHEMICAL
-  SOCIETY}}, vol. 130, no.~12, pp. 4007--4015, MAR 26 2008. [Online].
-  Available:
-  \url{http://www.bibsonomy.org/bibtex/2ffade594a495f1ff6f9ab2db5db1277d/almai%
-ler}
-\BIBentrySTDinterwordspacing
-
-\bibitem{QDOTS_LASER}
-G.~Park, O.~Shchekin, D.~Huffaker, and D.~Deppe, ``{Low-threshold
-  oxide-confined 1.3- micrometer quantum-dot laser},'' \emph{Photonics
-  Technology Letters, IEEE}, vol.~12, no.~3, pp. 230--232, 2000.
-
-\bibitem{QDOTS_MEDICINE}
-E.~Ben-Ari, ``{Nanoscale quantum dots hold promise for cancer applications},''
-  \emph{J. Natl. Cancer Inst.}, vol.~90, pp. 502--504, 2003.
-
-\bibitem{QDOTS_QUANTUM}
-\BIBentryALTinterwordspacing
-D.~Loss and D.~P. Vincenzo, ``{Quantum computation with quantum dots},''
-  \emph{Phys.~Rev.~A}, vol.~57, p. 120, 1998. [Online]. Available:
-  \url{http://www.bibsonomy.org/bibtex/2bbc8cb777c995f0096cff50df2681b43/bronc%
-kobuster}
-\BIBentrySTDinterwordspacing
-
-\bibitem{doubleWellExpt}
-\BIBentryALTinterwordspacing
-R.~V. Shenoi, J.~Hou, Y.~Sharma, J.~Shao, T.~E. Vandervelde, and S.~Krishna,
-  ``{Low strain quantum dots in a double well infrared detector},'' pp.
-  708\,207--708\,207--6, 2008. [Online]. Available:
-  \url{http://dx.doi.org/10.1117/12.795661}
-\BIBentrySTDinterwordspacing
-
-\bibitem{ymwang}
-Y.~M. Wang, ``{Coupled-Cluster Studies of Double Quantum Dots},'' Master's
-  thesis, University of Oslo, 2011.
-
-\bibitem{taut}
-\BIBentryALTinterwordspacing
-M.~Taut, ``{Two electrons in an external oscillator potential: Particular
-  analytic solutions of a Coulomb correlation problem},'' \emph{Phys. Rev. A},
-  vol.~48, pp. 3561--3566, Nov 1993. [Online]. Available:
-  \url{http://link.aps.org/doi/10.1103/PhysRevA.48.3561}
-\BIBentrySTDinterwordspacing
-
-\bibitem{MagnusArticle}
-\BIBentryALTinterwordspacing
-M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva,
-  ``{\textit{Ab initio} computation of the energies of circular quantum
-  dots},'' \emph{Phys. Rev. B}, vol.~84, p. 115302, Sep 2011. [Online].
-  Available: \url{http://link.aps.org/doi/10.1103/PhysRevB.84.115302}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Sarah}
-S.~Reimann, ``{Quantum-mechanical systems in traps and Similarity
-  Renormalization Group theory},'' Master's thesis, University of Oslo, 2013.
-
-\bibitem{WignerMolecule}
-\BIBentryALTinterwordspacing
-C.~Yannouleas and U.~Landman, ``{Symmetry breaking and quantum correlations in
-  finite systems: studies of quantum dots and ultracold Bose gases and related
-  nuclear and chemical methods},'' \emph{Reports on Progress in Physics},
-  vol.~70, no.~12, p. 2067, 2007. [Online]. Available:
-  \url{http://stacks.iop.org/0034-4885/70/i=12/a=R02}
-\BIBentrySTDinterwordspacing
-
-\bibitem{WignerCrystal}
-\BIBentryALTinterwordspacing
-E.~Wigner, ``{On the Interaction of Electrons in Metals},'' \emph{Phys. Rev.},
-  vol.~46, pp. 1002--1011, Dec 1934. [Online]. Available:
-  \url{http://link.aps.org/doi/10.1103/PhysRev.46.1002}
-\BIBentrySTDinterwordspacing
-
-\bibitem{WignerCrystal2}
-\BIBentryALTinterwordspacing
-------, ``{Effects of the electron interaction on the energy levels of
-  electrons in metals},'' \emph{Trans. Faraday Soc.}, vol.~34, pp. 678--685,
-  1938. [Online]. Available: \url{http://dx.doi.org/10.1039/TF9383400678}
-\BIBentrySTDinterwordspacing
-
-\bibitem{FockVirial}
-V.~Fock, ``{Bemerkung zum Virialsatz},'' \emph{Zeitschrift f{\"u}r Physik},
-  vol.~63, no. 11-12, pp. 855--858, Nov. 1930.
-
-\bibitem{UniversityPhysics}
-H.~D. Young, R.~Freedman, and L.~Ford, \emph{{Sears and Zemansky's University
-  Physics}}, 12th~ed.\hskip 1em plus 0.5em minus 0.4em\relax Pearson,
-  Addison-Wesley, 2008.
-
-\bibitem{ReaxFF}
-\BIBentryALTinterwordspacing
-A.~C.~T. van Duin, S.~Dasgupta, F.~Lorant, and W.~A. Goddard, ``{ReaxFF: A
-  Reactive Force Field for Hydrocarbons},'' \emph{The Journal of Physical
-  Chemistry A}, vol. 105, no.~41, pp. 9396--9409, 2001. [Online]. Available:
-  \url{http://pubs.acs.org/doi/abs/10.1021/jp004368u}
-\BIBentrySTDinterwordspacing
-
-\bibitem{vmcAtoms}
-H.~Sandsdalen, ``{Variational Monte Carlo studies of Atoms},'' Master's thesis,
-  University of Oslo, 2010.
-
-\bibitem{momentspaceQMC}
-\BIBentryALTinterwordspacing
-A.~Bulgac and M.~M. Forbes, ``{Use of the discrete variable representation
-  basis in nuclear physics},'' \emph{Phys. Rev. C}, vol.~87, p. 051301, May
-  2013. [Online]. Available:
-  \url{http://link.aps.org/doi/10.1103/PhysRevC.87.051301}
-\BIBentrySTDinterwordspacing
-
-\bibitem{CCSD_WF}
-A.~Roggero, F.~Pederiva, and A.~Mukherjee, arXiv:1304.1549 [nucl-th].
 
 \bibitem{Matplotlib}
 \BIBentryALTinterwordspacing

@@ -44,8 +44,8 @@ class MusicalKeyboard(Keyboard):
 
      def pressKey(self, key):
 
-         #returns harmonic wave with frequency and amplitude
-         #representing key pressed and volume level.
+         #Returns a harmonic wave with frequency and amplitude
+         #extracted from the pressed key and the volume level.
          outout = ...
          self.outputDevice.play(key, output)
 
