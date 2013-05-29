@@ -12,45 +12,45 @@ Warning--empty journal in CCSD_WF
 Warning--empty year in CCSD_WF
 
 Done.
-You've used 16 entries,
+You've used 30 entries,
             4039 wiz_defined-function locations,
-            911 strings with 9353 characters,
-and the built_in function-call counts, 8931 in all, are:
-= -- 760
-> -- 146
-< -- 64
-+ -- 82
-- -- 23
-* -- 429
-:= -- 1500
-add.period$ -- 27
-call.type$ -- 16
-change.case$ -- 14
-chr.to.int$ -- 135
-cite$ -- 20
-duplicate$ -- 665
-empty$ -- 711
-format.name$ -- 29
-if$ -- 1984
+            1015 strings with 11840 characters,
+and the built_in function-call counts, 18023 in all, are:
+= -- 1584
+> -- 310
+< -- 133
++ -- 172
+- -- 50
+* -- 855
+:= -- 3013
+add.period$ -- 55
+call.type$ -- 30
+change.case$ -- 27
+chr.to.int$ -- 282
+cite$ -- 34
+duplicate$ -- 1335
+empty$ -- 1401
+format.name$ -- 63
+if$ -- 4050
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 117
-newline$ -- 87
-num.names$ -- 13
-pop$ -- 263
+int.to.str$ -- 30
+missing$ -- 223
+newline$ -- 143
+num.names$ -- 27
+pop$ -- 470
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 711
+skip$ -- 1450
 stack$ -- 0
-substring$ -- 324
-swap$ -- 513
-text.length$ -- 19
+substring$ -- 696
+swap$ -- 1068
+text.length$ -- 39
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 16
+type$ -- 30
 warning$ -- 4
-while$ -- 34
-width$ -- 18
-write$ -- 183
+while$ -- 72
+width$ -- 32
+write$ -- 337
 (There were 4 warnings)
