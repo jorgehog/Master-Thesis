@@ -1,56 +1,53 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: jorgenh_thesis.aux
 The style file: IEEEtran.bst
+I found no \citation commands---while reading file jorgenh_thesis.aux
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: ../bibtex/bibtex.bib.bib
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in MD1
-Warning--empty title in CCSD_WF
-Warning--empty journal in CCSD_WF
-Warning--empty year in CCSD_WF
 
 Done.
-You've used 30 entries,
+You've used 0 entries,
             4039 wiz_defined-function locations,
-            1015 strings with 11840 characters,
-and the built_in function-call counts, 18023 in all, are:
-= -- 1584
-> -- 310
-< -- 133
-+ -- 172
-- -- 50
-* -- 855
-:= -- 3013
-add.period$ -- 55
-call.type$ -- 30
-change.case$ -- 27
-chr.to.int$ -- 282
-cite$ -- 34
-duplicate$ -- 1335
-empty$ -- 1401
-format.name$ -- 63
-if$ -- 4050
+            810 strings with 7247 characters,
+and the built_in function-call counts, 103 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 19
+:= -- 26
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 3
 int.to.chr$ -- 0
-int.to.str$ -- 30
-missing$ -- 223
-newline$ -- 143
-num.names$ -- 27
-pop$ -- 470
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 23
+num.names$ -- 0
+pop$ -- 0
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1450
+skip$ -- 1
 stack$ -- 0
-substring$ -- 696
-swap$ -- 1068
-text.length$ -- 39
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 30
-warning$ -- 4
-while$ -- 72
-width$ -- 32
-write$ -- 337
-(There were 4 warnings)
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 22
+(There was 1 error message)
