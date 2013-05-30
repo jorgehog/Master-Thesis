@@ -1,43 +1,44 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
 \BOOKMARK [-1][-]{part.1}{I Theory}{}
-\BOOKMARK [0][-]{chapter.1}{Quantum Monte-Carlo}{part.1}
-\BOOKMARK [1][-]{section.1.1}{Modelling Diffusion}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.1.1}{Stating the Schr\366dinger Equation as a Diffusion Problem}{section.1.1}
-\BOOKMARK [1][-]{section.1.2}{Solving the Diffusion Problem}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.2.1}{Isotropic Diffusion}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.2}{Anisotropic Diffusion and the Fokker-Planck equation}{section.1.2}
-\BOOKMARK [2][-]{subsection.1.2.3}{Connecting Anisotropic - and Isotropic Diffusion Models}{section.1.2}
-\BOOKMARK [1][-]{section.1.3}{Diffusive Equilibrium Constraints}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.3.1}{Detailed Balance}{section.1.3}
-\BOOKMARK [2][-]{subsection.1.3.2}{Ergodicity}{section.1.3}
-\BOOKMARK [1][-]{section.1.4}{The Metropolis Algorithm}{chapter.1}
-\BOOKMARK [1][-]{section.1.5}{The Process of Branching}{chapter.1}
-\BOOKMARK [1][-]{section.1.6}{The Trial Wave Function}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.6.1}{Many-body Wave Functions}{section.1.6}
-\BOOKMARK [2][-]{subsection.1.6.2}{Choosing the Trial Wave Function}{section.1.6}
-\BOOKMARK [2][-]{subsection.1.6.3}{Selecting Optimal Variational Parameters}{section.1.6}
-\BOOKMARK [2][-]{subsection.1.6.4}{Calculating Expectation Values}{section.1.6}
-\BOOKMARK [2][-]{subsection.1.6.5}{Normalization}{section.1.6}
-\BOOKMARK [1][-]{section.1.7}{Gradient Descent Methods}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.7.1}{General Gradient Descent}{section.1.7}
-\BOOKMARK [2][-]{subsection.1.7.2}{Stochastic Gradient Descent}{section.1.7}
-\BOOKMARK [2][-]{subsection.1.7.3}{Adaptive Stochastic Gradient Descent}{section.1.7}
-\BOOKMARK [1][-]{section.1.8}{Variational Monte-Carlo}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.8.1}{Motivating the use of Diffusion Theory}{section.1.8}
-\BOOKMARK [2][-]{subsection.1.8.2}{Implementation}{section.1.8}
-\BOOKMARK [2][-]{subsection.1.8.3}{Limitations}{section.1.8}
-\BOOKMARK [1][-]{section.1.9}{Diffusion Monte-Carlo}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.9.1}{Implementation}{section.1.9}
-\BOOKMARK [2][-]{subsection.1.9.2}{Sampling the Energy}{section.1.9}
-\BOOKMARK [2][-]{subsection.1.9.3}{Limitations}{section.1.9}
-\BOOKMARK [2][-]{subsection.1.9.4}{Fixed node approximation}{section.1.9}
-\BOOKMARK [1][-]{section.1.10}{Estimating One-body Densities}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.10.1}{Estimating the Exact Ground State Density}{section.1.10}
-\BOOKMARK [2][-]{subsection.1.10.2}{Radial Densities}{section.1.10}
-\BOOKMARK [1][-]{section.1.11}{Estimating the Statistical Error}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.11.1}{The Variance and Standard Deviates}{section.1.11}
-\BOOKMARK [2][-]{subsection.1.11.2}{The Covariance and correlated samples}{section.1.11}
-\BOOKMARK [2][-]{subsection.1.11.3}{The Deviate from the Exact Mean}{section.1.11}
-\BOOKMARK [2][-]{subsection.1.11.4}{Blocking}{section.1.11}
-\BOOKMARK [2][-]{subsection.1.11.5}{Variance Estimators}{section.1.11}
+\BOOKMARK [0][-]{chapter.2}{Quantum Monte-Carlo}{part.1}
+\BOOKMARK [1][-]{section.2.1}{Modelling Diffusion}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.1.1}{Stating the Schr\366dinger Equation as a Diffusion Problem}{section.2.1}
+\BOOKMARK [1][-]{section.2.2}{Solving the Diffusion Problem}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Isotropic Diffusion}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Anisotropic Diffusion and the Fokker-Planck equation}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Connecting Anisotropic - and Isotropic Diffusion Models}{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{Diffusive Equilibrium Constraints}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Detailed Balance}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Ergodicity}{section.2.3}
+\BOOKMARK [1][-]{section.2.4}{The Metropolis Algorithm}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{The Process of Branching}{chapter.2}
+\BOOKMARK [1][-]{section.2.6}{The Trial Wave Function}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.6.1}{Many-body Wave Functions}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.2}{Choosing the Trial Wave Function}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.3}{Selecting Optimal Variational Parameters}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.4}{Calculating Expectation Values}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.5}{Normalization}{section.2.6}
+\BOOKMARK [1][-]{section.2.7}{Gradient Descent Methods}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.7.1}{General Gradient Descent}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.2}{Stochastic Gradient Descent}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.3}{Adaptive Stochastic Gradient Descent}{section.2.7}
+\BOOKMARK [1][-]{section.2.8}{Variational Monte-Carlo}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.8.1}{Motivating the use of Diffusion Theory}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.2}{Implementation}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.3}{Limitations}{section.2.8}
+\BOOKMARK [1][-]{section.2.9}{Diffusion Monte-Carlo}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.9.1}{Implementation}{section.2.9}
+\BOOKMARK [2][-]{subsection.2.9.2}{Sampling the Energy}{section.2.9}
+\BOOKMARK [2][-]{subsection.2.9.3}{Limitations}{section.2.9}
+\BOOKMARK [2][-]{subsection.2.9.4}{Fixed node approximation}{section.2.9}
+\BOOKMARK [1][-]{section.2.10}{Estimating One-body Densities}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.10.1}{Estimating the Exact Ground State Density}{section.2.10}
+\BOOKMARK [2][-]{subsection.2.10.2}{Radial Densities}{section.2.10}
+\BOOKMARK [1][-]{section.2.11}{Estimating the Statistical Error}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.11.1}{The Variance and Standard Deviates}{section.2.11}
+\BOOKMARK [2][-]{subsection.2.11.2}{The Covariance and correlated samples}{section.2.11}
+\BOOKMARK [2][-]{subsection.2.11.3}{The Deviate from the Exact Mean}{section.2.11}
+\BOOKMARK [2][-]{subsection.2.11.4}{Blocking}{section.2.11}
+\BOOKMARK [2][-]{subsection.2.11.5}{Variance Estimators}{section.2.11}
 \BOOKMARK [-1][-]{part.2}{II Results}{}
-\BOOKMARK [0][-]{section*.17}{Bibliography}{part.2}
+\BOOKMARK [0][-]{section*.18}{Bibliography}{part.2}

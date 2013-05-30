@@ -972,7 +972,7 @@ jabref-meta: selector_keywords:
 	note = "arXiv:1304.1549 [nucl-th]"
 }
 
-@article{PhysRevC.87.051301,
+@article{momentspaceQMC,
 	author = "Bulgac, Aurel and Forbes, Michael McNeil",
 	doi = "10.1103/PhysRevC.87.051301",
 	issue = "5",

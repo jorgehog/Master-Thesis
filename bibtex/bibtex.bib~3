@@ -987,3 +987,9 @@ jabref-meta: selector_keywords:
 	year = "2013"
 }
 
+@article{QMCDIFF,
+	author = "Mares, J. J. and others",
+	title = "{Periodic reactions and quantum diffusion}",
+	url = "http://www.fzu.cz/~sestak/yyx/periodic%20reactions.pdf"
+}
+

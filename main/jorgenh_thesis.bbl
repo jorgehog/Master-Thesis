@@ -21,6 +21,70 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{verdensBesteArtikkel}
+S.~Reimann, J.~H{\o}gberget, M.~Hjorth-Jensen, and S.~K. Bogner, ``{In-medium
+  similarity renormalization group approach studies of quantum dots}.''
+
+\bibitem{Hirth}
+C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
+  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{H_He_exact}
+M.~Kalos, ``{A new Look at Correlations in Atomic and Molecular Systems.
+  Application of Fermion Monte Carlo Variational Method},'' \emph{Int. Journal
+  of Quantum Chemistry}, 1981.
+
+\bibitem{ExactMolecules}
+\BIBentryALTinterwordspacing
+S.~Datta, S.~A. Alexander, and R.~L. Coldwell, ``{Properties of selected
+  diatomics using variational Monte Carlo methods},'' \emph{The Journal of
+  Chemical Physics}, vol. 120, no.~8, pp. 3642--3647, 2004. [Online].
+  Available: \url{http://link.aip.org/link/?JCP/120/3642/1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{AtomsExact}
+M.~Degroote, ``\BIBforeignlanguage{English}{{Faddeev random phase approximation
+  applied to molecules}},'' \emph{\BIBforeignlanguage{English}{The European
+  Physical Journal Special Topics}}, vol. 218, no.~1, pp. 1--70, 2013.
+
+\bibitem{KryptonExact}
+\BIBentryALTinterwordspacing
+H.~Partridge, ``{Near Hartree--Fock quality GTO basis sets for the first- and
+  third-row atoms},'' \emph{The Journal of Chemical Physics}, vol.~90, no.~2,
+  pp. 1043--1047, 1989. [Online]. Available:
+  \url{http://link.aip.org/link/?JCP/90/1043/1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{forcesQMC}
+\BIBentryALTinterwordspacing
+A.~Badinski, P.~D. Haynes, J.~R. Trail, and R.~J. Needs, ``{Methods for
+  calculating forces within quantum Monte Carlo simulations},'' \emph{Journal
+  of Physics: Condensed Matter}, vol.~22, no.~7, p. 074202, 2010. [Online].
+  Available: \url{http://stacks.iop.org/0953-8984/22/i=7/a=074202}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Olsen}
+V.~K.~B. Olsen, ``{Full Configuration Interaction Simulation of Quantum
+  Dots},'' Master's thesis, University of Oslo, 2012.
+
+\bibitem{libBorealisCode}
+\BIBentryALTinterwordspacing
+J.~H{\o}gberget, \emph{{Git Repository: LibBorealis}}, 2013. [Online].
+  Available: \url{http://www.github.com/jorgehog/QMC2}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MD1}
+M.~Barisik and A.~Beskok, ``{Equilibrium molecular dynamics studies on
+  nanoscale-confined fluids},'' vol.~11, no.~3, pp. 269--282, Sep. 2011.
+
+\bibitem{MD2}
+\BIBentryALTinterwordspacing
+K.~P. Travis and K.~E. Gubbins, ``{Poiseuille flow of Lennard-Jones fluids in
+  narrow slit pores},'' \emph{The Journal of Chemical Physics}, vol. 112,
+  no.~4, pp. 1984--1994, 2000. [Online]. Available:
+  \url{http://link.aip.org/link/?JCP/112/1984/1}
+\BIBentrySTDinterwordspacing
+
 \bibitem{griffiths}
 D.~Griffiths, \emph{{Introduction to Quantum Mechanics}}, 2nd~ed.\hskip 1em
   plus 0.5em minus 0.4em\relax Pearson, 2005.
@@ -65,14 +129,12 @@ W.~T. Coffey, Y.~P. Kalmykov, and J.~T. Waldron, \emph{{The Langevin Equation:
   Electrical Engineering. }}.\hskip 1em plus 0.5em minus 0.4em\relax World
   Scientific, Singapore, 2004.
 
+\bibitem{robertcasella}
+C.~Robert and G.~Casella, \emph{{Monte Carlo Statistical Methods}}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Springer Verlag, 2004.
+
 \bibitem{morten}
 M.~Hjorth-Jensen, ``{Computational Physics},'' 2010.
-
-\bibitem{libBorealisCode}
-\BIBentryALTinterwordspacing
-J.~H{\o}gberget, \emph{{Git Repository: LibBorealis}}, 2013. [Online].
-  Available: \url{http://www.github.com/jorgehog/QMC2}
-\BIBentrySTDinterwordspacing
 
 \bibitem{Sakurai:94}
 J.~J. Sakurai, \emph{{Modern Quantum Mechanics}}, {Revised ed}~ed.\hskip 1em
@@ -112,10 +174,6 @@ S.~Klein, J.~P.~W. Pluim, M.~Staring, and M.~A. Viergever, ``{Adaptive
   227--239, 2009. [Online]. Available:
   \url{http://dx.doi.org/10.1007/s11263-008-0168-y}
 \BIBentrySTDinterwordspacing
-
-\bibitem{Hirth}
-C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
-  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
 
 \bibitem{leinaas}
 J.~M. Leinaas, ``{Non-Relativistic Quantum Mechanics},'' lecture notes FYS4110.
