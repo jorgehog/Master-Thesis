@@ -231,10 +231,10 @@ where $\eta$ is a so-called \textit{noise term} from stochastic processes. Solvi
  x_{i+1} = x_i + \xi + DF(\mbf{r})_i\delta t,
 \end{equation}
 
-where $\xi$ is the same as for the isotropic case. Observe that when the drift term goes to zero, the Fokker-Planck - and isotropic solutions are equal, just as required. For more details regarding the Fokker-Planck Equation and Langevin equations, see Refs. \cite{Gardiner:2004bk}, \cite{risken1989fpe} and \cite{langevin}.
+where $\xi$ is the same as for the isotropic case. Observe that when the drift term goes to zero, the Fokker-Planck - and isotropic solutions are equal, just as required. For more details regarding the Fokker-Planck Equation and Langevin equations, see Refs. \cite{Gardiner:2004bk, risken1989fpe, langevin}.
 
 
-\subsection{The connection between anisotropic- and isotropic diffusion models}
+\subsection{Connecting Anisotropic - and Isotropic Diffusion Models}
 \label{sec:ConnectAnisIs}
 
 To this point, it might seem far-fetched that switching the diffusion model to a Fokker-Planck diffusion does not violate the original equation, i.e. the complex time Schrödinger equation (the projection operator). Introducing the distribution function $f(\mbf{r}, t) = \Phi(\mbf{r}, t)\Psi_T(\mbf{r})$, restating the imaginary time Schrödinger equation in terms of $f(\mbf{r}, t)$ yields
@@ -249,11 +249,11 @@ Expanding the Laplacian term further reveals
 
 \begin{eqnarray}
 K(\mbf{r}, t) &\equiv& -\frac{1}{2}\Psi_T(\mbf{r})\nabla^2 \left(\Psi_T(\mbf{r})^{-1}f(\mbf{r}, t)\right) \nonumber\\
- &=& -\frac{1}{2}\Psi_T(\mbf{r})\nabla\cdot (\nabla\left[\Psi_T(\mbf{r})^{-1}f(\mbf{r}, t)\right]) \\
-\nabla\left[\Psi_T(\mbf{r})^{-1}f(\mbf{r}, t)\right] &=& -\Psi_T(\mbf{r})^{-2}\nabla \Psi_T(\mbf{r}) f(\mbf{r}, t) + \Psi_T(\mbf{r})^{-1}\nabla f(\mbf{r}, t),
+ &=& -\frac{1}{2}\Psi_T(\mbf{r})\nabla\cdot (\nabla\left[\Psi_T(\mbf{r})^{-1}f(\mbf{r}, t)\right]), \\
+\nabla\left[\Psi_T(\mbf{r})^{-1}f(\mbf{r}, t)\right] &=& -\Psi_T(\mbf{r})^{-2}\nabla \Psi_T(\mbf{r}) f(\mbf{r}, t) + \Psi_T(\mbf{r})^{-1}\nabla f(\mbf{r}, t).
 \end{eqnarray}
 
-combining these two equations and using the product rule numerous time yields
+Combining these equations and applying the product rule numerous times yield
 
 \begin{eqnarray*}
 K(\mbf{r}, t) &=& -\frac{1}{2}\Psi_T(\mbf{r})\Big[\big(2\Psi_T(\mbf{r})^{-3}\left|\nabla\Psi_T(\mbf{r})\right|^2f(\mbf{r}, t) \\
@@ -270,8 +270,8 @@ K(\mbf{r}, t) &=& -\frac{1}{2}\Psi_T(\mbf{r})\Big[\big(2\Psi_T(\mbf{r})^{-3}\lef
 Introducing the following identity helps clean up the messy calculations:
 
 \begin{eqnarray*}
- \nabla\cdot\left(\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right) &=& -\Psi_T(\mbf{r})^{-2}\left|\nabla\Psi_T(\mbf{r})\right|^2 + \Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r}) \\
- \left|\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right|^2 &=& -\nabla\cdot\left(\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right) + \Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r}),
+%  \nabla\cdot\left(\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right) &=& -\Psi_T(\mbf{r})^{-2}\left|\nabla\Psi_T(\mbf{r})\right|^2 + \Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r}) \\
+ -\left|\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right|^2 &=& \nabla\cdot\left(\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\right) - \Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r}),
 \end{eqnarray*}
 
 which inserted into the expression for $K(\mbf{r}, t)$ reveals
@@ -283,52 +283,60 @@ K(\mbf{r}, t) &=&  \nabla\cdot\left(\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})\ri
         & & - \frac{1}{2}\nabla^2 f(\mbf{r}, t). \\
 \end{eqnarray*}
 
-Inserting the expression for the quantum force $\vec F(\mbf{r}) = 2\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})$ and the local kinetic energy $K_L(\mbf{r}) = -\frac{1}{2}\Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r})$ simplifies the expression dramatically
+Inserting the expression for the quantum force $\mbf{F}(\mbf{r}) = 2\Psi_T(\mbf{r})^{-1}\nabla\Psi_T(\mbf{r})$ and the local kinetic energy $K_L(\mbf{r}) = -\frac{1}{2}\Psi_T(\mbf{r})^{-1}\nabla^2\Psi_T(\mbf{r})$ simplifies the expression dramatically
 
 \begin{eqnarray*}
- K(\mbf{r}, t) &=& - \frac{1}{2}\nabla^2 f(\mbf{r}, t) + \frac{1}{2}\underbrace{\left[\vec F(\mbf{r})\cdot \nabla f(\mbf{r}, t) + f(\mbf{r}, t)\nabla\cdot \vec F(\mbf{r})\right]}_{\nabla\cdot\left[\vec F f(\mbf{r}, t)\right]} + K_L(\mbf{r})f(\mbf{r}, t)\\
-         &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(\mbf{r})\right)f(\mbf{r}, t)\right] + K_L(\mbf{r})f(\mbf{r}, t).
+ K(\mbf{r}, t) &=& - \frac{1}{2}\nabla^2 f(\mbf{r}, t) + \frac{1}{2}\underbrace{\left[\mbf{F}(\mbf{r})\cdot \nabla f(\mbf{r}, t) + f(\mbf{r}, t)\nabla\cdot \mbf{F}(\mbf{r})\right]}_{\nabla\cdot\left[\mbf{F} f(\mbf{r}, t)\right]} + K_L(\mbf{r})f(\mbf{r}, t)\\
+         &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \mbf{F}(\mbf{r})\right)f(\mbf{r}, t)\right] + K_L(\mbf{r})f(\mbf{r}, t).
 \end{eqnarray*}
 
 Inserting everything back into Eq.~(\ref{eq:impSamplRaw}) yields
 
 \begin{eqnarray}
- -\frac{\partial}{\partial t}f(\mbf{r}, t) &=& -\frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(\mbf{r})\right)f(\mbf{r}, t)\right] + K_L(\mbf{r})f(\mbf{r}, t) + \OP{V}f(\mbf{r}, t) - E_Tf(\mbf{r},t) \nonumber\\
-  \frac{\partial}{\partial t}f(\mbf{r}, t)  &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \vec F(\mbf{r})\right)f(\mbf{r}, t)\right] - \left(E_L(\mbf{r}) - E_T\right)f(\mbf{r}, t), 
+ -\frac{\partial}{\partial t}f(\mbf{r}, t) &=& -\frac{1}{2}\nabla\cdot \left[\left(\nabla - \mbf{F}(\mbf{r})\right)f(\mbf{r}, t)\right] + K_L(\mbf{r})f(\mbf{r}, t) + \OP{V}f(\mbf{r}, t) - E_Tf(\mbf{r},t) \nonumber\\
+  \frac{\partial}{\partial t}f(\mbf{r}, t)  &=& \frac{1}{2}\nabla\cdot \left[\left(\nabla - \mbf{F}(\mbf{r})\right)f(\mbf{r}, t)\right] - \left(E_L(\mbf{r}) - E_T\right)f(\mbf{r}, t), 
 \end{eqnarray}
 
-which is a Fokker-Planck diffusion equation (Eq.~(\ref{Eq:fokkerPlanck})) with constant shift representing the branching Green's function in the case Fokker-Planck QMC (see Eq.~(\ref{eq:branchFP}).
+which is the Fokker-Planck diffusion equation from Eq.~(\ref{Eq:fokkerPlanck}) with a constant shift representing the branching Green's function in the case Fokker-Planck diffusion.
 
-Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained by switching distributions into one which exploits known information about the problem at hand. In case of standard Monte-Carlo integration, the sampling distribution is substituted with one which are similar to the original integrand, resulting in a smoother sampled function, where as in Quantum Monte-Carlo, a distribution is constructed with the sole purpose of imitating the exact ground state in order to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{Importance sampled Quantum Monte-Carlo}.
+Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained in QMC by switching distributions into one which exploits known information about the problem at hand. In the case of standard Monte-Carlo integration, the sampling distribution is substituted with one which are similar to the original integrand, resulting in a smoother sampled function, where as in QMC, a distribution is constructed with the sole purpose of imitating the exact ground state in order to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{importance sampled} QMC.
 
-The QMC energy estimated using the new distribution $f(\mbf{r}, t)$ will still yield the exact energy in the limit of convergence. Consider the following relation:
+The energy estimated using the new distribution $f(\mbf{r}, t)$ will still equal the exact energy in the limit of convergence. This is demonstrated in the following equations:
 
 \begin{align*}
- E_\mathrm{DMC} &= \frac{1}{N}\int f(\mbf{r}, \tau) \frac{1}{\Psi_T(\mbf{r})} \OP{H} \Psi_T(\mbf{r}) \mathrm{d}\mbf{r} \\
+ E_\mathrm{QMC} &= \frac{1}{N}\int f(\mbf{r}, \tau) \frac{1}{\Psi_T(\mbf{r})} \OP{H} \Psi_T(\mbf{r}) \mathrm{d}\mbf{r} \\
                 &= \frac{1}{N}\int \Phi(\mbf{r}, \tau) \OP{H} \Psi_T(\mbf{r}) \mathrm{d}\mbf{r} \\
-                &= \frac{1}{N}\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T} \\
+                &= \frac{1}{N}\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T}, \\
+\end{align*}
+where 
+\begin{align*}
                N&= \int f(\mbf{r}, \tau) \mathrm{d}\mbf{r} \\
                 &= \int \Phi(\mbf{r}, \tau)\Psi_T(\mbf{r})\mathrm{d}\mbf{r} \\
-                &= \braket{\Phi(\tau)}{\Psi_T}\\
- E_\mathrm{DMC} &= \frac{\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T}}{\braket{\Phi(\tau)}{\Psi_T}}.\\
+                &= \braket{\Phi(\tau)}{\Psi_T},\\
+ \end{align*}
+which results in the following expression for the energy:
+\begin{align*}               
+ E_\mathrm{QMC} &= \frac{\bra{\Phi(\tau)}\OP{H}\ket{\Psi_T}}{\braket{\Phi(\tau)}{\Psi_T}}.\\
 \end{align*}
 
-Assuming the DMC has converged to the exact ground state, i.e. $\ket{\Phi(\tau)}\to\ket{\Phi_0}$, letting the Hamiltonian work to the left yields
+Assuming that the walkers have converged to the exact ground state, i.e.~$\ket{\Phi(\tau)}=\ket{\Phi_0}$, letting the Hamiltonian work to the left yields
 
 \begin{align*}
- E_\mathrm{DMC} &= E_0\frac{\braket{\Phi_0}{\Psi_T}}{\braket{\Phi_0}{\Psi_T}} \\
+ E_\mathrm{QMC} &= E_0\frac{\braket{\Phi_0}{\Psi_T}}{\braket{\Phi_0}{\Psi_T}} \\
                 &= E_0.
 \end{align*}
 
+Estimating the energy in QMC will be discussed in detail in Sections \ref{sec:calcExpVals} and \ref{sec:DMC}. 
+
 \section{Diffusive Equilibrium Constraints}
 
-Upon convergence of a Markov process, the ensemble of walkers on average span the systems most likely state. This is exactly the behavior of a real system of diffusing particles described by statistical mechanics: It will \textit{thermalize}, that is, reach equilibrium. 
+Upon convergence of a Markov process, the ensemble of walkers will on average span the system's most likely state. This is exactly the behavior of a system of diffusing particles described by statistical mechanics: It will \textit{thermalize}, that is, reach equilibrium. 
 
-Once thermalization is reached, expectation values may be sampled. However, simply spawning a Markov process and waiting for thermalization is an inefficient and unpractical scenario. This may take forever, and it may not; either way its not optimal. Introducing rules of acceptance and rejection on top of the suggested transitions given by the Langevin equation (Eq.~(\ref{eq:langevinSolSimple}) and Eq.~(\ref{eq:langevinSolFP})) will result in an optimized sampling. Special care must be taken not to break necessary properties of the Markov process. If any of the conditions discussed in this section break, there is no guarantee that the system will thermalize properly.
+Once thermalization is reached, expectation values may be sampled. However, simply spawning a Markov process and waiting for thermalization is an inefficient and unpractical scenario. This may take forever, or it may not; either way it is not optimal. Introducing rules of acceptance and rejection on top of the suggested transitions given by the Langevin equation in Eq.~(\ref{eq:langevinSolSimple} or Eq.~(\ref{eq:langevinSolFP}) will result in an optimized sampling. Special care must be taken not to violate necessary properties of the Markov process. If any of the conditions discussed in this section break, there is no guarantee that the system will thermalize properly.
 
 \subsection{Detailed Balance} 
 
-For Markov processes, detailed balance is achieved by demanding a \textit{Reversible} Markov process. This boils down to a statistical requirement stating that 
+For Markov processes, detailed balance is achieved by demanding a \textit{reversible} Markov process. This boils down to a statistical requirement stating that 
 
 \begin{equation}
  \label{eq:DetailedBalance}
@@ -339,18 +347,18 @@ where $P_i$ is the probability density in configuration $i$, and $W(i\,\rightarr
 
 \subsection{Ergodicity}
 
-Another requirement is that the sampling must be ergodic, that is, the random walkers needs to be able to reach any configuration in the space spanned by the distribution function. It is tempting to define a brute force acceptance rule where only steps resulting in a higher overall probability is accepted, however, this limits the path of the walker, and will thus break the requirement of ergodicity.
+Another requirement is that the sampling must be \textit{ergodic}, that is, the random walkers need to be able to reach any configuration in the space spanned by the distribution function. It is tempting to define a brute force acceptance rule where only steps resulting in a higher overall probability is accepted, however, this limits the path of the walker, and will thus break the requirement of ergodicity.
 
 \section{The Metropolis Algorithm}
 \label{sec:MetroMain}
 
-The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more effective. For a given probability distribution function $P$, the Metropolis algorithm will force sampled points to follow this distribution. 
+The Metropolis Algorithm is a simple set of acceptance/rejection rules used in order to make the thermalization more efficient. For a given probability distribution function $P$, the Metropolis algorithm will force sampled points to follow this distribution. 
 
-Starting from the criteria of detailed balance (see Eq.~(\ref{eq:DetailedBalance}) and further introducing a model for the transition probability $W(i\,\rightarrow\,j)$ as consisting of two parts: The probability of selecting configuration $j$ given configuration $i$, $g(i\,\rightarrow\,j)$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$ yields
+Starting from the criteria of detailed balance given in Eq.~(\ref{eq:DetailedBalance}, and further introducing a model for the transition probability $W(i\,\rightarrow\,j)$ as consisting of two parts: The probability of selecting configuration $j$ given configuration $i$, $g(i\,\rightarrow\,j)$, times a probability of accepting the selected move, $A(i\,\rightarrow\,j)$, yields
 
 \begin{eqnarray}
  \label{eq:metro1}
- P_iW(i\,\rightarrow\,j) &=& P_jW(j\,\rightarrow\,i) \nonumber \\
+ P_iW(i\,\rightarrow\,j) &=& P_jW(j\,\rightarrow\,i), \nonumber \\
  P_ig(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& P_jg(j\,\rightarrow\,i)A(j\,\rightarrow\,i).
 \end{eqnarray}
 
@@ -358,61 +366,61 @@ Inserting the probability distribution as the wave function squared and the sele
 
 \begin{eqnarray}
   \label{eq:metro2}
-  |\psi_i|^2G(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& |\psi_j|^2G(j\,\rightarrow\,i)A(j\,\rightarrow\,i) \nonumber \\
+  |\psi_i|^2G(i\,\rightarrow\,j)A(i\,\rightarrow\,j) &=& |\psi_j|^2G(j\,\rightarrow\,i)A(j\,\rightarrow\,i), \nonumber \\
   \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2} \equiv R_G(j\,\rightarrow\,i)R_\psi(j\,\rightarrow\,i)^2,
 \end{eqnarray}
 
-where the defined ratios correspond to the Green's function - and wave function ratios respectively. 
+where the defined ratios correspond to the Green's function - and wave function ratio respectively. 
 
-Assume now that configuration $i$ has a higher overall probability than configuration $j$. The essence of the Metropolis algorithm is that the step is automatically accepted, that is, $A(i\,\rightarrow\,j) = 1$. In other words: A more effective thermalization is obtained by accepting all these moves. What saves Metropolis from breaking the criteria of ergodicity is the fact that suggested moves to lower probability states are not automatically rejected. This is demonstrated by solving Eq.~(\ref{eq:metro2}) for the case where $A(i\,\rightarrow\,j) = 1$, that is, the case where $P_i < P_j$. This yields
+Assume now that configuration $i$ has a higher overall probability than configuration $j$. The essence of the Metropolis algorithm is that the step is automatically accepted, that is, $A(i\,\rightarrow\,j) = 1$. In other words, a more efficient thermalization is obtained by accepting all these moves. What saves Metropolis from breaking the criteria of ergodicity, is the fact that suggested moves to lower probability states are not automatically rejected. This is demonstrated by solving Eq.~(\ref{eq:metro2}) for the case where $A(i\,\rightarrow\,j) = 1$, that is, the case where $P_i < P_j$. This yields
 
 \begin{equation*}
  A(j\,\rightarrow\,i) = R_G(j\,\rightarrow\,i)R_\psi(j\,\rightarrow\,i)^2.
 \end{equation*}
 
 
-Concatenating both scenarios yields the following acceptance/rejection rules:
+Combining both scenarios into one expression yield the following acceptance/rejection rules:
 
 \cfbox{10mm - 14pt}{
 \begin{equation}
 \label{eq:MetroGeneralGreen}
  A(i\,\rightarrow\,j) = \left\{\begin{array}{ccc}
 R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 & & R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 < 1\\
-1  & & \mathrm{else}  \end{array}\right. 
+1  & & \mathrm{else}  \end{array}\right. .
 \end{equation}
 }
 
 Or more simplistic:
 
 \begin{equation}
-  A(i\,\rightarrow\,j) = \min\{R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}
+  A(i\,\rightarrow\,j) = \min\{R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}.
 \end{equation}
 
 
-In the isotropic diffusion case, the Greens function ratio cancels due to symmetry, $R_G(i\,\rightarrow\,j) = 1$, leaving us with the standard Metropolis algorithm:
+In the isotropic diffusion case, the Green's function ratio cancels due to symmetry, i.e.~$R_G(i\,\rightarrow\,j) = 1$, resulting in the standard Metropolis algorithm:
 
 \begin{equation}
 \label{eq:Metropolis_standard}
- A(i\,\rightarrow\,j) = \min\{R_\psi(i\,\rightarrow\,j)^2, \,1\}
+ A(i\,\rightarrow\,j) = \min\{R_\psi(i\,\rightarrow\,j)^2, \,1\}.
 \end{equation}
 
-On the other hand, for Fokker-Planck diffusion, there will be no cancellation of the Green's function. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of Green's function can be evaluated efficiently by simply subtracting the exponents of the exponentials. This is demonstrated by calculating the logarithm
+On the other hand, for Fokker-Planck diffusion, there will be no cancellation of the Green's functions. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of the Green's functions can be evaluated efficiently by simply subtracting the exponents of the exponentials. This is best demonstrated by calculating the logarithm
 
 \begin{eqnarray}
  \log{R_G^\mathrm{FP}(i\,\rightarrow\,j)} &=& \log \left(G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j)\right) \nonumber \\
-                                    &=& \frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big) \\
+                                    &=& \frac{1}{2}\big(F(x_j) + F(x_i)\big)\big(\frac{1}{2}D\delta t(F(x_j) - F(x_i)) + x_i - x_i\big), \\
                                     \nonumber\\
- A(i\,\rightarrow\,j) &=& \min\{\exp \left(\log R_G^\mathrm{FP}(i\,\rightarrow\,j)\right)R_\psi(i\,\rightarrow\,j)^2, \,1\} \label{eq:MetropolisHastings}
+ A(i\,\rightarrow\,j) &=& \min\{\exp \left(\log R_G^\mathrm{FP}(i\,\rightarrow\,j)\right)R_\psi(i\,\rightarrow\,j)^2, \,1\}. \label{eq:MetropolisHastings}
 \end{eqnarray}
 
-Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte-Carlo. Besides Quantum Monte-Carlo, methods such as the \textit{Ising Model} solvers greatly benefit from these rules \cite{morten}.
+Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte-Carlo. Besides QMC, methods for solving problems such as the \textit{Ising Model} greatly benefit from these rules \cite{morten}.
 
-In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in simulations are finite, and the trial positions of walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process in general is given in Fig. \ref{fig:diffFlowChart}.
+In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in the simulations is finite, and the trial positions of the walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process is given in Fig. \ref{fig:diffFlowChart}.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/DiffusionUML.pdf}
-  \caption{Flow chart for iterating a walker through a single time-step, i.e. simulation the application of the Green's function from Eq.~(\ref{eq:GDiff}) using the Metropolis algorithm. New positions are suggested according to the chosen diffusion model.}
+  \caption{Flow chart describing the process of iterating a walker through a single time-step, that is, simulation the application of the Green's function from Eq.~(\ref{eq:GDiff}) using the Metropolis algorithm. New positions are suggested according to the chosen diffusion model.}
   \label{fig:diffFlowChart}
  \end{center}
 \end{figure}
@@ -424,21 +432,21 @@ In practice, without the Metropolis sampling, the ensemble of walkers will not s
 \section{The Process of Branching}
 \label{sec:branching}
 
-In the previous section it became clear that the Metropolis test will guide the walkers to span the trial wave function. This implies that without further action, no changes to the distribution can be made, and the point of modelling the projection operator from Eq.~(\ref{eq:projOPonTrial}) is rendered useless. The important fact to include is that the branching Green's function from Eq.~(\ref{eq:branchFP}) and ~(\ref{eq:branchISO}) distribute weights to the walkers, effectively altering the spanned distribution. 
+In the previous section it became clear that the Metropolis test will guide the walkers to span a distribution representing the trial wave function. This implies that without further action, no changes to the distribution can be made, and the point of modelling the projection operator from Eq.~(\ref{eq:projOPonTrial}) is rendered useless. The important fact to include is that the branching Green's function from Eq.~(\ref{eq:branchFP}) and Eq.~(\ref{eq:branchISO}) distribute weights to the walkers, effectively altering the spanned distribution. 
 
-The process of branching in Quantum Monte-Carlo is simulated by the creation and destruction of walkers with probability equal to that of the branching Green's function \cite{abInitioMC}. The explicit shapes in case of isotropic diffusion (ISO) and Anisotropic (FP) is 
+The process of branching in QMC is simulated by the creation and destruction of walkers with probability equal to that of the branching Green's function \cite{abInitioMC}. The explicit shapes in case of isotropic - (ISO) and anisotropic diffusion (FP) are
 
 \begin{eqnarray}
- G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau}\label{eq:branchISO} \\
+ G_B^\mathrm{ISO}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[V(x_i) + V(x_j)\right] - E_T\right)\delta\tau}\label{eq:branchISO}, \\
  G_B^\mathrm{FP}(i\,\rightarrow j) &=& e^{-\left(\frac{1}{2}\left[E_L(x_i) + E_L(x_j)\right] - E_T\right)\delta\tau}, \label{eq:branchFP}
 \end{eqnarray}
 
 where $E_L(x_i)$ is the energy evaluated in configuration $x_i$ (see Section \ref{sec:calcExpVals} for details). The three different scenarios which arise is
 
 \begin{itemize}
- \item $G_B = 1$ : No branching, proceed main loop.
+ \item $G_B = 1$ : No branching.
  \item $G_B = 0$ : The current walker is to be removed from the current ensemble.
- \item $G_B > 1$ : Make on average $G_B - 1$ replicas of the current walker.
+ \item $G_B > 1$ : On average $G_B - 1$ replicas of the current walker are made.
 \end{itemize}
 
 Defining the following quantity allows for an efficient simulation of this behavior
@@ -450,16 +458,16 @@ Defining the following quantity allows for an efficient simulation of this behav
 }
 
 
-where $a$ is a uniformly distributed number on $[0,1)$. The chance that $\overline{G}_B = G_B + 1$ is then equal to $G_B - \mathrm{floor}(G_B)$. As an example, assume $G_B = 3.3$. The value of $\overline{G}_B$ is then either three or four, depending on whether $a < 0.7$ or not. The probability that $a<0.7$ is obviously $70\%$, implying that there is a $30\%$ chance that $\overline{G}_B$ is equal to four, and $70\%$ chance that is is equal to three. 
+where $a$ is a uniformly distributed number on $[0,1)$. The probability that $\overline{G}_B = G_B + 1$ is then equal to $G_B - \mathrm{floor}(G_B)$. As an example, assume $G_B = 3.3$. The value of $\overline{G}_B$ is then either three or four, depending on whether $a < 0.7$ or not. The probability that $a<0.7$ is obviously $70\%$, implying that there is a $30\%$ chance that $\overline{G}_B$ is equal to four, and $70\%$ chance that is is equal to three. 
+
+There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up inactive walkers and stabilizing the population across different computational nodes. For details regarding this, see the code documentation at Ref. \cite{libBorealisCode}. Isotropic diffusion is in practice never used with branching due to the singularities in the Coulomb interaction (see Eq.~(\ref{eq:branchISO})). This singularity may cause large fluctuations in the walker population, which is far from an optimal behavior.
 
 The process of branching is demonstrated in Fig. \ref{fig:branching}.
-
-There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up inactive walkers and stabilizing the population across different computational nodes. For details regarding this, see the actual code reference at ref. \cite{libBorealisCode}. Isotropic diffusion is in practice never used with branching due to the singularities in the Coulomb interaction (see Eq.~(\ref{eq:branchISO})). This singularity may lead to large fluctuations in the walker population, the exact opposite to the optimal behavior.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/branching.pdf}
-  \caption{Branching illustrated. The initial walker $W_i(R, \tau)$ is branched according to the rules of Section \ref{sec:branching}. The numerical value inside the nodes represents $\overline{G}_B$ from Eq.~(\ref{eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e. a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal (given that not all of the steps was rejected).}
+  \caption{The process of branching illustrated. The initial walker $W_i(R, \tau)$ is branched according to the rules of Section \ref{sec:branching}. The numerical value inside the nodes represents the value of $\overline{G}_B$ from Eq.~(\ref{eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal, given that not all of the steps was rejected).}
   \label{fig:branching}
  \end{center}
 \end{figure}
@@ -1018,10 +1026,10 @@ A flow chart of the DMC algorithm is given in Fig. \ref{fig:DMCchart}.
 
 \subsection{Sampling the Energy}
 
-Unlike VMC, DMC does not weigh all walkers equally. It is therefore necessary to weigh each walker's contribution to a cumulative energy sampling accordingly, that is, with the branching Green's function. Let $E_k$ denote the cumulative energy for time-step $\tau = k\delta\tau$, $n_w$ be the number of walkers in our system at time-step $k$, $\tilde n_{b,i}$ be the number of blocks walker $i$ survives, and let $W_i(\vec r, \tau)$ represent walker $i$. The relation is then
+Unlike VMC, DMC does not weigh all walkers equally. It is therefore necessary to weigh each walker's contribution to a cumulative energy sampling accordingly, that is, with the branching Green's function. Let $E_k$ denote the cumulative energy for time-step $\tau = k\delta\tau$, $n_w$ be the number of walkers in our system at time-step $k$, $\tilde n_{b,i}$ be the number of blocks walker $i$ survives, and let $W_i(\mbf{r}, \tau)$ represent walker $i$. The relation is then
 
 \begin{equation}
- E_k = \frac{1}{n_w}\sum_{i=1}^{n_w} \frac{1}{\tilde n_{b,i}}\sum_{l=1}^{\tilde n_{b,i}} G_\mathrm{B}\Big(W_i(\vec r, \tau_k + l\delta\tau)\Big)E_L\Big(W_i(\vec r, \tau_k + l\delta\tau)\Big)
+ E_k = \frac{1}{n_w}\sum_{i=1}^{n_w} \frac{1}{\tilde n_{b,i}}\sum_{l=1}^{\tilde n_{b,i}} G_\mathrm{B}\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big)E_L\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big)
 \end{equation}
 
 As the formalism required, setting $G_B = n_w = n_b = 1$ reproduce the VMC algorithm. 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  30 MAY 2013 00:28
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  30 MAY 2013 13:01
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -800,14 +800,14 @@ Underfull \vbox (badness 6445) has occurred while \output is active []
 File: ../Graphics/DiffusionUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/DiffusionUML.pdf> [13] [14 <../Graphics/DiffusionUML.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 439.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 447.
 
 
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 439.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 447.
 
 <../Graphics/branching.pdf, id=396, 597.50786pt x 845.04686pt>
 File: ../Graphics/branching.pdf Graphic file (type pdf)
@@ -817,19 +817,19 @@ File: ../Graphics/branching.pdf Graphic file (type pdf)
 ] [16 <../Graphics/branching.pdf>] [17
 
 ]
-<../Graphics/shellStructure.pdf, id=480, 845.04686pt x 597.50786pt>
+<../Graphics/shellStructure.pdf, id=481, 845.04686pt x 597.50786pt>
 File: ../Graphics/shellStructure.pdf Graphic file (type pdf)
 
 <use ../Graphics/shellStructure.pdf> [18 <../Graphics/shellStructure.pdf>]
 [19] [20]
 
-LaTeX Warning: Reference `tab:AtomsRes' on page 21 undefined on input line 619.
+LaTeX Warning: Reference `tab:AtomsRes' on page 21 undefined on input line 627.
 
 
 [21]
 
 LaTeX Warning: Reference `sec:optSingleSlater' on page 22 undefined on input li
-ne 664.
+ne 672.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -838,46 +838,46 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [23]
 
 LaTeX Warning: Reference `sec:optSlaterRat' on page 24 undefined on input line 
-733.
+741.
 
-[24] <../Graphics/SGD.pdf, id=563, 845.04686pt x 597.50786pt>
+[24] <../Graphics/SGD.pdf, id=564, 845.04686pt x 597.50786pt>
 File: ../Graphics/SGD.pdf Graphic file (type pdf)
 
 <use ../Graphics/SGD.pdf> [25]
 Underfull \vbox (badness 5460) has occurred while \output is active []
 
- [26 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=588, 845.04686pt x 597.50
+ [26 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=589, 845.04686pt x 597.50
 786pt>
 File: ../Graphics/SSGD.pdf Graphic file (type pdf)
 
 <use ../Graphics/SSGD.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27 <../Graphics/SSGD.pdf>] <../Graphics/ASGD_f.pdf, id=610, 344.28625pt x 341
+ [27 <../Graphics/SSGD.pdf>] <../Graphics/ASGD_f.pdf, id=611, 344.28625pt x 341
 .275pt>
 File: ../Graphics/ASGD_f.pdf Graphic file (type pdf)
 
 <use ../Graphics/ASGD_f.pdf> [28 <../Graphics/ASGD_f.pdf>]
-<../Graphics/ASGD_min_paramGrad_ex.png, id=628, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_min_paramGrad_ex.png, id=629, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_min_paramGrad_ex.png Graphic file (type png)
 
 <use ../Graphics/ASGD_min_paramGrad_ex.png>
-<../Graphics/ASGD_min_step_ex.png, id=630, 586.8324pt x 442.2924pt>
+<../Graphics/ASGD_min_step_ex.png, id=631, 586.8324pt x 442.2924pt>
 File: ../Graphics/ASGD_min_step_ex.png Graphic file (type png)
 
 <use ../Graphics/ASGD_min_step_ex.png>
-<../Graphics/ASGD_UML.pdf, id=633, 597.50786pt x 845.04686pt>
+<../Graphics/ASGD_UML.pdf, id=634, 597.50786pt x 845.04686pt>
 File: ../Graphics/ASGD_UML.pdf Graphic file (type pdf)
 
 <use ../Graphics/ASGD_UML.pdf> [29 <../Graphics/ASGD_min_paramGrad_ex.png> <../
 Graphics/ASGD_min_step_ex.png>] [30 <../Graphics/ASGD_UML.pdf>]
-<../Graphics/VMCUML.pdf, id=697, 597.50786pt x 845.04686pt>
+<../Graphics/VMCUML.pdf, id=698, 597.50786pt x 845.04686pt>
 File: ../Graphics/VMCUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/VMCUML.pdf> [31
 
 ] [32 <../Graphics/VMCUML.pdf>]
-<../Graphics/WFComp.png, id=759, 586.8324pt x 442.2924pt>
+<../Graphics/WFComp.png, id=760, 586.8324pt x 442.2924pt>
 File: ../Graphics/WFComp.png Graphic file (type png)
 
 <use ../Graphics/WFComp.png>
@@ -886,27 +886,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [33
 
  <../Graphics/WFComp.png>] [34]
-<../Graphics/DMCUML.pdf, id=785, 597.50786pt x 845.04686pt>
+<../Graphics/DMCUML.pdf, id=786, 597.50786pt x 845.04686pt>
 File: ../Graphics/DMCUML.pdf Graphic file (type pdf)
 
 <use ../Graphics/DMCUML.pdf> [35] [36 <../Graphics/DMCUML.pdf>]
-<../Graphics/fixxednode.pdf, id=866, 845.04686pt x 597.50786pt>
+<../Graphics/fixxednode.pdf, id=867, 845.04686pt x 597.50786pt>
 File: ../Graphics/fixxednode.pdf Graphic file (type pdf)
 
 <use ../Graphics/fixxednode.pdf> [37
 
 ] [38 <../Graphics/fixxednode.pdf>]
-<../Graphics/OBD_rad_ex_12pw01.png, id=893, 586.8324pt x 442.2924pt>
+<../Graphics/OBD_rad_ex_12pw01.png, id=894, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD_rad_ex_12pw01.png Graphic file (type png)
 
 <use ../Graphics/OBD_rad_ex_12pw01.png>
-<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=894, 586.8324pt x 442.2924pt>
+<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=895, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png>
 
 LaTeX Warning: Reference `fig:OBD_noble_Atoms_2D_combo' on page 39 undefined on
- input line 1195.
+ input line 1203.
 
 [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -917,11 +917,11 @@ m.png>]
 Underfull \vbox (badness 1521) has occurred while \output is active []
 
  [42]
-[43] <../Graphics/BlockingExampleUncorr.png, id=961, 586.8324pt x 442.2924pt>
+[43] <../Graphics/BlockingExampleUncorr.png, id=962, 586.8324pt x 442.2924pt>
 File: ../Graphics/BlockingExampleUncorr.png Graphic file (type png)
 
 <use ../Graphics/BlockingExampleUncorr.png>
-<../Graphics/BlockingExampleCorr.png, id=962, 586.8324pt x 442.2924pt>
+<../Graphics/BlockingExampleCorr.png, id=963, 586.8324pt x 442.2924pt>
 File: ../Graphics/BlockingExampleCorr.png Graphic file (type png)
 
 <use ../Graphics/BlockingExampleCorr.png> [44 <../Graphics/BlockingExampleUncor
@@ -968,9 +968,9 @@ exmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive
 /public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
 fonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (52 pages, 1053324 bytes).
+Output written on jorgenh_thesis.pdf (52 pages, 1053453 bytes).
 PDF statistics:
- 1134 PDF objects out of 1200 (max. 8388607)
+ 1135 PDF objects out of 1200 (max. 8388607)
  238 named destinations out of 1000 (max. 500000)
  430 words of extra memory for PDF output out of 10000 (max. 10000000)
 
