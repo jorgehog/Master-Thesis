@@ -1205,33 +1205,37 @@ where $d$ denotes the number of dimensions. An example presenting two radial one
  \begin{center}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD_rad_ex_12pw01.png}}
   \subfigure{\includegraphics[scale=0.3816]{../Graphics/OBD/OBD_Atoms/2D/Beryllium.png}}
-  \caption{Two examples of radial one-body densities for VMC, DMC, and the pure density from Eq.~(\ref{eq:densityTransform}). On the left: A 12-particle two-dimensional quantum dot with frequency $\omega=0.1$. The density diverges close to zero due to a ``$\frac{0}{0}$'' expression (see Eq.~(\ref{eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e.~$r_1^2\rho(\mathbf{r}_1)$. The densities will be discussed in the results section.}
+  \caption{Two examples of radial one-body densities for VMC, DMC, and the pure density from Eq.~(\ref{eq:densityTransform}). On the left: A 12-particle two-dimensional quantum dot with frequency $\omega=0.1$. The density diverges close to zero due to a ``$\frac{0}{0}$'' expression (see Eq.~(\ref{eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e.~$r_1^2\rho(\mathbf{r}_1)$. The densities will be discussed in the result section.}
   \label{fig:OBD_ex}
  \end{center}
 \end{figure}
 
 
-
 \section{Estimating the Statistical Error}
 
-As with any statistical result, the statistical errors needs to be supplied in order for it to be taken seriously. Systematic errors, that is, errors introduced due to limitations in the model, is discussed in each method's respective section, and will not be related to the statistical error. 
+As with any statistical result, the statistical errors need to be supplied in order for the result to be considered useful. Systematic errors, that is, errors introduced due to limitations in the model, is discussed in each method's respective section, and is not be related to the statistical error, that is, the exact solution does not necessarily have to be within the error. This is only true if there are no systematic errors.
 
-Statistical errors, that is, the  deviation from the true ensemble average due to the fact that the equality in Eq.~(\ref{eq:MeanVStrueExp}) can never be fulfilled, can be estimated using several methods, some of which are \textit{naive} in the sense that they assume the dataset to be completely \textit{uncorrelated}, i.e. the samples are independent of each other.
+Statistical errors can be estimated using several methods, some of which are \textit{naive} in the sense that they assume the dataset to be completely \textit{uncorrelated}, i.e.~independent of each other.
 
 \subsection{The Variance and Standard Deviates}
 \label{sec:varAndSTD}
 
-Given a set of samplings, e.g. local energies, the variance is a measure of their spread from the true mean value
+Given a set of samples, e.g.~local energies, their \textit{variance} is a measure of their spread from the true mean value. The definition of variance reads
 
 \begin{eqnarray}
 \label{eq:variance}
-\Var(E) &=& \Exp{(E-\Exp{E})^2} \nonumber\\
+\Var(E) &\equiv& \Exp{(E-\Exp{E})^2} \nonumber\\
         &=& \Exp{E^2} - 2\underbrace{\Exp{E\Exp{E}}}_{\Exp{E}\Exp{E}} + \Exp{E}^2 \nonumber\\
-        &=& \Exp{E^2} - \Exp{E}^2 \\
-        &\simeq& \overline{E^2} - \overline{E}^2
+        &=& \Exp{E^2} - \Exp{E}^2. \\
 \end{eqnarray}
 
-In the case of having the exact wave function, i.e $\ket{\Psi_T} = \ket{\Psi_0}$, the variance becomes zero:
+A problem with this definition is that the exact mean $\Exp{E}$ needs to be known. In a Monte-Carlo simulation, the resulting average $\overline{E}$ is an approximation to the exact mean. Thus the following approximation has to be done:
+
+\begin{eqnarray}
+  \Var(E) &\simeq& \overline{E^2} - \overline{E}^2.
+\end{eqnarray}
+
+In the case of having the exact wave function, i.e~$\ket{\Psi_T} = \ket{\Psi_0}$, the variance becomes zero:
 
 \begin{eqnarray*}
 \label{eq:varianceZeroExact}
@@ -1240,9 +1244,11 @@ In the case of having the exact wave function, i.e $\ket{\Psi_T} = \ket{\Psi_0}$
 		        &=& 0
 \end{eqnarray*}
 
-The variance is in other words an excellent measure of how good of a fit different trial wave functions are to the system. A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g. Beryllium simulations.
+The variance is in other words an excellent measure of how close to the exact wave function the trial wave function is, hence the variance minimum is sometimes used to obtain optimal variational parameters discussed in Section \ref{sec:selectingOptVarPar}. 
 
-Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. The \textit{standard deviation}, $\sigma$, is the square root of the variance,
+A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not generally true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g.~in Beryllium simulations.
+
+Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. The \textit{standard deviation}, $\sigma$, is the square root of the variance, that is
 
 \begin{equation}
 \label{eq:stdNaive}
@@ -1250,11 +1256,11 @@ Another misconception is that the variance is a direct numerical measure of the 
 \end{equation}
 
 
-and has hence a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean $\Exp{E}$.
+and has a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean $\Exp{E}$.
 
 \subsection{The Covariance and correlated samples}
 
-It was briefly mentioned in the introduction that certain error estimation techniques was too naive in case of correlated samples. Two samples, $x$, $y$, are said to be correlated if their \textit{covariance}, $\Cov(x, y)$, is non-zero
+It was briefly mentioned in the introduction that certain error estimation techniques are too naive in the sense that they do not account for samples being correlated. Two samples, $x$ and $y$, are said to be correlated if their \textit{covariance}, $\Cov(x, y)$, is non-zero. The covariance is defined the following way:
 
 \begin{eqnarray}
 \label{eq:covariance}
@@ -1264,9 +1270,9 @@ It was briefly mentioned in the introduction that certain error estimation techn
             &=& \Exp{xy} - \Exp{x}\Exp{y}.
 \end{eqnarray}
 
-Notice that $\Cov(x,x) = \Var(x)$. Using this definition, whether or not the samples are correlated boils down to whether or not $\Exp{xy} = \Exp{x}\Exp{y}$. 
+Using this definition, whether or not the samples are correlated boils down to whether or not $\Exp{xy} = \Exp{x}\Exp{y}$. Notice that the variance is the diagonal elements of the covariance matrix, i.e~$\Cov(x,x) = \Var(x)$.
 
-The consequence of ignoring the correlations is a resulting error estimate which is generally less than the true error; correlated samplings are more clustered, i.e. less spread, due to previous samplings' influence on the value of the current sample\footnote{Samples in QMC is obviously correlated due to the nature of the Langevin equation (difference equation).}. Denoting the true standard deviation as $\sigma_c$, the above discussion can be distilled to
+The consequence of ignoring the correlations is an error estimate which is generally smaller than the true error; correlated samplings are more clustered, i.e.~less spread, due to previous samples' influence on the value of the current sample\footnote{Samples in QMC are obviously correlated due to the nature of the Langevin equation (difference equation).}. Denoting the true standard deviation as $\sigma_c$, the above discussion can be distilled to
 
 \begin{equation}
  \label{eq:trueVsNaiveSTD}
@@ -1278,36 +1284,41 @@ where $\sigma(x)$ is the deviation from Eq.~(\ref{eq:stdNaive}).
 
 \subsection{The Deviate from the Exact Mean}
 
-There is an important difference between the deviate from the exact mean, and the deviate of a single sample from its combined mean, in other words:
+There is an important difference between the deviate from the exact mean, and the deviate of a single sample from its combined mean. In other words:
 
 \begin{equation}
  \sigma(\overline{x}) \ne \sigma(x).
 \end{equation}
 
-Imagine doing a number of simulations, each resulting in a unique $\overline{x}$, the quantity of interest is not the deviation within a single simulation, but the deviation between the results of all the simulations.
+Imagine doing a number of simulations, each resulting in a unique $\overline{x}$. The quantity of interest is not the error of single samples, but the error in the calculated mean. Let $m$ denote the outcome of a single Monte-Carlo calculation. That is
 
 \begin{eqnarray}
- m &\equiv& \overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \label{eq:meanx}\\
- \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2 \label{eq:sigma_m}
+ m = \frac{1}{n}\sum_{i=1}^n x_i. \label{eq:meanx}
+ \end{eqnarray}
+
+ The error in the mean is obtained by calculating the standard deviation in $m$. That is, calculating
+ 
+ \begin{eqnarray}
+ \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2. \label{eq:sigma_m}
 \end{eqnarray}
 
-Combining the above equations yields
+Combining the two above equations yield
 
 \begin{eqnarray}
 \label{eq:realErrorCovariance1}
   \sigma^2(m) &=& \Exp{\frac{1}{n^2}\left[\sum_{i=1}^nx_i\right]^2} - \Exp{\frac{1}{n}\sum_{i=1}^n x_i}^2 \nonumber\\
               &=& \frac{1}{n^2}\left( \Exp{\sum_{i=1}^n x_i\sum_{j=1}^n x_j} - \Exp{\sum_{i=1}^n x_i}\Exp{\sum_{j=1}^n x_j}  \right) \nonumber\\
               &=& \frac{1}{n^2}\sum_{i,j=1}^n \Exp{x_ix_j} - \Exp{x_i}\Exp{x_j} \nonumber\\
-              &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j)
+              &=& \frac{1}{n^2}\sum_{i,j=1}^n \Cov(x_i, x_j).
 \end{eqnarray}
 
-This result is important; the true error is given in terms of the covariance, and is, as discussed previously, only equal to the sample variance if the samples are uncorrelated. Going back to the definition of covariance in Eq.~(\ref{eq:covariance}), it is apparent that in order to calculate the covariance as in Eq.~(\ref{eq:realErrorCovariance1}), the true mean $\Exp{x_i}$ needs to be known. Using $m=\overline{x}$ as a necessary approximation to the true mean yields   
+This result is important; the true error is given in terms of the covariance, and is, as discussed previously, only equal to the sample variance if the samples are uncorrelated. Going back to the definition of covariance in Eq.~(\ref{eq:covariance}), it is apparent that in order to calculate the covariance as in Eq.~(\ref{eq:realErrorCovariance1}), the true mean $\Exp{x_i}$ needs to be known. Using $m$ as an  approximation to the exact mean yields   
 
 \begin{eqnarray}
- \Cov(x_i, x_j) &\equiv& \Exp{(x_i - \Exp{x_i})(x_j - \Exp{x_j})} \nonumber\\
+ \Cov(x_i, x_j) &=& \Exp{(x_i - \Exp{x_i})(x_j - \Exp{x_j})} \nonumber\\
                 &\simeq& \Exp{(x_i - m)(x_j - m)} \nonumber\\
                 &\simeq& \frac{1}{n^2}\sum_{k,l=1}^n (x_k-m)(x_l-m) \\
-                &\equiv& \frac{1}{n}\Cov(x)
+                &\equiv& \frac{1}{n}\Cov(x).
 \end{eqnarray}
 
 Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
@@ -1325,43 +1336,42 @@ Inserting this relation into Eq.~(\ref{eq:realErrorCovariance1}) yields
 
 which serves as an estimate of the full error including correlations. 
 
-Explicitly computing the covariance is rarely done in Monte-Carlo simulations; if the sample size is large, it is extremely expensive. A variety of alternative methods to counter the correlations are available, the simplest of which is to define a \textit{correlation length}\footnote{In literature, this parameter is often referred to as the \textit{auto-correlation time}.}, $\tau$, which defines an interval at which points from the sampling sets are used for actual averaging. In other words, only the points $x_0, x_{\tau}, ..., x_{n\tau}$ are used in the calculation of $\overline{x}$
+Explicitly computing the covariance is rarely done in Monte-Carlo simulations; if the sample size is large, it is extremely expensive. A variety of alternative methods to counter the correlations are available, the simplest of which is to define a \textit{correlation length}\footnote{In literature, this parameter is often referred to as the \textit{auto-correlation time}.}, $\tau$, which defines an interval at which points from the sampling sets are used for actual averaging. In other words, only the points $x_0, x_{\tau}, ..., x_{n\tau}$ are used in the calculation of the mean. In other words
 
 \begin{equation}
- \overline{x} = \frac{1}{n}\sum_{k=0}^n x_{k\cdot\tau}
+ m = \frac{1}{n}\sum_{k=0}^n x_{k\cdot\tau}.
 \end{equation}
 
-This implies that $n\tau$ samples are needed in order to get the same magnitude of samples to the average as in Eq.~(\ref{eq:meanx}); the \textit{effective sample size} becomes $n_\mathrm{eff} = n_\mathrm{tot}/\tau$. In the cases where $\tau = 1$, the sample set is uncorrelated. For details regarding the derivations of $\tau$ based on the covariance, see Refs. \cite{flyvbjerg:461} and \cite{morten}.
+This implies that $n\tau$ samples are needed in order to get the same amount of samples to the average as in Eq.~(\ref{eq:meanx}); the \textit{effective sample size} becomes $n_\mathrm{eff} = n_\mathrm{tot}/\tau$. In the cases where $\tau = 1$, the sample set is uncorrelated. For details regarding the derivations of $\tau$ based on the covariance, see Refs. \cite{flyvbjerg:461} and \cite{morten}.
 
 \subsection{Blocking}
 
-Introducing correlation lengths in the system solver is not an efficient option. Neither is calculating the covariance of billions of data points. However, the error is not a value vital to the simulation process, i.e. there is no need to know the error at any stage during the sampling. This means that the error estimation can be done post process (given that the sample set is stored).
+Introducing correlation lengths in the system solver are not an efficient option. Neither is calculating the covariance of billions of data points. However, the error is not a value vital to the simulation process, i.e.~there is no need to know the error at any stage during the sampling. This means that the error estimation can be done post process (given that the sample set is stored).
 
-An efficient algorithm for calculating the error of correlated data is \textit{blocking}. This method is described in high detail in ref. \cite{flyvbjerg:461}, however, details aside, the idea itself is quite intuitive: Given a data set of $N$ samples from a single Monte-Carlo simulation, imagine dividing the dataset into \textit{blocks} of $n$ samples, that is, blocks of size  $n_b=N/n$. The error $\sigma_n$ in each block will naturally increase as $n$ decrease, (see Eq.~(\ref{eq:realErrorCovariance2}))
+An efficient algorithm for calculating the error of correlated data is \textit{blocking}. This method is described in high detail in Ref. \cite{flyvbjerg:461}, however, details aside, the idea itself is quite intuitive: Given a set of $N$ samples from a single Monte-Carlo simulation, imagine dividing the dataset into \textit{blocks} of $n$ samples, that is, into blocks of size $n_b=N/n$. The error in each block  $\sigma_n$ calculated using Eq.~(\ref{eq:realErrorCovariance2}) will naturally increase as $n$ decrease, that is
 
 \begin{equation}
- \sigma_n \propto \frac{1}{\sqrt{n}}
+ \sigma_n \propto \frac{1}{\sqrt{n}}.
 \end{equation}
 
-
-However, treating each block as an individual simulation, $n_b$ averages $m_n$ can be used to calculate the total error from Eq.~(\ref{eq:sigma_m}), that is, estimate the covariance
+However, treating each block as an individual simulation, $n_b$ averages $m_n$ can be used to calculate the total error from Eq.~(\ref{eq:sigma_m}), that is, estimate the covariance. This is demonstrated in the following expression
 
 \begin{eqnarray}
-  \overline{m_n^r} &\equiv& \frac{1}{n_b}\sum_{k=1}^{n_b} m_k^r \\
+  \overline{m_n^r} &\equiv& \frac{1}{n_b}\sum_{k=1}^{n_b} m_k^r, \\
 \nonumber\\
   \sigma^2(m) &=& \Exp{m^2} - \Exp{m}^2 \nonumber\\
-              &\simeq& \overline{m_n^2} - (\overline{m_n})^2 \label{eq:blockingError}
+              &\simeq& \overline{m_n^2} - (\overline{m_n})^2. \label{eq:blockingError}
 \end{eqnarray}
 
-The approximation should hold for a range of different block sizes, however, just as there is no a priori way of telling the correlation length, there is no a priori way of telling how many blocks is needed. However, what is known, is that if the system is correlated, there should be a range of different block sizes which fulfills Eq.~(\ref{eq:blockingError}) to reasonable precision. 
+The approximation in Eq.~(\ref{eq:blockingError}) should hold for a range of different block sizes, however, just as there is no a priori way of telling the correlation length, there is no a priori way of telling how many blocks is needed. However, what is known, is that if the system is correlated, there should be a range of different block sizes which fulfills Eq.~(\ref{eq:blockingError}) to reasonable precision. 
 
-The result of a blocking analysis is therefore a series of ($n$, $\sigma(m)$) pairs which can be plotted. The plot should in light of previous arguments result in a increasing curve which stabilizes over a certain span of block sizes (where Eq.~(\ref{eq:blockingError}) is fulfilled). This plateau will then serve as a reasonable approximation to the covariance, that is, the true average. See Figure \ref{FIG:BlockingExamples} for a demonstration of resulting blocking plots.
+The result of a blocking analysis is therefore a series of ($n$, $\sigma(m_n)$) pairs which can be plotted. The plot should in light of previous arguments result in a increasing curve which stabilizes over a certain span of block sizes. This plateau will then serve as a reasonable approximation to the covariance, that is, the true error. See Figure \ref{FIG:BlockingExamples} for a demonstration of blocking plots.
 
 \begin{figure}
  \begin{center}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleUncorr.png}}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/BlockingExampleCorr.png}} 
-  \caption{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm{d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega=0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is  $\sim 4.5\cdot 10^{-5}$.}
+  \caption{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm{d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle two-dimensional quantum dot with frequency $\omega=0.1$. The plateau is strongly present, implying correlated data. The resulting total error is  $\sim 4.5\cdot 10^{-5}$.}
   \label{FIG:BlockingExamples}
  \end{center}
 \end{figure}
