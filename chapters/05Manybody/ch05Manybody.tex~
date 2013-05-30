@@ -40,7 +40,7 @@ From Eq.~(\ref{eq:schrodGeneralSolution}) it is apparent that the time evolution
 \end{equation}
 
 
-The time-independent equation is solved for the ground state energy through methods such as \textit{Full Configuration Interaction} \cite{Shavitt} or similar methods based on diagonalizing the Hamiltonian. The time-dependent equation is used by methods such as \textit{Time-Dependent Multi-Configuration Hartree-Fock} in order to obtain the time-development of quantum states. However, neither of the equations originate from, or resemble, diffusion equations. 
+The time-independent equation is solved for the ground state energy through methods such as \textit{Full Configuration Interaction} \cite{Shavitt} or similar methods based on diagonalizing the Hamiltonian. The time-dependent equation is used by methods such as \textit{Time-Dependent Multi-Configuration Hartree-Fock} \cite{Sigve} in order to obtain the time-development of quantum states. However, neither of the equations originate from, or resemble, diffusion equations. 
 
 The original Schrödinger equation, however, does resemble a diffusion equation in complex time\footnote{The physical time diffusion equation evolves the squared wave function, and can be deduced from the quantum continuity equation combined with Fick's laws of diffusion \cite{QMCDIFF}.}. It can not be treated as a true diffusion equation, since the time evolved quantity, the wave function, is not a probability distribution unless it is squared. However, the equation involves a time derivative and a Laplacian, strongly indicating some sort of connection to a diffusion process.
 
@@ -129,6 +129,7 @@ The flow of QMC is then to use these Green's functions to propagate the ensemble
 Incorporating only the effect of Eq.~(\ref{eq:GDiff}) results in a method called \textit{Variational Monte-Carlo} (VMC). Including the branching term as well results in \textit{Diffusion Monte-Carlo} (DMC). These methods will be discussed in Sections \ref{sec:VMC} and \ref{sec:DMC} respectively. In either of these methods, diffusion is a key process.
 
 \section{Solving the Diffusion Problem}
+\label{sec:solvingDiff}
 
 The diffusion problem introduced in the previous section uses a symmetric kinetic energy operator implying an \textit{isotropic diffusion}, however, a more efficient kinetic energy operator can be introduced without violating the original equations, resulting in an \textit{anisotropic diffusion} governed by the \textit{Fokker-Planck equation}. These models will be the topic of this section. 
 
@@ -136,12 +137,14 @@ For details regarding the transition from isotropic to anisotropic diffusion, se
 
 \subsection{Isotropic Diffusion}
 
-Isotropic diffusion is a process in which diffusing particles sees all directions as an equally probable path. Eq.~(\ref{Eq:diffusionSimple}) is an example of this. This is the simplest form of a diffusion equation, that is, the case with a linear \textit{diffusion constant}, $D$, and no drift terms.
+Isotropic diffusion is a process in which diffusing particles sees all directions as an equally probable path. Eq.~(\ref{Eq:diffusionSimple}) is an example of this. The isotropic diffusion equation is  
 
 \begin{equation}
  \label{Eq:diffusionSimple}
  \frac{\partial P(\mbf{r}, t)}{\partial t} = D\nabla^2 P(\mbf{r}, t) .
 \end{equation}
+
+This is the simplest form of a diffusion equation, that is, the case with a linear \textit{diffusion constant}, $D$, and no drift terms. 
 
 From Eq.~(\ref{eq:GDiff}) it is clear that the value of the diffusion constant is $D=\frac{1}{2}$, originating from the term scaling the Laplacian in the Schrödinger Equation. An important point is that closed form expressions for the Green's function exists. This closed form expression in the isotropic case is a Gaussian distribution with variance $2D\delta t$ \cite{abInitioMC}
 
@@ -164,7 +167,7 @@ The Langevin Equation is a stochastic differential equation used in physics to r
 			     \langle\xi\rangle &=& x_i, \nonumber 
 \end{eqnarray}
 
-where $\xi$ is a normal distributed number whose variance match that of the Green's function in Eq.~(\ref{eq:GF_iso}). This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
+where $\xi$ is a normal distributed number whose variance matches that of the Green's function in Eq.~(\ref{eq:GF_iso}). This relation is in agreement with the isotropy of Eq.~(\ref{Eq:diffusionSimple}) in the sense that the displacement is symmetric around the current position.
 
 
 \subsection{Anisotropic Diffusion and the Fokker-Planck equation}
@@ -347,7 +350,7 @@ where $P_i$ is the probability density in configuration $i$, and $W(i\,\rightarr
 
 \subsection{Ergodicity}
 
-Another requirement is that the sampling must be \textit{ergodic}, that is, the random walkers need to be able to reach any configuration in the space spanned by the distribution function. It is tempting to define a brute force acceptance rule where only steps resulting in a higher overall probability is accepted, however, this limits the path of the walker, and will thus break the requirement of ergodicity.
+Another requirement is that the sampling must be \textit{ergodic} \cite{robertcasella}, that is, the random walkers need to be able to reach any configuration in the space spanned by the distribution function. It is tempting to define a brute force acceptance rule where only steps resulting in a higher overall probability is accepted, however, this limits the path of the walker, and will thus break the requirement of ergodicity.
 
 \section{The Metropolis Algorithm}
 \label{sec:MetroMain}
@@ -390,7 +393,7 @@ R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2 & & R_G(i\,\rightarrow\,j)R_\p
 \end{equation}
 }
 
-Or more simplistic:
+This equation can be simplified to
 
 \begin{equation}
   A(i\,\rightarrow\,j) = \min\{R_G(i\,\rightarrow\,j)R_\psi(i\,\rightarrow\,j)^2, \,1\}.
@@ -404,7 +407,7 @@ In the isotropic diffusion case, the Green's function ratio cancels due to symme
  A(i\,\rightarrow\,j) = \min\{R_\psi(i\,\rightarrow\,j)^2, \,1\}.
 \end{equation}
 
-On the other hand, for Fokker-Planck diffusion, there will be no cancellation of the Green's functions. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm}. The ratio of the Green's functions can be evaluated efficiently by simply subtracting the exponents of the exponentials. This is best demonstrated by calculating the logarithm
+On the other hand, for Fokker-Planck diffusion, there will be no cancellation of the Green's functions. Inserting Eq.~(\ref{eq:GF_FP}) into Eq.~(\ref{eq:MetroGeneralGreen}) results in the \textit{Metropolis Hastings algorithm} \cite{robertcasella}. The ratio of the Green's functions can be evaluated efficiently by simply subtracting the exponents of the exponentials. This is best demonstrated by calculating the logarithm
 
 \begin{eqnarray}
  \log{R_G^\mathrm{FP}(i\,\rightarrow\,j)} &=& \log \left(G_\mathrm{Diff}^\mathrm{FP}(j\,\rightarrow i)/G_\mathrm{Diff}^\mathrm{FP}(i\,\rightarrow j)\right) \nonumber \\
@@ -413,7 +416,7 @@ On the other hand, for Fokker-Planck diffusion, there will be no cancellation of
  A(i\,\rightarrow\,j) &=& \min\{\exp \left(\log R_G^\mathrm{FP}(i\,\rightarrow\,j)\right)R_\psi(i\,\rightarrow\,j)^2, \,1\}. \label{eq:MetropolisHastings}
 \end{eqnarray}
 
-Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte-Carlo. Besides QMC, methods for solving problems such as the \textit{Ising Model} greatly benefit from these rules \cite{morten}.
+Derived from detailed balance, the Metroplis Algorithm is an essential part of any Markov Chain Monte-Carlo algorithm. Besides QMC, methods for solving problems such as the \textit{Ising Model} greatly benefit from these rules \cite{morten}.
 
 In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in the simulations is finite, and the trial positions of the walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process is given in Figure \ref{fig:diffFlowChart}.
 
@@ -467,7 +470,7 @@ The process of branching is demonstrated in Figure \ref{fig:branching}.
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/branching.pdf}
-  \caption{The process of branching illustrated. The initial walker $W_i(R, \tau)$ is branched according to the rules of Section \ref{sec:branching}. The numerical value inside the nodes represents the value of $\overline{G}_B$ from Eq.~(\ref{eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.}
+  \caption{The process of branching illustrated. The initial walker $W_i(R, \tau)$ is branched according to the rules of Section \ref{sec:branching}. The numerical value inside the nodes represents the value of $\overline{G}_B$ from Eq.~(\ref{eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, no two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.}
   \label{fig:branching}
  \end{center}
 \end{figure}
@@ -476,12 +479,13 @@ The process of branching is demonstrated in Figure \ref{fig:branching}.
 \section{The Trial Wave Function}
 \label{sec:trialWF}
 
-Recall Eq.~(\ref{eq:projOPonTrial}). The initial condition $\Phi(\mathbf{r}, t_0) \equiv \PT$, that is,
-, the trial wave function, can in principle be chosen to be any normalizable wave function whose overlap with the exact ground state wave function, $\Psi_0(\mathbf{r})$, is non-zero. If the overlap is zero, that is, if $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(\mathbf{r})$ will become the dominant contribution to the distribution. 
+The initial condition of the QMC calculations, that is, the trial wave function $\PT$, can in principle be chosen to be any normalizable wave function whose overlap with the exact ground state wave function, $\Psi_0(\mathbf{r})$, is non-zero. 
 
-In other words, the trial wave function should be chosen in such a way that the overlap is optimized, i.e.~close to unity. Since the exact ground state is unknown, this overlap has to be optimized based on educational guesses and by forcing known properties of the exact ground state into the approximation. This will be the focus in this section.  
+If the overlap is zero, that is, if $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly the exact ground state, $\Psi_0(\mathbf{r})$, will become the dominant contribution to the distribution. 
 
-Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, see Ref. \cite{griffiths}. For mathematically rigid derivations of concepts, see ref. \cite{Sakurai:94}. More details regarding many-body theory can be found in Ref. \cite{Shavitt}. 
+In other words, the trial wave function should be chosen in such a way that the overlap is optimized, i.e.~close to unity. Since the exact ground state is unknown, this overlap has to be optimized based on educated guesses and by forcing known properties of the exact ground state into the approximation. This will be the focus in this section.  
+
+Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding Quantum Mechanical concepts and many-body theory, see for example Refs. \cite{griffiths, Sakurai:94, Shavitt}. 
 
 \subsection{Many-body Wave Functions}
 \label{sec:manyBodyWFs}
@@ -509,7 +513,7 @@ where the primed coefficients should not to be confused with the previous coeffi
 
 where $ \tilde{C}_k' \ne  C_k'$ unless $K$ tends to infinity, however, it is overall safe to assume that the value of the coefficients decrease as $k$ increase. 
 
-The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to a combinatoric exercise involving combinations of orbitals.
+The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to an exercise in combinatorics involving combinations of orbitals.
 
 To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Figure \ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
 
@@ -535,13 +539,13 @@ The last step is well described by Eq.~(\ref{eq:manybodyWFexp}), but is seldom n
 
 \subsubsection{Step one in detail}
 
-The Hamiltonian of a $N$-particle system is 
+The Hamiltonian of an $N$-particle system is 
 
 \begin{equation}
  \OP{H} = \OP{H}_0 + \OP{H}_\mathrm{I},
 \end{equation}
 
-where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are respectively the one-body - and the many-body Hamiltonian. As mentioned in the introduction, the many-body interactions are truncated at the level of the Coulomb interaction. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic term $\OP{t}(\mathbf{r}_i)$ for all particles. In order words, the two Hamiltonians are written
+where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are respectively the one-body - and the many-body Hamiltonian. As mentioned in the introduction, the many-body interactions are truncated at the level of the two-body Coulomb interaction. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic term $\OP{t}(\mathbf{r}_i)$ for all particles. In order words, the two Hamiltonians are written
 
 \begin{eqnarray}
  \OP{H}_0 &=& \sum_{i=1}^N \OP{h}_0(\mathbf{r}_i) \\
@@ -562,12 +566,12 @@ In order to optimize the overlap $C_0$ with the exact wave function, the single 
  \OP{h}_0(\mathbf{r}_i)\phi_n(\mathbf{r}_i) = \epsilon_n\phi_n(\mathbf{r}_i).
 \end{equation}
 
-If no such choice can be made, choosing, free-particle solutions, Laguerre polynomials, or similar, is the general strategy. However, for these bases, the expansion truncation $K$ needs to be higher in order to achieve a satisfying overlap.  
+If no such choice can be made, choosing, free-particle solutions, Laguerre polynomials, or similar, is the general strategy. However, for these bases, the expansion truncation $K$ from Eq.~(\ref{eq:manybodyWFexp}) needs to be higher in order to achieve a satisfying overlap.  
 
 
 \subsubsection{Step two in detail}
 
-In the case of \textit{fermions}, that is, half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
+In the case of \textit{fermions}, that is, half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The so-called \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
 
 Bosons, on the other hand, have symmetric wave functions, which in many ways are easier to deal with because of the lack of an exclusion principle. The bosonic many-body wave function is given in Eq.~(\ref{eq:BosonicWFExplicit}). In order to keep the terminology less abstract and confusing, the focus will be on systems of fermions from here on.
 
@@ -597,12 +601,12 @@ The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:man
 
 As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if the calculations are performed using the exact wave function, the diverging terms will cancel out; the energy eigenvalue is independent of the position of the state. 
 
-In other words, incorporating the correct correlated wave function will result in a cancellation in the diverging terms as walkers approach regions where the many-body interactions are singular, a property of exact ground states which can be enforced upon the approximation to further optimize the overlap. 
+In other words, a necessary property of the exact wave function is that the singularities in the many-body interactions are canceled. The basic idea is thus to make sure the trial wave function also has this property. By doing so, it is brought closer to the exact wave function.
 
-These criteria are called \textit{cusp conditions}, and serve as powerful guides when it comes to selecting an optimal trial wave function. 
+These criteria are called \textit{cusp conditions} \cite{morten}, and serve as powerful guides when it comes to selecting an optimal trial wave function. 
 
 
-\subsection{Choosing a Trial Wave Function}
+\subsection{Choosing the Trial Wave Function}
 \label{sec:ChoiceTrialWF}
 
 To recap, choosing the trial wave function boils down to optimizing the overlap $C_0 = \braket{\Psi_0}{\Psi_T}$ using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single particle basis is the eigenfunctions of the non-interacting case (given that they exist). Starting from Eq.~(\ref{eq:manybodyWFexp}), from here on referred to as the \textit{spatial wave function}, the first step is to make sure the cusp conditions are obeyed.
@@ -624,7 +628,7 @@ Several models for the correlation function exist, however, some are less practi
  f(r_{ij})_\mathrm{Hylleraas} = e^{-\frac{1}{2} (r_i + r_j)}\sum_k d_k(r_{ij})^{a_k} (r_i + r_j)^{b_k}(r_i - r_j)^{e_k},
 \end{equation}
 
-where all $k$-subscripted parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including 1078 terms. For the purpose of QMC this is beyond overkill: Near four decimal precision is obtained using a single free parameter (see the results for atoms in Table \ref{tab:AtomsRes}). 
+where all $k$-subscripted parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including 1078 terms. For the purpose of QMC, including such vast amounts of parameters is out of the question. The strength of QMC is that very good results can be obtained using a very simple ansatz to the wave function. 
 
 A commonly used correlation function in studies involving few variational parameters is the \textit{Padé Jastrow} function
 
@@ -633,7 +637,7 @@ A commonly used correlation function in studies involving few variational parame
          U &=&  \sum_{i<j}^N\left(\frac{\sum_k a_kr_{ij}^k}{1 + \sum_k \beta_kr_{ij}^k}\right) + \sum_i^N\left(\frac{\sum_k a'_kr_i^k}{1 + \sum_k \alpha_kr_i^k}\right).
 \end{eqnarray*}
 
-For systems where the correlations are relatively well behaving, it is custom to drop the second sum all together, and keep only the $k=1$ term from the first. The resulting function reads
+For systems where the correlations are relatively well behaved, it is custom to drop the second sum all together, and keep only the $k=1$ term from the first. The resulting function reads
 
 \begin{equation}
  \label{eq:jastrow}
@@ -642,7 +646,7 @@ For systems where the correlations are relatively well behaving, it is custom to
 
 where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems in this thesis.
 
-Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues will be identical. This fact results in the spatial wave function being split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. The resulting wave function thus becomes
+Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of an $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues will be identical. This fact results in the spatial wave function being split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. The resulting wave function thus becomes
 
 \begin{equation}
  \Psi_T(\mathbf{r}; \beta) = \Big[\sum_{k=0}^K C_k'\tilde\Phi_k(\mbf{r}_1, ..., \mbf{r}_{\frac{N}{2}})\tilde\Phi_k(\mbf{r}_{\frac{N}{2}-1}, ..., \mbf{r}_{N})\Big]\prod_{i<j}^Nf(r_{ij}; \beta). \label{eq:splitSlater}
@@ -710,7 +714,7 @@ The conclusion is remarkable: No matter which trial wave function is used, the r
 \frac{\partial \langle E\rangle}{\partial \alpha_i} = \frac{\partial}{\partial \alpha_i}\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)} = 0
 \end{equation}
 
-In order to work with Eq.~(\ref{eq:varMin}) in practice, it needs to be rewritten it in terms of known values. Since the wave function is dependent on the variational parameter, the normalization factor needs to be included in the expression of the expectation value. Applying the product rule numerous times yields
+In order to work with Eq.~(\ref{eq:varMin}) in practice, it needs to be rewritten in terms of known values. Since the wave function depends on the variational parameter, the normalization factor needs to be included in the expression of the expectation value. Applying the product rule numerous times yields
 
 \newcommand{\Norm}{\braket{\Psi_T(\alpha_i)}{\Psi_T(\alpha_i)}}
 
@@ -753,7 +757,7 @@ The expectation value of an operator $\OP{O}$ is obtained by sampling \textit{lo
 \begin{eqnarray}
  \bra{\Psi_T}\OP{O}\ket{\Psi_T} &=& \int \Psi_T(x)^\ast \OP{O} \Psi_T(x)\mathrm{d}x \nonumber\\
                                 &=& \int |\Psi_T|^2\left(\frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)\right)\mathrm{d}x \nonumber\\
-                                &=& \int |\Psi_T|^2 O_L(x)\mathrm{d}x \\
+                                &=& \int |\Psi_T|^2 O_L(x)\mathrm{d}x. \\
                          O_L(x) &=& \frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x).           
 \end{eqnarray}
 
@@ -951,15 +955,15 @@ A flow chart of the implementation is given in Figure \ref{fig:ASGD_flow}. For s
 \section{Variational Monte-Carlo}
 \label{sec:VMC}
 
-As briefly mentioned in the derivation of the Quantum Monte-Carlo projection process, neglecting the branching term, i.e. set $G_\mathrm{B}=1$, leaves us with a method called Variational Monte-Carlo (VMC). The naming is due to the fact that the method is variational; it supplies as upper bound for the exact ground state energy (see Section \ref{sec:selectingOptVarPar}): The better the trial wave function, the closer the answer is to the exact ground state energy.
+As briefly mentioned in the Section \ref{sec:statingDiff}, neglecting the branching term, i.e.~setting $G_\mathrm{B}=1$, corresponds to a method called Variational Monte-Carlo (VMC). The name comes from the fact that the method is is variational, that is, it supplies an upper bound to the exact ground state energy. The better the trial wave function is, the closer the VMC energy is to the exact ground state energy.
 
-Without the branching term, the optimal converged state of the Markov Chain is to span that of the trial wave function. From the flow chart of the VMC algorithm in Figure \ref{fig:VMCchart}, it is clear that VMC corresponds to nothing but a standard Monte-Carlo integration of the local energy, distributing the points according to the trial wave function (ensured by the Metropolis algorithm and the Langevin equation).
+The converged state of the Markov chain in VMC is controlled by the Metropolis test, and will thus equal the trial wave function squared. From the flow chart of the VMC algorithm in Figure \ref{fig:VMCchart}, it is clear that VMC corresponds to a standard Monte-Carlo integration of the local energy sampled using a distribution equal to the trial wave function squared.
 
 \subsection{Motivating the use of Diffusion Theory}
 
-The question becomes: Why bother with all the diffusion theory if the result is simply an expectation value? Statistics states that \textit{any} distribution may be used when calculating an expectation value. Why bother with a trial wave function, thermalization, and so on? 
+An important question to answer is why e.g.~the Langevin equation is so important if the result is simply an expectation value. Statistics states that \textit{any} distribution may be used when calculating an expectation value. Why bother with a trial wave function, thermalization, and so on? 
 
-The reason is simple, yet not obvious. The quantity of interest, the local energy, is \textit{wave function dependent} $\PT$. Eq.~(\ref{eq:VMCrandomDistE} implies that the evaluation of the local energy in an arbitrary distribution $P(\mathbf{r})$ is \textit{undefined} at the zeros of $\PT$, a ``$0/0$'' expression:
+The reason is simple, yet not obvious. The quantity of interest, the local energy, \textit{depends on the trial wave function}. This is demonstrated in the following expression:
 
 \begin{eqnarray}
  E_\mathrm{VMC} &=& \int P(\mathbf{r}) \frac{1}{\PT}\OP{H}\PT\mathrm{d}\mathbf{r} \nonumber\\
@@ -968,20 +972,20 @@ The reason is simple, yet not obvious. The quantity of interest, the local energ
 
 where the points $\mbf{r}_i$ are drawn from the distribution $P(\mathbf{r})$.
 
-The important fact is that the integral \textit{needs} to importance sampled with the distribution $P(\mathbf{r})=|\PT|^2$  in order to solve the integral in a satisfying manner, that is, avoid sampling close to the roots of $\PT$ without ``cheating''. Introducing importance sampling is done by simply switching distributions (since the calculated value of interest is an expectation value, there is no need to scale the sampled function as is done for standard arbitrary integrals).
+Equation (\ref{eq:VMCrandomDistE}) implies that the evaluation of the local energy in an arbitrary distribution $P(\mathbf{r})$ is \textit{undefined} at the zeros of $\PT$. In other words, it is not guaranteed that $P(\mathbf{r})$ does not generate a point $\mathbf{r}_m$ in such a way that $\Psi_T(\mbf{r}_m) = 0$. 
 
-Suggesting new positions (diffusion) boils down to be analogous to calling a \textit{random number generator} corresponding to the trial wave function squared distribution. The problem was the roots of $\PT$, however, the distribution of points now share these roots, i.e. the probability of sampling a point where the local energy is undefined equals zero. 
+However, if the distribution is chosen as $P(\mathbf{r})=|\PT|^2$, the probability of sampling a point where the local energy is undefined equals zero. This comes as a consequence of the following relation
 
 \begin{equation}
- \Psi_T(x_m) = 0 \quad\Longrightarrow\quad P(x_m) = 0
+ \Psi_T(\mathbf{r}_m) = 0 \quad\Longrightarrow\quad P(\mathbf{r}_m) = 0
 \end{equation}
 
-In other words, the more undefined the energy is at a point, the less probable the point is. This hidden detail is what  Quantum Monte-Carlo safely takes care of that standard Monte-Carlo does not. 
+In other words, the more undefined the energy is at a point, the less probable the point is. This hidden detail is what Quantum Monte-Carlo safely takes care of that standard Monte-Carlo does not. 
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/VMCUML.pdf}
-  \caption{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit{Diffuse Walker}, is the process described in Figure \ref{fig:diffFlowChart}. Energies are sampled as described in Section \ref{sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. }
+  \caption{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit{Diffuse Walker}, is the process described in Figure \ref{fig:diffFlowChart}. Energies are sampled as described in Section \ref{sec:calcExpVals}. The thermalization is set to a fixed number of cycles. }
   \label{fig:VMCchart}
  \end{center}
 \end{figure}
@@ -989,20 +993,20 @@ In other words, the more undefined the energy is at a point, the less probable t
 
 \subsection{Implementation}
 
-Variational Monte-Carlo does not benefit much from an increase of samples (beyond a given point, that is). It is much more important that the system is thermalized, than that the number of walkers are high, or the final amount of samples are huge. It is therefore sufficient to use a single walker pr. VMC process.
+Beyond a given point, VMC does not benefit much from an increase of samples. It is much more important that the system is properly thermalized, than using several walkers or many cycles. It is therefore sufficient to use a single walker per VMC simulation.
 
-The single walker is initialized in a normal distributed manner (with variance $2D\delta\tau$), and released to diffuse according to the process in Figure \ref{fig:diffFlowChart}. A flow chart of the VMC algorithm is given in Figure \ref{fig:VMCchart}. Finalizing the sampling involves scaling energies, calculating the variance, etc. 
+The single walker is initialized in a normal distributed manner, and released to diffuse according to the process in Figure \ref{fig:diffFlowChart}. After accumulating energies, the final energy is calculated as the mean of these. The process is described in Figure \ref{fig:VMCchart}.
 
-For more details regarding the specific implementation, see the code in ref. \cite{libBorealisCode}.
+For more details regarding the specific implementation, see the code in Ref. \cite{libBorealisCode}.
 
 \subsection{Limitations}
 
-The only limitation in VMC is the choice of trial wave function. This makes VMC extremely robust; it will \textit{always} produce a result. As the overlap $C_0$ in Eq.~(\ref{eq:schrodGeneralSolution2}) approach unity, the VMC energy approaches the exact ground state energy as a monotone decreasing function. Figure \ref{fig:VMC_wfcomp} described this effect.
+The only limitation in VMC is the choice of the trial wave function. This makes VMC extremely robust; it will \textit{always} produce a result. As the overlap $C_0$ from Eq.~(\ref{eq:schrodGeneralSolution2}) approach unity, the VMC energy approaches the exact ground state energy as a monotone decreasing function. Figure \ref{fig:VMC_wfcomp} demonstrates this effect. As more optimizations are added to the trial wave function, the lower the VMC energy gets.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/WFComp.png}
-  \caption{Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit{Optimal}) described in Section \ref{sec:ChoiceTrialWF} the VMC energy gets very close to the ``exact'' answer. Lower energy means a better energy when dealing with variational methods. In this example, a 12 particle quantum dot with unit frequency is used.}
+  \caption{Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit{Optimal}), described in Section \ref{sec:ChoiceTrialWF}, the VMC energy gets very close to the ``exact'' answer. A lower energy means a better energy when dealing with variational methods. In this example, a 12-particle quantum dot with unit frequency is used.}
   \label{fig:VMC_wfcomp}
  \end{center}
 \end{figure}
@@ -1010,76 +1014,78 @@ The only limitation in VMC is the choice of trial wave function. This makes VMC 
 \section{Diffusion Monte-Carlo}
 \label{sec:DMC}
 
-Applying the full diffusion framework introduced in the previous sections results in a method known as Diffusion Monte-Carlo (DMC)\footnote{In literature, DMC is also known as \textit{Projection Monte-Carlo}, for reasons described in Section \ref{sec:statingDiff}.}. Diffusion Monte-Carlo results are often referred to as \textit{exact}, in the sense that it is overall one of the most precise many-body methods. However, just as any many-body method, DMC also has its limitations. These will be discussed in Section \ref{sec:DMClimitations}.
+Applying the full diffusion framework introduced in Sections \ref{sec:statingDiff} and \ref{sec:solvingDiff} results in a method known as Diffusion Monte-Carlo (DMC)\footnote{In literature, DMC is also known as \textit{Projection Monte-Carlo}, for reasons described in Section \ref{sec:statingDiff}.}. Diffusion Monte-Carlo results are often referred to as \textit{exact}, in the sense that DMC is overall one of the most precise many-body methods available. However, just as any many-body method, DMC also has its limitations. These will be discussed in Section \ref{sec:DMClimitations}.
 
-Where other many-body methods run into the \textit{curse of dimensionality} (CPU-time exponentially increasing with number of particles, precision, etc.), DMC with it's position basis Quantum Monte-Carlo formalism does not. With DMC, it is simply a matter of evaluating a more complicated trial wave function, or simulating for a longer period of cycles, in order to reach convergence to the believed ``exact'' ground state in a satisfactory way.
-
-Details regarding the exactness of DMC will be covered in the section on limitations.
+Where other many-body methods run into the \textit{curse of dimensionality}, that is, the CPU-time scales very bad with increasing number of particles, DMC with its position basis Quantum Monte-Carlo formalism does not. With DMC, it is simply a matter of evaluating a more complicated trial wave function, or simulating for a longer period of cycles, in order to reach convergence to the believed ``exact'' ground state in a satisfactory way.
 
 \subsection{Implementation}
 
-DMC is as mentioned a precise method; more statistics is like water in a desert - there is never enough of it. In addition, branching is a major part of the algorithm. In other words: DMC uses a large ensemble of walkers to generate enormous amounts of statistics. These walkers are initialized using a VMC calculation, i.e. the walkers are distributed according to the trial wave function at $\tau=0$. 
+Branching is a major part of the DMC algorithm. Diffusion Monte-Carlo uses a large ensemble of walkers to generate enormous amounts of statistics. These walkers are initialized using a VMC calculation, i.e. the walkers are initially distributed according to the trial wave function squared. 
 
-There are three layers of loops in the DMC method implemented in this thesis, two of which are obvious: The time-step - and walker loops. However, introducing a third \textit{block loop} within the walker loop boosts the convergence dramatically. This loop continues until the current walker is either dead ($G_B = 0$), or diffused $n_b$ times. Using this method, ``good'' walkers will have multiple offspring pr cycle, while ``bad'' walkers will rarely survive the block loop. Perfect walkers will supply a ton of statistics as they surf through all the loops without branching ($G_B \sim 1$).
+There are three layers of loops in the DMC method implemented in this thesis, two of which are obvious: The time-step - and walker loops. However, introducing a third \textit{block loop} within the walker loop boosts the convergence dramatically. For each walker, this loop continues until the walker is either dead ($G_B = 0$), or has diffused $n_b$ times. Using this method, ``good'' walkers will have multiple offspring pr cycle, while ``bad'' walkers will rarely survive the block loop. Perfect walkers will supply a ton of statistics as they surf through all the loops without branching ($G_B \sim 1$).
 
-A flow chart of the DMC algorithm is given in Figure \ref{fig:DMCchart}. 
+A flow chart of the DMC algorithm is given in Figure \ref{fig:DMCchart}. Comparing it the the corresponding figure for VMC, it is apparent that DMC is by far more complicated. 
 
 \subsection{Sampling the Energy}
 
-Unlike VMC, DMC does not weigh all walkers equally. It is therefore necessary to weigh each walker's contribution to a cumulative energy sampling accordingly, that is, with the branching Green's function. Let $E_k$ denote the cumulative energy for time-step $\tau = k\delta\tau$, $n_w$ be the number of walkers in our system at time-step $k$, $\tilde n_{b,i}$ be the number of blocks walker $i$ survives, and let $W_i(\mbf{r}, \tau)$ represent walker $i$. The relation is then
+As mentioned in Section \ref{sec:statingDiff}, the role of the branching Green's function is to distribute the correct weights to each walker. Each walker's contribution to the cumulative energy sampling should thus be weighed according to the value of the branching Green's function. Let $E_k$ denote the cumulative energy for time-step $\tau = k\delta\tau$, $n_w$ be the number of walkers in the system at time-step $k$, $\tilde n_{b,i}$ be the number of blocks walker $i$ survives, and let $W_i(\mbf{r}, \tau)$ represent walker $i$. The relation is then
 
 \begin{equation}
- E_k = \frac{1}{n_w}\sum_{i=1}^{n_w} \frac{1}{\tilde n_{b,i}}\sum_{l=1}^{\tilde n_{b,i}} G_\mathrm{B}\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big)E_L\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big)
+ E_k = \frac{1}{n_w}\sum_{i=1}^{n_w} \frac{1}{\tilde n_{b,i}}\sum_{l=1}^{\tilde n_{b,i}} G_\mathrm{B}\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big)E_L\Big(W_i(\mbf{r}, \tau_k + l\delta\tau)\Big). \label{eq:DMC_Ek}
 \end{equation}
 
-As the formalism required, setting $G_B = n_w = n_b = 1$ reproduce the VMC algorithm. 
+As required, setting $G_B = n_w = n_b = 1$ reproduces the VMC expression. 
 
-The new trial energy (remember Eq.~(\ref{eq:firstTrialEnergyIntro})) is set to be equal to the previous cycle's average energy  
+The new trial energy from Eq.~(\ref{eq:firstTrialEnergyIntro}) is set equal to the previous cycle's average energy, that is  
 
 \begin{equation}
- E_T = E_k
+ E_T = E_k.
 \end{equation}
 
-The DMC energy is updated each cycle to be the trailing average of the trial energies
+The DMC energy is updated each cycle to be the trailing average of the trial energies:
 
 \cfbox{2.5cm-10pt}{
 \begin{equation}
- E_\mathrm{DMC} = \overline{E_T} = \frac{1}{n}\sum_{k=1}^n E_k
+ E_\mathrm{DMC} = \overline{E_T} = \frac{1}{n}\sum_{k=1}^n E_k.
 \end{equation}
 }
-
-
 
 
 \subsection{Limitations}
 \label{sec:DMClimitations}
 
-By introducing the branching term, DMC is a far less robust method compared to VMC. Action must be taken in order to stabilize the iterations through tuning of parameters such as population size, time-step, block size, etc. This is the disadvantage of DMC compared to other many-body methods such as Coupled Cluster, which is far more automatic.
+By introducing the branching term, DMC is a far less robust method compared to VMC. Action must be taken in order to stabilize the iterations through tuning of parameters such as population size, time-step, block size, etc. This is the disadvantage of DMC compared to other many-body methods such as Coupled Cluster \cite{Hirth}, which is far more automatic.
 
-\subsubsection{Time-step Errors}
+\subsubsection{Time-step errors}
 
-The error introduced by the short time approximation goes as $\mathcal{O}(\delta\tau^2)$ (see Eq.~(\ref{eq:shortTimeApprox})). There is a second error related to the time-step, arising from the fact that not all steps are accepted by the Metropolis algorithm. This introduces a effective reduction in the time-step, and is countered by scaling the time-step with the acceptance ratio upon calculating $G_B$. However, DMC is rarely used without importance sampling (Fokker-Planck), which, due to the Quantum Force, has an acceptance ratio $\sim 1$. It is therefore common to ignore this problem, and use a sufficiently low time-step.
+The error introduced by the short time approximation in Eq.~(\ref{eq:shortTimeApprox}) goes as $\mathcal{O}(\delta\tau^2)$. In addition, there is a second error related to the time-step, arising from the fact that not all steps are accepted by the Metropolis algorithm. This introduces a effective reduction in the time-step, and is countered by scaling the time-step with the acceptance ratio upon calculating $G_B$ \cite{abInitioMC}. However, DMC is rarely used without importance sampling, which, due to the quantum force, has an acceptance ratio very close to one. It is therefore common to ignore this problem, as its effect on the final result is minimal.
 
-\subsubsection{Selecting the Time-step}
+\subsubsection{Selecting the time-step}
 
-Studying the branching Green's function in equation \ref{eq:branchFP} in more detail reveals that it's magnitude increase exponentially with the spread of the energies
+Studying the branching Green's function in equation \ref{eq:branchFP} in more detail reveals that it's magnitude increases exponentially with the spread of the energies $\Delta E$, that is
 
 \begin{equation}
-G_B \propto \exp{\left(\Delta E\delta\tau\right)} 
+G_B \propto \exp{\left(\Delta E\delta\tau\right)}. 
 \end{equation}
 
-As will be shown in Section \ref{sec:varAndSTD}, the spread in energy samples are higher the worse of an approximation to the ground state the trial wave function is. In addition, the magnitude of the spread scales with the magnitude of the energy. Due to finite computer memory, $N$ slots in the memory are dedicated for storing walkers on every node. Too large branching factors may cause the system to max out the memory on one node before the walkers can be redistributed across all the nodes. 
+As will be shown in Section \ref{sec:varAndSTD}, the spread in energy samples are higher the worse of an approximation to the ground state the trial wave function is. In addition, the magnitude of the spread scales with the magnitude of the energy. 
 
-Setting an upper bound to the branching might seem like a good idea, however, with these fluctuations, this would imply an imbalance in the population drift, causing the walkers to slowly die out or reach a state not representing the desired projection.
+Setting an upper bound to the branching function might seem like a good idea, however, each time a walker is denied its replicas, an uncontrollable error is introduced in the distribution.
 
-The solution is to balance out the increase in $\Delta E$ by lowering the time-step accordingly. However, too low a time-step will hinder DMC to evolve walkers efficiently, especially if the positional span of the distribution is large. If the walkers are inefficient, that is, the trial energy converges slowly, the projection process will be equally slow. This has been verified by calculations in this thesis; slowly converging systems, such as low frequency quantum dots, will have densities which look far from the radially symmetric expected result if the time-step or the number of walkers (the amount of statistics) is too low.
+The solution is to balance out the increase in $\Delta E$ by lowering the time-step accordingly. That is
+
+\begin{equation}
+ \delta\tau \propto \frac{1}{\Delta E}.
+\end{equation}
+
+However, having too low a time-step will hinder DMC from evolving walkers efficiently, especially if the positional span of the distribution is large. In other words, a balance must be found. An indication of whether the time-step was chosen too low or not is obtained by looking at the resulting DMC density. If the density is spiky and disorganized, the time-step was too low. 
 
 Another source of error is due to the \textit{fixed node approximation}. This approximation will be covered in the next section.
 
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/DMCUML.pdf}
-  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Figure \ref{fig:diffFlowChart} in combination with the branching from Figure \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Figure \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.}
+  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The variable \textit{i} represents the currently moved walker. The second step, \textit{Diffuse and Branch Walker}, is the process described in Figure \ref{fig:diffFlowChart} in combination with the branching from Figure \ref{fig:branching}. Energies are sampled as in Eq.~(\ref{eq:DMC_Ek}). Thermalization is set to a fixed number of cycles.}
   \label{fig:DMCchart}
  \end{center}
 \end{figure}
@@ -1087,35 +1093,37 @@ Another source of error is due to the \textit{fixed node approximation}. This ap
 
 \subsection{Fixed node approximation}
 
-Looking at Eq.~(\ref{eq:BosonicWFExplicit}), it is apparent that by choosing positive phases for the single particle wave functions, the bosonic many-body wave function is exclusively positive. For fermions however, the sign change upon interchange of two particles introduce the possibility that the wave function will have both negative and positive regions, independent of the choice of phases in the single particle wave functions.
+Looking at Eq.~(\ref{eq:BosonicWFExplicit}), it is apparent that by choosing positive phases for the single particle wave functions, the bosonic many-body wave function is exclusively positive. For fermions however, the sign change upon interchanging two particles introduces the possibility that the wave function will have both negative and positive regions, independent of the choice of phases in the single particle wave functions.
 
-As importance sampled DMC iterates, the density of walkers at a given time, $P(x, \tau)$, represents the projected wave function from Eq.~(\ref{eq:schrodGeneralSolution2}) multiplied by the trial wave function (see the end of Section \ref{sec:anisFokker} for details)
+As DMC iterates, the density of walkers at a given time, $P(\mathbf{r}, \tau)$, represents the projected wave function from Eq.~(\ref{eq:schrodGeneralSolution2}) multiplied by the trial wave function. 
 
 \begin{equation}
- P(\mathbf{r}, \tau) = \Ptau\PT,
+ P(\mathbf{r}, \tau) = \Ptau\PT.
 \end{equation}
 
-where theoretically using an exact projection operator
+This relationship is described in high detail in Section \ref{sec:anisFokker}.
+
+Applying the projector operator to the distribution yields
 
 \begin{equation}
   \lim_{\tau\to\infty} P(\mathbf{r}, \tau) = \braket{\Phi_0}{\Phi_T}\Phi_0(\mathbf{r})\Psi_T(\mathbf{r}),
 \end{equation}
 
 which, if interpreted as a density, should always be greater than zero. In the case of fermions, this is not guaranteed, as
-the node structure, i.e. the roots, of the exact ground state and the trial wave function will generally be different.  
+the node structure of the exact ground state and the trial wave function will generally be different.  
 
-To avoid this anomaly in the density, $\Ptau$ and $\PT$ have to change sign simultaneously\footnote{It should be mentioned that more sophisticated methods exist for dealing with the sign problem, some of which splits the distribution of walkers into a negative and a positive regions, however, due to the infinity position space, this requires an enormous amount of walkers to succeed.}. The brute force way of solving this problem is to \textit{fix} the nodes by rejecting a walker's step if the trial wave function changes sign:
+To avoid this anomaly in the density, $\Ptau$ and $\PT$ have to change sign simultaneously\footnote{It should be mentioned that more sophisticated methods exist for dealing with the sign problem, some of which splits the distribution of walkers into a negative and a positive regions, however, due to the position space being infinite, this requires an enormous amount of walkers to succeed.}. The brute force way of solving this problem is to \textit{fix} the nodes by rejecting a walker's step if the trial wave function changes sign:
 
 \begin{equation}
-\frac{\Psi_T(\mathbf{r}_i)}{\Psi_T(\mathbf{r}_j)} < 0 \quad\Longrightarrow\quad A(i\,\rightarrow\,j) = 0
+\frac{\Psi_T(\mathbf{r}_i)}{\Psi_T(\mathbf{r}_j)} < 0 \quad\Longrightarrow\quad A(i\,\rightarrow\,j) = 0,
 \end{equation}
 
-where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as described in Section \ref{sec:MetroMain}. An illustrative example is attempted in Figure \ref{fig:fixxednode}.
+where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as described in Section \ref{sec:MetroMain}. An illustrative example is given in Figure \ref{fig:fixxednode}.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.3]{../Graphics/fixxednode.pdf}
-  \caption{A one-dimensional illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi_0(x)$. The distribution of walkers at cycle $n$, $\Phi(x, n\delta\tau)$, similar in shape with $\Psi_0(x)$, however, sharing nodes with the trial wave function $\Psi_T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.}
+  \caption{A one-dimensional illustration of the fixed node approximation. The dotted line represents the exact ground state $\Psi_0(x)$. The distribution of walkers after $n$ Monte-Carlo cycles is represented by $\Phi(x, n\delta\tau)$. The trial wave function $\Psi_T(x)$ shares nodes with $\Phi(x, n\delta\tau)$, making it impossible for $\Phi(x, n\delta\tau)$ to match $\Psi_0(x)$.}
   \label{fig:fixxednode}
  \end{center}
 \end{figure}
@@ -1130,22 +1138,26 @@ The one-body density is defined as
  \rho(  \mathbf{r}_1) = \iint\limits_{  \mathbf{r}_2   \mathbf{r}_3}...\int\limits_{  \mathbf{r}_N} \left|\Phi(  \mathbf{r}_1   \mathbf{r}_2 ...   \mathbf{r}_N)\right|^2\mathrm{d}  \mathbf{r}_2...\mathrm{d}  \mathbf{r}_N.
 \end{equation}
 
-Unlike the distribution $|\Phi(\mathbf{r})|^2$, which describes the distribution of any of the particles in the system, the one-body density $\rho(\mathbf{r}_1)$ describes the simultaneous distribution of every particle in the system, that is, $\rho(\mathbf{r}_1)\mathrm{d}\mathbf{r}_1$ represents the probability to find \textit{any} of the systems $N$ particles within the volume element $\mathrm{d}\mathbf{r}_1$. Due to the indistinguishable nature of the particles, the fact that the first coordinate is chosen is purely conventional; any of the $N$ coordinates contain information about all the particles. For the same reason, the one-body density should be normalized to the number of particles $N$, and not unity.   
+Unlike the distribution $|\Phi(\mathbf{r})|^2$, which describes the distribution of any of the particles in the system, the one-body density $\rho(\mathbf{r}_1)$ describes the simultaneous distribution of every particle in the system, that is, $\rho(\mathbf{r}_1)\mathrm{d}\mathbf{r}_1$ represents the probability of finding \textit{any} of the system's $N$ particles within the volume element $\mathrm{d}\mathbf{r}_1$. Due to the indistinguishable nature of the particles, the fact that the first coordinate is chosen is purely conventional; any of the $N$ coordinates contain information about all the particles. For the same reason, the one-body density should be normalized to the number of particles, and not to unity.   
 
-The one-body density integral corresponds to projecting every degree of freedom into one. In a Monte-Carlo simulation, estimating this quantity is done by collecting snapshots of the walkers' positions. These snapshots serve as samples to a histogram where each set of Cartesian coordinates (independent of particle number) give rise to one histogram-count ($\mathrm{d}\mathbf{r}_1$ is approximated by a finite value).
+In a Monte-Carlo simulation, estimating the one-body density is done by collecting snapshots of the walkers' positions. These snapshots serve as samples to a histogram where each set of Cartesian coordinates give rise to one histogram-count.
 
 \subsection{Estimating the Exact Ground State Density}
 
-The one-body density of the trial wave functions is in other words trivial; create a histogram of sampled VMC positions. The challenge is estimating the one-body density of the exact wave function, given a set of DMC data. As described in Section \ref{sec:anisFokker}, the distribution of walkers by design spanning the \textit{mixed density} $f(\mathbf{r}, \tau) = \Ptau\PT$, which does not correspond to the ground state distribution unless the trial wave function is indeed the exact ground state. 
+It was mentioned in the section on VMC that the final state of convergence was to have to walkers span the trial wave function. This implies that the one-body density of the trial wave function, called the \textit{variational density}, can be calculated using positional data generated from VMC.
 
-This implies the need of a method to transform the one-body density of $f(\mathbf{r}, \tau)$) into the one of $|\Ptau|^2$ (from here on referred to as the \textit{pure density}). This is done by using a third estimate obtained from VMC, the \textit{variational density}, which corresponds to the one-body density of $|\Psi_T(\mathbf{r})|^2$. To achieve this, a relation shown in in Ref. \cite{abInitioMC} by Taylor expanding $\bra{\Phi_0}\OP{A}\ket{\Phi_0}/\braket{\Phi_0}{\Phi_0}$ around $\Delta \equiv \PT - \Ptau$ serves as a good starting ground
+The challenge lies in estimating the one-body density of the exact wave function given a set of DMC data. As described in Section \ref{sec:anisFokker}, the distribution of walkers span the \textit{mixed density} $f(\mathbf{r}, \tau) = \Ptau\PT$, which does not correspond to the ground state distribution unless the trial wave function is indeed the exact ground state. Hence a histogram of the DMC data does not suffice when it comes to presenting the exact wave function.
+
+This implies the need of a method for transforming the one-body density of $f(\mathbf{r}, \tau)$ into the \textit{pure density} $|\Ptau|^2$. To achieve this, the following relation is needed \cite{abInitioMC}
 
 \begin{align}
  \langle A \rangle_0 = \frac{\bra{\Phi_0}\OP{A}\ket{\Phi_0}}{\braket{\Phi_0}{\Phi_0}} &\simeq  2\frac{\bra{\Phi_0}\OP{A}\ket{\Psi_T}}{\braket{\Phi_0}{\Psi_T}} -  \frac{\bra{\Psi_T}\OP{A}\ket{\Psi_T}}{\braket{\Psi_T}{\Psi_T}} + \mathcal{O}(\Delta^2)\notag\\
-  &= 2\langle A \rangle_\mathrm{DMC} - \langle A \rangle_\mathrm{VMC}  + \mathcal{O}(\Delta^2) \label{eq:PureEstimRelat}
+  &= 2\langle A \rangle_\mathrm{DMC} - \langle A \rangle_\mathrm{VMC}  + \mathcal{O}(\Delta^2), \label{eq:PureEstimRelat}
 \end{align}
 
-Expressed in terms of \textit{density operators} (not one-body densities), the expectation values become
+where $\Delta \equiv \PT - \Ptau$. 
+
+Expressed in terms of \textit{density operators}, the expectation values for the different methods are \cite{leinaas}
 
 \newcommand{\tr}{\mathrm{tr}}
 
@@ -1155,52 +1167,48 @@ Expressed in terms of \textit{density operators} (not one-body densities), the e
  \langle A \rangle_\mathrm{DMC} &= \tr(\OP{\rho}_\mathrm{DMC}\OP{A}) 
  \end{align*}
 
-where $\tr$ denotes the \textit{trace} (sum of eigenvalues\cite{leinaas}). Inserting these equation into Eq.~(\ref{eq:PureEstimRelat}) yields
+where $\tr$ denotes the \textit{trace}, i.e. the sum of all eigenvalues. Inserting these equations into Eq.~(\ref{eq:PureEstimRelat}) yield
 
 \begin{align}
  \tr(\OP{\rho}_0\OP{A}) &\simeq 2\tr(\OP{\rho}_\mathrm{DMC}\OP{A}) -  \tr(\OP{\rho}_\mathrm{VMC}\OP{A}) + \mathcal{O}(\Delta^2) \notag\\
-  &\simeq \tr\left(\left(2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC}\right)\OP{A}\right) + \mathcal{O}(\Delta^2)
+  &\simeq \tr\left(\left(2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC}\right)\OP{A}\right) + \mathcal{O}(\Delta^2),
 \end{align}
 
-which leads to the conclusion that the mixed density can be transformed in the following manner
+which leads to the conclusion that the mixed density can be transformed in the following manner:
 
 \begin{equation}
- \OP{\rho}_0 \simeq 2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC} \label{eq:densityTransform}
+ \OP{\rho}_0 \simeq 2\OP{\rho}_\mathrm{DMC} - \OP{\rho}_\mathrm{VMC} .\label{eq:densityTransform}
 \end{equation}
 
-The transformation of densities into one-body densities can be applied to both sides of this equation, implying that combining the one-body densities of $f(\mathbf{r}, \tau)$ from DMC and the trial wave function one from VMC according to Eq.~(\ref{eq:densityTransform}) serves as a good approximation to the one-body density of the iterated wave function $\Ptau$ given that it is close to the exact wave function.
+It is clear that if this relation holds for regular densities, it will hold for one-body densities as well. In other words, the resulting densities from DMC can be combined with the corresponding one from VMC to produce the pure density.
 
 \subsection{Radial Densities}
 
-In the case of symmetric wave functions, like in the case for atoms and quantum dots, the radial one-body density is obtained by integrating out the angular dependencies of the one-body density. This corresponds to weighing all angular directions equally in a brute for average and can only be applied to radially symmetric systems without loosing information.
-
-Calculating the integral in two and three dimensions yields
+Integrating out every degree of freedom except one radial coordinate from the density results in the radial one-body density times the radius (squared for three dimensions). In other words
 
 \begin{align}
  I_\mathrm{3D} &= \iint \rho (\mathbf{r}_1, \theta_1, \phi_1)r_1^2\sin\theta_1\mathrm{d}\theta_1\mathrm{d}\phi_1 \notag\\
-   &\propto r_1^2\rho(\mathbf{r}_1) \label{eq:averagedRadialOBD_3D} \\
+   &\propto r_1^2\rho(\mathbf{r}_1), \label{eq:averagedRadialOBD_3D} \\
  I_\mathrm{2D} &= \int \rho (\mathbf{r}_1, \phi_1)r_1\mathrm{d}\phi_1 \notag\\
-   &\propto r_1\rho(\mathbf{r}_1) \label{eq:averagedRadialOBD_2D}
+   &\propto r_1\rho(\mathbf{r}_1). \label{eq:averagedRadialOBD_2D}
 \end{align}
 
-In practice, this integral is calculated by creating a histogram $H(r)$ of all sampled radii. Transforming this histogram into the radial one-body density $\rho(r_1)$ is according to Eq.~(\ref{eq:averagedRadialOBD_3D}) and Eq.~(\ref{eq:averagedRadialOBD_2D}) done in the following manner
+In practice, these integrals are calculated by creating histograms $H(r)$ of all sampled radii. Transforming the histograms into radial one-body densities $\rho(r_1)$ are according to Eq.~(\ref{eq:averagedRadialOBD_3D}) and Eq.~(\ref{eq:averagedRadialOBD_2D}) done in the following manner
 
 \begin{equation}
- \rho(\mathbf{r}_1) = \frac{H(\mathbf{r}_1)}{r_1^{(d-1)}}\label{eq:radial_OBD}
+ \rho(\mathbf{r}_1) = \frac{H(\mathbf{r}_1)}{r_1^{(d-1)}},\label{eq:radial_OBD}
 \end{equation}
 
-where $d$ denotes the number of dimensions. An example radial one-body density is given in Figure \ref{fig:OBD_ex}
+where $d$ denotes the number of dimensions. An example presenting two radial one-body densities is given in Figure \ref{fig:OBD_ex}. Notice, however, that the radial density for certain systems such as atoms needs to be scaled with $r$ or $r^2$ in order to reveal the interesting shapes. 
 
 \begin{figure}
  \begin{center}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/OBD_rad_ex_12pw01.png}}
   \subfigure{\includegraphics[scale=0.3816]{../Graphics/OBD/OBD_Atoms/2D/Beryllium.png}}
-  \caption{Two examples of radial one-body densities for both VMC, DMC (from $f(\mathbf{r}, \tau)$), and the pure density from Eq.~(\ref{eq:densityTransform}). On the left: A 12-particle quantum dot with $\omega=0.1$. The density diverges close to zero due to a ``$\frac{0}{0}$'' expression (see Eq.~(\ref{eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e. $r_1^2\rho(\mathbf{r}_1)$. These results will be discussed in the results section.}
+  \caption{Two examples of radial one-body densities for VMC, DMC, and the pure density from Eq.~(\ref{eq:densityTransform}). On the left: A 12-particle two-dimensional quantum dot with frequency $\omega=0.1$. The density diverges close to zero due to a ``$\frac{0}{0}$'' expression (see Eq.~(\ref{eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e.~$r_1^2\rho(\mathbf{r}_1)$. The densities will be discussed in the results section.}
   \label{fig:OBD_ex}
  \end{center}
 \end{figure}
-
-It should be noted that in the case of atoms, the one-body density does not reveal particularly interesting shapes (this will be presented in Figure \ref{fig:OBD_noble_Atoms_2D_combo}), however, simply showing the distribution of radii, that is, not dividing by $\mathbf{r}_1^2$ reveal interesting shapes which can be used to discuss the physics of different atoms. 
 
 
 

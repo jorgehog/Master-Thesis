@@ -969,6 +969,6 @@ jabref-meta: selector_keywords:
 
 @article{CCSD_WF,
 	author = "Roggero, A. and Pederiva, F. and Mukherjee, A.",
-	localfile = "arXiv:1304.1549 [nucl-th]"
+	note = "arXiv:1304.1549 [nucl-th]"
 }
 

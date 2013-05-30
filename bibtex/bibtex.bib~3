@@ -972,3 +972,18 @@ jabref-meta: selector_keywords:
 	note = "arXiv:1304.1549 [nucl-th]"
 }
 
+@article{momentspaceQMC,
+	author = "Bulgac, Aurel and Forbes, Michael McNeil",
+	doi = "10.1103/PhysRevC.87.051301",
+	issue = "5",
+	journal = "Phys. Rev. C",
+	month = "May",
+	numpages = "6",
+	pages = "051301",
+	publisher = "American Physical Society",
+	title = "{Use of the discrete variable representation basis in nuclear physics}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevC.87.051301",
+	volume = "87",
+	year = "2013"
+}
+

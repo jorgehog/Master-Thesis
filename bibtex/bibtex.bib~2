@@ -972,7 +972,7 @@ jabref-meta: selector_keywords:
 	note = "arXiv:1304.1549 [nucl-th]"
 }
 
-@article{PhysRevC.87.051301,
+@article{momentspaceQMC,
 	author = "Bulgac, Aurel and Forbes, Michael McNeil",
 	doi = "10.1103/PhysRevC.87.051301",
 	issue = "5",
@@ -985,5 +985,11 @@ jabref-meta: selector_keywords:
 	url = "http://link.aps.org/doi/10.1103/PhysRevC.87.051301",
 	volume = "87",
 	year = "2013"
+}
+
+@article{QMCDIFF,
+	author = "Mares, J. J. and others",
+	title = "{Periodic reactions and quantum diffusion}",
+	url = "http://www.fzu.cz/~sestak/yyx/periodic%20reactions.pdf"
 }
 

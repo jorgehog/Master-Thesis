@@ -30,6 +30,10 @@ I.~Shavitt and R.~J. Bartlett, \emph{{Many-Body Methods in Chemistry and
   Physics}}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge: Cambridge
   University Press, 2009.
 
+\bibitem{Sigve}
+S.~B. Skattum, ``{Time Evolution of Quantum Dots},'' Master's thesis,
+  University of Oslo, 2013.
+
 \bibitem{QMCDIFF}
 \BIBentryALTinterwordspacing
 J.~J. Mares \emph{et~al.}, ``{Periodic reactions and quantum diffusion}.''
@@ -108,6 +112,10 @@ S.~Klein, J.~P.~W. Pluim, M.~Staring, and M.~A. Viergever, ``{Adaptive
   227--239, 2009. [Online]. Available:
   \url{http://dx.doi.org/10.1007/s11263-008-0168-y}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Hirth}
+C.~Hirth, ``{Studies of quantum dots: Ab initio coupled-cluster analysis using
+  OpenCL and GPU programming},'' Master's thesis, University of Oslo, 2012.
 
 \bibitem{leinaas}
 J.~M. Leinaas, ``{Non-Relativistic Quantum Mechanics},'' lecture notes FYS4110.

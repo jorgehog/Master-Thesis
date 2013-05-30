@@ -23,6 +23,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Modelling Diffusion}{7}{section.1.1}}
 \citation{griffiths}
 \citation{Shavitt}
+\citation{Sigve}
 \citation{QMCDIFF}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Stating the Schr\IeC {\"o}dinger Equation as a Diffusion Problem}{8}{subsection.1.1.1}}
 \newlabel{sec:statingDiff}{{1.1.1}{8}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{subsection.1.1.1}{}}
@@ -39,6 +40,7 @@
 \newlabel{eq:GDiff}{{1.15}{10}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.15}{}}
 \newlabel{eq:GB}{{1.16}{10}{Stating the Schrödinger Equation as a Diffusion Problem\relax }{equation.1.1.15}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Solving the Diffusion Problem}{10}{section.1.2}}
+\newlabel{sec:solvingDiff}{{1.2}{10}{Solving the Diffusion Problem\relax }{section.1.2}{}}
 \citation{abInitioMC}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}Isotropic Diffusion}{11}{subsection.1.2.1}}
 \newlabel{Eq:diffusionSimple}{{1.17}{11}{Isotropic Diffusion\relax }{equation.1.2.17}{}}
@@ -58,12 +60,14 @@
 \newlabel{eq:impSamplRaw}{{1.25}{13}{Connecting Anisotropic - and Isotropic Diffusion Models\relax }{equation.1.2.25}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Diffusive Equilibrium Constraints}{15}{section.1.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}Detailed Balance}{15}{subsection.1.3.1}}
+\citation{robertcasella}
 \newlabel{eq:DetailedBalance}{{1.29}{16}{Detailed Balance\relax }{equation.1.3.29}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Ergodicity}{16}{subsection.1.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}The Metropolis Algorithm}{16}{section.1.4}}
 \newlabel{sec:MetroMain}{{1.4}{16}{The Metropolis Algorithm\relax }{section.1.4}{}}
 \newlabel{eq:metro1}{{1.30}{16}{The Metropolis Algorithm\relax }{equation.1.4.30}{}}
 \newlabel{eq:metro2}{{1.31}{16}{The Metropolis Algorithm\relax }{equation.1.4.31}{}}
+\citation{robertcasella}
 \citation{morten}
 \newlabel{eq:MetroGeneralGreen}{{1.32}{17}{The Metropolis Algorithm\relax }{equation.1.4.32}{}}
 \newlabel{eq:Metropolis_standard}{{1.34}{17}{The Metropolis Algorithm\relax }{equation.1.4.34}{}}
@@ -78,11 +82,9 @@
 \newlabel{eq:branchISO}{{1.37}{19}{The Process of Branching\relax }{equation.1.5.37}{}}
 \newlabel{eq:branchFP}{{1.38}{19}{The Process of Branching\relax }{equation.1.5.37}{}}
 \newlabel{eq:gbMean}{{1.39}{19}{The Process of Branching\relax }{equation.1.5.39}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces The process of branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref  {sec:branching}. The numerical value inside the nodes represents the value of $\overline  {G}_B$ from Eq.~(\ref  {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.\relax }}{20}{figure.caption.4}}
-\newlabel{fig:branching}{{1.2}{20}{The process of branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref {sec:branching}. The numerical value inside the nodes represents the value of $\overline {G}_B$ from Eq.~(\ref {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, not two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.\relax \relax }{figure.caption.4}{}}
-\citation{griffiths}
-\citation{Sakurai:94}
-\citation{Shavitt}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces The process of branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref  {sec:branching}. The numerical value inside the nodes represents the value of $\overline  {G}_B$ from Eq.~(\ref  {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, no two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.\relax }}{20}{figure.caption.4}}
+\newlabel{fig:branching}{{1.2}{20}{The process of branching illustrated. The initial walker $W_i(R, \tau )$ is branched according to the rules of Section \ref {sec:branching}. The numerical value inside the nodes represents the value of $\overline {G}_B$ from Eq.~(\ref {eq:gbMean}). Each horizontal dashed line represent a diffusion step, i.e.~a transition in time. Two lines exiting the same node represent identical walkers. After moving through the diffusion process, no two walkers should ever be equal, given that not all of the steps was rejected by the Metropolis test.\relax \relax }{figure.caption.4}{}}
+\citation{griffiths,Sakurai:94,Shavitt}
 \@writefile{toc}{\contentsline {section}{\numberline {1.6}The Trial Wave Function}{21}{section.1.6}}
 \newlabel{sec:trialWF}{{1.6}{21}{The Trial Wave Function\relax }{section.1.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.6.1}Many-body Wave Functions}{21}{subsection.1.6.1}}
@@ -94,16 +96,17 @@
 \@writefile{toc}{\contentsline {subsubsection}{Step one in detail}{23}{figure.caption.5}}
 \newlabel{eq:orbitalEigenEq}{{1.46}{23}{Step one in detail\relax }{equation.1.6.46}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Step two in detail}{23}{equation.1.6.46}}
+\citation{morten}
 \newlabel{eq:SlaterDeterminantExplicit}{{1.47}{24}{Step two in detail\relax }{equation.1.6.47}{}}
 \newlabel{eq:BosonicWFExplicit}{{1.48}{24}{Step two in detail\relax }{equation.1.6.47}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Dealing with correlations}{24}{equation.1.6.47}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}Choosing a Trial Wave Function}{24}{subsection.1.6.2}}
-\newlabel{sec:ChoiceTrialWF}{{1.6.2}{24}{Choosing a Trial Wave Function\relax }{subsection.1.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}Choosing the Trial Wave Function}{24}{subsection.1.6.2}}
+\newlabel{sec:ChoiceTrialWF}{{1.6.2}{24}{Choosing the Trial Wave Function\relax }{subsection.1.6.2}{}}
 \citation{abInitioMC}
 \citation{abInitioMC}
 \citation{larseivind}
 \citation{QMCPHD2008}
-\newlabel{eq:firstAnzatsTWF}{{1.49}{25}{Choosing a Trial Wave Function\relax }{equation.1.6.49}{}}
+\newlabel{eq:firstAnzatsTWF}{{1.49}{25}{Choosing the Trial Wave Function\relax }{equation.1.6.49}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Explicit shapes}{25}{equation.1.6.49}}
 \newlabel{eq:jastrow}{{1.51}{25}{Explicit shapes\relax }{equation.1.6.51}{}}
 \citation{UmrigarMolecules}
@@ -111,7 +114,7 @@
 \newlabel{eq:MultiDeterminantTWF}{{1.53}{26}{Explicit shapes\relax }{equation.1.6.53}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Limitations}{26}{equation.1.6.53}}
 \@writefile{toc}{\contentsline {subsubsection}{Single-determinant trial wave functions}{26}{equation.1.6.53}}
-\newlabel{eq:singleDeterminantTWF}{{1.54}{26}{Single-determinant trial wave functions\relax }{equation.1.6.54}{}}
+\newlabel{eq:singleDeterminantTWF}{{1.54}{27}{Single-determinant trial wave functions\relax }{equation.1.6.54}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.6.3}Selecting Optimal Variational Parameters}{27}{subsection.1.6.3}}
 \newlabel{sec:selectingOptVarPar}{{1.6.3}{27}{Selecting Optimal Variational Parameters\relax }{subsection.1.6.3}{}}
 \newlabel{eq:varMin}{{1.55}{27}{Selecting Optimal Variational Parameters\relax }{equation.1.6.55}{}}
@@ -121,15 +124,13 @@
 \newlabel{sec:calcExpVals}{{1.6.4}{28}{Calculating Expectation Values\relax }{subsection.1.6.4}{}}
 \newlabel{eq:MeanVStrueExp}{{1.61}{29}{Calculating Expectation Values\relax }{equation.1.6.61}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.6.5}Normalization}{29}{subsection.1.6.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.7}Gradient Descent Methods}{29}{section.1.7}}
-\newlabel{sec:GradientDescent}{{1.7}{29}{Gradient Descent Methods\relax }{section.1.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}General Gradient Descent}{29}{subsection.1.7.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Two steps of a one dimensional Gradient Descent process. Steps are taken in the direction of the negative gradient (indicated by dotted lines).\relax }}{30}{figure.caption.6}}
 \newlabel{fig:SGD}{{1.4}{30}{Two steps of a one dimensional Gradient Descent process. Steps are taken in the direction of the negative gradient (indicated by dotted lines).\relax \relax }{figure.caption.6}{}}
-\newlabel{eq:SGD}{{1.67}{30}{General Gradient Descent\relax }{equation.1.7.67}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}Gradient Descent Methods}{30}{section.1.7}}
+\newlabel{sec:GradientDescent}{{1.7}{30}{Gradient Descent Methods\relax }{section.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}General Gradient Descent}{30}{subsection.1.7.1}}
 \citation{ASGD_MB}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax }}{31}{figure.caption.7}}
-\newlabel{fig:sSGD}{{1.5}{31}{A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax \relax }{figure.caption.7}{}}
+\newlabel{eq:SGD}{{1.67}{31}{General Gradient Descent\relax }{equation.1.7.67}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.7.2}Stochastic Gradient Descent}{31}{subsection.1.7.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.7.3}Adaptive Stochastic Gradient Descent}{31}{subsection.1.7.3}}
 \newlabel{eq:ASGD_X_i}{{1.68}{31}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.68}{}}
@@ -137,98 +138,106 @@
 \citation{ASGD}
 \citation{ASGD}
 \citation{ASGD}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Examples of $f(X_i)$ as published in ref. \cite  {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax }}{32}{figure.caption.8}}
-\newlabel{fig:f_ASGD}{{1.6}{32}{Examples of $f(X_i)$ as published in ref. \cite {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax \relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces A one dimensional plot of an expectation value function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax }}{32}{figure.caption.7}}
+\newlabel{fig:sSGD}{{1.5}{32}{A one dimensional plot of an expectation value function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).\relax \relax }{figure.caption.7}{}}
 \newlabel{eq:ASGD_delta_i}{{1.70}{32}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.69}{}}
 \newlabel{eq:ASGD_t_i}{{1.71}{32}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.69}{}}
 \newlabel{eq:ASGD_f_i}{{1.72}{32}{Adaptive Stochastic Gradient Descent\relax }{equation.1.7.69}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Assumptions}{32}{figure.caption.8}}
+\citation{ASGD}
 \citation{libBorealisCode}
-\@writefile{toc}{\contentsline {subsubsection}{Assumptions}{33}{figure.caption.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Examples of $f(X_i)$ as published in Ref. \cite  {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax }}{33}{figure.caption.8}}
+\newlabel{fig:f_ASGD}{{1.6}{33}{Examples of $f(X_i)$ as published in Ref. \cite {ASGD}. As $\omega \to 0$, $f(x)$ approaches a step function.\relax \relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Implementation}{33}{figure.caption.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref  {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound in as it attempts to cross to negative values.\relax }}{33}{figure.caption.9}}
-\newlabel{fig:ASGD_Ex}{{1.7}{33}{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound in as it attempts to cross to negative values.\relax \relax }{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Chart flow of ASGD algorithm. Diffusing a walker is done as described in Figure \ref  {fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref  {eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref  {eq:varParGrad}).\relax }}{34}{figure.caption.10}}
-\newlabel{fig:ASGD_flow}{{1.8}{34}{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Figure \ref {fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref {eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref {eq:varParGrad}).\relax \relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.8}Variational Monte-Carlo}{35}{section.1.8}}
-\newlabel{sec:VMC}{{1.8}{35}{Variational Monte-Carlo\relax }{section.1.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}Motivating the use of Diffusion Theory}{35}{subsection.1.8.1}}
-\newlabel{eq:VMCrandomDistE}{{1.73}{35}{Motivating the use of Diffusion Theory\relax }{equation.1.8.73}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit  {Diffuse Walker}, is the process described in Figure \ref  {fig:diffFlowChart}. Energies are sampled as described in Section \ref  {sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. \relax }}{36}{figure.caption.11}}
-\newlabel{fig:VMCchart}{{1.9}{36}{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit {Diffuse Walker}, is the process described in Figure \ref {fig:diffFlowChart}. Energies are sampled as described in Section \ref {sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. \relax \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref  {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound as it attempts to cross to negative values.\relax }}{34}{figure.caption.9}}
+\newlabel{fig:ASGD_Ex}{{1.7}{34}{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha $ and $\beta $ introduced in Section \ref {sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta $ somewhat before $\alpha $. The step rushes to zero with a small rebound as it attempts to cross to negative values.\relax \relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Chart flow of ASGD algorithm. Diffusing a walker is done as described in Figure \ref  {fig:diffFlowChart}. Updating the walkers involves recalculating any values affected by updating the minimum. The step is calculated by Eq.~(\ref  {eq:ASGD_delta_i}). In the case of QMC, the gradient is sampled by Eq.~(\ref  {eq:varParGrad}).\relax }}{35}{figure.caption.10}}
+\newlabel{fig:ASGD_flow}{{1.8}{35}{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Figure \ref {fig:diffFlowChart}. Updating the walkers involves recalculating any values affected by updating the minimum. The step is calculated by Eq.~(\ref {eq:ASGD_delta_i}). In the case of QMC, the gradient is sampled by Eq.~(\ref {eq:varParGrad}).\relax \relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}Variational Monte-Carlo}{36}{section.1.8}}
+\newlabel{sec:VMC}{{1.8}{36}{Variational Monte-Carlo\relax }{section.1.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}Motivating the use of Diffusion Theory}{36}{subsection.1.8.1}}
+\newlabel{eq:VMCrandomDistE}{{1.73}{36}{Motivating the use of Diffusion Theory\relax }{equation.1.8.73}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit  {Diffuse Walker}, is the process described in Figure \ref  {fig:diffFlowChart}. Energies are sampled as described in Section \ref  {sec:calcExpVals}. The thermalization is set to a fixed number of cycles. \relax }}{37}{figure.caption.11}}
+\newlabel{fig:VMCchart}{{1.9}{37}{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit {Diffuse Walker}, is the process described in Figure \ref {fig:diffFlowChart}. Energies are sampled as described in Section \ref {sec:calcExpVals}. The thermalization is set to a fixed number of cycles. \relax \relax }{figure.caption.11}{}}
 \citation{libBorealisCode}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit  {Optimal}) described in Section \ref  {sec:ChoiceTrialWF} the VMC energy gets very close to the ``exact'' answer. Lower energy means a better energy when dealing with variational methods. In this example, a 12 particle quantum dot with unit frequency is used.\relax }}{37}{figure.caption.12}}
-\newlabel{fig:VMC_wfcomp}{{1.10}{37}{Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit {Optimal}) described in Section \ref {sec:ChoiceTrialWF} the VMC energy gets very close to the ``exact'' answer. Lower energy means a better energy when dealing with variational methods. In this example, a 12 particle quantum dot with unit frequency is used.\relax \relax }{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Implementation}{37}{subsection.1.8.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}Limitations}{37}{subsection.1.8.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.9}Diffusion Monte-Carlo}{38}{section.1.9}}
-\newlabel{sec:DMC}{{1.9}{38}{Diffusion Monte-Carlo\relax }{section.1.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Implementation}{38}{subsection.1.9.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Sampling the Energy}{38}{subsection.1.9.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Limitations}{39}{subsection.1.9.3}}
-\newlabel{sec:DMClimitations}{{1.9.3}{39}{Limitations\relax }{subsection.1.9.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Time-step Errors}{39}{subsection.1.9.3}}
-\@writefile{toc}{\contentsline {subsubsection}{Selecting the Time-step}{39}{subsection.1.9.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit  {i} is the index of the walker loop. The second step, \textit  {Diffuse and Branch Walker}, is the process described in Figure \ref  {fig:diffFlowChart} in combination with the branching from Figure \ref  {fig:branching}. Energies are sampled as described in Section \ref  {sec:DMC}. Thermalization is not done in the same way as VMC (see Figure \ref  {fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.\relax }}{40}{figure.caption.13}}
-\newlabel{fig:DMCchart}{{1.11}{40}{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit {i} is the index of the walker loop. The second step, \textit {Diffuse and Branch Walker}, is the process described in Figure \ref {fig:diffFlowChart} in combination with the branching from Figure \ref {fig:branching}. Energies are sampled as described in Section \ref {sec:DMC}. Thermalization is not done in the same way as VMC (see Figure \ref {fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.\relax \relax }{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Fixed node approximation}{41}{subsection.1.9.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.10}Estimating One-body Densities}{41}{section.1.10}}
-\newlabel{sec:OBD}{{1.10}{41}{Estimating One-body Densities\relax }{section.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit  {Optimal}), described in Section \ref  {sec:ChoiceTrialWF}, the VMC energy gets very close to the ``exact'' answer. A lower energy means a better energy when dealing with variational methods. In this example, a 12-particle quantum dot with unit frequency is used.\relax }}{38}{figure.caption.12}}
+\newlabel{fig:VMC_wfcomp}{{1.10}{38}{Comparison of the VMC energy using different trial wave functions. The DMC energy is believed to be very close to the exact ground state. It is apparent that adding a variational parameter to the trial wave function lowers the energy substantially, however, when adding the Jastrow factor (denoted \textit {Optimal}), described in Section \ref {sec:ChoiceTrialWF}, the VMC energy gets very close to the ``exact'' answer. A lower energy means a better energy when dealing with variational methods. In this example, a 12-particle quantum dot with unit frequency is used.\relax \relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Implementation}{38}{subsection.1.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}Limitations}{38}{subsection.1.8.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.9}Diffusion Monte-Carlo}{39}{section.1.9}}
+\newlabel{sec:DMC}{{1.9}{39}{Diffusion Monte-Carlo\relax }{section.1.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Implementation}{39}{subsection.1.9.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Sampling the Energy}{39}{subsection.1.9.2}}
+\newlabel{eq:DMC_Ek}{{1.75}{39}{Sampling the Energy\relax }{equation.1.9.75}{}}
+\citation{Hirth}
+\citation{abInitioMC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Limitations}{40}{subsection.1.9.3}}
+\newlabel{sec:DMClimitations}{{1.9.3}{40}{Limitations\relax }{subsection.1.9.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Time-step errors}{40}{subsection.1.9.3}}
+\@writefile{toc}{\contentsline {subsubsection}{Selecting the time-step}{40}{subsection.1.9.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Chart flow of the Diffusion Monte-Carlo algorithm. The variable \textit  {i} represents the currently moved walker. The second step, \textit  {Diffuse and Branch Walker}, is the process described in Figure \ref  {fig:diffFlowChart} in combination with the branching from Figure \ref  {fig:branching}. Energies are sampled as in Eq.~(\ref  {eq:DMC_Ek}). Thermalization is set to a fixed number of cycles.\relax }}{41}{figure.caption.13}}
+\newlabel{fig:DMCchart}{{1.11}{41}{Chart flow of the Diffusion Monte-Carlo algorithm. The variable \textit {i} represents the currently moved walker. The second step, \textit {Diffuse and Branch Walker}, is the process described in Figure \ref {fig:diffFlowChart} in combination with the branching from Figure \ref {fig:branching}. Energies are sampled as in Eq.~(\ref {eq:DMC_Ek}). Thermalization is set to a fixed number of cycles.\relax \relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Fixed node approximation}{42}{subsection.1.9.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.10}Estimating One-body Densities}{42}{section.1.10}}
+\newlabel{sec:OBD}{{1.10}{42}{Estimating One-body Densities\relax }{section.1.10}{}}
 \citation{abInitioMC}
 \citation{leinaas}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces A one-dimensional illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi _0(x)$. The distribution of walkers at cycle $n$, $\Phi (x, n\delta \tau )$, similar in shape with $\Psi _0(x)$, however, sharing nodes with the trial wave function $\Psi _T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.\relax }}{42}{figure.caption.14}}
-\newlabel{fig:fixxednode}{{1.12}{42}{A one-dimensional illustration of the fixed node approximation. The dotted line is the exact ground state $\Psi _0(x)$. The distribution of walkers at cycle $n$, $\Phi (x, n\delta \tau )$, similar in shape with $\Psi _0(x)$, however, sharing nodes with the trial wave function $\Psi _T(x)$ (box-like function for illustration purposes), and thus making it impossible to match the true ground state exactly.\relax \relax }{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.1}Estimating the Exact Ground State Density}{42}{subsection.1.10.1}}
-\newlabel{eq:PureEstimRelat}{{1.83}{42}{Estimating the Exact Ground State Density\relax }{equation.1.10.83}{}}
-\newlabel{eq:densityTransform}{{1.85}{43}{Estimating the Exact Ground State Density\relax }{equation.1.10.85}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.2}Radial Densities}{43}{subsection.1.10.2}}
-\newlabel{eq:averagedRadialOBD_3D}{{1.86}{43}{Radial Densities\relax }{equation.1.10.86}{}}
-\newlabel{eq:averagedRadialOBD_2D}{{1.87}{43}{Radial Densities\relax }{equation.1.10.87}{}}
-\newlabel{eq:radial_OBD}{{1.88}{43}{Radial Densities\relax }{equation.1.10.88}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Two examples of radial one-body densities for both VMC, DMC (from $f(\mathbf  {r}, \tau )$), and the pure density from Eq.~(\ref  {eq:densityTransform}). On the left: A 12-particle quantum dot with $\omega =0.1$. The density diverges close to zero due to a ``$\frac  {0}{0}$'' expression (see Eq.~(\ref  {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e. $r_1^2\rho (\mathbf  {r}_1)$. These results will be discussed in the results section.\relax }}{44}{figure.caption.15}}
-\newlabel{fig:OBD_ex}{{1.13}{44}{Two examples of radial one-body densities for both VMC, DMC (from $f(\mathbf {r}, \tau )$), and the pure density from Eq.~(\ref {eq:densityTransform}). On the left: A 12-particle quantum dot with $\omega =0.1$. The density diverges close to zero due to a ``$\frac {0}{0}$'' expression (see Eq.~(\ref {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e. $r_1^2\rho (\mathbf {r}_1)$. These results will be discussed in the results section.\relax \relax }{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.11}Estimating the Statistical Error}{44}{section.1.11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.1}The Variance and Standard Deviates}{44}{subsection.1.11.1}}
-\newlabel{sec:varAndSTD}{{1.11.1}{44}{The Variance and Standard Deviates\relax }{subsection.1.11.1}{}}
-\newlabel{eq:variance}{{1.89}{44}{The Variance and Standard Deviates\relax }{equation.1.11.89}{}}
-\newlabel{eq:varianceZeroExact}{{1.91}{45}{The Variance and Standard Deviates\relax }{}{}}
-\newlabel{eq:stdNaive}{{1.91}{45}{The Variance and Standard Deviates\relax }{equation.1.11.91}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.2}The Covariance and correlated samples}{45}{subsection.1.11.2}}
-\newlabel{eq:covariance}{{1.92}{45}{The Covariance and correlated samples\relax }{equation.1.11.92}{}}
-\newlabel{eq:trueVsNaiveSTD}{{1.93}{45}{The Covariance and correlated samples\relax }{equation.1.11.93}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.3}The Deviate from the Exact Mean}{46}{subsection.1.11.3}}
-\newlabel{eq:meanx}{{1.95}{46}{The Deviate from the Exact Mean\relax }{equation.1.11.95}{}}
-\newlabel{eq:sigma_m}{{1.96}{46}{The Deviate from the Exact Mean\relax }{equation.1.11.95}{}}
-\newlabel{eq:realErrorCovariance1}{{1.97}{46}{The Deviate from the Exact Mean\relax }{equation.1.11.97}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces A one-dimensional illustration of the fixed node approximation. The dotted line represents the exact ground state $\Psi _0(x)$. The distribution of walkers after $n$ Monte-Carlo cycles is represented by $\Phi (x, n\delta \tau )$. The trial wave function $\Psi _T(x)$ shares nodes with $\Phi (x, n\delta \tau )$, making it impossible for $\Phi (x, n\delta \tau )$ to match $\Psi _0(x)$.\relax }}{43}{figure.caption.14}}
+\newlabel{fig:fixxednode}{{1.12}{43}{A one-dimensional illustration of the fixed node approximation. The dotted line represents the exact ground state $\Psi _0(x)$. The distribution of walkers after $n$ Monte-Carlo cycles is represented by $\Phi (x, n\delta \tau )$. The trial wave function $\Psi _T(x)$ shares nodes with $\Phi (x, n\delta \tau )$, making it impossible for $\Phi (x, n\delta \tau )$ to match $\Psi _0(x)$.\relax \relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.1}Estimating the Exact Ground State Density}{43}{subsection.1.10.1}}
+\newlabel{eq:PureEstimRelat}{{1.84}{43}{Estimating the Exact Ground State Density\relax }{equation.1.10.84}{}}
+\newlabel{eq:densityTransform}{{1.86}{44}{Estimating the Exact Ground State Density\relax }{equation.1.10.86}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.10.2}Radial Densities}{44}{subsection.1.10.2}}
+\newlabel{eq:averagedRadialOBD_3D}{{1.87}{44}{Radial Densities\relax }{equation.1.10.87}{}}
+\newlabel{eq:averagedRadialOBD_2D}{{1.88}{44}{Radial Densities\relax }{equation.1.10.88}{}}
+\newlabel{eq:radial_OBD}{{1.89}{44}{Radial Densities\relax }{equation.1.10.89}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Two examples of radial one-body densities for VMC, DMC, and the pure density from Eq.~(\ref  {eq:densityTransform}). On the left: A 12-particle two-dimensional quantum dot with frequency $\omega =0.1$. The density diverges close to zero due to a ``$\frac  {0}{0}$'' expression (see Eq.~(\ref  {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e.~$r_1^2\rho (\mathbf  {r}_1)$. The densities will be discussed in the result section.\relax }}{45}{figure.caption.15}}
+\newlabel{fig:OBD_ex}{{1.13}{45}{Two examples of radial one-body densities for VMC, DMC, and the pure density from Eq.~(\ref {eq:densityTransform}). On the left: A 12-particle two-dimensional quantum dot with frequency $\omega =0.1$. The density diverges close to zero due to a ``$\frac {0}{0}$'' expression (see Eq.~(\ref {eq:radial_OBD})). On the right: Unscaled radial density for the beryllium atom, i.e.~$r_1^2\rho (\mathbf {r}_1)$. The densities will be discussed in the result section.\relax \relax }{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.11}Estimating the Statistical Error}{45}{section.1.11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.1}The Variance and Standard Deviates}{45}{subsection.1.11.1}}
+\newlabel{sec:varAndSTD}{{1.11.1}{45}{The Variance and Standard Deviates\relax }{subsection.1.11.1}{}}
+\newlabel{eq:variance}{{1.90}{45}{The Variance and Standard Deviates\relax }{equation.1.11.90}{}}
+\newlabel{eq:varianceZeroExact}{{1.92}{46}{The Variance and Standard Deviates\relax }{}{}}
+\newlabel{eq:stdNaive}{{1.92}{46}{The Variance and Standard Deviates\relax }{equation.1.11.92}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.2}The Covariance and correlated samples}{46}{subsection.1.11.2}}
+\newlabel{eq:covariance}{{1.93}{46}{The Covariance and correlated samples\relax }{equation.1.11.93}{}}
+\newlabel{eq:trueVsNaiveSTD}{{1.94}{46}{The Covariance and correlated samples\relax }{equation.1.11.94}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.3}The Deviate from the Exact Mean}{47}{subsection.1.11.3}}
+\newlabel{eq:meanx}{{1.96}{47}{The Deviate from the Exact Mean\relax }{equation.1.11.96}{}}
+\newlabel{eq:sigma_m}{{1.97}{47}{The Deviate from the Exact Mean\relax }{equation.1.11.96}{}}
+\newlabel{eq:realErrorCovariance1}{{1.98}{47}{The Deviate from the Exact Mean\relax }{equation.1.11.98}{}}
 \citation{flyvbjerg:461}
 \citation{morten}
 \citation{flyvbjerg:461}
-\newlabel{eq:realErrorCovariance2}{{1.100}{47}{The Deviate from the Exact Mean\relax }{equation.1.11.100}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.4}Blocking}{47}{subsection.1.11.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\DOTSI \intop \ilimits@ _1^2 2x\mathrm  {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax }}{48}{figure.caption.16}}
-\newlabel{FIG:BlockingExamples}{{1.14}{48}{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax \relax }{figure.caption.16}{}}
-\newlabel{eq:blockingError}{{1.104}{48}{Blocking\relax }{equation.1.11.103}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.5}Variance Estimators}{48}{subsection.1.11.5}}
-\newlabel{eq:varBias}{{1.105}{48}{Variance Estimators\relax }{equation.1.11.105}{}}
-\newlabel{eq:varUnbias}{{1.106}{49}{Variance Estimators\relax }{equation.1.11.106}{}}
+\newlabel{eq:realErrorCovariance2}{{1.101}{48}{The Deviate from the Exact Mean\relax }{equation.1.11.101}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.4}Blocking}{48}{subsection.1.11.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\DOTSI \intop \ilimits@ _1^2 2x\mathrm  {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax }}{49}{figure.caption.16}}
+\newlabel{FIG:BlockingExamples}{{1.14}{49}{Left hand side: Blocking result of (approximately) uncorrelated data generated from a uniform Monte-Carlo integration of $\int _1^2 2x\mathrm {d}x$ resulting in $3.00003$ (exact is $3.0$). This is in excellent agreement with the magnitude of the error $\sim 9\cdot 10^{-5}$. There is no sign of a plateau, which implies fairly uncorrelated data (the span of the spread is small and apparently random). Right hand side: Blocking result of a DMC simulation of a 6-particle $\omega =0.1$ quantum dot. The plateau is strongly present, implying correlated data. The resulting total error is $\sim 4.5\cdot 10^{-5}$.\relax \relax }{figure.caption.16}{}}
+\newlabel{eq:blockingError}{{1.105}{49}{Blocking\relax }{equation.1.11.104}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11.5}Variance Estimators}{49}{subsection.1.11.5}}
+\newlabel{eq:varBias}{{1.106}{49}{Variance Estimators\relax }{equation.1.11.106}{}}
+\newlabel{eq:varUnbias}{{1.107}{50}{Variance Estimators\relax }{equation.1.11.107}{}}
 \@writefile{toc}{\contentsline {part}{II\hspace  {1em}Results}{51}{part.2}}
 \bibstyle{IEEEtran}
 \bibdata{../bibtex/bibtex.bib}
 \bibcite{griffiths}{1}
 \bibcite{Shavitt}{2}
-\bibcite{QMCDIFF}{3}
-\bibcite{abInitioMC}{4}
-\bibcite{Gardiner:2004bk}{5}
-\bibcite{risken1989fpe}{6}
-\bibcite{langevin}{7}
-\bibcite{morten}{8}
-\bibcite{libBorealisCode}{9}
-\bibcite{Sakurai:94}{10}
-\bibcite{larseivind}{11}
-\bibcite{QMCPHD2008}{12}
-\bibcite{UmrigarMolecules}{13}
-\bibcite{golub1996matrix}{14}
-\bibcite{ASGD_MB}{15}
+\bibcite{Sigve}{3}
+\bibcite{QMCDIFF}{4}
+\bibcite{abInitioMC}{5}
+\bibcite{Gardiner:2004bk}{6}
+\bibcite{risken1989fpe}{7}
+\bibcite{langevin}{8}
+\bibcite{morten}{9}
+\bibcite{libBorealisCode}{10}
+\bibcite{Sakurai:94}{11}
+\bibcite{larseivind}{12}
+\bibcite{QMCPHD2008}{13}
+\bibcite{UmrigarMolecules}{14}
+\bibcite{golub1996matrix}{15}
 \@writefile{toc}{\contentsline {chapter}{Bibliography}{55}{section*.17}}
-\bibcite{ASGD}{16}
-\bibcite{leinaas}{17}
-\bibcite{flyvbjerg:461}{18}
+\bibcite{ASGD_MB}{16}
+\bibcite{ASGD}{17}
+\bibcite{Hirth}{18}
+\bibcite{leinaas}{19}
+\bibcite{flyvbjerg:461}{20}
