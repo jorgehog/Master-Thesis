@@ -415,7 +415,7 @@ On the other hand, for Fokker-Planck diffusion, there will be no cancellation of
 
 Derived from detailed balance, the Metroplis Algorithm is as a must-have when it comes to Markov Chain Monte-Carlo. Besides QMC, methods for solving problems such as the \textit{Ising Model} greatly benefit from these rules \cite{morten}.
 
-In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in the simulations is finite, and the trial positions of the walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process is given in Fig. \ref{fig:diffFlowChart}.
+In practice, without the Metropolis sampling, the ensemble of walkers will not span that of the trial wave function. This is due to the fact that the time-step used in the simulations is finite, and the trial positions of the walkers are random. A chart flow describing the implementation of the Metropolis algorithm and the diffusion process is given in Figure \ref{fig:diffFlowChart}.
 
 \begin{figure}
  \begin{center}
@@ -462,7 +462,7 @@ where $a$ is a uniformly distributed number on $[0,1)$. The probability that $\o
 
 There are some programming challenges due to the fact that the number of walkers is not conserved, such as cleaning up inactive walkers and stabilizing the population across different computational nodes. For details regarding this, see the code documentation at Ref. \cite{libBorealisCode}. Isotropic diffusion is in practice never used with branching due to the singularities in the Coulomb interaction (see Eq.~(\ref{eq:branchISO})). This singularity may cause large fluctuations in the walker population, which is far from an optimal behavior.
 
-The process of branching is demonstrated in Fig. \ref{fig:branching}.
+The process of branching is demonstrated in Figure \ref{fig:branching}.
 
 \begin{figure}
  \begin{center}
@@ -511,7 +511,7 @@ where $ \tilde{C}_k' \ne  C_k'$ unless $K$ tends to infinity, however, it is ove
 
 The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to a combinatoric exercise involving combinations of orbitals.
 
-To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Fig.~\ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
+To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Figure \ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
 
 \begin{figure}
  \begin{center}
@@ -771,30 +771,30 @@ where $x_i$ is a random variable taken from distribution of the trial wave funct
 \end{equation}
 
 
-In the case of the energy estimation, this implies that once the walkers reach equilibrium, local values can be sampled based on the walker configurations $\mathbf{r}_i$ (remember that Metropolis ensures that the walkers follow $|\PT|^2$). In the case of energies, the explicit expression becomes
+In the case of the energy estimation, this implies that once the walkers reach equilibrium, local values can be sampled based on their configurations $\mathbf{r}_i$ (remember that Metropolis ensures that the walkers follow $|\PT|^2$). In the case of energies, the explicit expression becomes
 
 \begin{equation}
- \langle E \rangle \simeq \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(x_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(x_i) + V(x_i)\right)
+ \langle E \rangle \simeq \frac{1}{n}\sum_{i=1}^n \left(\frac{1}{\Psi_T(\mathbf{r}_i)}\left(-\frac{1}{2}\nabla^2\right)\Psi_T(\mathbf{r}_i) + V(\mathbf{r}_i)\right).
 \end{equation}
 
 Incorporating the branching Green's function $G_B$ into the above equation is covered in the DMC section.
 
 \subsection{Normalization}
 
-Every explicit calculation using the trial wave function in Quantum Monte-Carlo involves taking ratios. Calculating ratios implies a cancellation in the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the Quantum Force in the Fokker-Planck equation, and the sampling of local values describes in the previous section demonstrates exactly this; everything involves ratios.
+Every explicit calculation using the trial wave function in QMC involves taking ratios. Calculating ratios implies a cancellation in the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the quantum force in the Fokker-Planck equation, and the sampling of local values described in the previous section demonstrate exactly this; everything involves ratios.
 
-Not having to normalize our wave functions saves us a lot of CPU-time, but it also relieves us of complicated normalization factors in our single particle basis expressions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}), can be taken outside the sum over permutations, and will hence cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed. 
+Not having to normalize the wave functions does not only save a lot of CPU-time, but it also removes the need of including the normalization factors of the single particle wave functions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}) can be taken outside the sum over permutations, and will thus cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed. 
 
-Note, however, that this argument is valid for single determinant wave functions only. In the case of multi-determinants trial wave functions, the normalization factors from the single particle basis elements will be absorbed by the respective determinant's coefficient $C_k$, and is hence obsolete in this case as well. 
+Note, however, that this argument is valid for single determinant wave functions only. 
 
 \section{Gradient Descent Methods}
 \label{sec:GradientDescent}
 
-The direction of a gradient serves as a guide to extremal values. Gradient descent, also called steepest descent\footnote{In literature, steepest - and gradient descent are sometimes referred to as being different. However, for simplicity these will not be differentiated.}, is a family of minimization methods using this property of gradients in order to backtrace a local minimum in the vicinity of an initial guess. 
+The direction of a gradient serves as a guide to extremal values. Gradient descent, also called steepest descent\footnote{In literature, steepest - and gradient descent are sometimes referred to as being different. However, for simplicity, these will not be differentiated.}, is a family of minimization methods using this property of gradients in order to backtrace a local minimum in the vicinity of an initial guess. 
 
 \subsection{General Gradient Descent}
 
-Seeking maxima or minima is simply a question of whether the positive or negative direction of the gradient is followed.
+Seeking maxima or minima is simply a question of whether the positive or the negative direction of the gradient is followed.
 Imagine a function $f(x)$, with a minimum residing at $x=x_m$. The information at hand is then
 
 \begin{eqnarray}
@@ -813,21 +813,21 @@ where $\mathrm{d}x$ is a infinite decimal displacement.
  \end{center}
 \end{figure}
 
-As an example, imagine starting from an initial guess $x_0$. The direction of the gradient is then calculated and followed (backwards) a number of steps. From Fig. \ref{fig:SGD} and the previous equations, it is clear that crossing the true minimum induces a sign change in the gradient. The brute force way of minimizing is to simply end the calculation at this point, however, this would require a extreme amount of very small steps in order to achieve good precision. 
+As an example, imagine starting from an initial guess $x_0$. The direction of the gradient is then calculated and followed a number of steps. From Figure \ref{fig:SGD} and the previous equations, it is clear that crossing the true minimum induces a sign change in the gradient. The brute force way of minimizing is to simply end the calculation at this point, however, this would require an extreme amount of very small steps in order to achieve good precision. 
 
-The difference equation describing the steps from the previous paragraph would be
+The difference equation describing the steps from the previous paragraph is
 
 \begin{equation}
- x_{i+1} = x_i - \delta\frac{\nabla f(x_i)}{|\nabla f(x_i)|}
+ x_{i+1} = x_i - \delta\frac{\nabla f(x_i)}{|\nabla f(x_i)|}.
 \end{equation}
 
 
-An improved algorithm would be to continue iterating even though the minimum is crossed, however, this would cause the constant step-length algorithms to oscillate between two points, e.g. $x_1$ and $x_2$ in Fig. \ref{fig:SGD}. To counter this, a changing step length $\delta_i$ is introduced
+An improved algorithm would be to continue iterating even though the minimum is crossed, however, this would cause the constant step-length algorithms to oscillate between two points, e.g. $x_1$ and $x_2$ in Figure \ref{fig:SGD}. To counter this, a changing step-length $\delta_i$ is introduced
 
 \cfbox{2.2cm-8pt}{
 \begin{equation}
 \label{eq:SGD}
-  x_{i+1} = x_i - \delta_i\nabla f(x_i)
+  x_{i+1} = x_i - \delta_i\nabla f(x_i).
 \end{equation}
 }
 
@@ -848,16 +848,16 @@ Iterative gradient methods will only reveal one local extrema, depending on the 
 
 \subsection{Stochastic Gradient Descent}
 
-Minimizing stochastic quantities such as the variance and expectation values adds another layer of complications on top of the methods described in the previous section. Assuming a closed form expression for the stochastic quantity is unobtainable, the gradient needs to be calculated by using e.g. Monte-Carlo sampling. Eq.~(\ref{eq:varParGrad}) is an example of such a process.
+Minimizing stochastic quantities such as the variance and expectation values adds another layer of complications on top of the methods introduced in the previous section. Assuming a closed form expression for the stochastic quantity is unobtainable, the gradient needs to be calculated by using e.g.~Monte-Carlo sampling. Eq.~(\ref{eq:varParGrad}) is an example of such a process.
 
-A full precise sampling of the stochastic quantities are expensive and unpractical. Stochastic Gradient methods use different techniques in order to make the sampling more effective, such as multiple walkers, thermalization, and more. 
+A precise sampling of the stochastic quantities is expensive and unpractical. Stochastic gradient methods use different techniques in order to make the sampling more effective, such as multiple walkers, thermalization, and more. 
 
-Using a finite difference scheme with stochastic quantities are dangerous, as uncertainties in the values will cause the gradient to become unstable when the variations are (expectedly) low close to the minimum. This is illustrated in Fig. \ref{fig:sSGD}.
+Using a finite difference scheme with stochastic quantities is dangerous, as uncertainties in the values will cause the gradient to become unstable when the variations are low close to the minimum. This is illustrated in Figure \ref{fig:sSGD}.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.3]{../Graphics/SSGD.pdf}
-  \caption{A one dimensional plot of an expectation valued function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).}
+  \caption{A one dimensional plot of an expectation value function. Smeared lines are representing uncertainties due to rough sampling. The direction of the local gradient (solid green line) at a point $x_i$ is not necessarily a good estimate of the actual analytic gradient (dashed red line).}
   \label{fig:sSGD}
  \end{center}
 \end{figure}
@@ -865,14 +865,14 @@ Using a finite difference scheme with stochastic quantities are dangerous, as un
 
 \subsection{Adaptive Stochastic Gradient Descent}
 
-Adaptive Stochastic Gradient Descent (ASGD) has it's roots in the mathematics of automated control theory \cite{ASGD_MB}. The automated process is that of choosing an optimal step length $\delta_i$ for the current transition $x_{i}\to x_{i+1}$. This process is based on the inner product of the old and the new gradient though a variable $X_i$
+Adaptive Stochastic Gradient Descent (ASGD) has its roots in the mathematics of automated control theory \cite{ASGD_MB}. The automated process is that of choosing an optimal step-length $\delta_i$ for the current transition $x_{i}\to x_{i+1}$. This process is based on the inner product of the old and the new gradient though a variable $X_i$
 
 \begin{equation}
 \label{eq:ASGD_X_i}
- X_i \equiv -\nabla_i\cdot \nabla_{i-1}
+ X_i \equiv -\nabla_i\cdot \nabla_{i-1}.
 \end{equation}
 
-The step length from Eq.~(\ref{eq:SGD}) is modelled in the following manner in ASGD
+The step-length from Eq.~(\ref{eq:SGD}) is modelled in the following manner in ASGD:
 
 \begin{eqnarray}
  \delta_i   &=& \gamma(t_i) \\
@@ -881,39 +881,39 @@ The step length from Eq.~(\ref{eq:SGD}) is modelled in the following manner in A
  f(x)       &=& f_\mathrm{min} + \frac{f_\mathrm{max} - f_\mathrm{min}}{1 - (f_\mathrm{max}/f_\mathrm{min})e^{-x/\omega}}\label{eq:ASGD_f_i}
 \end{eqnarray}
 
-with $f_\mathrm{max} > 0$, $f_\mathrm{min} < 0$, and $\omega > 0$. Free parameters are $a$, $A$ and $t_0$, however, Ref. \cite{ASGD} suggests $A=20$ and $t_0=t_1=A$ for universal usage.
+with $f_\mathrm{max} > 0$, $f_\mathrm{min} < 0$, and $\omega > 0$. The free parameters are $a$, $A$ and $t_0$, however, Ref. \cite{ASGD} suggests $A=20$ and $t_0=t_1=A$ for universal usage.
 
-Notice that the step length increase if $t_i$ decrease and vice-versa. A smaller step length is sought for regions close to the minimum. The function $f(x)$ is responsible of altering the step length by changing the trend of $t$. Close to the minimum, a smaller step length is sought, and hence $t$ must increase. Being close to the minimum implies that the gradient changes sign frequently. Crossing the minimum with ASGD has the following consequence
+Notice that the step-length increase if $t_i$ decrease and vice-versa. A smaller step-length is sought for regions close to the minimum. The function $f(x)$ is responsible of altering the step-length by changing the trend of $t$. Close to the minimum, a smaller step-length is sought, and hence $t$ must increase. Being close to the minimum implies that the gradient changes sign frequently. Crossing the minimum with ASGD has the following consequence
 
 \begin{itemize}
  \item Eq.~(\ref{eq:ASGD_X_i}): The value of $X_i$ will be positive.
  \item Eq.~(\ref{eq:ASGD_f_i}): $f(X_i)$ will return a value in $[0, f_\mathrm{max}]$ depending on the magnitude of $X_i$.
  \item Eq.~(\ref{eq:ASGD_t_i}): The value of $t$ will increase, i.e. $t_{i+1} > t_i$.
- \item Eq.~(\ref{eq:ASGD_delta_i}): The step length will decrease.
+ \item Eq.~(\ref{eq:ASGD_delta_i}): The step-length will decrease.
 \end{itemize}
 
-The second step regarding $f(X_i)$ can be visualized in Fig. \ref{fig:f_ASGD}.
+The second step regarding $f(X_i)$ can be visualized in Figure \ref{fig:f_ASGD}.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.75]{../Graphics/ASGD_f.pdf}
-  \caption{Examples of $f(X_i)$ as published in ref. \cite{ASGD}. As $\omega\to0$, $f(x)$ approaches a step function.}
+  \caption{Examples of $f(X_i)$ as published in Ref. \cite{ASGD}. As $\omega\to0$, $f(x)$ approaches a step function.}
   \label{fig:f_ASGD}
  \end{center}
 \end{figure}
 
 \subsubsection{Assumptions}
 
-These assumptions are selected direct citations from Ref. \cite{ASGD}. They are listed in order to give an impression that the shapes of the functions used in ASGD are not selected at random, but carefully chosen to work optimally in a stochastic space with estimated averages involving very few samples.
+These assumptions are selected direct citations from Ref. \cite{ASGD}. They are listed in order to give an impression that the shapes of the functions used in ASGD are not selected at random, but carefully chosen to work optimally in a stochastic space with averages estimated using very few samples.
 
 \begin{itemize}
  \item The statistical error in the sampled gradients are distributed with zero mean.
 \end{itemize}
 
-This is shown in ref. to be true; they are normally distributed. The implication is that upon combining gradient estimates for $N$ different processes, the accumulative error will tend to zero quickly.
+This is shown in Ref. \cite{ASGD}; they are normally distributed. The implication is that upon combining gradient estimates for $N$ different processes, the accumulative error will tend to zero quickly.
 
 \begin{itemize}
- \item The step length $\gamma(t)$ is a positive monotone decreasing function defined on $[0,\infty)$ with maximum at $t=0$.
+ \item The step-length $\gamma(t)$ is a positive monotone decreasing function defined on $[0,\infty)$ with maximum at $t=0$.
 \end{itemize}
 
 With $\gamma(t)$ being as in Eq~(\ref{eq:ASGD_delta_i}), this is easily shown.
@@ -922,17 +922,17 @@ With $\gamma(t)$ being as in Eq~(\ref{eq:ASGD_delta_i}), this is easily shown.
  \item The function $f(x)$ is continuous and monotone increasing with $f_\mathrm{min} = \displaystyle\lim_{x\to\infty} f(x)$ and $f_\mathrm{max} =  \displaystyle\lim_{x\to-\infty} f(x)$.
 \end{itemize}
 
-This is exactly the behavior displayed in Fig. \ref{fig:f_ASGD}.
+This is exactly the behavior displayed in Figure \ref{fig:f_ASGD}.
 
 \subsubsection{Implementation}
 
-A flow chart of the implementation is given in Fig. \ref{fig:ASGD_flow}. For specific details regarding the implementation, see the code \cite{libBorealisCode}. An example of minimization using ASGD is given in Fig. \ref{fig:ASGD_Ex}. 
+A flow chart of the implementation is given in Figure \ref{fig:ASGD_flow}. For specific details regarding the implementation, see the documentation of the code in Ref. \cite{libBorealisCode}. An example of minimization using ASGD is given in Figure \ref{fig:ASGD_Ex}. 
 
 \begin{figure}[h]
  \begin{center}
   \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_paramGrad_ex.png}}
   \subfigure{\includegraphics[scale=0.37]{../Graphics/ASGD_min_step_ex.png}} 
-  \caption{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha$ and $\beta$ introduced in Section \ref{sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta$ somewhat before $\alpha$. The step rushes to zero with a small rebound in  as it attempts to cross to negative values.}
+  \caption{Results of Adaptive Stochastic Gradient Descent used on a two-particle quantum dot with unit oscillator frequency using $400$ cycles pr. gradient sampling and $40$ independent walkers. The right figure shows the evolution of the time-step. The left figure shows the evolution of the variational parameters $\alpha$ and $\beta$ introduced in Section \ref{sec:trialWF} on top, and the evolution of the gradients on the bottom. The gradients are averaged to reveal the pattern underlying the noise. Dispite this averaging, it is apparent that they tend to zero, $\beta$ somewhat before $\alpha$. The step rushes to zero with a small rebound as it attempts to cross to negative values.}
   \label{fig:ASGD_Ex}
  \end{center}
 \end{figure}
@@ -941,7 +941,7 @@ A flow chart of the implementation is given in Fig. \ref{fig:ASGD_flow}. For spe
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/ASGD_UML.pdf}
-  \caption{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Fig. \ref{fig:diffFlowChart}. Updating the walkers involves recalculating any values afflicted by updating the minimum. The step is calculated by Eq.~(\ref{eq:ASGD_delta_i}). In case of Quantum Monte-Carlo, the gradient is sampled by Eq.~(\ref{eq:varParGrad}).}
+  \caption{Chart flow of ASGD algorithm. Diffusing a walker is done as described in Figure \ref{fig:diffFlowChart}. Updating the walkers involves recalculating any values affected by updating the minimum. The step is calculated by Eq.~(\ref{eq:ASGD_delta_i}). In the case of QMC, the gradient is sampled by Eq.~(\ref{eq:varParGrad}).}
   \label{fig:ASGD_flow}
  \end{center}
 \end{figure}
@@ -953,7 +953,7 @@ A flow chart of the implementation is given in Fig. \ref{fig:ASGD_flow}. For spe
 
 As briefly mentioned in the derivation of the Quantum Monte-Carlo projection process, neglecting the branching term, i.e. set $G_\mathrm{B}=1$, leaves us with a method called Variational Monte-Carlo (VMC). The naming is due to the fact that the method is variational; it supplies as upper bound for the exact ground state energy (see Section \ref{sec:selectingOptVarPar}): The better the trial wave function, the closer the answer is to the exact ground state energy.
 
-Without the branching term, the optimal converged state of the Markov Chain is to span that of the trial wave function. From the flow chart of the VMC algorithm in Fig. \ref{fig:VMCchart}, it is clear that VMC corresponds to nothing but a standard Monte-Carlo integration of the local energy, distributing the points according to the trial wave function (ensured by the Metropolis algorithm and the Langevin equation).
+Without the branching term, the optimal converged state of the Markov Chain is to span that of the trial wave function. From the flow chart of the VMC algorithm in Figure \ref{fig:VMCchart}, it is clear that VMC corresponds to nothing but a standard Monte-Carlo integration of the local energy, distributing the points according to the trial wave function (ensured by the Metropolis algorithm and the Langevin equation).
 
 \subsection{Motivating the use of Diffusion Theory}
 
@@ -981,7 +981,7 @@ In other words, the more undefined the energy is at a point, the less probable t
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/VMCUML.pdf}
-  \caption{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit{Diffuse Walker}, is the process described in Fig. \ref{fig:diffFlowChart}. Energies are sampled as described in Section \ref{sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. }
+  \caption{Chart flow of the Variational Monte-Carlo algorithm. The second step, \textit{Diffuse Walker}, is the process described in Figure \ref{fig:diffFlowChart}. Energies are sampled as described in Section \ref{sec:calcExpVals}. Thermalization is usually set to a fixed number of cycles. }
   \label{fig:VMCchart}
  \end{center}
 \end{figure}
@@ -991,13 +991,13 @@ In other words, the more undefined the energy is at a point, the less probable t
 
 Variational Monte-Carlo does not benefit much from an increase of samples (beyond a given point, that is). It is much more important that the system is thermalized, than that the number of walkers are high, or the final amount of samples are huge. It is therefore sufficient to use a single walker pr. VMC process.
 
-The single walker is initialized in a normal distributed manner (with variance $2D\delta\tau$), and released to diffuse according to the process in Fig. \ref{fig:diffFlowChart}. A flow chart of the VMC algorithm is given in Fig. \ref{fig:VMCchart}. Finalizing the sampling involves scaling energies, calculating the variance, etc. 
+The single walker is initialized in a normal distributed manner (with variance $2D\delta\tau$), and released to diffuse according to the process in Figure \ref{fig:diffFlowChart}. A flow chart of the VMC algorithm is given in Figure \ref{fig:VMCchart}. Finalizing the sampling involves scaling energies, calculating the variance, etc. 
 
 For more details regarding the specific implementation, see the code in ref. \cite{libBorealisCode}.
 
 \subsection{Limitations}
 
-The only limitation in VMC is the choice of trial wave function. This makes VMC extremely robust; it will \textit{always} produce a result. As the overlap $C_0$ in Eq.~(\ref{eq:schrodGeneralSolution2}) approach unity, the VMC energy approaches the exact ground state energy as a monotone decreasing function. Fig. \ref{fig:VMC_wfcomp} described this effect.
+The only limitation in VMC is the choice of trial wave function. This makes VMC extremely robust; it will \textit{always} produce a result. As the overlap $C_0$ in Eq.~(\ref{eq:schrodGeneralSolution2}) approach unity, the VMC energy approaches the exact ground state energy as a monotone decreasing function. Figure \ref{fig:VMC_wfcomp} described this effect.
 
 \begin{figure}
  \begin{center}
@@ -1022,7 +1022,7 @@ DMC is as mentioned a precise method; more statistics is like water in a desert 
 
 There are three layers of loops in the DMC method implemented in this thesis, two of which are obvious: The time-step - and walker loops. However, introducing a third \textit{block loop} within the walker loop boosts the convergence dramatically. This loop continues until the current walker is either dead ($G_B = 0$), or diffused $n_b$ times. Using this method, ``good'' walkers will have multiple offspring pr cycle, while ``bad'' walkers will rarely survive the block loop. Perfect walkers will supply a ton of statistics as they surf through all the loops without branching ($G_B \sim 1$).
 
-A flow chart of the DMC algorithm is given in Fig. \ref{fig:DMCchart}. 
+A flow chart of the DMC algorithm is given in Figure \ref{fig:DMCchart}. 
 
 \subsection{Sampling the Energy}
 
@@ -1079,7 +1079,7 @@ Another source of error is due to the \textit{fixed node approximation}. This ap
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[scale=0.65]{../Graphics/DMCUML.pdf}
-  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Fig. \ref{fig:diffFlowChart} in combination with the branching from Fig. \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Fig. \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.}
+  \caption{Chart flow of the Diffusion Monte-Carlo algorithm. The count variable \textit{i} is the index of the walker loop. The second step, \textit{Diffuse and Branch Walker}, is the process described in Figure \ref{fig:diffFlowChart} in combination with the branching from Figure \ref{fig:branching}. Energies are sampled as described in Section \ref{sec:DMC}. Thermalization is not done in the same way as VMC (see Figure \ref{fig:VMCchart}), but rather includes the entire flow with a reduced number of DMC - and block cycles.}
   \label{fig:DMCchart}
  \end{center}
 \end{figure}
@@ -1110,7 +1110,7 @@ To avoid this anomaly in the density, $\Ptau$ and $\PT$ have to change sign simu
 \frac{\Psi_T(\mathbf{r}_i)}{\Psi_T(\mathbf{r}_j)} < 0 \quad\Longrightarrow\quad A(i\,\rightarrow\,j) = 0
 \end{equation}
 
-where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as described in Section \ref{sec:MetroMain}. An illustrative example is attempted in Fig. \ref{fig:fixxednode}.
+where $A(i\,\rightarrow\,j)$ is the probability of accepting the move, as described in Section \ref{sec:MetroMain}. An illustrative example is attempted in Figure \ref{fig:fixxednode}.
 
 \begin{figure}
  \begin{center}
@@ -1189,7 +1189,7 @@ In practice, this integral is calculated by creating a histogram $H(r)$ of all s
  \rho(\mathbf{r}_1) = \frac{H(\mathbf{r}_1)}{r_1^{(d-1)}}\label{eq:radial_OBD}
 \end{equation}
 
-where $d$ denotes the number of dimensions. An example radial one-body density is given in Fig. \ref{fig:OBD_ex}
+where $d$ denotes the number of dimensions. An example radial one-body density is given in Figure \ref{fig:OBD_ex}
 
 \begin{figure}
  \begin{center}
@@ -1347,7 +1347,7 @@ However, treating each block as an individual simulation, $n_b$ averages $m_n$ c
 
 The approximation should hold for a range of different block sizes, however, just as there is no a priori way of telling the correlation length, there is no a priori way of telling how many blocks is needed. However, what is known, is that if the system is correlated, there should be a range of different block sizes which fulfills Eq.~(\ref{eq:blockingError}) to reasonable precision. 
 
-The result of a blocking analysis is therefore a series of ($n$, $\sigma(m)$) pairs which can be plotted. The plot should in light of previous arguments result in a increasing curve which stabilizes over a certain span of block sizes (where Eq.~(\ref{eq:blockingError}) is fulfilled). This plateau will then serve as a reasonable approximation to the covariance, that is, the true average. See Fig. \ref{FIG:BlockingExamples} for a demonstration of resulting blocking plots.
+The result of a blocking analysis is therefore a series of ($n$, $\sigma(m)$) pairs which can be plotted. The plot should in light of previous arguments result in a increasing curve which stabilizes over a certain span of block sizes (where Eq.~(\ref{eq:blockingError}) is fulfilled). This plateau will then serve as a reasonable approximation to the covariance, that is, the true average. See Figure \ref{FIG:BlockingExamples} for a demonstration of resulting blocking plots.
 
 \begin{figure}
  \begin{center}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  30 MAY 2013 15:28
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  30 MAY 2013 16:00
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -857,8 +857,11 @@ LaTeX Warning: Reference `sec:optSlaterRat' on page 28 undefined on input line
 [28] <../Graphics/SGD.pdf, id=581, 845.04686pt x 597.50786pt>
 File: ../Graphics/SGD.pdf Graphic file (type pdf)
 
-<use ../Graphics/SGD.pdf> [29] [30 <../Graphics/SGD.pdf>]
-<../Graphics/SSGD.pdf, id=606, 845.04686pt x 597.50786pt>
+<use ../Graphics/SGD.pdf> [29]
+Underfull \vbox (badness 1210) has occurred while \output is active []
+
+ [30 <../Graphics/SGD.pdf>] <../Graphics/SSGD.pdf, id=606, 845.04686pt x 597.50
+786pt>
 File: ../Graphics/SSGD.pdf Graphic file (type pdf)
 
 <use ../Graphics/SSGD.pdf>
@@ -960,7 +963,7 @@ Here is how much of TeX's memory you used:
  12651 multiletter control sequences out of 15000+50000
  14707 words of font info for 55 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 44i,17n,58p,1137b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,17n,58p,1139b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
@@ -980,7 +983,7 @@ xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive
 onts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
 i8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on jorgenh_thesis.pdf (56 pages, 1111438 bytes).
+Output written on jorgenh_thesis.pdf (56 pages, 1111277 bytes).
 PDF statistics:
  1156 PDF objects out of 1200 (max. 8388607)
  243 named destinations out of 1000 (max. 500000)
