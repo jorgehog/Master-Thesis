@@ -13,7 +13,7 @@
 \BOOKMARK [1][-]{section.1.5}{The Process of Branching}{chapter.1}
 \BOOKMARK [1][-]{section.1.6}{The Trial Wave Function}{chapter.1}
 \BOOKMARK [2][-]{subsection.1.6.1}{Many-body Wave Functions}{section.1.6}
-\BOOKMARK [2][-]{subsection.1.6.2}{Choice of Trial Wave function}{section.1.6}
+\BOOKMARK [2][-]{subsection.1.6.2}{Choosing a Trial Wave Function}{section.1.6}
 \BOOKMARK [2][-]{subsection.1.6.3}{Selecting Optimal Variational Parameters}{section.1.6}
 \BOOKMARK [2][-]{subsection.1.6.4}{Calculating Expectation Values}{section.1.6}
 \BOOKMARK [2][-]{subsection.1.6.5}{Normalization}{section.1.6}
@@ -40,4 +40,4 @@
 \BOOKMARK [2][-]{subsection.1.11.4}{Blocking}{section.1.11}
 \BOOKMARK [2][-]{subsection.1.11.5}{Variance Estimators}{section.1.11}
 \BOOKMARK [-1][-]{part.2}{II Results}{}
-\BOOKMARK [0][-]{section*.15}{Bibliography}{part.2}
+\BOOKMARK [0][-]{section*.17}{Bibliography}{part.2}

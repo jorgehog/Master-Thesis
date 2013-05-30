@@ -55,7 +55,7 @@ Consider an arbitrary wave function $\PT$. Applying the new operator yields a ne
 
 \begin{align}
  \Ptau &= \bra{\mathbf{r}}\OP{P}(\tau)\ket{\Psi_T} \label{eq:projOPonTrial}\\
-       &= \bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_T}. \notag\\
+       &= \bra{\mathbf{r}}\exp\left(-(\OP{H} - E_0)\tau\right)\ket{\Psi_T}. \notag
 \end{align}
 
 Expanding the arbitrary state in the eigenfunction of $\OP{H}$, $\ket{\Psi_i}$, yields
@@ -476,42 +476,42 @@ The process of branching is demonstrated in Fig. \ref{fig:branching}.
 \section{The Trial Wave Function}
 \label{sec:trialWF}
 
-Recall Eq.~(\ref{eq:projOPonTrial}) and (\ref{eq:schrodGeneralSolution2}). The initial condition, $\Phi(\mathbf{r}, t_0) \equiv \PT$ ,
-is in Quantum Monte-Carlo referred to as the trial wave function. Mathematically, any normalizable wave function can be chosen, whose overlap with the exact ground state wave function, $\Psi_0(x)$, is non-zero. If the overlap is zero, that is, $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(x)$ will become the dominant contribution to our distribution. 
+Recall Eq.~(\ref{eq:projOPonTrial}). The initial condition $\Phi(\mathbf{r}, t_0) \equiv \PT$, that is,
+, the trial wave function, can in principle be chosen to be any normalizable wave function whose overlap with the exact ground state wave function, $\Psi_0(\mathbf{r})$, is non-zero. If the overlap is zero, that is, if $C_0=0$ in Eq.~(\ref{eq:ExactProjection}), the formalism breaks down, and no final state of convergence can be reached. On the other hand, the opposite scenario implies the opposite behavior; the closer $C_0$ is to unity, the more rapidly $\Psi_0(\mathbf{r})$ will become the dominant contribution to the distribution. 
 
-In other words: The trial wave function should be chosen in such a manner that the overlap is optimized, i.e. close to unity. Since the exact ground state is unknown, this overlap has to be optimized based on educational guesses and by exploiting known requirements put on the exact ground state. This will be the focus in this section.  
+In other words, the trial wave function should be chosen in such a way that the overlap is optimized, i.e.~close to unity. Since the exact ground state is unknown, this overlap has to be optimized based on educational guesses and by forcing known properties of the exact ground state into the approximation. This will be the focus in this section.  
 
-Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, I suggest reading in Ref. \cite{griffiths}. For mathematically rigid derivations of concepts, see ref. \cite{Sakurai:94}. More details regarding many-body theory can be found in Ref. \cite{Shavitt}. 
+Before getting into specifics, a few notes on many-body theory is needed. From this point on, all particles are assumed to be identical. For more information regarding basic Quantum Mechanics, see Ref. \cite{griffiths}. For mathematically rigid derivations of concepts, see ref. \cite{Sakurai:94}. More details regarding many-body theory can be found in Ref. \cite{Shavitt}. 
 
 \subsection{Many-body Wave Functions}
 \label{sec:manyBodyWFs}
 
-Many-body theory arise from the existence of \textit{many-body interactions}, e.g. the Coulomb interaction between two particles. Nature operates with $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, i.e. for non-interacting particles, the full system would decouple into $N$ single particle systems, rendering many-body theory redundant.
+Many-body theory arise from the existence of \textit{many-body interactions}, which in this thesis will be truncated at the level of the Coulomb interaction, that is, the two-body interaction. Nature operates using  $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, as is the case for non-interacting particles, the full system would decouple into $N$ single particle systems, rendering many-body theory redundant.
 
-Finding the ground state is, not surprisingly, equivalent to solving the time-independent Schrödinger Equation (Eq.~(\ref{eq:schrodTimeIndie})) for the lowest energy eigenvalue
+Finding the ground state is, not surprisingly, equivalent to solving the time-independent Schrödinger Equation from Eq.~(\ref{eq:schrodTimeIndie}) for the lowest energy eigenvalue, that is
 
 \begin{equation}
  \OP{H}\Psi_0(\mathbf{r}) = E_0\Psi_0(\mathbf{r}),
  \end{equation}
  
-where $\mathbf{r} \equiv \{\mathbf{r}_1, \mathbf{r}_2, ..., \mathbf{r}_N\}$ represents every particle's position. Exact solutions to realistic many-body systems rarely exist, however, like in Section \ref{sec:statingDiff}, expanding the solution in a known basis $\Phi_k(\mathbf{r})$ is always legal, which reduces the problem into that of a \textit{coefficient hunt} 
+where $\mathbf{r} \equiv \{\mathbf{r}_1, \mathbf{r}_2, ..., \mathbf{r}_N\}$ represents the position of every particle. Exact solutions to realistic many-body systems rarely exist, however, like in Section \ref{sec:statingDiff}, expanding the solution in a known basis $\Phi_k(\mathbf{r})$ is always legal, which reduces the problem into that of a \textit{coefficient hunt} 
 
 \begin{equation}
 \label{eq:manyBodyExp}
  \Psi_0(\mathbf{r}) = \sum_{k=0}^\infty C_k'\Phi_k(\mathbf{r}),
 \end{equation}
 
-where the primed coefficients should not to be confused with the previous coefficients expanding an arbitrary state in the $\Psi_i$ basis (see Eq.~(\ref{eq:schrodGeneralSolution2})). Different many-body methods, e.g. \textit{Hartree Fock}\footnote{Hartree-Fock is roughly a basis change from the non-interacting case into a basis which is orthogonal to one-particle excitations. The exact ground state wave function should be orthogonal to all excited states, so it's a fair approximation depending on the dominance of one-particle excitations in the given system.} and genetic algorithms, give rise to different ways of estimating these coefficients, however, certain concepts are necessarily common, for instance truncating the basis at some level, $K$:
+where the primed coefficients should not to be confused with the previous coefficients expanding an arbitrary state in the $\Psi_i(\mathbf{r})$ basis (see Eq.~(\ref{eq:schrodGeneralSolution2})). Different many-body methods give rise to different ways of estimating these coefficients, however, certain concepts are necessarily common, for instance truncating the basis at some level, $K$:
 
 \begin{equation}
  \Psi_0(\mathbf{r}) = \sum_{k=0}^K \tilde{C}_k'\Phi_k(\mathbf{r}), \label{eq:manybodyWFexp}
 \end{equation}
 
-where $ \tilde{C}_k' \ne  C_k'$ unless $K$ tends to infinity, however, it is overall safe to assume that the value of the coefficients decrease as $k$ increase (given a reasonable ordering, more on this shortly). 
+where $ \tilde{C}_k' \ne  C_k'$ unless $K$ tends to infinity, however, it is overall safe to assume that the value of the coefficients decrease as $k$ increase. 
 
-The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions (or \textit{orbitals} for short) $\phi_n(\mathbf{r}_i)$, combined in different ways. The process of calculating basis elements often boils down to a combinatoric exercise involving combinations of orbitals.
+The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to a combinatoric exercise involving combinations of orbitals.
 
-Imagine electrons surrounding a nucleus, i.e an atom. A single electron occupying a state with quantum numbers $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Fig.~\ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
+To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Fig.~\ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
 
 \begin{figure}
  \begin{center}
@@ -541,32 +541,35 @@ The Hamiltonian of a $N$-particle system is
  \OP{H} = \OP{H}_0 + \OP{H}_\mathrm{I},
 \end{equation}
 
-where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are respectively the one-body - and the many-body Hamiltonian. As mentioned in the introduction, the many-body interactions in $\OP{H}_\mathrm{I}$ are truncated at the level of Coulomb. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic terms $\OP{t}(\mathbf{r}_i)$ for all particles.
+where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are respectively the one-body - and the many-body Hamiltonian. As mentioned in the introduction, the many-body interactions are truncated at the level of the Coulomb interaction. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic term $\OP{t}(\mathbf{r}_i)$ for all particles. In order words, the two Hamiltonians are written
 
 \begin{eqnarray}
  \OP{H}_0 &=& \sum_{i=1}^N \OP{h}_0(\mathbf{r}_i) \\
-          &=& \sum_{i=1}^N \OP{t}(\mathbf{r}_i) + \OP{u}_\mathrm{ext}(\mathbf{r}_i) \nonumber\\
+          &=& \sum_{i=1}^N \OP{t}(\mathbf{r}_i) + \OP{u}_\mathrm{ext}(\mathbf{r}_i), \nonumber
+  \end{eqnarray}
+  and
+\begin{eqnarray}
  \OP{H}_\mathrm{I} &\simeq& \sum_{i<j=1}^N \OP{v}(r_{ij}) \\
           &=& \sum_{i<j=1}^N \frac{1}{r_{ij}},  \nonumber
 \end{eqnarray}
 
 where $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$ is the distance between two particles.
 
-In order to optimize the overlap $C_0$, the single particle orbitals are commonly chosen to be the solutions of the non-interacting case (given that they exist)
+In order to optimize the overlap $C_0$ with the exact wave function, the single particle orbitals are commonly chosen to be the eigenfunctions of the non-interacting single particle Hamiltonian, that is
 
 \begin{equation}
 \label{eq:orbitalEigenEq}
  \OP{h}_0(\mathbf{r}_i)\phi_n(\mathbf{r}_i) = \epsilon_n\phi_n(\mathbf{r}_i).
 \end{equation}
 
-If no such choice can be made, choosing e.g. free-particle solutions, Laguerre polynomials etc. is the general strategy. However, in this case, the expansion truncation $K$ needs to be higher in order to achieve a satisfying overlap.  
+If no such choice can be made, choosing, free-particle solutions, Laguerre polynomials, or similar, is the general strategy. However, for these bases, the expansion truncation $K$ needs to be higher in order to achieve a satisfying overlap.  
 
 
 \subsubsection{Step two in detail}
 
-In the case of \textit{fermions}, i.e. half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
+In the case of \textit{fermions}, that is, half-integer spin particles like electrons, protons, etc., $\Phi_k(\mathbf{r})$ is an anti-symmetric function\footnote{Interchanging two particles in an anti-symmetric wave function will reproduce the state changing only the sign.} on the form of a determinant: The \textit{Slater determinant}. The shape of the determinant is given in Eq.~(\ref{eq:SlaterDeterminantExplicit}). The anti-symmetry is a direct consequence of the \textit{Pauli Exclusion Principle}: At any given time, two fermions cannot occupy the same state. 
 
-Bosons on the other hand have symmetric wave functions (see Eq.~(\ref{eq:BosonicWFExplicit})), which in many ways are easier to deal with because of the lack of an exclusion principle. In order to keep the terminology less abstract and confusing, from here on, the focus will be on systems of fermions.
+Bosons, on the other hand, have symmetric wave functions, which in many ways are easier to deal with because of the lack of an exclusion principle. The bosonic many-body wave function is given in Eq.~(\ref{eq:BosonicWFExplicit}). In order to keep the terminology less abstract and confusing, the focus will be on systems of fermions from here on.
 
 \cfbox{1.2cm-6pt}{
 \begin{eqnarray}
@@ -578,11 +581,11 @@ Bosons on the other hand have symmetric wave functions (see Eq.~(\ref{eq:Bosonic
 \phi_1(\mbf{r}_2) & \phi_2(\mbf{r}_2)& \cdots & \phi_N(\mbf{r}_2) \\
 \vdots & \vdots& \ddots & \vdots \\
 \phi_1(\mbf{r}_N) & \phi_2(\mbf{r}_N)& \cdots & \phi_N(\mbf{r}_N) \\
- \end{array} \right| \\
+ \end{array} \right|, \\
 \nonumber\\
 \nonumber\\
  \label{eq:BosonicWFExplicit}
- \Phi_0^\mathrm{S}(\mbf{r}_1, \mbf{r}_2, ..., \mbf{r}_N) &\propto& \sum_\mathrm{P} \OP{P}\phi_1(\mbf{r}_1)\phi_2(\mbf{r}_2)\,...\,\phi_N(\mbf{r}_N)
+ \Phi_0^\mathrm{S}(\mbf{r}_1, \mbf{r}_2, ..., \mbf{r}_N) &\propto& \sum_\mathrm{P} \OP{P}\phi_1(\mbf{r}_1)\phi_2(\mbf{r}_2)\,...\,\phi_N(\mbf{r}_N).
 \end{eqnarray}
 }
 
@@ -590,22 +593,19 @@ The permutation operator $\OP{P}$ is simply a way of writing \textit{in any comb
 
 \subsubsection{Dealing with correlations}
 
-The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are referred to as \textit{correlation} terms. Given that the orbital wave functions are chosen by Eq.~(\ref{eq:orbitalEigenEq}), the existence of the correlation terms, i.e. $C_k' \ne 0$ for $k>0$, follows as a direct consequence of the many-body interaction, $H_\mathrm{I}$, hence the name.
+The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are referred to as \textit{correlation} terms. Given that the single particle wave functions are chosen by Eq.~(\ref{eq:orbitalEigenEq}), the existence of the correlation terms, i.e.~$C_k' \ne 0$ for $k>0$, follows as a direct consequence of the electron-electron interaction, hence the name.
 
-As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if the calculations are performed using the exact wave function, the diverging terms will cancel out; the energy is independent of the position. 
+As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if the calculations are performed using the exact wave function, the diverging terms will cancel out; the energy eigenvalue is independent of the position of the state. 
 
 In other words, incorporating the correct correlated wave function will result in a cancellation in the diverging terms as walkers approach regions where the many-body interactions are singular, a property of exact ground states which can be enforced upon the approximation to further optimize the overlap. 
 
-These criteria are called \textit{Cusp Conditions}, and serve as a powerful guide when it comes to selecting a trial wave function. 
+These criteria are called \textit{cusp conditions}, and serve as powerful guides when it comes to selecting an optimal trial wave function. 
 
 
-
-
-
-\subsection{Choice of Trial Wave function}
+\subsection{Choosing a Trial Wave Function}
 \label{sec:ChoiceTrialWF}
 
-To recap, choosing the trial wave function boils down to optimizing the overlap $C_0 = \braket{\Psi_0}{\Psi_T}$ using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single particle basis is eigenfunctions of the non-interacting case (given that they exist). Starting from Eq.~(\ref{eq:manybodyWFexp}), from here on referred to as the \textit{spatial wave function}, the first step is to make sure the cusp conditions are obeyed.
+To recap, choosing the trial wave function boils down to optimizing the overlap $C_0 = \braket{\Psi_0}{\Psi_T}$ using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single particle basis is the eigenfunctions of the non-interacting case (given that they exist). Starting from Eq.~(\ref{eq:manybodyWFexp}), from here on referred to as the \textit{spatial wave function}, the first step is to make sure the cusp conditions are obeyed.
 
 Introducing the correlation functions $f(r_{ij})$, where $r_{ij}$ is the relative distance between particle $i$ and $j$, the general ansatz for the trial wave function becomes
 
@@ -624,54 +624,54 @@ Several models for the correlation function exist, however, some are less practi
  f(r_{ij})_\mathrm{Hylleraas} = e^{-\frac{1}{2} (r_i + r_j)}\sum_k d_k(r_{ij})^{a_k} (r_i + r_j)^{b_k}(r_i - r_j)^{e_k},
 \end{equation}
 
-where all $k$-subscripted parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including almost 1078 terms. For the purpose of Quantum Monte-Carlo this is beyond overkill: Three decimal precision is obtained using a single free parameter (see the results for Atoms in Table \ref{tab:AtomsRes}). 
+where all $k$-subscripted parameters are free. Calculating the helium ground state energy using this correlation function with nine terms yields a four decimal precision. Eight digit precision is achieved by including 1078 terms. For the purpose of QMC this is beyond overkill: Near four decimal precision is obtained using a single free parameter (see the results for atoms in Table \ref{tab:AtomsRes}). 
 
-A commonly used correlation function in studies involving few variational parameters is the \textit{Padé Jastrow} function (skipping some redundant indices) 
+A commonly used correlation function in studies involving few variational parameters is the \textit{Padé Jastrow} function
 
 \begin{eqnarray*}
- \prod_{i<j}^Nf(r_{ij}) &=& \exp(U) \\
+ \prod_{i<j}^Nf(r_{ij}) &=& \exp(U), \\
          U &=&  \sum_{i<j}^N\left(\frac{\sum_k a_kr_{ij}^k}{1 + \sum_k \beta_kr_{ij}^k}\right) + \sum_i^N\left(\frac{\sum_k a'_kr_i^k}{1 + \sum_k \alpha_kr_i^k}\right).
 \end{eqnarray*}
 
-For systems where the correlations are relatively well behaving, it is custom to drop the second term, and keep only the $k=1$ term, which yields
+For systems where the correlations are relatively well behaving, it is custom to drop the second sum all together, and keep only the $k=1$ term from the first. The resulting function reads
 
 \begin{equation}
  \label{eq:jastrow}
  f(r_{ij}; \beta) = \exp\left(\frac{a_{ij} r_{ij}}{1 + \beta r_{ij}}\right),
 \end{equation}
 
-where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems this thesis.
+where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems in this thesis.
 
-Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues can be assumed identical, which allows the spatial wave function to be split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. Assuming spin-half particles yields
+Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of a $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues will be identical. This fact results in the spatial wave function being split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. The resulting wave function thus becomes
 
 \begin{equation}
  \Psi_T(\mathbf{r}; \beta) = \Big[\sum_{k=0}^K C_k'\tilde\Phi_k(\mbf{r}_1, ..., \mbf{r}_{\frac{N}{2}})\tilde\Phi_k(\mbf{r}_{\frac{N}{2}-1}, ..., \mbf{r}_{N})\Big]\prod_{i<j}^Nf(r_{ij}; \beta). \label{eq:splitSlater}
 \end{equation}
 
-Due to the identical nature of the particles, they may be arbitrarily ordered. For simplicity, the first half represents spin up, and the second half spin down. The spin up determinant will from here on be labeled $D^\uparrow$, and the spin down one $D^\downarrow$. Stitching everything together yields the following explicit shape for a spin-independent Hamiltonian using a one-parameter Padé Jastrow function
+Due to the identical nature of the particles, they may be arbitrarily ordered. For simplicity, the first half represents spin up, and the second half spin down. The spin up determinant will from here on be labeled $|\mathbf{S}^\uparrow|$, and the spin down one $|\mathbf{S}^\downarrow|$, where the $\mathbf{S}$ matrix will be referred to as the \textit{Slater matrix}. Stitching everything together, the explicit shape of the trial wave function becomes
 
 \cfbox{1.5cm-8pt}{
 \begin{equation}
 \label{eq:MultiDeterminantTWF}
- \Psi_T(\mbf{r}_1, ..., \mbf{r}_N; \beta) = \sum_{k=0}^K C_k' D^\uparrow_kD^\downarrow_k\prod_{i<j}^Nf(r_{ij}; \beta).
+ \Psi_T(\mbf{r}_1, ..., \mbf{r}_N; \beta) = \sum_{k=0}^K C_k' |\mathbf{S}^\uparrow|_k|\mathbf{S}^\downarrow|_k\prod_{i<j}^Nf(r_{ij}; \beta).
 \end{equation}
 }
 
-This shape is referred to as a \textit{Multi-determinant} trial wave function. 
+This shape is referred to as a \textit{multi-determinant} trial wave function unless $K=1$, in which it will be referred to as a \textit{single-determinant} trial wave function.
 
 \subsubsection{Limitations}
 
 Depending on the complexity of the system at hand, more complicated trial wave functions might be needed to obtain reasonable convergence. However, it is important to distinguish between simply integrating a trial wave function, and performing the full diffusion calculation. As a reminder: Simple integration will not be able to alter the distribution; what you have is what you get. Solving the diffusion problem, on the other hand, will alter the distribution from that of the trial wave function ($\tau = 0$) into a distribution closer to the exact wave function by Eq.~(\ref{eq:schrodGeneralSolution2}). 
 
-Because of this fact, limitations due to the trial wave function in full\footnote{``Full'' in the sense that all Green's functions are applied. As will be revealed later, VMC corresponds to a standard importance sampled Monte-Carlo integration by omitting the branching process.} QMC is far less than what is the case of standard Monte-Carlo integration. A more complex trial wave function might convergence faster, but at the expense of being more CPU-intensive. This implies that CPU-time per walker can be traded for convergence time. For systems of many particles, CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time, i.e., the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
+Because of this fact, limitations due to the trial wave function in full\footnote{``Full'' in the sense that all Green's functions are applied. As will be revealed later, VMC corresponds to a standard importance sampled Monte-Carlo integration by omitting the branching process.} QMC is far less than what is the case of standard Monte-Carlo integration. A more complex trial wave function might convergence faster, but at the expense of being more CPU-intensive. This implies that CPU-time per walker can be traded for convergence time. For systems of many particles, the CPU-time per walker needs to be as low as possible in order to get the computation done in a reasonable amount of time. In other words, the choice of trial wave function needs to be done in light of the system at hand, and the specific aim of the computation. 
 
-On the other hand, increasing the number of particles in the system may cause the generic trial wave function to be relatively worse than in the case with fewer particles. This is demonstrated in Ref. \cite{UmrigarMolecules} where calculations for $\mathrm{F}_2$ (18 particles) needs an increase in the number of determinants to achieve a result with the same precision as calculations for $\mathrm{O}_2$ (16 particles).  
+On the other hand, when the number of particles in the system increase, it is safe to assume that the quality of the trial wave function will decrease. This is demonstrated in Ref. \cite{UmrigarMolecules}, where calculations for $\mathrm{F}_2$ (18 particles) need an increase in the number of determinants to achieve a result with the same precision as calculations for $\mathrm{O}_2$ (16 particles).  
 
-\subsubsection{Single Determinant Trial Wave function}
+\subsubsection{Single-determinant trial wave functions}
 
-In the case of well-behaving systems, a single determinant (with the Jastrow factor) is a reasonable approximation. This simplicity opens up the possibility of simulating large systems efficiently (more details regarding this is given in Section \ref{sec:optSingleSlater}). 
+In the case of well-behaving systems, a single determinant with a simple Jastrow factor serves as a reasonable trial wave function. This simplicity opens up the possibility of simulating large systems efficiently.  More details regarding this will be given in Section \ref{sec:optSingleSlater}. 
 
-In order to further optimize the overlap with the exact wave function, a variational parameter $\alpha$ is introduced in the spatial part (in addition to $\beta$from Eq.~(\ref{eq:jastrow}))
+In order to further optimize the overlap with the exact wave function, a second variational parameter $\alpha$ is introduced in the spatial wave function
 
 \cfbox{8mm}{
 \begin{equation}
@@ -680,19 +680,19 @@ In order to further optimize the overlap with the exact wave function, a variati
 \end{equation}
 }
 
-Determining optimal values for the variational parameters will be discussed in Section \ref{sec:selectingOptVarPar}. If the introduction of the variational parameter was redundant, optimizations would simply yield $\alpha=1$. 
+Determining the optimal values of the variational parameters will be the topic of the next section. If the introduction of the variational parameter was redundant, optimizations would simply yield $\alpha=1$. 
 
 
 \subsection{Selecting Optimal Variational Parameters}
 \label{sec:selectingOptVarPar}
 
-All practical ways of determining the optimal values of the variational parameters originate from the same powerful principle: \textit{The Variational Principle}. The easiest way of demonstrating the principle is to evaluate the expectation value of the energy, using an approach similar to what used in Eq.~(\ref{eq:schrodGeneralSolution2})
+All practical ways of determining the optimal values of the variational parameters originate from the same powerful principle: \textit{The Variational Principle}. The easiest way of demonstrating the principle is to evaluate the expectation value of the energy, using an approach similar to what used in Eq.~(\ref{eq:schrodGeneralSolution2}). Consider the following relations
 
 \begin{eqnarray*}
- E_0 &=& \bra{\Psi_0}\OP{H}\ket{\Psi_0}  \\
+ E_k &=& \bra{\Psi_k}\OP{H}\ket{\Psi_k},  \\
  E   &=& \bra{\Psi_T(\alpha, \beta)}\OP{H}\ket{\Psi_T(\alpha, \beta)}\\
      &=& \sum_{kl} C_k^\ast C_l \underbrace{\bra{\Psi_k}\OP{H}\ket{\Psi_l}}_{E_k\delta_{kl}} \\
-     &=& \sum_k |C_k|^2E_k
+     &=& \sum_k |C_k|^2E_k.
 \end{eqnarray*}
 
 Just as with the projection operator, introducing $E_k = E_0 + \delta E_k$ where $\delta E_k \ge 0$ will simplify the arguments
@@ -700,32 +700,32 @@ Just as with the projection operator, introducing $E_k = E_0 + \delta E_k$ where
 \begin{eqnarray*}
  E   &=& \sum_k |C_k^2| (E_0 + \delta E_k) \\
      &=& E_0 \underbrace{\sum_k |C_k^2|}_{1} + \underbrace{\sum_k |C_k|^2\delta E_k}_{\ge 0} \\
-     &\ge& E_0
+     &\ge& E_0.
 \end{eqnarray*}
 
-The conclusion is remarkable: No matter which trial wave function is used, the result will always be greater or equal to the exact ground state energy. This implies that the problem of choosing variational parameters comes down to a minimization problem in the parameters space (assuming no maxima exist for finite values of the parameters)
+The conclusion is remarkable: No matter which trial wave function is used, the resulting energy will always be greater or equal to the exact ground state energy. This implies that the problem of choosing variational parameters comes down to a minimization problem in the parameters space
 
 \begin{equation}
 \label{eq:varMin}
 \frac{\partial \langle E\rangle}{\partial \alpha_i} = \frac{\partial}{\partial \alpha_i}\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)} = 0
 \end{equation}
 
-In order to work with Eq.~(\ref{eq:varMin}) in practice, it needs to be rewritten it in terms of known values. Since our wave function is dependent on the variational parameter, the normalization factor needs to be included in the expression of the expectation value
+In order to work with Eq.~(\ref{eq:varMin}) in practice, it needs to be rewritten it in terms of known values. Since the wave function is dependent on the variational parameter, the normalization factor needs to be included in the expression of the expectation value. Applying the product rule numerous times yields
 
 \newcommand{\Norm}{\braket{\Psi_T(\alpha_i)}{\Psi_T(\alpha_i)}}
 
 \begin{eqnarray*}
  \frac{\partial \langle E\rangle}{\partial \alpha_i}  &=& \frac{\partial}{\partial \alpha_i} \frac{\bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}}{\Norm} \\
  &=& \frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\OP{H}\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2}\Norm \\
- &-& \bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}\frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\right)\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\left(\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2},\\
+ &-& \bra{\Psi_T(\alpha_i)}\OP{H}\ket{\Psi_T(\alpha_i)}\frac{\left(\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\right)\ket{\Psi_T(\alpha_i)} + \bra{\Psi_T(\alpha_i)}\left(\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}\right)}{\Norm^2}.\\
 \end{eqnarray*}
 
-where the product and division rules for derivatives has been applied. The Hamiltonian does not depend on the variational parameters, hence both terms in the first expansion is equal. Cleaning up the expression yields
+The Hamiltonian does not depend on the variational parameters, hence both terms in the first expansion is equal. Cleaning up the expression yields
 
 \cfbox{2cm-10pt}{
 \begin{eqnarray}
  \frac{\partial \langle E\rangle}{\partial \alpha_i} &=& 2\left(\frac{\bra{\Psi_T(\alpha_i)}\OP{H}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} - \langle E \rangle\frac{\bra{\Psi_T(\alpha_i)}\frac{\partial}{\partial \alpha_i}\ket{\Psi_T(\alpha_i)}}{\Norm} \right) \nonumber \\
-  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right) \label{eq:varParGrad} \\
+  &=& 2\left(\left< E \frac{\partial \Psi_T}{\partial \alpha_i} \right> -\left< E\right>\left<\frac{\partial \Psi_T}{\partial \alpha_i} \right> \right). \label{eq:varParGrad} \\
   \nonumber
 \end{eqnarray}
 }
@@ -738,11 +738,11 @@ In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater dete
 \end{equation}
 }
 
-where $\mathbf{S}^{-1}_{qi}$ is the inverse of the Slater matrix, which will be introduced in more detail in Section \ref{sec:optSlaterRat}. 
+where $\mathbf{S}^{-1}_{qi}$ is the inverse of the Slater matrix, which will be discussed in more detail in Section \ref{sec:optSlaterRat}. 
 
-Using these expressiosn for the \textit{variational energy gradient}, the derivatives can be calculated exactly the same way as for e.g. the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
+Using these expressions for the \textit{variational energy gradient}, the derivatives can be calculated exactly the same way the energy. The gradient can then be used to move in the direction of the variational minimum in Eq.~(\ref{eq:varMin}). 
 
-This strategy give rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
+This strategy gives rise to numerous ways of finding the optimal parameters, such as using the well known Newton's method, conjugate gradient methods \cite{golub1996matrix}, steepest descent (similar to Newton's method), and many more. 
 The method implemented for this thesis is called \textit{Adaptive Stochastic Gradient Descent}, and is an efficient iterative algorithm for seeking the variational minimum. The gradient descent methods will be covered in Section \ref{sec:GradientDescent}.
 
 \subsection{Calculating Expectation Values}
@@ -754,7 +754,7 @@ The expectation value of an operator $\OP{O}$ is obtained by sampling \textit{lo
  \bra{\Psi_T}\OP{O}\ket{\Psi_T} &=& \int \Psi_T(x)^\ast \OP{O} \Psi_T(x)\mathrm{d}x \nonumber\\
                                 &=& \int |\Psi_T|^2\left(\frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)\right)\mathrm{d}x \nonumber\\
                                 &=& \int |\Psi_T|^2 O_L(x)\mathrm{d}x \\
-                         O_L(x) &=& \frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x)           
+                         O_L(x) &=& \frac{1}{\Psi_T(x)}\OP{O}\Psi_T(x).           
 \end{eqnarray}
 
 Discretizing the integral yields 
@@ -763,11 +763,11 @@ Discretizing the integral yields
  \bra{\Psi_T}\OP{O}\ket{\Psi_T} \equiv \Exp{O} \simeq \frac{1}{n}\sum_{i=1}^n O_L(x_i) \equiv \overline{O},
 \end{equation}
 
-where $x_i$ is a random variable taken from distribution of the trial wave function. The \textit{ensemble average},  $\Exp{O}$ will, given ergodicity, equal the estimated average $\overline{O}$ in the limit $n\rightarrow\infty$, i.e.
+where $x_i$ is a random variable taken from distribution of the trial wave function. The \textit{ensemble average},  $\Exp{O}$ will, given ergodicity, equal the estimated average $\overline{O}$ in the limit $n\rightarrow\infty$, that is
 
 \begin{equation}
  \label{eq:MeanVStrueExp}
- \Exp{O} = \lim_{n\to\infty} \overline{O} = \lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^n O_L(x_i)
+ \Exp{O} = \lim_{n\to\infty} \overline{O} = \lim_{n\to\infty}\frac{1}{n}\sum_{i=1}^n O_L(x_i).
 \end{equation}
 
 
