@@ -79,7 +79,7 @@ Even though this is an extremely simply example, it illustrates the difference i
 
 The concept of classes and objects were introduced for the first time in the language \textit{Simula 67}, developed by the Norwegian scientists Ole-Johan Dahl and Kristen Nygaard at the Norwegian Computing Research Center \cite{ORegan}. Object orientation quickly became the state-of-the-art in programming, and has ever since enjoyed great success in numerous computational fields. 
 
-Object orientation ties everyday intuition into the programming language. Humans are object oriented without noticing it, in the sense that the focus is around \textit{objects} of \textit{classes}, for instance, an animal of a certain species, artifacts of a certain culture, people of a certain country, etc. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter, however, for the sake of completeness, a brief introductory to class syntax is given.
+Object orientation ties everyday intuition into the programming language. Humans are object oriented without noticing it, in the sense that the focus is around \textit{objects} of \textit{classes}, for instance, an animal of a certain species, artifacts of a certain culture, people of a certain country, etc. This fact renders object oriented codes extremely readable compared to what is possible with standard functions and variables. In addition to simple object structures, which in some sense can be achieved with standard C \textit{structs}, classes provide functionality such as \textit{inheritance} and accessibility control. These concepts will be the focus for the rest of the chapter, however, for the sake of completeness, a brief introduction to class syntax is given.
 
 \subsection{A Brief Introduction to Essential Concepts}
 
@@ -262,7 +262,7 @@ double System::get_potential_energy(const Walker* walker) const {
 
 \subsection{Const Correctness}
 
-In the previous \verb+Potential+ code example, function declarations with the \verb+const+ flag were used. As mentioned in the section on pointers, passing pointers to functions are dangerous business. If an object is flagged with \verb+const+ on input, e.g. \verb+void f(const x)+, the function itself cannot alter the value of \verb+x+. If it does, the compiler will abort. This property is referred to as \textit{const correctness}, and serve as a safeguard guaranteeing that nothing will happen to \verb+x+ as it passes through \verb+f+. This is practical in situations where changes to an object is unwanted.
+In the previous \verb+Potential+ code example, function declarations with the \verb+const+ flag were used. As mentioned in the section on pointers, passing pointers to functions are dangerous business. If an object is flagged with \verb+const+ on input, e.g. \verb+void f(const x)+, the function itself cannot alter the value of \verb+x+. If it does, the compiler will abort. This property is referred to as \textit{const correctness}, and serve as a safeguard guaranteeing that nothing will happen to \verb+x+ as it passes through \verb+f+. This is practical in situations where changes to an object are unwanted.
 
 If you declare a member function itself with \verb+const+ on the right hand side, e.g. \verb+void class::f(x) const+, no changes may be applied to class members inside this specific function. For instance, in the potential energy functions, all that is requested is to evaluate a function at a given set of coordinates; there is no need to change anything, hence the const correctness is applied to the function. 
 
@@ -397,7 +397,7 @@ Developing codes in scientific scenarios often involve large frameworks. For exa
 
 In these scenarios, it is common to gather the implementations of the different classes in separate files (as for the potion game). This would be for purely cosmetic reasons if the process of writing code was linear, however, empirical evidence suggests otherwise: At least half the time is spent debugging, going back and forth between files. 
 
-A standard way to organize code is to have all the source code gathered in a \textit{src} folder, with one folder per distinct class. Subclasses should appear as folders inside the superclass folder. Figure \ref{FIG:SRCdirTree} shows an example setup for the framework of an object oriented code.
+A standard way to organize code is to have all the source code gathered in an \textit{src} folder, with one folder per distinct class. Subclasses should appear as folders inside the superclass folder. Figure \ref{FIG:SRCdirTree} shows an example setup for the framework of an object oriented code.
 
 
 
