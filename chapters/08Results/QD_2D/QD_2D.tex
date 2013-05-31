@@ -12,13 +12,13 @@ Table \ref{tab:QDotsResultsAll} presents the calculated ground state energies fo
 
 In light of the variational nature of DMC and VMC, the results show that DMC provides a more precise estimate for the ground state energy than VMC, both in terms of lower energies and lower errors. The exact energy in the case of two electrons with $\omega=1$ has been calculated in Ref. \cite{taut} and is $E_0 = 3$, which is in excellent agreement with the presented results.
 
-The statistical errors in the DMC energies calculated in this thesis are lower than those provided in Ref. \cite{MagnusArticle}. This may only be due to the fact that the calculations in this thesis have been run on a super computer. Running smaller simulations on fewer processors results in larger errors. Both the implementations successfully agree with the FCI result for two particles, which strongly indicates that the disagreements in results are a result of systematic errors.    
+The statistical errors in the DMC energies calculated in this thesis are lower than those provided in Ref. \cite{MagnusArticle}. This may only be due to the fact that the calculations in this thesis have been run on a super computer. Running smaller simulations on fewer processors result in larger errors. Both the implementations successfully agree with the FCI result for two particles, which strongly indicates that the disagreements in results are a result of systematic errors.    
 
 In the case of two particles, DMC and FCI agree up to five decimals, which leads to the conclusion that DMC indeed is a very precise method. The SRG method is not variational in the sense that it can undershoot the exact energy. The DMC result should thus not be read as less precise in the cases where SRG provides a lower energy estimate. Diffusion Monte-Carlo and SRG are in excellent agreement for a large number of particles compared to FCI and CCSD, which drift away from the DMC results as their basis sizes shrink. 
 
 For high frequencies, the VMC energy is higher than the CCSD energy. The fact that both the methods are variational implies that CCSD performs better than VMC in this frequency range. However, looking at the results the lower frequency range, it is clear that VMC performs better than CCSD. This is due to the fact that CCSD struggles with convergence as the correlations within the system increase, indicated by the decrease in number of shells used to perform the calculations.
 
-The DMC energy is overall smaller than the CCSD energy, which, due to the variational nature of the methods, implies that DMC performs better than CCSD. The results for $56$ particles are in excellent agreement with each other. 
+The DMC energy is overall smaller than the CCSD energy, which, due to the variational nature of the methods, implies that DMC performs better than CCSD. Nevertheless, the results for $56$ particles are in excellent agreement. 
 
 \setlength{\tabcolsep}{5pt}
 \begin{table}
@@ -72,7 +72,7 @@ The DMC energy is overall smaller than the CCSD energy, which, due to the variat
 
 
 \end{tabular}
-\caption{Ground state energy results for two dimensional $N$-electron quantum dots with frequency $\omega$. Refs. $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $(b)$: S. Reimann \cite{Sarah} (Similarity Renormalization Group theory), $(c)$: C. Hirth \cite{Hirth} (Coupled Cluster Singles and Doubles), $(d)$: V. K. B. Olsen \cite{Olsen} (Full Configuration Interaction). The numbers inside curly brackets denote the number of shells used above the last filled shell, i.e.~above the \textit{Fermi-level}, to construct the basis for the corresponding methods.}
+\caption{Ground state energy results for two dimensional $N$-electron quantum dots with frequency $\omega$. Refs. $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $(b)$: S. Reimann \cite{Sarah} (Similarity Renormalization Group theory), $(c)$: C. Hirth \cite{Hirth} (Coupled Cluster Singles and Doubles), $(d)$: V. K. B. Olsen \cite{Olsen} (Full Configuration Interaction). The numbers inside curly brackets denote the number of shells used above the last filled shell, i.e.~above the so-called \textit{Fermi-level} \cite{Shavitt}, to construct the basis for the corresponding methods.}
 \label{tab:QDotsResultsAll}
 \end{center}
 \end{table}
@@ -124,9 +124,9 @@ As expected, DMC reproduces the exact results for two particles. Compared to the
 
 The one-body densities are calculated using the methods described in Section \ref{sec:OBD}.
 
-Figure \ref{fig:OBD_DMC_QDOTS_w1} presents the one-body densities for two-dimensional quantum dots. It is clear that the distribution is following a clear trend: Odd number of closed shells ($N=2$, 12, 30) are all similar in shape. It is almost as if the $N=2$ case is a zoom-in of the $N=12$ top, which in turn is a zoom-in of the $N=30$ top. A physical explanation is that the shapes are conserved due to the fact that they represent energetically favorable configurations. 
+Figure \ref{fig:OBD_DMC_QDOTS_w1} presents the one-body densities for two-dimensional quantum dots. It is clear that the distributions are following a clear trend: The densities in the left column, that is, the densities for $N=2$, 12, and 30 particles, are all similar in shape. The shape for the $N=2$ case can be seen as the top of the $N=12$ density, which in turn can be seen as the top of the $N=30$ density. A physical explanation to this is that the shapes are conserved due to the fact that they represent energetically favorable configurations. 
 
-The same trend is present for the even numbered shells ($N=6$, 20, 42) as well. The density for $N=56$, which is not included in the figure, further demonstrates this trend. Viewing the distributions as a sequence of images, from the lowest number of particles to the highest, it is apparent that the shape propagates very much like water ripples. It is remarkable how the solutions to the most complex of equations can come in the form of simple patterns found all around nature.
+The same trend is present for the distributions in the right column, that is, the densities for $N=6$, 20, and 42 particles. Viewing the distributions as a sequence of images, from the lowest number of particles to the highest, it is apparent that the shape propagates very much like water ripples. It is remarkable how the solutions to the most complex of equations can come in the form of simple patterns found all around nature.
 
 
 \clearpage
@@ -146,7 +146,10 @@ The same trend is present for the even numbered shells ($N=6$, 20, 42) as well. 
 
 \clearpage
 
- Adding a third positional dimension changes the shape of the Schrödinger equation, which due to the Coulomb interaction is not separable in Cartesian coordinates. In other words, by going to three dimensions, the general shape of the solutions are expected to change. Nevertheless, by looking at the one-body densities for three dimensions in Figure \ref{fig:OBD_QDOTS3D_highfreq}, it is apparent that the general density profile is unchanged with respect to the number of closed shells. However, by comparing the two dimensional density for $N=20$ electrons from Figure \ref{fig:OBD_DMC_QDOTS_w1} with the three dimensional one for the same number of particles, it is clear that the shape of the densities are not conserved with respect to $N$ alone.
+
+Due to the electron-electron interaction, the Schrödinger equation is not separable in Cartesian coordinates. It is therefore not given that the insights from two dimensions can be transferred to the three dimensional case. Nevertheless, by looking at the one-body densities for three dimensions in Figure \ref{fig:OBD_QDOTS3D_highfreq}, it is apparent that the general density profile is unchanged. The only thing separating two - and three dimensional quantum dots is the number of electrons in the closed shells.
+
+Note however, that this similarity only holds when the number of closed shells are equal. Comparing the two dimensional density for $N=20$ electrons from Figure \ref{fig:OBD_DMC_QDOTS_w1} with the three dimensional one for $N=20$ electrons given above, it is apparent that the shape of the densities are not conserved with respect to the number of particles $N$ alone.
 
 % \setlength{\tabcolsep}{0.1pt}
 \begin{figure}
@@ -162,7 +165,7 @@ The same trend is present for the even numbered shells ($N=6$, 20, 42) as well. 
    \subfigure{\includegraphics[scale=0.25]{../Graphics/OBD/OBD_Q3D/QD20w1_2D.png}} & 
    \subfigure{\includegraphics[scale=0.25]{../Graphics/OBD/OBD_Q3D/comp/Q2D_12.png}} \\
   \end{tabular}
-  \caption{Left and middle column: One-body densities for quantum dots in three dimensions with frequency $\omega=1$. A quarter of the spherical density is removed to present a better view of the core.  Red and blue color implies a low and high electron density respectively. From top to bottom, the number of particles are $2$, $8$ and $20$. Right column: One-body densities for two dimensional quantum dots for $N=2$, $6$ and $12$ electrons (from the top) with $\omega=1$. It is apparent that the  shape of the density is conserved as the third dimension is added. The radial densities are not normalized. Normalizing the densities would only change the vertical extent.}
+  \caption{Left and middle column: One-body densities for quantum dots in three dimensions with frequency $\omega=1$. A quarter of the spherical density is removed to present a better view of the core.  Red and blue color imply a low and high electron density, respectively. From top to bottom, the number of particles are $2$, $8$ and $20$. Right column: One-body densities for two dimensional quantum dots for $N=2$, $6$ and $12$ electrons (from the top) with $\omega=1$. It is apparent that the  shape of the density is conserved as the third dimension is added. The radial densities are not normalized. Normalizing the densities would only change the vertical extent.}
   \label{fig:OBD_QDOTS3D_highfreq}
  \end{center}
 \end{figure}
@@ -174,16 +177,11 @@ The same trend is present for the even numbered shells ($N=6$, 20, 42) as well. 
 
 \subsection{Lowering the frequency}
 
+An interesting effect of lowering the frequency is that the two - and three dimensional densities no longer match. For example, the radial density for the three-dimensional $N=8$ quantum dot from Figure \ref{fig:OBD_QDOTS3D_highfreq} was a near perfect match to the two-dimensional one for $N=6$ electrons, however, comparing the same densities for $\omega=0.01$ from Figures \ref{fig:OBD_QDOTS3D_lowfreq} and \ref{fig:OBD_DMC_QDOTS_lowering3D}, it is apparent that this is no longer the case; the two-dimensional density has a peak in the center region, whereas the three-dimensional density is zero in the center region.
 
-From Figure \ref{fig:OBD_QDOTS3D_lowfreq} it is apparent that lowering the frequency shifts the electrons away from the center of the potential. Moreover, Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} reveals that the outer lying shells become just as populated as the inner lying shells, which means that all of the shells contain the same amount of particles on average.
+From Figure \ref{fig:OBD_QDOTS3D_lowfreq} it is apparent that lowering the frequency shifts increases the radial extent of the quantum dot, and thus lowers the electron density. Moreover, Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} reveals that the electron density becomes similar in height and more localized across the quantum dot, which implies that the electrons on average is spread evenly in shell structures. The localization of the electrons is further verified in Figure \ref{fig:E_dist_qdots}, where is is clear that the expectation value of the total potential energy is dominant over the kinetic energy. 
 
-This behavior is expected since the lower the frequency is set, the lower the energy cost of populating a higher shell becomes. 
-
-An equally populated shell structure implies that it is not energetically efficient for the electrons to occupy several shells simultaneously, indicating that crystallization becomes the preferred positional state\footnote{Unless at least one particle is frozen in the QMC simulations, the Quantum Dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. This effect is called \textit{Wigner Crystallization}, and is expected for confined electrons with a potential energy which dominates the kinetic energy \cite{WignerMolecule}. This effect has strong experimental evidence \cite{WignerCrystal, WignerCrystal2}. 
-
-The fact that the correlation energy dominates the kinetic energy is clear by looking at Figure \ref{fig:E_dist_qdots}. The kinetic energy contribution is almost constant with respect to the frequency, while the Coulomb energy contribution rapidly increases.
-
-Another very interesting result is that the symmetries for the two - and three dimensional closed shells solutions discussed in the previous section are broken at lower frequencies. The radial density for $N=8$ in Figure \ref{fig:OBD_QDOTS3D_lowfreq} does in no way resemble the $N=6$ density in Figure \ref{fig:OBD_DMC_QDOTS_lowering3D}.
+In order words, an evenly spread and localized electron density gives rise to \textit{crystallization}\footnote{Unless at least one particle is frozen in the QMC simulations, the quantum dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. The idea of an electron crystal was originally proposed by Wigner \cite{WignerCrystalOrig}, hence the currently discussed phenomenon is referred to as a \textit{Wigner molecule} or a \textit{Wigner crystal}, which is expected for quantum dots in the limit of low electron densities where the total potential energy dominates over the kinetic energy \cite{WignerTransport, WignerPathTo, WignerSymmetryBreak, WignerFloating, Wigner2DQD}. These electronic crystals have been observed in experiments with for example liquid Helium \cite{WignerExptHelium} and semiconductors \cite{WignerExptSemicond}.
 
 \newcommand{\qqq}{\qquad\qquad\qquad}
 \newcommand{\qq}{\qquad\qquad}
@@ -192,12 +190,12 @@ Another very interesting result is that the symmetries for the two - and three d
 \begin{figure}
  \begin{center}
  \begin{tabular}{rl}
-   \rot{$\qq\quad\omega=1$}&\subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Q3D/QD8w1_3D.png}}
-   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD8w1_2D.png}} \\
-   \rot{$\qq\omega=0.01$} &\subfigure{\includegraphics[scale=0.38]{../Graphics/OBD/OBD_Q3D/QD8w001_3D.png}} 
-   \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_Q3D/QD8w001_2D.png}}  \\
+   \rot{$\qq\quad\omega=1$}&\subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_Q3D/QD8w1_3D.png}}
+   \subfigure{\includegraphics[scale=0.28]{../Graphics/OBD/OBD_Q3D/QD8w1_2D.png}} \\
+   \rot{$\qq\omega=0.01$} &\subfigure{\includegraphics[scale=0.35]{../Graphics/OBD/OBD_Q3D/QD8w001_3D.png}} 
+   \subfigure{\includegraphics[scale=0.28]{../Graphics/OBD/OBD_Q3D/QD8w001_2D.png}}  \\
   \end{tabular}
-  \caption{Comparison of the one-body densities for quantum dots in three dimensions for $N=8$ electrons for high and low frequency $\omega$. It is apparent that the distribution becomes more narrow as the frequency is reduced. Red and blue color implies a low and high electron density respectively. A quarter of the spherical density is removed to present a better view of the core. }
+  \caption{Comparison of the one-body densities for quantum dots in three dimensions for $N=8$ electrons for high and low frequency $\omega$. It is apparent that the distribution becomes more narrow as the frequency is reduced. Red and blue color imply a low and high electron density, respectively. A quarter of the spherical density is removed to present a better view of the core. }
   \label{fig:OBD_QDOTS3D_lowfreq}
  \end{center}
 \end{figure}
@@ -221,7 +219,7 @@ Another very interesting result is that the symmetries for the two - and three d
   \subfigure[$N=12$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots12c001_3D.png}}
   \subfigure[$N=20$]{\includegraphics[scale=\OBDscale]{../Graphics/OBD/OBD_DMC/dist_out_QDots20c001_3D.png}} \\
  \end{tabular}
-  \caption{\small{DMC One-body densities for Quantum Dots for decreasing oscillator frequencies $\omega$ and increasing number of particles $N$. Each row represents a given $\omega$, and each column represents a given $N$. Notice that the densities for $\omega=1$ (from figure \ref{fig:OBD_DMC_QDOTS_w1}) are indistinguishable from those of $\omega=0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for $\omega=0.5$, however, for the sake of transparency, these results are left out of the current figure. Results for $N=30$, 42 and 56 particles for $\omega=0.01$ has too wide radial extent to converge with the computational resources available at the present time and has thus not been computed.}}
+  \caption{\small{DMC One-body densities for Quantum Dots for decreasing oscillator frequencies $\omega$ and increasing number of particles $N$. Each row represents a given $\omega$, and each column represents a given $N$. Notice that the densities for $\omega=1$ (from figure \ref{fig:OBD_DMC_QDOTS_w1}) are indistinguishable from those of $\omega=0.28$ except for their radial extent. This trend has been verified in the case of $N=30$, 42 and 56 electrons as well as for $\omega=0.5$, however, for the sake of transparency, these results are left out of the current figure.}}
   \label{fig:OBD_DMC_QDOTS_lowering3D}
  \end{center}
 \end{figure}
@@ -236,20 +234,22 @@ Another very interesting result is that the symmetries for the two - and three d
  \begin{center}
   \subfigure[$N=6$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E6.png}}
   \subfigure[$N=42$]{\includegraphics[scale=0.35]{../Graphics/VirialPlots/E_vs_w_E42.png}} \\
-  \caption{The relative magnitude of the different energy sources as a function of the frequency $\omega$ (left) together with the magnitude of the sources' energy contributions scaled with the oscillator frequency (right). The plots are supplied with legends to increase the readability. The different energy sources are kinetic (kin), oscillator (osc) and Coulomb (col). It is apparent that the kinetic contribution is constant in both cases and the potential contribution is constant for the relative energies. The values are calculated using two dimensional quantum dots. The number of electrons $N$ are displayed beneath each respective plot.}
+  \caption{The relative magnitude of the expectation value of the different energy sources as a function of the frequency $\omega$ (left) together with the magnitude of the sources' energy contributions scaled with the oscillator frequency (right). The plots are supplied with legends to increase the readability. The different energy sources are the kinetic energy denoted \textit{Ekin}, the oscillator potential energy denonted \textit{Eosc}, and the electron-electron interaction energy denoted \textit{Ecol}. Note that all given energies are expectation values. The values are calculated using two-dimensional quantum dots. The number of electrons $N$ is displayed beneath each respective plot. It is apparent that the kinetic energy contribution is constant in both cases. Moreover, the oscillator potential contribution is more or less constant for the relative energies (left sub-figures). The figure clearly indicates that the potential energy contributions from the oscillator and the electron-electron interaction tends to dominate over the kinetic energy at lower frequencies.}
   \label{fig:E_dist_qdots}
  \end{center}
 \end{figure}
 
-In other words, quantum dots fall into a crystallized state at low frequencies. In light of the previous discussion regarding Wigner crystallization, this follows as a consequence of the kinetic energy being dominated by the Coulomb energy. Since the Coulomb energy in turn dominates the oscillator energy (the left-hand side parts of the plots in Figure \ref{fig:E_dist_qdots}), the interesting quantity to study is the kinetic energy as a function of the total potential energy. 
+It is expected that the QMC Wigner crystal corresponds to the electrons localizing around the equilibrium positions of the classical Wigner crystal\cite{WignerTransport}. Comparing the densities for two-dimensional quantum dots at $\omega=0.01$ for $N=6$, $12$, and $20$ electrons given in Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} to similar classical calculations done in Ref. \cite{WignerClassic} for $N=6$, $10$, and $19$ electrons, respectively, it is apparent that the solutions match very well.  
 
-This is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{FockVirial} and reads
+It was mentioned previously that the Wigner crystallization of quantum dots came as a consequence of the total potential energy dominating the kinetic energy. This relationship between kinetic and potential energy is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{FockVirial} and reads
 
 \begin{equation}
  V(\mathbf{r}) \propto r^\gamma \quad\longrightarrow\quad \langle \OP{T} \rangle = \frac{\gamma}{2} \langle \OP{V} \rangle, \label{eq:virial}
 \end{equation}
 
-where $\OP{T}$ and $\OP{V}$ denote the kinetic - and potential energy operators respectively. The important conclusion which can be drawn from this is that a constant slope in the kinetic - vs. potential energy plot implies that the systems behave identically, that is, they follow the same effective potential and thus have similar eigenstates. From Figure \ref{fig:V_dist_qdots} it is apparent that there is a remarkably constant slope for two different regions: High - and low kinetic energy, which by looking at Figure \ref{fig:E_dist_qdots} corresponds to high - and low frequencies. This proves that the system changes characteristics as the frequency changes, which explains the sudden change in the density profiles.
+where $\OP{T}$ and $\OP{V}$ denote the kinetic - and total potential energy operators, respectively. The important conclusion which can be drawn from this is that if two systems have an equal ratio of kinetic - to total potential energy, the systems behave identically in the sense that they follow the same effective potential, and thus have similar eigenstates. 
+
+From Figure \ref{fig:V_dist_qdots} it is apparent that there is a remarkably constant slope for two different regions in the case of quantum dots, namely high - and low kinetic energy, which by looking at Figure \ref{fig:E_dist_qdots} corresponds to high - and low frequencies. In light of previous discussions, it is apparent that the change in the slopes of Figure \ref{fig:V_dist_qdots} correspond to the quantum dots' transitions into Wigner crystallized states.
 
 
 

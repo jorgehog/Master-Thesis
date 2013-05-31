@@ -184,7 +184,7 @@
 	owner = "toffyrn",
 	school = "University of Oslo",
 	timestamp = "2011.05.13",
-	title = "{VMC CALCULATIONS OF TWO-DIMENSIONAL QUANTUM DOTS}",
+	title = "{VMC Calculations of Two-dimensional Quantum Dots}",
 	year = "2010"
 }
 
@@ -548,6 +548,7 @@ jabref-meta: selector_keywords:
 
 @manual{libBorealisCode,
 	author = "H{\o}gberget, J{\o}rgen",
+	note = "http://www.github.com/jorgehog/QMC2",
 	publisher = "GitHub",
 	school = "University of Oslo",
 	title = "{Git Repository: LibBorealis}",
@@ -665,6 +666,7 @@ jabref-meta: selector_keywords:
 
 @online{Matplotlib,
 	month = may,
+	note = "http://matplotlib.org",
 	title = "{Matplotlib website}",
 	url = "http://matplotlib.org",
 	year = "2013"
@@ -672,6 +674,7 @@ jabref-meta: selector_keywords:
 
 @online{PySide,
 	month = may,
+	note = "\\http://qt-project.org/wiki/Category:LanguageBindings::PySide",
 	title = "{PySide website}",
 	url = "http://qt-project.org/wiki/Category:LanguageBindings::PySide",
 	year = "2013"
@@ -679,6 +682,7 @@ jabref-meta: selector_keywords:
 
 @online{SymPy,
 	month = may,
+	note = "http://sympy.org",
 	title = "{SymPy website}",
 	url = "http://sympy.org",
 	year = "2013"
@@ -734,7 +738,7 @@ jabref-meta: selector_keywords:
 	added-at = "2009-02-13T13:09:53.000+0100",
 	address = "1155 16TH ST, NW, WASHINGTON, DC 20036 USA",
 	affiliation = "Kamat, PV (Reprint Author), Univ Notre Dame, Radiat Lab, Notre Dame, IN 46556 USA. {[}Kongkanand, Anusorn; Tvrdy, Kevin; Takechi, Kensuke; Kuno, Masaru; Kamat, Prashant V.] Univ Notre Dame, Radiat Lab, Notre Dame, IN 46556 USA. {[}Tvrdy, Kevin; Kuno, Masaru; Kamat, Prashant V.] Univ Notre Dame, Dept Chem \& Biochem, Notre Dame, IN 46556 USA. {[}Kamat, Prashant V.] Univ Notre Dame, Dept Chem Engn, Notre Dame, IN 46556 USA.",
-	author = "Kongkanand, Anusorn and Tvrdy, Kevin and Takechi, Kensuke and Kuno, Masaru and Kamat, Prashant V.",
+	author = "Kongkanand, A. and Tvrdy, K. and Takechi, K. and Kuno, M. and Kamat, P. V.",
 	author-email = "pkamat@nd.edu",
 	description = "Initial Import",
 	doc-delivery-number = "276WE",

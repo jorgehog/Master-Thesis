@@ -103,7 +103,7 @@
 \contentsline {subsection}{\numberline {5.1.2}Atoms}{97}{subsection.5.1.2}
 \contentsline {subsection}{\numberline {5.1.3}Homonuclear Diatomic Molecules}{98}{subsection.5.1.3}
 \contentsline {section}{\numberline {5.2}Quantum Dots}{99}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}The Single Particle Basis}{99}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.1}The Single Particle Basis}{100}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Two - and Three Dimensional Quantum Dots}{101}{subsection.5.2.2}
 \contentsline {subsection}{\numberline {5.2.3}Double-well Quantum Dots}{101}{subsection.5.2.3}
 \contentsline {part}{II\hspace {1em}Results}{103}{part.2}

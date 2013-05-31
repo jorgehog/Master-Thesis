@@ -201,6 +201,11 @@ Jaime~Fern{\'a}ndez Rico, Rafael L{\'o}pez, Ignacio Ema, and Guillermo
 \newblock {Translation of real solid spherical harmonics}.
 \newblock {\em Int. J. Quant. Chem.}, \textbf{113}:1544, 2013.
 
+\bibitem{Helgaker}
+T.~Helgaker, P.~J{\o}rgensen, and J.~Olsen.
+\newblock {\em {Molecular {E}lectronic-{S}tructure {T}heory}}.
+\newblock Wiley, Chichester, 2000.
+
 \bibitem{QDOTS_SOLAR}
 A.~Kongkanand, K.~Tvrdy, K.~Takechi, M.~Kuno, and P.~V. Kamat.
 \newblock {Quantum dot solar cells. Tuning photoresponse through size and shape
@@ -250,23 +255,56 @@ Sarah Reimann.
   Group theory}.
 \newblock Master's thesis, University of Oslo, 2013.
 
-\bibitem{WignerMolecule}
-Constantine Yannouleas and Uzi Landman.
-\newblock {Symmetry breaking and quantum correlations in finite systems:
-  studies of quantum dots and ultracold Bose gases and related nuclear and
-  chemical methods}.
-\newblock {\em Rep. Prog. Phys.}, \textbf{70}:2067, 2007.
-
-\bibitem{WignerCrystal}
+\bibitem{WignerCrystalOrig}
 E.~Wigner.
 \newblock {On the Interaction of Electrons in Metals}.
 \newblock {\em Phys. Rev.}, \textbf{46}:1002, Dec 1934.
 
-\bibitem{WignerCrystal2}
-E.~Wigner.
-\newblock {Effects of the electron interaction on the energy levels of
-  electrons in metals}.
-\newblock {\em Trans. Faraday Soc.}, \textbf{34}:678, 1938.
+\bibitem{WignerTransport}
+F~Cavaliere, U~De Giovannini, M~Sassetti, and B~Kramer.
+\newblock {Transport properties of quantum dots in the Wigner molecule regime}.
+\newblock {\em New J. Phys.}, \textbf{11}:123004, 2009.
+
+\bibitem{WignerPathTo}
+Lang Zeng, W.~Geist, W.~Y. Ruan, C.~J. Umrigar, and M.~Y. Chou.
+\newblock {Path to Wigner localization in circular quantum dots}.
+\newblock {\em Phys. Rev. B}, \textbf{79}:235334, Jun 2009.
+
+\bibitem{WignerSymmetryBreak}
+Constantine Yannouleas and Uzi Landman.
+\newblock {Symmetry breaking and Wigner molecules in few-electron quantum
+  dots}.
+\newblock {\em phys. stat. sol. (a)}, \textbf{203}:1160, 2006.
+
+\bibitem{WignerFloating}
+S.A. Mikhailova and K.~Ziegler.
+\newblock {Floating Wigner molecules and possible phase transitions in quantum
+  dots}.
+\newblock {\em Eur. Phys. J. B}, \textbf{28}:117, 2002.
+
+\bibitem{Wigner2DQD}
+N.~Akman and M.~Tomak.
+\newblock {The Wigner molecule in a 2D quantum dot}.
+\newblock {\em Physica E: Low-dimensional Systems and Nanostructures},
+  \textbf{4}:277, 1999.
+
+\bibitem{WignerExptHelium}
+C.~C. Grimes and G.~Adams.
+\newblock {Evidence for a Liquid-to-Crystal Phase Transition in a Classical,
+  Two-Dimensional Sheet of Electrons}.
+\newblock {\em Phys. Rev. Lett.}, \textbf{42}:795, Mar 1979.
+
+\bibitem{WignerExptSemicond}
+Jongsoo Yoon, C.~C. Li, D.~Shahar, D.~C. Tsui, and M.~Shayegan.
+\newblock {Wigner Crystallization and Metal-Insulator Transition of
+  Two-Dimensional Holes in GaAs at
+  $\mathit{B}\phantom{\rule{0ex}{0ex}}=\phantom{\rule{0ex}{0ex}}0$}.
+\newblock {\em Phys. Rev. Lett.}, \textbf{82}:1744, Feb 1999.
+
+\bibitem{WignerClassic}
+F.~Bolton and U.~R{\"o}ssler.
+\newblock {Classical model of a Wigner crystal in a quantum dot}.
+\newblock {\em Superlattices and Microstructures}, \textbf{13}:139, 1993.
 
 \bibitem{FockVirial}
 V~Fock.

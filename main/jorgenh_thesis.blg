@@ -3,11 +3,11 @@ The top-level auxiliary file: jorgenh_thesis.aux
 The style file: unsrt.bst
 Database file #1: ../bibtex/bibtex.bib.bib
 Warning--entry type for "Matplotlib" isn't style-file defined
---line 667 of file ../bibtex/bibtex.bib.bib
+--line 656 of file ../bibtex/bibtex.bib.bib
 Warning--entry type for "PySide" isn't style-file defined
---line 675 of file ../bibtex/bibtex.bib.bib
+--line 664 of file ../bibtex/bibtex.bib.bib
 Warning--entry type for "SymPy" isn't style-file defined
---line 683 of file ../bibtex/bibtex.bib.bib
+--line 672 of file ../bibtex/bibtex.bib.bib
 Warning--empty journal in QMCDIFF
 Warning--empty year in QMCDIFF
 Warning--can't use both author and editor fields in abInitioMC
@@ -15,45 +15,45 @@ Warning--empty note in morten
 Warning--empty journal in doubleWellExpt
 Warning--empty journal in CCSD_WF
 Warning--empty year in CCSD_WF
-You've used 58 entries,
+You've used 65 entries,
             1791 wiz_defined-function locations,
-            790 strings with 11427 characters,
-and the built_in function-call counts, 10047 in all, are:
-= -- 863
-> -- 421
+            840 strings with 12652 characters,
+and the built_in function-call counts, 11531 in all, are:
+= -- 980
+> -- 508
 < -- 4
-+ -- 170
-- -- 112
-* -- 519
-:= -- 1686
-add.period$ -- 171
-call.type$ -- 58
-change.case$ -- 47
++ -- 201
+- -- 136
+* -- 627
+:= -- 1941
+add.period$ -- 192
+call.type$ -- 65
+change.case$ -- 53
 chr.to.int$ -- 0
-cite$ -- 65
-duplicate$ -- 515
-empty$ -- 1031
-format.name$ -- 112
-if$ -- 2244
+cite$ -- 72
+duplicate$ -- 579
+empty$ -- 1171
+format.name$ -- 136
+if$ -- 2565
 int.to.chr$ -- 0
-int.to.str$ -- 58
-missing$ -- 59
-newline$ -- 290
-num.names$ -- 55
-pop$ -- 189
+int.to.str$ -- 65
+missing$ -- 67
+newline$ -- 325
+num.names$ -- 62
+pop$ -- 202
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 199
+skip$ -- 223
 stack$ -- 0
-substring$ -- 329
-swap$ -- 79
+substring$ -- 404
+swap$ -- 86
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 7
-while$ -- 83
-width$ -- 60
-write$ -- 616
+while$ -- 96
+width$ -- 67
+write$ -- 692
 (There were 10 warnings)

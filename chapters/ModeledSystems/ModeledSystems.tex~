@@ -78,6 +78,9 @@ which results in the following real eigenfunctions
 
 where $k = \alpha Z$ is a scaled charge with $\alpha$ as a variational parameter chosen by methods described in Section \ref{sec:selectingOptVarPar}.
 
+One should also keep in mind that the hydrogen-like wave functions yield only bound states. For atoms where the least bound electrons are weakly bound, a coupling to states in the continuum may be necessary.
+In quantum chemistry calculations, so-called \textit{Slater orbitals} are used routinely in order to account for this deficiency \cite{Helgaker}. In this thesis however, the aim has been to use the given basis without tailoring it to a specific system. This opens up the possibility to test the reliability of the basis without any fine tuning.
+
 A set of quantum numbers $nlm$ is mapped to a single index $i$. A listing of all the single particle wave functions and their closed form derivatives are given in Appendix \ref{appendix:SymPyHydro}.
 
 \subsection{Atoms}
