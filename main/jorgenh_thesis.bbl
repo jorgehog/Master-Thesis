@@ -1,14 +1,199 @@
 \begin{thebibliography}{10}
 
-\bibitem{Sakurai:94}
-J.~J. Sakurai.
-\newblock {\em {Modern Quantum Mechanics}}.
-\newblock Addison-Wesley, New York, {Revised ed} edition, 1994.
+\bibitem{verdensBesteArtikkel}
+S.~Reimann, J.~H{\o}gberget, M.~Hjorth-Jensen, and S.~K. Bogner.
+\newblock {In-medium similarity renormalization group approach studies of
+  quantum dots}.
+\newblock In preparation, 2013.
+
+\bibitem{Hirth}
+Christoffer Hirth.
+\newblock {Studies of quantum dots: Ab initio coupled-cluster analysis using
+  OpenCL and GPU programming}.
+\newblock Master's thesis, University of Oslo, 2012.
+
+\bibitem{H_He_exact}
+Moskowitz Kalos.
+\newblock {A new Look at Correlations in Atomic and Molecular Systems.
+  Application of Fermion Monte Carlo Variational Method}.
+\newblock {\em Int. J. Quant. Chem.}, \textbf{XX}:1107, 1981.
+
+\bibitem{ExactMolecules}
+S.~Datta, S.~A. Alexander, and R.~L. Coldwell.
+\newblock {Properties of selected diatomics using variational Monte Carlo
+  methods}.
+\newblock {\em J. Chem. Phys.}, \textbf{120}:3642, 2004.
+
+\bibitem{AtomsExact}
+Matthias Degroote.
+\newblock {Faddeev random phase approximation applied to molecules}.
+\newblock {\em Eur. Phys. J. ST}, \textbf{218}:1, 2013.
+
+\bibitem{KryptonExact}
+Harry Partridge.
+\newblock {Near Hartree--Fock quality GTO basis sets for the first- and
+  third-row atoms}.
+\newblock {\em J. Chem. Phys.}, \textbf{90}:1043, 1989.
+
+\bibitem{forcesQMC}
+A~Badinski, P~D Haynes, J~R Trail, and R~J Needs.
+\newblock {Methods for calculating forces within quantum Monte Carlo
+  simulations}.
+\newblock {\em J. Phys.: Condens. Matter}, \textbf{22}:074202, 2010.
+
+\bibitem{Olsen}
+Veronica K.~B. Olsen.
+\newblock {Full Configuration Interaction Simulation of Quantum Dots}.
+\newblock Master's thesis, University of Oslo, 2012.
+
+\bibitem{libBorealisCode}
+J{\o}rgen H{\o}gberget.
+\newblock {\em {Git Repository: LibBorealis}}, 2013.
+\newblock http://www.github.com/jorgehog/QMC2.
+
+\bibitem{MD1}
+Murat Barisik and Ali Beskok.
+\newblock {Equilibrium molecular dynamics studies on nanoscale-confined
+  fluids}.
+\newblock {\em Microfluid Nanofluid}, \textbf{11}(3):269, September 2011.
+
+\bibitem{MD2}
+Karl~P. Travis and Keith~E. Gubbins.
+\newblock {Poiseuille flow of Lennard-Jones fluids in narrow slit pores}.
+\newblock {\em J. Chem. Phys}, \textbf{112}:1984, 2000.
+
+\bibitem{supermen}
+Charles~J. Murray.
+\newblock {\em {The SUPERMEN}}.
+\newblock New York: Wiley, 1997.
+
+\bibitem{inf3331}
+Hans~Petter Langtangen.
+\newblock {\em {Python Scripting for Computational Science}}.
+\newblock Springer, 3rd edition, 2008.
+
+\bibitem{pythonBook}
+Mark Lutz.
+\newblock {\em {Programming Python - powerful object-oriented programming.}}
+\newblock O'Reilly, 3rd edition, 2006.
+
+\bibitem{inf1100}
+Hans~Petter Langtangen.
+\newblock {\em {A primer on scientific programming with Python}}.
+\newblock Springer, Berlin; Heidelberg; New York, 2011.
+
+\bibitem{ORegan}
+Gerard O'Regan.
+\newblock {\em {A Brief History of Computing, Second Edition.}}
+\newblock Springer, 2012.
 
 \bibitem{griffiths}
 David Griffiths.
 \newblock {\em {Introduction to Quantum Mechanics}}.
 \newblock Pearson, 2nd edition edition, 2005.
+
+\bibitem{Shavitt}
+I.~Shavitt and R.~J. Bartlett.
+\newblock {\em {Many-Body Methods in Chemistry and Physics}}.
+\newblock Cambridge University Press, Cambridge, 2009.
+
+\bibitem{Sigve}
+Sigve~B. Skattum.
+\newblock {Time Evolution of Quantum Dots}.
+\newblock Master's thesis, University of Oslo, 2013.
+
+\bibitem{QMCDIFF}
+J.~J. Mares et~al.
+\newblock {Periodic reactions and quantum diffusion}.
+\newblock http://www.fzu.cz/~sestak/yyx/periodic\%20reactions.pdf.
+
+\bibitem{abInitioMC}
+B.L. Hammond, Jr. {W. A. Lester}, and P.~J. Reynolds.
+\newblock {\em {Monte Carlo Methods in Ab Initio Quantum Chemistry}}.
+\newblock World Scientific Publishing Co., 1994.
+
+\bibitem{Gardiner:2004bk}
+C.~W Gardiner.
+\newblock {\em {Handbook of stochastic methods for physics, chemistry, and the
+  natural sciences}}.
+\newblock Springer-Verlag, Berlin, 3rd edition, 2004.
+
+\bibitem{risken1989fpe}
+H.~Risken and H.~Haken.
+\newblock {\em {The Fokker-Planck Equation: Methods of Solution and
+  Applications Second Edition}}.
+\newblock Springer, 1989.
+
+\bibitem{langevin}
+W.~T Coffey, Y.~P Kalmykov, and J.~T Waldron.
+\newblock {\em {The Langevin Equation: With Applications to Stochastic Problems
+  in Physics, Chemistry, and Electrical Engineering. }}.
+\newblock World Scientific, Singapore, 2004.
+
+\bibitem{robertcasella}
+C.P. Robert and G.~Casella.
+\newblock {\em {Monte Carlo Statistical Methods}}.
+\newblock Springer Verlag, 2004.
+
+\bibitem{morten}
+Morten Hjorth-Jensen.
+\newblock {Computational Physics}.
+\newblock 2010.
+
+\bibitem{Sakurai:94}
+J.~J. Sakurai.
+\newblock {\em {Modern Quantum Mechanics}}.
+\newblock Addison-Wesley, New York, {Revised ed} edition, 1994.
+
+\bibitem{larseivind}
+Lars~Eivind Lerv{\aa}g.
+\newblock {VMC Calculations of Two-dimensional Quantum Dots}.
+\newblock Master's thesis, University of Oslo, 2010.
+
+\bibitem{QMCPHD2008}
+Daniel~Andres Nissenbaum.
+\newblock {\em {The stochastic gradient approximation: an application to li
+  nanoclusters}}.
+\newblock PhD thesis, Northeastern University, 2008.
+
+\bibitem{UmrigarMolecules}
+Claudia Filippi and C.~J. Umrigar.
+\newblock {Multiconfiguration wave function for quantum Monte Carlo
+  calculations of first-row diatomic molecules}.
+\newblock {\em J. Chem. Phys}, \textbf{105}:213, July 1996.
+
+\bibitem{golub1996matrix}
+G.H. Golub and C.F. {Van Loan}.
+\newblock {\em {Matrix computations}}, volume~3.
+\newblock Johns Hopkins Univ Press, 1996.
+
+\bibitem{ASGD_MB}
+A.~{Harju}, B.~{Barbiellini}, S.~{Siljam{\"a}ki}, R.~M. {Nieminen}, and
+  G.~{Ortiz}.
+\newblock {Stochastic Gradient Approximation: An Efficient Method to Optimize
+  Many-Body Wave Functions}.
+\newblock {\em Phys.~Rev.~Lett.}, page 1173, August 1997.
+
+\bibitem{ASGD}
+Stefan Klein, Josien P.~W. Pluim, Marius Staring, and Max~A. Viergever.
+\newblock {Adaptive Stochastic Gradient Descent Optimisation for Image
+  Registration.}
+\newblock {\em Int. J. Comput. Vision}, page 227, 2009.
+
+\bibitem{leinaas}
+Jon~Magne Leinaas.
+\newblock {Non-Relativistic Quantum Mechanics}.
+\newblock lecture notes FYS4110.
+
+\bibitem{flyvbjerg:461}
+H.~Flyvbjerg and H.~G. Petersen.
+\newblock {Error estimates on averages of correlated data}.
+\newblock {\em J. Chem. Phys}, \textbf{91}:461, 1989.
+
+\bibitem{linAlg}
+David~C. Lay.
+\newblock {\em {Linear Algebra and its Applications}}.
+\newblock Pearson, 4 edition, 2012.
 
 \bibitem{SolidHarmonics}
 Jaime~Fern{\'a}ndez Rico, Rafael L{\'o}pez, Ignacio Ema, and Guillermo
@@ -47,56 +232,51 @@ Yang~Min Wang.
 \newblock {Coupled-Cluster Studies of Double Quantum Dots}.
 \newblock Master's thesis, University of Oslo, 2011.
 
-\bibitem{AtomsExact}
-Matthias Degroote.
-\newblock {Faddeev random phase approximation applied to molecules}.
-\newblock {\em Eur. Phys. J. ST}, \textbf{218}:1, 2013.
+\bibitem{taut}
+M.~Taut.
+\newblock {Two electrons in an external oscillator potential: Particular
+  analytic solutions of a Coulomb correlation problem}.
+\newblock {\em Phys. Rev. A}, \textbf{48}:3561, Nov 1993.
 
-\bibitem{KryptonExact}
-Harry Partridge.
-\newblock {Near Hartree--Fock quality GTO basis sets for the first- and
-  third-row atoms}.
-\newblock {\em J. Chem. Phys.}, \textbf{90}:1043, 1989.
+\bibitem{MagnusArticle}
+M.~{Pedersen Lohne}, G.~Hagen, M.~Hjorth-Jensen, S.~Kvaal, and F.~Pederiva.
+\newblock {\textit{Ab initio} computation of the energies of circular quantum
+  dots}.
+\newblock {\em Phys.~Rev.~B}, \textbf{84}:115302, Sep 2011.
+
+\bibitem{Sarah}
+Sarah Reimann.
+\newblock {Quantum-mechanical systems in traps and Similarity Renormalization
+  Group theory}.
+\newblock Master's thesis, University of Oslo, 2013.
+
+\bibitem{WignerMolecule}
+Constantine Yannouleas and Uzi Landman.
+\newblock {Symmetry breaking and quantum correlations in finite systems:
+  studies of quantum dots and ultracold Bose gases and related nuclear and
+  chemical methods}.
+\newblock {\em Rep. Prog. Phys.}, \textbf{70}:2067, 2007.
+
+\bibitem{WignerCrystal}
+E.~Wigner.
+\newblock {On the Interaction of Electrons in Metals}.
+\newblock {\em Phys. Rev.}, \textbf{46}:1002, Dec 1934.
+
+\bibitem{WignerCrystal2}
+E.~Wigner.
+\newblock {Effects of the electron interaction on the energy levels of
+  electrons in metals}.
+\newblock {\em Trans. Faraday Soc.}, \textbf{34}:678, 1938.
+
+\bibitem{FockVirial}
+V~Fock.
+\newblock {Bemerkung zum Virialsatz}.
+\newblock {\em Z. Phys.}, \textbf{63}:855, November 1930.
 
 \bibitem{UniversityPhysics}
 H.~D. Young, R.A. Freedman, and L.A. Ford.
 \newblock {\em {Sears and Zemansky's University Physics}}.
 \newblock Pearson, Addison-Wesley, 12 edition, 2008.
-
-\bibitem{H_He_exact}
-Moskowitz Kalos.
-\newblock {A new Look at Correlations in Atomic and Molecular Systems.
-  Application of Fermion Monte Carlo Variational Method}.
-\newblock {\em Int. J. Quant. Chem.}, \textbf{XX}:1107, 1981.
-
-\bibitem{UmrigarMolecules}
-Claudia Filippi and C.~J. Umrigar.
-\newblock {Multiconfiguration wave function for quantum Monte Carlo
-  calculations of first-row diatomic molecules}.
-\newblock {\em J. Chem. Phys}, \textbf{105}:213, July 1996.
-
-\bibitem{ExactMolecules}
-S.~Datta, S.~A. Alexander, and R.~L. Coldwell.
-\newblock {Properties of selected diatomics using variational Monte Carlo
-  methods}.
-\newblock {\em J. Chem. Phys.}, \textbf{120}:3642, 2004.
-
-\bibitem{MD1}
-Murat Barisik and Ali Beskok.
-\newblock {Equilibrium molecular dynamics studies on nanoscale-confined
-  fluids}.
-\newblock {\em Microfluid Nanofluid}, \textbf{11}(3):269, September 2011.
-
-\bibitem{MD2}
-Karl~P. Travis and Keith~E. Gubbins.
-\newblock {Poiseuille flow of Lennard-Jones fluids in narrow slit pores}.
-\newblock {\em J. Chem. Phys}, \textbf{112}:1984, 2000.
-
-\bibitem{forcesQMC}
-A~Badinski, P~D Haynes, J~R Trail, and R~J Needs.
-\newblock {Methods for calculating forces within quantum Monte Carlo
-  simulations}.
-\newblock {\em J. Phys.: Condens. Matter}, \textbf{22}:074202, 2010.
 
 \bibitem{ReaxFF}
 Adri C.~T. van Duin, Siddharth Dasgupta, Francois Lorant, and William~A.
@@ -104,20 +284,10 @@ Adri C.~T. van Duin, Siddharth Dasgupta, Francois Lorant, and William~A.
 \newblock {ReaxFF: A Reactive Force Field for Hydrocarbons}.
 \newblock {\em J. Phys. Chem. A}, \textbf{105}:9396, 2001.
 
-\bibitem{larseivind}
-Lars~Eivind Lerv{\aa}g.
-\newblock {VMC CALCULATIONS OF TWO-DIMENSIONAL QUANTUM DOTS}.
-\newblock Master's thesis, University of Oslo, 2010.
-
 \bibitem{vmcAtoms}
 H{\aa}vard Sandsdalen.
 \newblock {Variational Monte Carlo studies of Atoms}.
 \newblock Master's thesis, University of Oslo, 2010.
-
-\bibitem{Olsen}
-Veronica K.~B. Olsen.
-\newblock {Full Configuration Interaction Simulation of Quantum Dots}.
-\newblock Master's thesis, University of Oslo, 2012.
 
 \bibitem{momentspaceQMC}
 Aurel Bulgac and Michael~McNeil Forbes.
@@ -125,20 +295,10 @@ Aurel Bulgac and Michael~McNeil Forbes.
   physics}.
 \newblock {\em Phys. Rev. C}, \textbf{87}:051301, May 2013.
 
-\bibitem{Shavitt}
-I.~Shavitt and R.~J. Bartlett.
-\newblock {\em {Many-Body Methods in Chemistry and Physics}}.
-\newblock Cambridge University Press, Cambridge, 2009.
-
 \bibitem{CCSD_WF}
 A.~Roggero, F.~Pederiva, and A.~Mukherjee.
 \newblock {Quantum Monte Carlo with Coupled-Cluster wave functions}.
 \newblock arXiv:1304.1549 [nucl-th].
-
-\bibitem{golub1996matrix}
-G.H. Golub and C.F. {Van Loan}.
-\newblock {\em {Matrix computations}}, volume~3.
-\newblock Johns Hopkins Univ Press, 1996.
 
 \bibitem{Matplotlib}
 {Matplotlib website}, May 2013.

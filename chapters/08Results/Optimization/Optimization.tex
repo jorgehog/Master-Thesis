@@ -3,17 +3,17 @@
 
 The optimization results listed in this section are estimated using a $30$ particle two-dimensional quantum dot as reference system.
 
-Profiling the code revealed, not surprisingly, that $~99\%$ of the runtime was spent diffusing the particles, i.e. spent in \verb+QMC::diffuse_walker+, regardless of whether Variational Monte-Carlo (VMC), Diffusion Monte-Carlo (DMC) or Adaptive Stochastic Gradient Descent (ASGD) was run. Optimizing the code then solely involved optimizing this function. 
+Profiling the code revealed that $~99\%$ of the runtime was spent diffusing the particles, that is, spent in the function \verb+QMC::diffuse_walker+. Variational Monte-Carlo (VMC), Diffusion Monte-Carlo (DMC), and Adaptive Stochastic Gradient Descent (ASGD) all rely heavily on the diffusion of particles, hence parts of the code which do not involve diffusion walkers were neglected in the optimization process; it is a waste of time to optimize something which accounts for less than one percent of the runtime.  
 
-The profiling tool of choice was \textit{KCacheGrind}, available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks, whose size is proportional to the time spent inside the function, much like standard hard drive listing software does with files and file size.
+The profiling tool of choice was \textit{KCacheGrind}, available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks of size proportional to the time spent inside the function, much like standard hard drive listing software does with files and file size.
 
-Optimizations discussed in chapter \ref{ch:optAndGen} which are not mentioned in the following sections are optimizations implemented prior to the optimization process. These optimizations were considered ``standard optimizations'' and was thus implemented from start. 
+Optimizations discussed in Chapter \ref{ch:optAndGen} which are not mentioned in the following sections were considered standard implementations, and were thus implemented prior to the optimization process.
 
 \subsubsection{Storing the Slater matrix}
 
 This optimization is described in detail in Section \ref{sec:storeSlater}. In addition to storing the Slater matrix, the calculation of $\tilde I$ from the inverse updating algorithm in Eq.~(\ref{eq:Itilde}) was done outside the main loops.
 
-The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
+The percentages listed in the following table represent the fraction of total time spent inside the given function relative to all other functions. 
 
 \begin{tabular}{ll}
  \verb+Orbitals::phi+ & \\
@@ -29,9 +29,9 @@ The speedup is not a result of optimizations within the function itself, but a r
 
 \subsubsection{Optimized Jastrow gradient}
 
-This optimization described in this Section is discussed in detail in Section \ref{sec:optJastGrad}.
+The optimization described in this section is discussed in detail in Section \ref{sec:optJastGrad}.
 
-The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
+The percentages listed in the following table represent the fraction of total time spent inside the given functions relative to all other functions. 
 
 \begin{tabular}{ll}
  \verb+Jastrow::get_grad+ \& \verb+Jastrow::calc_dJ+ & \\
@@ -42,13 +42,13 @@ The percentages listed in the following table is the total time spent inside thi
  Relative function speedup                   & 7.63
 \end{tabular}
 
-Exploiting the symmetries of the Padé Jastrow gradient, in addition to calculating the new gradient based on the old, is in other words extremely efficient. Keep in mind that these results are for a high number of particles. For e.g. two particles, this optimization would not matter at all.
+Exploiting the symmetries of the Padé Jastrow gradient, in addition to calculating the new gradient based on the old, are in other words extremely efficient. Keep in mind that these results are for a high number of particles. For two particles, this optimization would not matter at all.
 
 \subsubsection{Storing the orbital derivatives}
 
 This optimization is covered in detail in Section \ref{sec:storeSlater}. Much like for the Slater matrix, the optimization in this case comes from the fact that the function itself is called fewer times, rather than being faster.
 
-The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
+The percentages listed in the following table represent the fraction of total time spent inside the given function relative to all other functions. 
 
 
 \begin{tabular}{ll}
@@ -65,7 +65,7 @@ The percentages listed in the following table is the total time spent inside thi
 
 This optimization is covered in detail in Section \ref{sec:optSPWFqnumIndie}. The result of the optimization is a reduction in the number of exponential function calls, which means a more efficient calculation of single particle states, their gradients and Laplacians.
 
-The percentages listed in the following table is the total time spent inside this specific function relative to all other functions. 
+The percentages listed in the following table represent the fraction of total time spent inside the given functions relative to all other functions. 
 
 \begin{tabular}{ll}
  \verb+Orbitals::phi+ \& \verb+Orbitals::dell_phi+ & \\
@@ -103,7 +103,7 @@ Homonuclear diatomic molecules & $N^{1.8437}$ \\
 \end{tabular}
 
 
-As the number of particles increase, the spatial dimensions contribution to the scaling becomes negligible compared to the number of particles, rendering two dimensional quantum dots and atoms similar in runtime. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$, where $d$ denotes the dimension. 
+As the number of particles increases, the scaling with respect to the number of spatial dimensions becomes negligible compared to the scaling with the number of particles, rendering two-dimensional quantum dots and atoms similar in runtime. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$, where $d$ denotes the number of dimensions. 
 
 The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single particle wave functions. Consider for example the third single particle wave function for the hydrogen-like orbitals:
 
@@ -121,7 +121,7 @@ It is obvious that the orbital for quantum dots contain a higher computational c
 
 The fact that the difference in the cost of the single particle wave functions govern the scaling demonstrates the efficiency in the general framework. Moreover, having the molecular system scaling almost identically to the atomic one demonstrates the efficiency of the system's implementation. 
 
-Both Variational Monte-Carlo (VMC) and Adaptive Stochastic Gradient Descent (ASGD) scales linearly with the number of processors, due to the fact that the processes does not require any communication besides summing final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the walker population on different nodes. Depending on whether some nodes have more deaths or newborns than the others, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is linear. 
+Both Variational Monte-Carlo (VMC) and Adaptive Stochastic Gradient Descent (ASGD) scale linearly with the number of processors, due to the fact that the processes do not require any communication besides adding the final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the original walker population across multiple nodes. Depending on whether some nodes have more deaths or newborns than other, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is approximately linear. 
 
 
 

@@ -12,13 +12,13 @@ Table \ref{tab:QDotsResultsAll} presents the calculated ground state energies fo
 
 In light of the variational nature of DMC and VMC, the results show that DMC provides a more precise estimate for the ground state energy than VMC, both in terms of lower energies and lower errors. The exact energy in the case of two electrons with $\omega=1$ has been calculated in Ref. \cite{taut} and is $E_0 = 3$, which is in excellent agreement with the presented results.
 
-The DMC energies calculated in this thesis has a lower error than those provided in Ref. \cite{MagnusArticle}. This may only be due to the fact that the calculations in this thesis have been run on a super computer. Running smaller simulations on fewer processors results in larger errors. Both the implementations successfully agree with the FCI result for two particles, which strongly indicates that the disagreements in results are a result of systematic errors.    
+The statistical errors in the DMC energies calculated in this thesis are lower than those provided in Ref. \cite{MagnusArticle}. This may only be due to the fact that the calculations in this thesis have been run on a super computer. Running smaller simulations on fewer processors results in larger errors. Both the implementations successfully agree with the FCI result for two particles, which strongly indicates that the disagreements in results are a result of systematic errors.    
 
 In the case of two particles, DMC and FCI agree up to five decimals, which leads to the conclusion that DMC indeed is a very precise method. The SRG method is not variational in the sense that it can undershoot the exact energy. The DMC result should thus not be read as less precise in the cases where SRG provides a lower energy estimate. Diffusion Monte-Carlo and SRG are in excellent agreement for a large number of particles compared to FCI and CCSD, which drift away from the DMC results as their basis sizes shrink. 
 
 For high frequencies, the VMC energy is higher than the CCSD energy. The fact that both the methods are variational implies that CCSD performs better than VMC in this frequency range. However, looking at the results the lower frequency range, it is clear that VMC performs better than CCSD. This is due to the fact that CCSD struggles with convergence as the correlations within the system increase, indicated by the decrease in number of shells used to perform the calculations.
 
-The DMC energy is overall less than the CCSD energy, which, due to the variational nature of the methods, implies that DMC performs better than CCSD. The results for $56$ particles are in excellent agreement with each other. 
+The DMC energy is overall smaller than the CCSD energy, which, due to the variational nature of the methods, implies that DMC performs better than CCSD. The results for $56$ particles are in excellent agreement with each other. 
 
 \setlength{\tabcolsep}{5pt}
 \begin{table}
@@ -72,7 +72,7 @@ The DMC energy is overall less than the CCSD energy, which, due to the variation
 
 
 \end{tabular}
-\caption{Ground state energy results for two dimensional $N$-electron quantum dots with frequency $\omega$. Refs. $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $(b)$: S. Reimann \cite{Sarah} (Similarity Renormalization Group theory), $(c)$: C. Hirth \cite{Hirth} (Coupled Cluster Singles and Doubles), $(d)$: V. K. B. Olsen \cite{Olsen} (Full Configuration Interaction). The numbers inside curly brackets denote the number of shells used above \textit{Fermi-level} to construct the basis for the corresponding methods.}
+\caption{Ground state energy results for two dimensional $N$-electron quantum dots with frequency $\omega$. Refs. $(a)$: F. Pederiva \cite{MagnusArticle} (DMC), $(b)$: S. Reimann \cite{Sarah} (Similarity Renormalization Group theory), $(c)$: C. Hirth \cite{Hirth} (Coupled Cluster Singles and Doubles), $(d)$: V. K. B. Olsen \cite{Olsen} (Full Configuration Interaction). The numbers inside curly brackets denote the number of shells used above the last filled shell, i.e.~above the \textit{Fermi-level}, to construct the basis for the corresponding methods.}
 \label{tab:QDotsResultsAll}
 \end{center}
 \end{table}
