@@ -63,11 +63,11 @@ which implies that the energy levels are degenerate for all combinations of $l$ 
 
 which defines the shell structure of the hydrogen atom. 
 
-A problem with the single particle basis of hydrogen is the complex terms in Eq.~(\ref{eq:spherHarm}), i.e. the spherical harmonics. Complex bases will require the entire code to work with complex variables, which should be avoided if possible. For this reason, the spherical harmonics in Eq.~(\ref{eq:hydrogenBasisComplex}) are substituted with the real-valued \textit{solid harmonics} $S_l^m(r, \theta, \phi)$  \cite{SolidHarmonics}
+A problem with the single particle basis of hydrogen is the complex terms in Eq.~(\ref{eq:spherHarm}), i.e. the spherical harmonics. The introduction of the \textit{solid harmonics} $S_l^m(r, \theta, \phi)$ allows for using real-valued eigenfunctions in the QMC simulations. The solid harmonics are related to the spherical harmonics through \cite{SolidHarmonics}
 
 \begin{align}
-S_l^m(r, \theta, \phi) &= (-1)^m\frac{(1+m)!}{2}r^l\left[Y_l^m(\theta, \phi) + (-1)^m Y_l^{-m}(\theta, \phi)\right] \\
- &= (-1)^m r^{l} P_l^{|m|}(\cos\theta) \begin{cases} \cos m\phi & m \ge 0 \\ \sin|m|\phi &  m < 0 \end{cases},                                                                                                     
+S_l^m(r, \theta, \phi) &\propto r^l\left[Y_l^m(\theta, \phi) + (-1)^m Y_l^{-m}(\theta, \phi)\right] \\
+ &\propto r^{l} P_l^{|m|}(\cos\theta) \begin{cases} \cos m\phi & m \ge 0 \\ \sin|m|\phi &  m < 0 \end{cases},                                                                                                     
 \end{align}
 
 which results in the following real eigenfunctions
@@ -102,7 +102,7 @@ g(n) = 2\sum_{l=0}^{n-1}\sum_{m={-l}}^l 1 = 2n^2.
 \end{equation}
 
 \subsection{Homonuclear Diatomic Molecules}
-\label{homoMolecules}
+\label{sec:homoMolecules}
 
 A homonuclear diatomic molecule consists of two atoms (diatomic molecule) of the same element (homonuclear) with charge $Z=N/2$, separated by a distance $R$. The origin is set between the atoms, which are fixed at positions $\pm \mathbf{R}/2$. An electron at position $\mathbf{r}_i$ gets a contribution from both the cores as displayed in figure \ref{fig:dimolecules}. In addition, there is a repulsive Coulomb potential between the two cores equal to $Z^2/R$. The resulting Hamiltonian becomes
 

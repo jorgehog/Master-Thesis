@@ -69,33 +69,32 @@
 }
 
 \begin{document}
-\input{../chapters/01frontpage/ch01frontpage.tex}
-\clearpage{\pagestyle{plain}\cleardoublepage}
-
-\input{../chapters/02preface/ch02preface.tex}
-\clearpage{\pagestyle{plain}\cleardoublepage}
-
-\tableofcontents
-\clearpage{\pagestyle{plain}\cleardoublepage}
-
-\input{../chapters/03intro/ch03intro.tex}
-\clearpage{\pagestyle{plain}\cleardoublepage}
+% \input{../chapters/01frontpage/ch01frontpage.tex}
+% \clearpage{\pagestyle{plain}\cleardoublepage}
+% 
+% \input{../chapters/02preface/ch02preface.tex}
+% \clearpage{\pagestyle{plain}\cleardoublepage}
+% 
+% \tableofcontents
+% \clearpage{\pagestyle{plain}\cleardoublepage}
+% 
+% \input{../chapters/03intro/ch03intro.tex}
+% \clearpage{\pagestyle{plain}\cleardoublepage}
 
 \part{Theory}
 % \input{../chapters/04SciProg/ch04SciProg.tex}
 % \clearpage{\pagestyle{plain}\cleardoublepage}
-
-\input{../chapters/05Manybody/ch05Manybody.tex}
-\clearpage{\pagestyle{plain}\cleardoublepage}
-
-% \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
+% 
+% \input{../chapters/05Manybody/ch05Manybody.tex}
 % \clearpage{\pagestyle{plain}\cleardoublepage}
 % 
-% \input{../chapters/ModeledSystems/ModeledSystems.tex}
+% \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
 % \clearpage{\pagestyle{plain}\cleardoublepage}
 
+\input{../chapters/ModeledSystems/ModeledSystems.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+
 \part{Results}
-%% \input{../chapters/07ImpVal/ImpVal.tex}
 % \input{../chapters/08Results/ch08Results.tex}
 % \input{../chapters/08Results/Optimization/Optimization.tex}
 % \clearpage
@@ -103,33 +102,31 @@
 % \clearpage
 % \input{../chapters/08Results/QD_2D/QD_2D.tex}
 % \clearpage
-% \input{../chapters/08Results/Atoms/Atoms.tex}
-% \clearpage
-% \input{../chapters/08Results/Molecules/Molecules.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% 
-% \input{../chapters/Conclusions/Conclusions.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/08Results/Atoms/Atoms.tex}
+\clearpage
+\input{../chapters/08Results/Molecules/Molecules.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+
+\input{../chapters/Conclusions/Conclusions.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
 
 \clearpage
 \appendix
 %% \noappendixpagetoc
 %% \noappendixheadtotoc
 \appendixpage
-% \input{../chapters/appendix/appendixDirac.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \input{../chapters/appendix/appendixViz.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \input{../chapters/appendix/appendixSympy.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \input{../chapters/appendix/HarmonicOscillator.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \input{../chapters/appendix/3DHO.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% \input{../chapters/appendix/hydrogenic.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-%%% \input{../chapters/appendix/appendixMatrix.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/appendixDirac.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/appendixViz.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/appendixSympy.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/HarmonicOscillator.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/3DHO.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/appendix/hydrogenic.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
 
 \clearpage
 \phantomsection
@@ -137,7 +134,8 @@
 \color{black}
 \begingroup
 \sloppy
-\bibliographystyle{IEEEtran}
+% \bibliographystyle{IEEEtran}
+\bibliographystyle{unsrt}
 \bibliography{../bibtex/bibtex.bib}
 \endgroup
 

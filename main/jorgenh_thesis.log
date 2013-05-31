@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  31 MAY 2013 00:26
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  31 MAY 2013 13:11
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -768,30 +768,16 @@ LaTeX Info: Redefining \subref on input line 71.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count146
-
-(../chapters/01frontpage/ch01frontpage.tex
-<../Graphics/UiO_Segl_300dpi.png, id=179, 142.3719pt x 142.3719pt>
-File: ../Graphics/UiO_Segl_300dpi.png Graphic file (type png)
-
-<use ../Graphics/UiO_Segl_300dpi.png> [1
+ [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../Graphics/UiO_Segl_300dp
-i.png>]) [2
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (../chapters/ModeledSy
+stems/ModeledSystems.tex
+Chapter 1.
 
+LaTeX Warning: Reference `sec:trialWF' on page 3 undefined on input line 4.
 
-]
-(../chapters/02preface/ch02preface.tex) [3
-
-
-
-pdfTeX warning: /usr/bin/pdflatex: pop empty color page stack 0
-] [4
-
-
-] (./jorgenh_thesis.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 6.
-
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
@@ -800,237 +786,288 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 6.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Underfull \vbox (badness 1215) has occurred while \output is active []
+<../Graphics/Potentials/hydrogen.png, id=159, 586.8324pt x 442.2924pt>
+File: ../Graphics/Potentials/hydrogen.png Graphic file (type png)
 
- [5
-
-
-
-pdfTeX warning: /usr/bin/pdflatex: pop empty color page stack 0
-])
-\tf@toc=\write4
-\openout4 = `jorgenh_thesis.toc'.
-
- [6] (../chapters/03intro/ch03intro.tex
-Chapter 1.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7
-
-
+<use ../Graphics/Potentials/hydrogen.png> [3
 
 
 
 pdfTeX warning: /usr/bin/pdflatex: pop empty color page stack 0
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
- (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+] [4 <../Graphics/Potentials/hydrogen.png>]
 
+LaTeX Warning: Reference `sec:selectingOptVarPar' on page 5 undefined on input 
+line 79.
 
-LaTeX Warning: Reference `appendix:sympy' on page 8 undefined on input line 22.
+[5] <../Graphics/Molecules.pdf, id=209, 845.04686pt x 597.50786pt>
+File: ../Graphics/Molecules.pdf Graphic file (type pdf)
 
+<use ../Graphics/Molecules.pdf> [6 <../Graphics/Molecules.pdf>] [7]
+<../Graphics/Potentials/qdots.png, id=240, 586.8324pt x 442.2924pt>
+File: ../Graphics/Potentials/qdots.png Graphic file (type png)
 
+<use ../Graphics/Potentials/qdots.png> [8 <../Graphics/Potentials/qdots.png>]
+<../Graphics/Potentials/doubleWell.png, id=266, 586.8324pt x 442.2924pt>
+File: ../Graphics/Potentials/doubleWell.png Graphic file (type png)
 
-LaTeX Warning: Reference `appendix:DCVIZ' on page 8 undefined on input line 22.
-
-
-
-LaTeX Warning: Reference `app:Dirac' on page 8 undefined on input line 24.
-
-
-LaTeX Warning: Reference `ch:optAndGen' on page 8 undefined on input line 26.
-
-
-LaTeX Warning: Reference `ch:modelledSystems' on page 8 undefined on input line
- 28.
-
-) [8] [9
+<use ../Graphics/Potentials/doubleWell.png> [9]) [10 <../Graphics/Potentials/do
+ubleWell.png>] [11
 
 
 
-] [10] (../chapters/05Manybody/ch05Manybody.tex
-Chapter 2.
+] [12] (../chapters/08Results/Atoms/Atoms.tex
 
-LaTeX Warning: Reference `app:Dirac' on page 11 undefined on input line 8.
-
-[11
-
-] [12] [13] [14] [15] [16] [17]
-Underfull \vbox (badness 2762) has occurred while \output is active []
-
- [18]
-[19] [20] <../Graphics/DiffusionUML.pdf, id=434, 597.50786pt x 845.04686pt>
-File: ../Graphics/DiffusionUML.pdf Graphic file (type pdf)
-
-<use ../Graphics/DiffusionUML.pdf> [21] [22 <../Graphics/DiffusionUML.pdf>]
-<../Graphics/branching.pdf, id=507, 597.50786pt x 845.04686pt>
-File: ../Graphics/branching.pdf Graphic file (type pdf)
-
-<use ../Graphics/branching.pdf> [23
-
-] [24 <../Graphics/branching.pdf>] [25
-
-]
-<../Graphics/shellStructure.pdf, id=588, 845.04686pt x 597.50786pt>
-File: ../Graphics/shellStructure.pdf Graphic file (type pdf)
-
-<use ../Graphics/shellStructure.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26 <../Graphics/shellStructure.pdf>] [27] [28] [29]
-
-LaTeX Warning: Reference `sec:optSingleSlater' on page 30 undefined on input li
-ne 676.
-
-[30]
-Underfull \vbox (badness 4832) has occurred while \output is active []
-
- [31]
-
-LaTeX Warning: Reference `sec:optSlaterRat' on page 32 undefined on input line 
-745.
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 1.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 5.
 
- [32]
-Underfull \vbox (badness 1424) has occurred while \output is active []
+[13] <../Graphics/OBD/OBD_Atoms/3D/Beryllium.png, id=319, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Beryllium.png Graphic file (type png)
 
- [33]
-<../Graphics/SGD.pdf, id=677, 845.04686pt x 597.50786pt>
-File: ../Graphics/SGD.pdf Graphic file (type pdf)
-
-<use ../Graphics/SGD.pdf> [34 <../Graphics/SGD.pdf>]
-<../Graphics/SSGD.pdf, id=694, 845.04686pt x 597.50786pt>
-File: ../Graphics/SSGD.pdf Graphic file (type pdf)
-
-<use ../Graphics/SSGD.pdf>
-Underfull \vbox (badness 1221) has occurred while \output is active []
-
- [35]
-<../Graphics/ASGD_f.pdf, id=713, 344.28625pt x 341.275pt>
-File: ../Graphics/ASGD_f.pdf Graphic file (type pdf)
-
-<use ../Graphics/ASGD_f.pdf> [36 <../Graphics/SSGD.pdf>]
-<../Graphics/ASGD_min_paramGrad_ex.png, id=736, 586.8324pt x 442.2924pt>
-File: ../Graphics/ASGD_min_paramGrad_ex.png Graphic file (type png)
-
-<use ../Graphics/ASGD_min_paramGrad_ex.png>
-<../Graphics/ASGD_min_step_ex.png, id=737, 586.8324pt x 442.2924pt>
-File: ../Graphics/ASGD_min_step_ex.png Graphic file (type png)
-
-<use ../Graphics/ASGD_min_step_ex.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../Graphics/ASGD_UML.pdf, id=740, 597.50786pt x 845.04686pt>
-File: ../Graphics/ASGD_UML.pdf Graphic file (type pdf)
-
-<use ../Graphics/ASGD_UML.pdf> [37 <../Graphics/ASGD_f.pdf>] [38 <../Graphics/A
-SGD_min_paramGrad_ex.png> <../Graphics/ASGD_min_step_ex.png>] [39 <../Graphics/
-ASGD_UML.pdf>] <../Graphics/VMCUML.pdf, id=810, 597.50786pt x 845.04686pt>
-File: ../Graphics/VMCUML.pdf Graphic file (type pdf)
-
-<use ../Graphics/VMCUML.pdf> [40
-
-] [41 <../Graphics/VMCUML.pdf>]
-<../Graphics/WFComp.png, id=871, 586.8324pt x 442.2924pt>
-File: ../Graphics/WFComp.png Graphic file (type png)
-
-<use ../Graphics/WFComp.png>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [42
-
- <../Graphics/WFComp.png>] [43]
-<../Graphics/DMCUML.pdf, id=903, 597.50786pt x 845.04686pt>
-File: ../Graphics/DMCUML.pdf Graphic file (type pdf)
-
-<use ../Graphics/DMCUML.pdf> [44] [45 <../Graphics/DMCUML.pdf>]
-<../Graphics/fixxednode.pdf, id=983, 845.04686pt x 597.50786pt>
-File: ../Graphics/fixxednode.pdf Graphic file (type pdf)
-
-<use ../Graphics/fixxednode.pdf> [46
-
-]
-Underfull \vbox (badness 7832) has occurred while \output is active []
-
- [47 <../Graphics/fixxednode.pdf>]
-<../Graphics/OBD_rad_ex_12pw01.png, id=1009, 586.8324pt x 442.2924pt>
-File: ../Graphics/OBD_rad_ex_12pw01.png Graphic file (type png)
-
-<use ../Graphics/OBD_rad_ex_12pw01.png>
-<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=1010, 586.8324pt x 442.2924pt>
+<use ../Graphics/OBD/OBD_Atoms/3D/Beryllium.png>
+<../Graphics/OBD/OBD_Atoms/2D/Beryllium.png, id=320, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png Graphic file (type png)
 
-<use ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png> [48] [49 <../Graphics/OBD_rad_
-ex_12pw01.png> <../Graphics/OBD/OBD_Atoms/2D/Beryllium.png>] [50] [51] [52]
-<../Graphics/BlockingExampleUncorr.png, id=1077, 586.8324pt x 442.2924pt>
-File: ../Graphics/BlockingExampleUncorr.png Graphic file (type png)
+<use ../Graphics/OBD/OBD_Atoms/2D/Beryllium.png>
+<../Graphics/OBD/OBD_Atoms/3D/Magnesium.png, id=321, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Magnesium.png Graphic file (type png)
 
-<use ../Graphics/BlockingExampleUncorr.png>
-<../Graphics/BlockingExampleCorr.png, id=1078, 586.8324pt x 442.2924pt>
-File: ../Graphics/BlockingExampleCorr.png Graphic file (type png)
+<use ../Graphics/OBD/OBD_Atoms/3D/Magnesium.png>
+<../Graphics/OBD/OBD_Atoms/2D/Magnesium.png, id=322, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Magnesium.png Graphic file (type png)
 
-<use ../Graphics/BlockingExampleCorr.png> [53 <../Graphics/BlockingExampleUncor
-r.png> <../Graphics/BlockingExampleCorr.png>]) [54] [55
+<use ../Graphics/OBD/OBD_Atoms/2D/Magnesium.png>
+<../Graphics/OBD/OBD_Atoms/3D/Helium.png, id=327, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Helium.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/3D/Helium.png>
+<../Graphics/OBD/OBD_Atoms/2D/Helium.png, id=328, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Helium.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/2D/Helium.png>
+<../Graphics/OBD/OBD_Atoms/3D/Neon.png, id=329, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Neon.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/3D/Neon.png>
+<../Graphics/OBD/OBD_Atoms/2D/Neon.png, id=330, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Neon.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/2D/Neon.png>
+<../Graphics/OBD/OBD_Atoms/3D/Argon.png, id=331, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Argon.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/3D/Argon.png>
+<../Graphics/OBD/OBD_Atoms/2D/Argon.png, id=332, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Argon.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/2D/Argon.png>
+<../Graphics/OBD/OBD_Atoms/3D/Krypton.png, id=333, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_Atoms/3D/Krypton.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/3D/Krypton.png>
+<../Graphics/OBD/OBD_Atoms/2D/Krypton.png, id=334, 586.8324pt x 442.2924pt>
+File: ../Graphics/OBD/OBD_Atoms/2D/Krypton.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_Atoms/2D/Krypton.png>) [14] [15 <../Graphics/OBD/OBD_A
+toms/3D/Beryllium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Beryllium.png> 
+<../Graphics/OBD/OBD_Atoms/3D/Magnesium.png (PNG copy)> <../Graphics/OBD/OBD_At
+oms/2D/Magnesium.png>] [16 <../Graphics/OBD/OBD_Atoms/3D/Helium.png (PNG copy)>
+ <../Graphics/OBD/OBD_Atoms/2D/Helium.png> <../Graphics/OBD/OBD_Atoms/3D/Neon.p
+ng (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Neon.png> <../Graphics/OBD/OBD_Ato
+ms/3D/Argon.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Argon.png> <../Graphi
+cs/OBD/OBD_Atoms/3D/Krypton.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Krypt
+on.png>] (../chapters/08Results/Molecules/Molecules.tex [17
+
+]
+<../Graphics/OBD/OBD_MOL/Li2_3D.png, id=388, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/Li2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Li2_3D.png>
+<../Graphics/OBD/OBD_MOL/Li2_2D.png, id=389, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/Li2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Li2_2D.png>
+<../Graphics/OBD/OBD_MOL/Be2_3D.png, id=390, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/Be2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Be2_3D.png>
+<../Graphics/OBD/OBD_MOL/Be2_2D.png, id=391, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/Be2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/Be2_2D.png>
+<../Graphics/OBD/OBD_MOL/O2_3D.png, id=392, 401.5pt x 321.2pt>
+File: ../Graphics/OBD/OBD_MOL/O2_3D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/O2_3D.png>
+<../Graphics/OBD/OBD_MOL/O2_2D.png, id=393, 578.16pt x 433.62pt>
+File: ../Graphics/OBD/OBD_MOL/O2_2D.png Graphic file (type png)
+
+<use ../Graphics/OBD/OBD_MOL/O2_2D.png> [18 <../Graphics/OBD/OBD_MOL/Li2_3D.png
+ (PNG copy)> <../Graphics/OBD/OBD_MOL/Li2_2D.png> <../Graphics/OBD/OBD_MOL/Be2_
+3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/Be2_2D.png> <../Graphics/OBD/OBD_MO
+L/O2_3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/O2_2D.png>]
+<../Graphics/R_VS_E/R_vs_E_hyd_pure.png, id=407, 586.8324pt x 442.2924pt>
+File: ../Graphics/R_VS_E/R_vs_E_hyd_pure.png Graphic file (type png)
+
+<use ../Graphics/R_VS_E/R_vs_E_hyd_pure.png>
+<../Graphics/R_VS_E/R_vs_E_lit_pure.png, id=408, 586.8324pt x 442.2924pt>
+File: ../Graphics/R_VS_E/R_vs_E_lit_pure.png Graphic file (type png)
+
+<use ../Graphics/R_VS_E/R_vs_E_lit_pure.png>
+<../Graphics/R_VS_E/LD.png, id=411, 528.2937pt x 294.1389pt>
+File: ../Graphics/R_VS_E/LD.png Graphic file (type png)
+
+<use ../Graphics/R_VS_E/LD.png>) [19
+
+] [20 <../Graphics/R_VS_E/R_vs_E_hyd_pure.png> <../Graphics/R_VS_E/R_vs_E_lit_p
+ure.png> <../Graphics/R_VS_E/LD.png>]
+(../chapters/Conclusions/Conclusions.tex
+Chapter 2.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21
 
 
 
-] [56] [57
+])
+[22] [23
 
 
-] [58]
-(./jorgenh_thesis.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-[59
 
 
-]) [60] (./jorgenh_thesis.aux)
+] [24] (../chapters/appendix/appendixDirac.tex
+Appendix A.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25
+
+]
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 47.
+
+(/usr/share/texmf-texlive/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)) [26]
+(../chapters/appendix/appendixViz.tex
+Appendix B.
+(/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+) [27
+
+
+
+]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 38.
+ [28]
+
+LaTeX Warning: Reference `fig:OBD_QDOTS3D_highfreq' on page 29 undefined on inp
+ut line 131.
+
+
+Underfull \vbox (badness 7685) has occurred while \output is active []
+
+ [29]
+[30] [31] <../Graphics/gui.png, id=611, 231.86626pt x 282.30469pt>
+File: ../Graphics/gui.png Graphic file (type png)
+
+<use ../Graphics/gui.png> [32]) [33 <../Graphics/gui.png>] [34
+
+
+]
+(../chapters/appendix/appendixSympy.tex
+Appendix C.
+[35
+
+] [36] [37] [38
+
+] [39] [40] [41]
+
+LaTeX Warning: Reference `sec:optSPWFqnumIndie' on page 42 undefined on input l
+ine 367.
+
+) [42] (../chapters/appendix/HarmonicOscillator.tex
+Appendix D.
+[43
+
+
+
+] [44] [45] [46] [47] [48]) [49] [50
+
+
+
+
+
+
+
+
+] (../chapters/appendix/3DHO.tex
+Appendix E.
+[51
+
+] [52] [53] [54] [55]) [56
+
+
+
+
+
+
+
+] (../chapters/appendix/hydrogenic.tex
+Appendix F.
+[57
+
+] [58] [59] [60] [61] [62]) (./jorgenh_thesis.bbl [63
+
+
+
+
+
+
+
+
+
+]) [64]
+(./jorgenh_thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 9901 strings out of 493848
- 143382 string characters out of 1152823
- 257189 words of memory out of 3000000
- 12669 multiletter control sequences out of 15000+50000
- 14707 words of font info for 55 fonts, out of 3000000 for 9000
+ 10927 strings out of 493848
+ 156862 string characters out of 1152823
+ 539189 words of memory out of 3000000
+ 13351 multiletter control sequences out of 15000+50000
+ 17287 words of font info for 70 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 44i,17n,58p,1139b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,58p,934b,1997s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cmextra/cmex7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
-5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
-i8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb
->
-Output written on jorgenh_thesis.pdf (60 pages, 1138634 bytes).
+c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on jorgenh_thesis.pdf (64 pages, 2078441 bytes).
 PDF statistics:
- 1261 PDF objects out of 1440 (max. 8388607)
- 264 named destinations out of 1000 (max. 500000)
- 443 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1234 PDF objects out of 1440 (max. 8388607)
+ 574 named destinations out of 1000 (max. 500000)
+ 419 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,58 +1,55 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: jorgenh_thesis.aux
-The style file: IEEEtran.bst
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+The style file: unsrt.bst
 Database file #1: ../bibtex/bibtex.bib.bib
--- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
--- http://www.michaelshell.org/tex/ieeetran/bibtex/
--- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty note in verdensBesteArtikkel
-Warning--empty journal in MD1
-Warning--empty journal in QMCDIFF
-Warning--empty year in QMCDIFF
-Warning--empty note in morten
-Warning--edition ordinal word "{Revised ed}" may be too high (or improper) for conversion in Sakurai:94
-
-Done.
-You've used 30 entries,
-            4039 wiz_defined-function locations,
-            993 strings with 11710 characters,
-and the built_in function-call counts, 16324 in all, are:
-= -- 1377
-> -- 327
-< -- 104
-+ -- 170
-- -- 59
-* -- 771
-:= -- 2778
-add.period$ -- 59
-call.type$ -- 30
+Warning--entry type for "Matplotlib" isn't style-file defined
+--line 667 of file ../bibtex/bibtex.bib.bib
+Warning--entry type for "PySide" isn't style-file defined
+--line 675 of file ../bibtex/bibtex.bib.bib
+Warning--entry type for "SymPy" isn't style-file defined
+--line 683 of file ../bibtex/bibtex.bib.bib
+Warning--empty journal in doubleWellExpt
+Warning--empty journal in CCSD_WF
+Warning--empty year in CCSD_WF
+You've used 29 entries,
+            1791 wiz_defined-function locations,
+            632 strings with 7628 characters,
+and the built_in function-call counts, 5327 in all, are:
+= -- 458
+> -- 225
+< -- 2
++ -- 89
+- -- 60
+* -- 308
+:= -- 881
+add.period$ -- 84
+call.type$ -- 29
 change.case$ -- 27
-chr.to.int$ -- 228
-cite$ -- 36
-duplicate$ -- 1198
-empty$ -- 1348
-format.name$ -- 75
-if$ -- 3649
+chr.to.int$ -- 0
+cite$ -- 32
+duplicate$ -- 256
+empty$ -- 545
+format.name$ -- 60
+if$ -- 1184
 int.to.chr$ -- 0
-int.to.str$ -- 30
-missing$ -- 212
-newline$ -- 133
-num.names$ -- 32
-pop$ -- 478
+int.to.str$ -- 29
+missing$ -- 27
+newline$ -- 145
+num.names$ -- 26
+pop$ -- 86
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 4
-skip$ -- 1294
+quote$ -- 0
+skip$ -- 109
 stack$ -- 0
-substring$ -- 528
-swap$ -- 901
-text.length$ -- 28
+substring$ -- 234
+swap$ -- 39
+text.length$ -- 2
 text.prefix$ -- 0
-top$ -- 5
-type$ -- 30
-warning$ -- 6
-while$ -- 65
-width$ -- 32
-write$ -- 309
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 45
+width$ -- 31
+write$ -- 310
 (There were 6 warnings)

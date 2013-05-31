@@ -6,7 +6,7 @@
  
  Table \ref{tab:AtomsRes} presents the ground state energy results for different atoms together with the experimental results. As expected, the helium ground state has the highest overlap with the corresponding experimental result. The relative precision of the heavier atoms are in the range $10^{-3}$ - $10^{-4}$, indicating that DMC performs equally well in all cases. However, the error in the calculations increase as the atoms become heavier. The calculations were done on a single node; running the calculations on several nodes with an increased number of walkers could reduce the error somewhat. 
  
- As expected, VMC performs rather poorly compared to DMC. In comparison to quantum dots, where the two methods produced significantly similar energies, atoms have an addition approximation in the trial wave function due to the fact that the solid harmonics are used instead of the spherical harmonics. This is covered in detail in Section \ref{sec:modelAtoms}. This fact further demonstrates that DMC, unlike VMC, has the power to perform well even in situations where the trial wave function is not optimal. 
+ In comparison to quantum dots, where VMC and DMC produced significantly similar energies, it is evident that VMC performs rather poorly compared to DMC for atoms. Unlike quantum dots, the atomic systems allow for unbound states. This implies that the atomic systems in this thesis have an addition approximation in the trial wave function due to the fact that all the orbitals represent bound states. Nevertheless, this only further demonstrate the strengths of DMC to predict accurate results without much knowledge of the system at hand.
  
 \begin{table}
 \begin{center}
