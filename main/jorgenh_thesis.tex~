@@ -82,14 +82,14 @@
 \clearpage{\pagestyle{plain}\cleardoublepage}
 
 \part{Theory}
-% \input{../chapters/04SciProg/ch04SciProg.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% 
-% \input{../chapters/05Manybody/ch05Manybody.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
-% 
-% \input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
-% \clearpage{\pagestyle{plain}\cleardoublepage}
+\input{../chapters/04SciProg/ch04SciProg.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+
+\input{../chapters/05Manybody/ch05Manybody.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
+
+\input{../chapters/06OptimizationsAndGeneralizations/optAndgen.tex}
+\clearpage{\pagestyle{plain}\cleardoublepage}
 
 \input{../chapters/ModeledSystems/ModeledSystems.tex}
 \clearpage{\pagestyle{plain}\cleardoublepage}
