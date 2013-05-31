@@ -179,7 +179,7 @@ Note however, that this similarity only holds when the number of closed shells a
 
 An interesting effect of lowering the frequency is that the two - and three dimensional densities no longer match. For example, the radial density for the three-dimensional $N=8$ quantum dot from Figure \ref{fig:OBD_QDOTS3D_highfreq} was a near perfect match to the two-dimensional one for $N=6$ electrons, however, comparing the same densities for $\omega=0.01$ from Figures \ref{fig:OBD_QDOTS3D_lowfreq} and \ref{fig:OBD_DMC_QDOTS_lowering3D}, it is apparent that this is no longer the case; the two-dimensional density has a peak in the center region, whereas the three-dimensional density is zero in the center region.
 
-From Figure \ref{fig:OBD_QDOTS3D_lowfreq} it is apparent that lowering the frequency shifts increases the radial extent of the quantum dot, and thus lowers the electron density. Moreover, Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} reveals that the electron density becomes similar in height and more localized across the quantum dot, which implies that the electrons on average is spread evenly in shell structures. The localization of the electrons is further verified in Figure \ref{fig:E_dist_qdots}, where is is clear that the expectation value of the total potential energy is dominant over the kinetic energy. 
+From Figure \ref{fig:OBD_QDOTS3D_lowfreq} it is apparent that lowering the frequency increases the radial extent of the quantum dot, and thus lowers the electron density. Moreover, Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} reveals that the electron density becomes similar in height and more localized across the quantum dot, which implies that the electrons on average are spread evenly in shell structures. The localization of the electrons is further verified in Figure \ref{fig:E_dist_qdots}, where is is clear that the expectation value of the total potential energy becomes larger than the corresponding kinetic energy.
 
 In order words, an evenly spread and localized electron density gives rise to \textit{crystallization}\footnote{Unless at least one particle is frozen in the QMC simulations, the quantum dot densities should always be rotationally symmetric. Crystallization in a QMC perspective comes thus not in the form of actual ``crystals'', but rather as a rotated crystallized state.}. The idea of an electron crystal was originally proposed by Wigner \cite{WignerCrystalOrig}, hence the currently discussed phenomenon is referred to as a \textit{Wigner molecule} or a \textit{Wigner crystal}, which is expected for quantum dots in the limit of low electron densities where the total potential energy dominates over the kinetic energy \cite{WignerTransport, WignerPathTo, WignerSymmetryBreak, WignerFloating, Wigner2DQD}. These electronic crystals have been observed in experiments with for example liquid Helium \cite{WignerExptHelium} and semiconductors \cite{WignerExptSemicond}.
 
@@ -241,7 +241,7 @@ In order words, an evenly spread and localized electron density gives rise to \t
 
 It is expected that the QMC Wigner crystal corresponds to the electrons localizing around the equilibrium positions of the classical Wigner crystal\cite{WignerTransport}. Comparing the densities for two-dimensional quantum dots at $\omega=0.01$ for $N=6$, $12$, and $20$ electrons given in Figure \ref{fig:OBD_DMC_QDOTS_lowering3D} to similar classical calculations done in Ref. \cite{WignerClassic} for $N=6$, $10$, and $19$ electrons, respectively, it is apparent that the solutions match very well.  
 
-It was mentioned previously that the Wigner crystallization of quantum dots came as a consequence of the total potential energy dominating the kinetic energy. This relationship between kinetic and potential energy is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{FockVirial} and reads
+It was mentioned previously that the Wigner crystallization of quantum dots came as a consequence of the average total potential energy being larger than the corresponding kinetic energy. This relationship between kinetic - and potential energy is closely related to the \textit{virial theorem} from classical mechanics. The quantum mechanical version of the virial theorem was proven by Fock in 1930 \cite{FockVirial} and reads
 
 \begin{equation}
  V(\mathbf{r}) \propto r^\gamma \quad\longrightarrow\quad \langle \OP{T} \rangle = \frac{\gamma}{2} \langle \OP{V} \rangle, \label{eq:virial}
@@ -249,7 +249,8 @@ It was mentioned previously that the Wigner crystallization of quantum dots came
 
 where $\OP{T}$ and $\OP{V}$ denote the kinetic - and total potential energy operators, respectively. The important conclusion which can be drawn from this is that if two systems have an equal ratio of kinetic - to total potential energy, the systems behave identically in the sense that they follow the same effective potential, and thus have similar eigenstates. 
 
-From Figure \ref{fig:V_dist_qdots} it is apparent that there is a remarkably constant slope for two different regions in the case of quantum dots, namely high - and low kinetic energy, which by looking at Figure \ref{fig:E_dist_qdots} corresponds to high - and low frequencies. In light of previous discussions, it is apparent that the change in the slopes of Figure \ref{fig:V_dist_qdots} correspond to the quantum dots' transitions into Wigner crystallized states.
+From Figure \ref{fig:V_dist_qdots} it is apparent that there is a remarkably constant slope for two different regions in the case of quantum dots, namely high - and low kinetic energy, which by looking at Figure \ref{fig:E_dist_qdots} corresponds to high - and low frequencies. In light of previous discussions, one may suggest that the change in the slopes
+of Figure \ref{fig:V_dist_qdots} corresponds to the quantum dot system  making a transition into a Wigner crystallized state.
 
 
 
@@ -270,12 +271,12 @@ From Figure \ref{fig:V_dist_qdots} it is apparent that there is a remarkably con
 \begin{figure}[h]
  \begin{center}
  \includegraphics[scale=0.35]{../Graphics/DoubleWell.png}
-  \caption{A countour plot of the trial wave function for a two particle double-well quantum dot with the wells separated at a distance $R = 2$ in the $x$-direction using $m^\ast = \omega_0 = 1$. See Section \ref{sec:modelQDots} for an introduction to the double well potential. It is apparent that there is one electron located in each well, however, with a slight overlap in the middle region.}
+  \caption{A countour plot of the trial wave function for a two-particle double-well quantum dot with the wells separated at a distance $R = 2$ in the $x$-direction using $m^\ast = \omega_0 = 1$. See Section \ref{sec:modelQDots} for an introduction to the double well potential. It is apparent that there is one electron located in each well, however, with a slight overlap in the middle region.}
   \label{fig:doubleWell}
  \end{center}
 \end{figure}
 \captionsetup[subfloat]{labelformat=parens}
 
-Figure \ref{fig:doubleWell} shows the distribution for a two particle simulation. It is apparent that despite the wells being separated, their local distributions overlap, indicating that the electrons can \textit{tunnel}, that is, they have a non-zero probability of appearing on the other side of the barrier. Comparing the distribution to the potential in Figure \ref{fig:extPotDoubleWell}, it is clear that they match very well.
+Figure \ref{fig:doubleWell} shows the distribution for a two-particle simulation. It is apparent that despite the wells being separated, their local distributions overlap, indicating that the electrons can \textit{tunnel}, that is, they have a non-zero probability of appearing on the other side of the barrier. Comparing the distribution to the potential in Figure \ref{fig:extPotDoubleWell}, it is clear that they match very well.
 
 The DMC result is $\mathrm{E_{DMC}} = 2.3496(1)$, where as the non-interacting energy is $E_0 = 2$ and the single-well energy is $E_0=3.0$. It is expected that the energy lands in between these, as $R=0$ corresponds to the single well and $R\to\infty$ corresponds to the non-interacting case. 

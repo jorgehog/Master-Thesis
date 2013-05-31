@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  31 MAY 2013 19:12
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  31 MAY 2013 21:58
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1357,119 +1357,121 @@ File: ../Graphics/OBD/OBD_Atoms/3D/Krypton.png Graphic file (type png)
 <../Graphics/OBD/OBD_Atoms/2D/Krypton.png, id=2876, 586.8324pt x 442.2924pt>
 File: ../Graphics/OBD/OBD_Atoms/2D/Krypton.png Graphic file (type png)
 
-<use ../Graphics/OBD/OBD_Atoms/2D/Krypton.png>) [123] [124 <../Graphics/OBD/OBD
-_Atoms/3D/Beryllium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/3D/Magnesium.png
- (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Magnesium.png>] [125 <../Graphics/OB
-D/OBD_Atoms/3D/Helium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Helium.png>
- <../Graphics/OBD/OBD_Atoms/3D/Neon.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/
-2D/Neon.png> <../Graphics/OBD/OBD_Atoms/3D/Argon.png (PNG copy)> <../Graphics/O
-BD/OBD_Atoms/2D/Argon.png> <../Graphics/OBD/OBD_Atoms/3D/Krypton.png (PNG copy)
-> <../Graphics/OBD/OBD_Atoms/2D/Krypton.png>]
-(../chapters/08Results/Molecules/Molecules.tex [126
+<use ../Graphics/OBD/OBD_Atoms/2D/Krypton.png>) [123 <../Graphics/OBD/OBD_Atoms
+/3D/Beryllium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/3D/Magnesium.png (PNG 
+copy)> <../Graphics/OBD/OBD_Atoms/2D/Magnesium.png>] [124 <../Graphics/OBD/OBD_
+Atoms/3D/Helium.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Helium.png> <../G
+raphics/OBD/OBD_Atoms/3D/Neon.png (PNG copy)> <../Graphics/OBD/OBD_Atoms/2D/Neo
+n.png> <../Graphics/OBD/OBD_Atoms/3D/Argon.png (PNG copy)> <../Graphics/OBD/OBD
+_Atoms/2D/Argon.png> <../Graphics/OBD/OBD_Atoms/3D/Krypton.png (PNG copy)> <../
+Graphics/OBD/OBD_Atoms/2D/Krypton.png>]
+(../chapters/08Results/Molecules/Molecules.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [125
 
 ]
-<../Graphics/OBD/OBD_MOL/Li2_3D.png, id=2927, 401.5pt x 321.2pt>
+<../Graphics/OBD/OBD_MOL/Li2_3D.png, id=2922, 401.5pt x 321.2pt>
 File: ../Graphics/OBD/OBD_MOL/Li2_3D.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_MOL/Li2_3D.png>
-<../Graphics/OBD/OBD_MOL/Li2_2D.png, id=2928, 578.16pt x 433.62pt>
+<../Graphics/OBD/OBD_MOL/Li2_2D.png, id=2923, 578.16pt x 433.62pt>
 File: ../Graphics/OBD/OBD_MOL/Li2_2D.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_MOL/Li2_2D.png>
-<../Graphics/OBD/OBD_MOL/Be2_3D.png, id=2929, 401.5pt x 321.2pt>
+<../Graphics/OBD/OBD_MOL/Be2_3D.png, id=2924, 401.5pt x 321.2pt>
 File: ../Graphics/OBD/OBD_MOL/Be2_3D.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_MOL/Be2_3D.png>
-<../Graphics/OBD/OBD_MOL/Be2_2D.png, id=2930, 578.16pt x 433.62pt>
+<../Graphics/OBD/OBD_MOL/Be2_2D.png, id=2925, 578.16pt x 433.62pt>
 File: ../Graphics/OBD/OBD_MOL/Be2_2D.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_MOL/Be2_2D.png>
-<../Graphics/OBD/OBD_MOL/O2_3D.png, id=2931, 401.5pt x 321.2pt>
+<../Graphics/OBD/OBD_MOL/O2_3D.png, id=2926, 401.5pt x 321.2pt>
 File: ../Graphics/OBD/OBD_MOL/O2_3D.png Graphic file (type png)
 
 <use ../Graphics/OBD/OBD_MOL/O2_3D.png>
-<../Graphics/OBD/OBD_MOL/O2_2D.png, id=2932, 578.16pt x 433.62pt>
+<../Graphics/OBD/OBD_MOL/O2_2D.png, id=2927, 578.16pt x 433.62pt>
 File: ../Graphics/OBD/OBD_MOL/O2_2D.png Graphic file (type png)
 
-<use ../Graphics/OBD/OBD_MOL/O2_2D.png> [127 <../Graphics/OBD/OBD_MOL/Li2_3D.pn
+<use ../Graphics/OBD/OBD_MOL/O2_2D.png> [126 <../Graphics/OBD/OBD_MOL/Li2_3D.pn
 g (PNG copy)> <../Graphics/OBD/OBD_MOL/Li2_2D.png> <../Graphics/OBD/OBD_MOL/Be2
 _3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/Be2_2D.png> <../Graphics/OBD/OBD_M
 OL/O2_3D.png (PNG copy)> <../Graphics/OBD/OBD_MOL/O2_2D.png>]
-<../Graphics/R_VS_E/R_vs_E_hyd_pure.png, id=2947, 586.8324pt x 442.2924pt>
+<../Graphics/R_VS_E/R_vs_E_hyd_pure.png, id=2942, 586.8324pt x 442.2924pt>
 File: ../Graphics/R_VS_E/R_vs_E_hyd_pure.png Graphic file (type png)
 
 <use ../Graphics/R_VS_E/R_vs_E_hyd_pure.png>
-<../Graphics/R_VS_E/R_vs_E_lit_pure.png, id=2948, 586.8324pt x 442.2924pt>
+<../Graphics/R_VS_E/R_vs_E_lit_pure.png, id=2943, 586.8324pt x 442.2924pt>
 File: ../Graphics/R_VS_E/R_vs_E_lit_pure.png Graphic file (type png)
 
 <use ../Graphics/R_VS_E/R_vs_E_lit_pure.png>
-<../Graphics/R_VS_E/LD.png, id=2951, 528.2937pt x 294.1389pt>
+<../Graphics/R_VS_E/LD.png, id=2946, 528.2937pt x 294.1389pt>
 File: ../Graphics/R_VS_E/LD.png Graphic file (type png)
 
-<use ../Graphics/R_VS_E/LD.png>) [128
+<use ../Graphics/R_VS_E/LD.png>) [127
 
-] [129 <../Graphics/R_VS_E/R_vs_E_hyd_pure.png> <../Graphics/R_VS_E/R_vs_E_lit_
+] [128 <../Graphics/R_VS_E/R_vs_E_hyd_pure.png> <../Graphics/R_VS_E/R_vs_E_lit_
 pure.png> <../Graphics/R_VS_E/LD.png>]
-[130
-
-
-] (../chapters/Conclusions/Conclusions.tex
+(../chapters/Conclusions/Conclusions.tex
 Chapter 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [131
+ [129
+
+
 
 ])
-[132] [133
+[130] [131
 
 
 
 
-] [134] (../chapters/appendix/appendixDirac.tex
+] [132] (../chapters/appendix/appendixDirac.tex
 Appendix A.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [135
+ [133
 
 ]
 LaTeX Font Info:    Try loading font information for U+dsrom on input line 47.
 
 (/usr/share/texmf-texlive/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)) [136]
+)) [134]
 (../chapters/appendix/appendixViz.tex
 Appendix B.
-[137
+[135
 
 
 
-] [138]
+] [136]
 Underfull \vbox (badness 7685) has occurred while \output is active []
 
- [139]
-[140] [141] <../Graphics/gui.png, id=3143, 231.86626pt x 282.30469pt>
+ [137]
+[138] [139] <../Graphics/gui.png, id=3135, 231.86626pt x 282.30469pt>
 File: ../Graphics/gui.png Graphic file (type png)
 
-<use ../Graphics/gui.png> [142]) [143 <../Graphics/gui.png>] [144
+<use ../Graphics/gui.png> [140]) [141 <../Graphics/gui.png>] [142
 
 
 ]
 (../chapters/appendix/appendixSympy.tex
 Appendix C.
-[145
+[143
 
-] [146] [147] [148
+] [144] [145] [146
 
-] [149] [150] [151]) [152]
+] [147] [148] [149]) [150]
 (../chapters/appendix/HarmonicOscillator.tex
 Appendix D.
-[153
+[151
 
 
 
-] [154] [155] [156] [157] [158]) [159] [160
+] [152] [153] [154] [155] [156]) [157] [158
 
 
 
@@ -1480,9 +1482,9 @@ Appendix D.
 
 ] (../chapters/appendix/3DHO.tex
 Appendix E.
-[161
+[159
 
-] [162] [163] [164] [165]) [166
+] [160] [161] [162] [163]) [164
 
 
 
@@ -1492,15 +1494,15 @@ Appendix E.
 
 ] (../chapters/appendix/hydrogenic.tex
 Appendix F.
-[167
+[165
 
-] [168] [169] [170] [171] [172]) (./jorgenh_thesis.bbl
+] [166] [167] [168] [169] [170]) (./jorgenh_thesis.bbl
 Underfull \hbox (badness 3838) in paragraph at lines 50--53
 []\OT1/cmr/m/n/10 J^^\rgen H^^\gberget.  \OT1/cmr/m/it/10 Git Repos-i-tory: Lib
 -Bo-re-alis\OT1/cmr/m/n/10 , 2013.
  []
 
-[173
+[171
 
 
 
@@ -1521,21 +1523,21 @@ Underfull \hbox (badness 1748) in paragraph at lines 171--176
 \OT1/cmr/m/n/10 and G. Or-tiz.  Stochas-tic Gra-di-ent Ap-prox-i-ma-tion: An
  []
 
-[174]
+[172]
 Underfull \hbox (badness 2065) in paragraph at lines 199--203
 []\OT1/cmr/m/n/10 Jaime Fern^^Sandez Rico, Rafael L^^Sopez, Ig-na-cio Ema, and
  []
 
-[175]
+[173]
 Overfull \hbox (2.54524pt too wide) in paragraph at lines 346--348
 \OT1/cmr/m/n/10 http://qt-project.org/wiki/Category:LanguageBindings::PySide. 
  []
 
-) [176] (./jorgenh_thesis.aux) ) 
+) [174] (./jorgenh_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12990 strings out of 493848
- 194014 string characters out of 1152823
- 547363 words of memory out of 3000000
+ 12988 strings out of 493848
+ 193998 string characters out of 1152823
+ 547332 words of memory out of 3000000
  14236 multiletter control sequences out of 15000+50000
  18505 words of font info for 74 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -1565,9 +1567,9 @@ type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public
 ve/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (176 pages, 8517463 bytes).
+Output written on jorgenh_thesis.pdf (174 pages, 8515489 bytes).
 PDF statistics:
- 4007 PDF objects out of 4296 (max. 8388607)
- 1611 named destinations out of 1728 (max. 500000)
+ 3998 PDF objects out of 4296 (max. 8388607)
+ 1609 named destinations out of 1728 (max. 500000)
  1410 words of extra memory for PDF output out of 10000 (max. 10000000)
 
