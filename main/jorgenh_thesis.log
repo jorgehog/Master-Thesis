@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 18:13
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 19:38
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1068,11 +1068,12 @@ File: ../Graphics/Molecules.pdf Graphic file (type pdf)
 File: ../Graphics/Potentials/qdots.png Graphic file (type png)
 
 <use ../Graphics/Potentials/qdots.png> [100 <../Graphics/Potentials/qdots.png>]
-<../Graphics/Potentials/doubleWell.png, id=2501, 586.8324pt x 442.2924pt>
+[101]
+<../Graphics/Potentials/doubleWell.png, id=2513, 586.8324pt x 442.2924pt>
 File: ../Graphics/Potentials/doubleWell.png Graphic file (type png)
 
-<use ../Graphics/Potentials/doubleWell.png> [101]) [102 <../Graphics/Potentials
-/doubleWell.png>] [103
+<use ../Graphics/Potentials/doubleWell.png>) [102 <../Graphics/Potentials/doubl
+eWell.png>] [103
 
 
 
@@ -1542,7 +1543,7 @@ Overfull \hbox (2.54524pt too wide) in paragraph at lines 346--348
 Here is how much of TeX's memory you used:
  12989 strings out of 493848
  194013 string characters out of 1152823
- 547436 words of memory out of 3000000
+ 547434 words of memory out of 3000000
  14236 multiletter control sequences out of 15000+50000
  18505 words of font info for 74 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -1572,7 +1573,7 @@ type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public
 ve/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (174 pages, 8515589 bytes).
+Output written on jorgenh_thesis.pdf (174 pages, 8516534 bytes).
 PDF statistics:
  4000 PDF objects out of 4296 (max. 8388607)
  1610 named destinations out of 1728 (max. 500000)

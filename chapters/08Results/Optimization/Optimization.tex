@@ -63,7 +63,7 @@ The percentages listed in the following table represent the fraction of total ti
 
 \subsubsection{Storing quantum number independent terms}
 
-This optimization is covered in detail in Section \ref{sec:optSPWFqnumIndie}. The result of the optimization is a reduction in the number of exponential function calls, which means a more efficient calculation of single particle states, their gradients and Laplacians.
+This optimization is covered in detail in Section \ref{sec:optSPWFqnumIndie}. The result of the optimization is a reduction in the number of exponential function calls, which means a more efficient calculation of single-paticle states, their gradients and Laplacians.
 
 The percentages listed in the following table represent the fraction of total time spent inside the given functions relative to all other functions. 
 
@@ -105,7 +105,7 @@ Homonuclear diatomic molecules & $N^{1.8437}$ \\
 
 As the number of particles increases, the scaling with respect to the number of spatial dimensions becomes negligible compared to the scaling with the number of particles, rendering two-dimensional quantum dots and atoms similar in runtime. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$, where $d$ denotes the number of dimensions. 
 
-The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single particle wave functions. Consider for example the third single particle wave function for the hydrogen-like orbitals:
+The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single-paticle wave functions. Consider for example the third single-paticle wave function for the hydrogen-like orbitals:
 
 \begin{equation}
  \phi_3 = x.
@@ -119,7 +119,7 @@ The corresponding expression for two-dimensional quantum dots is
 
 It is obvious that the orbital for quantum dots contain a higher computational cost for the processor than the one for atoms. Comparing the expressions listed for quantum dots in Appendix \ref{appendix:SymPyHO3D} and Appendix \ref{appendix:SymPyHO} with those for atoms in Appendix \ref{appendix:SymPyHydro}, it is apparent that this trend is consistent.
 
-The fact that the difference in the cost of the single particle wave functions govern the scaling demonstrates the efficiency in the general framework. Moreover, having the molecular system scaling almost identically to the atomic one demonstrates the efficiency of the system's implementation. 
+The fact that the difference in the cost of the single-paticle wave functions govern the scaling demonstrates the efficiency in the general framework. Moreover, having the molecular system scaling almost identically to the atomic one demonstrates the efficiency of the system's implementation. 
 
 Both Variational Monte-Carlo (VMC) and Adaptive Stochastic Gradient Descent (ASGD) scale linearly with the number of processors, due to the fact that the processes do not require any communication besides adding the final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the original walker population across multiple nodes. Depending on whether some nodes have more deaths or newborns than other, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is approximately linear. 
 

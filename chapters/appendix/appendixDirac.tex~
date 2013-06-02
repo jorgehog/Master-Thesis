@@ -1,9 +1,9 @@
 \chapter{Dirac Notation}
 \label{app:Dirac}
 
-Calculations involving sums over inner products of orthogonal states are common in Quantum Mechanics. This due to the fact that eigenfunctions of Hermitian operators, which is the kind of operators which represent observables\cite{griffiths}, are necessarily orthogonal\cite{golub1996matrix}. These inner-products will in many cases result in either zero or one, i.e. the \textit{Kronecker-delta} function $\delta_{ij}$; explicitly calculating the integrals is unnecessary. 
+Calculations involving sums over inner products of orthogonal states are common in Quantum Mechanics. This due to the fact that eigenfunctions of Hermitian operators, which is the kind of operators which represent observables\cite{griffiths}, are necessarily orthogonal\cite{golub1996matrix}. These inner-products will in many cases result in either zero or one, i.e.~the \textit{Kronecker-delta} function $\delta_{ij}$; explicitly calculating the integrals is unnecessary. 
 
-\textit{Dirac notation} is a notation in which quantum states are represented as abstract components of a \textit{Hilbert space}, i.e. an inner product space. This implies that the inner-product between two states are represented by these states alone, without the integral over a specific basis, which makes derivations a lot cleaner and general in the sense that no specific basis is needed.
+\textit{Dirac notation} is a notation in which quantum states are represented as abstract components of a \textit{Hilbert space}, i.e.~an inner product space. This implies that the inner-product between two states are represented by these states alone, without the integral over a specific basis, which makes derivations a lot cleaner and general in the sense that no specific basis is needed.
 
 Extracting the abstract state from a wave function is done by realizing that the wave function can be written as the inner product between the position basis eigenstates $\ket{x}$ and the abstract quantum state $\ket{\psi}$ 
 

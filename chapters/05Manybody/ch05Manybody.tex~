@@ -5,7 +5,7 @@ Quantum Monte-Carlo (QMC) is a method for solving Schrödinger's equation using 
 
 There are multiple strategies which can be used in order to deduce the virtual\footnote{As will be shown, the time parameter in QMC does not correspond to physical time, but rather an imaginary axis at a fixed point in time. Whether nature operates on a complex time plane or not is not testable in a laboratory, and the origin of the probabilistic nature of Quantum Mechanics will thus remain a philosophical problem.} dynamics of QMC, some of which are more mathematically complex than others. In this chapter the focus will be on modelling the Schrödinger equation as a diffusion problem in complex (Wick rotated) time. Other more condensed mathematical approaches does not need the Schrödinger equation at all, however, for the purpose of completeness, this approach will be mentioned only briefly in Section \ref{sec:ConnectAnisIs}.
 
-In this chapter, \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e. $\hbar = m_e = e = 4\pi\epsilon_0 = 1$, where $m_e$ and $\epsilon_0$ are the electron mass and the vacuum permittivity, respectively.
+In this chapter, \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e.~$\hbar = m_e = e = 4\pi\epsilon_0 = 1$, where $m_e$ and $\epsilon_0$ are the electron mass and the vacuum permittivity, respectively.
 
 \section{Modelling Diffusion}
 
@@ -240,7 +240,7 @@ where $\xi$ is the same as for the isotropic case. Observe that when the drift t
 \subsection{Connecting Anisotropic - and Isotropic Diffusion Models}
 \label{sec:ConnectAnisIs}
 
-To this point, it might seem far-fetched that switching the diffusion model to a Fokker-Planck diffusion does not violate the original equation, i.e. the complex time Schrödinger equation (the projection operator). Introducing the distribution function $f(\mbf{r}, t) = \Phi(\mbf{r}, t)\Psi_T(\mbf{r})$, restating the imaginary time Schrödinger equation in terms of $f(\mbf{r}, t)$ yields
+To this point, it might seem far-fetched that switching the diffusion model to a Fokker-Planck diffusion does not violate the original equation, i.e.~the complex time Schrödinger equation (the projection operator). Introducing the distribution function $f(\mbf{r}, t) = \Phi(\mbf{r}, t)\Psi_T(\mbf{r})$, restating the imaginary time Schrödinger equation in terms of $f(\mbf{r}, t)$ yields
 
 \begin{eqnarray}
 -\frac{\partial}{\partial t}f(\mbf{r}, t)\,\, = \,\,\Psi_T(\mbf{r})\Big[-\frac{\partial}{\partial t}\Phi(\mbf{r}, t)\Big] &=& \Psi_T(\mbf{r})\left(\OP{H} - E_T\right)\Phi(\mbf{r}, t) \nonumber\\
@@ -490,7 +490,7 @@ Before getting into specifics, a few notes on many-body theory is needed. From t
 \subsection{Many-body Wave Functions}
 \label{sec:manyBodyWFs}
 
-Many-body theory arise from the existence of \textit{many-body interactions}, which in this thesis will be truncated at the level of the Coulomb interaction, that is, the two-body interaction. Nature operates using  $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, as is the case for non-interacting particles, the full system would decouple into $N$ single particle systems, rendering many-body theory redundant.
+Many-body theory arise from the existence of \textit{many-body interactions}, which in this thesis will be truncated at the level of the Coulomb interaction, that is, the two-body interaction. Nature operates using  $N$-body interactions, however, it is overall safe to assume that the contributions beyond Coulomb decrease as the order of the interactions increase. If only one-body interactions were present, as is the case for non-interacting particles, the full system would decouple into $N$ single-particle systems, rendering many-body theory redundant.
 
 Finding the ground state is, not surprisingly, equivalent to solving the time-independent Schrödinger Equation from Eq.~(\ref{eq:schrodTimeIndie}) for the lowest energy eigenvalue, that is
 
@@ -513,14 +513,15 @@ where the primed coefficients should not to be confused with the previous coeffi
 
 where $ \tilde{C}_k' \ne  C_k'$ unless $K$ tends to infinity, however, it is overall safe to assume that the value of the coefficients decrease as $k$ increase. 
 
-The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to an exercise in combinatorics involving combinations of orbitals.
+The many-body basis elements $\Phi_k(\mathbf{r})$ are constructed using $N$ elements from a basis of single-particle wave functions, or \textit{orbitals} for short, where $N$ denotes the total number of particles in the system. In other words, these orbitals, labeled $\phi_n(\mathbf{r}_i)$, combined in different ways give rise to the different many-body wave functions making up the total wave function. The process of calculating basis elements often boils down to an exercise in combinatorics involving combinations of orbitals.
 
-To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Figure \ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e. the states has higher and higher energy eigenvalues.
+To bring some clarity to the relation between the different wave functions, consider the following example: Imagine electrons surrounding a nucleus, i.e~an atom. A single electron occupying a state with quantum number $n$ at a position $\mathbf{r}_i$ is then described by the orbital $\phi_n(\mathbf{r}_i)$. Each unique\footnote{Two wave functions are considered equal if they differ by nothing but a phase factor.} configuration of electrons (in terms of $n$) will give rise to one unique $\Phi_k(\mathbf{r})$. In other words, the complete basis of $\Phi_k(\mathbf{r})$ is described by the collection of all possible excited states and the ground state. $\Phi_0(\mathbf{r})$ is the ground state of the atom, $\Phi_1(\mathbf{r})$ has one electron exited to a higher shell, $\Phi_2(x)$ has another, and so on. See Figure \ref{fig:AtomicOrbitals} for a demonstration of this. The ordering of the terms in Eq.~(\ref{eq:manybodyWFexp}) are thus chosen to represent higher and higher excitations, i.e.~the states has higher and 
+higher energy eigenvalues.
 
 \begin{figure}
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/shellStructure.pdf}
-  \caption{Three different electron configurations in an shell structure making up three different $\Phi_k(\mathbf{r})$, i.e. constituents of the many-body basis described in Eq.~(\ref{eq:manybodyWFexp}). An electron (solid dot) is represented by e.g. the orbital $\phi_{1s}(\mathbf{r}_1)$.}
+  \caption{Three different electron configurations in an shell structure making up three different $\Phi_k(\mathbf{r})$, i.e.~constituents of the many-body basis described in Eq.~(\ref{eq:manybodyWFexp}). An electron (solid dot) is represented by e.g.~the orbital $\phi_{1s}(\mathbf{r}_1)$.}
   \label{fig:AtomicOrbitals}
  \end{center}
 \end{figure}
@@ -529,7 +530,7 @@ To summarize, constructing an approximation to an unknown many-body ground state
 
 \begin{center}
 \begin{tabular}{l|l}
- \textbf{Step one}   &  Choose a basis of orbitals $\phi_n(\mathbf{r}_i)$, e.g. hydrogen states. \\
+ \textbf{Step one}   &  Choose a basis of orbitals $\phi_n(\mathbf{r}_i)$, e.g.~hydrogen states. \\
  \textbf{Step two}   &  Construct $\Phi_k(\mathbf{r})$ from $N\times$ $\phi_n(\mathbf{r}_i)$.   \\
  \textbf{Step three} &  Construct $\Psi_0(\mathbf{r})$ from $K\times$ $\phi_k(\mathbf{r})$.     \\
 \end{tabular}
@@ -559,7 +560,7 @@ where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are the one-body - and the many-body Ha
 
 where $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$ is the distance between two particles.
 
-In order to optimize the overlap $C_0$ with the exact wave function, the single particle orbitals are commonly chosen to be the eigenfunctions of the non-interacting single particle Hamiltonian, that is
+In order to optimize the overlap $C_0$ with the exact wave function, the single-particle orbitals are commonly chosen to be the eigenfunctions of the non-interacting single-particle Hamiltonian, that is
 
 \begin{equation}
 \label{eq:orbitalEigenEq}
@@ -597,7 +598,7 @@ The permutation operator $\OP{P}$ is simply a way of writing \textit{in any comb
 
 \subsubsection{Dealing with correlations}
 
-The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are referred to as \textit{correlation} terms. Given that the single particle wave functions are chosen by Eq.~(\ref{eq:orbitalEigenEq}), the existence of the correlation terms, i.e.~$C_k' \ne 0$ for $k>0$, follows as a direct consequence of the electron-electron interaction, hence the name.
+The contributions to the ground state on the right-hand side in Eq.~(\ref{eq:manyBodyExp}) for $k>0$ are referred to as \textit{correlation} terms. Given that the single-particle wave functions are chosen by Eq.~(\ref{eq:orbitalEigenEq}), the existence of the correlation terms, i.e.~$C_k' \ne 0$ for $k>0$, follows as a direct consequence of the electron-electron interaction, hence the name.
 
 As an example, imagine performing an energy calculation with two particles being infinitely close; the Coulomb singularity will cause the energy to blow up. However, if the calculations are performed using the exact wave function, the diverging terms will cancel out; the energy eigenvalue is independent of the position of the state. 
 
@@ -609,7 +610,7 @@ These criteria are called \textit{cusp conditions} \cite{morten}, and serve as p
 \subsection{Choosing the Trial Wave Function}
 \label{sec:ChoiceTrialWF}
 
-To recap, choosing the trial wave function boils down to optimizing the overlap $C_0 = \braket{\Psi_0}{\Psi_T}$ using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single particle basis is the eigenfunctions of the non-interacting case (given that they exist). Starting from Eq.~(\ref{eq:manybodyWFexp}), from here on referred to as the \textit{spatial wave function}, the first step is to make sure the cusp conditions are obeyed.
+To recap, choosing the trial wave function boils down to optimizing the overlap $C_0 = \braket{\Psi_0}{\Psi_T}$ using a priori knowledge about the system at hand. As discussed previously, the optimal choice of single-particle basis is the eigenfunctions of the non-interacting case (given that they exist). Starting from Eq.~(\ref{eq:manybodyWFexp}), from here on referred to as the \textit{spatial wave function}, the first step is to make sure the cusp conditions are obeyed.
 
 Introducing the correlation functions $f(r_{ij})$, where $r_{ij}$ is the relative distance between particle $i$ and $j$, the general ansatz for the trial wave function becomes
 
@@ -734,7 +735,7 @@ The Hamiltonian does not depend on the variational parameters, hence both terms 
 \end{eqnarray}
 }
 
-In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater determinant, the relationship between the variational derivative of the determinant and the variational derivative of the single particle orbitals $\phi_n(\mathbf{r}_i; \alpha_i)$ is
+In the case of $\Psi_T(\mathbf{r}; \alpha_i)$ being represented by a Slater determinant, the relationship between the variational derivative of the determinant and the variational derivative of the single-particle orbitals $\phi_n(\mathbf{r}_i; \alpha_i)$ is
 
 \cfbox{2cm-5pt}{
 \begin{equation}
@@ -787,7 +788,7 @@ Incorporating the branching Green's function $G_B$ into the above equation is co
 
 Every explicit calculation using the trial wave function in QMC involves taking ratios. Calculating ratios implies a cancellation in the normalization factors. Eq.~(\ref{eq:MetroGeneralGreen}) from the Metropolis section, the quantum force in the Fokker-Planck equation, and the sampling of local values described in the previous section demonstrate exactly this; everything involves ratios.
 
-Not having to normalize the wave functions does not only save a lot of CPU-time, but it also removes the need of including the normalization factors of the single particle wave functions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}) can be taken outside the sum over permutations, and will thus cancel when the ratio between two wave functions constituting of the same single particle orbitals are computed. 
+Not having to normalize the wave functions does not only save a lot of CPU-time, but it also removes the need of including the normalization factors of the single-particle wave functions; any constants multiplying $\phi_n(x_i)$ in Eq.~(\ref{eq:SlaterDeterminantExplicit}) and Eq.~(\ref{eq:BosonicWFExplicit}) can be taken outside the sum over permutations, and will thus cancel when the ratio between two wave functions constituting of the same single-particle orbitals are computed. 
 
 Note, however, that this argument is valid for single determinant wave functions only. 
 
@@ -826,7 +827,7 @@ The difference equation describing the steps from the previous paragraph is
 \end{equation}
 
 
-An improved algorithm would be to continue iterating even though the minimum is crossed, however, this would cause the constant step-length algorithms to oscillate between two points, e.g. $x_1$ and $x_2$ in Figure \ref{fig:SGD}. To counter this, a changing step-length $\delta_i$ is introduced
+An improved algorithm would be to continue iterating even though the minimum is crossed, however, this would cause the constant step-length algorithms to oscillate between two points, e.g.~$x_1$ and $x_2$ in Figure \ref{fig:SGD}. To counter this, a changing step-length $\delta_i$ is introduced
 
 \cfbox{2.2cm-8pt}{
 \begin{equation}
@@ -892,7 +893,7 @@ Notice that the step-length increase if $t_i$ decrease and vice-versa. A smaller
 \begin{itemize}
  \item Eq.~(\ref{eq:ASGD_X_i}): The value of $X_i$ will be positive.
  \item Eq.~(\ref{eq:ASGD_f_i}): $f(X_i)$ will return a value in $[0, f_\mathrm{max}]$ depending on the magnitude of $X_i$.
- \item Eq.~(\ref{eq:ASGD_t_i}): The value of $t$ will increase, i.e. $t_{i+1} > t_i$.
+ \item Eq.~(\ref{eq:ASGD_t_i}): The value of $t$ will increase, i.e.~$t_{i+1} > t_i$.
  \item Eq.~(\ref{eq:ASGD_delta_i}): The step-length will decrease.
 \end{itemize}
 
@@ -1020,7 +1021,7 @@ Where other many-body methods run into the \textit{curse of dimensionality}, tha
 
 \subsection{Implementation}
 
-Branching is a major part of the DMC algorithm. Diffusion Monte-Carlo uses a large ensemble of walkers to generate enormous amounts of statistics. These walkers are initialized using a VMC calculation, i.e. the walkers are initially distributed according to the trial wave function squared. 
+Branching is a major part of the DMC algorithm. Diffusion Monte-Carlo uses a large ensemble of walkers to generate enormous amounts of statistics. These walkers are initialized using a VMC calculation, i.e.~the walkers are initially distributed according to the trial wave function squared. 
 
 There are three layers of loops in the DMC method implemented in this thesis, two of which are obvious: The time-step - and walker loops. However, introducing a third \textit{block loop} within the walker loop boosts the convergence dramatically. For each walker, this loop continues until the walker is either dead ($G_B = 0$), or has diffused $n_b$ times. Using this method, ``good'' walkers will have multiple offspring pr cycle, while ``bad'' walkers will rarely survive the block loop. Perfect walkers will supply a ton of statistics as they surf through all the loops without branching ($G_B \sim 1$).
 
@@ -1093,7 +1094,7 @@ Another source of error is due to the \textit{fixed node approximation}. This ap
 
 \subsection{Fixed node approximation}
 
-Looking at Eq.~(\ref{eq:BosonicWFExplicit}), it is apparent that by choosing positive phases for the single particle wave functions, the bosonic many-body wave function is exclusively positive. For fermions however, the sign change upon interchanging two particles introduces the possibility that the wave function will have both negative and positive regions, independent of the choice of phases in the single particle wave functions.
+Looking at Eq.~(\ref{eq:BosonicWFExplicit}), it is apparent that by choosing positive phases for the single-particle wave functions, the bosonic many-body wave function is exclusively positive. For fermions however, the sign change upon interchanging two particles introduces the possibility that the wave function will have both negative and positive regions, independent of the choice of phases in the single-particle wave functions.
 
 As DMC iterates, the density of walkers at a given time, $P(\mathbf{r}, \tau)$, represents the projected wave function from Eq.~(\ref{eq:schrodGeneralSolution2}) multiplied by the trial wave function. 
 
@@ -1167,7 +1168,7 @@ Expressed in terms of \textit{density operators}, the expectation values for the
  \langle A \rangle_\mathrm{DMC} &= \tr(\OP{\rho}_\mathrm{DMC}\OP{A}) 
  \end{align*}
 
-where $\tr$ denotes the \textit{trace}, i.e. the sum of all eigenvalues. Inserting these equations into Eq.~(\ref{eq:PureEstimRelat}) yield
+where $\tr$ denotes the \textit{trace}, i.e.~the sum of all eigenvalues. Inserting these equations into Eq.~(\ref{eq:PureEstimRelat}) yield
 
 \begin{align}
  \tr(\OP{\rho}_0\OP{A}) &\simeq 2\tr(\OP{\rho}_\mathrm{DMC}\OP{A}) -  \tr(\OP{\rho}_\mathrm{VMC}\OP{A}) + \mathcal{O}(\Delta^2) \notag\\
@@ -1246,7 +1247,7 @@ In the case of having the exact wave function, i.e~$\ket{\Psi_T} = \ket{\Psi_0}$
 
 The variance is in other words an excellent measure of how close to the exact wave function the trial wave function is, hence the variance minimum is sometimes used to obtain optimal variational parameters discussed in Section \ref{sec:selectingOptVarPar}. 
 
-A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not generally true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g.~in Beryllium simulations.
+A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not generally true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g.~in beryllium simulations.
 
 Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. The \textit{standard deviation}, $\sigma$, is the square root of the variance, that is
 
@@ -1256,7 +1257,7 @@ Another misconception is that the variance is a direct numerical measure of the 
 \end{equation}
 
 
-and has a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e. the expected deviation from the exact mean $\Exp{E}$.
+and has a unit equal to that of the measured value. It is therefore related to the \textit{spread} in the sampled value; zero deviation implies perfect samples, while increasing deviation means increasing spread and statistical uncertainty. The standard deviation is in other words a useful quantity when it comes to calculating the error, i.e.~the expected deviation from the exact mean $\Exp{E}$.
 
 \subsection{The Covariance and correlated samples}
 

@@ -3,7 +3,7 @@
 
 With a code framework increasing in complexity comes an increasing need for tools to ease the interface between the code and the developer(s). In computational science, a must-have tool is a tool for efficient visualization of data; there is only so much information a single number can hold. To supplement the QMC code, a visualization tool named DCViz (\textbf{D}ynamic \textbf{C}olumn data \textbf{Vi}suali\textbf{z}er) has been developed.
 
-The tool is written in Python, designed to plot data stored in columns. The tool is not designed explicitly for the QMC framework, and has been successfully applied to codes by several Master students at the time of this thesis. The plot library used is \textit{Matplotlib}\cite{Matplotlib} with a graphical user interface coded using \textit{PySide}\cite{Pyside}. The data can be plotted dynamically at a specified interval, and designed to be run parallel to the main application, e.g. DMC.
+The tool is written in Python, designed to plot data stored in columns. The tool is not designed explicitly for the QMC framework, and has been successfully applied to codes by several Master students at the time of this thesis. The plot library used is \textit{Matplotlib}\cite{Matplotlib} with a graphical user interface coded using \textit{PySide}\cite{Pyside}. The data can be plotted dynamically at a specified interval, and designed to be run parallel to the main application, e.g.~DMC.
 
 DCViz is available at \url{https://github.com/jorgehog/DCViz}
 
@@ -24,13 +24,13 @@ This would cause DCViz to create two main-figures \verb+self.mainFig1+ and \verb
 
 \subsubsection{The name tag}
 
-Having to manually combine a data file with the correct subclass implementation is annoying, hence DCViz is designed to automate this process. Assuming a dataset to be specified by a unique pattern of characters, i.e. a \textit{name tag}, this name tag can be tied to a specific subclass implementation, allowing DCViz to automatically match a specific filename with the correct subclass. Name tags are
+Having to manually combine a data file with the correct subclass implementation is annoying, hence DCViz is designed to automate this process. Assuming a dataset to be specified by a unique pattern of characters, i.e.~a \textit{name tag}, this name tag can be tied to a specific subclass implementation, allowing DCViz to automatically match a specific filename with the correct subclass. Name tags are
 
 \begin{lstlisting}[language=Python]
  nametag = "DMC_out_\d+\.dat"
 \end{lstlisting}
 
-The name tag has \textit{regular expressions} (regex) support, which in the case of the above example allows DCViz to recognize any filename starting with ``DMC\_out\_'' followed by any integer and ending with ``.dat'' as belonging to this specific subclass. This is a necessary functionality, as filenames often differ between runs, that is, the filename is specified by e.g. a time step, which does not fit an absolute generic expression. The subclasses must be implemented in the file \verb+DCViz_classes.py+ in order for the automagic detection to work.
+The name tag has \textit{regular expressions} (regex) support, which in the case of the above example allows DCViz to recognize any filename starting with ``DMC\_out\_'' followed by any integer and ending with ``.dat'' as belonging to this specific subclass. This is a necessary functionality, as filenames often differ between runs, that is, the filename is specified by e.g.~a time step, which does not fit an absolute generic expression. The subclasses must be implemented in the file \verb+DCViz_classes.py+ in order for the automagic detection to work.
 
 To summarize, the name tag invokes the following functionality
 
@@ -169,7 +169,7 @@ class myTestClassFamily(DCVizPlotter):
             subfig.set_ylim([-1,1])
 \end{lstlisting}
 
-loading e.g. \verb+testcaseFamily0.dat+ would automatically load \verb+testcaseFamily1.dat+ etc. as well.
+loading e.g.~\verb+testcaseFamily0.dat+ would automatically load \verb+testcaseFamily1.dat+ etc. as well.
 
 
 \subsubsection{Dynamic mode}
@@ -240,7 +240,7 @@ jorgen@teleport:~$ python DCVizWrapper.py ~/scratch/QMC_SCRATCH/ -f
 [  DCViz   ] Family portait already taken, skipping...
 \end{verbatim}
 
-The terminal client provides extremely efficient and robust visualization of data. When e.g. blocking data from 20 QMC runs, the automated figure saving functionality is gold.  
+The terminal client provides extremely efficient and robust visualization of data. When e.g.~blocking data from 20 QMC runs, the automated figure saving functionality is gold.  
 
 \subsection{The Application Programming Interface (API)}
 
@@ -259,7 +259,7 @@ dynamicMode = False #or true
 viz.main(myDataFile, dynamic=dynamicMode, toFile=toFile)
 \end{lstlisting}
 
-If on the other hand the data needs to be directly visualized without saving it to file, the pure API function \verb+rawDataAPI+ can be called directly with a numpy array \verb+data+. If the plot should be saved to file, this can be enabled by supplying an arbitrary file-path (e.g. \verb+/home/me/superDuper.png+) and setting \verb+toFile=True+.
+If on the other hand the data needs to be directly visualized without saving it to file, the pure API function \verb+rawDataAPI+ can be called directly with a numpy array \verb+data+. If the plot should be saved to file, this can be enabled by supplying an arbitrary file-path (e.g.~\verb+/home/me/superDuper.png+) and setting \verb+toFile=True+.
 
 \begin{lstlisting}[language=Python]
 from DCViz_classes import myDCVizClass

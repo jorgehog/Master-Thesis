@@ -6,7 +6,7 @@
 \hfill - The SymPy Home Page \cite{SymPy}
 
 \vspace{0.5cm}
-Thie aim of this appendix will be on using SymPy to calculate closed form expressions for single particle wave functions needed to optimize the calculations of the Slater gradient and Laplacian. For systems of many particles, it is crucial to have these expressions in order for the code to remain efficient. 
+Thie aim of this appendix will be on using SymPy to calculate closed form expressions for single-particle wave functions needed to optimize the calculations of the Slater gradient and Laplacian. For systems of many particles, it is crucial to have these expressions in order for the code to remain efficient. 
 
 Calculating these expressions by hand is a waste of time, given that the complexity of the expressions is proportional to the magnitude of the quantum number, which again scales with the number of particles, and little new insights are gained from doing the calculations. In the case of a $56$ particle Quantum Dot, the number of unique derivatives involved in the simulation is $112$. 
 
@@ -16,7 +16,7 @@ SymPy is, as described in the introductory quote, designed to be simple to use. 
 
 \subsection{Symbolic Algebra}
 
-In order for SymPy to recognize e.g. \verb+x+ as a symbol, that is, a \textit{mathematical variable}, special action must be made. In contrast to programming variables, symbols are not initialized to a value. Initializing symbols can be done in several ways, the two most common are listed below
+In order for SymPy to recognize e.g.~\verb+x+ as a symbol, that is, a \textit{mathematical variable}, special action must be made. In contrast to programming variables, symbols are not initialized to a value. Initializing symbols can be done in several ways, the two most common are listed below
 
 \vspace{0.25cm}
 \begin{lstlisting}[language=Python]
@@ -31,7 +31,7 @@ Out[4]: 'x**2 + y'
 
 \end{lstlisting}
 
-The \verb+Symbol+ function handles single symbols, while \verb+symbols+ can initialize several symbols simultaneously. The string argument might seem redundant, however, this represents the \textit{label} displayed using print functions, which is neat to control. In addition, key word arguments can be sent to the symbol functions, flagging variables as e.g. positive, real, etc.
+The \verb+Symbol+ function handles single symbols, while \verb+symbols+ can initialize several symbols simultaneously. The string argument might seem redundant, however, this represents the \textit{label} displayed using print functions, which is neat to control. In addition, key word arguments can be sent to the symbol functions, flagging variables as e.g.~positive, real, etc.
 
 \vspace{0.25cm}
 \begin{lstlisting}[language=Python]
@@ -176,7 +176,7 @@ Getting the right factorization may come across as tricky, but with minimal trai
 
 \section{Using the auto-generation Script}
 
-The superclass \verb+orbitalsGenerator+ aims to serve as an interface with the QMC C++ \verb+BasisFunctions+ class, automatically generating the C++ code containing all the implementations of the derivatives for the given single particle states. The single particle states are implemented in the generator by subclasses overloading system specific virtual functions which will be described in the following sections.
+The superclass \verb+orbitalsGenerator+ aims to serve as an interface with the QMC C++ \verb+BasisFunctions+ class, automatically generating the C++ code containing all the implementations of the derivatives for the given single-particle states. The single-particle states are implemented in the generator by subclasses overloading system specific virtual functions which will be described in the following sections.
 
 \subsection{Generating Latex code}
 
@@ -191,7 +191,7 @@ orbitalSet.TeXToFile(outPath)
 
 \subsubsection{The constructor}
 
-The superclass constructor takes on input the maximum number of particles for which expressions should be generated and the name of the orbital set, e.g. \verb+hydrogenic+.
+The superclass constructor takes on input the maximum number of particles for which expressions should be generated and the name of the orbital set, e.g.~\verb+hydrogenic+.
 Calling a superclass constructor from a subclass constructor is done in the following way
 
 \vspace{0.25cm}
@@ -207,7 +207,7 @@ class hydrogenicOrbitals(orbitalGenerator):
 
 \subsubsection{makeStateMap}
 
-This function takes care of the mapping of a set of quantum numbers, e.g. $nlm$ to a specific index $i$. The Python dictionary \verb+self.stateMap+ must be filled with values for every unique set of quantum numbers (not counting spin) in order for the Latex and C++ files to be created successfully. For the three-dimensional harmonic oscillator wave functions, the state map looks like this
+This function takes care of the mapping of a set of quantum numbers, e.g.~$nlm$ to a specific index $i$. The Python dictionary \verb+self.stateMap+ must be filled with values for every unique set of quantum numbers (not counting spin) in order for the Latex and C++ files to be created successfully. For the three-dimensional harmonic oscillator wave functions, the state map looks like this
 
 \begin{center}
 \begin{tabular}{l|ccccccccccccccccccccccc}
@@ -240,9 +240,9 @@ where \verb+self.Hx+ and the exponential factor are implemented in the construct
 
 \subsubsection{simplifyLocal}
 
-As demonstrated in the previous example, SymPy expressions are messy when they are fresh out of the derivative functions. Since every system needs to be treated differently when it comes to cleaning up their expressions, this function is available. For hydrogen-like wave functions, the introductory example's strategy can be applied up to the level of Neon. Going higher will require more advanced strategies for cleaning up the expressions.
+As demonstrated in the previous example, SymPy expressions are messy when they are fresh out of the derivative functions. Since every system needs to be treated differently when it comes to cleaning up their expressions, this function is available. For hydrogen-like wave functions, the introductory example's strategy can be applied up to the level of neon. Going higher will require more advanced strategies for cleaning up the expressions.
 
-The expression and the corresponding set of quantum numbers are given on input. In addition, there is an input argument \verb+subs+, which if set to false should make the function return the expression in terms of \verb+x+, \verb+y+ and \verb+z+ without substituting e.g. $x^2 + y^2 = r^2$.
+The expression and the corresponding set of quantum numbers are given on input. In addition, there is an input argument \verb+subs+, which if set to false should make the function return the expression in terms of \verb+x+, \verb+y+ and \verb+z+ without substituting e.g.~$x^2 + y^2 = r^2$.
 
 \subsubsection{genericFactor}
 
@@ -313,7 +313,7 @@ __preCalc__
 
 where \verb+__preCalc__+ is a generated C++ expression returned from \verb+getCpre()+, and \verb+__return__+ is the returned C++ expression from \verb+getCreturn()+. The commented \verb+__simpleExpr__+ will be replaced by the expression in nicely formatted SymPy output code. \verb+__necessities__+ is automatically detected by the script, and represents the Cartesian variable expressions needed by the expressions.
 
-The functions take a SymPy generated expression on input, i.e. an orbital, gradient or Laplacian, and the corresponding index of the expression $i$. The reason these functions are split into a precalculation and a return expression is purely cosmetic. Consider the following example output for the hydrogen-like wave functions:
+The functions take a SymPy generated expression on input, i.e.~an orbital, gradient or Laplacian, and the corresponding index of the expression $i$. The reason these functions are split into a precalculation and a return expression is purely cosmetic. Consider the following example output for the hydrogen-like wave functions:
 
 \vspace{0.5cm}
 \begin{lstlisting}
@@ -374,6 +374,6 @@ def makeOrbConstArgs(self, args, i):
     return args
 \end{lstlisting}
 
-which ensures that the input arguments to e.g. element $1$ is \verb+(k, k2, exp_factor_n2)+, since the single particle orbital \verb+self.phi[1]+ has a principle quantum number $n=2$. The input argument \verb+args+ is the default constructor arguments set up the the \verb+initCPPbasis+, and is in the case of hydrogen-like wave functions \verb+(k, k2, exp_factor)+.
+which ensures that the input arguments to e.g.~element $1$ is \verb+(k, k2, exp_factor_n2)+, since the single-particle orbital \verb+self.phi[1]+ has a principle quantum number $n=2$. The input argument \verb+args+ is the default constructor arguments set up the the \verb+initCPPbasis+, and is in the case of hydrogen-like wave functions \verb+(k, k2, exp_factor)+.
 
 The tables listed in Appendix \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} are all generated within seconds using this framework. The generated C++ code for these span 8975 lines not counting blank ones.

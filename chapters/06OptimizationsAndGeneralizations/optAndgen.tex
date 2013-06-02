@@ -1,7 +1,7 @@
 \chapter{Generalization and Optimization}
 \label{ch:optAndGen}
 
-There is a big difference in strategy between writing code for a specific problem, and creating a general solver. A general Quantum Monte-Carlo (QMC) solver involves several layers of complexity, such as support for different potentials, single particle bases, sampling models, etc., which may easily lead to a \textit{combinatorical explosion} if the planning is not done right. 
+There is a big difference in strategy between writing code for a specific problem, and creating a general solver. A general Quantum Monte-Carlo (QMC) solver involves several layers of complexity, such as support for different potentials, single-particle bases, sampling models, etc., which may easily lead to a \textit{combinatorical explosion} if the planning is not done right. 
 
 This chapter begins by introducing a list of underlying assumptions regarding the modelled systems. Whether or not a system can be solved is then a question of whether the listed assumptions are valid for the system or not. The next part will cover generalization, that is, the flexibility of the code and the strategies used to obtain this flexibility. The result of a generalized code is that different systems and algorithms can be implemented by making simple changes to the code. Finally, optimizations will be covered. Optimizations are crucial in order to maintain efficiency for a high number of particles. 
 
@@ -20,7 +20,7 @@ The code structure was designed based on the following assumptions
  \item The particles of the simulated systems are either all fermions or all bosons. \label{it::ass::pureFermBos}
  \item The Hamiltonian is spin - and time independent.\label{it::ass::2level}
  \item The trial wave function of a fermionic system is a single determinant. \label{it::ass::fermiSingleDet}
- \item A bosonic system is modelled by all particles being in the same assumed single particle ground state. \label{it::ass::bosCondensate}
+ \item A bosonic system is modelled by all particles being in the same assumed single-particle ground state. \label{it::ass::bosCondensate}
  \vspace{0.3cm}
 \end{enumerate}
 }
@@ -39,7 +39,7 @@ The implementation should be general for:
  \item Different gradient descent algorithms. 
  \item Any Jastrow factor.
  \item Any error estimation algorithm.
- \item Any single particle basis, including expanded single particle bases. \label{it::gen::SP_basis}
+ \item Any single-particle basis, including expanded single-particle bases. \label{it::gen::SP_basis}
  \item Any combination of any potentials. \label{it::gen::pot}
  \vspace{0.2cm}
 \end{enumerate}
@@ -84,7 +84,7 @@ This section will introduce how object orientation is used to achieve the goals 
 As discussed in Section \ref{sec:manyBodyWFs}, the mathematical difference between fermions and bosons (of importance to QMC) is how the many-body wave functions are constructed from the single-particle bases. In the case of fermions, the expression is given in terms of a Slater determinant which, due to the fact that the Hamiltonian is spin-independent, can be split into two parts corresponding to spin up and spin down. On the other hand, for bosons, it is simply the product of all states due to the fact that they are all assumed to occupy the same orbital. This is demonstrated in the following code example, where the wave functions of fermionic and bosonic systems are evaluated:
 
 \vspace{0.2cm}
-\begin{lstlisting}[caption=The implementation of the evaluation of fermionic and bosonic wave functions. Line 5: The fermion class accesses the walker's single particle state matrix and returns the determinant of the first half (spin up) times the determinant of the second half (spin down). Line 14-16: The boson class simply calculates the product of all the single particle states.]
+\begin{lstlisting}[caption=The implementation of the evaluation of fermionic and bosonic wave functions. Line 5: The fermion class accesses the walker's single-particle state matrix and returns the determinant of the first half (spin up) times the determinant of the second half (spin down). Line 14-16: The boson class simply calculates the product of all the single-particle states.]
 double Fermions::get_spatial_wf(const Walker* walker) {
     using namespace arma;
     
@@ -97,7 +97,7 @@ double Bosons::get_spatial_wf(const Walker* walker) {
     double wf = 1;
  
     //Using the phi matrix as a vector in the case of bosons.
-    //Assuming all particles to occupy the same single particle state (neglecting permutations).
+    //Assuming all particles to occupy the same single-particle state (neglecting permutations).
     for (int i = 0; i < n_p; i++){
       wf *= walker->phi(i);
     }
@@ -116,7 +116,7 @@ A similar polymorphic splitting is introduced in the following classes:
 \storestyleof{itemize}
  \begin{tabular}{l l}
  \textbullet \,\verb+Orbitals+       & The hydrogen-like or the harmonic oscillator orbitals. \\
- \textbullet \,\verb+BasisFunctions+ & Stand-alone single particle wave functions initialized by \verb+Orbitals+. \\
+ \textbullet \,\verb+BasisFunctions+ & Stand-alone single-particle wave functions initialized by \verb+Orbitals+. \\
  \textbullet \,\verb+Sampling+       & Brute force - or importance sampling. \\
  \textbullet \,\verb+Diffusion+      & Isotropic or Fokker-Planck diffusion. Automatically selected by \verb+Sampling+. \\
  \textbullet \,\verb+ErrorEstimator+ & Simple or Blocking. \\
@@ -132,7 +132,7 @@ A detailed description of the generalization of potentials, i.e.~generalization 
 
 \subsection{Generalization Goal \ref{it::gen::SP_basis} and Expanded bases}
 
-An expanded single particle basis is implemented as a subclass of the \verb+Orbitals+ superclass. It wraps around an \verb+Orbitals+ implementation, e.g.~the harmonic oscillator orbitals, containing basis elements $\phi_\alpha(\mathbf{r}_j)$. In addition to these elements, the expanded basis class has a set of expansion coefficients $\mathbf{C}_{\gamma\alpha}$ from which the new basis elements are constructed in the following manner:
+An expanded single-particle basis is implemented as a subclass of the \verb+Orbitals+ superclass. It wraps around an \verb+Orbitals+ implementation, e.g.~the harmonic oscillator orbitals, containing basis elements $\phi_\alpha(\mathbf{r}_j)$. In addition to these elements, the expanded basis class has a set of expansion coefficients $\mathbf{C}_{\gamma\alpha}$ from which the new basis elements are constructed in the following manner:
 
 \begin{equation}
 \label{eq:ExpBasisSP}
@@ -163,7 +163,7 @@ protected:
 The implementation of Eq.~(\ref{eq:ExpBasisSP}) into the expanded basis class is achieved by overloading the original \verb+Orbitals::phi+ virtual member function as shown in the following example
 
 \vspace{0.5cm}
-\begin{lstlisting}[caption=The explicit implementation of the expanded basis single particle wave function. The wave function is evaluated by expanding a given basis in a set of expansion coefficients (see the previous code example).]
+\begin{lstlisting}[caption=The explicit implementation of the expanded basis single-particle wave function. The wave function is evaluated by expanding a given basis in a set of expansion coefficients (see the previous code example).]
 double ExpandedBasis::phi(const Walker* walker, int particle, int q_num) {
 
     double value = 0;
@@ -184,7 +184,7 @@ Expanded bases has not been a focus for the thesis, thus explicit algorithms for
 
 Support for evaluating derivatives numerically is important for two reasons; the first being debugging, the second being the cases where no closed-form expressions for the derivatives can be obtained or become too expensive to evaluate.
 
-As an example, the orbital class implementation responsible for the gradient of the single particle states, \verb+Orbitals::del_phi+, is virtual. This implies that it can be overloaded to call the numerical derivative implementation \verb+Orbitals::num_diff+. The same goes for the Laplacian, the Jastrow factor derivatives, and the variational derivatives in the minimizer. An alternative to numerically evaluating the derivatives of the single particle wave functions would be to perform the derivative on the full many-body wave function, however, this would not fit naturally into the code design.
+As an example, the orbital class implementation responsible for the gradient of the single-particle states, \verb+Orbitals::del_phi+, is virtual. This implies that it can be overloaded to call the numerical derivative implementation \verb+Orbitals::num_diff+. The same goes for the Laplacian, the Jastrow factor derivatives, and the variational derivatives in the minimizer. An alternative to numerically evaluating the derivatives of the single-particle wave functions would be to perform the derivative on the full many-body wave function, however, this would not fit naturally into the code design.
 
 The implemented numerical derivatives are finite difference schemes with an error proportional to the square of the chosen step length.
 
@@ -353,7 +353,7 @@ Similar reductions can be applied to all the Slater ratio expressions from the p
 
 where the sum $k$ spans the Slater matrix whose spin values match that of the moved particle.
 
-Closed form expressions for the derivatives and Laplacians of the single particle wave functions can be implemented in order to avoid expensive numerical calculations. See Appendices \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} for a tabulation of closed form expressions used in this Thesis. Appendix \ref{appendix:sympy} presents an efficient strategy for obtaining these expressions.
+Closed form expressions for the derivatives and Laplacians of the single-particle wave functions can be implemented in order to avoid expensive numerical calculations. See Appendices \ref{appendix:SymPyHO}, \ref{appendix:SymPyHO3D} and \ref{appendix:SymPyHydro} for a tabulation of closed form expressions used in this Thesis. Appendix \ref{appendix:sympy} presents an efficient strategy for obtaining these expressions.
 
 \subsection{Optimizing the inverse Slater matrix}
 \label{sec:optInv}
@@ -561,7 +561,7 @@ A similar updating algorithm has been implemented for the squared distance vecto
 \subsection{The Slater related matrices}
 \label{sec:storeSlater}
 
-Apart from the inverse, whose optimization was covered in Section \ref{sec:optInv}, calculating the single particle wave functions and their gradients are the most expensive operations in the QMC algorithm.
+Apart from the inverse, whose optimization was covered in Section \ref{sec:optInv}, calculating the single-particle wave functions and their gradients are the most expensive operations in the QMC algorithm.
 
 Storing these function values in matrices representing the Slater matrices $\mathbf{S}^\uparrow$ and $\mathbf{S}^\downarrow$ introduced in Section \ref{sec:optSingleSlater}, ensures that these values never become recalculated. The following expression describes how the Slater matrix is represented in the code 
 
@@ -636,7 +636,7 @@ In the same way that the relative distance matrix was equal to its transpose, th
  \mathrm{d}\mathbf{J} = -\mathrm{d}\mathbf{J}^T.
 \end{equation}
 
-Additionally, just as for the relative distances, moving a single particle only changes one row and one column in the matrix. This implies that a similar updating algorithm as the one discussed in Section \ref{sec:relDist} can be implemented. This is demonstrated in the following code snippet:
+Additionally, just as for the relative distances, moving a single-particle only changes one row and one column in the matrix. This implies that a similar updating algorithm as the one discussed in Section \ref{sec:relDist} can be implemented. This is demonstrated in the following code snippet:
 
 \vspace{0.25cm}
 \begin{lstlisting}[caption={The updating algorithm for the three-dimensional matrix used in the Padé Jastrow gradient. In line 11, the symmetry property is exploited by setting the transposed term equal to the negative of the already calculated term.}]
@@ -685,7 +685,7 @@ Adding and subtracting the term missing from the sum to make it equal to the old
 which effectively reduces the calculation to two flops. For the case with $i=p$, the entire sum must be calculated as in Eq.~(\ref{eq:jastrowGradDJnew}). This process is demonstrated in the following code
 
 \vspace{0.25cm}
-\begin{lstlisting}[caption={The implementation of the Padé Jastrow gradient using the matrix from Eq.~(\ref{eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e. Eq.~(\ref{eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as in Eq.~(\ref{eq:jastrowGradDJnew}).}]
+\begin{lstlisting}[caption={The implementation of the Padé Jastrow gradient using the matrix from Eq.~(\ref{eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e.~Eq.~(\ref{eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as in Eq.~(\ref{eq:jastrowGradDJnew}).}]
 void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p) const {
     double sum;
 
@@ -740,12 +740,12 @@ double AlphaHarmonicOscillator::phi(const Walker* walker, int particle, int q_nu
 
 For a low number of particles this is quite efficient, however, this is not the case for a large number of particles. 
 
-A more efficient implementation is to represent the single particle wave functions as \verb+BasisFunctions+ objects. These objects hold only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker and returns the evaluated single particle wave function. The object itself is defined by a quantum number $q$. 
+A more efficient implementation is to represent the single-particle wave functions as \verb+BasisFunctions+ objects. These objects hold only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker and returns the evaluated single-particle wave function. The object itself is defined by a quantum number $q$. 
 
-The following is an example of a two-dimensional harmonic oscillator single particle wave function for quantum number $q=1$
+The following is an example of a two-dimensional harmonic oscillator single-particle wave function for quantum number $q=1$
 
 \vspace{0.25cm}
-%[caption={The implementation of a two-dimensional harmonic oscillator single particle wave function representing quantum number 1.}]
+%[caption={The implementation of a two-dimensional harmonic oscillator single-particle wave function representing quantum number 1.}]
 \begin{lstlisting}
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
@@ -759,20 +759,20 @@ double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 }
 \end{lstlisting}
 
-These objects representing single particle wave functions can be loaded into an array in such a way that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number, e.g.~\\\verb+basis_functions[1] = new HarmonicOscillator_1()+. The new \verb+Orbitals::phi+ implementation then simply becomes a call to an array. This is demonstrated in the following code
+These objects representing single-particle wave functions can be loaded into an array in such a way that element $q$ corresponds to the \verb+BasisFunctions+ object representing this quantum number, e.g.~\\\verb+basis_functions[1] = new HarmonicOscillator_1()+. The new \verb+Orbitals::phi+ implementation then simply becomes a call to an array. This is demonstrated in the following code
 
 \vspace{0.25cm}
-\begin{lstlisting}[caption={The implementation of the single particle basis used in the code. It is simply a call to an array holding all the different single particle wave functions. The quantum number is used as an index, and the corresponding evaluation function is called with the supplied walker for the given particle.}]
+\begin{lstlisting}[caption={The implementation of the single-particle basis used in the code. It is simply a call to an array holding all the different single-particle wave functions. The quantum number is used as an index, and the corresponding evaluation function is called with the supplied walker for the given particle.}]
 double Orbitals::phi(const Walker* walker, int particle, int q_num) {
     return basis_functions[q_num]->eval(walker, particle);
 }
 \end{lstlisting}
 
-All discussed optimizations thus far are general in the sense that they are independent of the explicit shape of the single particle wave functions. There should, however, be room for optimizations within the basis functions themselves, as long as these are applied locally within each class where the explicit shape of the orbitals are absolute.
+All discussed optimizations thus far are general in the sense that they are independent of the explicit shape of the single-particle wave functions. There should, however, be room for optimizations within the basis functions themselves, as long as these are applied locally within each class where the explicit shape of the orbitals are absolute.
 
 As discussed previously, only a single column in the Slater related matrices from Section \ref{sec:storeSlater} needs to be updated when a particle is moved. This implies that the terms which are independent of the quantum numbers can be calculated once for every particle instead of once for every quantum number and every particle. 
 
-These terms often come in the shape of exponential factors, which are conserved in derivatives, implying that these terms appear in both the gradients and the Laplacians as well as in the single particle wave functions.
+These terms often come in the shape of exponential factors, which are conserved in derivatives, implying that these terms appear in both the gradients and the Laplacians as well as in the single-particle wave functions.
 
 Looking at the harmonic oscillator - and the hydrogen-like wave functions listed in Appendix \ref{appendix:SymPyHO} - \ref{appendix:SymPyHydro}, the exponential factors are indeed independent of the quantum numbers in all of the terms. Referring to the quantum number independent terms as $\overline{Q}_i$, the expressions are 
 
@@ -813,7 +813,7 @@ void hydrogenicOrbitals::set_qnum_indie_terms(Walker* walker, int i) {
 
 The \verb+BasisFunctions+ objects share the pointer to the correct exponential factor with the orbital class. These exponential factors can then simply be accessed instead of being recalculated numerous times. The following code demonstrates accessing the exponential factor calculated in the previous code example
 
-\begin{lstlisting}[caption={The implementation of a single particle wave function. The pointer to the previously calculated exponential factor is simply accessed in line 8.}]
+\begin{lstlisting}[caption={The implementation of a single-particle wave function. The pointer to the previously calculated exponential factor is simply accessed in line 8.}]
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
     y = walker->r(i, 1);
