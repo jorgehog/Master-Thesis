@@ -1,43 +1,43 @@
 \section{Optimization Results}
 \label{sec:optRes}
 
-The optimization results listed in this section are estimated using a $30$ particle two-dimensional quantum dot as reference system.
+The optimization results listed in this section are estimated using a 30-particle two-dimensional quantum dot as reference system.
 
-Profiling the code revealed that $~99\%$ of the runtime was spent diffusing the particles, that is, spent in the function \verb+QMC::diffuse_walker+. Variational Monte-Carlo (VMC), Diffusion Monte-Carlo (DMC), and Adaptive Stochastic Gradient Descent (ASGD) all rely heavily on the diffusion of particles, hence parts of the code which do not involve diffusion walkers were neglected in the optimization process; it is a waste of time to optimize something which accounts for less than one percent of the runtime.  
+Profiling the code revealed that $\sim99\%$ of the run time was spent diffusing the particles, that is, spent in the function \verb+QMC::diffuse_walker+. Variational Monte-Carlo (VMC), Diffusion Monte-Carlo (DMC), and Adaptive Stochastic Gradient Descent (ASGD) all rely heavily on the diffusion of particles, hence the parts of the code which do not involve diffusion walkers were neglected in the optimization process; it is a waste of time to optimize something which accounts for less than one percent of the run time.  
 
-The profiling tool of choice was \textit{KCacheGrind}, available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks of size proportional to the time spent inside the function, much like standard hard drive listing software does with files and file size.
+The profiling tool of choice was \textit{KCacheGrind}, which is available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks whose sizes are proportional to the time spent inside the functions, much like standard hard drive listing software does with files and file sizes.
 
 Optimizations discussed in Chapter \ref{ch:optAndGen} which are not mentioned in the following sections were considered standard implementations, and were thus implemented prior to the optimization process.
 
 \subsubsection{Storing the Slater matrix}
 
-This optimization is described in detail in Section \ref{sec:storeSlater}. In addition to storing the Slater matrix, the calculation of $\tilde I$ from the inverse updating algorithm in Eq.~(\ref{eq:Itilde}) was done outside the main loops.
+This optimization is described in detail in Section \ref{sec:storeSlater}. In addition to storing the Slater matrix, the calculation of $\mathbf{\tilde I}$ from the inverse updating algorithm in Eq.~(\ref{eq:Itilde}) was taken outside of the main loops.
 
-The percentages listed in the following table represent the fraction of total time spent inside the given function relative to all other functions. 
+The percentages listed in the following table represent the ratio between the total time spent inside the given function and the total run time. 
 
 \begin{tabular}{ll}
  \verb+Orbitals::phi+ & \\
  \hline\hline
- Relative runtime used prior to optimization & 80.88\% \\
- Relative runtime used after optimization    & 8.2\% \\
+ Relative run time used prior to optimization & 80.88\% \\
+ Relative run time used after optimization    & 8.2\% \\
  \hline
  Relative function speedup                   & 9.86
 \end{tabular}
 
-The speedup is not a result of optimizations within the function itself, but a result of far less calls to the function. If $\tilde I$ was calculated outside the main loops in the first place, the speedup would be far less significant. 
+The speedup comes not as a result of optimizations within the function itself, but rather as a result of far less calls to the function. If $\mathbf{\tilde I}$ was calculated outside of the main loops in the first place, the speedup would be far less significant. 
 
 
 \subsubsection{Optimized Jastrow gradient}
 
 The optimization described in this section is discussed in detail in Section \ref{sec:optJastGrad}.
 
-The percentages listed in the following table represent the fraction of total time spent inside the given functions relative to all other functions. 
+The percentages listed in the following table represent the ratio between the total time spent inside the given functions and the total run time. 
 
 \begin{tabular}{ll}
  \verb+Jastrow::get_grad+ \& \verb+Jastrow::calc_dJ+ & \\
  \hline\hline
- Relative runtime used prior to optimization & 40\% \\
- Relative runtime used after optimization    & 5.24\% \\
+ Relative run time used prior to optimization & 40\% \\
+ Relative run time used after optimization    & 5.24\% \\
  \hline
  Relative function speedup                   & 7.63
 \end{tabular}
@@ -48,14 +48,14 @@ Exploiting the symmetries of the Padé Jastrow gradient, in addition to calculat
 
 This optimization is covered in detail in Section \ref{sec:storeSlater}. Much like for the Slater matrix, the optimization in this case comes from the fact that the function itself is called fewer times, rather than being faster.
 
-The percentages listed in the following table represent the fraction of total time spent inside the given function relative to all other functions. 
+The percentages listed in the following table represent the ratio between the total time spent inside the given function and the total run time. 
 
 
 \begin{tabular}{ll}
  \verb+Orbitals.dell_phi+ & \\
  \hline\hline
- Relative runtime used prior to optimization & 56.27\% \\
- Relative runtime used after optimization    & 7.31\% \\
+ Relative run time used prior to optimization & 56.27\% \\
+ Relative run time used after optimization    & 7.31\% \\
  \hline
  Relative function speedup                   & 7.70
 \end{tabular}
@@ -65,28 +65,28 @@ The percentages listed in the following table represent the fraction of total ti
 
 This optimization is covered in detail in Section \ref{sec:optSPWFqnumIndie}. The result of the optimization is a reduction in the number of exponential function calls, which means a more efficient calculation of single-paticle states, their gradients and Laplacians.
 
-The percentages listed in the following table represent the fraction of total time spent inside the given functions relative to all other functions. 
+The percentages listed in the following table represent the ratio between the total time spent inside the given functions and the total run time. 
 
 \begin{tabular}{ll}
  \verb+Orbitals::phi+ \& \verb+Orbitals::dell_phi+ & \\
  \hline\hline
- Relative runtime used prior to optimization & 5.85\% \\
- Relative runtime used after optimization    & 0.13\% \\
+ Relative run time used prior to optimization & 5.85\% \\
+ Relative run time used after optimization    & 0.13\% \\
  \hline
  Relative function speedup                   & ~45
 \end{tabular}
 
-This result is not surprisingly equal to $15\cdot 3$, since a $30$ particle quantum dot has $15$ unique quantum numbers. One set is used by the orbitals, and two by their gradients (the Laplacian is not a part of the diffusion). Prior to this optimization, $45$ exponential calls were needed to fill a row in the Slater matrix and the derivative matrix; this has been reduced to one.
+This result is not surprisingly equal to $15\cdot 3$, since a 30-particle quantum dot has $15$ unique quantum numbers. One set is used by the orbitals, and two by their gradients (the Laplacian is not a part of the diffusion). Prior to this optimization, $45$ exponential calls were needed to fill a row in the Slater matrix and the derivative matrix; this has been reduced to one.
 
 \subsubsection{Overall optimization and final scaling}
 
-Combining all the optimizations listed in this chapter, the final runtime was reduced to $5\%$ of the original. The final scaling is presented in Figure \ref{fig:scaling}.
+Combining all the optimizations listed in this section, the final run time was reduced to $5\%$ of the original. The final scaling is presented in Figure \ref{fig:scaling}.
 
 \begin{figure}[h]
  \begin{center}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/scaling.png}}
   \subfigure{\includegraphics[scale=0.35]{../Graphics/scaling_loglog.png}} \\
-  \caption{Scaling of the code with respect to the number of particles $N$ based on VMC calculations with $10^6$ cycles with $10^5$ thermalization steps run on eight processors. The figures are split into a low $N$ region and a high $N$ region. Only two-dimensional quantum dots and atoms are displayed in the high $N$ figure. The figures to the right contain the same data as the figures to the left, however, displayed using logarithmic axes. As expected, the two-dimensional quantum dots (denoted Qdots 2D) are lowest on CPU-time and the homonuclear diatomic molecules are highest (denoted Molecules). The logarithmic figures clearly show a linear trend, implying a underlying power law.}
+  \caption{Scaling of the code with respect to the number of particles $N$ based on VMC calculations with $10^6$ cycles with $10^5$ thermalization steps run on eight processors. The figures are split into a low $N$ region and a high $N$ region. Only two-dimensional quantum dots and atoms are displayed in the high $N$ figure. The figures to the right contain the same data as the figures to the left, however, displayed using logarithmic axes. As expected, the two-dimensional quantum dots (denoted Qdots 2D) are lowest on run time and the homonuclear diatomic molecules are highest (denoted Molecules). The logarithmic figures clearly show a linear trend, implying a underlying power law.}
   \label{fig:scaling}
  \end{center}
 \end{figure}
@@ -103,25 +103,25 @@ Homonuclear diatomic molecules & $N^{1.8437}$ \\
 \end{tabular}
 
 
-As the number of particles increases, the scaling with respect to the number of spatial dimensions becomes negligible compared to the scaling with the number of particles, rendering two-dimensional quantum dots and atoms similar in runtime. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$, where $d$ denotes the number of dimensions. 
+As the number of particles $N$ increases, the scaling with respect to the number of spatial dimensions $d$ becomes negligible compared to the scaling with $N$, rendering two-dimensional quantum dots and atoms similar in run time. This is expected since there are far more matrices in the code of dimensions $N\times N$ than $N \times d$. 
 
-The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single-paticle wave functions. Consider for example the third single-paticle wave function for the hydrogen-like orbitals:
+The Jastrow factor, inverse updating, etc., all involve the same computations for all systems, hence the reason why the atomic systems scale better than the quantum dots has to originate from the efficiency of the single-paticle wave functions. Consider for example the third single-paticle wave function for the hydrogen-like orbitals (omitting exponential factors):
 
 \begin{equation}
  \phi_3 = x.
 \end{equation}
 
-The corresponding expression for two-dimensional quantum dots is
+The corresponding expression for a two-dimensional quantum dot is
 
 \begin{equation}
   \phi_3 = 2k^2y^2 - 1.
 \end{equation}
 
-It is obvious that the orbital for quantum dots contain a higher computational cost for the processor than the one for atoms. Comparing the expressions listed for quantum dots in Appendix \ref{appendix:SymPyHO3D} and Appendix \ref{appendix:SymPyHO} with those for atoms in Appendix \ref{appendix:SymPyHydro}, it is apparent that this trend is consistent.
+It is obvious that the orbital for quantum dots contains a higher computational cost for the processor than the one for atoms. Comparing the expressions listed for quantum dots in Appendix \ref{appendix:SymPyHO3D} and Appendix \ref{appendix:SymPyHO} with those for atoms in Appendix \ref{appendix:SymPyHydro}, it is apparent that this trend is consistent.
 
 The fact that the difference in the cost of the single-paticle wave functions govern the scaling demonstrates the efficiency in the general framework. Moreover, having the molecular system scaling almost identically to the atomic one demonstrates the efficiency of the system's implementation. 
 
-Both Variational Monte-Carlo (VMC) and Adaptive Stochastic Gradient Descent (ASGD) scale linearly with the number of processors, due to the fact that the processes do not require any communication besides adding the final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the original walker population across multiple nodes. Depending on whether some nodes have more deaths or newborns than other, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is approximately linear. 
+Both Variational Monte-Carlo and Adaptive Stochastic Gradient Descent scale linearly with the number of processors, due to the fact that the processes do not require any communication besides adding the final results. Diffusion Monte-Carlo, on the other hand, is parallelized by spreading the original walker population across multiple nodes. Depending on whether some nodes have more deaths or newborns than others, there is a high communication cost. What is seen in practice, however, is that as long as the average number of walkers per node does not go below $\sim250$, the scaling is approximately linear. 
 
 
 

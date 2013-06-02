@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 19:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 20:15
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1079,10 +1079,16 @@ eWell.png>] [103
 
 ] [104] (../chapters/08Results/ch08Results.tex
 Chapter 6.
-) (../chapters/08Results/Optimization/Optimization.tex [105
+) (../chapters/08Results/Optimization/Optimization.tex
+Overfull \hbox (18.27466pt too wide) in paragraph at lines 8--9
+[]\OT1/cmr/m/n/10 The pro-fil-ing tool of choice was \OT1/cmr/m/it/10 KCacheGri
+nd\OT1/cmr/m/n/10 , which is avail-able at the Ubuntu Soft-ware Cen-ter. KCache
+Grind
+ []
 
-]
-<../Graphics/scaling.png, id=2548, 586.8324pt x 442.2924pt>
+[105
+
+] <../Graphics/scaling.png, id=2548, 586.8324pt x 442.2924pt>
 File: ../Graphics/scaling.png Graphic file (type png)
 
 <use ../Graphics/scaling.png>
@@ -1573,7 +1579,7 @@ type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public
 ve/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (174 pages, 8516534 bytes).
+Output written on jorgenh_thesis.pdf (174 pages, 8516614 bytes).
 PDF statistics:
  4000 PDF objects out of 4296 (max. 8388607)
  1610 named destinations out of 1728 (max. 500000)

@@ -1247,7 +1247,7 @@ In the case of having the exact wave function, i.e~$\ket{\Psi_T} = \ket{\Psi_0}$
 
 The variance is in other words an excellent measure of how close to the exact wave function the trial wave function is, hence the variance minimum is sometimes used to obtain optimal variational parameters discussed in Section \ref{sec:selectingOptVarPar}. 
 
-A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not generally true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g.~in beryllium simulations.
+A common misconception is that the numerical value of the variance can be used to compare properties of \textit{different} systems. For instance, if system $A$ has variance equal to half of system $B$'s, one could easily conclude that system $A$ has the best fitting trial wave function. However, this is not generally true. The variance has unit energy squared (in the case of local energies), and will thus scale with the magnitude of the energy. One can only safely use the variance as a direct measure locally in each specific system, e.g.~in simulations of the beryllium atom.
 
 Another misconception is that the variance is a direct numerical measure of the error. This can in no way be true given that the units mismatch. The \textit{standard deviation}, $\sigma$, is the square root of the variance, that is
 

@@ -60,13 +60,13 @@ The challenge is, despite the increase in the number of different combinations, 
 \subsection{Optimization Goals}
 \label{sec:optGoals}
 
-Modern computers have a vast amount of physical memory available, which makes runtime optimizations favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
+Modern computers have a vast amount of physical memory available, which makes run time optimizations favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
 
 \cfbox{3.6cm}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item Identical values should never be re-calculated. \label{it::opt::reCalc}
  \item Generalization should not be achieved through conditional if tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}). \label{it::opt::noIF}
- \item Linear scaling of runtime vs. the number of processors (CPUs) for large simulations. \label{it::opt::parScale}
+ \item Linear scaling of run time vs. the number of processors (CPUs) for large simulations. \label{it::opt::parScale}
  \vspace{0.2cm}
 \end{enumerate}
 }
@@ -685,7 +685,7 @@ Adding and subtracting the term missing from the sum to make it equal to the old
 which effectively reduces the calculation to two flops. For the case with $i=p$, the entire sum must be calculated as in Eq.~(\ref{eq:jastrowGradDJnew}). This process is demonstrated in the following code
 
 \vspace{0.25cm}
-\begin{lstlisting}[caption={The implementation of the Padé Jastrow gradient using the matrix from Eq.~(\ref{eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e. Eq.~(\ref{eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as in Eq.~(\ref{eq:jastrowGradDJnew}).}]
+\begin{lstlisting}[caption={The implementation of the Padé Jastrow gradient using the matrix from Eq.~(\ref{eq:jastrowDJ}). Lines 18-25 describe the case for gradients not equal to the moved particle, i.e.~Eq.~(\ref{eq:jastrowGradOptDJ}). Lines 5-18 describe the case for the gradient of the moved particle, where the full sum is calculated as in Eq.~(\ref{eq:jastrowGradDJnew}).}]
 void Pade_Jastrow::get_grad(const Walker* walker_pre, Walker* walker_post, int p) const {
     double sum;
 

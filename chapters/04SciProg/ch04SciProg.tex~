@@ -91,7 +91,7 @@ An important member of a class is the object itself. In Python, this intrinsic m
 
 \subsubsection{Constructors}
 
-The constructor is the class function responsible for initializing new objects. When requesting a new instance of a class, a constructor is called with specific input parameters. In Python, the constructor is called \verb+__init__()+, while in C++, the name of the constructor must match that of the class, e.g. \verb+someClass::someClass()+\footnote{The double colon notation means ``someClass' member someClass()''.}.
+The constructor is the class function responsible for initializing new objects. When requesting a new instance of a class, a constructor is called with specific input parameters. In Python, the constructor is called \verb+__init__()+, while in C++, the name of the constructor must match that of the class, e.g.~\verb+someClass::someClass()+\footnote{The double colon notation means ``someClass' member someClass()''.}.
 
 Creating a new object is simply done by calling the constructor
 
@@ -103,7 +103,7 @@ The constructor can then assign values to member variables based on the input pa
 
 \subsubsection{Destructors}
 
-Opposite to constructors, destructors are responsible for deleting an object. In Python this is automatically done by the \textit{garbage collector}, however, in C++ this is sometimes important in order to avoid memory leaks. The destructor is implemented as the function \verb+someClass::~someClass()+, and is invoked by typing e.g. \verb+delete someObject;+.
+Opposite to constructors, destructors are responsible for deleting an object. In Python this is automatically done by the \textit{garbage collector}, however, in C++ this is sometimes important in order to avoid memory leaks. The destructor is implemented as the function \verb+someClass::~someClass()+, and is invoked by typing e.g.~\verb+delete someObject;+.
 
 Reference \cite{inf1100} is suggested for further introduction to basic concepts of classes.  
 
@@ -111,7 +111,7 @@ Reference \cite{inf1100} is suggested for further introduction to basic concepts
 
 Consider the abstract idea of a keyboard: A board and keys (obviously). In object orientation terms, the keyboard \textit{superclass} describes a board with keys. It is \textit{abstract} in the sense that no specific information regarding the formation or functionality of the keys is needed in order to define the concept of a keyboard.
 
-On the other hand, there exist different specific kinds of keyboards, e.g. computer keyboards or musical keyboards. Although quite different in design and function, they both relate to the same concept of a keyboard described previously: They are both \textit{subclasses} of the same superclass, inheriting the basic concepts, but overloading the abstract parts with specific implementations. 
+On the other hand, there exist different specific kinds of keyboards, e.g.~computer keyboards or musical keyboards. Although quite different in design and function, they both relate to the same concept of a keyboard described previously: They are both \textit{subclasses} of the same superclass, inheriting the basic concepts, but overloading the abstract parts with specific implementations. 
 
 Consider the following Python implementation of a keyboard superclass:
 
@@ -138,7 +138,7 @@ It is clear from looking at the superclass that two keyboards are differentiated
 
 A pointer is a hexadecimal number representing a memory address where some \textit{type} of object is stored, for instance, an \verb+int+ at \verb+0x7fff0882306c+ (\verb+0x+ simply implies hexadecimal). Higher level languages like Python handles all the pointers and typesetting automatically. In low-level languages like C++, however, you need to control everything. This is commonly referred to as \textit{type safety}. 
 
-Memory addresses are \textit{global}, that is, they are shared throughout the program. This implies that changes done to a pointer to an object, e.g. \verb+Keyboard* myKeyboard+, are applied everywhere the object is in use. This is particularly handy (or dangerous) when passing a pointer as an argument to a function, as changes applied to the given object will cause the object to remain changed after exiting the function. Passing non-pointer arguments would only change a local copy of the object which is destroyed upon exiting the function. The alternative would be to pass the reference to the object, e.g. \verb+&myObject+, which passes the address just as in the case of pointers. 
+Memory addresses are \textit{global}, that is, they are shared throughout the program. This implies that changes done to a pointer to an object, e.g.~\verb+Keyboard* myKeyboard+, are applied everywhere the object is in use. This is particularly handy (or dangerous) when passing a pointer as an argument to a function, as changes applied to the given object will cause the object to remain changed after exiting the function. Passing non-pointer arguments would only change a local copy of the object which is destroyed upon exiting the function. The alternative would be to pass the reference to the object, e.g.~\verb+&myObject+, which passes the address just as in the case of pointers. 
 
 Creating a pointer to a keyboard object in C++ can be done in several ways. Following are three examples: 
 \begin{lstlisting}
@@ -262,9 +262,9 @@ double System::get_potential_energy(const Walker* walker) const {
 
 \subsection{Const Correctness}
 
-In the previous \verb+Potential+ code example, function declarations with the \verb+const+ flag were used. As mentioned in the section on pointers, passing pointers to functions are dangerous business. If an object is flagged with \verb+const+ on input, e.g. \verb+void f(const x)+, the function itself cannot alter the value of \verb+x+. If it does, the compiler will abort. This property is referred to as \textit{const correctness}, and serve as a safeguard guaranteeing that nothing will happen to \verb+x+ as it passes through \verb+f+. This is practical in situations where changes to an object are unwanted.
+In the previous \verb+Potential+ code example, function declarations with the \verb+const+ flag were used. As mentioned in the section on pointers, passing pointers to functions are dangerous business. If an object is flagged with \verb+const+ on input, e.g.~\verb+void f(const x)+, the function itself cannot alter the value of \verb+x+. If it does, the compiler will abort. This property is referred to as \textit{const correctness}, and serve as a safeguard guaranteeing that nothing will happen to \verb+x+ as it passes through \verb+f+. This is practical in situations where changes to an object are unwanted.
 
-If you declare a member function itself with \verb+const+ on the right hand side, e.g. \verb+void class::f(x) const+, no changes may be applied to class members inside this specific function. For instance, in the potential energy functions, all that is requested is to evaluate a function at a given set of coordinates; there is no need to change anything, hence the const correctness is applied to the function. 
+If you declare a member function itself with \verb+const+ on the right hand side, e.g.~\verb+void class::f(x) const+, no changes may be applied to class members inside this specific function. For instance, in the potential energy functions, all that is requested is to evaluate a function at a given set of coordinates; there is no need to change anything, hence the const correctness is applied to the function. 
 
 In other words: const correctness works as a safeguard preventing changes to values which should remain unchanged. A change in such a variable is then followed by a compiler error instead of unforeseen consequences.
 

@@ -60,13 +60,13 @@ The challenge is, despite the increase in the number of different combinations, 
 \subsection{Optimization Goals}
 \label{sec:optGoals}
 
-Modern computers have a vast amount of physical memory available, which makes runtime optimizations favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
+Modern computers have a vast amount of physical memory available, which makes run time optimizations favored over memory optimizations. The following list may appear short, but every step brings immense amounts of complexity to the implementation
 
 \cfbox{3.6cm}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
  \item Identical values should never be re-calculated. \label{it::opt::reCalc}
  \item Generalization should not be achieved through conditional if tests in repeated function calls, but rather through polymorphism (see Section \ref{sec:typeCastPoly}). \label{it::opt::noIF}
- \item Linear scaling of runtime vs. the number of processors (CPUs) for large simulations. \label{it::opt::parScale}
+ \item Linear scaling of run time vs. the number of processors (CPUs) for large simulations. \label{it::opt::parScale}
  \vspace{0.2cm}
 \end{enumerate}
 }
