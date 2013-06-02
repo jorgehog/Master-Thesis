@@ -8,9 +8,9 @@ In Table \ref{tab:res_valid_qdots}, validation runs for the three lowest lying c
 
 The double-well quantum dots results reproduce the non-interactive energies when the wells are placed far enough apart. This is demonstrated in Table \ref{tab:res_valid_qdots_doublewell}. A separation equal to $R = 20$ was sufficient. For molecules, on the other hand, the atomic nuclei interaction is very strong, implying the need of a greater separation of the atoms than what was needed for the wells. Table \ref{tab:res_valid_molecules} shows this effect; the convergence is nice for $\mathrm{H_2}$, however, for the heavier molecules, where the atomic nuclei interaction is higher, the convergence to the non-interacting limit is slower.
 
-DMC should in the case of an exact wave function be perfectly stable. The trial energy should equal the ground state energy through all time steps and zero fluctuations in the number of walkers should occur. This trend is shown for the Neon atom in figure \ref{fig:DMC_neon_nonint}.
+DMC should in the case of an exact wave function be perfectly stable. The trial energy should equal the ground state energy through all time steps and zero fluctuations in the number of walkers should occur. This trend is shown for the Neon atom in Figure \ref{fig:DMC_neon_nonint}.
 
-A final non-interacting case is run for DMC without the exact wave function. As discussed in Chapter \ref{ch:QMC}, DMC should result in a better estimate of the ground state energy than VMC in the case of a trial wave function which is different from the exact ground state. A test case is presented in figure \ref{fig:DMC_nonExactWF}.
+A final non-interacting case is run for DMC without the exact wave function. As discussed in Chapter \ref{ch:QMC}, DMC should result in a better estimate of the ground state energy than VMC in the case of a trial wave function which is different from the exact ground state. A test case is presented in Figure \ref{fig:DMC_nonExactWF}.
 
 \setlength{\tabcolsep}{0.3cm}
 \begin{table}[h]
@@ -113,7 +113,7 @@ A final non-interacting case is run for DMC without the exact wave function. As 
 \begin{figure}[h]
  \begin{center}
   \includegraphics[scale=0.5]{../Graphics/DMC_notExactWF.png}
-  \caption{Illustration of the Diffusion Monte-Carlo (DMC) energy convergence for a two-particle two-dimensional quantum dot with frequency $\omega=1$. The calculations are done with a variational parameter $\alpha=0.75$, where as the exact wave function is given for $\alpha=1$. Unlike the case with the exact wave function presented in figure \ref{fig:DMC_neon_nonint}, the trial energy oscillates around the exact value $E_0 = 2.0$. The final result reveals a DMC energy of $2.00000(2)$, where the original Variational Monte-Carlo (VMC) energy was $2.0042(3)$. This illustrates the power of DMC contra VMC in the interesting cases where the exact wave function is unknown. The calculation was done using $10000$ random walkers.}
+  \caption{Illustration of the Diffusion Monte-Carlo (DMC) energy convergence for a two-particle two-dimensional quantum dot with frequency $\omega=1$. The calculations are done with a variational parameter $\alpha=0.75$, where as the exact wave function is given for $\alpha=1$. Unlike the case with the exact wave function presented in Figure \ref{fig:DMC_neon_nonint}, the trial energy oscillates around the exact value $E_0 = 2.0$. The final result reveals a DMC energy of $2.00000(2)$, where the original Variational Monte-Carlo (VMC) energy was $2.0042(3)$. This illustrates the power of DMC contra VMC in the interesting cases where the exact wave function is unknown. The calculation was done using $10000$ random walkers.}
   \label{fig:DMC_nonExactWF}
  \end{center}
 \end{figure}

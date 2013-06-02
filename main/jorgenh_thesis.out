@@ -66,8 +66,8 @@
 \BOOKMARK [2][-]{subsection.4.2.3}{Generalization Goal \(viii\)}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{Optimizations due to a Single two-level Determinant}{chapter.4}
 \BOOKMARK [1][-]{section.4.4}{Optimizations due to Single-particle Moves}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.4.1}{Optimizing the Slater ratios}{section.4.4}
-\BOOKMARK [2][-]{subsection.4.4.2}{Optimizing the Inverse}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.1}{Optimizing the Slater determinant ratio}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.2}{Optimizing the inverse Slater matrix}{section.4.4}
 \BOOKMARK [2][-]{subsection.4.4.3}{Optimizing the Pad\351 Jastrow factor Ratio}{section.4.4}
 \BOOKMARK [1][-]{section.4.5}{Optimizing the Pad\351 Jastrow Derivative Ratios}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.5.1}{The Gradient}{section.4.5}
