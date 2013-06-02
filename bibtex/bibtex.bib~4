@@ -237,17 +237,6 @@
 	year = "2010"
 }
 
-@book{shavitt2009many,
-	author = "Shavitt, Isaiah and Bartlett, Rodney J.",
-	isbn = "9780521818322",
-	lccn = "2009517972",
-	publisher = "Cambridge University Press",
-	series = "{Cambridge molecular science series}",
-	title = "{Many-body methods in chemistry and physics: MBPT and coupled-cluster theory}",
-	url = "http://books.google.no/books?id=gU1eHAAACAAJ",
-	year = "2009"
-}
-
 @article{PhysRev.34.1293,
 	author = "Slater, John Clarke",
 	doi = "10.1103/PhysRev.34.1293",
@@ -819,7 +808,7 @@ jabref-meta: selector_keywords:
 	year = "1993"
 }
 
-@article{WignerCrystal,
+@article{WignerCrystalOrig,
 	author = "Wigner, E.",
 	doi = "10.1103/PhysRev.46.1002",
 	issue = "11",
@@ -982,5 +971,95 @@ jabref-meta: selector_keywords:
 	note = "In preparation",
 	title = "{In-medium similarity renormalization group approach studies of quantum dots}",
 	year = "2013"
+}
+
+@article{New1
+}
+
+@book{Helgaker,
+	added-at = "2010-02-21T22:43:51.000+0100",
+	author = "Helgaker, T. and J{\o}rgensen, P. and Olsen, J.",
+	interhash = "394f80c5d843c37ac1a540461a9f15c8",
+	intrahash = "6fba0b2fd775a00d2485053f6f0adf72",
+	keywords = "imported",
+	publisher = "Wiley, Chichester",
+	title = "{Molecular {E}lectronic-{S}tructure {T}heory}",
+	url = "http://www.bibsonomy.org/bibtex/26fba0b2fd775a00d2485053f6f0adf72/sknecht",
+	x-fetchedfrom = "Bibsonomy",
+	year = 2000
+}
+
+@article{WignerImpure,
+	author = "Reusch, B. and Egger, R.",
+	journal = "EPL",
+	pages = "84",
+	title = "{Impurity effects in few-electron quantum dots: Incipient Wigner molecule regime}",
+	url = "http://stacks.iop.org/0295-5075/64/i=1/a=084",
+	volume = "\textbf{64}",
+	year = "2003"
+}
+
+@article{Wigner2DQD,
+	author = "Akman, N. and Tomak, M.",
+	doi = "10.1016/S1386-9477(99)00019-3",
+	issn = "1386-9477",
+	journal = "Physica E: Low-dimensional Systems and Nanostructures",
+	keywords = "Quantum dot; Wigner molecule; Low-dimensional systems",
+	pages = "277",
+	title = "{The Wigner molecule in a 2D quantum dot}",
+	url = "http://www.sciencedirect.com/science/article/pii/S1386947799000193",
+	volume = "\textbf{4}",
+	year = "1999"
+}
+
+@article{WignerFloating,
+	author = "Mikhailova, S.A. and Ziegler, K.",
+	journal = "Eur. Phys. J. B",
+	pages = "117",
+	title = "{Floating Wigner molecules and possible phase transitions
+in quantum dots}",
+	volume = "\textbf{28}",
+	year = "2002"
+}
+
+@article{WignerClassic,
+	author = "Bolton, F. and R{\"o}ssler, U.",
+	doi = "10.1006/spmi.1993.1026",
+	issn = "0749-6036",
+	journal = "Superlattices and Microstructures",
+	pages = "139",
+	title = "{Classical model of a Wigner crystal in a quantum dot}",
+	url = "http://www.sciencedirect.com/science/article/pii/S0749603683710268",
+	volume = "\textbf{13}",
+	year = "1993"
+}
+
+@article{WignerPathTo,
+	author = "Zeng, Lang and Geist, W. and Ruan, W. Y. and Umrigar, C. J. and Chou, M. Y.",
+	doi = "10.1103/PhysRevB.79.235334",
+	issue = "23",
+	journal = "Phys. Rev. B",
+	month = "Jun",
+	numpages = "5",
+	pages = "235334",
+	publisher = "American Physical Society",
+	title = "{Path to Wigner localization in circular quantum dots}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevB.79.235334",
+	volume = "\textbf{79}",
+	year = "2009"
+}
+
+@article{WignerSymmetryBreak,
+	author = "Yannouleas, Constantine and Landman, Uzi",
+	doi = "10.1002/pssa.200566197",
+	issn = "1862-6319",
+	journal = "phys. stat. sol. (a) ",
+	keywords = "03.67.Mn; 73.21.La; 73.22.Gk; 73.43.--f; 73.63.Kv",
+	pages = "1160",
+	publisher = "WILEY-VCH Verlag",
+	title = "{Symmetry breaking and Wigner molecules in few-electron quantum dots}",
+	url = "http://dx.doi.org/10.1002/pssa.200566197",
+	volume = "\textbf{203}",
+	year = "2006"
 }
 

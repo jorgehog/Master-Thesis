@@ -1053,14 +1053,41 @@ in quantum dots}",
 	author = "Yannouleas, Constantine and Landman, Uzi",
 	doi = "10.1002/pssa.200566197",
 	issn = "1862-6319",
-	journal = "physica status solidi (a)",
+	journal = "phys. stat. sol. (a) ",
 	keywords = "03.67.Mn; 73.21.La; 73.22.Gk; 73.43.--f; 73.63.Kv",
-	number = "6",
-	pages = "1160--1171",
+	pages = "1160",
 	publisher = "WILEY-VCH Verlag",
 	title = "{Symmetry breaking and Wigner molecules in few-electron quantum dots}",
 	url = "http://dx.doi.org/10.1002/pssa.200566197",
-	volume = "203",
+	volume = "\textbf{203}",
 	year = "2006"
+}
+
+@article{WignerExptHelium,
+	author = "Grimes, C. C. and Adams, G.",
+	doi = "10.1103/PhysRevLett.42.795",
+	issue = "12",
+	journal = "Phys. Rev. Lett.",
+	month = "Mar",
+	pages = "795",
+	publisher = "American Physical Society",
+	title = "{Evidence for a Liquid-to-Crystal Phase Transition in a Classical, Two-Dimensional Sheet of Electrons}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevLett.42.795",
+	volume = "\textbf{42}",
+	year = "1979"
+}
+
+@article{WignerExptSemicond,
+	author = "Yoon, Jongsoo and Li, C. C. and Shahar, D. and Tsui, D. C. and Shayegan, M.",
+	doi = "10.1103/PhysRevLett.82.1744",
+	issue = "8",
+	journal = "Phys. Rev. Lett.",
+	month = "Feb",
+	pages = "1744",
+	publisher = "American Physical Society",
+	title = "{Wigner Crystallization and Metal-Insulator Transition of Two-Dimensional Holes in GaAs at $\mathit{B}\phantom{\rule{0ex}{0ex}}=\phantom{\rule{0ex}{0ex}}0$}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevLett.82.1744",
+	volume = "\textbf{82}",
+	year = "1999"
 }
 

@@ -17,7 +17,7 @@ Warning--empty journal in CCSD_WF
 Warning--empty year in CCSD_WF
 You've used 66 entries,
             1791 wiz_defined-function locations,
-            844 strings with 12800 characters,
+            844 strings with 12750 characters,
 and the built_in function-call counts, 11652 in all, are:
 = -- 992
 > -- 512

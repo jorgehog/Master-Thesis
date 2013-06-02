@@ -663,7 +663,7 @@ jabref-meta: selector_keywords:
 
 @online{PySide,
 	month = may,
-	note = "\\http://qt-project.org/wiki/Category:LanguageBindings::PySide",
+	note = "\\qt-project.org/wiki/Category:LanguageBindings::PySide",
 	title = "{PySide website}",
 	url = "http://qt-project.org/wiki/Category:LanguageBindings::PySide",
 	year = "2013"
@@ -1003,7 +1003,7 @@ jabref-meta: selector_keywords:
 	author = "Akman, N. and Tomak, M.",
 	doi = "10.1016/S1386-9477(99)00019-3",
 	issn = "1386-9477",
-	journal = "Physica E: Low-dimensional Systems and Nanostructures",
+	journal = "physica e.",
 	keywords = "Quantum dot; Wigner molecule; Low-dimensional systems",
 	pages = "277",
 	title = "{The Wigner molecule in a 2D quantum dot}",
@@ -1089,5 +1089,15 @@ in quantum dots}",
 	url = "http://link.aps.org/doi/10.1103/PhysRevLett.82.1744",
 	volume = "\textbf{82}",
 	year = "1999"
+}
+
+@article{WignerTransport,
+	author = "Cavaliere, F and Giovannini, U De and Sassetti, M and Kramer, B",
+	journal = "New J. Phys. ",
+	pages = "123004",
+	title = "{Transport properties of quantum dots in the Wigner molecule regime}",
+	url = "http://stacks.iop.org/1367-2630/11/i=12/a=123004",
+	volume = "\textbf{11}",
+	year = "2009"
 }
 

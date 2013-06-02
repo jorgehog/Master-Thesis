@@ -285,8 +285,7 @@ S.A. Mikhailova and K.~Ziegler.
 \bibitem{Wigner2DQD}
 N.~Akman and M.~Tomak.
 \newblock {The Wigner molecule in a 2D quantum dot}.
-\newblock {\em Physica E: Low-dimensional Systems and Nanostructures},
-  \textbf{4}:277, 1999.
+\newblock {\em physica e.}, \textbf{4}:277, 1999.
 
 \bibitem{WignerExptHelium}
 C.~C. Grimes and G.~Adams.
@@ -350,7 +349,7 @@ A.~Roggero, F.~Pederiva, and A.~Mukherjee.
 
 \bibitem{Pyside}
 {PySide website}, May 2013.
-\newblock \\http://qt-project.org/wiki/Category:LanguageBindings::PySide.
+\newblock \\qt-project.org/wiki/Category:LanguageBindings::PySide.
 
 \bibitem{SymPy}
 {SymPy website}, May 2013.

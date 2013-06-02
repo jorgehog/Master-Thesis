@@ -1063,3 +1063,41 @@ in quantum dots}",
 	year = "2006"
 }
 
+@article{WignerExptHelium,
+	author = "Grimes, C. C. and Adams, G.",
+	doi = "10.1103/PhysRevLett.42.795",
+	issue = "12",
+	journal = "Phys. Rev. Lett.",
+	month = "Mar",
+	pages = "795",
+	publisher = "American Physical Society",
+	title = "{Evidence for a Liquid-to-Crystal Phase Transition in a Classical, Two-Dimensional Sheet of Electrons}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevLett.42.795",
+	volume = "\textbf{42}",
+	year = "1979"
+}
+
+@article{WignerExptSemicond,
+	author = "Yoon, Jongsoo and Li, C. C. and Shahar, D. and Tsui, D. C. and Shayegan, M.",
+	doi = "10.1103/PhysRevLett.82.1744",
+	issue = "8",
+	journal = "Phys. Rev. Lett.",
+	month = "Feb",
+	pages = "1744",
+	publisher = "American Physical Society",
+	title = "{Wigner Crystallization and Metal-Insulator Transition of Two-Dimensional Holes in GaAs at $\mathit{B}\phantom{\rule{0ex}{0ex}}=\phantom{\rule{0ex}{0ex}}0$}",
+	url = "http://link.aps.org/doi/10.1103/PhysRevLett.82.1744",
+	volume = "\textbf{82}",
+	year = "1999"
+}
+
+@article{WignerTransport,
+	author = "Cavaliere, F and Giovannini, U De and Sassetti, M and Kramer, B",
+	journal = "New J. Phys. ",
+	pages = "123004",
+	title = "{Transport properties of quantum dots in the Wigner molecule regime}",
+	url = "http://stacks.iop.org/1367-2630/11/i=12/a=123004",
+	volume = "\textbf{11}",
+	year = "2009"
+}
+
