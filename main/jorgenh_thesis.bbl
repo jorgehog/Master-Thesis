@@ -322,6 +322,12 @@ Adri C.~T. van Duin, Siddharth Dasgupta, Francois Lorant, and William~A.
 \newblock {ReaxFF: A Reactive Force Field for Hydrocarbons}.
 \newblock {\em J. Phys. Chem. A}, \textbf{105}:9396, 2001.
 
+\bibitem{armadillo}
+Conrad Sanderson.
+\newblock {Armadillo: An Open Source C++ Linear Algebra Library for Fast
+  Prototyping and Computationally Intensive Experiments}.
+\newblock Technical report, NICTA, 2010.
+
 \bibitem{vmcAtoms}
 H{\aa}vard Sandsdalen.
 \newblock {Variational Monte Carlo studies of Atoms}.

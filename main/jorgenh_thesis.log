@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 22:08
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.21)  2 JUN 2013 22:14
 entering extended mode
  %&-line parsing enabled.
 **jorgenh_thesis.tex
@@ -1454,7 +1454,7 @@ Appendix B.
 Underfull \vbox (badness 7685) has occurred while \output is active []
 
  [137]
-[138] [139] <../Graphics/gui.png, id=3137, 231.86626pt x 282.30469pt>
+[138] [139] <../Graphics/gui.png, id=3139, 231.86626pt x 282.30469pt>
 File: ../Graphics/gui.png Graphic file (type png)
 
 <use ../Graphics/gui.png> [140]) [141 <../Graphics/gui.png>] [142
@@ -1532,16 +1532,16 @@ Underfull \hbox (badness 2065) in paragraph at lines 199--203
  []
 
 [173]
-Overfull \hbox (2.54524pt too wide) in paragraph at lines 346--348
+Overfull \hbox (2.54524pt too wide) in paragraph at lines 352--354
 \OT1/cmr/m/n/10 http://qt-project.org/wiki/Category:LanguageBindings::PySide. 
  []
 
 ) [174] (./jorgenh_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12989 strings out of 493848
- 194013 string characters out of 1152823
- 547679 words of memory out of 3000000
- 14236 multiletter control sequences out of 15000+50000
+ 12991 strings out of 493848
+ 194038 string characters out of 1152823
+ 547711 words of memory out of 3000000
+ 14237 multiletter control sequences out of 15000+50000
  18505 words of font info for 74 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  44i,18n,58p,1246b,1919s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1570,9 +1570,9 @@ type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public
 ve/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/doublestroke/dsrom10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on jorgenh_thesis.pdf (174 pages, 8517382 bytes).
+Output written on jorgenh_thesis.pdf (174 pages, 8518017 bytes).
 PDF statistics:
- 4000 PDF objects out of 4296 (max. 8388607)
- 1610 named destinations out of 1728 (max. 500000)
+ 4002 PDF objects out of 4296 (max. 8388607)
+ 1611 named destinations out of 1728 (max. 500000)
  1410 words of extra memory for PDF output out of 10000 (max. 10000000)
 

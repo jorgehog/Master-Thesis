@@ -15,36 +15,36 @@ Warning--empty note in morten
 Warning--empty journal in doubleWellExpt
 Warning--empty journal in CCSD_WF
 Warning--empty year in CCSD_WF
-You've used 65 entries,
+You've used 66 entries,
             1791 wiz_defined-function locations,
-            840 strings with 12652 characters,
-and the built_in function-call counts, 11531 in all, are:
-= -- 980
-> -- 508
+            844 strings with 12800 characters,
+and the built_in function-call counts, 11652 in all, are:
+= -- 992
+> -- 512
 < -- 4
-+ -- 201
-- -- 136
-* -- 627
-:= -- 1941
-add.period$ -- 192
-call.type$ -- 65
-change.case$ -- 53
++ -- 203
+- -- 137
+* -- 629
+:= -- 1966
+add.period$ -- 195
+call.type$ -- 66
+change.case$ -- 55
 chr.to.int$ -- 0
-cite$ -- 72
-duplicate$ -- 579
-empty$ -- 1171
-format.name$ -- 136
-if$ -- 2565
+cite$ -- 73
+duplicate$ -- 585
+empty$ -- 1183
+format.name$ -- 137
+if$ -- 2591
 int.to.chr$ -- 0
-int.to.str$ -- 65
+int.to.str$ -- 66
 missing$ -- 67
-newline$ -- 325
-num.names$ -- 62
-pop$ -- 202
+newline$ -- 330
+num.names$ -- 63
+pop$ -- 204
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 223
+skip$ -- 224
 stack$ -- 0
 substring$ -- 404
 swap$ -- 86
@@ -53,7 +53,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 7
-while$ -- 96
-width$ -- 67
-write$ -- 692
+while$ -- 97
+width$ -- 68
+write$ -- 703
 (There were 10 warnings)
