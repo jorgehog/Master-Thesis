@@ -5,7 +5,7 @@ The optimization results listed in this section are estimated using a 30-particl
 
 Profiling the code revealed that $\sim99\%$ of the run time was spent diffusing the particles, that is, spent in the function \verb+QMC::diffuse_walker+. Variational Monte-Carlo (VMC), Diffusion Monte-Carlo (DMC), and Adaptive Stochastic Gradient Descent (ASGD) all rely heavily on the diffusion of particles, hence the parts of the code which do not involve diffusion walkers were neglected in the optimization process; it is a waste of time to optimize something which accounts for less than one percent of the run time.  
 
-The profiling tool of choice was \textit{KCacheGrind}, which is available at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks whose sizes are proportional to the time spent inside the functions, much like standard hard drive listing software does with files and file sizes.
+The profiling tool of choice was \textit{KCacheGrind}, which is available for free at the Ubuntu Software Center. KCacheGrind lists relative time spent in functions graphically in blocks whose sizes are proportional to the time spent inside the functions, much like standard hard drive listing software does with files and file sizes.
 
 Optimizations discussed in Chapter \ref{ch:optAndGen} which are not mentioned in the following sections were considered standard implementations, and were thus implemented prior to the optimization process.
 

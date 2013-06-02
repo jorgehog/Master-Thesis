@@ -1,6 +1,6 @@
 \section{Homonuclear Diatomic Molecules}
 
-The focus regarding homonuclear diatomic molecules, from here on referred to as molecules, has been similar to the focus on atoms, with the exception of parameterizing atomic forces which can be applied in molecular dynamics simulations. The implementation of molecular systems were achieved by adding ~200 lines of code. This fact by itself represents a successful result regarding the code structure. As for atoms, the optimal calculations are referred to as experimental results. For details regarding the transformation from atomic - to molecular systems, see Section \ref{sec:homoMolecules}.
+The focus regarding homonuclear diatomic molecules, from here on referred to as molecules, has been similar to the focus on atoms, with the exception of parameterizing atomic force fields which can be applied in molecular dynamics simulations. The implementation of molecular systems was achieved by adding $\sim 200$ lines of code. This fact by itself represents a successful result regarding the code structure. As for atoms, the optimal calculations are referred to as experimental results. Details regarding the transformation from atomic to molecular systems are given in Section \ref{sec:homoMolecules}.
 
 \subsection{Ground State Energies}
  
@@ -25,14 +25,14 @@ $\mathrm{N_2}$ & 2.068 & &\qquad & -102.78(1)    & \qquad   & -106.05(2)   & \qq
 $\mathrm{O_2}$ & 2.282 & &\qquad & -143.97(2)    & \qquad   & -148.53(2)   & \qquad $-150.3268$    & \qquad $1.2\cdot 10^{-2}$  \\
 \ \\
 \end{tabular}
-\caption{Ground state energies for homonuclear diatomic molecules calculated using VMC and DMC. The distance between the atoms $R$ are taken from Ref. \cite{H_He_exact} for $\mathrm{H_2}$ and from Ref. \cite{UmrigarMolecules} for $\mathrm{Li_2}$ to $\mathrm{O_2}$. The experimental energies, that is, the best possible results available, are taken from Ref. \cite{H_He_exact} for $\mathrm{H_2}$ and from Ref. \cite{ExactMolecules} for $\mathrm{Li_2}$ to $\mathrm{O_2}$. As expected DMC is closer to the experimental energy than VMC. The relative error $\epsilon_\mathrm{rel} = |E_\mathrm{DMC} - \mathrm{Expt.}|/|\mathrm{Expt.}|$ is as expected lowest in the case of $\mathrm{H_2}$. As expected, this error increases with atomic number.}
+\caption{Ground state energies for homonuclear diatomic molecules calculated using VMC and DMC. The distance between the atoms $R$ are taken from Ref. \cite{H_He_exact} for $\mathrm{H_2}$ and from Ref. \cite{UmrigarMolecules} for $\mathrm{Li_2}$ to $\mathrm{O_2}$. The experimental energies, that is, the best possible results available, are taken from Ref. \cite{H_He_exact} for $\mathrm{H_2}$ and from Ref. \cite{ExactMolecules} for $\mathrm{Li_2}$ to $\mathrm{O_2}$. As expected DMC is closer to the experimental energy than VMC. Moreover, the relative error $\epsilon_\mathrm{rel} = |E_\mathrm{DMC} - \mathrm{Expt.}|/|\mathrm{Expt.}|$ is as expected lowest in the case of $\mathrm{H_2}$, and increases with atomic number.}
 \label{tab:MoleculesRes}
 \end{center}
 \end{table}
 
-Table \ref{tab:MoleculesRes} lists the VMC and DMC results with the corresponding experimental energies for $\mathrm{H_2}$ through $\mathrm{O_2}$. As expected, the two-particle result is very close to the experimental value with the same precision as the result for the helium atom in Table \ref{tab:AtomsRes}. The relative error from the experimental energy increases with atomic number, and is far higher than the errors in the case of pure atoms. This is a result of the trial wave function being worse due to the fact that it does not account for the atomic nuclei interaction term in the molecular Hamiltonian. Nevertheless, taking the simple nature of the trial wave function into consideration, the calculated energies are satisfyingly close to the experimental ones. 
+Table \ref{tab:MoleculesRes} lists the VMC and DMC results with the corresponding experimental energies for $\mathrm{H_2}$ through $\mathrm{O_2}$. As expected, the two-particle result is very close to the experimental value with the same precision as the result for the helium atom in Table \ref{tab:AtomsRes}. The relative error from the experimental energy increases with atomic number, and is far higher than the errors in the case of pure atoms. This comes as a result of the trial wave function being less optimal due to the fact that it does not account for the atomic nuclei interaction term in the molecular Hamiltonian. Nevertheless, taking the simple nature of the trial wave function into consideration, the calculated energies are satisfyingly close to the experimental ones. 
 
-As with atoms, these energies were calculated on a single node, resulting in a rather big statistical error in DMC. Doing the calculations on a supercomputer with an increase in the number of walkers could decrease this error.
+As with atoms, the energies were calculated on a single node, resulting in a rather big statistical error in DMC. Doing the calculations on a supercomputer with an increase in the number of walkers should decrease the errors.
 
 \subsection{One-body densities}
 
@@ -48,25 +48,23 @@ Figure \ref{fig:OBD_Molecules} presents the one-body densities of $\mathrm{Li_2}
    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_MOL/Be2_2D.png}}  \\
    \subfigure{\includegraphics[scale=0.4]{../Graphics/OBD/OBD_MOL/O2_3D.png}} 
    \subfigure{\includegraphics[scale=0.3]{../Graphics/OBD/OBD_MOL/O2_2D.png}}
-  \caption{One-body densities of $\mathrm{Li_2}$ (top), $\mathrm{Be_2}$ (middle) and $\mathrm{O_2}$ (bottom). The figures to the left are spherical densities sliced through the middle to reveal the core structure. The figures to the right are radial one-body densities projected on the nucleus-nucleus axis. Red and blue color indicate a high and low electron density, respectively. The right-hand figures are symmetric around the origin.}
+  \caption{One-body densities of $\mathrm{Li_2}$ (top), $\mathrm{Be_2}$ (middle) and $\mathrm{O_2}$ (bottom). The figures to the left are spherical densities sliced through the middle to better reveal the core structure. The figures to the right are radial one-body densities projected on the nucleus-nucleus axis. Red and blue color indicate a high and low electron density, respectively. The right-hand figures are symmetric around the origin.}
   \label{fig:OBD_Molecules}
  \end{center}
 \end{figure}
 \renewcommand\floatpagefraction{.7}
 
 \clearpage
-\subsection{Parameterizing Forces}
+\subsection{Parameterizing Force Fields}
 
 \begin{figure}
  \begin{center}
   \subfigure[$\mathrm{H_2}$]{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_hyd_pure.png}}
   \subfigure[$\mathrm{Li_2}$]{\includegraphics[scale=0.37]{../Graphics/R_VS_E/R_vs_E_lit_pure.png}} 
-%   \subfigure{\includegraphics[scale=0.3]{../Graphics/R_VS_E/LD.png}}\\
-  \caption{Top figures: The distance between the atoms $R$ vs. the potential and total energy calculated using QMC. To the left: $\mathrm{H_2}$. To the right: $\mathrm{Li_2}$. It is evident that there exists a well-defined minima in the energy in the case of hydrogen. For lithium this is not the case, which is expected since lithium does not appear naturally in a diatomic gas phase, but rather as an ionic compound in other molecules \cite{UniversityPhysics}. Bottom figure: The general shape of the Lennard-Jones potential commonly used in molecular dynamics simulations as an approximation to the potential between atoms. The top figures clearly resemble the Lennard-Jones potential, leading to the conclusion that QMC calculations can be used to parameterize a more realistic potential.}
+  \caption{Top figures: The distance between the atoms $R$ vs. the potential and total energy calculated using QMC. To the left: $\mathrm{H_2}$. To the right: $\mathrm{Li_2}$. It is evident that there exists a well-defined energy minimum in the case of hydrogen. For lithium this is not the case, which is expected since lithium does not appear naturally in a diatomic gas phase, but rather as an ionic compound in other molecules \cite{UniversityPhysics}. Bottom figure: The general shape of the Lennard-Jones potential commonly used in molecular dynamics simulations as an approximation to the potential between atoms. The top figures clearly resemble the Lennard-Jones 12-6 potential, leading to the conclusion that QMC calculations can be used to parameterize a more realistic potential.}
   \label{fig:molecules_R_vs_E}
-%   \vspace{0.25cm}
   \setcounter{subfigure}{2}
-  \subfigure[The Lennard-Jones 12-6 potential.]{\includegraphics[scale=0.5]{../Graphics/R_VS_E/LD.png}}
+  \subfigure[The Lennard-Jones 12-6 potential with $\sigma=\epsilon=1$.]{\includegraphics[scale=0.5]{../Graphics/R_VS_E/LD.png}}
   \label{fig:LennardJones}
  \end{center}
 \end{figure}
@@ -85,6 +83,6 @@ However, the force field can be parameterized in greater detail using QMC calcul
  F_\mathrm{MD} = \frac{\mathrm{d}\langle E \rangle}{\mathrm{d}R}.
 \end{equation}
 
-Expressions for this derivative can be obtained in ab-initio methods by using the Hellmann-Feynman theorem \cite{forcesQMC}. However, the derivative can be approximated by the slope of the energy in Figure \ref{fig:molecules_R_vs_E}. The figure shows that there are clear similarities between the widely used Lennard-Jones 12-6 potential and the results of QMC calculations done in this thesis, leading to the conclusion that the current state of the code can in fact produce approximations to atomic forces for use in molecular dynamics.
+Expressions for this derivative can be obtained in ab-initio methods by using the Hellmann-Feynman theorem \cite{forcesQMC}. However, the derivative can be approximated by the slope of the energy in Figure \ref{fig:molecules_R_vs_E}. The figure shows that there are clear similarities between the widely used Lennard-Jones 12-6 potential and the results of QMC calculations done in this thesis, leading to the conclusion that the current state of the code can in fact produce approximations to atomic force fields for use in molecular dynamics.
 
 For more complicated molecules, modelling the force using a single parameter $R$ does not serve as a good approximation. However, the force can be found as a function of several angles, radii, etc., which in turn can be used to parameterize a more complicated molecular dynamics potential. An example of such a potential is the \textit{ReaxFF} potential for hydrocarbons \cite{ReaxFF}.

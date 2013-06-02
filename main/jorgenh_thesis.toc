@@ -128,7 +128,7 @@
 \contentsline {section}{\numberline {6.5}Homonuclear Diatomic Molecules}{125}{section.6.5}
 \contentsline {subsection}{\numberline {6.5.1}Ground State Energies}{125}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}One-body densities}{126}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Parameterizing Forces}{127}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.3}Parameterizing Force Fields}{127}{subsection.6.5.3}
 \contentsline {chapter}{\numberline {7}Conclusions}{129}{chapter.7}
 \contentsline {subsubsection}{Prospects and future work}{130}{chapter.7}
 \contentsline {chapter}{\numberline {A}Dirac Notation}{133}{appendix.A}

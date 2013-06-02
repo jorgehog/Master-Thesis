@@ -783,7 +783,7 @@ Looking at the harmonic oscillator - and the hydrogen-like wave functions listed
 
 The hydrogen eigenstates have a dependence on the principal quantum number $n$ in the exponential, however, several expressions share this exponential factor. Calculating for example the $n=2$ exponentials beforehand saves $19$ exponential calls per particle every cycle, resulting in a dramatic speedup nevertheless.
 
-The implementation is very simple; upon moving a particle, the virtual function \verb+Orbitals::set_qnum_indie_terms+ is called, which updates the value of the \verb+exp_factor+  pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class. The following code snippet presents implementations of the function in case of the harmonic oscillator - and the hydrogen-like basis
+The implementation is very simple; the virtual function \verb+Orbitals::set_qnum_indie_terms+ is called whenever a particle is moved, which updates the value of the \verb+exp_factor+  pointer shared by all the loaded \verb+BasisFunctions+ objects and the \verb+Orbitals+ class. The following code snippet presents implementations of the function in case of the harmonic oscillator - and the hydrogen-like basis
 
 
 \vspace{0.5cm}
