@@ -302,7 +302,7 @@ Inserting everything back into Eq.~(\ref{eq:impSamplRaw}) yields
 
 which is the Fokker-Planck diffusion equation from Eq.~(\ref{Eq:fokkerPlanck}) with a constant shift representing the branching Green's function in the case Fokker-Planck diffusion.
 
-Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained in QMC by switching distributions into one which exploits known information about the problem at hand. In the case of standard Monte-Carlo integration, the sampling distribution is substituted with one which are similar to the original integrand, resulting in a smoother sampled function, where as in QMC, a distribution is constructed with the sole purpose of imitating the exact ground state in order to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{importance sampled} QMC.
+Just as in traditional importance sampled Monte-Carlo integrals, optimized sampling is obtained in QMC by switching distributions into one which exploits known information about the problem at hand. In the case of standard Monte-Carlo integration, the sampling distribution is substituted with one which are similar to the original integrand, resulting in a smoother sampled function, whereas in QMC, a distribution is constructed with the sole purpose of imitating the exact ground state in order to suggest moves more efficiently. It is therefore reasonable to call the use of Fokker-Planck diffusion \textit{importance sampled} QMC.
 
 The energy estimated using the new distribution $f(\mbf{r}, t)$ will still equal the exact energy in the limit of convergence. This is demonstrated in the following equations:
 
