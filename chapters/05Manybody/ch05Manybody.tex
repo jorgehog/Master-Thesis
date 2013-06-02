@@ -5,7 +5,7 @@ Quantum Monte-Carlo (QMC) is a method for solving Schrödinger's equation using 
 
 There are multiple strategies which can be used in order to deduce the virtual\footnote{As will be shown, the time parameter in QMC does not correspond to physical time, but rather an imaginary axis at a fixed point in time. Whether nature operates on a complex time plane or not is not testable in a laboratory, and the origin of the probabilistic nature of Quantum Mechanics will thus remain a philosophical problem.} dynamics of QMC, some of which are more mathematically complex than others. In this chapter the focus will be on modelling the Schrödinger equation as a diffusion problem in complex (Wick rotated) time. Other more condensed mathematical approaches does not need the Schrödinger equation at all, however, for the purpose of completeness, this approach will be mentioned only briefly in Section \ref{sec:ConnectAnisIs}.
 
-In this chapter, \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e. $\hbar = m_e = e = 4\pi\epsilon_0 = 1$, where $m_e$ and $\epsilon_0$ are the electron mass and the vacuum permittivity respectively.
+In this chapter, \textit{Dirac Notation} will be used. See Appendix \ref{app:Dirac} for an introduction. The equations will be in atomic units, i.e. $\hbar = m_e = e = 4\pi\epsilon_0 = 1$, where $m_e$ and $\epsilon_0$ are the electron mass and the vacuum permittivity, respectively.
 
 \section{Modelling Diffusion}
 
@@ -126,7 +126,7 @@ where $B$ denotes \textit{branching}. The reasons for this name together with th
 
 The flow of QMC is then to use these Green's functions to propagate the ensemble of walkers into the next time-step. The final distribution of walkers will correspond to that of the direct solution of the Schrödinger equation, given that the time-step is sufficiently small, and the number of cycles $n$ are sufficiently large. These constraints will be covered in more detail later. 
 
-Incorporating only the effect of Eq.~(\ref{eq:GDiff}) results in a method called \textit{Variational Monte-Carlo} (VMC). Including the branching term as well results in \textit{Diffusion Monte-Carlo} (DMC). These methods will be discussed in Sections \ref{sec:VMC} and \ref{sec:DMC} respectively. In either of these methods, diffusion is a key process.
+Incorporating only the effect of Eq.~(\ref{eq:GDiff}) results in a method called \textit{Variational Monte-Carlo} (VMC). Including the branching term as well results in \textit{Diffusion Monte-Carlo} (DMC). These methods will be discussed in Sections \ref{sec:VMC} and \ref{sec:DMC}, respectively. In either of these methods, diffusion is a key process.
 
 \section{Solving the Diffusion Problem}
 \label{sec:solvingDiff}
@@ -373,7 +373,7 @@ Inserting the probability distribution as the wave function squared and the sele
   \frac{A(j\,\rightarrow\,i)}{A(i\,\rightarrow\,j)} &=& \frac{G(i\,\rightarrow j)}{G(j\,\rightarrow i)}\frac{|\psi_i|^2}{|\psi_j|^2} \equiv R_G(j\,\rightarrow\,i)R_\psi(j\,\rightarrow\,i)^2,
 \end{eqnarray}
 
-where the defined ratios correspond to the Green's function - and wave function ratio respectively. 
+where the defined ratios correspond to the Green's function - and wave function ratio, respectively. 
 
 Assume now that configuration $i$ has a higher overall probability than configuration $j$. The essence of the Metropolis algorithm is that the step is automatically accepted, that is, $A(i\,\rightarrow\,j) = 1$. In other words, a more efficient thermalization is obtained by accepting all these moves. What saves Metropolis from breaking the criteria of ergodicity, is the fact that suggested moves to lower probability states are not automatically rejected. This is demonstrated by solving Eq.~(\ref{eq:metro2}) for the case where $A(i\,\rightarrow\,j) = 1$, that is, the case where $P_i < P_j$. This yields
 
@@ -545,7 +545,7 @@ The Hamiltonian of an $N$-particle system is
  \OP{H} = \OP{H}_0 + \OP{H}_\mathrm{I},
 \end{equation}
 
-where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are respectively the one-body - and the many-body Hamiltonian. As mentioned in the introduction, the many-body interactions are truncated at the level of the two-body Coulomb interaction. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic term $\OP{t}(\mathbf{r}_i)$ for all particles. In order words, the two Hamiltonians are written
+where $\OP{H}_0$ and $\OP{H}_\mathrm{I}$ are the one-body - and the many-body Hamiltonian, respectively. As mentioned in the introduction, the many-body interactions are truncated at the level of the two-body Coulomb interaction. The one-body term consist of the external potential $\OP{u}_\mathrm{ext}(\mathbf{r}_i)$ and the kinetic term $\OP{t}(\mathbf{r}_i)$ for all particles. In order words, the two Hamiltonians are written
 
 \begin{eqnarray}
  \OP{H}_0 &=& \sum_{i=1}^N \OP{h}_0(\mathbf{r}_i) \\
@@ -644,7 +644,7 @@ For systems where the correlations are relatively well behaved, it is custom to 
  f(r_{ij}; \beta) = \exp\left(\frac{a_{ij} r_{ij}}{1 + \beta r_{ij}}\right),
 \end{equation}
 
-where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems in this thesis.
+where $\beta$ is a variational parameter, and $a_{k=1} \equiv a_{ij}$ is a constant depending on the relative spin-orientation of particles $i$ and $j$ tuned in such a way that the cusp conditions are obeyed. For three dimensions, $a_{ij} = 1/4$ or $a_{ij} = 1/2$ depending on whether or not the spins of $i$ and $j$ are parallell or anti parallell, respectively\cite{abInitioMC}. For two dimensions, the values are $a_{ij}=1/3$ (parallell) or $a_{ij}=1$ (anti-parallel)\cite{larseivind}. This is the correlation function used for all systems in this thesis.
 
 Shifting the focus back to the spatial wave function, in the case of a fermionic system, the evaluation of an $N\times N$ Slater determinant severely limits the efficiency of many-particle simulations. However, assuming the Hamiltonian to be spin-independent, the eigenstates for different spin eigenvalues will be identical. This fact results in the spatial wave function being split in two: One part for each spin eigenvalue. A detailed derivation of this is given in the appendix of Ref. \cite{QMCPHD2008}. The resulting wave function thus becomes
 

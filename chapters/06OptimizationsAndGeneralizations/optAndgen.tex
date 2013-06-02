@@ -34,7 +34,7 @@ The implementation should be general for:
 
 \cfbox{3.17cm-1pt}{
 \begin{enumerate}[label=\textbf{(\roman{*})}, ref=(\roman{*}), align=left]
- \item Fermions and Bosons. \label{it::gen::FermiAndBoson}
+ \item Fermions and bosons. \label{it::gen::FermiAndBoson}
  \item Anisotropic- and isotropic diffusion, i.e.~Brute Force - or Importance sampling. \label{it::gen::BF_IS}
  \item Different gradient descent algorithms. 
  \item Any Jastrow factor.
@@ -106,7 +106,7 @@ double Bosons::get_spatial_wf(const Walker* walker) {
 }
 \end{lstlisting}
 
-Overloaded pure virtual methods for fermions and bosons exist for all of the methods which involves evaluating the many body wave function, for example the spatial ratio and the sum of Laplacians. When the \verb+QMC+ solver asks the \verb+System*+ object for a spatial ratio, depending on whether fermions or bosons are loaded run-time, the fermion or boson spatial ratio is evaluated. 
+Overloaded pure virtual methods for fermions and bosons exist for all of the methods which involves evaluating the many-body wave function, for example the spatial ratio and the sum of Laplacians. When the \verb+QMC+ solver asks the \verb+System*+ object for a spatial ratio, depending on whether fermions or bosons are loaded run-time, the fermion or boson spatial ratio is evaluated. 
 
 It is apparent that this way of implementing the system class takes care of optimization goal \ref{it::opt::noIF} in Section \ref{sec:optGoals} regarding no use of conditional if tests to determine the nature of the system. 
 
@@ -257,7 +257,7 @@ The last expression involving the Slater matrix (which can be simplified) is the
  &=& \frac{\Du^\mathrm{new} \Dd^\mathrm{new} J^\mathrm{new}}{\Du^\mathrm{old} \Dd^\mathrm{old} J^\mathrm{old}}, \label{eq:R_psi_allspins}\\
 \end{eqnarray}
 
-where the old and new superscript denotes the wave function prior to and after moving one particle respectively. Let again $i$ be the currently moved particle with spin $\alpha$. As discussed previously, the part of the trial wave function representing the opposite spin of $\alpha$, $\Daa$, is independent of particle $i$. This implies that moving particle $i$ does not change the value of $\Daa$, that is
+where the old and new superscript denotes the wave function prior to and after moving one particle, respectively. Let again $i$ be the currently moved particle with spin $\alpha$. As discussed previously, the part of the trial wave function representing the opposite spin of $\alpha$, $\Daa$, is independent of particle $i$. This implies that moving particle $i$ does not change the value of $\Daa$, that is
 
 \begin{equation}
  \Daa^\mathrm{new} = \Daa^\mathrm{old}.
@@ -632,7 +632,7 @@ In the same way that the relative distance matrix was equal to its transpose, th
 Additionally, just as for the relative distances, moving a single particle only changes one row and one column in the matrix. This implies that a similar updating algorithm as the one discussed in section \ref{sec:relDist} can be implemented. This is demonstrated in the following code snippet
 
 \vspace{0.25cm}
-\begin{lstlisting}[caption={The updating algorithm for the three dimensional matrix used in the Padé Jastrow gradient. Pay close attention to line 11, where the symmetry property is exploited by setting the transposed term equal to the negative of an already calculated term.}]
+\begin{lstlisting}[caption={The updating algorithm for the three-dimensional matrix used in the Padé Jastrow gradient. Pay close attention to line 11, where the symmetry property is exploited by setting the transposed term equal to the negative of an already calculated term.}]
 void Pade_Jastrow::get_dJ_matrix(Walker* walker, int moved_particle) const {
     
     int i = moved_particle;
@@ -735,10 +735,10 @@ For a low number of particles this is quite efficient, however, this is not the 
 
 A more efficient implementation is to represent the single particle wave functions as \verb+BasisFunctions+ objects. These objects holds only one pure virtual member function \verb+BasisFunctions::eval()+ which takes on input the particle number $i$ and the walker and returns the evaluated single particle wave function. The object itself is defined by a quantum number $q$. 
 
-The following is an example of a two dimensional harmonic oscillator single particle wave function for quantum number $q=1$ (see Appendix \ref{appendix:SymPyHO} for $\phi_1$)
+The following is an example of a two-dimensional harmonic oscillator single particle wave function for quantum number $q=1$ (see Appendix \ref{appendix:SymPyHO} for $\phi_1$)
 
 \vspace{0.25cm}
-%[caption={The implementation of a two dimensional harmonic oscillator single particle wave function representing quantum number 1.}]
+%[caption={The implementation of a two-dimensional harmonic oscillator single particle wave function representing quantum number 1.}]
 \begin{lstlisting}
 double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 
@@ -819,7 +819,7 @@ double HarmonicOscillator_1::eval(const Walker* walker, int i) {
 }
 \end{lstlisting}
 
-For two dimensional quantum dots, $112$ \verb+BasisFunctions+ objects are needed for a $56$-particle simulation. Applying the currently discussed optimization reduces the number of exponential calls needed to calculate every wave function from $112$ to $1$, which for an average DMC calculation results in $~6\cdot 10^{11}$ saved exponential calls. Generally, the number of exponential calls are reduced by a factor $\frac{N}{2}(N + 1)$.
+For two-dimensional quantum dots, $112$ \verb+BasisFunctions+ objects are needed for a $56$-particle simulation. Applying the currently discussed optimization reduces the number of exponential calls needed to calculate every wave function from $112$ to $1$, which for an average DMC calculation results in $~6\cdot 10^{11}$ saved exponential calls. Generally, the number of exponential calls are reduced by a factor $\frac{N}{2}(N + 1)$.
 
 
 \section{CPU Cache Optimization}
